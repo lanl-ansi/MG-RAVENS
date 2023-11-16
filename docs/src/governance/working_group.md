@@ -16,7 +16,6 @@
 | Line Roald                   | University of Wisconsin-Madison          |
 | Noah Rhodes                  | University of Wisconsin-Madison          |
 | Olga Lavrova                 | New Mexico State University              |
-| Orland Whitney               | Utilities Department, City of Las Cruces |
 | Sean Ericson                 | EPRI                                     |
 | Siddharth Bhela              | Siemens                                  |
 | Sofia Taylor                 | University of Wisconsin-Madison          |
@@ -24,3 +23,5 @@
 | Steven H Low                 | Netlab, CalTech                          |
 | Vaibhav Donde                | Lawrence Livermore National Lab          |
 | Yi Liu                       | Eaton                                    |
+| Sid Suryanarayanan           | Eaton                                    |
+| Bruce Nordman                | Lawrence Berkeley National Lab           |
