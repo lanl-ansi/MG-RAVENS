@@ -1,0 +1,42 @@
+# DateTimeInterval
+
+- [1. Property `DateTimeInterval > end`](#end)
+- [2. Property `DateTimeInterval > start`](#start)
+
+**Title:** DateTimeInterval
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Interval between two date and time points, where the interval includes the start time but excludes end time.
+
+| Property           | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                             |
+| ------------------ | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
+| - [end](#end )     | No      | string | No         | -          | End date and time of this interval.  The end date and time where the interval is defined up to, but excluded. |
+| - [start](#start ) | No      | string | No         | -          | Start date and time of this interval.  The start date and time is included in the defined interval.           |
+
+## <a name="end"></a>1. Property `DateTimeInterval > end`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** End date and time of this interval.  The end date and time where the interval is defined up to, but excluded.
+
+## <a name="start"></a>2. Property `DateTimeInterval > start`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Start date and time of this interval.  The start date and time is included in the defined interval.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

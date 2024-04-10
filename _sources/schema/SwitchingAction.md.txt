@@ -1,0 +1,1969 @@
+# SwitchingAction
+
+- [1. Property `SwitchingAction > oneOf > EnergySourceAction.json`](#oneOf_i0)
+  - [1.1. Property `SwitchingAction > oneOf > EnergySourceAction > SwitchingAction.plannedDateTime`](#oneOf_i0_SwitchingActionplannedDateTime)
+  - [1.2. Property `SwitchingAction > oneOf > EnergySourceAction > SwitchingAction.phases`](#oneOf_i0_SwitchingActionphases)
+  - [1.3. Property `SwitchingAction > oneOf > EnergySourceAction > EnergySourceAction.kind`](#oneOf_i0_EnergySourceActionkind)
+  - [1.4. Property `SwitchingAction > oneOf > EnergySourceAction > SwitchingAction.issuedDateTime`](#oneOf_i0_SwitchingActionissuedDateTime)
+  - [1.5. Property `SwitchingAction > oneOf > EnergySourceAction > SwitchingAction.executedDateTime`](#oneOf_i0_SwitchingActionexecutedDateTime)
+  - [1.6. Property `SwitchingAction > oneOf > EnergySourceAction > IdentifiedObject.description`](#oneOf_i0_IdentifiedObjectdescription)
+  - [1.7. Property `SwitchingAction > oneOf > EnergySourceAction > IdentifiedObject.aliasName`](#oneOf_i0_IdentifiedObjectaliasName)
+  - [1.8. Property `SwitchingAction > oneOf > EnergySourceAction > IdentifiedObject.mRID`](#oneOf_i0_IdentifiedObjectmRID)
+  - [1.9. Property `SwitchingAction > oneOf > EnergySourceAction > IdentifiedObject.name`](#oneOf_i0_IdentifiedObjectname)
+- [2. Property `SwitchingAction > oneOf > ControlAction.json`](#oneOf_i1)
+  - [2.1. Property `SwitchingAction > oneOf > ControlAction > SwitchingAction.plannedDateTime`](#oneOf_i1_SwitchingActionplannedDateTime)
+  - [2.2. Property `SwitchingAction > oneOf > ControlAction > IdentifiedObject.description`](#oneOf_i1_IdentifiedObjectdescription)
+  - [2.3. Property `SwitchingAction > oneOf > ControlAction > SwitchingAction.phases`](#oneOf_i1_SwitchingActionphases)
+  - [2.4. Property `SwitchingAction > oneOf > ControlAction > SwitchingAction.issuedDateTime`](#oneOf_i1_SwitchingActionissuedDateTime)
+  - [2.5. Property `SwitchingAction > oneOf > ControlAction > SwitchingAction.executedDateTime`](#oneOf_i1_SwitchingActionexecutedDateTime)
+  - [2.6. Property `SwitchingAction > oneOf > ControlAction > ControlAction.analogValue`](#oneOf_i1_ControlActionanalogValue)
+  - [2.7. Property `SwitchingAction > oneOf > ControlAction > ControlAction.discreteValue`](#oneOf_i1_ControlActiondiscreteValue)
+  - [2.8. Property `SwitchingAction > oneOf > ControlAction > IdentifiedObject.aliasName`](#oneOf_i1_IdentifiedObjectaliasName)
+  - [2.9. Property `SwitchingAction > oneOf > ControlAction > IdentifiedObject.mRID`](#oneOf_i1_IdentifiedObjectmRID)
+  - [2.10. Property `SwitchingAction > oneOf > ControlAction > IdentifiedObject.name`](#oneOf_i1_IdentifiedObjectname)
+- [3. Property `SwitchingAction > oneOf > TagAction.json`](#oneOf_i2)
+  - [3.1. Property `SwitchingAction > oneOf > TagAction > SwitchingAction.plannedDateTime`](#oneOf_i2_SwitchingActionplannedDateTime)
+  - [3.2. Property `SwitchingAction > oneOf > TagAction > TagAction.kind`](#oneOf_i2_TagActionkind)
+  - [3.3. Property `SwitchingAction > oneOf > TagAction > SwitchingAction.phases`](#oneOf_i2_SwitchingActionphases)
+  - [3.4. Property `SwitchingAction > oneOf > TagAction > SwitchingAction.issuedDateTime`](#oneOf_i2_SwitchingActionissuedDateTime)
+  - [3.5. Property `SwitchingAction > oneOf > TagAction > SwitchingAction.executedDateTime`](#oneOf_i2_SwitchingActionexecutedDateTime)
+  - [3.6. Property `SwitchingAction > oneOf > TagAction > IdentifiedObject.description`](#oneOf_i2_IdentifiedObjectdescription)
+  - [3.7. Property `SwitchingAction > oneOf > TagAction > IdentifiedObject.aliasName`](#oneOf_i2_IdentifiedObjectaliasName)
+  - [3.8. Property `SwitchingAction > oneOf > TagAction > IdentifiedObject.mRID`](#oneOf_i2_IdentifiedObjectmRID)
+  - [3.9. Property `SwitchingAction > oneOf > TagAction > IdentifiedObject.name`](#oneOf_i2_IdentifiedObjectname)
+- [4. Property `SwitchingAction > oneOf > VerificationAction.json`](#oneOf_i3)
+  - [4.1. Property `SwitchingAction > oneOf > VerificationAction > SwitchingAction.plannedDateTime`](#oneOf_i3_SwitchingActionplannedDateTime)
+  - [4.2. Property `SwitchingAction > oneOf > VerificationAction > SwitchingAction.executedDateTime`](#oneOf_i3_SwitchingActionexecutedDateTime)
+  - [4.3. Property `SwitchingAction > oneOf > VerificationAction > SwitchingAction.phases`](#oneOf_i3_SwitchingActionphases)
+  - [4.4. Property `SwitchingAction > oneOf > VerificationAction > SwitchingAction.issuedDateTime`](#oneOf_i3_SwitchingActionissuedDateTime)
+  - [4.5. Property `SwitchingAction > oneOf > VerificationAction > VerificationAction.verificationCondition`](#oneOf_i3_VerificationActionverificationCondition)
+  - [4.6. Property `SwitchingAction > oneOf > VerificationAction > IdentifiedObject.description`](#oneOf_i3_IdentifiedObjectdescription)
+  - [4.7. Property `SwitchingAction > oneOf > VerificationAction > IdentifiedObject.aliasName`](#oneOf_i3_IdentifiedObjectaliasName)
+  - [4.8. Property `SwitchingAction > oneOf > VerificationAction > IdentifiedObject.mRID`](#oneOf_i3_IdentifiedObjectmRID)
+  - [4.9. Property `SwitchingAction > oneOf > VerificationAction > IdentifiedObject.name`](#oneOf_i3_IdentifiedObjectname)
+- [5. Property `SwitchingAction > oneOf > MeasurementAction.json`](#oneOf_i4)
+  - [5.1. Property `SwitchingAction > oneOf > MeasurementAction > SwitchingAction.plannedDateTime`](#oneOf_i4_SwitchingActionplannedDateTime)
+  - [5.2. Property `SwitchingAction > oneOf > MeasurementAction > SwitchingAction.phases`](#oneOf_i4_SwitchingActionphases)
+  - [5.3. Property `SwitchingAction > oneOf > MeasurementAction > SwitchingAction.issuedDateTime`](#oneOf_i4_SwitchingActionissuedDateTime)
+  - [5.4. Property `SwitchingAction > oneOf > MeasurementAction > SwitchingAction.executedDateTime`](#oneOf_i4_SwitchingActionexecutedDateTime)
+  - [5.5. Property `SwitchingAction > oneOf > MeasurementAction > IdentifiedObject.description`](#oneOf_i4_IdentifiedObjectdescription)
+  - [5.6. Property `SwitchingAction > oneOf > MeasurementAction > IdentifiedObject.aliasName`](#oneOf_i4_IdentifiedObjectaliasName)
+  - [5.7. Property `SwitchingAction > oneOf > MeasurementAction > IdentifiedObject.mRID`](#oneOf_i4_IdentifiedObjectmRID)
+  - [5.8. Property `SwitchingAction > oneOf > MeasurementAction > IdentifiedObject.name`](#oneOf_i4_IdentifiedObjectname)
+- [6. Property `SwitchingAction > oneOf > ClearanceAction.json`](#oneOf_i5)
+  - [6.1. Property `SwitchingAction > oneOf > ClearanceAction > SwitchingAction.plannedDateTime`](#oneOf_i5_SwitchingActionplannedDateTime)
+  - [6.2. Property `SwitchingAction > oneOf > ClearanceAction > SwitchingAction.phases`](#oneOf_i5_SwitchingActionphases)
+  - [6.3. Property `SwitchingAction > oneOf > ClearanceAction > ClearanceAction.kind`](#oneOf_i5_ClearanceActionkind)
+  - [6.4. Property `SwitchingAction > oneOf > ClearanceAction > SwitchingAction.issuedDateTime`](#oneOf_i5_SwitchingActionissuedDateTime)
+  - [6.5. Property `SwitchingAction > oneOf > ClearanceAction > SwitchingAction.executedDateTime`](#oneOf_i5_SwitchingActionexecutedDateTime)
+  - [6.6. Property `SwitchingAction > oneOf > ClearanceAction > IdentifiedObject.description`](#oneOf_i5_IdentifiedObjectdescription)
+  - [6.7. Property `SwitchingAction > oneOf > ClearanceAction > IdentifiedObject.aliasName`](#oneOf_i5_IdentifiedObjectaliasName)
+  - [6.8. Property `SwitchingAction > oneOf > ClearanceAction > IdentifiedObject.mRID`](#oneOf_i5_IdentifiedObjectmRID)
+  - [6.9. Property `SwitchingAction > oneOf > ClearanceAction > IdentifiedObject.name`](#oneOf_i5_IdentifiedObjectname)
+- [7. Property `SwitchingAction > oneOf > GenericAction.json`](#oneOf_i6)
+  - [7.1. Property `SwitchingAction > oneOf > GenericAction > SwitchingAction.plannedDateTime`](#oneOf_i6_SwitchingActionplannedDateTime)
+  - [7.2. Property `SwitchingAction > oneOf > GenericAction > SwitchingAction.phases`](#oneOf_i6_SwitchingActionphases)
+  - [7.3. Property `SwitchingAction > oneOf > GenericAction > SwitchingAction.issuedDateTime`](#oneOf_i6_SwitchingActionissuedDateTime)
+  - [7.4. Property `SwitchingAction > oneOf > GenericAction > SwitchingAction.executedDateTime`](#oneOf_i6_SwitchingActionexecutedDateTime)
+  - [7.5. Property `SwitchingAction > oneOf > GenericAction > IdentifiedObject.description`](#oneOf_i6_IdentifiedObjectdescription)
+  - [7.6. Property `SwitchingAction > oneOf > GenericAction > IdentifiedObject.aliasName`](#oneOf_i6_IdentifiedObjectaliasName)
+  - [7.7. Property `SwitchingAction > oneOf > GenericAction > IdentifiedObject.mRID`](#oneOf_i6_IdentifiedObjectmRID)
+  - [7.8. Property `SwitchingAction > oneOf > GenericAction > IdentifiedObject.name`](#oneOf_i6_IdentifiedObjectname)
+- [8. Property `SwitchingAction > oneOf > SwitchAction.json`](#oneOf_i7)
+  - [8.1. Property `SwitchingAction > oneOf > SwitchAction > SwitchingAction.plannedDateTime`](#oneOf_i7_SwitchingActionplannedDateTime)
+  - [8.2. Property `SwitchingAction > oneOf > SwitchAction > SwitchAction.kind`](#oneOf_i7_SwitchActionkind)
+  - [8.3. Property `SwitchingAction > oneOf > SwitchAction > SwitchingAction.phases`](#oneOf_i7_SwitchingActionphases)
+  - [8.4. Property `SwitchingAction > oneOf > SwitchAction > SwitchingAction.issuedDateTime`](#oneOf_i7_SwitchingActionissuedDateTime)
+  - [8.5. Property `SwitchingAction > oneOf > SwitchAction > SwitchingAction.executedDateTime`](#oneOf_i7_SwitchingActionexecutedDateTime)
+  - [8.6. Property `SwitchingAction > oneOf > SwitchAction > IdentifiedObject.description`](#oneOf_i7_IdentifiedObjectdescription)
+  - [8.7. Property `SwitchingAction > oneOf > SwitchAction > IdentifiedObject.aliasName`](#oneOf_i7_IdentifiedObjectaliasName)
+  - [8.8. Property `SwitchingAction > oneOf > SwitchAction > IdentifiedObject.mRID`](#oneOf_i7_IdentifiedObjectmRID)
+  - [8.9. Property `SwitchingAction > oneOf > SwitchAction > IdentifiedObject.name`](#oneOf_i7_IdentifiedObjectname)
+- [9. Property `SwitchingAction > oneOf > ShuntCompensatorAction.json`](#oneOf_i8)
+  - [9.1. Property `SwitchingAction > oneOf > ShuntCompensatorAction > ShuntCompensatorAction.kind`](#oneOf_i8_ShuntCompensatorActionkind)
+  - [9.2. Property `SwitchingAction > oneOf > ShuntCompensatorAction > SwitchingAction.plannedDateTime`](#oneOf_i8_SwitchingActionplannedDateTime)
+  - [9.3. Property `SwitchingAction > oneOf > ShuntCompensatorAction > SwitchingAction.phases`](#oneOf_i8_SwitchingActionphases)
+  - [9.4. Property `SwitchingAction > oneOf > ShuntCompensatorAction > SwitchingAction.issuedDateTime`](#oneOf_i8_SwitchingActionissuedDateTime)
+  - [9.5. Property `SwitchingAction > oneOf > ShuntCompensatorAction > SwitchingAction.executedDateTime`](#oneOf_i8_SwitchingActionexecutedDateTime)
+  - [9.6. Property `SwitchingAction > oneOf > ShuntCompensatorAction > IdentifiedObject.description`](#oneOf_i8_IdentifiedObjectdescription)
+  - [9.7. Property `SwitchingAction > oneOf > ShuntCompensatorAction > IdentifiedObject.aliasName`](#oneOf_i8_IdentifiedObjectaliasName)
+  - [9.8. Property `SwitchingAction > oneOf > ShuntCompensatorAction > IdentifiedObject.mRID`](#oneOf_i8_IdentifiedObjectmRID)
+  - [9.9. Property `SwitchingAction > oneOf > ShuntCompensatorAction > IdentifiedObject.name`](#oneOf_i8_IdentifiedObjectname)
+- [10. Property `SwitchingAction > oneOf > CutAction.json`](#oneOf_i9)
+  - [10.1. Property `SwitchingAction > oneOf > CutAction > CutAction.kind`](#oneOf_i9_CutActionkind)
+  - [10.2. Property `SwitchingAction > oneOf > CutAction > SwitchingAction.plannedDateTime`](#oneOf_i9_SwitchingActionplannedDateTime)
+  - [10.3. Property `SwitchingAction > oneOf > CutAction > SwitchingAction.phases`](#oneOf_i9_SwitchingActionphases)
+  - [10.4. Property `SwitchingAction > oneOf > CutAction > SwitchingAction.issuedDateTime`](#oneOf_i9_SwitchingActionissuedDateTime)
+  - [10.5. Property `SwitchingAction > oneOf > CutAction > SwitchingAction.executedDateTime`](#oneOf_i9_SwitchingActionexecutedDateTime)
+  - [10.6. Property `SwitchingAction > oneOf > CutAction > IdentifiedObject.description`](#oneOf_i9_IdentifiedObjectdescription)
+  - [10.7. Property `SwitchingAction > oneOf > CutAction > IdentifiedObject.aliasName`](#oneOf_i9_IdentifiedObjectaliasName)
+  - [10.8. Property `SwitchingAction > oneOf > CutAction > IdentifiedObject.mRID`](#oneOf_i9_IdentifiedObjectmRID)
+  - [10.9. Property `SwitchingAction > oneOf > CutAction > IdentifiedObject.name`](#oneOf_i9_IdentifiedObjectname)
+- [11. Property `SwitchingAction > oneOf > GroundAction.json`](#oneOf_i10)
+  - [11.1. Property `SwitchingAction > oneOf > GroundAction > SwitchingAction.plannedDateTime`](#oneOf_i10_SwitchingActionplannedDateTime)
+  - [11.2. Property `SwitchingAction > oneOf > GroundAction > SwitchingAction.phases`](#oneOf_i10_SwitchingActionphases)
+  - [11.3. Property `SwitchingAction > oneOf > GroundAction > SwitchingAction.issuedDateTime`](#oneOf_i10_SwitchingActionissuedDateTime)
+  - [11.4. Property `SwitchingAction > oneOf > GroundAction > GroundAction.kind`](#oneOf_i10_GroundActionkind)
+  - [11.5. Property `SwitchingAction > oneOf > GroundAction > SwitchingAction.executedDateTime`](#oneOf_i10_SwitchingActionexecutedDateTime)
+  - [11.6. Property `SwitchingAction > oneOf > GroundAction > IdentifiedObject.description`](#oneOf_i10_IdentifiedObjectdescription)
+  - [11.7. Property `SwitchingAction > oneOf > GroundAction > IdentifiedObject.aliasName`](#oneOf_i10_IdentifiedObjectaliasName)
+  - [11.8. Property `SwitchingAction > oneOf > GroundAction > IdentifiedObject.mRID`](#oneOf_i10_IdentifiedObjectmRID)
+  - [11.9. Property `SwitchingAction > oneOf > GroundAction > IdentifiedObject.name`](#oneOf_i10_IdentifiedObjectname)
+- [12. Property `SwitchingAction > oneOf > JumperAction.json`](#oneOf_i11)
+  - [12.1. Property `SwitchingAction > oneOf > JumperAction > SwitchingAction.plannedDateTime`](#oneOf_i11_SwitchingActionplannedDateTime)
+  - [12.2. Property `SwitchingAction > oneOf > JumperAction > SwitchingAction.phases`](#oneOf_i11_SwitchingActionphases)
+  - [12.3. Property `SwitchingAction > oneOf > JumperAction > SwitchingAction.issuedDateTime`](#oneOf_i11_SwitchingActionissuedDateTime)
+  - [12.4. Property `SwitchingAction > oneOf > JumperAction > JumperAction.kind`](#oneOf_i11_JumperActionkind)
+  - [12.5. Property `SwitchingAction > oneOf > JumperAction > SwitchingAction.executedDateTime`](#oneOf_i11_SwitchingActionexecutedDateTime)
+  - [12.6. Property `SwitchingAction > oneOf > JumperAction > IdentifiedObject.description`](#oneOf_i11_IdentifiedObjectdescription)
+  - [12.7. Property `SwitchingAction > oneOf > JumperAction > IdentifiedObject.aliasName`](#oneOf_i11_IdentifiedObjectaliasName)
+  - [12.8. Property `SwitchingAction > oneOf > JumperAction > IdentifiedObject.mRID`](#oneOf_i11_IdentifiedObjectmRID)
+  - [12.9. Property `SwitchingAction > oneOf > JumperAction > IdentifiedObject.name`](#oneOf_i11_IdentifiedObjectname)
+- [13. Property `SwitchingAction > oneOf > EnergyConsumerAction.json`](#oneOf_i12)
+  - [13.1. Property `SwitchingAction > oneOf > EnergyConsumerAction > SwitchingAction.plannedDateTime`](#oneOf_i12_SwitchingActionplannedDateTime)
+  - [13.2. Property `SwitchingAction > oneOf > EnergyConsumerAction > EnergyConsumerAction.kind`](#oneOf_i12_EnergyConsumerActionkind)
+  - [13.3. Property `SwitchingAction > oneOf > EnergyConsumerAction > SwitchingAction.phases`](#oneOf_i12_SwitchingActionphases)
+  - [13.4. Property `SwitchingAction > oneOf > EnergyConsumerAction > SwitchingAction.issuedDateTime`](#oneOf_i12_SwitchingActionissuedDateTime)
+  - [13.5. Property `SwitchingAction > oneOf > EnergyConsumerAction > SwitchingAction.executedDateTime`](#oneOf_i12_SwitchingActionexecutedDateTime)
+  - [13.6. Property `SwitchingAction > oneOf > EnergyConsumerAction > IdentifiedObject.description`](#oneOf_i12_IdentifiedObjectdescription)
+  - [13.7. Property `SwitchingAction > oneOf > EnergyConsumerAction > IdentifiedObject.aliasName`](#oneOf_i12_IdentifiedObjectaliasName)
+  - [13.8. Property `SwitchingAction > oneOf > EnergyConsumerAction > IdentifiedObject.mRID`](#oneOf_i12_IdentifiedObjectmRID)
+  - [13.9. Property `SwitchingAction > oneOf > EnergyConsumerAction > IdentifiedObject.name`](#oneOf_i12_IdentifiedObjectname)
+- [14. Property `SwitchingAction > oneOf > ClampAction.json`](#oneOf_i13)
+  - [14.1. Property `SwitchingAction > oneOf > ClampAction > SwitchingAction.plannedDateTime`](#oneOf_i13_SwitchingActionplannedDateTime)
+  - [14.2. Property `SwitchingAction > oneOf > ClampAction > ClampAction.kind`](#oneOf_i13_ClampActionkind)
+  - [14.3. Property `SwitchingAction > oneOf > ClampAction > SwitchingAction.phases`](#oneOf_i13_SwitchingActionphases)
+  - [14.4. Property `SwitchingAction > oneOf > ClampAction > SwitchingAction.issuedDateTime`](#oneOf_i13_SwitchingActionissuedDateTime)
+  - [14.5. Property `SwitchingAction > oneOf > ClampAction > SwitchingAction.executedDateTime`](#oneOf_i13_SwitchingActionexecutedDateTime)
+  - [14.6. Property `SwitchingAction > oneOf > ClampAction > IdentifiedObject.description`](#oneOf_i13_IdentifiedObjectdescription)
+  - [14.7. Property `SwitchingAction > oneOf > ClampAction > IdentifiedObject.aliasName`](#oneOf_i13_IdentifiedObjectaliasName)
+  - [14.8. Property `SwitchingAction > oneOf > ClampAction > IdentifiedObject.mRID`](#oneOf_i13_IdentifiedObjectmRID)
+  - [14.9. Property `SwitchingAction > oneOf > ClampAction > IdentifiedObject.name`](#oneOf_i13_IdentifiedObjectname)
+
+**Title:** SwitchingAction
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                               |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Atomic switching action.
+
+| One of(Option)                           |
+| ---------------------------------------- |
+| [EnergySourceAction.json](#oneOf_i0)     |
+| [ControlAction.json](#oneOf_i1)          |
+| [TagAction.json](#oneOf_i2)              |
+| [VerificationAction.json](#oneOf_i3)     |
+| [MeasurementAction.json](#oneOf_i4)      |
+| [ClearanceAction.json](#oneOf_i5)        |
+| [GenericAction.json](#oneOf_i6)          |
+| [SwitchAction.json](#oneOf_i7)           |
+| [ShuntCompensatorAction.json](#oneOf_i8) |
+| [CutAction.json](#oneOf_i9)              |
+| [GroundAction.json](#oneOf_i10)          |
+| [JumperAction.json](#oneOf_i11)          |
+| [EnergyConsumerAction.json](#oneOf_i12)  |
+| [ClampAction.json](#oneOf_i13)           |
+
+## <a name="oneOf_i0"></a>1. Property `SwitchingAction > oneOf > EnergySourceAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./EnergySourceAction.json                                                 |
+
+**Description:** Action on energy source as a switching step.
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                    | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------- | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i0_SwitchingActionplannedDateTime )   | No      | string           | No         | -                             | plannedDateTime   |
+| - [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases )                     | No      | enum (of string) | No         | In ./PhaseCode.json           | phases            |
+| - [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind )                   | No      | enum (of string) | No         | In ./TempEquipActionKind.json | kind              |
+| - [SwitchingAction.issuedDateTime](#oneOf_i0_SwitchingActionissuedDateTime )     | No      | string           | No         | -                             | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i0_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                             | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i0_IdentifiedObjectdescription )         | No      | string           | No         | -                             | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i0_IdentifiedObjectaliasName )             | No      | string           | No         | -                             | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i0_IdentifiedObjectmRID )                       | No      | string           | No         | -                             | mRID              |
+| - [IdentifiedObject.name](#oneOf_i0_IdentifiedObjectname )                       | No      | string           | No         | -                             | name              |
+
+### <a name="oneOf_i0_SwitchingActionplannedDateTime"></a>1.1. Property `SwitchingAction > oneOf > EnergySourceAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i0_SwitchingActionphases"></a>1.2. Property `SwitchingAction > oneOf > EnergySourceAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Defined in** | ./PhaseCode.json   |
+
+**Description:** Phases of the Switching Action
+
+Must be one of:
+* "ABCN"
+* "ABC"
+* "ABN"
+* "ACN"
+* "BCN"
+* "AB"
+* "AC"
+* "BC"
+* "AN"
+* "BN"
+* "CN"
+* "A"
+* "B"
+* "C"
+* "N"
+* "s1N"
+* "s2N"
+* "s12N"
+* "s1"
+* "s2"
+* "s12"
+* "none"
+* "X"
+* "XY"
+* "XN"
+* "XYN"
+
+### <a name="oneOf_i0_EnergySourceActionkind"></a>1.3. Property `SwitchingAction > oneOf > EnergySourceAction > EnergySourceAction.kind`
+
+**Title:** kind
+
+|                |                            |
+| -------------- | -------------------------- |
+| **Type**       | `enum (of string)`         |
+| **Required**   | No                         |
+| **Defined in** | ./TempEquipActionKind.json |
+
+**Description:** Switching action to perform.
+
+Must be one of:
+* "remove"
+* "place"
+* "connect"
+* "disconnect"
+
+### <a name="oneOf_i0_SwitchingActionissuedDateTime"></a>1.4. Property `SwitchingAction > oneOf > EnergySourceAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i0_SwitchingActionexecutedDateTime"></a>1.5. Property `SwitchingAction > oneOf > EnergySourceAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i0_IdentifiedObjectdescription"></a>1.6. Property `SwitchingAction > oneOf > EnergySourceAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i0_IdentifiedObjectaliasName"></a>1.7. Property `SwitchingAction > oneOf > EnergySourceAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i0_IdentifiedObjectmRID"></a>1.8. Property `SwitchingAction > oneOf > EnergySourceAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i0_IdentifiedObjectname"></a>1.9. Property `SwitchingAction > oneOf > EnergySourceAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i1"></a>2. Property `SwitchingAction > oneOf > ControlAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ControlAction.json                                                      |
+
+**Description:** Control executed as a switching step.
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                                                         | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------ | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i1_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                  | plannedDateTime   |
+| - [IdentifiedObject.description](#oneOf_i1_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                  | description       |
+| - [SwitchingAction.phases](#oneOf_i1_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases ) | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i1_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                  | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i1_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                  | executedDateTime  |
+| - [ControlAction.analogValue](#oneOf_i1_ControlActionanalogValue )               | No      | number           | No         | -                                                                  | analogValue       |
+| - [ControlAction.discreteValue](#oneOf_i1_ControlActiondiscreteValue )           | No      | integer          | No         | -                                                                  | discreteValue     |
+| - [IdentifiedObject.aliasName](#oneOf_i1_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                  | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i1_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                  | mRID              |
+| - [IdentifiedObject.name](#oneOf_i1_IdentifiedObjectname )                       | No      | string           | No         | -                                                                  | name              |
+
+### <a name="oneOf_i1_SwitchingActionplannedDateTime"></a>2.1. Property `SwitchingAction > oneOf > ControlAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i1_IdentifiedObjectdescription"></a>2.2. Property `SwitchingAction > oneOf > ControlAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i1_SwitchingActionphases"></a>2.3. Property `SwitchingAction > oneOf > ControlAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i1_SwitchingActionissuedDateTime"></a>2.4. Property `SwitchingAction > oneOf > ControlAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i1_SwitchingActionexecutedDateTime"></a>2.5. Property `SwitchingAction > oneOf > ControlAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i1_ControlActionanalogValue"></a>2.6. Property `SwitchingAction > oneOf > ControlAction > ControlAction.analogValue`
+
+**Title:** analogValue
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** The analog value used for the analog control, the raise/lower control and the set point control
+
+### <a name="oneOf_i1_ControlActiondiscreteValue"></a>2.7. Property `SwitchingAction > oneOf > ControlAction > ControlAction.discreteValue`
+
+**Title:** discreteValue
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** The integer value used for the command or the accumulator reset.
+
+### <a name="oneOf_i1_IdentifiedObjectaliasName"></a>2.8. Property `SwitchingAction > oneOf > ControlAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i1_IdentifiedObjectmRID"></a>2.9. Property `SwitchingAction > oneOf > ControlAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i1_IdentifiedObjectname"></a>2.10. Property `SwitchingAction > oneOf > ControlAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i2"></a>3. Property `SwitchingAction > oneOf > TagAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./TagAction.json                                                          |
+
+**Description:** Action on operation tag as a switching step.
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                                                         | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------ | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i2_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                  | plannedDateTime   |
+| - [TagAction.kind](#oneOf_i2_TagActionkind )                                     | No      | enum (of string) | No         | In ./TagActionKind.json                                            | kind              |
+| - [SwitchingAction.phases](#oneOf_i2_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases ) | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i2_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                  | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i2_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                  | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i2_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                  | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i2_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                  | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i2_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                  | mRID              |
+| - [IdentifiedObject.name](#oneOf_i2_IdentifiedObjectname )                       | No      | string           | No         | -                                                                  | name              |
+
+### <a name="oneOf_i2_SwitchingActionplannedDateTime"></a>3.1. Property `SwitchingAction > oneOf > TagAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i2_TagActionkind"></a>3.2. Property `SwitchingAction > oneOf > TagAction > TagAction.kind`
+
+**Title:** kind
+
+|                |                      |
+| -------------- | -------------------- |
+| **Type**       | `enum (of string)`   |
+| **Required**   | No                   |
+| **Defined in** | ./TagActionKind.json |
+
+**Description:** Kind of tag action.
+
+Must be one of:
+* "place"
+* "remove"
+* "verify"
+
+### <a name="oneOf_i2_SwitchingActionphases"></a>3.3. Property `SwitchingAction > oneOf > TagAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i2_SwitchingActionissuedDateTime"></a>3.4. Property `SwitchingAction > oneOf > TagAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i2_SwitchingActionexecutedDateTime"></a>3.5. Property `SwitchingAction > oneOf > TagAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i2_IdentifiedObjectdescription"></a>3.6. Property `SwitchingAction > oneOf > TagAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i2_IdentifiedObjectaliasName"></a>3.7. Property `SwitchingAction > oneOf > TagAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i2_IdentifiedObjectmRID"></a>3.8. Property `SwitchingAction > oneOf > TagAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i2_IdentifiedObjectname"></a>3.9. Property `SwitchingAction > oneOf > TagAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i3"></a>4. Property `SwitchingAction > oneOf > VerificationAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./VerificationAction.json                                                 |
+
+**Description:** Verification of a switch position or other condition as a switching step
+
+| Property                                                                                         | Pattern | Type             | Deprecated | Definition                                                         | Title/Description     |
+| ------------------------------------------------------------------------------------------------ | ------- | ---------------- | ---------- | ------------------------------------------------------------------ | --------------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i3_SwitchingActionplannedDateTime )                   | No      | string           | No         | -                                                                  | plannedDateTime       |
+| - [SwitchingAction.executedDateTime](#oneOf_i3_SwitchingActionexecutedDateTime )                 | No      | string           | No         | -                                                                  | executedDateTime      |
+| - [SwitchingAction.phases](#oneOf_i3_SwitchingActionphases )                                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases ) | phases                |
+| - [SwitchingAction.issuedDateTime](#oneOf_i3_SwitchingActionissuedDateTime )                     | No      | string           | No         | -                                                                  | issuedDateTime        |
+| - [VerificationAction.verificationCondition](#oneOf_i3_VerificationActionverificationCondition ) | No      | string           | No         | -                                                                  | verificationCondition |
+| - [IdentifiedObject.description](#oneOf_i3_IdentifiedObjectdescription )                         | No      | string           | No         | -                                                                  | description           |
+| - [IdentifiedObject.aliasName](#oneOf_i3_IdentifiedObjectaliasName )                             | No      | string           | No         | -                                                                  | aliasName             |
+| - [IdentifiedObject.mRID](#oneOf_i3_IdentifiedObjectmRID )                                       | No      | string           | No         | -                                                                  | mRID                  |
+| - [IdentifiedObject.name](#oneOf_i3_IdentifiedObjectname )                                       | No      | string           | No         | -                                                                  | name                  |
+
+### <a name="oneOf_i3_SwitchingActionplannedDateTime"></a>4.1. Property `SwitchingAction > oneOf > VerificationAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i3_SwitchingActionexecutedDateTime"></a>4.2. Property `SwitchingAction > oneOf > VerificationAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i3_SwitchingActionphases"></a>4.3. Property `SwitchingAction > oneOf > VerificationAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i3_SwitchingActionissuedDateTime"></a>4.4. Property `SwitchingAction > oneOf > VerificationAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i3_VerificationActionverificationCondition"></a>4.5. Property `SwitchingAction > oneOf > VerificationAction > VerificationAction.verificationCondition`
+
+**Title:** verificationCondition
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** freeform description of the condition to be verified
+
+### <a name="oneOf_i3_IdentifiedObjectdescription"></a>4.6. Property `SwitchingAction > oneOf > VerificationAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i3_IdentifiedObjectaliasName"></a>4.7. Property `SwitchingAction > oneOf > VerificationAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i3_IdentifiedObjectmRID"></a>4.8. Property `SwitchingAction > oneOf > VerificationAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i3_IdentifiedObjectname"></a>4.9. Property `SwitchingAction > oneOf > VerificationAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i4"></a>5. Property `SwitchingAction > oneOf > MeasurementAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./MeasurementAction.json                                                  |
+
+**Description:** Measurement taken as a switching step.
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                                                         | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------ | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i4_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                  | plannedDateTime   |
+| - [SwitchingAction.phases](#oneOf_i4_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases ) | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i4_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                  | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i4_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                  | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i4_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                  | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i4_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                  | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i4_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                  | mRID              |
+| - [IdentifiedObject.name](#oneOf_i4_IdentifiedObjectname )                       | No      | string           | No         | -                                                                  | name              |
+
+### <a name="oneOf_i4_SwitchingActionplannedDateTime"></a>5.1. Property `SwitchingAction > oneOf > MeasurementAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i4_SwitchingActionphases"></a>5.2. Property `SwitchingAction > oneOf > MeasurementAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i4_SwitchingActionissuedDateTime"></a>5.3. Property `SwitchingAction > oneOf > MeasurementAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i4_SwitchingActionexecutedDateTime"></a>5.4. Property `SwitchingAction > oneOf > MeasurementAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i4_IdentifiedObjectdescription"></a>5.5. Property `SwitchingAction > oneOf > MeasurementAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i4_IdentifiedObjectaliasName"></a>5.6. Property `SwitchingAction > oneOf > MeasurementAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i4_IdentifiedObjectmRID"></a>5.7. Property `SwitchingAction > oneOf > MeasurementAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i4_IdentifiedObjectname"></a>5.8. Property `SwitchingAction > oneOf > MeasurementAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i5"></a>6. Property `SwitchingAction > oneOf > ClearanceAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ClearanceAction.json                                                    |
+
+**Description:** Action on clearance document as a switching step.
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                                                         | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------ | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i5_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                  | plannedDateTime   |
+| - [SwitchingAction.phases](#oneOf_i5_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases ) | phases            |
+| - [ClearanceAction.kind](#oneOf_i5_ClearanceActionkind )                         | No      | enum (of string) | No         | In ./ClearanceActionKind.json                                      | kind              |
+| - [SwitchingAction.issuedDateTime](#oneOf_i5_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                  | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i5_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                  | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i5_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                  | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i5_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                  | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i5_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                  | mRID              |
+| - [IdentifiedObject.name](#oneOf_i5_IdentifiedObjectname )                       | No      | string           | No         | -                                                                  | name              |
+
+### <a name="oneOf_i5_SwitchingActionplannedDateTime"></a>6.1. Property `SwitchingAction > oneOf > ClearanceAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i5_SwitchingActionphases"></a>6.2. Property `SwitchingAction > oneOf > ClearanceAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i5_ClearanceActionkind"></a>6.3. Property `SwitchingAction > oneOf > ClearanceAction > ClearanceAction.kind`
+
+**Title:** kind
+
+|                |                            |
+| -------------- | -------------------------- |
+| **Type**       | `enum (of string)`         |
+| **Required**   | No                         |
+| **Defined in** | ./ClearanceActionKind.json |
+
+**Description:** Clearance action to perform.
+
+Must be one of:
+* "release"
+* "update"
+* "issue"
+
+### <a name="oneOf_i5_SwitchingActionissuedDateTime"></a>6.4. Property `SwitchingAction > oneOf > ClearanceAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i5_SwitchingActionexecutedDateTime"></a>6.5. Property `SwitchingAction > oneOf > ClearanceAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i5_IdentifiedObjectdescription"></a>6.6. Property `SwitchingAction > oneOf > ClearanceAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i5_IdentifiedObjectaliasName"></a>6.7. Property `SwitchingAction > oneOf > ClearanceAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i5_IdentifiedObjectmRID"></a>6.8. Property `SwitchingAction > oneOf > ClearanceAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i5_IdentifiedObjectname"></a>6.9. Property `SwitchingAction > oneOf > ClearanceAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i6"></a>7. Property `SwitchingAction > oneOf > GenericAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./GenericAction.json                                                      |
+
+**Description:** An arbitrary switching step.
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                                                         | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------ | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i6_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                  | plannedDateTime   |
+| - [SwitchingAction.phases](#oneOf_i6_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases ) | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i6_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                  | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i6_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                  | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i6_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                  | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i6_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                  | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i6_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                  | mRID              |
+| - [IdentifiedObject.name](#oneOf_i6_IdentifiedObjectname )                       | No      | string           | No         | -                                                                  | name              |
+
+### <a name="oneOf_i6_SwitchingActionplannedDateTime"></a>7.1. Property `SwitchingAction > oneOf > GenericAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i6_SwitchingActionphases"></a>7.2. Property `SwitchingAction > oneOf > GenericAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i6_SwitchingActionissuedDateTime"></a>7.3. Property `SwitchingAction > oneOf > GenericAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i6_SwitchingActionexecutedDateTime"></a>7.4. Property `SwitchingAction > oneOf > GenericAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i6_IdentifiedObjectdescription"></a>7.5. Property `SwitchingAction > oneOf > GenericAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i6_IdentifiedObjectaliasName"></a>7.6. Property `SwitchingAction > oneOf > GenericAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i6_IdentifiedObjectmRID"></a>7.7. Property `SwitchingAction > oneOf > GenericAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i6_IdentifiedObjectname"></a>7.8. Property `SwitchingAction > oneOf > GenericAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i7"></a>8. Property `SwitchingAction > oneOf > SwitchAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./SwitchAction.json                                                       |
+
+**Description:** Action on switch as a switching step.
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                                                         | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------ | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i7_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                  | plannedDateTime   |
+| - [SwitchAction.kind](#oneOf_i7_SwitchActionkind )                               | No      | enum (of string) | No         | In ./SwitchActionKind.json                                         | kind              |
+| - [SwitchingAction.phases](#oneOf_i7_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases ) | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i7_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                  | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i7_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                  | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i7_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                  | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i7_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                  | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i7_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                  | mRID              |
+| - [IdentifiedObject.name](#oneOf_i7_IdentifiedObjectname )                       | No      | string           | No         | -                                                                  | name              |
+
+### <a name="oneOf_i7_SwitchingActionplannedDateTime"></a>8.1. Property `SwitchingAction > oneOf > SwitchAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i7_SwitchActionkind"></a>8.2. Property `SwitchingAction > oneOf > SwitchAction > SwitchAction.kind`
+
+**Title:** kind
+
+|                |                         |
+| -------------- | ----------------------- |
+| **Type**       | `enum (of string)`      |
+| **Required**   | No                      |
+| **Defined in** | ./SwitchActionKind.json |
+
+**Description:** Switching action to perform.
+
+Must be one of:
+* "close"
+* "open"
+* "enableReclosing"
+* "disableReclosing"
+
+### <a name="oneOf_i7_SwitchingActionphases"></a>8.3. Property `SwitchingAction > oneOf > SwitchAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i7_SwitchingActionissuedDateTime"></a>8.4. Property `SwitchingAction > oneOf > SwitchAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i7_SwitchingActionexecutedDateTime"></a>8.5. Property `SwitchingAction > oneOf > SwitchAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i7_IdentifiedObjectdescription"></a>8.6. Property `SwitchingAction > oneOf > SwitchAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i7_IdentifiedObjectaliasName"></a>8.7. Property `SwitchingAction > oneOf > SwitchAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i7_IdentifiedObjectmRID"></a>8.8. Property `SwitchingAction > oneOf > SwitchAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i7_IdentifiedObjectname"></a>8.9. Property `SwitchingAction > oneOf > SwitchAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i8"></a>9. Property `SwitchingAction > oneOf > ShuntCompensatorAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ShuntCompensatorAction.json                                             |
+
+**Description:** nan
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                                                           | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------------- | ----------------- |
+| - [ShuntCompensatorAction.kind](#oneOf_i8_ShuntCompensatorActionkind )           | No      | enum (of string) | No         | Same as [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind ) | kind              |
+| - [SwitchingAction.plannedDateTime](#oneOf_i8_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                    | plannedDateTime   |
+| - [SwitchingAction.phases](#oneOf_i8_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases )   | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i8_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                    | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i8_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                    | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i8_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                    | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i8_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                    | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i8_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                    | mRID              |
+| - [IdentifiedObject.name](#oneOf_i8_IdentifiedObjectname )                       | No      | string           | No         | -                                                                    | name              |
+
+### <a name="oneOf_i8_ShuntCompensatorActionkind"></a>9.1. Property `SwitchingAction > oneOf > ShuntCompensatorAction > ShuntCompensatorAction.kind`
+
+**Title:** kind
+
+|                        |                                                             |
+| ---------------------- | ----------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                          |
+| **Required**           | No                                                          |
+| **Same definition as** | [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind) |
+
+**Description:** Switching action to perform
+
+### <a name="oneOf_i8_SwitchingActionplannedDateTime"></a>9.2. Property `SwitchingAction > oneOf > ShuntCompensatorAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i8_SwitchingActionphases"></a>9.3. Property `SwitchingAction > oneOf > ShuntCompensatorAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i8_SwitchingActionissuedDateTime"></a>9.4. Property `SwitchingAction > oneOf > ShuntCompensatorAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i8_SwitchingActionexecutedDateTime"></a>9.5. Property `SwitchingAction > oneOf > ShuntCompensatorAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i8_IdentifiedObjectdescription"></a>9.6. Property `SwitchingAction > oneOf > ShuntCompensatorAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i8_IdentifiedObjectaliasName"></a>9.7. Property `SwitchingAction > oneOf > ShuntCompensatorAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i8_IdentifiedObjectmRID"></a>9.8. Property `SwitchingAction > oneOf > ShuntCompensatorAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i8_IdentifiedObjectname"></a>9.9. Property `SwitchingAction > oneOf > ShuntCompensatorAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i9"></a>10. Property `SwitchingAction > oneOf > CutAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./CutAction.json                                                          |
+
+**Description:** Action on cut as a switching step.
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                                                           | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------------- | ----------------- |
+| - [CutAction.kind](#oneOf_i9_CutActionkind )                                     | No      | enum (of string) | No         | Same as [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind ) | kind              |
+| - [SwitchingAction.plannedDateTime](#oneOf_i9_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                    | plannedDateTime   |
+| - [SwitchingAction.phases](#oneOf_i9_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases )   | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i9_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                    | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i9_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                    | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i9_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                    | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i9_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                    | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i9_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                    | mRID              |
+| - [IdentifiedObject.name](#oneOf_i9_IdentifiedObjectname )                       | No      | string           | No         | -                                                                    | name              |
+
+### <a name="oneOf_i9_CutActionkind"></a>10.1. Property `SwitchingAction > oneOf > CutAction > CutAction.kind`
+
+**Title:** kind
+
+|                        |                                                             |
+| ---------------------- | ----------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                          |
+| **Required**           | No                                                          |
+| **Same definition as** | [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind) |
+
+**Description:** Switching action to perform.
+
+### <a name="oneOf_i9_SwitchingActionplannedDateTime"></a>10.2. Property `SwitchingAction > oneOf > CutAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i9_SwitchingActionphases"></a>10.3. Property `SwitchingAction > oneOf > CutAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i9_SwitchingActionissuedDateTime"></a>10.4. Property `SwitchingAction > oneOf > CutAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i9_SwitchingActionexecutedDateTime"></a>10.5. Property `SwitchingAction > oneOf > CutAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i9_IdentifiedObjectdescription"></a>10.6. Property `SwitchingAction > oneOf > CutAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i9_IdentifiedObjectaliasName"></a>10.7. Property `SwitchingAction > oneOf > CutAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i9_IdentifiedObjectmRID"></a>10.8. Property `SwitchingAction > oneOf > CutAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i9_IdentifiedObjectname"></a>10.9. Property `SwitchingAction > oneOf > CutAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i10"></a>11. Property `SwitchingAction > oneOf > GroundAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./GroundAction.json                                                       |
+
+**Description:** Action on ground as a switching step.
+
+| Property                                                                          | Pattern | Type             | Deprecated | Definition                                                           | Title/Description |
+| --------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------------- | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i10_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                    | plannedDateTime   |
+| - [SwitchingAction.phases](#oneOf_i10_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases )   | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i10_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                    | issuedDateTime    |
+| - [GroundAction.kind](#oneOf_i10_GroundActionkind )                               | No      | enum (of string) | No         | Same as [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind ) | kind              |
+| - [SwitchingAction.executedDateTime](#oneOf_i10_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                    | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i10_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                    | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i10_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                    | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i10_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                    | mRID              |
+| - [IdentifiedObject.name](#oneOf_i10_IdentifiedObjectname )                       | No      | string           | No         | -                                                                    | name              |
+
+### <a name="oneOf_i10_SwitchingActionplannedDateTime"></a>11.1. Property `SwitchingAction > oneOf > GroundAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i10_SwitchingActionphases"></a>11.2. Property `SwitchingAction > oneOf > GroundAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i10_SwitchingActionissuedDateTime"></a>11.3. Property `SwitchingAction > oneOf > GroundAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i10_GroundActionkind"></a>11.4. Property `SwitchingAction > oneOf > GroundAction > GroundAction.kind`
+
+**Title:** kind
+
+|                        |                                                             |
+| ---------------------- | ----------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                          |
+| **Required**           | No                                                          |
+| **Same definition as** | [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind) |
+
+**Description:** Switching action to perform.
+
+### <a name="oneOf_i10_SwitchingActionexecutedDateTime"></a>11.5. Property `SwitchingAction > oneOf > GroundAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i10_IdentifiedObjectdescription"></a>11.6. Property `SwitchingAction > oneOf > GroundAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i10_IdentifiedObjectaliasName"></a>11.7. Property `SwitchingAction > oneOf > GroundAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i10_IdentifiedObjectmRID"></a>11.8. Property `SwitchingAction > oneOf > GroundAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i10_IdentifiedObjectname"></a>11.9. Property `SwitchingAction > oneOf > GroundAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i11"></a>12. Property `SwitchingAction > oneOf > JumperAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./JumperAction.json                                                       |
+
+**Description:** Action on jumper as a switching step.
+
+| Property                                                                          | Pattern | Type             | Deprecated | Definition                                                           | Title/Description |
+| --------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------------- | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i11_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                    | plannedDateTime   |
+| - [SwitchingAction.phases](#oneOf_i11_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases )   | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i11_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                    | issuedDateTime    |
+| - [JumperAction.kind](#oneOf_i11_JumperActionkind )                               | No      | enum (of string) | No         | Same as [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind ) | kind              |
+| - [SwitchingAction.executedDateTime](#oneOf_i11_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                    | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i11_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                    | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i11_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                    | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i11_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                    | mRID              |
+| - [IdentifiedObject.name](#oneOf_i11_IdentifiedObjectname )                       | No      | string           | No         | -                                                                    | name              |
+
+### <a name="oneOf_i11_SwitchingActionplannedDateTime"></a>12.1. Property `SwitchingAction > oneOf > JumperAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i11_SwitchingActionphases"></a>12.2. Property `SwitchingAction > oneOf > JumperAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i11_SwitchingActionissuedDateTime"></a>12.3. Property `SwitchingAction > oneOf > JumperAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i11_JumperActionkind"></a>12.4. Property `SwitchingAction > oneOf > JumperAction > JumperAction.kind`
+
+**Title:** kind
+
+|                        |                                                             |
+| ---------------------- | ----------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                          |
+| **Required**           | No                                                          |
+| **Same definition as** | [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind) |
+
+**Description:** Switching action to perform.
+
+### <a name="oneOf_i11_SwitchingActionexecutedDateTime"></a>12.5. Property `SwitchingAction > oneOf > JumperAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i11_IdentifiedObjectdescription"></a>12.6. Property `SwitchingAction > oneOf > JumperAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i11_IdentifiedObjectaliasName"></a>12.7. Property `SwitchingAction > oneOf > JumperAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i11_IdentifiedObjectmRID"></a>12.8. Property `SwitchingAction > oneOf > JumperAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i11_IdentifiedObjectname"></a>12.9. Property `SwitchingAction > oneOf > JumperAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i12"></a>13. Property `SwitchingAction > oneOf > EnergyConsumerAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./EnergyConsumerAction.json                                               |
+
+**Description:** Action to connect or disconnect the Energy Consumer from its Terminal
+
+| Property                                                                          | Pattern | Type             | Deprecated | Definition                                                           | Title/Description |
+| --------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------------- | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i12_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                    | plannedDateTime   |
+| - [EnergyConsumerAction.kind](#oneOf_i12_EnergyConsumerActionkind )               | No      | enum (of string) | No         | Same as [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind ) | kind              |
+| - [SwitchingAction.phases](#oneOf_i12_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases )   | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i12_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                    | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i12_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                    | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i12_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                    | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i12_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                    | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i12_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                    | mRID              |
+| - [IdentifiedObject.name](#oneOf_i12_IdentifiedObjectname )                       | No      | string           | No         | -                                                                    | name              |
+
+### <a name="oneOf_i12_SwitchingActionplannedDateTime"></a>13.1. Property `SwitchingAction > oneOf > EnergyConsumerAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i12_EnergyConsumerActionkind"></a>13.2. Property `SwitchingAction > oneOf > EnergyConsumerAction > EnergyConsumerAction.kind`
+
+**Title:** kind
+
+|                        |                                                             |
+| ---------------------- | ----------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                          |
+| **Required**           | No                                                          |
+| **Same definition as** | [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind) |
+
+**Description:** Switching action to perform
+
+### <a name="oneOf_i12_SwitchingActionphases"></a>13.3. Property `SwitchingAction > oneOf > EnergyConsumerAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i12_SwitchingActionissuedDateTime"></a>13.4. Property `SwitchingAction > oneOf > EnergyConsumerAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i12_SwitchingActionexecutedDateTime"></a>13.5. Property `SwitchingAction > oneOf > EnergyConsumerAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i12_IdentifiedObjectdescription"></a>13.6. Property `SwitchingAction > oneOf > EnergyConsumerAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i12_IdentifiedObjectaliasName"></a>13.7. Property `SwitchingAction > oneOf > EnergyConsumerAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i12_IdentifiedObjectmRID"></a>13.8. Property `SwitchingAction > oneOf > EnergyConsumerAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i12_IdentifiedObjectname"></a>13.9. Property `SwitchingAction > oneOf > EnergyConsumerAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i13"></a>14. Property `SwitchingAction > oneOf > ClampAction.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ClampAction.json                                                        |
+
+**Description:** Action on Clamp as a switching step
+
+| Property                                                                          | Pattern | Type             | Deprecated | Definition                                                           | Title/Description |
+| --------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------------- | ----------------- |
+| - [SwitchingAction.plannedDateTime](#oneOf_i13_SwitchingActionplannedDateTime )   | No      | string           | No         | -                                                                    | plannedDateTime   |
+| - [ClampAction.kind](#oneOf_i13_ClampActionkind )                                 | No      | enum (of string) | No         | Same as [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind ) | kind              |
+| - [SwitchingAction.phases](#oneOf_i13_SwitchingActionphases )                     | No      | enum (of string) | No         | Same as [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases )   | phases            |
+| - [SwitchingAction.issuedDateTime](#oneOf_i13_SwitchingActionissuedDateTime )     | No      | string           | No         | -                                                                    | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#oneOf_i13_SwitchingActionexecutedDateTime ) | No      | string           | No         | -                                                                    | executedDateTime  |
+| - [IdentifiedObject.description](#oneOf_i13_IdentifiedObjectdescription )         | No      | string           | No         | -                                                                    | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i13_IdentifiedObjectaliasName )             | No      | string           | No         | -                                                                    | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i13_IdentifiedObjectmRID )                       | No      | string           | No         | -                                                                    | mRID              |
+| - [IdentifiedObject.name](#oneOf_i13_IdentifiedObjectname )                       | No      | string           | No         | -                                                                    | name              |
+
+### <a name="oneOf_i13_SwitchingActionplannedDateTime"></a>14.1. Property `SwitchingAction > oneOf > ClampAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+### <a name="oneOf_i13_ClampActionkind"></a>14.2. Property `SwitchingAction > oneOf > ClampAction > ClampAction.kind`
+
+**Title:** kind
+
+|                        |                                                             |
+| ---------------------- | ----------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                          |
+| **Required**           | No                                                          |
+| **Same definition as** | [EnergySourceAction.kind](#oneOf_i0_EnergySourceActionkind) |
+
+**Description:** Switching action to perform
+
+### <a name="oneOf_i13_SwitchingActionphases"></a>14.3. Property `SwitchingAction > oneOf > ClampAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                        |                                                           |
+| ---------------------- | --------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                        |
+| **Required**           | No                                                        |
+| **Same definition as** | [SwitchingAction.phases](#oneOf_i0_SwitchingActionphases) |
+
+**Description:** Phases of the Switching Action
+
+### <a name="oneOf_i13_SwitchingActionissuedDateTime"></a>14.4. Property `SwitchingAction > oneOf > ClampAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+### <a name="oneOf_i13_SwitchingActionexecutedDateTime"></a>14.5. Property `SwitchingAction > oneOf > ClampAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+### <a name="oneOf_i13_IdentifiedObjectdescription"></a>14.6. Property `SwitchingAction > oneOf > ClampAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i13_IdentifiedObjectaliasName"></a>14.7. Property `SwitchingAction > oneOf > ClampAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i13_IdentifiedObjectmRID"></a>14.8. Property `SwitchingAction > oneOf > ClampAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i13_IdentifiedObjectname"></a>14.9. Property `SwitchingAction > oneOf > ClampAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

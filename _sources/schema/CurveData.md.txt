@@ -1,0 +1,89 @@
+# CurveData
+
+- [1. Property `CurveData > CurveData.xvalue`](#CurveDataxvalue)
+- [2. Property `CurveData > CurveData.y1value`](#CurveDatay1value)
+- [3. Property `CurveData > CurveData.y2value`](#CurveDatay2value)
+- [4. Property `CurveData > CurveData.y3value`](#CurveDatay3value)
+- [5. Property `CurveData > DefaultBidCurveData.bidSegmentCalcType`](#DefaultBidCurveDatabidSegmentCalcType)
+
+**Title:** CurveData
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Multi-purpose data points for defining a curve.  The use of this generic class is discouraged if a more specific class can be used to specify the X and Y axis values along with their specific data types.
+
+| Property                                                                            | Pattern | Type             | Deprecated | Definition                    | Title/Description  |
+| ----------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------- | ------------------ |
+| - [CurveData.xvalue](#CurveDataxvalue )                                             | No      | number           | No         | -                             | xvalue             |
+| - [CurveData.y1value](#CurveDatay1value )                                           | No      | number           | No         | -                             | y1value            |
+| - [CurveData.y2value](#CurveDatay2value )                                           | No      | number           | No         | -                             | y2value            |
+| - [CurveData.y3value](#CurveDatay3value )                                           | No      | number           | No         | -                             | y3value            |
+| - [DefaultBidCurveData.bidSegmentCalcType](#DefaultBidCurveDatabidSegmentCalcType ) | No      | enum (of string) | No         | In ./BidCalculationBasis.json | bidSegmentCalcType |
+
+## <a name="CurveDataxvalue"></a>1. Property `CurveData > CurveData.xvalue`
+
+**Title:** xvalue
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** The data value of the X-axis variable,  depending on the X-axis units.
+
+## <a name="CurveDatay1value"></a>2. Property `CurveData > CurveData.y1value`
+
+**Title:** y1value
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** The data value of the  first Y-axis variable, depending on the Y-axis units.
+
+## <a name="CurveDatay2value"></a>3. Property `CurveData > CurveData.y2value`
+
+**Title:** y2value
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** The data value of the second Y-axis variable (if present), depending on the Y-axis units.
+
+## <a name="CurveDatay3value"></a>4. Property `CurveData > CurveData.y3value`
+
+**Title:** y3value
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** The data value of the third Y-axis variable (if present), depending on the Y-axis units.
+
+## <a name="DefaultBidCurveDatabidSegmentCalcType"></a>5. Property `CurveData > DefaultBidCurveData.bidSegmentCalcType`
+
+**Title:** bidSegmentCalcType
+
+|                |                            |
+| -------------- | -------------------------- |
+| **Type**       | `enum (of string)`         |
+| **Required**   | No                         |
+| **Defined in** | ./BidCalculationBasis.json |
+
+**Description:** Type of calculation basis used to define the default bid segment curve.
+
+Must be one of:
+* "COST_BASED"
+* "LMP_BASED"
+* "NEGOTIATED"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

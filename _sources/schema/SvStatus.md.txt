@@ -1,0 +1,53 @@
+# SvStatus
+
+- [1. Property `SvStatus > SvStatus.inService`](#SvStatusinService)
+- [2. Property `SvStatus > SvStatus.phase`](#SvStatusphase)
+
+**Title:** SvStatus
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** State variable for status.
+
+| Property                                    | Pattern | Type             | Deprecated | Definition                | Title/Description |
+| ------------------------------------------- | ------- | ---------------- | ---------- | ------------------------- | ----------------- |
+| - [SvStatus.inService](#SvStatusinService ) | No      | boolean          | No         | -                         | inService         |
+| - [SvStatus.phase](#SvStatusphase )         | No      | enum (of string) | No         | In ./SinglePhaseKind.json | phase             |
+
+## <a name="SvStatusinService"></a>1. Property `SvStatus > SvStatus.inService`
+
+**Title:** inService
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** The in service status as a result of topology processing.  It indicates if the equipment is considered as energized by the power flow. It reflects if the equipment is connected within a solvable island.  It does not necessarily reflect whether or not the island was solved by the power flow.
+
+## <a name="SvStatusphase"></a>2. Property `SvStatus > SvStatus.phase`
+
+**Title:** phase
+
+|                |                        |
+| -------------- | ---------------------- |
+| **Type**       | `enum (of string)`     |
+| **Required**   | No                     |
+| **Defined in** | ./SinglePhaseKind.json |
+
+**Description:** The individual phase status.    If the attribute is unspecified, then three phase model is assumed.
+
+Must be one of:
+* "A"
+* "B"
+* "C"
+* "N"
+* "s1"
+* "s2"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

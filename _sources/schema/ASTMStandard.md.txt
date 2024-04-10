@@ -1,0 +1,181 @@
+# ASTMStandard
+
+- [1. Property `ASTMStandard > standardNumber`](#standardNumber)
+- [2. Property `ASTMStandard > standardEdition`](#standardEdition)
+
+**Title:** ASTMStandard
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Standard published by ASTM (ASTM International).
+
+| Property                               | Pattern | Type             | Deprecated | Definition                        | Title/Description         |
+| -------------------------------------- | ------- | ---------------- | ---------- | --------------------------------- | ------------------------- |
+| - [standardNumber](#standardNumber )   | No      | enum (of string) | No         | In ./ASTMStandardKind.json        | ASTM standard number.     |
+| - [standardEdition](#standardEdition ) | No      | enum (of string) | No         | In ./ASTMStandardEditionKind.json | Edition of ASTM standard. |
+
+## <a name="standardNumber"></a>1. Property `ASTMStandard > standardNumber`
+
+|                |                         |
+| -------------- | ----------------------- |
+| **Type**       | `enum (of string)`      |
+| **Required**   | No                      |
+| **Default**    | `null`                  |
+| **Defined in** | ./ASTMStandardKind.json |
+
+**Description:** ASTM standard number.
+
+Must be one of:
+* "D2668"
+* "D877/D877M"
+* "D2029"
+* "D6749"
+* "D4052"
+* "D4230"
+* "D5950"
+* "D3612"
+* "D4768"
+* "D445"
+* "D5985"
+* "D5949"
+* "D97"
+* "D1524"
+* "D1298"
+* "D149"
+* "D1275"
+* "D974"
+* "D5853"
+* "D1816"
+* "D924"
+* "D4059"
+* "D2129"
+* "D92"
+* "D6304"
+* "D2144"
+* "D7346"
+* "D1169"
+* "D1533"
+* "D93"
+* "D7151"
+* "D2140"
+* "D877"
+* "D6786"
+* "D6892"
+* "D1500"
+* "D4243"
+* "D828"
+* "D5837"
+* "D2112"
+
+## <a name="standardEdition"></a>2. Property `ASTMStandard > standardEdition`
+
+|                |                                |
+| -------------- | ------------------------------ |
+| **Type**       | `enum (of string)`             |
+| **Required**   | No                             |
+| **Default**    | `null`                         |
+| **Defined in** | ./ASTMStandardEditionKind.json |
+
+**Description:** Edition of ASTM standard.
+
+Must be one of:
+* "97(2002)"
+* "03(2008)"
+* "06"
+* "15a"
+* "08e1"
+* "04e2"
+* "95(2000)e1"
+* "15"
+* "11a"
+* "03"
+* "12b"
+* "85"
+* "03(2014)"
+* "02a"
+* "99(2009)"
+* "07(2013)"
+* "01e1"
+* "65"
+* "13e1"
+* "08"
+* "94(1999)"
+* "14e2"
+* "11"
+* "02(2008)"
+* "13"
+* "80e1"
+* "00(2005)e1"
+* "74"
+* "91"
+* "02(2012)"
+* "88"
+* "04e1"
+* "09"
+* "02(2014)"
+* "04a"
+* "99"
+* "97a(2004)"
+* "85(1990)e1"
+* "96(2002)e1"
+* "96"
+* "04ae1"
+* "14"
+* "98"
+* "87(1995)"
+* "71"
+* "02(2009)"
+* "99e2"
+* "03a"
+* "00(2010)"
+* "99(2004)e1"
+* "12a"
+* "97(2008)"
+* "94e1"
+* "09(2013)"
+* "00(2005)"
+* "04"
+* "99(2005)"
+* "97(2003)"
+* "92"
+* "14a"
+* "12"
+* "87e1"
+* "96a"
+* "01"
+* "unknown"
+* "07"
+* "99a"
+* "96e1"
+* "10"
+* "97"
+* "02"
+* "99e1"
+* "02b"
+* "10a"
+* "02(2007)"
+* "01a(2007)"
+* "98a"
+* "05a"
+* "14e1"
+* "02e1"
+* "94(2004)"
+* "99a(2004)"
+* "97a"
+* "05"
+* "83(1996)e1"
+* "82"
+* "95"
+* "90e1"
+* "94"
+* "05a(2010)"
+* "none"
+* "05(2010)"
+* "94(2010)"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

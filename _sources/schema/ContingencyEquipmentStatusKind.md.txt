@@ -1,0 +1,17 @@
+# ContingencyEquipmentStatusKind
+
+**Title:** ContingencyEquipmentStatusKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Indicates the state which the contingency equipment is to be in when the contingency is applied.
+
+Must be one of:
+* "inService"
+* "outOfService"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

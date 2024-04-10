@@ -1,0 +1,42 @@
+# ApnodeType
+
+**Title:** ApnodeType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Aggregate Node Types for example:
+AG -  Aggregated Generation
+CPZ -  Custom Price Zone
+DPZ -  Default Price Zone
+LAP - Load Aggregation Point
+TH -  Trading  Hub
+SYS - System Zone
+CA - Control Area
+
+GA - generic aggregation
+EHV - 500 kV
+GH - generic hub
+ZN - zone
+INT - Interface
+BUS - Bus
+
+Must be one of:
+* "CPZ"
+* "DCA"
+* "CA"
+* "EHV"
+* "SYS"
+* "TH"
+* "ZN"
+* "GA"
+* "DPZ"
+* "INT"
+* "AG"
+* "BUS"
+* "GH"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

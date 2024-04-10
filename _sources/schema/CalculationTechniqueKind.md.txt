@@ -1,0 +1,19 @@
+# CalculationTechniqueKind
+
+**Title:** CalculationTechniqueKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Possible calculation techniques.
+
+Must be one of:
+* "average"
+* "maximum"
+* "minimum"
+* "trueRMS"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

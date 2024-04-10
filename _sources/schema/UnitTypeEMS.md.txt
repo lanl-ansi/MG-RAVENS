@@ -1,0 +1,18 @@
+# UnitTypeEMS
+
+**Title:** UnitTypeEMS
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** MW
+FLAG
+
+Must be one of:
+* "MW"
+* "FLAG"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

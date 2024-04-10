@@ -1,0 +1,51 @@
+# LaborelecStandard
+
+- [1. Property `LaborelecStandard > standardNumber`](#standardNumber)
+- [2. Property `LaborelecStandard > standardEdition`](#standardEdition)
+
+**Title:** LaborelecStandard
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Standard published by Laborelec.
+
+| Property                               | Pattern | Type             | Deprecated | Definition                             | Title/Description              |
+| -------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------- | ------------------------------ |
+| - [standardNumber](#standardNumber )   | No      | enum (of string) | No         | In ./LaborelecStandardKind.json        | Laborelec standard number.     |
+| - [standardEdition](#standardEdition ) | No      | enum (of string) | No         | In ./LaborelecStandardEditionKind.json | Edition of Laborelec standard. |
+
+## <a name="standardNumber"></a>1. Property `LaborelecStandard > standardNumber`
+
+|                |                              |
+| -------------- | ---------------------------- |
+| **Type**       | `enum (of string)`           |
+| **Required**   | No                           |
+| **Default**    | `null`                       |
+| **Defined in** | ./LaborelecStandardKind.json |
+
+**Description:** Laborelec standard number.
+
+Must be one of:
+* "methanol"
+
+## <a name="standardEdition"></a>2. Property `LaborelecStandard > standardEdition`
+
+|                |                                     |
+| -------------- | ----------------------------------- |
+| **Type**       | `enum (of string)`                  |
+| **Required**   | No                                  |
+| **Default**    | `null`                              |
+| **Defined in** | ./LaborelecStandardEditionKind.json |
+
+**Description:** Edition of Laborelec standard.
+
+Must be one of:
+* "unknown"
+* "none"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

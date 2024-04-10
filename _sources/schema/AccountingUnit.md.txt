@@ -1,0 +1,439 @@
+# AccountingUnit
+
+- [1. Property `AccountingUnit > multiplier`](#multiplier)
+- [2. Property `AccountingUnit > monetaryUnit`](#monetaryUnit)
+- [3. Property `AccountingUnit > value`](#value)
+- [4. Property `AccountingUnit > energyUnit`](#energyUnit)
+  - [4.1. Property `AccountingUnit > energyUnit > multiplier`](#energyUnit_multiplier)
+  - [4.2. Property `AccountingUnit > energyUnit > unit`](#energyUnit_unit)
+  - [4.3. Property `AccountingUnit > energyUnit > value`](#energyUnit_value)
+
+**Title:** AccountingUnit
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Unit for accounting; use either 'energyUnit' or 'currencyUnit' to specify the unit for 'value'.
+
+| Property                         | Pattern | Type             | Deprecated | Definition               | Title/Description                                  |
+| -------------------------------- | ------- | ---------------- | ---------- | ------------------------ | -------------------------------------------------- |
+| - [multiplier](#multiplier )     | No      | enum (of string) | No         | In ./UnitMultiplier.json | Multiplier for the 'energyUnit' or 'monetaryUnit'. |
+| - [monetaryUnit](#monetaryUnit ) | No      | enum (of string) | No         | In ./Currency.json       | Unit of currency.                                  |
+| - [value](#value )               | No      | number           | No         | -                        | Value expressed in applicable units.               |
+| - [energyUnit](#energyUnit )     | No      | object or number | No         | In ./RealEnergy.json     | Unit of service.                                   |
+
+## <a name="multiplier"></a>1. Property `AccountingUnit > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** Multiplier for the 'energyUnit' or 'monetaryUnit'.
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+## <a name="monetaryUnit"></a>2. Property `AccountingUnit > monetaryUnit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `null`             |
+| **Defined in** | ./Currency.json    |
+
+**Description:** Unit of currency.
+
+Must be one of:
+* "AUD"
+* "CHF"
+* "AFN"
+* "AED"
+* "ALL"
+* "AMD"
+* "ANG"
+* "AOA"
+* "ARS"
+* "AWG"
+* "AZN"
+* "BAM"
+* "BBD"
+* "BDT"
+* "BGN"
+* "BHD"
+* "BIF"
+* "BMD"
+* "BND"
+* "BOB"
+* "BOV"
+* "BRL"
+* "BSD"
+* "BTN"
+* "BWP"
+* "BYR"
+* "BZD"
+* "CAD"
+* "CDF"
+* "CLF"
+* "CLP"
+* "CNY"
+* "ZAR"
+* "COP"
+* "COU"
+* "CRC"
+* "CUC"
+* "CUP"
+* "CVE"
+* "CZK"
+* "DJF"
+* "DKK"
+* "DOP"
+* "DZD"
+* "EEK"
+* "EGP"
+* "ERN"
+* "ETB"
+* "EUR"
+* "FJD"
+* "FKP"
+* "GBP"
+* "GEL"
+* "GHS"
+* "GIP"
+* "GMD"
+* "GNF"
+* "GTQ"
+* "GYD"
+* "HKD"
+* "HNL"
+* "HRK"
+* "HTG"
+* "HUF"
+* "IDR"
+* "ILS"
+* "INR"
+* "IQD"
+* "IRR"
+* "ISK"
+* "JMD"
+* "JOD"
+* "JPY"
+* "KES"
+* "KGS"
+* "KHR"
+* "KMF"
+* "KPW"
+* "KRW"
+* "KWD"
+* "KYD"
+* "KZT"
+* "LAK"
+* "LBP"
+* "LKR"
+* "LRD"
+* "LSL"
+* "LTL"
+* "LVL"
+* "LYD"
+* "MAD"
+* "MDL"
+* "MGA"
+* "MKD"
+* "MMK"
+* "MNT"
+* "MOP"
+* "MRO"
+* "MUR"
+* "MVR"
+* "MWK"
+* "MXN"
+* "MYR"
+* "MZN"
+* "NAD"
+* "NGN"
+* "NIO"
+* "NOK"
+* "NPR"
+* "NZD"
+* "OMR"
+* "PAB"
+* "PEN"
+* "PGK"
+* "PHP"
+* "PKR"
+* "PLN"
+* "PYG"
+* "QAR"
+* "RON"
+* "RSD"
+* "RUB"
+* "RWF"
+* "SAR"
+* "SBD"
+* "SCR"
+* "SDG"
+* "SEK"
+* "SGD"
+* "SHP"
+* "SLL"
+* "SOS"
+* "SRD"
+* "STD"
+* "SYP"
+* "SZL"
+* "THB"
+* "TJS"
+* "TMT"
+* "TND"
+* "TOP"
+* "TRY"
+* "TTD"
+* "TWD"
+* "TZS"
+* "UAH"
+* "UGX"
+* "USD"
+* "UYU"
+* "UZS"
+* "VEF"
+* "VND"
+* "VUV"
+* "WST"
+* "XAF"
+* "XCD"
+* "XOF"
+* "XPF"
+* "YER"
+* "ZMK"
+* "ZWL"
+
+## <a name="value"></a>3. Property `AccountingUnit > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Value expressed in applicable units.
+
+## <a name="energyUnit"></a>4. Property `AccountingUnit > energyUnit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Default**    | `null`             |
+| **Defined in** | ./RealEnergy.json  |
+
+**Description:** Unit of service.
+
+| Property                                | Pattern | Type             | Deprecated | Definition                         | Title/Description |
+| --------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------- | ----------------- |
+| - [multiplier](#energyUnit_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#multiplier ) | nan               |
+| - [unit](#energyUnit_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json               | nan               |
+| - [value](#energyUnit_value )           | No      | number           | No         | -                                  | nan               |
+
+### <a name="energyUnit_multiplier"></a>4.1. Property `AccountingUnit > energyUnit > multiplier`
+
+|                        |                           |
+| ---------------------- | ------------------------- |
+| **Type**               | `enum (of string)`        |
+| **Required**           | No                        |
+| **Default**            | `"none"`                  |
+| **Same definition as** | [multiplier](#multiplier) |
+
+**Description:** nan
+
+### <a name="energyUnit_unit"></a>4.2. Property `AccountingUnit > energyUnit > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"Wh"`             |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="energyUnit_value"></a>4.3. Property `AccountingUnit > energyUnit > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

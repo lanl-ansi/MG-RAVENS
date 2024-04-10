@@ -1,0 +1,17 @@
+# IPAddressKind
+
+**Title:** IPAddressKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Indicates if the addressing of the IPAccessPoint, gateway, and subnet are per IPv4 or IPv6.
+
+Must be one of:
+* "iPv4"
+* "iPv6"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

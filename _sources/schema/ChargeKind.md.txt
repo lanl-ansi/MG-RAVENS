@@ -1,0 +1,20 @@
+# ChargeKind
+
+**Title:** ChargeKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of charge.
+
+Must be one of:
+* "auxiliaryCharge"
+* "demandCharge"
+* "other"
+* "taxCharge"
+* "consumptionCharge"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

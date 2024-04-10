@@ -1,0 +1,78 @@
+# DeploymentDate
+
+- [1. Property `DeploymentDate > notYetInstalledDate`](#notYetInstalledDate)
+- [2. Property `DeploymentDate > installedDate`](#installedDate)
+- [3. Property `DeploymentDate > removedDate`](#removedDate)
+- [4. Property `DeploymentDate > outOfServiceDate`](#outOfServiceDate)
+- [5. Property `DeploymentDate > inServiceDate`](#inServiceDate)
+
+**Title:** DeploymentDate
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Dates for deployment events of an asset.  May have multiple deployment type dates for this device and a compound type allows a query to return multiple dates.
+
+| Property                                       | Pattern | Type   | Deprecated | Definition | Title/Description                                                  |
+| ---------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------ |
+| - [notYetInstalledDate](#notYetInstalledDate ) | No      | string | No         | -          | Date and time of asset deployment transition to not yet installed. |
+| - [installedDate](#installedDate )             | No      | string | No         | -          | Date and time asset most recently installed.                       |
+| - [removedDate](#removedDate )                 | No      | string | No         | -          | Date and time asset most recently removed.                         |
+| - [outOfServiceDate](#outOfServiceDate )       | No      | string | No         | -          | Date and time asset most recently taken out of service.            |
+| - [inServiceDate](#inServiceDate )             | No      | string | No         | -          | Date and time asset most recently put in service.                  |
+
+## <a name="notYetInstalledDate"></a>1. Property `DeploymentDate > notYetInstalledDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date and time of asset deployment transition to not yet installed.
+
+## <a name="installedDate"></a>2. Property `DeploymentDate > installedDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date and time asset most recently installed.
+
+## <a name="removedDate"></a>3. Property `DeploymentDate > removedDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date and time asset most recently removed.
+
+## <a name="outOfServiceDate"></a>4. Property `DeploymentDate > outOfServiceDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date and time asset most recently taken out of service.
+
+## <a name="inServiceDate"></a>5. Property `DeploymentDate > inServiceDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date and time asset most recently put in service.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

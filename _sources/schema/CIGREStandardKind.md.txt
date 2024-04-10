@@ -1,0 +1,16 @@
+# CIGREStandardKind
+
+**Title:** CIGREStandardKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** List of CIGRE standards.
+
+Must be one of:
+* "TB 170"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

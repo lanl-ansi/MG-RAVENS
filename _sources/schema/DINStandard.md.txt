@@ -1,0 +1,52 @@
+# DINStandard
+
+- [1. Property `DINStandard > standardNumber`](#standardNumber)
+- [2. Property `DINStandard > standardEdition`](#standardEdition)
+
+**Title:** DINStandard
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Standard published by DIN (German Institute of Standards).
+
+| Property                               | Pattern | Type             | Deprecated | Definition                       | Title/Description        |
+| -------------------------------------- | ------- | ---------------- | ---------- | -------------------------------- | ------------------------ |
+| - [standardNumber](#standardNumber )   | No      | enum (of string) | No         | In ./DINStandardKind.json        | DIN standard number.     |
+| - [standardEdition](#standardEdition ) | No      | enum (of string) | No         | In ./DINStandardEditionKind.json | Edition of DIN standard. |
+
+## <a name="standardNumber"></a>1. Property `DINStandard > standardNumber`
+
+|                |                        |
+| -------------- | ---------------------- |
+| **Type**       | `enum (of string)`     |
+| **Required**   | No                     |
+| **Default**    | `null`                 |
+| **Defined in** | ./DINStandardKind.json |
+
+**Description:** DIN standard number.
+
+Must be one of:
+* "51353"
+
+## <a name="standardEdition"></a>2. Property `DINStandard > standardEdition`
+
+|                |                               |
+| -------------- | ----------------------------- |
+| **Type**       | `enum (of string)`            |
+| **Required**   | No                            |
+| **Default**    | `null`                        |
+| **Defined in** | ./DINStandardEditionKind.json |
+
+**Description:** Edition of DIN standard.
+
+Must be one of:
+* "none"
+* "unknown"
+* "1985"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

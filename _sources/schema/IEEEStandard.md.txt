@@ -1,0 +1,53 @@
+# IEEEStandard
+
+- [1. Property `IEEEStandard > standardNumber`](#standardNumber)
+- [2. Property `IEEEStandard > standardEdition`](#standardEdition)
+
+**Title:** IEEEStandard
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Standard published by IEEE (Institute of Electrical and Electronics Engineers).
+
+| Property                               | Pattern | Type             | Deprecated | Definition                        | Title/Description         |
+| -------------------------------------- | ------- | ---------------- | ---------- | --------------------------------- | ------------------------- |
+| - [standardNumber](#standardNumber )   | No      | enum (of string) | No         | In ./IEEEStandardKind.json        | IEEE standard number.     |
+| - [standardEdition](#standardEdition ) | No      | enum (of string) | No         | In ./IEEEStandardEditionKind.json | Edition of IEEE standard. |
+
+## <a name="standardNumber"></a>1. Property `IEEEStandard > standardNumber`
+
+|                |                         |
+| -------------- | ----------------------- |
+| **Type**       | `enum (of string)`      |
+| **Required**   | No                      |
+| **Default**    | `null`                  |
+| **Defined in** | ./IEEEStandardKind.json |
+
+**Description:** IEEE standard number.
+
+Must be one of:
+* "62"
+
+## <a name="standardEdition"></a>2. Property `IEEEStandard > standardEdition`
+
+|                |                                |
+| -------------- | ------------------------------ |
+| **Type**       | `enum (of string)`             |
+| **Required**   | No                             |
+| **Default**    | `null`                         |
+| **Defined in** | ./IEEEStandardEditionKind.json |
+
+**Description:** Edition of IEEE standard.
+
+Must be one of:
+* "none"
+* "1995"
+* "unknown"
+* "1978"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

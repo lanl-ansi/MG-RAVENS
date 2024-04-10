@@ -1,0 +1,20 @@
+# PriceSetFlag
+
+**Title:** PriceSetFlag
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Y - indicates a resource is capable of setting the Markte Clearing Price 
+S - indicates the resource must submit bids for energy at $ 0
+N - indicates the resource does not have to submit bids for energy at $ 0
+
+Must be one of:
+* "S"
+* "N"
+* "Y"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

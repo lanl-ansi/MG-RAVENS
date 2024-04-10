@@ -1,0 +1,53 @@
+# SvShuntCompensatorSections
+
+- [1. Property `SvShuntCompensatorSections > SvShuntCompensatorSections.sections`](#SvShuntCompensatorSectionssections)
+- [2. Property `SvShuntCompensatorSections > SvShuntCompensatorSections.phase`](#SvShuntCompensatorSectionsphase)
+
+**Title:** SvShuntCompensatorSections
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** State variable for the number of sections in service for a shunt compensator.
+
+| Property                                                                      | Pattern | Type             | Deprecated | Definition                | Title/Description |
+| ----------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------- | ----------------- |
+| - [SvShuntCompensatorSections.sections](#SvShuntCompensatorSectionssections ) | No      | number           | No         | -                         | sections          |
+| - [SvShuntCompensatorSections.phase](#SvShuntCompensatorSectionsphase )       | No      | enum (of string) | No         | In ./SinglePhaseKind.json | phase             |
+
+## <a name="SvShuntCompensatorSectionssections"></a>1. Property `SvShuntCompensatorSections > SvShuntCompensatorSections.sections`
+
+**Title:** sections
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** The number of sections in service as a continuous variable. The attribute shall be a positive value or zero. To get integer value scale with ShuntCompensator.bPerSection.
+
+## <a name="SvShuntCompensatorSectionsphase"></a>2. Property `SvShuntCompensatorSections > SvShuntCompensatorSections.phase`
+
+**Title:** phase
+
+|                |                        |
+| -------------- | ---------------------- |
+| **Type**       | `enum (of string)`     |
+| **Required**   | No                     |
+| **Defined in** | ./SinglePhaseKind.json |
+
+**Description:** The terminal phase at which the connection is applied.   If missing, the injection is assumed to be balanced among non-neutral phases.
+
+Must be one of:
+* "A"
+* "B"
+* "C"
+* "N"
+* "s1"
+* "s2"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

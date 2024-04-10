@@ -1,0 +1,20 @@
+# CrewStatusKind
+
+**Title:** CrewStatusKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Defines the current status of the Crew - assigned, arrived, etc.
+
+Must be one of:
+* "awaitingCrewAssignment"
+* "assigned"
+* "arrived"
+* "enroute"
+* "fieldComplete"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

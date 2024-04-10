@@ -1,0 +1,31 @@
+# WindLookupTableFunctionKind
+
+**Title:** WindLookupTableFunctionKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Function of the lookup table.
+
+Must be one of:
+* "prr"
+* "omegap"
+* "ipmax"
+* "iqmax"
+* "pwp"
+* "tcwdu"
+* "tduwt"
+* "qmaxp"
+* "qminp"
+* "qmaxu"
+* "qminu"
+* "tuover"
+* "tuunder"
+* "tfover"
+* "tfunder"
+* "qwp"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

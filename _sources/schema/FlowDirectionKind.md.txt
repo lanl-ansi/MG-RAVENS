@@ -1,0 +1,36 @@
+# FlowDirectionKind
+
+**Title:** FlowDirectionKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of flow direction for reading/measured  values proper to some commodities such as, for example, energy, power, demand.
+
+Must be one of:
+* "totalByPhase"
+* "q1minusQ4"
+* "q1plusQ4"
+* "quadrant1"
+* "net"
+* "reverse"
+* "q1plusQ3"
+* "q2minusQ3"
+* "q3plusQ4"
+* "quadrant4"
+* "lagging"
+* "quadrant2"
+* "q2plusQ4"
+* "quadrant3"
+* "q1plusQ2"
+* "q3minusQ2"
+* "forward"
+* "total"
+* "leading"
+* "q2plusQ3"
+* "none"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

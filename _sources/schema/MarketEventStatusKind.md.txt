@@ -1,0 +1,19 @@
+# MarketEventStatusKind
+
+**Title:** MarketEventStatusKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Market event status types.
+
+Must be one of:
+* "completed"
+* "active"
+* "planned"
+* "cancelled"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:27 -0600

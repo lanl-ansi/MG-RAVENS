@@ -1,0 +1,21 @@
+# OilAnalysisPCBAnalogKind
+
+**Title:** OilAnalysisPCBAnalogKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Analogs representing oil PCB analysis result.
+
+Must be one of:
+* "aroclor1254"
+* "aroclor1221"
+* "aroclor1242"
+* "totalPCB"
+* "aroclor1016"
+* "aroclor1260"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

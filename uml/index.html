@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>UML Diagrams for MG-RAVENS Schema</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="Schema Documentation" href="../schema/index.html" />
+  <link rel="prev" title="MG-RAVENS Schema Documentation" href="../index.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <span class="site-name">MG-RAVENS</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">UML Diagrams:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">UML Diagrams for MG-RAVENS Schema</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#simplified-diagrams" class="reference internal">Simplified Diagrams</a></li>
+                
+                  <li class="toctree-l2"><a href="#extension-diagrams" class="reference internal">Extension Diagrams</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Schemas:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../schema/index.html" class="reference internal ">Schema Documentation</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Examples:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/AlgorithmProperties.html" class="reference internal ">AlgorithmProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/CapacityPrices.html" class="reference internal ">CapacityPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/Conductor.html" class="reference internal ">Conductor</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/DieselFuelPrice.html" class="reference internal ">DieselFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/EconomicProperties.html" class="reference internal ">EconomicProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/EnergyConsumer.html" class="reference internal ">EnergyConsumer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/EnergySource.html" class="reference internal ">EnergySource</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/LoadForecast.html" class="reference internal ">LoadForecast</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/LocationalMarginalPrices.html" class="reference internal ">LocationalMarginalPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/NaturalGasFuelPrice.html" class="reference internal ">NaturalGasFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/OtherFossilFuelPrice.html" class="reference internal ">OtherFossilFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/OutageScenario.html" class="reference internal ">OutageScenario</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/PowerTransformer.html" class="reference internal ">PowerTransformer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedBatteryUnitOption.html" class="reference internal ">ProposedBatteryUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedConductorOption.html" class="reference internal ">ProposedConductorOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedEnergyProducerOption.html" class="reference internal ">ProposedEnergyProducerOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedGeneratingUnitOption.html" class="reference internal ">ProposedGeneratingUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedPhotovoltaicUnitOption.html" class="reference internal ">ProposedPhotovoltaicUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedSiteLocation.html" class="reference internal ">ProposedSiteLocation</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedSwitchOption.html" class="reference internal ">ProposedSwitchOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedWindUnitOption.html" class="reference internal ">ProposedWindUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ShuntCompensator.html" class="reference internal ">ShuntCompensator</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Governance:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/charter.html" class="reference internal ">MG-RAVENS API Governance Charter</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/steering_committee.html" class="reference internal ">Steering Committee Members</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/working_group.html" class="reference internal ">Working Group Members</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>UML Diagrams for MG-RAVENS Schema</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="../index.html"
+       title="previous chapter">← MG-RAVENS Schema Documentation</a>
+  </li>
+  <li class="next">
+    <a href="../schema/index.html"
+       title="next chapter">Schema Documentation →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="uml-diagrams-for-mg-ravens-schema">
+<h1>UML Diagrams for MG-RAVENS Schema<a class="headerlink" href="#uml-diagrams-for-mg-ravens-schema" title="Link to this heading">¶</a></h1>
+<section id="simplified-diagrams">
+<h2>Simplified Diagrams<a class="headerlink" href="#simplified-diagrams" title="Link to this heading">¶</a></h2>
+<section id="conductors">
+<h3>Conductors<a class="headerlink" href="#conductors" title="Link to this heading">¶</a></h3>
+<p><img alt="Conductors diagram" src="../_images/Conductors.png" /></p>
+</section>
+<section id="connectivitynodes">
+<h3>ConnectivityNodes<a class="headerlink" href="#connectivitynodes" title="Link to this heading">¶</a></h3>
+<p><img alt="ConnectivityNodes diagram" src="../_images/ConnectivityNodes.png" /></p>
+</section>
+<section id="communityfacilities">
+<h3>CommunityFacilities<a class="headerlink" href="#communityfacilities" title="Link to this heading">¶</a></h3>
+<p><img alt="CommunityFacilities diagram" src="../_images/CommunityFacilities.png" /></p>
+</section>
+<section id="energyconsumers">
+<h3>EnergyConsumers<a class="headerlink" href="#energyconsumers" title="Link to this heading">¶</a></h3>
+<p><img alt="EnergyConsumers diagram" src="../_images/EnergyConsumers.png" /></p>
+</section>
+<section id="energyproducers">
+<h3>EnergyProducers<a class="headerlink" href="#energyproducers" title="Link to this heading">¶</a></h3>
+<p><img alt="EnergyProducers diagram" src="../_images/EnergyProducers.png" /></p>
+</section>
+<section id="faults">
+<h3>Faults<a class="headerlink" href="#faults" title="Link to this heading">¶</a></h3>
+<p><img alt="Faults diagram" src="../_images/Faults.png" /></p>
+</section>
+<section id="loadforecasting">
+<h3>LoadForecasting<a class="headerlink" href="#loadforecasting" title="Link to this heading">¶</a></h3>
+<p><img alt="LoadForecasting diagram" src="../_images/LoadForecasting.png" /></p>
+</section>
+<section id="outages">
+<h3>Outages<a class="headerlink" href="#outages" title="Link to this heading">¶</a></h3>
+<p><img alt="Outages diagram" src="../_images/Outages.png" /></p>
+</section>
+<section id="shunts">
+<h3>Shunts<a class="headerlink" href="#shunts" title="Link to this heading">¶</a></h3>
+<p><img alt="Shunts diagram" src="../_images/Shunts.png" /></p>
+</section>
+<section id="switches">
+<h3>Switches<a class="headerlink" href="#switches" title="Link to this heading">¶</a></h3>
+<p><img alt="Switches diagram" src="../_images/Switches.png" /></p>
+</section>
+<section id="transformers">
+<h3>Transformers<a class="headerlink" href="#transformers" title="Link to this heading">¶</a></h3>
+<p><img alt="Transformers diagram" src="../_images/Transformers.png" /></p>
+</section>
+</section>
+<section id="extension-diagrams">
+<h2>Extension Diagrams<a class="headerlink" href="#extension-diagrams" title="Link to this heading">¶</a></h2>
+<section id="algorithmproperties">
+<h3>AlgorithmProperties<a class="headerlink" href="#algorithmproperties" title="Link to this heading">¶</a></h3>
+<p><img alt="AlgorithmProperties" src="../_images/AlgorithmProperties.png" /></p>
+</section>
+<section id="economicproperties">
+<h3>EconomicProperties<a class="headerlink" href="#economicproperties" title="Link to this heading">¶</a></h3>
+<p><img alt="EconomicProperties" src="../_images/EconomicProperties.png" /></p>
+</section>
+<section id="fossilfuelcosts">
+<h3>FossilFuelCosts<a class="headerlink" href="#fossilfuelcosts" title="Link to this heading">¶</a></h3>
+<p><img alt="FossilFuelCosts" src="../_images/FossilFuelCosts.png" /></p>
+</section>
+<section id="generationprofiles">
+<h3>GenerationProfiles<a class="headerlink" href="#generationprofiles" title="Link to this heading">¶</a></h3>
+<p><img alt="GenerationProfiles" src="../_images/GenerationProfiles.png" /></p>
+</section>
+<section id="inefficientbatteryunit">
+<h3>InefficientBatteryUnit<a class="headerlink" href="#inefficientbatteryunit" title="Link to this heading">¶</a></h3>
+<p><img alt="InefficientBatteryUnit" src="../_images/InefficientBatteryUnit.png" /></p>
+</section>
+<section id="invertercontrols">
+<h3>InverterControls<a class="headerlink" href="#invertercontrols" title="Link to this heading">¶</a></h3>
+<p><img alt="InverterControls" src="../_images/InverterControls.png" /></p>
+</section>
+<section id="outagespecification">
+<h3>OutageSpecification<a class="headerlink" href="#outagespecification" title="Link to this heading">¶</a></h3>
+<p><img alt="OutageSpecification" src="../_images/OutageSpecification.png" /></p>
+</section>
+<section id="proposedassetoptions">
+<h3>ProposedAssetOptions<a class="headerlink" href="#proposedassetoptions" title="Link to this heading">¶</a></h3>
+<p><img alt="ProposedAssetOptions" src="../_images/ProposedAssetOptions.png" /></p>
+</section>
+<section id="proposedassets">
+<h3>ProposedAssets<a class="headerlink" href="#proposedassets" title="Link to this heading">¶</a></h3>
+<p><img alt="ProposedAssets" src="../_images/ProposedAssets.png" /></p>
+</section>
+<section id="proposedsitelocation">
+<h3>ProposedSiteLocation<a class="headerlink" href="#proposedsitelocation" title="Link to this heading">¶</a></h3>
+<p><img alt="ProposedSiteLocation" src="../_images/ProposedSiteLocation.png" /></p>
+</section>
+<section id="regionalenergyprices">
+<h3>RegionalEnergyPrices<a class="headerlink" href="#regionalenergyprices" title="Link to this heading">¶</a></h3>
+<p><img alt="RegionalEnergyPrices" src="../_images/RegionalEnergyPrices.png" /></p>
+</section>
+<section id="responsecharacteristics">
+<h3>ResponseCharacteristics<a class="headerlink" href="#responsecharacteristics" title="Link to this heading">¶</a></h3>
+<p><img alt="ResponseCharacteristics" src="../_images/ResponseCharacteristics.png" /></p>
+</section>
+<section id="siteproperties">
+<h3>SiteProperties<a class="headerlink" href="#siteproperties" title="Link to this heading">¶</a></h3>
+<p><img alt="SiteProperties" src="../_images/SiteProperties.png" /></p>
+</section>
+<section id="versions">
+<h3>Versions<a class="headerlink" href="#versions" title="Link to this heading">¶</a></h3>
+<p><img alt="Versions" src="../_images/Versions.png" /></p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="../index.html"
+       title="previous chapter">← MG-RAVENS Schema Documentation</a>
+  </li>
+  <li class="next">
+    <a href="../schema/index.html"
+       title="next chapter">Schema Documentation →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2024, David M Fobes.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

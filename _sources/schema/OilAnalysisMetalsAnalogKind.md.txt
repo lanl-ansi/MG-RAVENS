@@ -1,0 +1,43 @@
+# OilAnalysisMetalsAnalogKind
+
+**Title:** OilAnalysisMetalsAnalogKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Analogs representing oil metals and elements analysis result.
+
+Must be one of:
+* "calcium"
+* "silverParticulate"
+* "sodium"
+* "magnesium"
+* "titanium"
+* "aluminum"
+* "copper"
+* "leadParticulate"
+* "vanadium"
+* "zincParticulate"
+* "cadmium"
+* "zinc"
+* "silicon"
+* "boron"
+* "phosphorus"
+* "molybdenum"
+* "barium"
+* "chromium"
+* "nickel"
+* "copperParticulate"
+* "ironParticulate"
+* "iron"
+* "tungsten"
+* "lithium"
+* "silver"
+* "tin"
+* "aluminumParticulate"
+* "lead"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:24 -0600

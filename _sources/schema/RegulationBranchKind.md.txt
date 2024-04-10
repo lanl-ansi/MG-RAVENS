@@ -1,0 +1,23 @@
+# RegulationBranchKind
+
+**Title:** RegulationBranchKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of regulation branch for shunt impedance.
+
+Must be one of:
+* "fuse"
+* "breaker"
+* "line"
+* "switch"
+* "sectionner"
+* "recloser"
+* "transformer"
+* "other"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

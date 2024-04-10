@@ -1,0 +1,17 @@
+# CurveStyle
+
+**Title:** CurveStyle
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Style or shape of curve.
+
+Must be one of:
+* "constantYValue"
+* "straightLineYValues"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:24 -0600

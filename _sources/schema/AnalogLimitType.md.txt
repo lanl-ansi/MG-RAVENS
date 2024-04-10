@@ -1,0 +1,20 @@
+# AnalogLimitType
+
+**Title:** AnalogLimitType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Limit type specified for AnalogLimits.
+
+Must be one of:
+* "VoltageHigh"
+* "BranchLongTerm"
+* "VoltageLow"
+* "BranchShortTerm"
+* "BranchMediumTerm"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

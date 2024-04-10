@@ -1,0 +1,40 @@
+# SelfScheduleType
+
+**Title:** SelfScheduleType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** self schedule types
+
+PT
+ETC
+TOR
+RMR
+RMT
+RGMR
+ORFC
+SP
+
+Must be one of:
+* "BAS"
+* "RMT"
+* "RMR"
+* "RUC"
+* "RA"
+* "ORFC"
+* "ETC"
+* "IFM"
+* "SP"
+* "LOF"
+* "PT"
+* "WHL"
+* "PUMP_ETC"
+* "RGMR"
+* "TOR"
+* "PUMP_TOR"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

@@ -1,0 +1,18 @@
+# ExcST6BOELselectorKind
+
+**Title:** ExcST6BOELselectorKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Types of connections for the OEL input used for static excitation systems type 6B.
+
+Must be one of:
+* "noOELinput"
+* "beforeUEL"
+* "afterUEL"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

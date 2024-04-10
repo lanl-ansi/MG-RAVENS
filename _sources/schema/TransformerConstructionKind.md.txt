@@ -1,0 +1,31 @@
+# TransformerConstructionKind
+
+**Title:** TransformerConstructionKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of transformer construction.
+
+Must be one of:
+* "dryType"
+* "overhead"
+* "vault"
+* "vaultThreePhase"
+* "unknown"
+* "threePhase"
+* "padmountDeadFront"
+* "subway"
+* "padmountFeedThrough"
+* "padmountLiveFront"
+* "underground"
+* "padmounted"
+* "network"
+* "padmountLoopThrough"
+* "aerial"
+* "onePhase"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

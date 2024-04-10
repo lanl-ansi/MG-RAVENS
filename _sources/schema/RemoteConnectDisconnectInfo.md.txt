@@ -1,0 +1,497 @@
+# RemoteConnectDisconnectInfo
+
+- [1. Property `RemoteConnectDisconnectInfo > isEnergyLimiting`](#isEnergyLimiting)
+- [2. Property `RemoteConnectDisconnectInfo > energyUsageWarning`](#energyUsageWarning)
+  - [2.1. Property `RemoteConnectDisconnectInfo > energyUsageWarning > multiplier`](#energyUsageWarning_multiplier)
+  - [2.2. Property `RemoteConnectDisconnectInfo > energyUsageWarning > unit`](#energyUsageWarning_unit)
+  - [2.3. Property `RemoteConnectDisconnectInfo > energyUsageWarning > value`](#energyUsageWarning_value)
+- [3. Property `RemoteConnectDisconnectInfo > needsVoltageLimitCheck`](#needsVoltageLimitCheck)
+- [4. Property `RemoteConnectDisconnectInfo > usePushbutton`](#usePushbutton)
+- [5. Property `RemoteConnectDisconnectInfo > isArmConnect`](#isArmConnect)
+- [6. Property `RemoteConnectDisconnectInfo > armedTimeout`](#armedTimeout)
+  - [6.1. Property `RemoteConnectDisconnectInfo > armedTimeout > multiplier`](#armedTimeout_multiplier)
+  - [6.2. Property `RemoteConnectDisconnectInfo > armedTimeout > unit`](#armedTimeout_unit)
+  - [6.3. Property `RemoteConnectDisconnectInfo > armedTimeout > value`](#armedTimeout_value)
+- [7. Property `RemoteConnectDisconnectInfo > energyLimit`](#energyLimit)
+- [8. Property `RemoteConnectDisconnectInfo > needsPowerLimitCheck`](#needsPowerLimitCheck)
+- [9. Property `RemoteConnectDisconnectInfo > customerVoltageLimit`](#customerVoltageLimit)
+  - [9.1. Property `RemoteConnectDisconnectInfo > customerVoltageLimit > multiplier`](#customerVoltageLimit_multiplier)
+  - [9.2. Property `RemoteConnectDisconnectInfo > customerVoltageLimit > unit`](#customerVoltageLimit_unit)
+  - [9.3. Property `RemoteConnectDisconnectInfo > customerVoltageLimit > value`](#customerVoltageLimit_value)
+- [10. Property `RemoteConnectDisconnectInfo > isArmDisconnect`](#isArmDisconnect)
+- [11. Property `RemoteConnectDisconnectInfo > powerLimit`](#powerLimit)
+  - [11.1. Property `RemoteConnectDisconnectInfo > powerLimit > multiplier`](#powerLimit_multiplier)
+  - [11.2. Property `RemoteConnectDisconnectInfo > powerLimit > unit`](#powerLimit_unit)
+  - [11.3. Property `RemoteConnectDisconnectInfo > powerLimit > value`](#powerLimit_value)
+- [12. Property `RemoteConnectDisconnectInfo > energyUsageStartDateTime`](#energyUsageStartDateTime)
+
+**Title:** RemoteConnectDisconnectInfo
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Details of remote connect and disconnect function.
+
+| Property                                                 | Pattern | Type             | Deprecated | Definition                                         | Title/Description                                                                                                  |
+| -------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| - [isEnergyLimiting](#isEnergyLimiting )                 | No      | boolean          | No         | -                                                  | True if the energy usage is limited and the customer will be disconnected if they go over the limit.               |
+| - [energyUsageWarning](#energyUsageWarning )             | No      | object or number | No         | In ./RealEnergy.json                               | Warning energy limit, used to trigger event code that energy usage is nearing limit.                               |
+| - [needsVoltageLimitCheck](#needsVoltageLimitCheck )     | No      | boolean          | No         | -                                                  | True if voltage limit has to be checked to prevent connect if voltage is over the limit.                           |
+| - [usePushbutton](#usePushbutton )                       | No      | boolean          | No         | -                                                  | True if pushbutton has to be used for connect.                                                                     |
+| - [isArmConnect](#isArmConnect )                         | No      | boolean          | No         | -                                                  | True if the RCD switch has to be armed before a connect action can be initiated.                                   |
+| - [armedTimeout](#armedTimeout )                         | No      | object or number | No         | In ./Seconds.json                                  | Setting of the timeout elapsed time.                                                                               |
+| - [energyLimit](#energyLimit )                           | No      | object or number | No         | Same as [energyUsageWarning](#energyUsageWarning ) | Limit of energy before disconnect.                                                                                 |
+| - [needsPowerLimitCheck](#needsPowerLimitCheck )         | No      | boolean          | No         | -                                                  | True if load limit has to be checked to issue an immediate disconnect (after a connect) if load is over the limit. |
+| - [customerVoltageLimit](#customerVoltageLimit )         | No      | object or number | No         | In ./Voltage.json                                  | Voltage limit on customer side of RCD switch above which the connect should not be made.                           |
+| - [isArmDisconnect](#isArmDisconnect )                   | No      | boolean          | No         | -                                                  | True if the RCD switch has to be armed before a disconnect action can be initiated.                                |
+| - [powerLimit](#powerLimit )                             | No      | object or number | No         | In ./ActivePower.json                              | Load limit above which the connect should either not take place or should cause an immediate disconnect.           |
+| - [energyUsageStartDateTime](#energyUsageStartDateTime ) | No      | string           | No         | -                                                  | Start date and time to accumulate energy for energy usage limiting.<br />                                         |
+
+## <a name="isEnergyLimiting"></a>1. Property `RemoteConnectDisconnectInfo > isEnergyLimiting`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the energy usage is limited and the customer will be disconnected if they go over the limit.
+
+## <a name="energyUsageWarning"></a>2. Property `RemoteConnectDisconnectInfo > energyUsageWarning`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Default**    | `null`             |
+| **Defined in** | ./RealEnergy.json  |
+
+**Description:** Warning energy limit, used to trigger event code that energy usage is nearing limit.
+
+| Property                                        | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ----------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#energyUsageWarning_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#energyUsageWarning_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#energyUsageWarning_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="energyUsageWarning_multiplier"></a>2.1. Property `RemoteConnectDisconnectInfo > energyUsageWarning > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="energyUsageWarning_unit"></a>2.2. Property `RemoteConnectDisconnectInfo > energyUsageWarning > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"Wh"`             |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="energyUsageWarning_value"></a>2.3. Property `RemoteConnectDisconnectInfo > energyUsageWarning > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="needsVoltageLimitCheck"></a>3. Property `RemoteConnectDisconnectInfo > needsVoltageLimitCheck`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if voltage limit has to be checked to prevent connect if voltage is over the limit.
+
+## <a name="usePushbutton"></a>4. Property `RemoteConnectDisconnectInfo > usePushbutton`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if pushbutton has to be used for connect.
+
+## <a name="isArmConnect"></a>5. Property `RemoteConnectDisconnectInfo > isArmConnect`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the RCD switch has to be armed before a connect action can be initiated.
+
+## <a name="armedTimeout"></a>6. Property `RemoteConnectDisconnectInfo > armedTimeout`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Default**    | `null`             |
+| **Defined in** | ./Seconds.json     |
+
+**Description:** Setting of the timeout elapsed time.
+
+| Property                                  | Pattern | Type             | Deprecated | Definition                                            | Title/Description |
+| ----------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------------- | ----------------- |
+| - [multiplier](#armedTimeout_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#energyUsageWarning_multiplier ) | nan               |
+| - [unit](#armedTimeout_unit )             | No      | enum (of string) | No         | Same as [unit](#energyUsageWarning_unit )             | nan               |
+| - [value](#armedTimeout_value )           | No      | number           | No         | -                                                     | Time, in seconds  |
+
+### <a name="armedTimeout_multiplier"></a>6.1. Property `RemoteConnectDisconnectInfo > armedTimeout > multiplier`
+
+|                        |                                              |
+| ---------------------- | -------------------------------------------- |
+| **Type**               | `enum (of string)`                           |
+| **Required**           | No                                           |
+| **Default**            | `"none"`                                     |
+| **Same definition as** | [multiplier](#energyUsageWarning_multiplier) |
+
+**Description:** nan
+
+### <a name="armedTimeout_unit"></a>6.2. Property `RemoteConnectDisconnectInfo > armedTimeout > unit`
+
+|                        |                                  |
+| ---------------------- | -------------------------------- |
+| **Type**               | `enum (of string)`               |
+| **Required**           | No                               |
+| **Default**            | `"s"`                            |
+| **Same definition as** | [unit](#energyUsageWarning_unit) |
+
+**Description:** nan
+
+### <a name="armedTimeout_value"></a>6.3. Property `RemoteConnectDisconnectInfo > armedTimeout > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Time, in seconds
+
+## <a name="energyLimit"></a>7. Property `RemoteConnectDisconnectInfo > energyLimit`
+
+|                        |                                           |
+| ---------------------- | ----------------------------------------- |
+| **Type**               | `object or number`                        |
+| **Required**           | No                                        |
+| **Default**            | `null`                                    |
+| **Same definition as** | [energyUsageWarning](#energyUsageWarning) |
+
+**Description:** Limit of energy before disconnect.
+
+## <a name="needsPowerLimitCheck"></a>8. Property `RemoteConnectDisconnectInfo > needsPowerLimitCheck`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if load limit has to be checked to issue an immediate disconnect (after a connect) if load is over the limit.
+
+## <a name="customerVoltageLimit"></a>9. Property `RemoteConnectDisconnectInfo > customerVoltageLimit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Default**    | `null`             |
+| **Defined in** | ./Voltage.json     |
+
+**Description:** Voltage limit on customer side of RCD switch above which the connect should not be made.
+
+| Property                                          | Pattern | Type             | Deprecated | Definition                                            | Title/Description |
+| ------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------------- | ----------------- |
+| - [multiplier](#customerVoltageLimit_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#energyUsageWarning_multiplier ) | nan               |
+| - [unit](#customerVoltageLimit_unit )             | No      | enum (of string) | No         | Same as [unit](#energyUsageWarning_unit )             | nan               |
+| - [value](#customerVoltageLimit_value )           | No      | number           | No         | -                                                     | nan               |
+
+### <a name="customerVoltageLimit_multiplier"></a>9.1. Property `RemoteConnectDisconnectInfo > customerVoltageLimit > multiplier`
+
+|                        |                                              |
+| ---------------------- | -------------------------------------------- |
+| **Type**               | `enum (of string)`                           |
+| **Required**           | No                                           |
+| **Default**            | `"none"`                                     |
+| **Same definition as** | [multiplier](#energyUsageWarning_multiplier) |
+
+**Description:** nan
+
+### <a name="customerVoltageLimit_unit"></a>9.2. Property `RemoteConnectDisconnectInfo > customerVoltageLimit > unit`
+
+|                        |                                  |
+| ---------------------- | -------------------------------- |
+| **Type**               | `enum (of string)`               |
+| **Required**           | No                               |
+| **Default**            | `"V"`                            |
+| **Same definition as** | [unit](#energyUsageWarning_unit) |
+
+**Description:** nan
+
+### <a name="customerVoltageLimit_value"></a>9.3. Property `RemoteConnectDisconnectInfo > customerVoltageLimit > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="isArmDisconnect"></a>10. Property `RemoteConnectDisconnectInfo > isArmDisconnect`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the RCD switch has to be armed before a disconnect action can be initiated.
+
+## <a name="powerLimit"></a>11. Property `RemoteConnectDisconnectInfo > powerLimit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Default**    | `null`             |
+| **Defined in** | ./ActivePower.json |
+
+**Description:** Load limit above which the connect should either not take place or should cause an immediate disconnect.
+
+| Property                                | Pattern | Type             | Deprecated | Definition                                            | Title/Description |
+| --------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------------- | ----------------- |
+| - [multiplier](#powerLimit_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#energyUsageWarning_multiplier ) | nan               |
+| - [unit](#powerLimit_unit )             | No      | enum (of string) | No         | Same as [unit](#energyUsageWarning_unit )             | nan               |
+| - [value](#powerLimit_value )           | No      | number           | No         | -                                                     | nan               |
+
+### <a name="powerLimit_multiplier"></a>11.1. Property `RemoteConnectDisconnectInfo > powerLimit > multiplier`
+
+|                        |                                              |
+| ---------------------- | -------------------------------------------- |
+| **Type**               | `enum (of string)`                           |
+| **Required**           | No                                           |
+| **Default**            | `"none"`                                     |
+| **Same definition as** | [multiplier](#energyUsageWarning_multiplier) |
+
+**Description:** nan
+
+### <a name="powerLimit_unit"></a>11.2. Property `RemoteConnectDisconnectInfo > powerLimit > unit`
+
+|                        |                                  |
+| ---------------------- | -------------------------------- |
+| **Type**               | `enum (of string)`               |
+| **Required**           | No                               |
+| **Default**            | `"W"`                            |
+| **Same definition as** | [unit](#energyUsageWarning_unit) |
+
+**Description:** nan
+
+### <a name="powerLimit_value"></a>11.3. Property `RemoteConnectDisconnectInfo > powerLimit > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="energyUsageStartDateTime"></a>12. Property `RemoteConnectDisconnectInfo > energyUsageStartDateTime`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Start date and time to accumulate energy for energy usage limiting.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

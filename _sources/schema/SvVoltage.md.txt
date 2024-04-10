@@ -1,0 +1,316 @@
+# SvVoltage
+
+- [1. Property `SvVoltage > SvVoltage.angle`](#SvVoltageangle)
+  - [1.1. Property `SvVoltage > SvVoltage.angle > multiplier`](#SvVoltageangle_multiplier)
+  - [1.2. Property `SvVoltage > SvVoltage.angle > unit`](#SvVoltageangle_unit)
+  - [1.3. Property `SvVoltage > SvVoltage.angle > value`](#SvVoltageangle_value)
+- [2. Property `SvVoltage > SvVoltage.v`](#SvVoltagev)
+  - [2.1. Property `SvVoltage > SvVoltage.v > multiplier`](#SvVoltagev_multiplier)
+  - [2.2. Property `SvVoltage > SvVoltage.v > unit`](#SvVoltagev_unit)
+  - [2.3. Property `SvVoltage > SvVoltage.v > value`](#SvVoltagev_value)
+- [3. Property `SvVoltage > SvVoltage.phase`](#SvVoltagephase)
+
+**Title:** SvVoltage
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** State variable for voltage.
+
+| Property                              | Pattern | Type             | Deprecated | Definition                | Title/Description |
+| ------------------------------------- | ------- | ---------------- | ---------- | ------------------------- | ----------------- |
+| - [SvVoltage.angle](#SvVoltageangle ) | No      | object or number | No         | In ./AngleDegrees.json    | angle             |
+| - [SvVoltage.v](#SvVoltagev )         | No      | object or number | No         | In ./Voltage.json         | v                 |
+| - [SvVoltage.phase](#SvVoltagephase ) | No      | enum (of string) | No         | In ./SinglePhaseKind.json | phase             |
+
+## <a name="SvVoltageangle"></a>1. Property `SvVoltage > SvVoltage.angle`
+
+**Title:** angle
+
+|                |                     |
+| -------------- | ------------------- |
+| **Type**       | `object or number`  |
+| **Required**   | No                  |
+| **Defined in** | ./AngleDegrees.json |
+
+**Description:** The voltage angle of the topological node complex voltage with respect to system reference.
+
+| Property                                    | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#SvVoltageangle_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#SvVoltageangle_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#SvVoltageangle_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="SvVoltageangle_multiplier"></a>1.1. Property `SvVoltage > SvVoltage.angle > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="SvVoltageangle_unit"></a>1.2. Property `SvVoltage > SvVoltage.angle > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"deg"`            |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="SvVoltageangle_value"></a>1.3. Property `SvVoltage > SvVoltage.angle > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="SvVoltagev"></a>2. Property `SvVoltage > SvVoltage.v`
+
+**Title:** v
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Voltage.json     |
+
+**Description:** The voltage magnitude at the topological node. The attribute shall be a positive value.
+
+| Property                                | Pattern | Type             | Deprecated | Definition                                        | Title/Description |
+| --------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------- | ----------------- |
+| - [multiplier](#SvVoltagev_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#SvVoltageangle_multiplier ) | nan               |
+| - [unit](#SvVoltagev_unit )             | No      | enum (of string) | No         | Same as [unit](#SvVoltageangle_unit )             | nan               |
+| - [value](#SvVoltagev_value )           | No      | number           | No         | -                                                 | nan               |
+
+### <a name="SvVoltagev_multiplier"></a>2.1. Property `SvVoltage > SvVoltage.v > multiplier`
+
+|                        |                                          |
+| ---------------------- | ---------------------------------------- |
+| **Type**               | `enum (of string)`                       |
+| **Required**           | No                                       |
+| **Default**            | `"none"`                                 |
+| **Same definition as** | [multiplier](#SvVoltageangle_multiplier) |
+
+**Description:** nan
+
+### <a name="SvVoltagev_unit"></a>2.2. Property `SvVoltage > SvVoltage.v > unit`
+
+|                        |                              |
+| ---------------------- | ---------------------------- |
+| **Type**               | `enum (of string)`           |
+| **Required**           | No                           |
+| **Default**            | `"V"`                        |
+| **Same definition as** | [unit](#SvVoltageangle_unit) |
+
+**Description:** nan
+
+### <a name="SvVoltagev_value"></a>2.3. Property `SvVoltage > SvVoltage.v > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="SvVoltagephase"></a>3. Property `SvVoltage > SvVoltage.phase`
+
+**Title:** phase
+
+|                |                        |
+| -------------- | ---------------------- |
+| **Type**       | `enum (of string)`     |
+| **Required**   | No                     |
+| **Defined in** | ./SinglePhaseKind.json |
+
+**Description:** If specified the voltage is the line to ground voltage of the individual phase.   If unspecified, then the voltage is assumed balanced.
+
+Must be one of:
+* "A"
+* "B"
+* "C"
+* "N"
+* "s1"
+* "s2"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

@@ -1,0 +1,25 @@
+# SelfSchedTypeRawBid
+
+**Title:** SelfSchedTypeRawBid
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** nan
+
+Must be one of:
+* "LPT"
+* "ETC"
+* "WHL"
+* "SP"
+* "RMT"
+* "TOR"
+* "BAS"
+* "LOF"
+* "RA"
+* "PT"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

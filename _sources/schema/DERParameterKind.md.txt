@@ -1,0 +1,27 @@
+# DERParameterKind
+
+**Title:** DERParameterKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Specifies the DER parameters related to the unit of power, ramp rate and regulation flows.
+
+Must be one of:
+* "lowFilterBiDirectionalRegulation"
+* "activePower"
+* "voltage"
+* "lowFilterUpRegulation"
+* "highFilterDownRegulation"
+* "highFilterUpRegulation"
+* "decreasingRampRate"
+* "lowFilterDownRegulation"
+* "increasingRampRate"
+* "reactivePower"
+* "apparentPower"
+* "highFilterBiDirectionalRegulation"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:27 -0600

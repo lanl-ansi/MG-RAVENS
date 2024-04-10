@@ -1,0 +1,18 @@
+# RelativeDisplacementKind
+
+**Title:** RelativeDisplacementKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** The types of relative displacement
+
+Must be one of:
+* "ground"
+* "seaLevel"
+* "centreEarth"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

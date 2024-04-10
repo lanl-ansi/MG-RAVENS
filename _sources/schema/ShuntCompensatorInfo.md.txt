@@ -1,0 +1,458 @@
+# ShuntCompensatorInfo
+
+- [1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.maxPowerLoss`](#ShuntCompensatorInfomaxPowerLoss)
+  - [1.1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.maxPowerLoss > multiplier`](#ShuntCompensatorInfomaxPowerLoss_multiplier)
+  - [1.2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.maxPowerLoss > unit`](#ShuntCompensatorInfomaxPowerLoss_unit)
+  - [1.3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.maxPowerLoss > value`](#ShuntCompensatorInfomaxPowerLoss_value)
+- [2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedReactivePower`](#ShuntCompensatorInforatedReactivePower)
+  - [2.1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedReactivePower > multiplier`](#ShuntCompensatorInforatedReactivePower_multiplier)
+  - [2.2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedReactivePower > unit`](#ShuntCompensatorInforatedReactivePower_unit)
+  - [2.3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedReactivePower > value`](#ShuntCompensatorInforatedReactivePower_value)
+- [3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedCurrent`](#ShuntCompensatorInforatedCurrent)
+  - [3.1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedCurrent > multiplier`](#ShuntCompensatorInforatedCurrent_multiplier)
+  - [3.2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedCurrent > unit`](#ShuntCompensatorInforatedCurrent_unit)
+  - [3.3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedCurrent > value`](#ShuntCompensatorInforatedCurrent_value)
+- [4. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedVoltage`](#ShuntCompensatorInforatedVoltage)
+  - [4.1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedVoltage > multiplier`](#ShuntCompensatorInforatedVoltage_multiplier)
+  - [4.2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedVoltage > unit`](#ShuntCompensatorInforatedVoltage_unit)
+  - [4.3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedVoltage > value`](#ShuntCompensatorInforatedVoltage_value)
+- [5. Property `ShuntCompensatorInfo > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [6. Property `ShuntCompensatorInfo > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [7. Property `ShuntCompensatorInfo > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [8. Property `ShuntCompensatorInfo > IdentifiedObject.name`](#IdentifiedObjectname)
+
+**Title:** ShuntCompensatorInfo
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Properties of shunt capacitor, shunt reactor or switchable bank of shunt capacitor or reactor assets.
+
+| Property                                                                              | Pattern | Type             | Deprecated | Definition              | Title/Description  |
+| ------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------- | ------------------ |
+| - [ShuntCompensatorInfo.maxPowerLoss](#ShuntCompensatorInfomaxPowerLoss )             | No      | object or number | No         | In ./ApparentPower.json | maxPowerLoss       |
+| - [ShuntCompensatorInfo.ratedReactivePower](#ShuntCompensatorInforatedReactivePower ) | No      | object or number | No         | In ./ReactivePower.json | ratedReactivePower |
+| - [ShuntCompensatorInfo.ratedCurrent](#ShuntCompensatorInforatedCurrent )             | No      | object or number | No         | In ./CurrentFlow.json   | ratedCurrent       |
+| - [ShuntCompensatorInfo.ratedVoltage](#ShuntCompensatorInforatedVoltage )             | No      | object or number | No         | In ./Voltage.json       | ratedVoltage       |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )                       | No      | string           | No         | -                       | description        |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )                           | No      | string           | No         | -                       | aliasName          |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                                     | No      | string           | No         | -                       | mRID               |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                                     | No      | string           | No         | -                       | name               |
+
+## <a name="ShuntCompensatorInfomaxPowerLoss"></a>1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.maxPowerLoss`
+
+**Title:** maxPowerLoss
+
+|                |                      |
+| -------------- | -------------------- |
+| **Type**       | `object or number`   |
+| **Required**   | No                   |
+| **Defined in** | ./ApparentPower.json |
+
+**Description:** Maximum allowed apparent power loss.
+
+| Property                                                      | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#ShuntCompensatorInfomaxPowerLoss_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#ShuntCompensatorInfomaxPowerLoss_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#ShuntCompensatorInfomaxPowerLoss_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="ShuntCompensatorInfomaxPowerLoss_multiplier"></a>1.1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.maxPowerLoss > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="ShuntCompensatorInfomaxPowerLoss_unit"></a>1.2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.maxPowerLoss > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"VA"`             |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="ShuntCompensatorInfomaxPowerLoss_value"></a>1.3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.maxPowerLoss > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="ShuntCompensatorInforatedReactivePower"></a>2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedReactivePower`
+
+**Title:** ratedReactivePower
+
+|                |                      |
+| -------------- | -------------------- |
+| **Type**       | `object or number`   |
+| **Required**   | No                   |
+| **Defined in** | ./ReactivePower.json |
+
+**Description:** Rated reactive power.
+
+| Property                                                            | Pattern | Type             | Deprecated | Definition                                                          | Title/Description |
+| ------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#ShuntCompensatorInforatedReactivePower_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#ShuntCompensatorInfomaxPowerLoss_multiplier ) | nan               |
+| - [unit](#ShuntCompensatorInforatedReactivePower_unit )             | No      | enum (of string) | No         | Same as [unit](#ShuntCompensatorInfomaxPowerLoss_unit )             | nan               |
+| - [value](#ShuntCompensatorInforatedReactivePower_value )           | No      | number           | No         | -                                                                   | nan               |
+
+### <a name="ShuntCompensatorInforatedReactivePower_multiplier"></a>2.1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedReactivePower > multiplier`
+
+|                        |                                                            |
+| ---------------------- | ---------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                         |
+| **Required**           | No                                                         |
+| **Default**            | `"none"`                                                   |
+| **Same definition as** | [multiplier](#ShuntCompensatorInfomaxPowerLoss_multiplier) |
+
+**Description:** nan
+
+### <a name="ShuntCompensatorInforatedReactivePower_unit"></a>2.2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedReactivePower > unit`
+
+|                        |                                                |
+| ---------------------- | ---------------------------------------------- |
+| **Type**               | `enum (of string)`                             |
+| **Required**           | No                                             |
+| **Default**            | `"VAr"`                                        |
+| **Same definition as** | [unit](#ShuntCompensatorInfomaxPowerLoss_unit) |
+
+**Description:** nan
+
+### <a name="ShuntCompensatorInforatedReactivePower_value"></a>2.3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedReactivePower > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="ShuntCompensatorInforatedCurrent"></a>3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedCurrent`
+
+**Title:** ratedCurrent
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./CurrentFlow.json |
+
+**Description:** Rated current.
+
+| Property                                                      | Pattern | Type             | Deprecated | Definition                                                          | Title/Description |
+| ------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#ShuntCompensatorInforatedCurrent_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#ShuntCompensatorInfomaxPowerLoss_multiplier ) | nan               |
+| - [unit](#ShuntCompensatorInforatedCurrent_unit )             | No      | enum (of string) | No         | Same as [unit](#ShuntCompensatorInfomaxPowerLoss_unit )             | nan               |
+| - [value](#ShuntCompensatorInforatedCurrent_value )           | No      | number           | No         | -                                                                   | nan               |
+
+### <a name="ShuntCompensatorInforatedCurrent_multiplier"></a>3.1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedCurrent > multiplier`
+
+|                        |                                                            |
+| ---------------------- | ---------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                         |
+| **Required**           | No                                                         |
+| **Default**            | `"none"`                                                   |
+| **Same definition as** | [multiplier](#ShuntCompensatorInfomaxPowerLoss_multiplier) |
+
+**Description:** nan
+
+### <a name="ShuntCompensatorInforatedCurrent_unit"></a>3.2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedCurrent > unit`
+
+|                        |                                                |
+| ---------------------- | ---------------------------------------------- |
+| **Type**               | `enum (of string)`                             |
+| **Required**           | No                                             |
+| **Default**            | `"A"`                                          |
+| **Same definition as** | [unit](#ShuntCompensatorInfomaxPowerLoss_unit) |
+
+**Description:** nan
+
+### <a name="ShuntCompensatorInforatedCurrent_value"></a>3.3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedCurrent > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="ShuntCompensatorInforatedVoltage"></a>4. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedVoltage`
+
+**Title:** ratedVoltage
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Voltage.json     |
+
+**Description:** Rated voltage.
+
+| Property                                                      | Pattern | Type             | Deprecated | Definition                                                          | Title/Description |
+| ------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#ShuntCompensatorInforatedVoltage_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#ShuntCompensatorInfomaxPowerLoss_multiplier ) | nan               |
+| - [unit](#ShuntCompensatorInforatedVoltage_unit )             | No      | enum (of string) | No         | Same as [unit](#ShuntCompensatorInfomaxPowerLoss_unit )             | nan               |
+| - [value](#ShuntCompensatorInforatedVoltage_value )           | No      | number           | No         | -                                                                   | nan               |
+
+### <a name="ShuntCompensatorInforatedVoltage_multiplier"></a>4.1. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedVoltage > multiplier`
+
+|                        |                                                            |
+| ---------------------- | ---------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                         |
+| **Required**           | No                                                         |
+| **Default**            | `"none"`                                                   |
+| **Same definition as** | [multiplier](#ShuntCompensatorInfomaxPowerLoss_multiplier) |
+
+**Description:** nan
+
+### <a name="ShuntCompensatorInforatedVoltage_unit"></a>4.2. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedVoltage > unit`
+
+|                        |                                                |
+| ---------------------- | ---------------------------------------------- |
+| **Type**               | `enum (of string)`                             |
+| **Required**           | No                                             |
+| **Default**            | `"V"`                                          |
+| **Same definition as** | [unit](#ShuntCompensatorInfomaxPowerLoss_unit) |
+
+**Description:** nan
+
+### <a name="ShuntCompensatorInforatedVoltage_value"></a>4.3. Property `ShuntCompensatorInfo > ShuntCompensatorInfo.ratedVoltage > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="IdentifiedObjectdescription"></a>5. Property `ShuntCompensatorInfo > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="IdentifiedObjectaliasName"></a>6. Property `ShuntCompensatorInfo > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="IdentifiedObjectmRID"></a>7. Property `ShuntCompensatorInfo > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>8. Property `ShuntCompensatorInfo > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

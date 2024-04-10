@@ -1,0 +1,24 @@
+# PassIndicatorType
+
+**Title:** PassIndicatorType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Defines the individual passes that produce results per execution type/market type.
+
+Must be one of:
+* "RTED"
+* "RUC"
+* "MPM-1"
+* "RTPD"
+* "HA-SCUC"
+* "MPM-3"
+* "DA"
+* "MPM-2"
+* "MPM-4"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

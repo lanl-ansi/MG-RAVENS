@@ -1,0 +1,27 @@
+# BidMitigationStatus
+
+**Title:** BidMitigationStatus
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** For example:
+'S' - Mitigated by SMPM because of "misconduct"
+'L; - Mitigated by LMPM because of "misconduct"
+'R' - Modified by LMPM because of RMR rules
+'M' - Mitigated because of "misconduct" both by SMPM and LMPM
+'B' - Mitigated because of "misconduct" both by SMPM and modified by LMLM because of RMR rules
+'O' - original
+
+Must be one of:
+* "L"
+* "M"
+* "R"
+* "S"
+* "O"
+* "B"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:27 -0600

@@ -1,0 +1,20 @@
+# AutomaticDispInstTypeCommitment
+
+**Title:** AutomaticDispInstTypeCommitment
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Commitment instruction types.
+
+Must be one of:
+* "DR_DEPLOY"
+* "DR_ADJUSTMENT"
+* "START_UP"
+* "SHUT_DOWN"
+* "DR_RELEASE"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

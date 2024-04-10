@@ -1,0 +1,17 @@
+# TransformerMaintenanceKind
+
+**Title:** TransformerMaintenanceKind
+
+|              |        |
+| ------------ | ------ |
+| **Type**     | `enum` |
+| **Required** | No     |
+
+**Description:** Kinds of transformer maintenance.
+BreakerMaintenanceKind enumeration
+Possible types of breaker maintenance work.
+
+Must be one of:
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

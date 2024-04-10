@@ -1,0 +1,54 @@
+# ExtensionItem
+
+- [1. Property `ExtensionItem > extName`](#extName)
+- [2. Property `ExtensionItem > extValue`](#extValue)
+- [3. Property `ExtensionItem > extType`](#extType)
+
+**Title:** ExtensionItem
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Specifies the extensions list items
+
+| Property                 | Pattern | Type   | Deprecated | Definition | Title/Description          |
+| ------------------------ | ------- | ------ | ---------- | ---------- | -------------------------- |
+| - [extName](#extName )   | No      | string | No         | -          | the name of the extension  |
+| - [extValue](#extValue ) | No      | string | No         | -          | the value of the extension |
+| - [extType](#extType )   | No      | string | No         | -          | The type of the extension  |
+
+## <a name="extName"></a>1. Property `ExtensionItem > extName`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** the name of the extension
+
+## <a name="extValue"></a>2. Property `ExtensionItem > extValue`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** the value of the extension
+
+## <a name="extType"></a>3. Property `ExtensionItem > extType`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** The type of the extension
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

@@ -1,0 +1,44 @@
+# IEC62325CIMVersion
+
+- [1. Property `IEC62325CIMVersion > IEC62325CIMVersion.date`](#IEC62325CIMVersiondate)
+- [2. Property `IEC62325CIMVersion > IEC62325CIMVersion.version`](#IEC62325CIMVersionversion)
+
+**Title:** IEC62325CIMVersion
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** IEC 62325 version number assigned to this UML model.
+
+| Property                                                    | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ----------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [IEC62325CIMVersion.date](#IEC62325CIMVersiondate )       | No      | string | No         | -          | date              |
+| - [IEC62325CIMVersion.version](#IEC62325CIMVersionversion ) | No      | string | No         | -          | version           |
+
+## <a name="IEC62325CIMVersiondate"></a>1. Property `IEC62325CIMVersion > IEC62325CIMVersion.date`
+
+**Title:** date
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
+
+## <a name="IEC62325CIMVersionversion"></a>2. Property `IEC62325CIMVersion > IEC62325CIMVersion.version`
+
+**Title:** version
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Form is IEC62325CIMXXvYY where XX is the major CIM package version and the YY is the minor version. For example IEC62325CIM10v03.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

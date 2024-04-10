@@ -1,0 +1,17 @@
+# SwitchStatusType
+
+**Title:** SwitchStatusType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Circuit Breaker Status (closed or open) of the circuit breaker.
+
+Must be one of:
+* "Open"
+* "Closed"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:24 -0600

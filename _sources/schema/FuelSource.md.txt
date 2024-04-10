@@ -1,0 +1,47 @@
+# FuelSource
+
+**Title:** FuelSource
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** For example:
+Bio Gas (Landfill, Sewage, Digester, etc.)
+Biomass
+Coal
+DIST
+Natural Gas
+Geothermal
+HRCV
+None
+Nuclear
+Oil
+Other
+Solar
+Waste to Energy
+Water
+Wind
+
+Must be one of:
+* "WATR"
+* "WIND"
+* "SOLR"
+* "GAS"
+* "HRCV"
+* "OIL"
+* "NG"
+* "WAST"
+* "NONE"
+* "NUCL"
+* "COAL"
+* "OTHR"
+* "DIST"
+* "GEOT"
+* "BGAS"
+* "NNG"
+* "BIOM"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

@@ -1,0 +1,18 @@
+# ServiceMultiplierKind
+
+**Title:** ServiceMultiplierKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of service multiplier.
+
+Must be one of:
+* "transformerRatio"
+* "ctRatio"
+* "ptRatio"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

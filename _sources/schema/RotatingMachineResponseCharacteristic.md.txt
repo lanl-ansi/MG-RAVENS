@@ -1,0 +1,40 @@
+# RotatingMachineResponseCharacteristic
+
+- [1. Property `RotatingMachineResponseCharacteristic > RotatingMachineResponseCharacteristic.responseCharacteristic`](#RotatingMachineResponseCharacteristicresponseCharacteristic)
+
+**Title:** RotatingMachineResponseCharacteristic
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** nan
+
+| Property                                                                                                                        | Pattern | Type             | Deprecated | Definition                       | Title/Description      |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------- | ---------------------- |
+| - [RotatingMachineResponseCharacteristic.responseCharacteristic](#RotatingMachineResponseCharacteristicresponseCharacteristic ) | No      | enum (of string) | No         | In ./ResponseCharacteristic.json | responseCharacteristic |
+
+## <a name="RotatingMachineResponseCharacteristicresponseCharacteristic"></a>1. Property `RotatingMachineResponseCharacteristic > RotatingMachineResponseCharacteristic.responseCharacteristic`
+
+**Title:** responseCharacteristic
+
+|                |                               |
+| -------------- | ----------------------------- |
+| **Type**       | `enum (of string)`            |
+| **Required**   | No                            |
+| **Defined in** | ./ResponseCharacteristic.json |
+
+**Description:** nan
+
+Must be one of:
+* "constantPFixedV"
+* "constantAdmittance"
+* "constantPConstantQCurrentLimited"
+* "constantPF"
+* "constantPFixedQ"
+* "constantPFixedQConstantReactance"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

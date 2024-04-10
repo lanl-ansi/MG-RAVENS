@@ -1,0 +1,18 @@
+# BidCalculationBasis
+
+**Title:** BidCalculationBasis
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** The basis used to calculate the bid price curve for an energy default bid.
+
+Must be one of:
+* "COST_BASED"
+* "LMP_BASED"
+* "NEGOTIATED"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

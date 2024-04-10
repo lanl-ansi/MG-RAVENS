@@ -1,0 +1,375 @@
+# GenUnitOpSchedule
+
+- [1. Property `GenUnitOpSchedule > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [2. Property `GenUnitOpSchedule > BasicIntervalSchedule.value2Multiplier`](#BasicIntervalSchedulevalue2Multiplier)
+- [3. Property `GenUnitOpSchedule > RegularIntervalSchedule.timeStep`](#RegularIntervalScheduletimeStep)
+  - [3.1. Property `GenUnitOpSchedule > RegularIntervalSchedule.timeStep > multiplier`](#RegularIntervalScheduletimeStep_multiplier)
+  - [3.2. Property `GenUnitOpSchedule > RegularIntervalSchedule.timeStep > unit`](#RegularIntervalScheduletimeStep_unit)
+  - [3.3. Property `GenUnitOpSchedule > RegularIntervalSchedule.timeStep > value`](#RegularIntervalScheduletimeStep_value)
+- [4. Property `GenUnitOpSchedule > BasicIntervalSchedule.startTime`](#BasicIntervalSchedulestartTime)
+- [5. Property `GenUnitOpSchedule > BasicIntervalSchedule.value1Multiplier`](#BasicIntervalSchedulevalue1Multiplier)
+- [6. Property `GenUnitOpSchedule > BasicIntervalSchedule.value1Unit`](#BasicIntervalSchedulevalue1Unit)
+- [7. Property `GenUnitOpSchedule > BasicIntervalSchedule.value2Unit`](#BasicIntervalSchedulevalue2Unit)
+- [8. Property `GenUnitOpSchedule > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [9. Property `GenUnitOpSchedule > RegularIntervalSchedule.endTime`](#RegularIntervalScheduleendTime)
+- [10. Property `GenUnitOpSchedule > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [11. Property `GenUnitOpSchedule > IdentifiedObject.name`](#IdentifiedObjectname)
+
+**Title:** GenUnitOpSchedule
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** The generating unit's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses. The X-axis represents absolute time. The Y1-axis represents the status (0=off-line and unavailable: 1=available: 2=must run: 3=must run at fixed power value: etc.). The Y2-axis represents the must run fixed power value where required.
+
+| Property                                                                            | Pattern | Type             | Deprecated | Definition                                                                                | Title/Description |
+| ----------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------------------------------------------------- | ----------------- |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )                         | No      | string           | No         | -                                                                                         | aliasName         |
+| - [BasicIntervalSchedule.value2Multiplier](#BasicIntervalSchedulevalue2Multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json                                                                  | value2Multiplier  |
+| - [RegularIntervalSchedule.timeStep](#RegularIntervalScheduletimeStep )             | No      | object or number | No         | In ./Seconds.json                                                                         | timeStep          |
+| - [BasicIntervalSchedule.startTime](#BasicIntervalSchedulestartTime )               | No      | string           | No         | -                                                                                         | startTime         |
+| - [BasicIntervalSchedule.value1Multiplier](#BasicIntervalSchedulevalue1Multiplier ) | No      | enum (of string) | No         | Same as [BasicIntervalSchedule.value2Multiplier](#BasicIntervalSchedulevalue2Multiplier ) | value1Multiplier  |
+| - [BasicIntervalSchedule.value1Unit](#BasicIntervalSchedulevalue1Unit )             | No      | enum (of string) | No         | Same as [unit](#RegularIntervalScheduletimeStep_unit )                                    | value1Unit        |
+| - [BasicIntervalSchedule.value2Unit](#BasicIntervalSchedulevalue2Unit )             | No      | enum (of string) | No         | Same as [unit](#RegularIntervalScheduletimeStep_unit )                                    | value2Unit        |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )                     | No      | string           | No         | -                                                                                         | description       |
+| - [RegularIntervalSchedule.endTime](#RegularIntervalScheduleendTime )               | No      | string           | No         | -                                                                                         | endTime           |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                                   | No      | string           | No         | -                                                                                         | mRID              |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                                   | No      | string           | No         | -                                                                                         | name              |
+
+## <a name="IdentifiedObjectaliasName"></a>1. Property `GenUnitOpSchedule > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="BasicIntervalSchedulevalue2Multiplier"></a>2. Property `GenUnitOpSchedule > BasicIntervalSchedule.value2Multiplier`
+
+**Title:** value2Multiplier
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** Multiplier for value2.
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+## <a name="RegularIntervalScheduletimeStep"></a>3. Property `GenUnitOpSchedule > RegularIntervalSchedule.timeStep`
+
+**Title:** timeStep
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Seconds.json     |
+
+**Description:** The time between each pair of subsequent regular time points in sequence order.
+
+| Property                                                     | Pattern | Type             | Deprecated | Definition                                                                                | Title/Description |
+| ------------------------------------------------------------ | ------- | ---------------- | ---------- | ----------------------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#RegularIntervalScheduletimeStep_multiplier ) | No      | enum (of string) | No         | Same as [BasicIntervalSchedule.value2Multiplier](#BasicIntervalSchedulevalue2Multiplier ) | nan               |
+| - [unit](#RegularIntervalScheduletimeStep_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json                                                                      | nan               |
+| - [value](#RegularIntervalScheduletimeStep_value )           | No      | number           | No         | -                                                                                         | Time, in seconds  |
+
+### <a name="RegularIntervalScheduletimeStep_multiplier"></a>3.1. Property `GenUnitOpSchedule > RegularIntervalSchedule.timeStep > multiplier`
+
+|                        |                                                                                  |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                                               |
+| **Required**           | No                                                                               |
+| **Default**            | `"none"`                                                                         |
+| **Same definition as** | [BasicIntervalSchedule.value2Multiplier](#BasicIntervalSchedulevalue2Multiplier) |
+
+**Description:** nan
+
+### <a name="RegularIntervalScheduletimeStep_unit"></a>3.2. Property `GenUnitOpSchedule > RegularIntervalSchedule.timeStep > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"s"`              |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="RegularIntervalScheduletimeStep_value"></a>3.3. Property `GenUnitOpSchedule > RegularIntervalSchedule.timeStep > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Time, in seconds
+
+## <a name="BasicIntervalSchedulestartTime"></a>4. Property `GenUnitOpSchedule > BasicIntervalSchedule.startTime`
+
+**Title:** startTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The time for the first time point.  The value can be a time of day, not a specific date.
+
+## <a name="BasicIntervalSchedulevalue1Multiplier"></a>5. Property `GenUnitOpSchedule > BasicIntervalSchedule.value1Multiplier`
+
+**Title:** value1Multiplier
+
+|                        |                                                                                  |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                                               |
+| **Required**           | No                                                                               |
+| **Same definition as** | [BasicIntervalSchedule.value2Multiplier](#BasicIntervalSchedulevalue2Multiplier) |
+
+**Description:** Multiplier for value1.
+
+## <a name="BasicIntervalSchedulevalue1Unit"></a>6. Property `GenUnitOpSchedule > BasicIntervalSchedule.value1Unit`
+
+**Title:** value1Unit
+
+|                        |                                               |
+| ---------------------- | --------------------------------------------- |
+| **Type**               | `enum (of string)`                            |
+| **Required**           | No                                            |
+| **Same definition as** | [unit](#RegularIntervalScheduletimeStep_unit) |
+
+**Description:** Value1 units of measure.
+
+## <a name="BasicIntervalSchedulevalue2Unit"></a>7. Property `GenUnitOpSchedule > BasicIntervalSchedule.value2Unit`
+
+**Title:** value2Unit
+
+|                        |                                               |
+| ---------------------- | --------------------------------------------- |
+| **Type**               | `enum (of string)`                            |
+| **Required**           | No                                            |
+| **Same definition as** | [unit](#RegularIntervalScheduletimeStep_unit) |
+
+**Description:** Value2 units of measure.
+
+## <a name="IdentifiedObjectdescription"></a>8. Property `GenUnitOpSchedule > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="RegularIntervalScheduleendTime"></a>9. Property `GenUnitOpSchedule > RegularIntervalSchedule.endTime`
+
+**Title:** endTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The time for the last time point.  The value can be a time of day, not a specific date.
+
+## <a name="IdentifiedObjectmRID"></a>10. Property `GenUnitOpSchedule > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>11. Property `GenUnitOpSchedule > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

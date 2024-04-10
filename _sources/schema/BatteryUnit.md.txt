@@ -1,0 +1,594 @@
+# BatteryUnit
+
+- [1. Property `BatteryUnit > BatteryUnit.BatteryResponse`](#BatteryUnitBatteryResponse)
+  - [1.1. Property `BatteryUnit > BatteryUnit.BatteryResponse > BatteryResponseCharacteristic.responseCharacteristic`](#BatteryUnitBatteryResponse_BatteryResponseCharacteristicresponseCharacteristic)
+- [2. Property `BatteryUnit > BatteryUnit.BatteryDispatchProfile`](#BatteryUnitBatteryDispatchProfile)
+- [3. Property `BatteryUnit > BatteryUnit.ratedE`](#BatteryUnitratedE)
+  - [3.1. Property `BatteryUnit > BatteryUnit.ratedE > multiplier`](#BatteryUnitratedE_multiplier)
+  - [3.2. Property `BatteryUnit > BatteryUnit.ratedE > unit`](#BatteryUnitratedE_unit)
+  - [3.3. Property `BatteryUnit > BatteryUnit.ratedE > value`](#BatteryUnitratedE_value)
+- [4. Property `BatteryUnit > BatteryUnit.storedE`](#BatteryUnitstoredE)
+- [5. Property `BatteryUnit > Equipment.aggregate`](#Equipmentaggregate)
+- [6. Property `BatteryUnit > Equipment.networkAnalysisEnabled`](#EquipmentnetworkAnalysisEnabled)
+- [7. Property `BatteryUnit > Equipment.normallyInService`](#EquipmentnormallyInService)
+- [8. Property `BatteryUnit > InefficientBatteryUnit.efficiencyDischarge`](#InefficientBatteryUnitefficiencyDischarge)
+  - [8.1. Property `BatteryUnit > InefficientBatteryUnit.efficiencyDischarge > multiplier`](#InefficientBatteryUnitefficiencyDischarge_multiplier)
+  - [8.2. Property `BatteryUnit > InefficientBatteryUnit.efficiencyDischarge > unit`](#InefficientBatteryUnitefficiencyDischarge_unit)
+  - [8.3. Property `BatteryUnit > InefficientBatteryUnit.efficiencyDischarge > value`](#InefficientBatteryUnitefficiencyDischarge_value)
+- [9. Property `BatteryUnit > InefficientBatteryUnit.efficiencyCharge`](#InefficientBatteryUnitefficiencyCharge)
+- [10. Property `BatteryUnit > BatteryUnit.batteryState`](#BatteryUnitbatteryState)
+- [11. Property `BatteryUnit > InefficientBatteryUnit.reserveEnergy`](#InefficientBatteryUnitreserveEnergy)
+- [12. Property `BatteryUnit > InefficientBatteryUnit.limitEnergy`](#InefficientBatteryUnitlimitEnergy)
+- [13. Property `BatteryUnit > PowerElectronicsUnit.maxP`](#PowerElectronicsUnitmaxP)
+  - [13.1. Property `BatteryUnit > PowerElectronicsUnit.maxP > multiplier`](#PowerElectronicsUnitmaxP_multiplier)
+  - [13.2. Property `BatteryUnit > PowerElectronicsUnit.maxP > unit`](#PowerElectronicsUnitmaxP_unit)
+  - [13.3. Property `BatteryUnit > PowerElectronicsUnit.maxP > value`](#PowerElectronicsUnitmaxP_value)
+- [14. Property `BatteryUnit > PowerElectronicsUnit.minP`](#PowerElectronicsUnitminP)
+- [15. Property `BatteryUnit > Equipment.inService`](#EquipmentinService)
+- [16. Property `BatteryUnit > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [17. Property `BatteryUnit > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [18. Property `BatteryUnit > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [19. Property `BatteryUnit > IdentifiedObject.name`](#IdentifiedObjectname)
+
+**Title:** BatteryUnit
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** An electrochemical energy storage device.
+
+| Property                                                                                    | Pattern | Type             | Deprecated | Definition                                                                                        | Title/Description      |
+| ------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------------------------------------- | ---------------------- |
+| - [BatteryUnit.BatteryResponse](#BatteryUnitBatteryResponse )                               | No      | object           | No         | In ./BatteryResponseCharacteristic.json                                                           | nan                    |
+| - [BatteryUnit.BatteryDispatchProfile](#BatteryUnitBatteryDispatchProfile )                 | No      | string           | No         | -                                                                                                 | -                      |
+| - [BatteryUnit.ratedE](#BatteryUnitratedE )                                                 | No      | object or number | No         | In ./RealEnergy.json                                                                              | ratedE                 |
+| - [BatteryUnit.storedE](#BatteryUnitstoredE )                                               | No      | object or number | No         | Same as [BatteryUnit.ratedE](#BatteryUnitratedE )                                                 | storedE                |
+| - [Equipment.aggregate](#Equipmentaggregate )                                               | No      | boolean          | No         | -                                                                                                 | aggregate              |
+| - [Equipment.networkAnalysisEnabled](#EquipmentnetworkAnalysisEnabled )                     | No      | boolean          | No         | -                                                                                                 | networkAnalysisEnabled |
+| - [Equipment.normallyInService](#EquipmentnormallyInService )                               | No      | boolean          | No         | -                                                                                                 | normallyInService      |
+| - [InefficientBatteryUnit.efficiencyDischarge](#InefficientBatteryUnitefficiencyDischarge ) | No      | object or number | No         | In ./PerCent.json                                                                                 | efficiencyDischarge    |
+| - [InefficientBatteryUnit.efficiencyCharge](#InefficientBatteryUnitefficiencyCharge )       | No      | object or number | No         | Same as [InefficientBatteryUnit.efficiencyDischarge](#InefficientBatteryUnitefficiencyDischarge ) | efficiencyCharge       |
+| - [BatteryUnit.batteryState](#BatteryUnitbatteryState )                                     | No      | enum (of string) | No         | In ./BatteryStateKind.json                                                                        | batteryState           |
+| - [InefficientBatteryUnit.reserveEnergy](#InefficientBatteryUnitreserveEnergy )             | No      | object or number | No         | Same as [BatteryUnit.ratedE](#BatteryUnitratedE )                                                 | reserveEnergy          |
+| - [InefficientBatteryUnit.limitEnergy](#InefficientBatteryUnitlimitEnergy )                 | No      | object or number | No         | Same as [BatteryUnit.ratedE](#BatteryUnitratedE )                                                 | limitEnergy            |
+| - [PowerElectronicsUnit.maxP](#PowerElectronicsUnitmaxP )                                   | No      | object or number | No         | In ./ActivePower.json                                                                             | maxP                   |
+| - [PowerElectronicsUnit.minP](#PowerElectronicsUnitminP )                                   | No      | object or number | No         | Same as [PowerElectronicsUnit.maxP](#PowerElectronicsUnitmaxP )                                   | minP                   |
+| - [Equipment.inService](#EquipmentinService )                                               | No      | boolean          | No         | -                                                                                                 | inService              |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )                             | No      | string           | No         | -                                                                                                 | description            |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )                                 | No      | string           | No         | -                                                                                                 | aliasName              |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                                           | No      | string           | No         | -                                                                                                 | mRID                   |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                                           | No      | string           | No         | -                                                                                                 | name                   |
+
+## <a name="BatteryUnitBatteryResponse"></a>1. Property `BatteryUnit > BatteryUnit.BatteryResponse`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./BatteryResponseCharacteristic.json                                      |
+
+**Description:** nan
+
+| Property                                                                                                                                   | Pattern | Type             | Deprecated | Definition                       | Title/Description      |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ------- | ---------------- | ---------- | -------------------------------- | ---------------------- |
+| - [BatteryResponseCharacteristic.responseCharacteristic](#BatteryUnitBatteryResponse_BatteryResponseCharacteristicresponseCharacteristic ) | No      | enum (of string) | No         | In ./ResponseCharacteristic.json | responseCharacteristic |
+
+### <a name="BatteryUnitBatteryResponse_BatteryResponseCharacteristicresponseCharacteristic"></a>1.1. Property `BatteryUnit > BatteryUnit.BatteryResponse > BatteryResponseCharacteristic.responseCharacteristic`
+
+**Title:** responseCharacteristic
+
+|                |                               |
+| -------------- | ----------------------------- |
+| **Type**       | `enum (of string)`            |
+| **Required**   | No                            |
+| **Defined in** | ./ResponseCharacteristic.json |
+
+**Description:** nan
+
+Must be one of:
+* "constantPFixedV"
+* "constantAdmittance"
+* "constantPConstantQCurrentLimited"
+* "constantPF"
+* "constantPFixedQ"
+* "constantPFixedQConstantReactance"
+
+## <a name="BatteryUnitBatteryDispatchProfile"></a>2. Property `BatteryUnit > BatteryUnit.BatteryDispatchProfile`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+## <a name="BatteryUnitratedE"></a>3. Property `BatteryUnit > BatteryUnit.ratedE`
+
+**Title:** ratedE
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./RealEnergy.json  |
+
+**Description:** Full energy storage capacity of the battery. The attribute shall be a positive value.
+
+| Property                                       | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ---------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#BatteryUnitratedE_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#BatteryUnitratedE_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#BatteryUnitratedE_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="BatteryUnitratedE_multiplier"></a>3.1. Property `BatteryUnit > BatteryUnit.ratedE > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="BatteryUnitratedE_unit"></a>3.2. Property `BatteryUnit > BatteryUnit.ratedE > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"Wh"`             |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="BatteryUnitratedE_value"></a>3.3. Property `BatteryUnit > BatteryUnit.ratedE > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="BatteryUnitstoredE"></a>4. Property `BatteryUnit > BatteryUnit.storedE`
+
+**Title:** storedE
+
+|                        |                                          |
+| ---------------------- | ---------------------------------------- |
+| **Type**               | `object or number`                       |
+| **Required**           | No                                       |
+| **Same definition as** | [BatteryUnit.ratedE](#BatteryUnitratedE) |
+
+**Description:** Amount of energy currently stored. The attribute shall be a positive value or zero and lower than BatteryUnit.ratedE.
+
+## <a name="Equipmentaggregate"></a>5. Property `BatteryUnit > Equipment.aggregate`
+
+**Title:** aggregate
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to “true” the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  
+The attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.
+
+## <a name="EquipmentnetworkAnalysisEnabled"></a>6. Property `BatteryUnit > Equipment.networkAnalysisEnabled`
+
+**Title:** networkAnalysisEnabled
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.
+
+## <a name="EquipmentnormallyInService"></a>7. Property `BatteryUnit > Equipment.normallyInService`
+
+**Title:** normallyInService
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.
+
+## <a name="InefficientBatteryUnitefficiencyDischarge"></a>8. Property `BatteryUnit > InefficientBatteryUnit.efficiencyDischarge`
+
+**Title:** efficiencyDischarge
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./PerCent.json     |
+
+**Description:** nan
+
+| Property                                                               | Pattern | Type             | Deprecated | Definition                                           | Title/Description                    |
+| ---------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------- | ------------------------------------ |
+| - [multiplier](#InefficientBatteryUnitefficiencyDischarge_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#BatteryUnitratedE_multiplier ) | nan                                  |
+| - [unit](#InefficientBatteryUnitefficiencyDischarge_unit )             | No      | enum (of string) | No         | Same as [unit](#BatteryUnitratedE_unit )             | nan                                  |
+| - [value](#InefficientBatteryUnitefficiencyDischarge_value )           | No      | number           | No         | -                                                    | Normally 0 to 100 on a defined base. |
+
+### <a name="InefficientBatteryUnitefficiencyDischarge_multiplier"></a>8.1. Property `BatteryUnit > InefficientBatteryUnit.efficiencyDischarge > multiplier`
+
+|                        |                                             |
+| ---------------------- | ------------------------------------------- |
+| **Type**               | `enum (of string)`                          |
+| **Required**           | No                                          |
+| **Default**            | `"none"`                                    |
+| **Same definition as** | [multiplier](#BatteryUnitratedE_multiplier) |
+
+**Description:** nan
+
+### <a name="InefficientBatteryUnitefficiencyDischarge_unit"></a>8.2. Property `BatteryUnit > InefficientBatteryUnit.efficiencyDischarge > unit`
+
+|                        |                                 |
+| ---------------------- | ------------------------------- |
+| **Type**               | `enum (of string)`              |
+| **Required**           | No                              |
+| **Default**            | `"none"`                        |
+| **Same definition as** | [unit](#BatteryUnitratedE_unit) |
+
+**Description:** nan
+
+### <a name="InefficientBatteryUnitefficiencyDischarge_value"></a>8.3. Property `BatteryUnit > InefficientBatteryUnit.efficiencyDischarge > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Normally 0 to 100 on a defined base.
+
+## <a name="InefficientBatteryUnitefficiencyCharge"></a>9. Property `BatteryUnit > InefficientBatteryUnit.efficiencyCharge`
+
+**Title:** efficiencyCharge
+
+|                        |                                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                       |
+| **Required**           | No                                                                                       |
+| **Same definition as** | [InefficientBatteryUnit.efficiencyDischarge](#InefficientBatteryUnitefficiencyDischarge) |
+
+**Description:** nan
+
+## <a name="BatteryUnitbatteryState"></a>10. Property `BatteryUnit > BatteryUnit.batteryState`
+
+**Title:** batteryState
+
+|                |                         |
+| -------------- | ----------------------- |
+| **Type**       | `enum (of string)`      |
+| **Required**   | No                      |
+| **Defined in** | ./BatteryStateKind.json |
+
+**Description:** The current state of the battery (charging, full, etc.).
+
+Must be one of:
+* "discharging"
+* "waiting"
+* "full"
+* "empty"
+* "charging"
+
+## <a name="InefficientBatteryUnitreserveEnergy"></a>11. Property `BatteryUnit > InefficientBatteryUnit.reserveEnergy`
+
+**Title:** reserveEnergy
+
+|                        |                                          |
+| ---------------------- | ---------------------------------------- |
+| **Type**               | `object or number`                       |
+| **Required**           | No                                       |
+| **Same definition as** | [BatteryUnit.ratedE](#BatteryUnitratedE) |
+
+**Description:** nan
+
+## <a name="InefficientBatteryUnitlimitEnergy"></a>12. Property `BatteryUnit > InefficientBatteryUnit.limitEnergy`
+
+**Title:** limitEnergy
+
+|                        |                                          |
+| ---------------------- | ---------------------------------------- |
+| **Type**               | `object or number`                       |
+| **Required**           | No                                       |
+| **Same definition as** | [BatteryUnit.ratedE](#BatteryUnitratedE) |
+
+**Description:** nan
+
+## <a name="PowerElectronicsUnitmaxP"></a>13. Property `BatteryUnit > PowerElectronicsUnit.maxP`
+
+**Title:** maxP
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./ActivePower.json |
+
+**Description:** Maximum active power limit. This is the maximum (nameplate) limit for the unit.
+
+| Property                                              | Pattern | Type             | Deprecated | Definition                                           | Title/Description |
+| ----------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------- | ----------------- |
+| - [multiplier](#PowerElectronicsUnitmaxP_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#BatteryUnitratedE_multiplier ) | nan               |
+| - [unit](#PowerElectronicsUnitmaxP_unit )             | No      | enum (of string) | No         | Same as [unit](#BatteryUnitratedE_unit )             | nan               |
+| - [value](#PowerElectronicsUnitmaxP_value )           | No      | number           | No         | -                                                    | nan               |
+
+### <a name="PowerElectronicsUnitmaxP_multiplier"></a>13.1. Property `BatteryUnit > PowerElectronicsUnit.maxP > multiplier`
+
+|                        |                                             |
+| ---------------------- | ------------------------------------------- |
+| **Type**               | `enum (of string)`                          |
+| **Required**           | No                                          |
+| **Default**            | `"none"`                                    |
+| **Same definition as** | [multiplier](#BatteryUnitratedE_multiplier) |
+
+**Description:** nan
+
+### <a name="PowerElectronicsUnitmaxP_unit"></a>13.2. Property `BatteryUnit > PowerElectronicsUnit.maxP > unit`
+
+|                        |                                 |
+| ---------------------- | ------------------------------- |
+| **Type**               | `enum (of string)`              |
+| **Required**           | No                              |
+| **Default**            | `"W"`                           |
+| **Same definition as** | [unit](#BatteryUnitratedE_unit) |
+
+**Description:** nan
+
+### <a name="PowerElectronicsUnitmaxP_value"></a>13.3. Property `BatteryUnit > PowerElectronicsUnit.maxP > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="PowerElectronicsUnitminP"></a>14. Property `BatteryUnit > PowerElectronicsUnit.minP`
+
+**Title:** minP
+
+|                        |                                                        |
+| ---------------------- | ------------------------------------------------------ |
+| **Type**               | `object or number`                                     |
+| **Required**           | No                                                     |
+| **Same definition as** | [PowerElectronicsUnit.maxP](#PowerElectronicsUnitmaxP) |
+
+**Description:** Minimum active power limit. This is the minimum (nameplate) limit for the unit.
+
+## <a name="EquipmentinService"></a>15. Property `BatteryUnit > Equipment.inService`
+
+**Title:** inService
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.
+
+## <a name="IdentifiedObjectdescription"></a>16. Property `BatteryUnit > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="IdentifiedObjectaliasName"></a>17. Property `BatteryUnit > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="IdentifiedObjectmRID"></a>18. Property `BatteryUnit > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>19. Property `BatteryUnit > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

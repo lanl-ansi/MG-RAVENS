@@ -1,0 +1,23 @@
+# ParticipationCategoryMPM
+
+**Title:** ParticipationCategoryMPM
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** For example:
+'Y' - Participates in both LMPM and SMPM
+'N' - Not included in LMP price measures
+'S' - Participates in SMPM price measures
+'L' - Participates in LMPM price measures
+
+Must be one of:
+* "N"
+* "Y"
+* "S"
+* "L"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

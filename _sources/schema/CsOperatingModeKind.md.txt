@@ -1,0 +1,17 @@
+# CsOperatingModeKind
+
+**Title:** CsOperatingModeKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Operating mode for HVDC line operating as Current Source Converter.
+
+Must be one of:
+* "inverter"
+* "rectifier"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

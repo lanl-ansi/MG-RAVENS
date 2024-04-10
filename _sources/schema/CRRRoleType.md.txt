@@ -1,0 +1,18 @@
+# CRRRoleType
+
+**Title:** CRRRoleType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Role types an organisation can play with respect to a congestion revenue right.
+
+Must be one of:
+* "SELLER"
+* "BUYER"
+* "OWNER"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

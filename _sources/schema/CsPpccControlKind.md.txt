@@ -1,0 +1,18 @@
+# CsPpccControlKind
+
+**Title:** CsPpccControlKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Active power control modes for HVDC line operating as Current Source Converter.
+
+Must be one of:
+* "activePower"
+* "dcVoltage"
+* "dcCurrent"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

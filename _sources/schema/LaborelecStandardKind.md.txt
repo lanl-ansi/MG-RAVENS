@@ -1,0 +1,16 @@
+# LaborelecStandardKind
+
+**Title:** LaborelecStandardKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** List of Laborelec standards.
+
+Must be one of:
+* "methanol"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:24 -0600

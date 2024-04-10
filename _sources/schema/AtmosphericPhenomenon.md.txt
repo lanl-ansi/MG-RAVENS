@@ -1,0 +1,798 @@
+# AtmosphericPhenomenon
+
+- [1. Property `AtmosphericPhenomenon > CloudCondition.kind`](#CloudConditionkind)
+- [2. Property `AtmosphericPhenomenon > VolcanicAshCloud.density`](#VolcanicAshClouddensity)
+  - [2.1. Property `AtmosphericPhenomenon > VolcanicAshCloud.density > unit`](#VolcanicAshClouddensity_unit)
+  - [2.2. Property `AtmosphericPhenomenon > VolcanicAshCloud.density > multiplier`](#VolcanicAshClouddensity_multiplier)
+  - [2.3. Property `AtmosphericPhenomenon > VolcanicAshCloud.density > value`](#VolcanicAshClouddensity_value)
+- [3. Property `AtmosphericPhenomenon > VolcanicAshCloud.particleSize`](#VolcanicAshCloudparticleSize)
+  - [3.1. Property `AtmosphericPhenomenon > VolcanicAshCloud.particleSize > multiplier`](#VolcanicAshCloudparticleSize_multiplier)
+  - [3.2. Property `AtmosphericPhenomenon > VolcanicAshCloud.particleSize > unit`](#VolcanicAshCloudparticleSize_unit)
+  - [3.3. Property `AtmosphericPhenomenon > VolcanicAshCloud.particleSize > value`](#VolcanicAshCloudparticleSize_value)
+- [4. Property `AtmosphericPhenomenon > Cyclone.windForce`](#CyclonewindForce)
+- [5. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.maxCoverage`](#AtmosphericPhenomenonmaxCoverage)
+  - [5.1. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.maxCoverage > multiplier`](#AtmosphericPhenomenonmaxCoverage_multiplier)
+  - [5.2. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.maxCoverage > unit`](#AtmosphericPhenomenonmaxCoverage_unit)
+  - [5.3. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.maxCoverage > value`](#AtmosphericPhenomenonmaxCoverage_value)
+- [6. Property `AtmosphericPhenomenon > Cyclone.centralPressure`](#CyclonecentralPressure)
+  - [6.1. Property `AtmosphericPhenomenon > Cyclone.centralPressure > multiplier`](#CyclonecentralPressure_multiplier)
+  - [6.2. Property `AtmosphericPhenomenon > Cyclone.centralPressure > unit`](#CyclonecentralPressure_unit)
+  - [6.3. Property `AtmosphericPhenomenon > Cyclone.centralPressure > value`](#CyclonecentralPressure_value)
+- [7. Property `AtmosphericPhenomenon > Tornado.fScale`](#TornadofScale)
+- [8. Property `AtmosphericPhenomenon > TropicalCycloneAustralia.category`](#TropicalCycloneAustraliacategory)
+- [9. Property `AtmosphericPhenomenon > EnvironmentalPhenomenon.timeInterval`](#EnvironmentalPhenomenontimeInterval)
+  - [9.1. Property `AtmosphericPhenomenon > EnvironmentalPhenomenon.timeInterval > end`](#EnvironmentalPhenomenontimeInterval_end)
+  - [9.2. Property `AtmosphericPhenomenon > EnvironmentalPhenomenon.timeInterval > start`](#EnvironmentalPhenomenontimeInterval_start)
+- [10. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base`](#AtmosphericPhenomenonbase)
+  - [10.1. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > displacement`](#AtmosphericPhenomenonbase_displacement)
+    - [10.1.1. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > displacement > multiplier`](#AtmosphericPhenomenonbase_displacement_multiplier)
+    - [10.1.2. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > displacement > unit`](#AtmosphericPhenomenonbase_displacement_unit)
+    - [10.1.3. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > displacement > value`](#AtmosphericPhenomenonbase_displacement_value)
+  - [10.2. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > kind`](#AtmosphericPhenomenonbase_kind)
+- [11. Property `AtmosphericPhenomenon > Tornado.width`](#Tornadowidth)
+- [12. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.direction`](#AtmosphericPhenomenondirection)
+  - [12.1. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.direction > multiplier`](#AtmosphericPhenomenondirection_multiplier)
+  - [12.2. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.direction > unit`](#AtmosphericPhenomenondirection_unit)
+  - [12.3. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.direction > value`](#AtmosphericPhenomenondirection_value)
+- [13. Property `AtmosphericPhenomenon > Cyclone.maxSurfaceWindSpeed`](#CyclonemaxSurfaceWindSpeed)
+  - [13.1. Property `AtmosphericPhenomenon > Cyclone.maxSurfaceWindSpeed > multiplier`](#CyclonemaxSurfaceWindSpeed_multiplier)
+  - [13.2. Property `AtmosphericPhenomenon > Cyclone.maxSurfaceWindSpeed > unit`](#CyclonemaxSurfaceWindSpeed_unit)
+  - [13.3. Property `AtmosphericPhenomenon > Cyclone.maxSurfaceWindSpeed > value`](#CyclonemaxSurfaceWindSpeed_value)
+- [14. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.speed`](#AtmosphericPhenomenonspeed)
+- [15. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.minCoverage`](#AtmosphericPhenomenonminCoverage)
+- [16. Property `AtmosphericPhenomenon > Hurricane.category`](#Hurricanecategory)
+- [17. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.altitude`](#AtmosphericPhenomenonaltitude)
+
+**Title:** AtmosphericPhenomenon
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** An atmospheric phenomenon with a base and altitude providing the vertical coverage (combined with the Location to provide three dimensional space).
+
+| Property                                                                        | Pattern | Type             | Deprecated | Definition                                                                      | Title/Description   |
+| ------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------------------- | ------------------- |
+| - [CloudCondition.kind](#CloudConditionkind )                                   | No      | enum (of string) | No         | In ./CloudKind.json                                                             | kind                |
+| - [VolcanicAshCloud.density](#VolcanicAshClouddensity )                         | No      | object or number | No         | In ./ParticulateDensity.json                                                    | density             |
+| - [VolcanicAshCloud.particleSize](#VolcanicAshCloudparticleSize )               | No      | object or number | No         | In ./Length.json                                                                | particleSize        |
+| - [Cyclone.windForce](#CyclonewindForce )                                       | No      | integer          | No         | -                                                                               | windForce           |
+| - [AtmosphericPhenomenon.maxCoverage](#AtmosphericPhenomenonmaxCoverage )       | No      | object or number | No         | In ./PerCent.json                                                               | maxCoverage         |
+| - [Cyclone.centralPressure](#CyclonecentralPressure )                           | No      | object or number | No         | In ./Pressure.json                                                              | centralPressure     |
+| - [Tornado.fScale](#TornadofScale )                                             | No      | enum (of string) | No         | In ./FScale.json                                                                | fScale              |
+| - [TropicalCycloneAustralia.category](#TropicalCycloneAustraliacategory )       | No      | integer          | No         | -                                                                               | category            |
+| - [EnvironmentalPhenomenon.timeInterval](#EnvironmentalPhenomenontimeInterval ) | No      | object           | No         | In ./DateTimeInterval.json                                                      | timeInterval        |
+| - [AtmosphericPhenomenon.base](#AtmosphericPhenomenonbase )                     | No      | object           | No         | In ./RelativeDisplacement.json                                                  | base                |
+| - [Tornado.width](#Tornadowidth )                                               | No      | object or number | No         | Same as [VolcanicAshCloud.particleSize](#VolcanicAshCloudparticleSize )         | width               |
+| - [AtmosphericPhenomenon.direction](#AtmosphericPhenomenondirection )           | No      | object or number | No         | In ./Bearing.json                                                               | direction           |
+| - [Cyclone.maxSurfaceWindSpeed](#CyclonemaxSurfaceWindSpeed )                   | No      | object or number | No         | In ./Speed.json                                                                 | maxSurfaceWindSpeed |
+| - [AtmosphericPhenomenon.speed](#AtmosphericPhenomenonspeed )                   | No      | object or number | No         | Same as [Cyclone.maxSurfaceWindSpeed](#CyclonemaxSurfaceWindSpeed )             | speed               |
+| - [AtmosphericPhenomenon.minCoverage](#AtmosphericPhenomenonminCoverage )       | No      | object or number | No         | Same as [AtmosphericPhenomenon.maxCoverage](#AtmosphericPhenomenonmaxCoverage ) | minCoverage         |
+| - [Hurricane.category](#Hurricanecategory )                                     | No      | integer          | No         | -                                                                               | category            |
+| - [AtmosphericPhenomenon.altitude](#AtmosphericPhenomenonaltitude )             | No      | object           | No         | Same as [AtmosphericPhenomenon.base](#AtmosphericPhenomenonbase )               | altitude            |
+
+## <a name="CloudConditionkind"></a>1. Property `AtmosphericPhenomenon > CloudCondition.kind`
+
+**Title:** kind
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Defined in** | ./CloudKind.json   |
+
+**Description:** The type of the cloud as defined by the CloudKind enumeration.
+
+Must be one of:
+* "nimboStratus"
+* "cumulus"
+* "stratoCumulus"
+* "cirroStratus"
+* "altoStratus"
+* "cirrus"
+* "cumuloNimbus"
+* "altoCumulus"
+* "stratus"
+* "cirroCumulus"
+* "other"
+* "toweringCumulus"
+
+## <a name="VolcanicAshClouddensity"></a>2. Property `AtmosphericPhenomenon > VolcanicAshCloud.density`
+
+**Title:** density
+
+|                |                           |
+| -------------- | ------------------------- |
+| **Type**       | `object or number`        |
+| **Required**   | No                        |
+| **Defined in** | ./ParticulateDensity.json |
+
+**Description:** Particulate density of the ash cloud during the time interval.
+
+| Property                                             | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ---------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [unit](#VolcanicAshClouddensity_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [multiplier](#VolcanicAshClouddensity_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [value](#VolcanicAshClouddensity_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="VolcanicAshClouddensity_unit"></a>2.1. Property `AtmosphericPhenomenon > VolcanicAshCloud.density > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"kgPerm3"`        |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="VolcanicAshClouddensity_multiplier"></a>2.2. Property `AtmosphericPhenomenon > VolcanicAshCloud.density > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="VolcanicAshClouddensity_value"></a>2.3. Property `AtmosphericPhenomenon > VolcanicAshCloud.density > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="VolcanicAshCloudparticleSize"></a>3. Property `AtmosphericPhenomenon > VolcanicAshCloud.particleSize`
+
+**Title:** particleSize
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Length.json      |
+
+**Description:** The diameter of the particles during the time interval.
+
+| Property                                                  | Pattern | Type             | Deprecated | Definition                                                 | Title/Description |
+| --------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------- | ----------------- |
+| - [multiplier](#VolcanicAshCloudparticleSize_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#VolcanicAshClouddensity_multiplier ) | nan               |
+| - [unit](#VolcanicAshCloudparticleSize_unit )             | No      | enum (of string) | No         | Same as [unit](#VolcanicAshClouddensity_unit )             | nan               |
+| - [value](#VolcanicAshCloudparticleSize_value )           | No      | number           | No         | -                                                          | nan               |
+
+### <a name="VolcanicAshCloudparticleSize_multiplier"></a>3.1. Property `AtmosphericPhenomenon > VolcanicAshCloud.particleSize > multiplier`
+
+|                        |                                                   |
+| ---------------------- | ------------------------------------------------- |
+| **Type**               | `enum (of string)`                                |
+| **Required**           | No                                                |
+| **Default**            | `"none"`                                          |
+| **Same definition as** | [multiplier](#VolcanicAshClouddensity_multiplier) |
+
+**Description:** nan
+
+### <a name="VolcanicAshCloudparticleSize_unit"></a>3.2. Property `AtmosphericPhenomenon > VolcanicAshCloud.particleSize > unit`
+
+|                        |                                       |
+| ---------------------- | ------------------------------------- |
+| **Type**               | `enum (of string)`                    |
+| **Required**           | No                                    |
+| **Default**            | `"m"`                                 |
+| **Same definition as** | [unit](#VolcanicAshClouddensity_unit) |
+
+**Description:** nan
+
+### <a name="VolcanicAshCloudparticleSize_value"></a>3.3. Property `AtmosphericPhenomenon > VolcanicAshCloud.particleSize > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="CyclonewindForce"></a>4. Property `AtmosphericPhenomenon > Cyclone.windForce`
+
+**Title:** windForce
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** Wind Force as classified on the Beaufort Scale (0-12) during the time interval.
+
+## <a name="AtmosphericPhenomenonmaxCoverage"></a>5. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.maxCoverage`
+
+**Title:** maxCoverage
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./PerCent.json     |
+
+**Description:** The maximum percentage coverage
+
+| Property                                                      | Pattern | Type             | Deprecated | Definition                                                 | Title/Description                    |
+| ------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------- | ------------------------------------ |
+| - [multiplier](#AtmosphericPhenomenonmaxCoverage_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#VolcanicAshClouddensity_multiplier ) | nan                                  |
+| - [unit](#AtmosphericPhenomenonmaxCoverage_unit )             | No      | enum (of string) | No         | Same as [unit](#VolcanicAshClouddensity_unit )             | nan                                  |
+| - [value](#AtmosphericPhenomenonmaxCoverage_value )           | No      | number           | No         | -                                                          | Normally 0 to 100 on a defined base. |
+
+### <a name="AtmosphericPhenomenonmaxCoverage_multiplier"></a>5.1. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.maxCoverage > multiplier`
+
+|                        |                                                   |
+| ---------------------- | ------------------------------------------------- |
+| **Type**               | `enum (of string)`                                |
+| **Required**           | No                                                |
+| **Default**            | `"none"`                                          |
+| **Same definition as** | [multiplier](#VolcanicAshClouddensity_multiplier) |
+
+**Description:** nan
+
+### <a name="AtmosphericPhenomenonmaxCoverage_unit"></a>5.2. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.maxCoverage > unit`
+
+|                        |                                       |
+| ---------------------- | ------------------------------------- |
+| **Type**               | `enum (of string)`                    |
+| **Required**           | No                                    |
+| **Default**            | `"none"`                              |
+| **Same definition as** | [unit](#VolcanicAshClouddensity_unit) |
+
+**Description:** nan
+
+### <a name="AtmosphericPhenomenonmaxCoverage_value"></a>5.3. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.maxCoverage > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Normally 0 to 100 on a defined base.
+
+## <a name="CyclonecentralPressure"></a>6. Property `AtmosphericPhenomenon > Cyclone.centralPressure`
+
+**Title:** centralPressure
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Pressure.json    |
+
+**Description:** The central pressure of the cyclone during the time interval.
+
+| Property                                            | Pattern | Type             | Deprecated | Definition                                                 | Title/Description |
+| --------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------- | ----------------- |
+| - [multiplier](#CyclonecentralPressure_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#VolcanicAshClouddensity_multiplier ) | nan               |
+| - [unit](#CyclonecentralPressure_unit )             | No      | enum (of string) | No         | Same as [unit](#VolcanicAshClouddensity_unit )             | nan               |
+| - [value](#CyclonecentralPressure_value )           | No      | number           | No         | -                                                          | nan               |
+
+### <a name="CyclonecentralPressure_multiplier"></a>6.1. Property `AtmosphericPhenomenon > Cyclone.centralPressure > multiplier`
+
+|                        |                                                   |
+| ---------------------- | ------------------------------------------------- |
+| **Type**               | `enum (of string)`                                |
+| **Required**           | No                                                |
+| **Default**            | `"none"`                                          |
+| **Same definition as** | [multiplier](#VolcanicAshClouddensity_multiplier) |
+
+**Description:** nan
+
+### <a name="CyclonecentralPressure_unit"></a>6.2. Property `AtmosphericPhenomenon > Cyclone.centralPressure > unit`
+
+|                        |                                       |
+| ---------------------- | ------------------------------------- |
+| **Type**               | `enum (of string)`                    |
+| **Required**           | No                                    |
+| **Default**            | `"Pa"`                                |
+| **Same definition as** | [unit](#VolcanicAshClouddensity_unit) |
+
+**Description:** nan
+
+### <a name="CyclonecentralPressure_value"></a>6.3. Property `AtmosphericPhenomenon > Cyclone.centralPressure > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="TornadofScale"></a>7. Property `AtmosphericPhenomenon > Tornado.fScale`
+
+**Title:** fScale
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Defined in** | ./FScale.json      |
+
+**Description:** Fujita scale (referred to as EF-scale starting in 2007) for the tornado.
+
+Must be one of:
+* "zero"
+* "one"
+* "four"
+* "two"
+* "three"
+* "five"
+* "minusNine"
+
+## <a name="TropicalCycloneAustraliacategory"></a>8. Property `AtmosphericPhenomenon > TropicalCycloneAustralia.category`
+
+**Title:** category
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** Strength of tropical cyclone during the time interval, based on Australian Bureau of Meteorology Category System where:
+1 - tropical cyclone, with typical gusts over flat land 90-125 km/h
+2 - tropical cyclone, with typical gusts over flat land 125-164 km/h
+3 - severe tropical cyclone, with typical gusts over flat land 165-224 km/h
+4 - severe tropical cyclone, with typical gusts over flat land 225-279 km/h
+5 - severe tropical cyclone, with typical gusts over flat land greater  than 280 km/h.
+
+## <a name="EnvironmentalPhenomenontimeInterval"></a>9. Property `AtmosphericPhenomenon > EnvironmentalPhenomenon.timeInterval`
+
+**Title:** timeInterval
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./DateTimeInterval.json                                                   |
+
+**Description:** The timestamp of the phenomenon as a single point or time interval.
+
+| Property                                               | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                             |
+| ------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
+| - [end](#EnvironmentalPhenomenontimeInterval_end )     | No      | string | No         | -          | End date and time of this interval.  The end date and time where the interval is defined up to, but excluded. |
+| - [start](#EnvironmentalPhenomenontimeInterval_start ) | No      | string | No         | -          | Start date and time of this interval.  The start date and time is included in the defined interval.           |
+
+### <a name="EnvironmentalPhenomenontimeInterval_end"></a>9.1. Property `AtmosphericPhenomenon > EnvironmentalPhenomenon.timeInterval > end`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** End date and time of this interval.  The end date and time where the interval is defined up to, but excluded.
+
+### <a name="EnvironmentalPhenomenontimeInterval_start"></a>9.2. Property `AtmosphericPhenomenon > EnvironmentalPhenomenon.timeInterval > start`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Start date and time of this interval.  The start date and time is included in the defined interval.
+
+## <a name="AtmosphericPhenomenonbase"></a>10. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base`
+
+**Title:** base
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./RelativeDisplacement.json                                               |
+
+**Description:** The base altitude of the phenomenon.
+
+| Property                                                   | Pattern | Type             | Deprecated | Definition                         | Title/Description |
+| ---------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------- | ----------------- |
+| - [displacement](#AtmosphericPhenomenonbase_displacement ) | No      | object or number | No         | In ./Displacement.json             | nan               |
+| - [kind](#AtmosphericPhenomenonbase_kind )                 | No      | enum (of string) | No         | In ./RelativeDisplacementKind.json | nan               |
+
+### <a name="AtmosphericPhenomenonbase_displacement"></a>10.1. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > displacement`
+
+|                |                     |
+| -------------- | ------------------- |
+| **Type**       | `object or number`  |
+| **Required**   | No                  |
+| **Default**    | `null`              |
+| **Defined in** | ./Displacement.json |
+
+**Description:** nan
+
+| Property                                                            | Pattern | Type             | Deprecated | Definition                                                 | Title/Description |
+| ------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------- | ----------------- |
+| - [multiplier](#AtmosphericPhenomenonbase_displacement_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#VolcanicAshClouddensity_multiplier ) | nan               |
+| - [unit](#AtmosphericPhenomenonbase_displacement_unit )             | No      | enum (of string) | No         | Same as [unit](#VolcanicAshClouddensity_unit )             | nan               |
+| - [value](#AtmosphericPhenomenonbase_displacement_value )           | No      | number           | No         | -                                                          | nan               |
+
+#### <a name="AtmosphericPhenomenonbase_displacement_multiplier"></a>10.1.1. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > displacement > multiplier`
+
+|                        |                                                   |
+| ---------------------- | ------------------------------------------------- |
+| **Type**               | `enum (of string)`                                |
+| **Required**           | No                                                |
+| **Default**            | `"none"`                                          |
+| **Same definition as** | [multiplier](#VolcanicAshClouddensity_multiplier) |
+
+**Description:** nan
+
+#### <a name="AtmosphericPhenomenonbase_displacement_unit"></a>10.1.2. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > displacement > unit`
+
+|                        |                                       |
+| ---------------------- | ------------------------------------- |
+| **Type**               | `enum (of string)`                    |
+| **Required**           | No                                    |
+| **Default**            | `"m"`                                 |
+| **Same definition as** | [unit](#VolcanicAshClouddensity_unit) |
+
+**Description:** nan
+
+#### <a name="AtmosphericPhenomenonbase_displacement_value"></a>10.1.3. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > displacement > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+### <a name="AtmosphericPhenomenonbase_kind"></a>10.2. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.base > kind`
+
+|                |                                 |
+| -------------- | ------------------------------- |
+| **Type**       | `enum (of string)`              |
+| **Required**   | No                              |
+| **Default**    | `null`                          |
+| **Defined in** | ./RelativeDisplacementKind.json |
+
+**Description:** nan
+
+Must be one of:
+* "ground"
+* "seaLevel"
+* "centreEarth"
+
+## <a name="Tornadowidth"></a>11. Property `AtmosphericPhenomenon > Tornado.width`
+
+**Title:** width
+
+|                        |                                                                |
+| ---------------------- | -------------------------------------------------------------- |
+| **Type**               | `object or number`                                             |
+| **Required**           | No                                                             |
+| **Same definition as** | [VolcanicAshCloud.particleSize](#VolcanicAshCloudparticleSize) |
+
+**Description:** Width of the tornado during the time interval.
+
+## <a name="AtmosphericPhenomenondirection"></a>12. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.direction`
+
+**Title:** direction
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Bearing.json     |
+
+**Description:** The direction the phenomenon is moving.
+
+| Property                                                    | Pattern | Type             | Deprecated | Definition                                                 | Title/Description |
+| ----------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------- | ----------------- |
+| - [multiplier](#AtmosphericPhenomenondirection_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#VolcanicAshClouddensity_multiplier ) | nan               |
+| - [unit](#AtmosphericPhenomenondirection_unit )             | No      | enum (of string) | No         | Same as [unit](#VolcanicAshClouddensity_unit )             | nan               |
+| - [value](#AtmosphericPhenomenondirection_value )           | No      | number           | No         | -                                                          | nan               |
+
+### <a name="AtmosphericPhenomenondirection_multiplier"></a>12.1. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.direction > multiplier`
+
+|                        |                                                   |
+| ---------------------- | ------------------------------------------------- |
+| **Type**               | `enum (of string)`                                |
+| **Required**           | No                                                |
+| **Default**            | `"none"`                                          |
+| **Same definition as** | [multiplier](#VolcanicAshClouddensity_multiplier) |
+
+**Description:** nan
+
+### <a name="AtmosphericPhenomenondirection_unit"></a>12.2. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.direction > unit`
+
+|                        |                                       |
+| ---------------------- | ------------------------------------- |
+| **Type**               | `enum (of string)`                    |
+| **Required**           | No                                    |
+| **Default**            | `"deg"`                               |
+| **Same definition as** | [unit](#VolcanicAshClouddensity_unit) |
+
+**Description:** nan
+
+### <a name="AtmosphericPhenomenondirection_value"></a>12.3. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.direction > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="CyclonemaxSurfaceWindSpeed"></a>13. Property `AtmosphericPhenomenon > Cyclone.maxSurfaceWindSpeed`
+
+**Title:** maxSurfaceWindSpeed
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Speed.json       |
+
+**Description:** The maximum surface wind speed of the cyclone during the time interval.
+
+| Property                                                | Pattern | Type             | Deprecated | Definition                                                 | Title/Description |
+| ------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------- | ----------------- |
+| - [multiplier](#CyclonemaxSurfaceWindSpeed_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#VolcanicAshClouddensity_multiplier ) | nan               |
+| - [unit](#CyclonemaxSurfaceWindSpeed_unit )             | No      | enum (of string) | No         | Same as [unit](#VolcanicAshClouddensity_unit )             | nan               |
+| - [value](#CyclonemaxSurfaceWindSpeed_value )           | No      | number           | No         | -                                                          | nan               |
+
+### <a name="CyclonemaxSurfaceWindSpeed_multiplier"></a>13.1. Property `AtmosphericPhenomenon > Cyclone.maxSurfaceWindSpeed > multiplier`
+
+|                        |                                                   |
+| ---------------------- | ------------------------------------------------- |
+| **Type**               | `enum (of string)`                                |
+| **Required**           | No                                                |
+| **Default**            | `"none"`                                          |
+| **Same definition as** | [multiplier](#VolcanicAshClouddensity_multiplier) |
+
+**Description:** nan
+
+### <a name="CyclonemaxSurfaceWindSpeed_unit"></a>13.2. Property `AtmosphericPhenomenon > Cyclone.maxSurfaceWindSpeed > unit`
+
+|                        |                                       |
+| ---------------------- | ------------------------------------- |
+| **Type**               | `enum (of string)`                    |
+| **Required**           | No                                    |
+| **Default**            | `"mPers"`                             |
+| **Same definition as** | [unit](#VolcanicAshClouddensity_unit) |
+
+**Description:** nan
+
+### <a name="CyclonemaxSurfaceWindSpeed_value"></a>13.3. Property `AtmosphericPhenomenon > Cyclone.maxSurfaceWindSpeed > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="AtmosphericPhenomenonspeed"></a>14. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.speed`
+
+**Title:** speed
+
+|                        |                                                            |
+| ---------------------- | ---------------------------------------------------------- |
+| **Type**               | `object or number`                                         |
+| **Required**           | No                                                         |
+| **Same definition as** | [Cyclone.maxSurfaceWindSpeed](#CyclonemaxSurfaceWindSpeed) |
+
+**Description:** The speed of the phenomenon
+
+## <a name="AtmosphericPhenomenonminCoverage"></a>15. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.minCoverage`
+
+**Title:** minCoverage
+
+|                        |                                                                        |
+| ---------------------- | ---------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                     |
+| **Required**           | No                                                                     |
+| **Same definition as** | [AtmosphericPhenomenon.maxCoverage](#AtmosphericPhenomenonmaxCoverage) |
+
+**Description:** The minimum percentage coverage
+
+## <a name="Hurricanecategory"></a>16. Property `AtmosphericPhenomenon > Hurricane.category`
+
+**Title:** category
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** The hurricane's category during the time interval, using Saffir-Simpson Hurricane Wind Scale, a 1 to 5 rating based on a hurricane's sustained wind speed.
+
+## <a name="AtmosphericPhenomenonaltitude"></a>17. Property `AtmosphericPhenomenon > AtmosphericPhenomenon.altitude`
+
+**Title:** altitude
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [AtmosphericPhenomenon.base](#AtmosphericPhenomenonbase)                  |
+
+**Description:** The maximum altitude of the phenomenon.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

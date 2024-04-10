@@ -1,0 +1,19 @@
+# ExcST7BOELselectorKind
+
+**Title:** ExcST7BOELselectorKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Types of connections for the OEL input used for static excitation systems type 7B.
+
+Must be one of:
+* "noOELinput"
+* "addVref"
+* "inputLVgate"
+* "outputLVgate"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

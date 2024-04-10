@@ -1,0 +1,284 @@
+# SpacePhenomenon
+
+- [1. Property `SpacePhenomenon > MagneticStorm.changeDst`](#MagneticStormchangeDst)
+  - [1.1. Property `SpacePhenomenon > MagneticStorm.changeDst > multiplier`](#MagneticStormchangeDst_multiplier)
+  - [1.2. Property `SpacePhenomenon > MagneticStorm.changeDst > unit`](#MagneticStormchangeDst_unit)
+  - [1.3. Property `SpacePhenomenon > MagneticStorm.changeDst > value`](#MagneticStormchangeDst_value)
+- [2. Property `SpacePhenomenon > EnvironmentalPhenomenon.timeInterval`](#EnvironmentalPhenomenontimeInterval)
+  - [2.1. Property `SpacePhenomenon > EnvironmentalPhenomenon.timeInterval > end`](#EnvironmentalPhenomenontimeInterval_end)
+  - [2.2. Property `SpacePhenomenon > EnvironmentalPhenomenon.timeInterval > start`](#EnvironmentalPhenomenontimeInterval_start)
+
+**Title:** SpacePhenomenon
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** An extra-terrestrial phenomenon.
+
+| Property                                                                        | Pattern | Type             | Deprecated | Definition                 | Title/Description |
+| ------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------- | ----------------- |
+| - [MagneticStorm.changeDst](#MagneticStormchangeDst )                           | No      | object or number | No         | In ./MagneticField.json    | changeDst         |
+| - [EnvironmentalPhenomenon.timeInterval](#EnvironmentalPhenomenontimeInterval ) | No      | object           | No         | In ./DateTimeInterval.json | timeInterval      |
+
+## <a name="MagneticStormchangeDst"></a>1. Property `SpacePhenomenon > MagneticStorm.changeDst`
+
+**Title:** changeDst
+
+|                |                      |
+| -------------- | -------------------- |
+| **Type**       | `object or number`   |
+| **Required**   | No                   |
+| **Defined in** | ./MagneticField.json |
+
+**Description:** Change in the disturbance  - storm time (Dst) index. The size of a geomagnetic storm is classified as:
+- moderate ( -50 nT >minimum of Dst > -100 nT)
+- intense (-100 nT > minimum Dst > -250 nT) or 
+- super-storm ( minimum of Dst < -250 nT).
+
+| Property                                            | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| --------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#MagneticStormchangeDst_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#MagneticStormchangeDst_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#MagneticStormchangeDst_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="MagneticStormchangeDst_multiplier"></a>1.1. Property `SpacePhenomenon > MagneticStorm.changeDst > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"n"`                 |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="MagneticStormchangeDst_unit"></a>1.2. Property `SpacePhenomenon > MagneticStorm.changeDst > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"T"`              |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="MagneticStormchangeDst_value"></a>1.3. Property `SpacePhenomenon > MagneticStorm.changeDst > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="EnvironmentalPhenomenontimeInterval"></a>2. Property `SpacePhenomenon > EnvironmentalPhenomenon.timeInterval`
+
+**Title:** timeInterval
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./DateTimeInterval.json                                                   |
+
+**Description:** The timestamp of the phenomenon as a single point or time interval.
+
+| Property                                               | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                             |
+| ------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
+| - [end](#EnvironmentalPhenomenontimeInterval_end )     | No      | string | No         | -          | End date and time of this interval.  The end date and time where the interval is defined up to, but excluded. |
+| - [start](#EnvironmentalPhenomenontimeInterval_start ) | No      | string | No         | -          | Start date and time of this interval.  The start date and time is included in the defined interval.           |
+
+### <a name="EnvironmentalPhenomenontimeInterval_end"></a>2.1. Property `SpacePhenomenon > EnvironmentalPhenomenon.timeInterval > end`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** End date and time of this interval.  The end date and time where the interval is defined up to, but excluded.
+
+### <a name="EnvironmentalPhenomenontimeInterval_start"></a>2.2. Property `SpacePhenomenon > EnvironmentalPhenomenon.timeInterval > start`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Start date and time of this interval.  The start date and time is included in the defined interval.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:27 -0600

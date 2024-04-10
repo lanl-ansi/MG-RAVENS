@@ -1,0 +1,105 @@
+# UML Diagrams for MG-RAVENS Schema
+
+## Simplified Diagrams
+
+### Conductors
+
+![Conductors diagram](../_static/uml/SimplifiedDiagrams/Conductors.png)
+
+### ConnectivityNodes
+
+![ConnectivityNodes diagram](../_static/uml/SimplifiedDiagrams/ConnectivityNodes.png)
+
+### CommunityFacilities
+
+![CommunityFacilities diagram](../_static/uml/SimplifiedDiagrams/CommunityFacilities.png)
+
+### EnergyConsumers
+
+![EnergyConsumers diagram](../_static/uml/SimplifiedDiagrams/EnergyConsumers.png)
+
+### EnergyProducers
+
+![EnergyProducers diagram](../_static/uml/SimplifiedDiagrams/EnergyProducers.png)
+
+### Faults
+
+![Faults diagram](../_static/uml/SimplifiedDiagrams/Faults.png)
+
+### LoadForecasting
+
+![LoadForecasting diagram](../_static/uml/SimplifiedDiagrams/LoadForecasting.png)
+
+### Outages
+
+![Outages diagram](../_static/uml/SimplifiedDiagrams/Outages.png)
+
+### Shunts
+
+![Shunts diagram](../_static/uml/SimplifiedDiagrams/Shunts.png)
+
+### Switches
+
+![Switches diagram](../_static/uml/SimplifiedDiagrams/Switches.png)
+
+### Transformers
+
+![Transformers diagram](../_static/uml/SimplifiedDiagrams/Transformers.png)
+
+## Extension Diagrams
+
+### AlgorithmProperties
+
+![AlgorithmProperties](../_static/uml/AlgorithmProperties.png)
+
+### EconomicProperties
+
+![EconomicProperties](../_static/uml/EconomicProperties.png)
+
+### FossilFuelCosts
+
+![FossilFuelCosts](../_static/uml/FossilFuelCosts.png)
+
+### GenerationProfiles
+
+![GenerationProfiles](../_static/uml/GenerationProfiles.png)
+
+### InefficientBatteryUnit
+
+![InefficientBatteryUnit](../_static/uml/InefficientBatteryUnit.png)
+
+### InverterControls
+
+![InverterControls](../_static/uml/InverterControls.png)
+
+### OutageSpecification
+
+![OutageSpecification](../_static/uml/OutageSpecification.png)
+
+### ProposedAssetOptions
+
+![ProposedAssetOptions](../_static/uml/ProposedAssetOptions.png)
+
+### ProposedAssets
+
+![ProposedAssets](../_static/uml/ProposedAssets.png)
+
+### ProposedSiteLocation
+
+![ProposedSiteLocation](../_static/uml/ProposedSiteLocation.png)
+
+### RegionalEnergyPrices
+
+![RegionalEnergyPrices](../_static/uml/RegionalEnergyPrices.png)
+
+### ResponseCharacteristics
+
+![ResponseCharacteristics](../_static/uml/ResponseCharacteristics.png)
+
+### SiteProperties
+
+![SiteProperties](../_static/uml/SiteProperties.png)
+
+### Versions
+
+![Versions](../_static/uml/Versions.png)

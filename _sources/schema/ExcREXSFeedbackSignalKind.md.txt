@@ -1,0 +1,18 @@
+# ExcREXSFeedbackSignalKind
+
+**Title:** ExcREXSFeedbackSignalKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Types of rate feedback signals.
+
+Must be one of:
+* "fieldVoltage"
+* "fieldCurrent"
+* "outputVoltage"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

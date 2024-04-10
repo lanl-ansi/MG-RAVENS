@@ -1,0 +1,16 @@
+# SelfScheduleTypeMB
+
+**Title:** SelfScheduleTypeMB
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Self Schedule Types applicable to Mitigated Bid
+
+Must be one of:
+* "RMR"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

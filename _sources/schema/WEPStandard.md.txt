@@ -1,0 +1,51 @@
+# WEPStandard
+
+- [1. Property `WEPStandard > standardEdition`](#standardEdition)
+- [2. Property `WEPStandard > standardNumber`](#standardNumber)
+
+**Title:** WEPStandard
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Standard published by Westinghouse - a WEP (Westinghouse Engineering Procedure).
+
+| Property                               | Pattern | Type             | Deprecated | Definition                       | Title/Description        |
+| -------------------------------------- | ------- | ---------------- | ---------- | -------------------------------- | ------------------------ |
+| - [standardEdition](#standardEdition ) | No      | enum (of string) | No         | In ./WEPStandardEditionKind.json | Edition of WEP standard. |
+| - [standardNumber](#standardNumber )   | No      | enum (of string) | No         | In ./WEPStandardKind.json        | WEP standard number.     |
+
+## <a name="standardEdition"></a>1. Property `WEPStandard > standardEdition`
+
+|                |                               |
+| -------------- | ----------------------------- |
+| **Type**       | `enum (of string)`            |
+| **Required**   | No                            |
+| **Default**    | `null`                        |
+| **Defined in** | ./WEPStandardEditionKind.json |
+
+**Description:** Edition of WEP standard.
+
+Must be one of:
+* "unknown"
+* "none"
+
+## <a name="standardNumber"></a>2. Property `WEPStandard > standardNumber`
+
+|                |                        |
+| -------------- | ---------------------- |
+| **Type**       | `enum (of string)`     |
+| **Required**   | No                     |
+| **Default**    | `null`                 |
+| **Defined in** | ./WEPStandardKind.json |
+
+**Description:** WEP standard number.
+
+Must be one of:
+* "12, 1254E"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>MG-RAVENS API Governance Charter</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="Steering Committee Members" href="steering_committee.html" />
+  <link rel="prev" title="ShuntCompensator" href="../examples/ShuntCompensator.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <span class="site-name">MG-RAVENS</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">UML Diagrams:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../uml/index.html" class="reference internal ">UML Diagrams for MG-RAVENS Schema</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Schemas:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../schema/index.html" class="reference internal ">Schema Documentation</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Examples:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/AlgorithmProperties.html" class="reference internal ">AlgorithmProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/CapacityPrices.html" class="reference internal ">CapacityPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/Conductor.html" class="reference internal ">Conductor</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/DieselFuelPrice.html" class="reference internal ">DieselFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/EconomicProperties.html" class="reference internal ">EconomicProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/EnergyConsumer.html" class="reference internal ">EnergyConsumer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/EnergySource.html" class="reference internal ">EnergySource</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/LoadForecast.html" class="reference internal ">LoadForecast</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/LocationalMarginalPrices.html" class="reference internal ">LocationalMarginalPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/NaturalGasFuelPrice.html" class="reference internal ">NaturalGasFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/OtherFossilFuelPrice.html" class="reference internal ">OtherFossilFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/OutageScenario.html" class="reference internal ">OutageScenario</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/PowerTransformer.html" class="reference internal ">PowerTransformer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedBatteryUnitOption.html" class="reference internal ">ProposedBatteryUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedConductorOption.html" class="reference internal ">ProposedConductorOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedEnergyProducerOption.html" class="reference internal ">ProposedEnergyProducerOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedGeneratingUnitOption.html" class="reference internal ">ProposedGeneratingUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedPhotovoltaicUnitOption.html" class="reference internal ">ProposedPhotovoltaicUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedSiteLocation.html" class="reference internal ">ProposedSiteLocation</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedSwitchOption.html" class="reference internal ">ProposedSwitchOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedWindUnitOption.html" class="reference internal ">ProposedWindUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ShuntCompensator.html" class="reference internal ">ShuntCompensator</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Governance:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">MG-RAVENS API Governance Charter</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#steering-committee" class="reference internal">Steering Committee</a></li>
+                
+                  <li class="toctree-l2"><a href="#working-group" class="reference internal">Working Group</a></li>
+                
+                  <li class="toctree-l2"><a href="#core-developers" class="reference internal">Core Developers</a></li>
+                
+                  <li class="toctree-l2"><a href="#api-release-approval" class="reference internal">API Release Approval</a></li>
+                
+                  <li class="toctree-l2"><a href="#making-changes-to-the-charter" class="reference internal">Making Changes to the Charter</a></li>
+                
+                  <li class="toctree-l2"><a href="#definitions" class="reference internal">Definitions</a></li>
+                
+                  <li class="toctree-l2"><a href="#license" class="reference internal">License</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="steering_committee.html" class="reference internal ">Steering Committee Members</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="working_group.html" class="reference internal ">Working Group Members</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>MG-RAVENS API Governance Charter</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="../examples/ShuntCompensator.html"
+       title="previous chapter">← ShuntCompensator</a>
+  </li>
+  <li class="next">
+    <a href="steering_committee.html"
+       title="next chapter">Steering Committee Members →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="mg-ravens-api-governance-charter">
+<h1>MG-RAVENS API Governance Charter<a class="headerlink" href="#mg-ravens-api-governance-charter" title="Link to this heading">¶</a></h1>
+<p>The following document serves as the guiding charter of the organization guiding the research and development of the API proposed by the MG-RAVENS Project funded by the Department of Energy Office of Electricity Microgrid Research and Development Program, herein called the RAVENS API.</p>
+<p>The following groups are the named organizational structures for the development of the RAVENS API.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#steering-committee"><span class="xref myst">Steering Committee</span></a></p></li>
+<li><p><a class="reference internal" href="#working-group"><span class="xref myst">Working Group</span></a></p></li>
+<li><p><a class="reference internal" href="#core-developers"><span class="xref myst">Core Developers</span></a></p></li>
+</ul>
+<section id="steering-committee">
+<h2>Steering Committee<a class="headerlink" href="#steering-committee" title="Link to this heading">¶</a></h2>
+<p>The purpose of the Steering Committee is to provide guidance on the development of the API by developing a vision and providing approval for releases of the API.</p>
+<p>The Steering Committee will be led by a Chair, who will</p>
+<ul class="simple">
+<li><p>lead meetings of the Steering Committee, and</p></li>
+<li><p>resolve votes by the Committee in the event that they are tied.</p></li>
+</ul>
+<p>Current membership of the Steering Committee will be recorded <a class="reference internal" href="steering_committee.html"><span class="std std-doc">in this repository</span></a>.</p>
+<section id="assigning-representatives">
+<h3>Assigning Representatives<a class="headerlink" href="#assigning-representatives" title="Link to this heading">¶</a></h3>
+<p>If a Steering Committee member anticipates periods of inactivity, e.g., due to personal or professional conflicts requiring their attention, they may assign a representative to act on their behalf in meetings and during votes by notifying the Steering Committee in writing. The Steering Committee will identify the representative for the record in recorded votes.</p>
+<p>In cases where a member of the Steering Committee anticipates extremely long absences, Steering Committee members are encouraged to consider formally nominating their representative for Steering Commmittee membership and renouncing their own membership on the Steering Committee.</p>
+</section>
+<section id="adding-steering-committee-members">
+<h3>Adding Steering Committee Members<a class="headerlink" href="#adding-steering-committee-members" title="Link to this heading">¶</a></h3>
+<p>New members may be added to the Steering Committee at any time with an affirmative vote of a <a class="reference internal" href="#supermajority"><span class="xref myst">supermajority</span></a> of the Steering Committee.</p>
+</section>
+<section id="removing-steering-committee-members">
+<h3>Removing Steering Committee Members<a class="headerlink" href="#removing-steering-committee-members" title="Link to this heading">¶</a></h3>
+<p>Members may be removed from the Steering Committee under the following conditions:</p>
+<ul class="simple">
+<li><p>at the request of the member, or</p></li>
+<li><p>by affirmative vote of a <a class="reference internal" href="#supermajority"><span class="xref myst">supermajority</span></a> of the members of the Steering Committee whose membership is not in question.</p></li>
+</ul>
+<p>Members of the Steering Committee shall consider removal of a fellow member in the event of a breaking of the Code of Conduct when brought to their attention when rising to the level of enforcement of a Permanent Ban.</p>
+<p>Members of the Steering Committee shall consider removal of a fellow member of the Steering Committee in the event that member has been absent for a prolonged period and has not designated a representative, such that their absence is preventing the Committee from performing regular business.</p>
+</section>
+</section>
+<section id="working-group">
+<h2>Working Group<a class="headerlink" href="#working-group" title="Link to this heading">¶</a></h2>
+<p>The purpose of the Working Group is to provide feedback throughout the API development. Working Group members shall be parties who are interested in the development of the RAVENS API.</p>
+<p>The Steering Committee will maintain a Working Group Mailing List, to which various communications may be sent. The Steering Committee will remove Working Group members from the List at the request of the member.</p>
+<p>We ask those members of the Working Group to:</p>
+<ul class="simple">
+<li><p>Participate in semiannual meetings of the API team, which we intend to hold virtually and record for members who are unable to attend live.</p>
+<ul>
+<li><p>Meetings will be advertised via the Working Group Mailing List.</p></li>
+</ul>
+</li>
+<li><p>Respond to <a class="reference internal" href="#request-for-information"><span class="xref myst">Requests for Information (RFIs)</span></a> about their data needs, software that they currently use, and microgrid program software they would be interested in using, which will help inform the development of the API.</p>
+<ul>
+<li><p>RFIs may be solicited via the Working Group Mailing List and/or via a GitHub Discussion.</p></li>
+</ul>
+</li>
+<li><p>Respond to <a class="reference internal" href="#request-for-comment"><span class="xref myst">Requests for Comment (RFCs)</span></a> on major API release candidates.</p>
+<ul>
+<li><p>RFCs may be solicited implictly via a GitHub Pull Request tagged as a major or minor change, and/or explicitly via a GitHub Discussion linked to the proposed changes.</p></li>
+<li><p>RFCs for major changes may be advertised via the Working Group Mailing List.</p></li>
+</ul>
+</li>
+<li><p>Identify data or accompanying tools that your organization might need us to include in our development for your organization to adopt any part of the API in the future.</p></li>
+</ul>
+<p>Members may be added to the Working Group at any time at the request of any member of the Steering Committee. Those not currently in the Working Group interested to join may contact any member of the Steering Committee to request they be added to the Working Group.</p>
+<p>The Steering Committee may advertise the <strong>name</strong> and <strong>organization</strong> of Working Group members <a class="reference internal" href="working_group.html"><span class="std std-doc">in this repository</span></a>, but may not reveal contact information or other Personal Identifiable Information.</p>
+</section>
+<section id="core-developers">
+<h2>Core Developers<a class="headerlink" href="#core-developers" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Core developers will be designated by the Steering Committee, and be given the “Role: Write” in this repository by the repository administator(s).</p></li>
+<li><p>Core developers will execute the vision of the Steering Committee in the creation of the API.</p></li>
+<li><p>Core developers will request approval to incorporate new functionality or to substantially change existing functionality of the API from the Steering Committee.</p></li>
+<li><p>Core developers may incorporate bug fixes into the API as needed without explicit approval from the Steering Committee.</p></li>
+<li><p>Core developers may accept changes to the API via Pull Requests, where</p>
+<ul>
+<li><p>new functionality or substantive changes to existing functionality requires approval from the Steering Committee, and</p></li>
+<li><p>bug fixes at their discretion.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="api-release-approval">
+<h2>API Release Approval<a class="headerlink" href="#api-release-approval" title="Link to this heading">¶</a></h2>
+<p>Releases of the API will follow the <a class="reference external" href="https://semver.org/">Semantic Version</a> scheme, i.e., MAJOR.MINOR.PATCH, where</p>
+<ul class="simple">
+<li><p>MAJOR releases incorporate incompatible, or <strong>breaking</strong>, changes,</p></li>
+<li><p>MINOR releases incorporate backwards-compatible, or non-breaking, functionality, and</p></li>
+<li><p>PATCH releases incorporate backwards-compatible bug fixes.</p></li>
+</ul>
+<p>Core developers may release PATCH versions without explicit approval from the Steering Committee.</p>
+<p>MINOR and MAJOR releases require consent from the Steering Committee through one of the following two methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#unanimous-consent"><span class="xref myst">unanimous consent</span></a>, or</p></li>
+<li><p><a class="reference internal" href="#simple-majority"><span class="xref myst">simple majority</span></a>.</p></li>
+</ul>
+<p>As part of the release process, the Working Group will be given the opportunity to voice their concerns, opinions, etc. through a RFC, i.e., on the GitHub Pull Request or on a connected GitHub Discussion thread. The Steering committee will consider feedback carefully and request Core Developers to make changes based on that feedback at their discretion.</p>
+</section>
+<section id="making-changes-to-the-charter">
+<h2>Making Changes to the Charter<a class="headerlink" href="#making-changes-to-the-charter" title="Link to this heading">¶</a></h2>
+<p>Changes can be made to this Charter with an affirmative vote consisting of a <a class="reference internal" href="#supermajority"><span class="xref myst">supermajority</span></a> of the Steering Committee.</p>
+</section>
+<section id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">¶</a></h2>
+<section id="request-for-comment">
+<h3>Request for Comment<a class="headerlink" href="#request-for-comment" title="Link to this heading">¶</a></h3>
+<p>A <em>request for comment</em> (RFC) is a process whose purpose is to solicit qualified feedback on a technical proposal, in this case an API release candidate. It collects all feedback and ideas in one place and serves as a record of decision making.</p>
+</section>
+<section id="request-for-information">
+<h3>Request for Information<a class="headerlink" href="#request-for-information" title="Link to this heading">¶</a></h3>
+<p>A <em>request for information</em> (RFI) is a process whose purpose is to collect information about capabilities and needs of the community. An RFI is used to gather information to inform decisions, and is non-binding.</p>
+</section>
+<section id="simple-majority">
+<h3>Simple Majority<a class="headerlink" href="#simple-majority" title="Link to this heading">¶</a></h3>
+<p><em>Simple majority</em> is defined herein as 50% + 1. In the situation where a simple majority is required a poll in a GitHub Discussion will be used to record the vote by members of the Steering Committee, or their assigned representative in their absence.</p>
+</section>
+<section id="supermajority">
+<h3>Supermajority<a class="headerlink" href="#supermajority" title="Link to this heading">¶</a></h3>
+<p><em>Supermajority</em> is defined herein as 60% + 1. In the situation where a supermajority is required a poll in a GitHub Discussion will be used to record the vote by members of the Steering Committee, or their assigned representative in their absence.</p>
+</section>
+<section id="unanimous-consent">
+<h3>Unanimous consent<a class="headerlink" href="#unanimous-consent" title="Link to this heading">¶</a></h3>
+<p><em>Unanimous consent</em> is a situation in which no member present objects to a proposal. In the context of approving a MINOR or MAJOR release, Pull Requests will remain open for a period of one week for members of the Steering Committee, or their assigned representative in their absence, to provide objections. If an objection is made, a vote must be recorded.</p>
+</section>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
+<p>LA-UR-23-26030</p>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="../examples/ShuntCompensator.html"
+       title="previous chapter">← ShuntCompensator</a>
+  </li>
+  <li class="next">
+    <a href="steering_committee.html"
+       title="next chapter">Steering Committee Members →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2024, David M Fobes.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

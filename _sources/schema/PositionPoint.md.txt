@@ -1,0 +1,83 @@
+# PositionPoint
+
+- [1. Property `PositionPoint > PositionPoint.zPosition`](#PositionPointzPosition)
+- [2. Property `PositionPoint > PositionPoint.groupNumber`](#PositionPointgroupNumber)
+- [3. Property `PositionPoint > PositionPoint.yPosition`](#PositionPointyPosition)
+- [4. Property `PositionPoint > PositionPoint.sequenceNumber`](#PositionPointsequenceNumber)
+- [5. Property `PositionPoint > PositionPoint.xPosition`](#PositionPointxPosition)
+
+**Title:** PositionPoint
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.CoordinateSystem'. Use a single position point instance to describe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).
+
+| Property                                                        | Pattern | Type    | Deprecated | Definition | Title/Description |
+| --------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------- |
+| - [PositionPoint.zPosition](#PositionPointzPosition )           | No      | string  | No         | -          | zPosition         |
+| - [PositionPoint.groupNumber](#PositionPointgroupNumber )       | No      | integer | No         | -          | groupNumber       |
+| - [PositionPoint.yPosition](#PositionPointyPosition )           | No      | string  | No         | -          | yPosition         |
+| - [PositionPoint.sequenceNumber](#PositionPointsequenceNumber ) | No      | integer | No         | -          | sequenceNumber    |
+| - [PositionPoint.xPosition](#PositionPointxPosition )           | No      | string  | No         | -          | xPosition         |
+
+## <a name="PositionPointzPosition"></a>1. Property `PositionPoint > PositionPoint.zPosition`
+
+**Title:** zPosition
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** (if applicable) Z axis position.
+
+## <a name="PositionPointgroupNumber"></a>2. Property `PositionPoint > PositionPoint.groupNumber`
+
+**Title:** groupNumber
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** Zero-relative sequence number of this group within a series of points; used when there is a need to express disjoint groups of points that are considered to be part of a single location.
+
+## <a name="PositionPointyPosition"></a>3. Property `PositionPoint > PositionPoint.yPosition`
+
+**Title:** yPosition
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Y axis position.
+
+## <a name="PositionPointsequenceNumber"></a>4. Property `PositionPoint > PositionPoint.sequenceNumber`
+
+**Title:** sequenceNumber
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** Zero-relative sequence number of this point within a series of points.
+
+## <a name="PositionPointxPosition"></a>5. Property `PositionPoint > PositionPoint.xPosition`
+
+**Title:** xPosition
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** X axis position.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

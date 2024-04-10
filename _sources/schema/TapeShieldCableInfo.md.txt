@@ -1,0 +1,871 @@
+# TapeShieldCableInfo
+
+- [1. Property `TapeShieldCableInfo > CableInfo.isStrandFill`](#CableInfoisStrandFill)
+- [2. Property `TapeShieldCableInfo > WireInfo.sizeDescription`](#WireInfosizeDescription)
+- [3. Property `TapeShieldCableInfo > WireInfo.insulationThickness`](#WireInfoinsulationThickness)
+  - [3.1. Property `TapeShieldCableInfo > WireInfo.insulationThickness > multiplier`](#WireInfoinsulationThickness_multiplier)
+  - [3.2. Property `TapeShieldCableInfo > WireInfo.insulationThickness > unit`](#WireInfoinsulationThickness_unit)
+  - [3.3. Property `TapeShieldCableInfo > WireInfo.insulationThickness > value`](#WireInfoinsulationThickness_value)
+- [4. Property `TapeShieldCableInfo > WireInfo.coreStrandCount`](#WireInfocoreStrandCount)
+- [5. Property `TapeShieldCableInfo > WireInfo.ratedCurrent`](#WireInforatedCurrent)
+  - [5.1. Property `TapeShieldCableInfo > WireInfo.ratedCurrent > multiplier`](#WireInforatedCurrent_multiplier)
+  - [5.2. Property `TapeShieldCableInfo > WireInfo.ratedCurrent > unit`](#WireInforatedCurrent_unit)
+  - [5.3. Property `TapeShieldCableInfo > WireInfo.ratedCurrent > value`](#WireInforatedCurrent_value)
+- [6. Property `TapeShieldCableInfo > WireInfo.radius`](#WireInforadius)
+- [7. Property `TapeShieldCableInfo > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [8. Property `TapeShieldCableInfo > WireInfo.insulated`](#WireInfoinsulated)
+- [9. Property `TapeShieldCableInfo > CableInfo.outerJacketKind`](#CableInfoouterJacketKind)
+- [10. Property `TapeShieldCableInfo > CableInfo.nominalTemperature`](#CableInfonominalTemperature)
+  - [10.1. Property `TapeShieldCableInfo > CableInfo.nominalTemperature > multiplier`](#CableInfonominalTemperature_multiplier)
+  - [10.2. Property `TapeShieldCableInfo > CableInfo.nominalTemperature > unit`](#CableInfonominalTemperature_unit)
+  - [10.3. Property `TapeShieldCableInfo > CableInfo.nominalTemperature > value`](#CableInfonominalTemperature_value)
+- [11. Property `TapeShieldCableInfo > WireInfo.material`](#WireInfomaterial)
+- [12. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeLap`](#TapeShieldCableInfotapeLap)
+  - [12.1. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeLap > multiplier`](#TapeShieldCableInfotapeLap_multiplier)
+  - [12.2. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeLap > unit`](#TapeShieldCableInfotapeLap_unit)
+  - [12.3. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeLap > value`](#TapeShieldCableInfotapeLap_value)
+- [13. Property `TapeShieldCableInfo > CableInfo.diameterOverCore`](#CableInfodiameterOverCore)
+- [14. Property `TapeShieldCableInfo > WireInfo.rDC20`](#WireInforDC20)
+  - [14.1. Property `TapeShieldCableInfo > WireInfo.rDC20 > multiplier`](#WireInforDC20_multiplier)
+  - [14.2. Property `TapeShieldCableInfo > WireInfo.rDC20 > unit`](#WireInforDC20_unit)
+  - [14.3. Property `TapeShieldCableInfo > WireInfo.rDC20 > value`](#WireInforDC20_value)
+- [15. Property `TapeShieldCableInfo > WireInfo.rAC50`](#WireInforAC50)
+- [16. Property `TapeShieldCableInfo > WireInfo.coreRadius`](#WireInfocoreRadius)
+- [17. Property `TapeShieldCableInfo > WireInfo.insulationMaterial`](#WireInfoinsulationMaterial)
+- [18. Property `TapeShieldCableInfo > CableInfo.diameterOverJacket`](#CableInfodiameterOverJacket)
+- [19. Property `TapeShieldCableInfo > CableInfo.sheathAsNeutral`](#CableInfosheathAsNeutral)
+- [20. Property `TapeShieldCableInfo > CableInfo.shieldMaterial`](#CableInfoshieldMaterial)
+- [21. Property `TapeShieldCableInfo > WireInfo.strandCount`](#WireInfostrandCount)
+- [22. Property `TapeShieldCableInfo > WireInfo.rAC75`](#WireInforAC75)
+- [23. Property `TapeShieldCableInfo > CableInfo.diameterOverInsulation`](#CableInfodiameterOverInsulation)
+- [24. Property `TapeShieldCableInfo > CableInfo.constructionKind`](#CableInfoconstructionKind)
+- [25. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeThickness`](#TapeShieldCableInfotapeThickness)
+- [26. Property `TapeShieldCableInfo > CableInfo.diameterOverScreen`](#CableInfodiameterOverScreen)
+- [27. Property `TapeShieldCableInfo > WireInfo.rAC25`](#WireInforAC25)
+- [28. Property `TapeShieldCableInfo > WireInfo.gmr`](#WireInfogmr)
+- [29. Property `TapeShieldCableInfo > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [30. Property `TapeShieldCableInfo > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [31. Property `TapeShieldCableInfo > IdentifiedObject.name`](#IdentifiedObjectname)
+
+**Title:** TapeShieldCableInfo
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Tape shield cable data.
+
+| Property                                                                  | Pattern | Type             | Deprecated | Definition                                                            | Title/Description      |
+| ------------------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------------------- | ---------------------- |
+| - [CableInfo.isStrandFill](#CableInfoisStrandFill )                       | No      | boolean          | No         | -                                                                     | isStrandFill           |
+| - [WireInfo.sizeDescription](#WireInfosizeDescription )                   | No      | string           | No         | -                                                                     | sizeDescription        |
+| - [WireInfo.insulationThickness](#WireInfoinsulationThickness )           | No      | object or number | No         | In ./Length.json                                                      | insulationThickness    |
+| - [WireInfo.coreStrandCount](#WireInfocoreStrandCount )                   | No      | integer          | No         | -                                                                     | coreStrandCount        |
+| - [WireInfo.ratedCurrent](#WireInforatedCurrent )                         | No      | object or number | No         | In ./CurrentFlow.json                                                 | ratedCurrent           |
+| - [WireInfo.radius](#WireInforadius )                                     | No      | object or number | No         | Same as [WireInfo.insulationThickness](#WireInfoinsulationThickness ) | radius                 |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )           | No      | string           | No         | -                                                                     | description            |
+| - [WireInfo.insulated](#WireInfoinsulated )                               | No      | boolean          | No         | -                                                                     | insulated              |
+| - [CableInfo.outerJacketKind](#CableInfoouterJacketKind )                 | No      | enum (of string) | No         | In ./CableOuterJacketKind.json                                        | outerJacketKind        |
+| - [CableInfo.nominalTemperature](#CableInfonominalTemperature )           | No      | object or number | No         | In ./Temperature.json                                                 | nominalTemperature     |
+| - [WireInfo.material](#WireInfomaterial )                                 | No      | enum (of string) | No         | In ./WireMaterialKind.json                                            | material               |
+| - [TapeShieldCableInfo.tapeLap](#TapeShieldCableInfotapeLap )             | No      | object or number | No         | In ./PerCent.json                                                     | tapeLap                |
+| - [CableInfo.diameterOverCore](#CableInfodiameterOverCore )               | No      | object or number | No         | Same as [WireInfo.insulationThickness](#WireInfoinsulationThickness ) | diameterOverCore       |
+| - [WireInfo.rDC20](#WireInforDC20 )                                       | No      | object or number | No         | In ./ResistancePerLength.json                                         | rDC20                  |
+| - [WireInfo.rAC50](#WireInforAC50 )                                       | No      | object or number | No         | Same as [WireInfo.rDC20](#WireInforDC20 )                             | rAC50                  |
+| - [WireInfo.coreRadius](#WireInfocoreRadius )                             | No      | object or number | No         | Same as [WireInfo.insulationThickness](#WireInfoinsulationThickness ) | coreRadius             |
+| - [WireInfo.insulationMaterial](#WireInfoinsulationMaterial )             | No      | enum (of string) | No         | In ./WireInsulationKind.json                                          | insulationMaterial     |
+| - [CableInfo.diameterOverJacket](#CableInfodiameterOverJacket )           | No      | object or number | No         | Same as [WireInfo.insulationThickness](#WireInfoinsulationThickness ) | diameterOverJacket     |
+| - [CableInfo.sheathAsNeutral](#CableInfosheathAsNeutral )                 | No      | boolean          | No         | -                                                                     | sheathAsNeutral        |
+| - [CableInfo.shieldMaterial](#CableInfoshieldMaterial )                   | No      | enum (of string) | No         | In ./CableShieldMaterialKind.json                                     | shieldMaterial         |
+| - [WireInfo.strandCount](#WireInfostrandCount )                           | No      | integer          | No         | -                                                                     | strandCount            |
+| - [WireInfo.rAC75](#WireInforAC75 )                                       | No      | object or number | No         | Same as [WireInfo.rDC20](#WireInforDC20 )                             | rAC75                  |
+| - [CableInfo.diameterOverInsulation](#CableInfodiameterOverInsulation )   | No      | object or number | No         | Same as [WireInfo.insulationThickness](#WireInfoinsulationThickness ) | diameterOverInsulation |
+| - [CableInfo.constructionKind](#CableInfoconstructionKind )               | No      | enum (of string) | No         | In ./CableConstructionKind.json                                       | constructionKind       |
+| - [TapeShieldCableInfo.tapeThickness](#TapeShieldCableInfotapeThickness ) | No      | object or number | No         | Same as [WireInfo.insulationThickness](#WireInfoinsulationThickness ) | tapeThickness          |
+| - [CableInfo.diameterOverScreen](#CableInfodiameterOverScreen )           | No      | object or number | No         | Same as [WireInfo.insulationThickness](#WireInfoinsulationThickness ) | diameterOverScreen     |
+| - [WireInfo.rAC25](#WireInforAC25 )                                       | No      | object or number | No         | Same as [WireInfo.rDC20](#WireInforDC20 )                             | rAC25                  |
+| - [WireInfo.gmr](#WireInfogmr )                                           | No      | object or number | No         | Same as [WireInfo.insulationThickness](#WireInfoinsulationThickness ) | gmr                    |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )               | No      | string           | No         | -                                                                     | aliasName              |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                         | No      | string           | No         | -                                                                     | mRID                   |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                         | No      | string           | No         | -                                                                     | name                   |
+
+## <a name="CableInfoisStrandFill"></a>1. Property `TapeShieldCableInfo > CableInfo.isStrandFill`
+
+**Title:** isStrandFill
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** True if wire strands are extruded in a way to fill the voids in the cable.
+
+## <a name="WireInfosizeDescription"></a>2. Property `TapeShieldCableInfo > WireInfo.sizeDescription`
+
+**Title:** sizeDescription
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5).
+
+## <a name="WireInfoinsulationThickness"></a>3. Property `TapeShieldCableInfo > WireInfo.insulationThickness`
+
+**Title:** insulationThickness
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Length.json      |
+
+**Description:** (if insulated conductor) Thickness of the insulation.
+
+| Property                                                 | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| -------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#WireInfoinsulationThickness_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#WireInfoinsulationThickness_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#WireInfoinsulationThickness_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="WireInfoinsulationThickness_multiplier"></a>3.1. Property `TapeShieldCableInfo > WireInfo.insulationThickness > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="WireInfoinsulationThickness_unit"></a>3.2. Property `TapeShieldCableInfo > WireInfo.insulationThickness > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"m"`              |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="WireInfoinsulationThickness_value"></a>3.3. Property `TapeShieldCableInfo > WireInfo.insulationThickness > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="WireInfocoreStrandCount"></a>4. Property `TapeShieldCableInfo > WireInfo.coreStrandCount`
+
+**Title:** coreStrandCount
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** (if used) Number of strands in the steel core.
+
+## <a name="WireInforatedCurrent"></a>5. Property `TapeShieldCableInfo > WireInfo.ratedCurrent`
+
+**Title:** ratedCurrent
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./CurrentFlow.json |
+
+**Description:** Current carrying capacity of the wire under stated thermal conditions.
+
+| Property                                          | Pattern | Type             | Deprecated | Definition                                                     | Title/Description |
+| ------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------- | ----------------- |
+| - [multiplier](#WireInforatedCurrent_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#WireInfoinsulationThickness_multiplier ) | nan               |
+| - [unit](#WireInforatedCurrent_unit )             | No      | enum (of string) | No         | Same as [unit](#WireInfoinsulationThickness_unit )             | nan               |
+| - [value](#WireInforatedCurrent_value )           | No      | number           | No         | -                                                              | nan               |
+
+### <a name="WireInforatedCurrent_multiplier"></a>5.1. Property `TapeShieldCableInfo > WireInfo.ratedCurrent > multiplier`
+
+|                        |                                                       |
+| ---------------------- | ----------------------------------------------------- |
+| **Type**               | `enum (of string)`                                    |
+| **Required**           | No                                                    |
+| **Default**            | `"none"`                                              |
+| **Same definition as** | [multiplier](#WireInfoinsulationThickness_multiplier) |
+
+**Description:** nan
+
+### <a name="WireInforatedCurrent_unit"></a>5.2. Property `TapeShieldCableInfo > WireInfo.ratedCurrent > unit`
+
+|                        |                                           |
+| ---------------------- | ----------------------------------------- |
+| **Type**               | `enum (of string)`                        |
+| **Required**           | No                                        |
+| **Default**            | `"A"`                                     |
+| **Same definition as** | [unit](#WireInfoinsulationThickness_unit) |
+
+**Description:** nan
+
+### <a name="WireInforatedCurrent_value"></a>5.3. Property `TapeShieldCableInfo > WireInfo.ratedCurrent > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="WireInforadius"></a>6. Property `TapeShieldCableInfo > WireInfo.radius`
+
+**Title:** radius
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [WireInfo.insulationThickness](#WireInfoinsulationThickness) |
+
+**Description:** Outside radius of the wire.
+
+## <a name="IdentifiedObjectdescription"></a>7. Property `TapeShieldCableInfo > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="WireInfoinsulated"></a>8. Property `TapeShieldCableInfo > WireInfo.insulated`
+
+**Title:** insulated
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** True if conductor is insulated.
+
+## <a name="CableInfoouterJacketKind"></a>9. Property `TapeShieldCableInfo > CableInfo.outerJacketKind`
+
+**Title:** outerJacketKind
+
+|                |                             |
+| -------------- | --------------------------- |
+| **Type**       | `enum (of string)`          |
+| **Required**   | No                          |
+| **Defined in** | ./CableOuterJacketKind.json |
+
+**Description:** Kind of outer jacket of this cable.
+
+Must be one of:
+* "insulating"
+* "linearLowDensityPolyethylene"
+* "none"
+* "other"
+* "semiconducting"
+* "pvc"
+* "polyethylene"
+
+## <a name="CableInfonominalTemperature"></a>10. Property `TapeShieldCableInfo > CableInfo.nominalTemperature`
+
+**Title:** nominalTemperature
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Temperature.json |
+
+**Description:** Maximum nominal design operating temperature.
+
+| Property                                                 | Pattern | Type             | Deprecated | Definition                                                     | Title/Description |
+| -------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------- | ----------------- |
+| - [multiplier](#CableInfonominalTemperature_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#WireInfoinsulationThickness_multiplier ) | nan               |
+| - [unit](#CableInfonominalTemperature_unit )             | No      | enum (of string) | No         | Same as [unit](#WireInfoinsulationThickness_unit )             | nan               |
+| - [value](#CableInfonominalTemperature_value )           | No      | number           | No         | -                                                              | nan               |
+
+### <a name="CableInfonominalTemperature_multiplier"></a>10.1. Property `TapeShieldCableInfo > CableInfo.nominalTemperature > multiplier`
+
+|                        |                                                       |
+| ---------------------- | ----------------------------------------------------- |
+| **Type**               | `enum (of string)`                                    |
+| **Required**           | No                                                    |
+| **Default**            | `"none"`                                              |
+| **Same definition as** | [multiplier](#WireInfoinsulationThickness_multiplier) |
+
+**Description:** nan
+
+### <a name="CableInfonominalTemperature_unit"></a>10.2. Property `TapeShieldCableInfo > CableInfo.nominalTemperature > unit`
+
+|                        |                                           |
+| ---------------------- | ----------------------------------------- |
+| **Type**               | `enum (of string)`                        |
+| **Required**           | No                                        |
+| **Default**            | `"degC"`                                  |
+| **Same definition as** | [unit](#WireInfoinsulationThickness_unit) |
+
+**Description:** nan
+
+### <a name="CableInfonominalTemperature_value"></a>10.3. Property `TapeShieldCableInfo > CableInfo.nominalTemperature > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="WireInfomaterial"></a>11. Property `TapeShieldCableInfo > WireInfo.material`
+
+**Title:** material
+
+|                |                         |
+| -------------- | ----------------------- |
+| **Type**       | `enum (of string)`      |
+| **Required**   | No                      |
+| **Defined in** | ./WireMaterialKind.json |
+
+**Description:** Conductor material.
+
+Must be one of:
+* "aluminumAlloy"
+* "aaac"
+* "aluminumSteel"
+* "aluminum"
+* "copper"
+* "aluminumAlloySteel"
+* "other"
+* "acsr"
+* "steel"
+
+## <a name="TapeShieldCableInfotapeLap"></a>12. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeLap`
+
+**Title:** tapeLap
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./PerCent.json     |
+
+**Description:** Percentage of the tape shield width that overlaps in each wrap, typically 10% to 25%.
+
+| Property                                                | Pattern | Type             | Deprecated | Definition                                                     | Title/Description                    |
+| ------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------- | ------------------------------------ |
+| - [multiplier](#TapeShieldCableInfotapeLap_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#WireInfoinsulationThickness_multiplier ) | nan                                  |
+| - [unit](#TapeShieldCableInfotapeLap_unit )             | No      | enum (of string) | No         | Same as [unit](#WireInfoinsulationThickness_unit )             | nan                                  |
+| - [value](#TapeShieldCableInfotapeLap_value )           | No      | number           | No         | -                                                              | Normally 0 to 100 on a defined base. |
+
+### <a name="TapeShieldCableInfotapeLap_multiplier"></a>12.1. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeLap > multiplier`
+
+|                        |                                                       |
+| ---------------------- | ----------------------------------------------------- |
+| **Type**               | `enum (of string)`                                    |
+| **Required**           | No                                                    |
+| **Default**            | `"none"`                                              |
+| **Same definition as** | [multiplier](#WireInfoinsulationThickness_multiplier) |
+
+**Description:** nan
+
+### <a name="TapeShieldCableInfotapeLap_unit"></a>12.2. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeLap > unit`
+
+|                        |                                           |
+| ---------------------- | ----------------------------------------- |
+| **Type**               | `enum (of string)`                        |
+| **Required**           | No                                        |
+| **Default**            | `"none"`                                  |
+| **Same definition as** | [unit](#WireInfoinsulationThickness_unit) |
+
+**Description:** nan
+
+### <a name="TapeShieldCableInfotapeLap_value"></a>12.3. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeLap > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Normally 0 to 100 on a defined base.
+
+## <a name="CableInfodiameterOverCore"></a>13. Property `TapeShieldCableInfo > CableInfo.diameterOverCore`
+
+**Title:** diameterOverCore
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [WireInfo.insulationThickness](#WireInfoinsulationThickness) |
+
+**Description:** Diameter over the core, including any semi-con screen; should be the insulating layer's inside diameter.
+
+## <a name="WireInforDC20"></a>14. Property `TapeShieldCableInfo > WireInfo.rDC20`
+
+**Title:** rDC20
+
+|                |                            |
+| -------------- | -------------------------- |
+| **Type**       | `object or number`         |
+| **Required**   | No                         |
+| **Defined in** | ./ResistancePerLength.json |
+
+**Description:** DC resistance per unit length of the conductor at 20 °C.
+
+| Property                                   | Pattern | Type             | Deprecated | Definition                                                     | Title/Description |
+| ------------------------------------------ | ------- | ---------------- | ---------- | -------------------------------------------------------------- | ----------------- |
+| - [multiplier](#WireInforDC20_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#WireInfoinsulationThickness_multiplier ) | nan               |
+| - [unit](#WireInforDC20_unit )             | No      | enum (of string) | No         | Same as [unit](#WireInfoinsulationThickness_unit )             | nan               |
+| - [value](#WireInforDC20_value )           | No      | number           | No         | -                                                              | nan               |
+
+### <a name="WireInforDC20_multiplier"></a>14.1. Property `TapeShieldCableInfo > WireInfo.rDC20 > multiplier`
+
+|                        |                                                       |
+| ---------------------- | ----------------------------------------------------- |
+| **Type**               | `enum (of string)`                                    |
+| **Required**           | No                                                    |
+| **Default**            | `"none"`                                              |
+| **Same definition as** | [multiplier](#WireInfoinsulationThickness_multiplier) |
+
+**Description:** nan
+
+### <a name="WireInforDC20_unit"></a>14.2. Property `TapeShieldCableInfo > WireInfo.rDC20 > unit`
+
+|                        |                                           |
+| ---------------------- | ----------------------------------------- |
+| **Type**               | `enum (of string)`                        |
+| **Required**           | No                                        |
+| **Default**            | `"ohmPerm"`                               |
+| **Same definition as** | [unit](#WireInfoinsulationThickness_unit) |
+
+**Description:** nan
+
+### <a name="WireInforDC20_value"></a>14.3. Property `TapeShieldCableInfo > WireInfo.rDC20 > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="WireInforAC50"></a>15. Property `TapeShieldCableInfo > WireInfo.rAC50`
+
+**Title:** rAC50
+
+|                        |                                  |
+| ---------------------- | -------------------------------- |
+| **Type**               | `object or number`               |
+| **Required**           | No                               |
+| **Same definition as** | [WireInfo.rDC20](#WireInforDC20) |
+
+**Description:** AC resistance per unit length of the conductor at 50 °C.
+
+## <a name="WireInfocoreRadius"></a>16. Property `TapeShieldCableInfo > WireInfo.coreRadius`
+
+**Title:** coreRadius
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [WireInfo.insulationThickness](#WireInfoinsulationThickness) |
+
+**Description:** (if there is a different core material) Radius of the central core.
+
+## <a name="WireInfoinsulationMaterial"></a>17. Property `TapeShieldCableInfo > WireInfo.insulationMaterial`
+
+**Title:** insulationMaterial
+
+|                |                           |
+| -------------- | ------------------------- |
+| **Type**       | `enum (of string)`        |
+| **Required**   | No                        |
+| **Defined in** | ./WireInsulationKind.json |
+
+**Description:** (if insulated conductor) Material used for insulation.
+
+Must be one of:
+* "highMolecularWeightPolyethylene"
+* "asbestosAndVarnishedCambric"
+* "ethylenePropyleneRubber"
+* "varnishedDacronGlass"
+* "lowCapacitanceRubber"
+* "beltedPilc"
+* "oilPaper"
+* "other"
+* "crosslinkedPolyethylene"
+* "unbeltedPilc"
+* "ozoneResistantRubber"
+* "butyl"
+* "rubber"
+* "varnishedCambricCloth"
+* "treeRetardantCrosslinkedPolyethylene"
+* "siliconRubber"
+* "highPressureFluidFilled"
+* "treeResistantHighMolecularWeightPolyethylene"
+
+## <a name="CableInfodiameterOverJacket"></a>18. Property `TapeShieldCableInfo > CableInfo.diameterOverJacket`
+
+**Title:** diameterOverJacket
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [WireInfo.insulationThickness](#WireInfoinsulationThickness) |
+
+**Description:** Diameter over the outermost jacketing layer.
+
+## <a name="CableInfosheathAsNeutral"></a>19. Property `TapeShieldCableInfo > CableInfo.sheathAsNeutral`
+
+**Title:** sheathAsNeutral
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** True if sheath / shield is used as a neutral (i.e., bonded).
+
+## <a name="CableInfoshieldMaterial"></a>20. Property `TapeShieldCableInfo > CableInfo.shieldMaterial`
+
+**Title:** shieldMaterial
+
+|                |                                |
+| -------------- | ------------------------------ |
+| **Type**       | `enum (of string)`             |
+| **Required**   | No                             |
+| **Defined in** | ./CableShieldMaterialKind.json |
+
+**Description:** Material of the shield.
+
+Must be one of:
+* "copper"
+* "steel"
+* "aluminum"
+* "lead"
+* "other"
+
+## <a name="WireInfostrandCount"></a>21. Property `TapeShieldCableInfo > WireInfo.strandCount`
+
+**Title:** strandCount
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** Number of strands in the conductor.
+
+## <a name="WireInforAC75"></a>22. Property `TapeShieldCableInfo > WireInfo.rAC75`
+
+**Title:** rAC75
+
+|                        |                                  |
+| ---------------------- | -------------------------------- |
+| **Type**               | `object or number`               |
+| **Required**           | No                               |
+| **Same definition as** | [WireInfo.rDC20](#WireInforDC20) |
+
+**Description:** AC resistance per unit length of the conductor at 75 °C.
+
+## <a name="CableInfodiameterOverInsulation"></a>23. Property `TapeShieldCableInfo > CableInfo.diameterOverInsulation`
+
+**Title:** diameterOverInsulation
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [WireInfo.insulationThickness](#WireInfoinsulationThickness) |
+
+**Description:** Diameter over the insulating layer, excluding outer screen.
+
+## <a name="CableInfoconstructionKind"></a>24. Property `TapeShieldCableInfo > CableInfo.constructionKind`
+
+**Title:** constructionKind
+
+|                |                              |
+| -------------- | ---------------------------- |
+| **Type**       | `enum (of string)`           |
+| **Required**   | No                           |
+| **Defined in** | ./CableConstructionKind.json |
+
+**Description:** Kind of construction of this cable.
+
+Must be one of:
+* "compacted"
+* "other"
+* "segmental"
+* "compressed"
+* "sector"
+* "solid"
+* "stranded"
+
+## <a name="TapeShieldCableInfotapeThickness"></a>25. Property `TapeShieldCableInfo > TapeShieldCableInfo.tapeThickness`
+
+**Title:** tapeThickness
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [WireInfo.insulationThickness](#WireInfoinsulationThickness) |
+
+**Description:** Thickness of the tape shield, before wrapping.
+
+## <a name="CableInfodiameterOverScreen"></a>26. Property `TapeShieldCableInfo > CableInfo.diameterOverScreen`
+
+**Title:** diameterOverScreen
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [WireInfo.insulationThickness](#WireInfoinsulationThickness) |
+
+**Description:** Diameter over the outer screen; should be the shield's inside diameter.
+
+## <a name="WireInforAC25"></a>27. Property `TapeShieldCableInfo > WireInfo.rAC25`
+
+**Title:** rAC25
+
+|                        |                                  |
+| ---------------------- | -------------------------------- |
+| **Type**               | `object or number`               |
+| **Required**           | No                               |
+| **Same definition as** | [WireInfo.rDC20](#WireInforDC20) |
+
+**Description:** AC resistance per unit length of the conductor at 25 °C.
+
+## <a name="WireInfogmr"></a>28. Property `TapeShieldCableInfo > WireInfo.gmr`
+
+**Title:** gmr
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [WireInfo.insulationThickness](#WireInfoinsulationThickness) |
+
+**Description:** Geometric mean radius. If we replace the conductor by a thin walled tube of radius GMR, then its reactance is identical to the reactance of the actual conductor.
+
+## <a name="IdentifiedObjectaliasName"></a>29. Property `TapeShieldCableInfo > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="IdentifiedObjectmRID"></a>30. Property `TapeShieldCableInfo > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>31. Property `TapeShieldCableInfo > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

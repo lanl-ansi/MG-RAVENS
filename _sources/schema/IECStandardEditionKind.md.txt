@@ -1,0 +1,44 @@
+# IECStandardEditionKind
+
+**Title:** IECStandardEditionKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** List of editions for IEC standards.
+
+Must be one of:
+* "1998"
+* "1973"
+* "2013/COR:2013"
+* "1997"
+* "2004/AMD1:2007"
+* "1985"
+* "1979"
+* "2010"
+* "2007"
+* "none"
+* "2004"
+* "2013"
+* "1963"
+* "1989"
+* "2008"
+* "1974"
+* "1993"
+* "1978"
+* "2005"
+* "1992/COR1:1992"
+* "1967"
+* "1992/AMD1:2004"
+* "unknown"
+* "2004/AMD1:2007CSV"
+* "2011"
+* "2012"
+* "1977"
+* "1995"
+* "1992"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

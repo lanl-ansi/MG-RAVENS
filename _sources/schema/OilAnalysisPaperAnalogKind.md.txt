@@ -1,0 +1,27 @@
+# OilAnalysisPaperAnalogKind
+
+**Title:** OilAnalysisPaperAnalogKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Analogs representing oil paper degradation analysis result.
+
+Must be one of:
+* "furfural"
+* "methanol"
+* "totalFuran"
+* "tensileStrength"
+* "degreeOfPolymerization"
+* "degreeOfPolymerizationCalculated"
+* "solidInsulationDielectricStrength"
+* "acetylfuran"
+* "ethanol"
+* "hydroxymethylfurfural"
+* "methylfurfural"
+* "furfurylAlcohol"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

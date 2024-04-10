@@ -1,0 +1,69 @@
+# MarketRoleKind
+
+**Title:** MarketRoleKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of market role an organisation can have. This list is not exhausted, as other roles may exist.
+
+Must be one of:
+* "CapacityCoordinator"
+* "transmissionOperator"
+* "CapacityTrader"
+* "PartyConnectedToTheGrid"
+* "Producer"
+* "ReserveAllocator"
+* "ControlBlockOperator"
+* "standardsDeveloper"
+* "interchangeAuthority"
+* "MeterAdministrator"
+* "distributionProvider"
+* "MeteredDataAggregator"
+* "TransmissionCapacityAllocator"
+* "SystemOperator"
+* "transmissionPlanner"
+* "MOLResponsible"
+* "transmissionOwner"
+* "generatorOperator"
+* "competitiveRetailer"
+* "BalanceResponsibleParty"
+* "MarketOperator"
+* "ProductionResponsibleParty"
+* "complianceMonitor"
+* "CoordinationCenterOperator"
+* "Consumer"
+* "ControlAreaOperator"
+* "purchasingSellingEntity"
+* "InterconnectionTradeResponsible"
+* "NominationValidator"
+* "balancingAuthority"
+* "transmissionServiceProvider"
+* "ResourceProvider"
+* "planningAuthority"
+* "energyServiceConsumer"
+* "TradeResponsibleParty"
+* "MeteredDataResponsible"
+* "BillingAgent"
+* "GridOperator"
+* "MeteredDataCollector"
+* "generatorOwner"
+* "BalanceSupplier"
+* "SchedulingCoordinator"
+* "BlockEnergyTrader"
+* "MeteringPointAdministrator"
+* "ReconciliationAccountable"
+* "resourcePlanner"
+* "loadServingEntity"
+* "ConsumptionResponsibleParty"
+* "GridAccessProvider"
+* "MarketInformationAggregator"
+* "ReconciliationResponsible"
+* "ImbalanceSettlementResponsible"
+* "MeterOperator"
+* "reliabilityAuthority"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:27 -0600

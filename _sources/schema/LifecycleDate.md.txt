@@ -1,0 +1,90 @@
+# LifecycleDate
+
+- [1. Property `LifecycleDate > installationDate`](#installationDate)
+- [2. Property `LifecycleDate > manufacturedDate`](#manufacturedDate)
+- [3. Property `LifecycleDate > removalDate`](#removalDate)
+- [4. Property `LifecycleDate > retiredDate`](#retiredDate)
+- [5. Property `LifecycleDate > receivedDate`](#receivedDate)
+- [6. Property `LifecycleDate > purchaseDate`](#purchaseDate)
+
+**Title:** LifecycleDate
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Dates for asset lifecycle state changes. May have multiple lifecycle dates for this device and a compound type allows a query to return multiple dates.
+
+| Property                                 | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                                                                                                                                            |
+| ---------------------------------------- | ------- | ------ | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - [installationDate](#installationDate ) | No      | string | No         | -          | Date current installation was completed, which may not be the same as the in-service date. Asset may have been installed at other locations previously. Ignored if asset is (1) not currently installed (e.g., stored in a depot) or (2) not intended to be installed (e.g., vehicle, tool). |
+| - [manufacturedDate](#manufacturedDate ) | No      | string | No         | -          | Date the asset was manufactured.                                                                                                                                                                                                                                                             |
+| - [removalDate](#removalDate )           | No      | string | No         | -          | Date when the asset was last removed from service. Ignored if (1) not intended to be in service, or (2) currently in service.                                                                                                                                                                |
+| - [retiredDate](#retiredDate )           | No      | string | No         | -          | Date the asset is permanently retired from service and may be scheduled for disposal. Ignored if asset is (1) currently in service, or (2) permanently removed from service.                                                                                                                 |
+| - [receivedDate](#receivedDate )         | No      | string | No         | -          | Date the asset was received and first placed into inventory.                                                                                                                                                                                                                                 |
+| - [purchaseDate](#purchaseDate )         | No      | string | No         | -          | Date the asset was purchased. Note that even though an asset may have been purchased, it may not have been received into inventory at the time of purchase.                                                                                                                                  |
+
+## <a name="installationDate"></a>1. Property `LifecycleDate > installationDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date current installation was completed, which may not be the same as the in-service date. Asset may have been installed at other locations previously. Ignored if asset is (1) not currently installed (e.g., stored in a depot) or (2) not intended to be installed (e.g., vehicle, tool).
+
+## <a name="manufacturedDate"></a>2. Property `LifecycleDate > manufacturedDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date the asset was manufactured.
+
+## <a name="removalDate"></a>3. Property `LifecycleDate > removalDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date when the asset was last removed from service. Ignored if (1) not intended to be in service, or (2) currently in service.
+
+## <a name="retiredDate"></a>4. Property `LifecycleDate > retiredDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date the asset is permanently retired from service and may be scheduled for disposal. Ignored if asset is (1) currently in service, or (2) permanently removed from service.
+
+## <a name="receivedDate"></a>5. Property `LifecycleDate > receivedDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date the asset was received and first placed into inventory.
+
+## <a name="purchaseDate"></a>6. Property `LifecycleDate > purchaseDate`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date the asset was purchased. Note that even though an asset may have been purchased, it may not have been received into inventory at the time of purchase.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

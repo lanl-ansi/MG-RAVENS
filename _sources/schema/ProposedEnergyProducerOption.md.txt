@@ -1,0 +1,2111 @@
+# ProposedEnergyProducerOption
+
+- [1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption.json`](#oneOf_i0)
+  - [1.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController`](#oneOf_i0_ProposedBatteryUnitOptionInverterController)
+    - [1.1.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > VarWattControlMode.VarWattControlCurve`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_VarWattControlModeVarWattControlCurve)
+    - [1.1.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > VoltVarWattControlMode.VoltVarWattControlCurve`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_VoltVarWattControlModeVoltVarWattControlCurve)
+    - [1.1.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > VoltWattControlMode.VoltWattControlCurve`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_VoltWattControlModeVoltWattControlCurve)
+    - [1.1.4. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > VoltVarControlMode.VoltVarControlCurve`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_VoltVarControlModeVoltVarControlCurve)
+    - [1.1.5. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.p`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep)
+      - [1.1.5.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.p > multiplier`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier)
+      - [1.1.5.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.p > unit`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit)
+      - [1.1.5.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.p > value`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_value)
+    - [1.1.6. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.q`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq)
+      - [1.1.6.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.q > multiplier`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq_multiplier)
+      - [1.1.6.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.q > unit`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq_unit)
+      - [1.1.6.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.q > value`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq_value)
+    - [1.1.7. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > IdentifiedObject.name`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectname)
+    - [1.1.8. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > IdentifiedObject.description`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectdescription)
+    - [1.1.9. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > IdentifiedObject.aliasName`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectaliasName)
+    - [1.1.10. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > IdentifiedObject.mRID`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectmRID)
+    - [1.1.11. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > ConstantPFControlMode.powerFactorSetpoint`](#oneOf_i0_ProposedBatteryUnitOptionInverterController_ConstantPFControlModepowerFactorSetpoint)
+  - [1.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.ProposedLocations`](#oneOf_i0_ProposedAssetOptionProposedLocations)
+    - [1.2.1. ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.ProposedLocations > ProposedAssetOption.ProposedLocations items](#autogenerated_heading_2)
+  - [1.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.variablePriceEnergy`](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy)
+    - [1.3.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.variablePriceEnergy > multiplier`](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_multiplier)
+    - [1.3.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.variablePriceEnergy > unit`](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_unit)
+    - [1.3.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.variablePriceEnergy > value`](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_value)
+  - [1.4. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > IdentifiedObject.description`](#oneOf_i0_IdentifiedObjectdescription)
+  - [1.5. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.fixedPrice`](#oneOf_i0_ProposedAssetOptionfixedPrice)
+    - [1.5.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.fixedPrice > multiplier`](#oneOf_i0_ProposedAssetOptionfixedPrice_multiplier)
+    - [1.5.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.fixedPrice > unit`](#oneOf_i0_ProposedAssetOptionfixedPrice_unit)
+    - [1.5.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.fixedPrice > value`](#oneOf_i0_ProposedAssetOptionfixedPrice_value)
+  - [1.6. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.phases`](#oneOf_i0_ProposedBatteryUnitOptionphases)
+  - [1.7. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.forcedOption`](#oneOf_i0_ProposedBatteryUnitOptionforcedOption)
+  - [1.8. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.lifetime`](#oneOf_i0_ProposedAssetOptionlifetime)
+  - [1.9. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMin`](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin)
+    - [1.9.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMin > multiplier`](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin_multiplier)
+    - [1.9.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMin > unit`](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin_unit)
+    - [1.9.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMin > value`](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin_value)
+  - [1.10. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMax`](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMax)
+  - [1.11. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityFixed`](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityFixed)
+  - [1.12. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMin`](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin)
+    - [1.12.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMin > multiplier`](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin_multiplier)
+    - [1.12.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMin > unit`](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin_unit)
+    - [1.12.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMin > value`](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin_value)
+  - [1.13. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMax`](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMax)
+  - [1.14. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.chargeEfficiency`](#oneOf_i0_ProposedBatteryUnitOptionchargeEfficiency)
+  - [1.15. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.dischargeEfficiency`](#oneOf_i0_ProposedBatteryUnitOptiondischargeEfficiency)
+  - [1.16. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate`](#oneOf_i0_ProposedBatteryUnitOptiondecayRate)
+    - [1.16.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > multiplier`](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_multiplier)
+    - [1.16.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > unit`](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit)
+      - [1.16.2.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > unit > multiplier`](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit_multiplier)
+      - [1.16.2.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > unit > unit`](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit_unit)
+      - [1.16.2.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > unit > value`](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit_value)
+    - [1.16.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > value`](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_value)
+  - [1.17. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable`](#oneOf_i0_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable)
+  - [1.18. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.operationsAndMaintenanceRateFixed`](#oneOf_i0_ProposedAssetOptionoperationsAndMaintenanceRateFixed)
+  - [1.19. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.variablePrice`](#oneOf_i0_ProposedEnergyProducerOptionvariablePrice)
+  - [1.20. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMin`](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin)
+    - [1.20.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMin > multiplier`](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin_multiplier)
+    - [1.20.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMin > unit`](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin_unit)
+    - [1.20.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMin > value`](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin_value)
+  - [1.21. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMax`](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMax)
+  - [1.22. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityFixed`](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityFixed)
+  - [1.23. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.chargeRate`](#oneOf_i0_ProposedBatteryUnitOptionchargeRate)
+  - [1.24. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.dischargeRate`](#oneOf_i0_ProposedBatteryUnitOptiondischargeRate)
+  - [1.25. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > IdentifiedObject.aliasName`](#oneOf_i0_IdentifiedObjectaliasName)
+  - [1.26. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > IdentifiedObject.mRID`](#oneOf_i0_IdentifiedObjectmRID)
+  - [1.27. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > IdentifiedObject.name`](#oneOf_i0_IdentifiedObjectname)
+- [2. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption.json`](#oneOf_i1)
+  - [2.1. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedPhotovoltaicUnitOption.GenerationProfile`](#oneOf_i1_ProposedPhotovoltaicUnitOptionGenerationProfile)
+  - [2.2. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.ProposedLocations`](#oneOf_i1_ProposedAssetOptionProposedLocations)
+    - [2.2.1. ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.ProposedLocations > ProposedAssetOption.ProposedLocations items](#autogenerated_heading_3)
+  - [2.3. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.fixedPrice`](#oneOf_i1_ProposedAssetOptionfixedPrice)
+  - [2.4. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.powerCapacityMax`](#oneOf_i1_ProposedEnergyProducerOptionpowerCapacityMax)
+  - [2.5. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable`](#oneOf_i1_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable)
+  - [2.6. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.operationsAndMaintenanceRateFixed`](#oneOf_i1_ProposedAssetOptionoperationsAndMaintenanceRateFixed)
+  - [2.7. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.variablePrice`](#oneOf_i1_ProposedEnergyProducerOptionvariablePrice)
+  - [2.8. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.lifetime`](#oneOf_i1_ProposedAssetOptionlifetime)
+  - [2.9. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.powerCapacityMin`](#oneOf_i1_ProposedEnergyProducerOptionpowerCapacityMin)
+  - [2.10. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.powerCapacityFixed`](#oneOf_i1_ProposedEnergyProducerOptionpowerCapacityFixed)
+  - [2.11. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > IdentifiedObject.description`](#oneOf_i1_IdentifiedObjectdescription)
+  - [2.12. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > IdentifiedObject.aliasName`](#oneOf_i1_IdentifiedObjectaliasName)
+  - [2.13. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > IdentifiedObject.mRID`](#oneOf_i1_IdentifiedObjectmRID)
+  - [2.14. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > IdentifiedObject.name`](#oneOf_i1_IdentifiedObjectname)
+- [3. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption.json`](#oneOf_i2)
+  - [3.1. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedWindUnitOption.GenerationProfile`](#oneOf_i2_ProposedWindUnitOptionGenerationProfile)
+  - [3.2. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.ProposedLocations`](#oneOf_i2_ProposedAssetOptionProposedLocations)
+    - [3.2.1. ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.ProposedLocations > ProposedAssetOption.ProposedLocations items](#autogenerated_heading_4)
+  - [3.3. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.fixedPrice`](#oneOf_i2_ProposedAssetOptionfixedPrice)
+  - [3.4. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.powerCapacityMax`](#oneOf_i2_ProposedEnergyProducerOptionpowerCapacityMax)
+  - [3.5. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable`](#oneOf_i2_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable)
+  - [3.6. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.operationsAndMaintenanceRateFixed`](#oneOf_i2_ProposedAssetOptionoperationsAndMaintenanceRateFixed)
+  - [3.7. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.variablePrice`](#oneOf_i2_ProposedEnergyProducerOptionvariablePrice)
+  - [3.8. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.lifetime`](#oneOf_i2_ProposedAssetOptionlifetime)
+  - [3.9. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.powerCapacityMin`](#oneOf_i2_ProposedEnergyProducerOptionpowerCapacityMin)
+  - [3.10. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.powerCapacityFixed`](#oneOf_i2_ProposedEnergyProducerOptionpowerCapacityFixed)
+  - [3.11. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > IdentifiedObject.description`](#oneOf_i2_IdentifiedObjectdescription)
+  - [3.12. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > IdentifiedObject.aliasName`](#oneOf_i2_IdentifiedObjectaliasName)
+  - [3.13. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > IdentifiedObject.mRID`](#oneOf_i2_IdentifiedObjectmRID)
+  - [3.14. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > IdentifiedObject.name`](#oneOf_i2_IdentifiedObjectname)
+- [4. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption.json`](#oneOf_i3)
+  - [4.1. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.ProposedLocations`](#oneOf_i3_ProposedAssetOptionProposedLocations)
+    - [4.1.1. ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.ProposedLocations > ProposedAssetOption.ProposedLocations items](#autogenerated_heading_5)
+  - [4.2. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > IdentifiedObject.description`](#oneOf_i3_IdentifiedObjectdescription)
+  - [4.3. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.fixedPrice`](#oneOf_i3_ProposedAssetOptionfixedPrice)
+  - [4.4. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.lifetime`](#oneOf_i3_ProposedAssetOptionlifetime)
+  - [4.5. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.numUnitsMin`](#oneOf_i3_ProposedGeneratingUnitOptionnumUnitsMin)
+  - [4.6. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.numUnitsMax`](#oneOf_i3_ProposedGeneratingUnitOptionnumUnitsMax)
+  - [4.7. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.numUnitsFixed`](#oneOf_i3_ProposedGeneratingUnitOptionnumUnitsFixed)
+  - [4.8. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.unitEfficiency`](#oneOf_i3_ProposedGeneratingUnitOptionunitEfficiency)
+  - [4.9. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.heatRecoveryEfficiency`](#oneOf_i3_ProposedGeneratingUnitOptionheatRecoveryEfficiency)
+  - [4.10. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.combinedHeatPowerEnabled`](#oneOf_i3_ProposedGeneratingUnitOptioncombinedHeatPowerEnabled)
+  - [4.11. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable`](#oneOf_i3_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable)
+  - [4.12. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.operationsAndMaintenanceRateFixed`](#oneOf_i3_ProposedAssetOptionoperationsAndMaintenanceRateFixed)
+  - [4.13. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.variablePrice`](#oneOf_i3_ProposedEnergyProducerOptionvariablePrice)
+  - [4.14. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.powerCapacityMin`](#oneOf_i3_ProposedEnergyProducerOptionpowerCapacityMin)
+  - [4.15. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.powerCapacityMax`](#oneOf_i3_ProposedEnergyProducerOptionpowerCapacityMax)
+  - [4.16. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.powerCapacityFixed`](#oneOf_i3_ProposedEnergyProducerOptionpowerCapacityFixed)
+  - [4.17. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelType`](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelType)
+  - [4.18. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelCapacity`](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity)
+    - [4.18.1. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelCapacity > multiplier`](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity_multiplier)
+    - [4.18.2. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelCapacity > unit`](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity_unit)
+    - [4.18.3. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelCapacity > value`](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity_value)
+  - [4.19. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > IdentifiedObject.aliasName`](#oneOf_i3_IdentifiedObjectaliasName)
+  - [4.20. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > IdentifiedObject.mRID`](#oneOf_i3_IdentifiedObjectmRID)
+  - [4.21. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > IdentifiedObject.name`](#oneOf_i3_IdentifiedObjectname)
+
+**Title:** ProposedEnergyProducerOption
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                               |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** nan
+
+| One of(Option)                                   |
+| ------------------------------------------------ |
+| [ProposedBatteryUnitOption.json](#oneOf_i0)      |
+| [ProposedPhotovoltaicUnitOption.json](#oneOf_i1) |
+| [ProposedWindUnitOption.json](#oneOf_i2)         |
+| [ProposedGeneratingUnitOption.json](#oneOf_i3)   |
+
+## <a name="oneOf_i0"></a>1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ProposedBatteryUnitOption.json                                          |
+
+**Description:** nan
+
+| Property                                                                                                                                           | Pattern | Type             | Deprecated | Definition                                                                                                       | Title/Description                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| - [ProposedBatteryUnitOption.InverterController](#oneOf_i0_ProposedBatteryUnitOptionInverterController )                                           | No      | object           | No         | In ./InverterController.json                                                                                     | nan                                  |
+| - [ProposedAssetOption.ProposedLocations](#oneOf_i0_ProposedAssetOptionProposedLocations )                                                         | No      | array of string  | No         | -                                                                                                                | -                                    |
+| - [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy )                                         | No      | object           | No         | In ./CostPerEnergyUnit.json                                                                                      | variablePriceEnergy                  |
+| - [IdentifiedObject.description](#oneOf_i0_IdentifiedObjectdescription )                                                                           | No      | string           | No         | -                                                                                                                | description                          |
+| - [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice )                                                                       | No      | object           | No         | In ./Money.json                                                                                                  | fixedPrice                           |
+| - [ProposedBatteryUnitOption.phases](#oneOf_i0_ProposedBatteryUnitOptionphases )                                                                   | No      | enum (of string) | No         | In ./PhaseCode.json                                                                                              | phases                               |
+| - [ProposedBatteryUnitOption.forcedOption](#oneOf_i0_ProposedBatteryUnitOptionforcedOption )                                                       | No      | boolean          | No         | -                                                                                                                | forcedOption                         |
+| - [ProposedAssetOption.lifetime](#oneOf_i0_ProposedAssetOptionlifetime )                                                                           | No      | string           | No         | -                                                                                                                | lifetime                             |
+| - [ProposedBatteryUnitOption.energyCapacityMin](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin )                                             | No      | object or number | No         | In ./RealEnergy.json                                                                                             | energyCapacityMin                    |
+| - [ProposedBatteryUnitOption.energyCapacityMax](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMax )                                             | No      | object or number | No         | Same as [ProposedBatteryUnitOption.energyCapacityMin](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin )     | energyCapacityMax                    |
+| - [ProposedBatteryUnitOption.energyCapacityFixed](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityFixed )                                         | No      | object or number | No         | Same as [ProposedBatteryUnitOption.energyCapacityMin](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin )     | energyCapacityFixed                  |
+| - [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin )                                               | No      | object or number | No         | In ./PerCent.json                                                                                                | stateOfChargeMin                     |
+| - [ProposedBatteryUnitOption.stateOfChargeMax](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMax )                                               | No      | object or number | No         | Same as [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin )       | stateOfChargeMax                     |
+| - [ProposedBatteryUnitOption.chargeEfficiency](#oneOf_i0_ProposedBatteryUnitOptionchargeEfficiency )                                               | No      | object or number | No         | Same as [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin )       | chargeEfficiency                     |
+| - [ProposedBatteryUnitOption.dischargeEfficiency](#oneOf_i0_ProposedBatteryUnitOptiondischargeEfficiency )                                         | No      | object or number | No         | Same as [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin )       | dischargeEfficiency                  |
+| - [ProposedBatteryUnitOption.decayRate](#oneOf_i0_ProposedBatteryUnitOptiondecayRate )                                                             | No      | object           | No         | In ./RealEnergyTransferRate.json                                                                                 | decayRate                            |
+| - [ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable](#oneOf_i0_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable ) | No      | object           | No         | Same as [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy ) | operationsAndMaintenanceRateVariable |
+| - [ProposedAssetOption.operationsAndMaintenanceRateFixed](#oneOf_i0_ProposedAssetOptionoperationsAndMaintenanceRateFixed )                         | No      | object           | No         | Same as [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice )                               | operationsAndMaintenanceRateFixed    |
+| - [ProposedEnergyProducerOption.variablePrice](#oneOf_i0_ProposedEnergyProducerOptionvariablePrice )                                               | No      | object           | No         | Same as [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy ) | variablePrice                        |
+| - [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin )                                         | No      | object or number | No         | In ./KiloActivePower.json                                                                                        | powerCapacityMin                     |
+| - [ProposedEnergyProducerOption.powerCapacityMax](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMax )                                         | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityMax                     |
+| - [ProposedEnergyProducerOption.powerCapacityFixed](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityFixed )                                     | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityFixed                   |
+| - [ProposedBatteryUnitOption.chargeRate](#oneOf_i0_ProposedBatteryUnitOptionchargeRate )                                                           | No      | object           | No         | Same as [ProposedBatteryUnitOption.decayRate](#oneOf_i0_ProposedBatteryUnitOptiondecayRate )                     | chargeRate                           |
+| - [ProposedBatteryUnitOption.dischargeRate](#oneOf_i0_ProposedBatteryUnitOptiondischargeRate )                                                     | No      | object           | No         | Same as [ProposedBatteryUnitOption.decayRate](#oneOf_i0_ProposedBatteryUnitOptiondecayRate )                     | dischargeRate                        |
+| - [IdentifiedObject.aliasName](#oneOf_i0_IdentifiedObjectaliasName )                                                                               | No      | string           | No         | -                                                                                                                | aliasName                            |
+| - [IdentifiedObject.mRID](#oneOf_i0_IdentifiedObjectmRID )                                                                                         | No      | string           | No         | -                                                                                                                | mRID                                 |
+| - [IdentifiedObject.name](#oneOf_i0_IdentifiedObjectname )                                                                                         | No      | string           | No         | -                                                                                                                | name                                 |
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController"></a>1.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./InverterController.json                                                 |
+
+**Description:** nan
+
+| Property                                                                                                                                                 | Pattern | Type             | Deprecated | Definition              | Title/Description   |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------- | ------------------- |
+| - [VarWattControlMode.VarWattControlCurve](#oneOf_i0_ProposedBatteryUnitOptionInverterController_VarWattControlModeVarWattControlCurve )                 | No      | string           | No         | -                       | -                   |
+| - [VoltVarWattControlMode.VoltVarWattControlCurve](#oneOf_i0_ProposedBatteryUnitOptionInverterController_VoltVarWattControlModeVoltVarWattControlCurve ) | No      | string           | No         | -                       | -                   |
+| - [VoltWattControlMode.VoltWattControlCurve](#oneOf_i0_ProposedBatteryUnitOptionInverterController_VoltWattControlModeVoltWattControlCurve )             | No      | string           | No         | -                       | -                   |
+| - [VoltVarControlMode.VoltVarControlCurve](#oneOf_i0_ProposedBatteryUnitOptionInverterController_VoltVarControlModeVoltVarControlCurve )                 | No      | string           | No         | -                       | -                   |
+| - [DroopControlMode.p](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep )                                                         | No      | object or number | No         | In ./ActivePower.json   | p                   |
+| - [DroopControlMode.q](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq )                                                         | No      | object or number | No         | In ./ReactivePower.json | q                   |
+| - [IdentifiedObject.name](#oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectname )                                                   | No      | string           | No         | -                       | name                |
+| - [IdentifiedObject.description](#oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectdescription )                                     | No      | string           | No         | -                       | description         |
+| - [IdentifiedObject.aliasName](#oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectaliasName )                                         | No      | string           | No         | -                       | aliasName           |
+| - [IdentifiedObject.mRID](#oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectmRID )                                                   | No      | string           | No         | -                       | mRID                |
+| - [ConstantPFControlMode.powerFactorSetpoint](#oneOf_i0_ProposedBatteryUnitOptionInverterController_ConstantPFControlModepowerFactorSetpoint )           | No      | number           | No         | -                       | powerFactorSetpoint |
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_VarWattControlModeVarWattControlCurve"></a>1.1.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > VarWattControlMode.VarWattControlCurve`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_VoltVarWattControlModeVoltVarWattControlCurve"></a>1.1.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > VoltVarWattControlMode.VoltVarWattControlCurve`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_VoltWattControlModeVoltWattControlCurve"></a>1.1.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > VoltWattControlMode.VoltWattControlCurve`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_VoltVarControlModeVoltVarControlCurve"></a>1.1.4. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > VoltVarControlMode.VoltVarControlCurve`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep"></a>1.1.5. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.p`
+
+**Title:** p
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./ActivePower.json |
+
+**Description:** nan
+
+| Property                                                                                            | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| --------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_value )           | No      | number           | No         | -                        | nan               |
+
+##### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier"></a>1.1.5.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.p > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+##### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit"></a>1.1.5.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.p > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"W"`              |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+##### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_value"></a>1.1.5.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.p > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq"></a>1.1.6. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.q`
+
+**Title:** q
+
+|                |                      |
+| -------------- | -------------------- |
+| **Type**       | `object or number`   |
+| **Required**   | No                   |
+| **Defined in** | ./ReactivePower.json |
+
+**Description:** nan
+
+| Property                                                                                            | Pattern | Type             | Deprecated | Definition                                                                                                | Title/Description |
+| --------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | nan               |
+| - [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq_unit )             | No      | enum (of string) | No         | Same as [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit )             | nan               |
+| - [value](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq_value )           | No      | number           | No         | -                                                                                                         | nan               |
+
+##### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq_multiplier"></a>1.1.6.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.q > multiplier`
+
+|                        |                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                               |
+| **Required**           | No                                                                                               |
+| **Default**            | `"none"`                                                                                         |
+| **Same definition as** | [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier) |
+
+**Description:** nan
+
+##### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq_unit"></a>1.1.6.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.q > unit`
+
+|                        |                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                   |
+| **Required**           | No                                                                                   |
+| **Default**            | `"VAr"`                                                                              |
+| **Same definition as** | [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit) |
+
+**Description:** nan
+
+##### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModeq_value"></a>1.1.6.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > DroopControlMode.q > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectname"></a>1.1.7. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectdescription"></a>1.1.8. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectaliasName"></a>1.1.9. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_IdentifiedObjectmRID"></a>1.1.10. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionInverterController_ConstantPFControlModepowerFactorSetpoint"></a>1.1.11. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.InverterController > ConstantPFControlMode.powerFactorSetpoint`
+
+**Title:** powerFactorSetpoint
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedAssetOptionProposedLocations"></a>1.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.ProposedLocations`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | No                |
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                                                     | Description |
+| --------------------------------------------------------------------------------------------------- | ----------- |
+| [ProposedAssetOption.ProposedLocations items](#oneOf_i0_ProposedAssetOptionProposedLocations_items) | -           |
+
+#### <a name="autogenerated_heading_2"></a>1.2.1. ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.ProposedLocations > ProposedAssetOption.ProposedLocations items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy"></a>1.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.variablePriceEnergy`
+
+**Title:** variablePriceEnergy
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./CostPerEnergyUnit.json                                                  |
+
+**Description:** nan
+
+| Property                                                                           | Pattern | Type             | Deprecated | Definition                                                                                                | Title/Description |
+| ---------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | nan               |
+| - [unit](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_unit )             | No      | enum (of string) | No         | In ./Currency.json                                                                                        | nan               |
+| - [value](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_value )           | No      | number           | No         | -                                                                                                         | nan               |
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_multiplier"></a>1.3.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.variablePriceEnergy > multiplier`
+
+|                        |                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                               |
+| **Required**           | No                                                                                               |
+| **Default**            | `"none"`                                                                                         |
+| **Same definition as** | [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_unit"></a>1.3.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.variablePriceEnergy > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `null`             |
+| **Defined in** | ./Currency.json    |
+
+**Description:** nan
+
+Must be one of:
+* "AUD"
+* "CHF"
+* "AFN"
+* "AED"
+* "ALL"
+* "AMD"
+* "ANG"
+* "AOA"
+* "ARS"
+* "AWG"
+* "AZN"
+* "BAM"
+* "BBD"
+* "BDT"
+* "BGN"
+* "BHD"
+* "BIF"
+* "BMD"
+* "BND"
+* "BOB"
+* "BOV"
+* "BRL"
+* "BSD"
+* "BTN"
+* "BWP"
+* "BYR"
+* "BZD"
+* "CAD"
+* "CDF"
+* "CLF"
+* "CLP"
+* "CNY"
+* "ZAR"
+* "COP"
+* "COU"
+* "CRC"
+* "CUC"
+* "CUP"
+* "CVE"
+* "CZK"
+* "DJF"
+* "DKK"
+* "DOP"
+* "DZD"
+* "EEK"
+* "EGP"
+* "ERN"
+* "ETB"
+* "EUR"
+* "FJD"
+* "FKP"
+* "GBP"
+* "GEL"
+* "GHS"
+* "GIP"
+* "GMD"
+* "GNF"
+* "GTQ"
+* "GYD"
+* "HKD"
+* "HNL"
+* "HRK"
+* "HTG"
+* "HUF"
+* "IDR"
+* "ILS"
+* "INR"
+* "IQD"
+* "IRR"
+* "ISK"
+* "JMD"
+* "JOD"
+* "JPY"
+* "KES"
+* "KGS"
+* "KHR"
+* "KMF"
+* "KPW"
+* "KRW"
+* "KWD"
+* "KYD"
+* "KZT"
+* "LAK"
+* "LBP"
+* "LKR"
+* "LRD"
+* "LSL"
+* "LTL"
+* "LVL"
+* "LYD"
+* "MAD"
+* "MDL"
+* "MGA"
+* "MKD"
+* "MMK"
+* "MNT"
+* "MOP"
+* "MRO"
+* "MUR"
+* "MVR"
+* "MWK"
+* "MXN"
+* "MYR"
+* "MZN"
+* "NAD"
+* "NGN"
+* "NIO"
+* "NOK"
+* "NPR"
+* "NZD"
+* "OMR"
+* "PAB"
+* "PEN"
+* "PGK"
+* "PHP"
+* "PKR"
+* "PLN"
+* "PYG"
+* "QAR"
+* "RON"
+* "RSD"
+* "RUB"
+* "RWF"
+* "SAR"
+* "SBD"
+* "SCR"
+* "SDG"
+* "SEK"
+* "SGD"
+* "SHP"
+* "SLL"
+* "SOS"
+* "SRD"
+* "STD"
+* "SYP"
+* "SZL"
+* "THB"
+* "TJS"
+* "TMT"
+* "TND"
+* "TOP"
+* "TRY"
+* "TTD"
+* "TWD"
+* "TZS"
+* "UAH"
+* "UGX"
+* "USD"
+* "UYU"
+* "UZS"
+* "VEF"
+* "VND"
+* "VUV"
+* "WST"
+* "XAF"
+* "XCD"
+* "XOF"
+* "XPF"
+* "YER"
+* "ZMK"
+* "ZWL"
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_value"></a>1.3.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.variablePriceEnergy > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+### <a name="oneOf_i0_IdentifiedObjectdescription"></a>1.4. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i0_ProposedAssetOptionfixedPrice"></a>1.5. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.fixedPrice`
+
+**Title:** fixedPrice
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./Money.json                                                              |
+
+**Description:** nan
+
+| Property                                                            | Pattern | Type             | Deprecated | Definition                                                                                                | Title/Description |
+| ------------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#oneOf_i0_ProposedAssetOptionfixedPrice_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | nan               |
+| - [unit](#oneOf_i0_ProposedAssetOptionfixedPrice_unit )             | No      | enum (of string) | No         | Same as [unit](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_unit )                              | nan               |
+| - [value](#oneOf_i0_ProposedAssetOptionfixedPrice_value )           | No      | number           | No         | -                                                                                                         | nan               |
+
+#### <a name="oneOf_i0_ProposedAssetOptionfixedPrice_multiplier"></a>1.5.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.fixedPrice > multiplier`
+
+|                        |                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                               |
+| **Required**           | No                                                                                               |
+| **Default**            | `"none"`                                                                                         |
+| **Same definition as** | [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedAssetOptionfixedPrice_unit"></a>1.5.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.fixedPrice > unit`
+
+|                        |                                                                     |
+| ---------------------- | ------------------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                                  |
+| **Required**           | No                                                                  |
+| **Default**            | `null`                                                              |
+| **Same definition as** | [unit](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy_unit) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedAssetOptionfixedPrice_value"></a>1.5.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.fixedPrice > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionphases"></a>1.6. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.phases`
+
+**Title:** phases
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Defined in** | ./PhaseCode.json   |
+
+**Description:** nan
+
+Must be one of:
+* "ABCN"
+* "ABC"
+* "ABN"
+* "ACN"
+* "BCN"
+* "AB"
+* "AC"
+* "BC"
+* "AN"
+* "BN"
+* "CN"
+* "A"
+* "B"
+* "C"
+* "N"
+* "s1N"
+* "s2N"
+* "s12N"
+* "s1"
+* "s2"
+* "s12"
+* "none"
+* "X"
+* "XY"
+* "XN"
+* "XYN"
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionforcedOption"></a>1.7. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.forcedOption`
+
+**Title:** forcedOption
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedAssetOptionlifetime"></a>1.8. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.lifetime`
+
+**Title:** lifetime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin"></a>1.9. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMin`
+
+**Title:** energyCapacityMin
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./RealEnergy.json  |
+
+**Description:** nan
+
+| Property                                                                         | Pattern | Type             | Deprecated | Definition                                                                                                | Title/Description |
+| -------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | nan               |
+| - [unit](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin_unit )             | No      | enum (of string) | No         | Same as [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit )             | nan               |
+| - [value](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin_value )           | No      | number           | No         | -                                                                                                         | nan               |
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin_multiplier"></a>1.9.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMin > multiplier`
+
+|                        |                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                               |
+| **Required**           | No                                                                                               |
+| **Default**            | `"none"`                                                                                         |
+| **Same definition as** | [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin_unit"></a>1.9.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMin > unit`
+
+|                        |                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                   |
+| **Required**           | No                                                                                   |
+| **Default**            | `"Wh"`                                                                               |
+| **Same definition as** | [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin_value"></a>1.9.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMin > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMax"></a>1.10. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityMax`
+
+**Title:** energyCapacityMax
+
+|                        |                                                                                                     |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                  |
+| **Required**           | No                                                                                                  |
+| **Same definition as** | [ProposedBatteryUnitOption.energyCapacityMin](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionenergyCapacityFixed"></a>1.11. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.energyCapacityFixed`
+
+**Title:** energyCapacityFixed
+
+|                        |                                                                                                     |
+| ---------------------- | --------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                  |
+| **Required**           | No                                                                                                  |
+| **Same definition as** | [ProposedBatteryUnitOption.energyCapacityMin](#oneOf_i0_ProposedBatteryUnitOptionenergyCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin"></a>1.12. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMin`
+
+**Title:** stateOfChargeMin
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./PerCent.json     |
+
+**Description:** nan
+
+| Property                                                                        | Pattern | Type             | Deprecated | Definition                                                                                                | Title/Description                    |
+| ------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| - [multiplier](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | nan                                  |
+| - [unit](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin_unit )             | No      | enum (of string) | No         | Same as [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit )             | nan                                  |
+| - [value](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin_value )           | No      | number           | No         | -                                                                                                         | Normally 0 to 100 on a defined base. |
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin_multiplier"></a>1.12.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMin > multiplier`
+
+|                        |                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                               |
+| **Required**           | No                                                                                               |
+| **Default**            | `"none"`                                                                                         |
+| **Same definition as** | [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin_unit"></a>1.12.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMin > unit`
+
+|                        |                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                   |
+| **Required**           | No                                                                                   |
+| **Default**            | `"none"`                                                                             |
+| **Same definition as** | [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin_value"></a>1.12.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMin > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Normally 0 to 100 on a defined base.
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMax"></a>1.13. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.stateOfChargeMax`
+
+**Title:** stateOfChargeMax
+
+|                        |                                                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                |
+| **Required**           | No                                                                                                |
+| **Same definition as** | [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionchargeEfficiency"></a>1.14. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.chargeEfficiency`
+
+**Title:** chargeEfficiency
+
+|                        |                                                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                |
+| **Required**           | No                                                                                                |
+| **Same definition as** | [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptiondischargeEfficiency"></a>1.15. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.dischargeEfficiency`
+
+**Title:** dischargeEfficiency
+
+|                        |                                                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                |
+| **Required**           | No                                                                                                |
+| **Same definition as** | [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptiondecayRate"></a>1.16. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate`
+
+**Title:** decayRate
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./RealEnergyTransferRate.json                                             |
+
+**Description:** nan
+
+| Property                                                                 | Pattern | Type             | Deprecated | Definition                                                                                                | Title/Description |
+| ------------------------------------------------------------------------ | ------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | nan               |
+| - [unit](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit )             | No      | object or number | No         | In ./Hours.json                                                                                           | nan               |
+| - [value](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_value )           | No      | number           | No         | -                                                                                                         | nan               |
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptiondecayRate_multiplier"></a>1.16.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > multiplier`
+
+|                        |                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                               |
+| **Required**           | No                                                                                               |
+| **Default**            | `"none"`                                                                                         |
+| **Same definition as** | [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit"></a>1.16.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Default**    | `null`             |
+| **Defined in** | ./Hours.json       |
+
+**Description:** nan
+
+| Property                                                                      | Pattern | Type             | Deprecated | Definition                                                                                                | Title/Description |
+| ----------------------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | nan               |
+| - [unit](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit_unit )             | No      | enum (of string) | No         | Same as [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit )             | nan               |
+| - [value](#oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit_value )           | No      | number           | No         | -                                                                                                         | nan               |
+
+##### <a name="oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit_multiplier"></a>1.16.2.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > unit > multiplier`
+
+|                        |                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                               |
+| **Required**           | No                                                                                               |
+| **Default**            | `"none"`                                                                                         |
+| **Same definition as** | [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier) |
+
+**Description:** nan
+
+##### <a name="oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit_unit"></a>1.16.2.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > unit > unit`
+
+|                        |                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                   |
+| **Required**           | No                                                                                   |
+| **Default**            | `"h"`                                                                                |
+| **Same definition as** | [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit) |
+
+**Description:** nan
+
+##### <a name="oneOf_i0_ProposedBatteryUnitOptiondecayRate_unit_value"></a>1.16.2.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > unit > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedBatteryUnitOptiondecayRate_value"></a>1.16.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.decayRate > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable"></a>1.17. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable`
+
+**Title:** operationsAndMaintenanceRateVariable
+
+|                           |                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                |
+| **Required**              | No                                                                                                      |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")                               |
+| **Same definition as**    | [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedAssetOptionoperationsAndMaintenanceRateFixed"></a>1.18. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedAssetOption.operationsAndMaintenanceRateFixed`
+
+**Title:** operationsAndMaintenanceRateFixed
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedEnergyProducerOptionvariablePrice"></a>1.19. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.variablePrice`
+
+**Title:** variablePrice
+
+|                           |                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                |
+| **Required**              | No                                                                                                      |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")                               |
+| **Same definition as**    | [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy) |
+
+**Description:** $/kW
+
+### <a name="oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin"></a>1.20. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMin`
+
+**Title:** powerCapacityMin
+
+|                |                        |
+| -------------- | ---------------------- |
+| **Type**       | `object or number`     |
+| **Required**   | No                     |
+| **Defined in** | ./KiloActivePower.json |
+
+**Description:** nan
+
+| Property                                                                           | Pattern | Type             | Deprecated | Definition                                                                                                | Title/Description |
+| ---------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | nan               |
+| - [unit](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin_unit )             | No      | enum (of string) | No         | Same as [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit )             | nan               |
+| - [value](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin_value )           | No      | number           | No         | -                                                                                                         | nan               |
+
+#### <a name="oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin_multiplier"></a>1.20.1. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMin > multiplier`
+
+|                        |                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                               |
+| **Required**           | No                                                                                               |
+| **Default**            | `"k"`                                                                                            |
+| **Same definition as** | [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin_unit"></a>1.20.2. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMin > unit`
+
+|                        |                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                   |
+| **Required**           | No                                                                                   |
+| **Default**            | `"W"`                                                                                |
+| **Same definition as** | [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin_value"></a>1.20.3. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMin > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMax"></a>1.21. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityMax`
+
+**Title:** powerCapacityMax
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedEnergyProducerOptionpowerCapacityFixed"></a>1.22. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedEnergyProducerOption.powerCapacityFixed`
+
+**Title:** powerCapacityFixed
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptionchargeRate"></a>1.23. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.chargeRate`
+
+**Title:** chargeRate
+
+|                           |                                                                                     |
+| ------------------------- | ----------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                            |
+| **Required**              | No                                                                                  |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")           |
+| **Same definition as**    | [ProposedBatteryUnitOption.decayRate](#oneOf_i0_ProposedBatteryUnitOptiondecayRate) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_ProposedBatteryUnitOptiondischargeRate"></a>1.24. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > ProposedBatteryUnitOption.dischargeRate`
+
+**Title:** dischargeRate
+
+|                           |                                                                                     |
+| ------------------------- | ----------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                            |
+| **Required**              | No                                                                                  |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")           |
+| **Same definition as**    | [ProposedBatteryUnitOption.decayRate](#oneOf_i0_ProposedBatteryUnitOptiondecayRate) |
+
+**Description:** nan
+
+### <a name="oneOf_i0_IdentifiedObjectaliasName"></a>1.25. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i0_IdentifiedObjectmRID"></a>1.26. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i0_IdentifiedObjectname"></a>1.27. Property `ProposedEnergyProducerOption > oneOf > ProposedBatteryUnitOption > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i1"></a>2. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ProposedPhotovoltaicUnitOption.json                                     |
+
+**Description:** nan
+
+| Property                                                                                                                                           | Pattern | Type             | Deprecated | Definition                                                                                                       | Title/Description                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| - [ProposedPhotovoltaicUnitOption.GenerationProfile](#oneOf_i1_ProposedPhotovoltaicUnitOptionGenerationProfile )                                   | No      | string           | No         | -                                                                                                                | -                                    |
+| - [ProposedAssetOption.ProposedLocations](#oneOf_i1_ProposedAssetOptionProposedLocations )                                                         | No      | array of string  | No         | -                                                                                                                | -                                    |
+| - [ProposedAssetOption.fixedPrice](#oneOf_i1_ProposedAssetOptionfixedPrice )                                                                       | No      | object           | No         | Same as [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice )                               | fixedPrice                           |
+| - [ProposedEnergyProducerOption.powerCapacityMax](#oneOf_i1_ProposedEnergyProducerOptionpowerCapacityMax )                                         | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityMax                     |
+| - [ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable](#oneOf_i1_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable ) | No      | object           | No         | Same as [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy ) | operationsAndMaintenanceRateVariable |
+| - [ProposedAssetOption.operationsAndMaintenanceRateFixed](#oneOf_i1_ProposedAssetOptionoperationsAndMaintenanceRateFixed )                         | No      | object           | No         | Same as [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice )                               | operationsAndMaintenanceRateFixed    |
+| - [ProposedEnergyProducerOption.variablePrice](#oneOf_i1_ProposedEnergyProducerOptionvariablePrice )                                               | No      | object           | No         | Same as [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy ) | variablePrice                        |
+| - [ProposedAssetOption.lifetime](#oneOf_i1_ProposedAssetOptionlifetime )                                                                           | No      | string           | No         | -                                                                                                                | lifetime                             |
+| - [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i1_ProposedEnergyProducerOptionpowerCapacityMin )                                         | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityMin                     |
+| - [ProposedEnergyProducerOption.powerCapacityFixed](#oneOf_i1_ProposedEnergyProducerOptionpowerCapacityFixed )                                     | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityFixed                   |
+| - [IdentifiedObject.description](#oneOf_i1_IdentifiedObjectdescription )                                                                           | No      | string           | No         | -                                                                                                                | description                          |
+| - [IdentifiedObject.aliasName](#oneOf_i1_IdentifiedObjectaliasName )                                                                               | No      | string           | No         | -                                                                                                                | aliasName                            |
+| - [IdentifiedObject.mRID](#oneOf_i1_IdentifiedObjectmRID )                                                                                         | No      | string           | No         | -                                                                                                                | mRID                                 |
+| - [IdentifiedObject.name](#oneOf_i1_IdentifiedObjectname )                                                                                         | No      | string           | No         | -                                                                                                                | name                                 |
+
+### <a name="oneOf_i1_ProposedPhotovoltaicUnitOptionGenerationProfile"></a>2.1. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedPhotovoltaicUnitOption.GenerationProfile`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+### <a name="oneOf_i1_ProposedAssetOptionProposedLocations"></a>2.2. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.ProposedLocations`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | No                |
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                                                     | Description |
+| --------------------------------------------------------------------------------------------------- | ----------- |
+| [ProposedAssetOption.ProposedLocations items](#oneOf_i1_ProposedAssetOptionProposedLocations_items) | -           |
+
+#### <a name="autogenerated_heading_3"></a>2.2.1. ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.ProposedLocations > ProposedAssetOption.ProposedLocations items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+### <a name="oneOf_i1_ProposedAssetOptionfixedPrice"></a>2.3. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.fixedPrice`
+
+**Title:** fixedPrice
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice) |
+
+**Description:** nan
+
+### <a name="oneOf_i1_ProposedEnergyProducerOptionpowerCapacityMax"></a>2.4. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.powerCapacityMax`
+
+**Title:** powerCapacityMax
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i1_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable"></a>2.5. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable`
+
+**Title:** operationsAndMaintenanceRateVariable
+
+|                           |                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                |
+| **Required**              | No                                                                                                      |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")                               |
+| **Same definition as**    | [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy) |
+
+**Description:** nan
+
+### <a name="oneOf_i1_ProposedAssetOptionoperationsAndMaintenanceRateFixed"></a>2.6. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.operationsAndMaintenanceRateFixed`
+
+**Title:** operationsAndMaintenanceRateFixed
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice) |
+
+**Description:** nan
+
+### <a name="oneOf_i1_ProposedEnergyProducerOptionvariablePrice"></a>2.7. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.variablePrice`
+
+**Title:** variablePrice
+
+|                           |                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                |
+| **Required**              | No                                                                                                      |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")                               |
+| **Same definition as**    | [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy) |
+
+**Description:** $/kW
+
+### <a name="oneOf_i1_ProposedAssetOptionlifetime"></a>2.8. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedAssetOption.lifetime`
+
+**Title:** lifetime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** nan
+
+### <a name="oneOf_i1_ProposedEnergyProducerOptionpowerCapacityMin"></a>2.9. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.powerCapacityMin`
+
+**Title:** powerCapacityMin
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i1_ProposedEnergyProducerOptionpowerCapacityFixed"></a>2.10. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > ProposedEnergyProducerOption.powerCapacityFixed`
+
+**Title:** powerCapacityFixed
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i1_IdentifiedObjectdescription"></a>2.11. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i1_IdentifiedObjectaliasName"></a>2.12. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i1_IdentifiedObjectmRID"></a>2.13. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i1_IdentifiedObjectname"></a>2.14. Property `ProposedEnergyProducerOption > oneOf > ProposedPhotovoltaicUnitOption > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i2"></a>3. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ProposedWindUnitOption.json                                             |
+
+**Description:** nan
+
+| Property                                                                                                                                           | Pattern | Type             | Deprecated | Definition                                                                                                       | Title/Description                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| - [ProposedWindUnitOption.GenerationProfile](#oneOf_i2_ProposedWindUnitOptionGenerationProfile )                                                   | No      | string           | No         | -                                                                                                                | -                                    |
+| - [ProposedAssetOption.ProposedLocations](#oneOf_i2_ProposedAssetOptionProposedLocations )                                                         | No      | array of string  | No         | -                                                                                                                | -                                    |
+| - [ProposedAssetOption.fixedPrice](#oneOf_i2_ProposedAssetOptionfixedPrice )                                                                       | No      | object           | No         | Same as [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice )                               | fixedPrice                           |
+| - [ProposedEnergyProducerOption.powerCapacityMax](#oneOf_i2_ProposedEnergyProducerOptionpowerCapacityMax )                                         | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityMax                     |
+| - [ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable](#oneOf_i2_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable ) | No      | object           | No         | Same as [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy ) | operationsAndMaintenanceRateVariable |
+| - [ProposedAssetOption.operationsAndMaintenanceRateFixed](#oneOf_i2_ProposedAssetOptionoperationsAndMaintenanceRateFixed )                         | No      | object           | No         | Same as [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice )                               | operationsAndMaintenanceRateFixed    |
+| - [ProposedEnergyProducerOption.variablePrice](#oneOf_i2_ProposedEnergyProducerOptionvariablePrice )                                               | No      | object           | No         | Same as [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy ) | variablePrice                        |
+| - [ProposedAssetOption.lifetime](#oneOf_i2_ProposedAssetOptionlifetime )                                                                           | No      | string           | No         | -                                                                                                                | lifetime                             |
+| - [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i2_ProposedEnergyProducerOptionpowerCapacityMin )                                         | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityMin                     |
+| - [ProposedEnergyProducerOption.powerCapacityFixed](#oneOf_i2_ProposedEnergyProducerOptionpowerCapacityFixed )                                     | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityFixed                   |
+| - [IdentifiedObject.description](#oneOf_i2_IdentifiedObjectdescription )                                                                           | No      | string           | No         | -                                                                                                                | description                          |
+| - [IdentifiedObject.aliasName](#oneOf_i2_IdentifiedObjectaliasName )                                                                               | No      | string           | No         | -                                                                                                                | aliasName                            |
+| - [IdentifiedObject.mRID](#oneOf_i2_IdentifiedObjectmRID )                                                                                         | No      | string           | No         | -                                                                                                                | mRID                                 |
+| - [IdentifiedObject.name](#oneOf_i2_IdentifiedObjectname )                                                                                         | No      | string           | No         | -                                                                                                                | name                                 |
+
+### <a name="oneOf_i2_ProposedWindUnitOptionGenerationProfile"></a>3.1. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedWindUnitOption.GenerationProfile`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+### <a name="oneOf_i2_ProposedAssetOptionProposedLocations"></a>3.2. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.ProposedLocations`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | No                |
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                                                     | Description |
+| --------------------------------------------------------------------------------------------------- | ----------- |
+| [ProposedAssetOption.ProposedLocations items](#oneOf_i2_ProposedAssetOptionProposedLocations_items) | -           |
+
+#### <a name="autogenerated_heading_4"></a>3.2.1. ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.ProposedLocations > ProposedAssetOption.ProposedLocations items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+### <a name="oneOf_i2_ProposedAssetOptionfixedPrice"></a>3.3. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.fixedPrice`
+
+**Title:** fixedPrice
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice) |
+
+**Description:** nan
+
+### <a name="oneOf_i2_ProposedEnergyProducerOptionpowerCapacityMax"></a>3.4. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.powerCapacityMax`
+
+**Title:** powerCapacityMax
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i2_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable"></a>3.5. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable`
+
+**Title:** operationsAndMaintenanceRateVariable
+
+|                           |                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                |
+| **Required**              | No                                                                                                      |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")                               |
+| **Same definition as**    | [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy) |
+
+**Description:** nan
+
+### <a name="oneOf_i2_ProposedAssetOptionoperationsAndMaintenanceRateFixed"></a>3.6. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.operationsAndMaintenanceRateFixed`
+
+**Title:** operationsAndMaintenanceRateFixed
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice) |
+
+**Description:** nan
+
+### <a name="oneOf_i2_ProposedEnergyProducerOptionvariablePrice"></a>3.7. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.variablePrice`
+
+**Title:** variablePrice
+
+|                           |                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                |
+| **Required**              | No                                                                                                      |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")                               |
+| **Same definition as**    | [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy) |
+
+**Description:** $/kW
+
+### <a name="oneOf_i2_ProposedAssetOptionlifetime"></a>3.8. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedAssetOption.lifetime`
+
+**Title:** lifetime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** nan
+
+### <a name="oneOf_i2_ProposedEnergyProducerOptionpowerCapacityMin"></a>3.9. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.powerCapacityMin`
+
+**Title:** powerCapacityMin
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i2_ProposedEnergyProducerOptionpowerCapacityFixed"></a>3.10. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > ProposedEnergyProducerOption.powerCapacityFixed`
+
+**Title:** powerCapacityFixed
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i2_IdentifiedObjectdescription"></a>3.11. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i2_IdentifiedObjectaliasName"></a>3.12. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i2_IdentifiedObjectmRID"></a>3.13. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i2_IdentifiedObjectname"></a>3.14. Property `ProposedEnergyProducerOption > oneOf > ProposedWindUnitOption > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i3"></a>4. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ProposedGeneratingUnitOption.json                                       |
+
+**Description:** nan
+
+| Property                                                                                                                                           | Pattern | Type             | Deprecated | Definition                                                                                                       | Title/Description                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| - [ProposedAssetOption.ProposedLocations](#oneOf_i3_ProposedAssetOptionProposedLocations )                                                         | No      | array of string  | No         | -                                                                                                                | -                                    |
+| - [IdentifiedObject.description](#oneOf_i3_IdentifiedObjectdescription )                                                                           | No      | string           | No         | -                                                                                                                | description                          |
+| - [ProposedAssetOption.fixedPrice](#oneOf_i3_ProposedAssetOptionfixedPrice )                                                                       | No      | object           | No         | Same as [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice )                               | fixedPrice                           |
+| - [ProposedAssetOption.lifetime](#oneOf_i3_ProposedAssetOptionlifetime )                                                                           | No      | string           | No         | -                                                                                                                | lifetime                             |
+| - [ProposedGeneratingUnitOption.numUnitsMin](#oneOf_i3_ProposedGeneratingUnitOptionnumUnitsMin )                                                   | No      | integer          | No         | -                                                                                                                | numUnitsMin                          |
+| - [ProposedGeneratingUnitOption.numUnitsMax](#oneOf_i3_ProposedGeneratingUnitOptionnumUnitsMax )                                                   | No      | integer          | No         | -                                                                                                                | numUnitsMax                          |
+| - [ProposedGeneratingUnitOption.numUnitsFixed](#oneOf_i3_ProposedGeneratingUnitOptionnumUnitsFixed )                                               | No      | integer          | No         | -                                                                                                                | numUnitsFixed                        |
+| - [ProposedGeneratingUnitOption.unitEfficiency](#oneOf_i3_ProposedGeneratingUnitOptionunitEfficiency )                                             | No      | object or number | No         | Same as [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin )       | unitEfficiency                       |
+| - [ProposedGeneratingUnitOption.heatRecoveryEfficiency](#oneOf_i3_ProposedGeneratingUnitOptionheatRecoveryEfficiency )                             | No      | object or number | No         | Same as [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin )       | heatRecoveryEfficiency               |
+| - [ProposedGeneratingUnitOption.combinedHeatPowerEnabled](#oneOf_i3_ProposedGeneratingUnitOptioncombinedHeatPowerEnabled )                         | No      | boolean          | No         | -                                                                                                                | combinedHeatPowerEnabled             |
+| - [ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable](#oneOf_i3_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable ) | No      | object           | No         | Same as [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy ) | operationsAndMaintenanceRateVariable |
+| - [ProposedAssetOption.operationsAndMaintenanceRateFixed](#oneOf_i3_ProposedAssetOptionoperationsAndMaintenanceRateFixed )                         | No      | object           | No         | Same as [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice )                               | operationsAndMaintenanceRateFixed    |
+| - [ProposedEnergyProducerOption.variablePrice](#oneOf_i3_ProposedEnergyProducerOptionvariablePrice )                                               | No      | object           | No         | Same as [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy ) | variablePrice                        |
+| - [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i3_ProposedEnergyProducerOptionpowerCapacityMin )                                         | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityMin                     |
+| - [ProposedEnergyProducerOption.powerCapacityMax](#oneOf_i3_ProposedEnergyProducerOptionpowerCapacityMax )                                         | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityMax                     |
+| - [ProposedEnergyProducerOption.powerCapacityFixed](#oneOf_i3_ProposedEnergyProducerOptionpowerCapacityFixed )                                     | No      | object or number | No         | Same as [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin ) | powerCapacityFixed                   |
+| - [ProposedGeneratingUnitOption.fossilFuelType](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelType )                                             | No      | enum (of string) | No         | In ./FuelType.json                                                                                               | fossilFuelType                       |
+| - [ProposedGeneratingUnitOption.fossilFuelCapacity](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity )                                     | No      | object or number | No         | In ./Volume.json                                                                                                 | fossilFuelCapacity                   |
+| - [IdentifiedObject.aliasName](#oneOf_i3_IdentifiedObjectaliasName )                                                                               | No      | string           | No         | -                                                                                                                | aliasName                            |
+| - [IdentifiedObject.mRID](#oneOf_i3_IdentifiedObjectmRID )                                                                                         | No      | string           | No         | -                                                                                                                | mRID                                 |
+| - [IdentifiedObject.name](#oneOf_i3_IdentifiedObjectname )                                                                                         | No      | string           | No         | -                                                                                                                | name                                 |
+
+### <a name="oneOf_i3_ProposedAssetOptionProposedLocations"></a>4.1. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.ProposedLocations`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | No                |
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                                                     | Description |
+| --------------------------------------------------------------------------------------------------- | ----------- |
+| [ProposedAssetOption.ProposedLocations items](#oneOf_i3_ProposedAssetOptionProposedLocations_items) | -           |
+
+#### <a name="autogenerated_heading_5"></a>4.1.1. ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.ProposedLocations > ProposedAssetOption.ProposedLocations items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+### <a name="oneOf_i3_IdentifiedObjectdescription"></a>4.2. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i3_ProposedAssetOptionfixedPrice"></a>4.3. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.fixedPrice`
+
+**Title:** fixedPrice
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice) |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedAssetOptionlifetime"></a>4.4. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.lifetime`
+
+**Title:** lifetime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedGeneratingUnitOptionnumUnitsMin"></a>4.5. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.numUnitsMin`
+
+**Title:** numUnitsMin
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedGeneratingUnitOptionnumUnitsMax"></a>4.6. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.numUnitsMax`
+
+**Title:** numUnitsMax
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedGeneratingUnitOptionnumUnitsFixed"></a>4.7. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.numUnitsFixed`
+
+**Title:** numUnitsFixed
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedGeneratingUnitOptionunitEfficiency"></a>4.8. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.unitEfficiency`
+
+**Title:** unitEfficiency
+
+|                        |                                                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                |
+| **Required**           | No                                                                                                |
+| **Same definition as** | [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedGeneratingUnitOptionheatRecoveryEfficiency"></a>4.9. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.heatRecoveryEfficiency`
+
+**Title:** heatRecoveryEfficiency
+
+|                        |                                                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                |
+| **Required**           | No                                                                                                |
+| **Same definition as** | [ProposedBatteryUnitOption.stateOfChargeMin](#oneOf_i0_ProposedBatteryUnitOptionstateOfChargeMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedGeneratingUnitOptioncombinedHeatPowerEnabled"></a>4.10. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.combinedHeatPowerEnabled`
+
+**Title:** combinedHeatPowerEnabled
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedEnergyProducerOptionoperationsAndMaintenanceRateVariable"></a>4.11. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable`
+
+**Title:** operationsAndMaintenanceRateVariable
+
+|                           |                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                |
+| **Required**              | No                                                                                                      |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")                               |
+| **Same definition as**    | [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy) |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedAssetOptionoperationsAndMaintenanceRateFixed"></a>4.12. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedAssetOption.operationsAndMaintenanceRateFixed`
+
+**Title:** operationsAndMaintenanceRateFixed
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [ProposedAssetOption.fixedPrice](#oneOf_i0_ProposedAssetOptionfixedPrice) |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedEnergyProducerOptionvariablePrice"></a>4.13. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.variablePrice`
+
+**Title:** variablePrice
+
+|                           |                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                |
+| **Required**              | No                                                                                                      |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.")                               |
+| **Same definition as**    | [ProposedBatteryUnitOption.variablePriceEnergy](#oneOf_i0_ProposedBatteryUnitOptionvariablePriceEnergy) |
+
+**Description:** $/kW
+
+### <a name="oneOf_i3_ProposedEnergyProducerOptionpowerCapacityMin"></a>4.14. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.powerCapacityMin`
+
+**Title:** powerCapacityMin
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedEnergyProducerOptionpowerCapacityMax"></a>4.15. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.powerCapacityMax`
+
+**Title:** powerCapacityMax
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedEnergyProducerOptionpowerCapacityFixed"></a>4.16. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedEnergyProducerOption.powerCapacityFixed`
+
+**Title:** powerCapacityFixed
+
+|                        |                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                      |
+| **Required**           | No                                                                                                      |
+| **Same definition as** | [ProposedEnergyProducerOption.powerCapacityMin](#oneOf_i0_ProposedEnergyProducerOptionpowerCapacityMin) |
+
+**Description:** nan
+
+### <a name="oneOf_i3_ProposedGeneratingUnitOptionfossilFuelType"></a>4.17. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelType`
+
+**Title:** fossilFuelType
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Defined in** | ./FuelType.json    |
+
+**Description:** nan
+
+Must be one of:
+* "coal"
+* "oil"
+* "gas"
+* "lignite"
+* "hardCoal"
+* "oilShale"
+* "brownCoalLignite"
+* "coalDerivedGas"
+* "peat"
+* "other"
+
+### <a name="oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity"></a>4.18. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelCapacity`
+
+**Title:** fossilFuelCapacity
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Volume.json      |
+
+**Description:** nan
+
+| Property                                                                             | Pattern | Type             | Deprecated | Definition                                                                                                | Title/Description |
+| ------------------------------------------------------------------------------------ | ------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier ) | nan               |
+| - [unit](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity_unit )             | No      | enum (of string) | No         | Same as [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit )             | nan               |
+| - [value](#oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity_value )           | No      | number           | No         | -                                                                                                         | nan               |
+
+#### <a name="oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity_multiplier"></a>4.18.1. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelCapacity > multiplier`
+
+|                        |                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                               |
+| **Required**           | No                                                                                               |
+| **Default**            | `"none"`                                                                                         |
+| **Same definition as** | [multiplier](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_multiplier) |
+
+**Description:** nan
+
+#### <a name="oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity_unit"></a>4.18.2. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelCapacity > unit`
+
+|                        |                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| **Type**               | `enum (of string)`                                                                   |
+| **Required**           | No                                                                                   |
+| **Default**            | `"m3"`                                                                               |
+| **Same definition as** | [unit](#oneOf_i0_ProposedBatteryUnitOptionInverterController_DroopControlModep_unit) |
+
+**Description:** nan
+
+#### <a name="oneOf_i3_ProposedGeneratingUnitOptionfossilFuelCapacity_value"></a>4.18.3. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > ProposedGeneratingUnitOption.fossilFuelCapacity > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+### <a name="oneOf_i3_IdentifiedObjectaliasName"></a>4.19. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i3_IdentifiedObjectmRID"></a>4.20. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i3_IdentifiedObjectname"></a>4.21. Property `ProposedEnergyProducerOption > oneOf > ProposedGeneratingUnitOption > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

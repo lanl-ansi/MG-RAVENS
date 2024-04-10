@@ -1,0 +1,24 @@
+# FScale
+
+**Title:** FScale
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Fujita scale (referred to as EF-scale starting in 2007) for tornado damage.  A set of wind estimates (not measurements) based on damage. It uses three-second gusts estimated at the point of damage based on a judgment of 8 levels of damage to 28 indicators. These estimates vary with height and exposure.  
+The 3 second gust is not the same wind as in standard surface observations.
+Enumerations based on NOAA conventions.
+
+Must be one of:
+* "zero"
+* "one"
+* "four"
+* "two"
+* "three"
+* "five"
+* "minusNine"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

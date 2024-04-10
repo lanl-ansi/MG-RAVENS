@@ -1,0 +1,179 @@
+# ControlAction
+
+- [1. Property `ControlAction > SwitchingAction.plannedDateTime`](#SwitchingActionplannedDateTime)
+- [2. Property `ControlAction > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [3. Property `ControlAction > SwitchingAction.phases`](#SwitchingActionphases)
+- [4. Property `ControlAction > SwitchingAction.issuedDateTime`](#SwitchingActionissuedDateTime)
+- [5. Property `ControlAction > SwitchingAction.executedDateTime`](#SwitchingActionexecutedDateTime)
+- [6. Property `ControlAction > ControlAction.analogValue`](#ControlActionanalogValue)
+- [7. Property `ControlAction > ControlAction.discreteValue`](#ControlActiondiscreteValue)
+- [8. Property `ControlAction > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [9. Property `ControlAction > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [10. Property `ControlAction > IdentifiedObject.name`](#IdentifiedObjectname)
+
+**Title:** ControlAction
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Control executed as a switching step.
+
+| Property                                                                | Pattern | Type             | Deprecated | Definition          | Title/Description |
+| ----------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------- | ----------------- |
+| - [SwitchingAction.plannedDateTime](#SwitchingActionplannedDateTime )   | No      | string           | No         | -                   | plannedDateTime   |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )         | No      | string           | No         | -                   | description       |
+| - [SwitchingAction.phases](#SwitchingActionphases )                     | No      | enum (of string) | No         | In ./PhaseCode.json | phases            |
+| - [SwitchingAction.issuedDateTime](#SwitchingActionissuedDateTime )     | No      | string           | No         | -                   | issuedDateTime    |
+| - [SwitchingAction.executedDateTime](#SwitchingActionexecutedDateTime ) | No      | string           | No         | -                   | executedDateTime  |
+| - [ControlAction.analogValue](#ControlActionanalogValue )               | No      | number           | No         | -                   | analogValue       |
+| - [ControlAction.discreteValue](#ControlActiondiscreteValue )           | No      | integer          | No         | -                   | discreteValue     |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )             | No      | string           | No         | -                   | aliasName         |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                       | No      | string           | No         | -                   | mRID              |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                       | No      | string           | No         | -                   | name              |
+
+## <a name="SwitchingActionplannedDateTime"></a>1. Property `ControlAction > SwitchingAction.plannedDateTime`
+
+**Title:** plannedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Planned date and time of this switching step.
+
+## <a name="IdentifiedObjectdescription"></a>2. Property `ControlAction > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="SwitchingActionphases"></a>3. Property `ControlAction > SwitchingAction.phases`
+
+**Title:** phases
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Defined in** | ./PhaseCode.json   |
+
+**Description:** Phases of the Switching Action
+
+Must be one of:
+* "ABCN"
+* "ABC"
+* "ABN"
+* "ACN"
+* "BCN"
+* "AB"
+* "AC"
+* "BC"
+* "AN"
+* "BN"
+* "CN"
+* "A"
+* "B"
+* "C"
+* "N"
+* "s1N"
+* "s2N"
+* "s12N"
+* "s1"
+* "s2"
+* "s12"
+* "none"
+* "X"
+* "XY"
+* "XN"
+* "XYN"
+
+## <a name="SwitchingActionissuedDateTime"></a>4. Property `ControlAction > SwitchingAction.issuedDateTime`
+
+**Title:** issuedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.
+
+## <a name="SwitchingActionexecutedDateTime"></a>5. Property `ControlAction > SwitchingAction.executedDateTime`
+
+**Title:** executedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Actual date and time of this switching step.
+
+## <a name="ControlActionanalogValue"></a>6. Property `ControlAction > ControlAction.analogValue`
+
+**Title:** analogValue
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** The analog value used for the analog control, the raise/lower control and the set point control
+
+## <a name="ControlActiondiscreteValue"></a>7. Property `ControlAction > ControlAction.discreteValue`
+
+**Title:** discreteValue
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** The integer value used for the command or the accumulator reset.
+
+## <a name="IdentifiedObjectaliasName"></a>8. Property `ControlAction > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="IdentifiedObjectmRID"></a>9. Property `ControlAction > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>10. Property `ControlAction > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

@@ -1,0 +1,51 @@
+# DobleStandard
+
+- [1. Property `DobleStandard > standardNumber`](#standardNumber)
+- [2. Property `DobleStandard > standardEdition`](#standardEdition)
+
+**Title:** DobleStandard
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Standard published by Doble.
+
+| Property                               | Pattern | Type             | Deprecated | Definition                         | Title/Description          |
+| -------------------------------------- | ------- | ---------------- | ---------- | ---------------------------------- | -------------------------- |
+| - [standardNumber](#standardNumber )   | No      | enum (of string) | No         | In ./DobleStandardKind.json        | Doble standard number.     |
+| - [standardEdition](#standardEdition ) | No      | enum (of string) | No         | In ./DobleStandardEditionKind.json | Edition of Doble standard. |
+
+## <a name="standardNumber"></a>1. Property `DobleStandard > standardNumber`
+
+|                |                          |
+| -------------- | ------------------------ |
+| **Type**       | `enum (of string)`       |
+| **Required**   | No                       |
+| **Default**    | `null`                   |
+| **Defined in** | ./DobleStandardKind.json |
+
+**Description:** Doble standard number.
+
+Must be one of:
+* "methanol"
+
+## <a name="standardEdition"></a>2. Property `DobleStandard > standardEdition`
+
+|                |                                 |
+| -------------- | ------------------------------- |
+| **Type**       | `enum (of string)`              |
+| **Required**   | No                              |
+| **Default**    | `null`                          |
+| **Defined in** | ./DobleStandardEditionKind.json |
+
+**Description:** Edition of Doble standard.
+
+Must be one of:
+* "none"
+* "unknown"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

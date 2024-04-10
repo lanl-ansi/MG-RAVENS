@@ -1,0 +1,18 @@
+# EnergyTransactionType
+
+**Title:** EnergyTransactionType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Defines the state of a transaction.
+
+Must be one of:
+* "approve"
+* "study"
+* "deny"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

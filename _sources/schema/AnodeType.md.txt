@@ -1,0 +1,60 @@
+# AnodeType
+
+**Title:** AnodeType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Aggregated Nodes Types for example:
+<ul>
+	<li>SYS - System Zone/Region;  </li>
+</ul>
+<ul>
+	<li>RUC - RUC Zone;  </li>
+</ul>
+<ul>
+	<li>LFZ - Load Forecast Zone;  </li>
+</ul>
+<ul>
+	<li>REG - Market Energy/Ancillary Service Region;  </li>
+</ul>
+<ul>
+	<li>AGR - Aggregate Generation Resource;  </li>
+</ul>
+<ul>
+	<li>POD - Point of Delivery;  </li>
+</ul>
+<ul>
+	<li>ALR - Aggregate Load Resource;  </li>
+</ul>
+<ul>
+	<li>LTAC - Load TransmissionAccessCharge (TAC) Group; </li>
+</ul>
+<ul>
+	<li>ACA - Adjacent Control Area </li>
+</ul>
+<ul>
+	<li>ASR - Aggregated System Resource </li>
+</ul>
+<ul>
+	<li>ECA - Embedded Control Area </li>
+</ul>
+
+Must be one of:
+* "AGR"
+* "RUC"
+* "DER"
+* "REG"
+* "ASR"
+* "ECA"
+* "POD"
+* "ALR"
+* "LTAC"
+* "ACA"
+* "LFZ"
+* "SYS"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

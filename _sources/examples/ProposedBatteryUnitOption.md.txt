@@ -1,0 +1,54 @@
+# ProposedBatteryUnitOption
+
+```json
+[
+  {
+    "IdentifiedObject.mRID": "339b031a-2ea9-4816-b5e1-d867a9077b72",
+    "IdentifiedObject.name": "BESS1",
+    "Ravens.CimObjectType": "ProposedBatteryUnitOption",
+    "ProposedAssetOption.fixedPrice": {
+      "value": 1000000,
+      "unit": "USD"
+    },
+    "ProposedAssetOption.operationsAndMaintenanceRateFixed": {
+      "value": 50000,
+      "unit": "USD"
+    },
+    "ProposedAssetOption.lifetime": "P25Y",
+    "ProposedBatteryUnitOption.energyCapacityFixed": 600.0,
+    "ProposedEnergyProducerOption.powerCapacityFixed": 300.0,
+    "ProposedBatteryUnitOption.stateOfChargeMin": 20.0,
+    "ProposedBatteryUnitOption.stateOfChargeMax": 100.0,
+    "ProposedBatteryUnitOption.chargeRate": 25.0,
+    "ProposedBatteryUnitOption.dischargeRate": 25.0,
+    "ProposedBatteryUnitOption.chargeEfficiency": 92.0,
+    "ProposedBatteryUnitOption.dischargeEfficiency": 92.0,
+    "ProposedBatteryUnitOption.decayRate": 0.5
+  },
+  {
+    "IdentifiedObject.mRID": "bfca850e-dd2e-41db-9613-8ac581abbca8",
+    "IdentifiedObject.name": "BESS2",
+    "Ravens.CimObjectType": "ProposedBatteryUnitOption",
+    "ProposedAssetOption.variablePrice": {
+      "value": 10000,
+      "unit": "USD"
+    },
+    "ProposedAssetOption.operationsAndMaintenanceRateVariable": {
+      "value": 500,
+      "unit": "USD"
+    },
+    "ProposedAssetOption.lifetime": "P25Y",
+    "ProposedBatteryUnitOption.energyCapacityMin": 400.0,
+    "ProposedBatteryUnitOption.energyCapacityMax": 1000.0,
+    "ProposedEnergyProducerOption.powerCapacityMin": 200.0,
+    "ProposedEnergyProducerOption.powerCapacityMax": 500.0,
+    "ProposedBatteryUnitOption.stateOfChargeMin": 20.0,
+    "ProposedBatteryUnitOption.stateOfChargeMax": 100.0,
+    "ProposedBatteryUnitOption.chargeRate": 25.0,
+    "ProposedBatteryUnitOption.dischargeRate": 25.0,
+    "ProposedBatteryUnitOption.chargeEfficiency": 92.0,
+    "ProposedBatteryUnitOption.dischargeEfficiency": 92.0,
+    "ProposedBatteryUnitOption.decayRate": 0.5
+  }
+]
+```

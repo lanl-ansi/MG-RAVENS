@@ -1,0 +1,26 @@
+# TestVariantKind
+
+**Title:** TestVariantKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Test variants.
+
+Must be one of:
+* "minus30C"
+* "40C"
+* "1mm"
+* "minus40C"
+* "30C"
+* "100C"
+* "164hours"
+* "2mm"
+* "72hours"
+* "25C"
+* "0C"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

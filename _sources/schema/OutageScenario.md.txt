@@ -1,0 +1,887 @@
+# OutageScenario
+
+- [1. Property `OutageScenario > Outage.OutageIsolationEquipment`](#OutageOutageIsolationEquipment)
+- [2. Property `OutageScenario > Document.status`](#Documentstatus)
+  - [2.1. Property `OutageScenario > Document.status > value`](#Documentstatus_value)
+  - [2.2. Property `OutageScenario > Document.status > reason`](#Documentstatus_reason)
+  - [2.3. Property `OutageScenario > Document.status > remark`](#Documentstatus_remark)
+  - [2.4. Property `OutageScenario > Document.status > dateTime`](#Documentstatus_dateTime)
+- [3. Property `OutageScenario > Document.comment`](#Documentcomment)
+- [4. Property `OutageScenario > Document.docStatus`](#DocumentdocStatus)
+- [5. Property `OutageScenario > Document.electronicAddress`](#DocumentelectronicAddress)
+  - [5.1. Property `OutageScenario > Document.electronicAddress > web`](#DocumentelectronicAddress_web)
+  - [5.2. Property `OutageScenario > Document.electronicAddress > userID`](#DocumentelectronicAddress_userID)
+  - [5.3. Property `OutageScenario > Document.electronicAddress > mac`](#DocumentelectronicAddress_mac)
+  - [5.4. Property `OutageScenario > Document.electronicAddress > radio`](#DocumentelectronicAddress_radio)
+  - [5.5. Property `OutageScenario > Document.electronicAddress > password`](#DocumentelectronicAddress_password)
+  - [5.6. Property `OutageScenario > Document.electronicAddress > email2`](#DocumentelectronicAddress_email2)
+  - [5.7. Property `OutageScenario > Document.electronicAddress > lan`](#DocumentelectronicAddress_lan)
+  - [5.8. Property `OutageScenario > Document.electronicAddress > email1`](#DocumentelectronicAddress_email1)
+- [6. Property `OutageScenario > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [7. Property `OutageScenario > Document.authorName`](#DocumentauthorName)
+- [8. Property `OutageScenario > Outage.statusKind`](#OutagestatusKind)
+- [9. Property `OutageScenario > OutageScenario.anticipatedStartDay`](#OutageScenarioanticipatedStartDay)
+- [10. Property `OutageScenario > OutageScenario.anticipatedStartHour`](#OutageScenarioanticipatedStartHour)
+- [11. Property `OutageScenario > OutageScenario.anticipatedDuration`](#OutageScenarioanticipatedDuration)
+- [12. Property `OutageScenario > OutageScenario.loadFractionTotal`](#OutageScenarioloadFractionTotal)
+  - [12.1. Property `OutageScenario > OutageScenario.loadFractionTotal > multiplier`](#OutageScenarioloadFractionTotal_multiplier)
+  - [12.2. Property `OutageScenario > OutageScenario.loadFractionTotal > unit`](#OutageScenarioloadFractionTotal_unit)
+  - [12.3. Property `OutageScenario > OutageScenario.loadFractionTotal > value`](#OutageScenarioloadFractionTotal_value)
+- [13. Property `OutageScenario > OutageScenario.loadFractionCritical`](#OutageScenarioloadFractionCritical)
+- [14. Property `OutageScenario > Outage.utilityDisclaimer`](#OutageutilityDisclaimer)
+- [15. Property `OutageScenario > OutageScenario.weight`](#OutageScenarioweight)
+- [16. Property `OutageScenario > Document.type`](#Documenttype)
+- [17. Property `OutageScenario > Document.title`](#Documenttitle)
+- [18. Property `OutageScenario > Outage.communityDescriptor`](#OutagecommunityDescriptor)
+- [19. Property `OutageScenario > Document.revisionNumber`](#DocumentrevisionNumber)
+- [20. Property `OutageScenario > Outage.originalCustomersServed`](#OutageoriginalCustomersServed)
+- [21. Property `OutageScenario > Outage.estimatedPeriod`](#OutageestimatedPeriod)
+  - [21.1. Property `OutageScenario > Outage.estimatedPeriod > end`](#OutageestimatedPeriod_end)
+  - [21.2. Property `OutageScenario > Outage.estimatedPeriod > start`](#OutageestimatedPeriod_start)
+- [22. Property `OutageScenario > Outage.customersRestored`](#OutagecustomersRestored)
+- [23. Property `OutageScenario > Document.createdDateTime`](#DocumentcreatedDateTime)
+- [24. Property `OutageScenario > Outage.originalMetersAffected`](#OutageoriginalMetersAffected)
+- [25. Property `OutageScenario > Document.subject`](#Documentsubject)
+- [26. Property `OutageScenario > Document.lastModifiedDateTime`](#DocumentlastModifiedDateTime)
+- [27. Property `OutageScenario > Outage.summary`](#Outagesummary)
+  - [27.1. Property `OutageScenario > Outage.summary > criticalCount`](#Outagesummary_criticalCount)
+  - [27.2. Property `OutageScenario > Outage.summary > totalCount`](#Outagesummary_totalCount)
+- [28. Property `OutageScenario > Outage.metersAffected`](#OutagemetersAffected)
+- [29. Property `OutageScenario > Outage.actualPeriod`](#OutageactualPeriod)
+- [30. Property `OutageScenario > Outage.outageKind`](#OutageoutageKind)
+- [31. Property `OutageScenario > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [32. Property `OutageScenario > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [33. Property `OutageScenario > IdentifiedObject.name`](#IdentifiedObjectname)
+
+**Title:** OutageScenario
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** nan
+
+| Property                                                                      | Pattern | Type             | Deprecated | Definition                                                                    | Title/Description       |
+| ----------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------------------------------------- | ----------------------- |
+| - [Outage.OutageIsolationEquipment](#OutageOutageIsolationEquipment )         | No      | string           | No         | -                                                                             | -                       |
+| - [Document.status](#Documentstatus )                                         | No      | object           | No         | In ./Status.json                                                              | status                  |
+| - [Document.comment](#Documentcomment )                                       | No      | string           | No         | -                                                                             | comment                 |
+| - [Document.docStatus](#DocumentdocStatus )                                   | No      | object           | No         | Same as [Document.status](#Documentstatus )                                   | docStatus               |
+| - [Document.electronicAddress](#DocumentelectronicAddress )                   | No      | object           | No         | In ./ElectronicAddress.json                                                   | electronicAddress       |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )               | No      | string           | No         | -                                                                             | description             |
+| - [Document.authorName](#DocumentauthorName )                                 | No      | string           | No         | -                                                                             | authorName              |
+| - [Outage.statusKind](#OutagestatusKind )                                     | No      | enum (of string) | No         | In ./CrewStatusKind.json                                                      | statusKind              |
+| - [OutageScenario.anticipatedStartDay](#OutageScenarioanticipatedStartDay )   | No      | string           | No         | -                                                                             | anticipatedStartDay     |
+| - [OutageScenario.anticipatedStartHour](#OutageScenarioanticipatedStartHour ) | No      | integer          | No         | -                                                                             | anticipatedStartHour    |
+| - [OutageScenario.anticipatedDuration](#OutageScenarioanticipatedDuration )   | No      | string           | No         | -                                                                             | anticipatedDuration     |
+| - [OutageScenario.loadFractionTotal](#OutageScenarioloadFractionTotal )       | No      | object or number | No         | In ./PerCent.json                                                             | loadFractionTotal       |
+| - [OutageScenario.loadFractionCritical](#OutageScenarioloadFractionCritical ) | No      | object or number | No         | Same as [OutageScenario.loadFractionTotal](#OutageScenarioloadFractionTotal ) | loadFractionCritical    |
+| - [Outage.utilityDisclaimer](#OutageutilityDisclaimer )                       | No      | string           | No         | -                                                                             | utilityDisclaimer       |
+| - [OutageScenario.weight](#OutageScenarioweight )                             | No      | number           | No         | -                                                                             | weight                  |
+| - [Document.type](#Documenttype )                                             | No      | string           | No         | -                                                                             | type                    |
+| - [Document.title](#Documenttitle )                                           | No      | string           | No         | -                                                                             | title                   |
+| - [Outage.communityDescriptor](#OutagecommunityDescriptor )                   | No      | string           | No         | -                                                                             | communityDescriptor     |
+| - [Document.revisionNumber](#DocumentrevisionNumber )                         | No      | string           | No         | -                                                                             | revisionNumber          |
+| - [Outage.originalCustomersServed](#OutageoriginalCustomersServed )           | No      | integer          | No         | -                                                                             | originalCustomersServed |
+| - [Outage.estimatedPeriod](#OutageestimatedPeriod )                           | No      | object           | No         | In ./DateTimeInterval.json                                                    | estimatedPeriod         |
+| - [Outage.customersRestored](#OutagecustomersRestored )                       | No      | integer          | No         | -                                                                             | customersRestored       |
+| - [Document.createdDateTime](#DocumentcreatedDateTime )                       | No      | string           | No         | -                                                                             | createdDateTime         |
+| - [Outage.originalMetersAffected](#OutageoriginalMetersAffected )             | No      | integer          | No         | -                                                                             | originalMetersAffected  |
+| - [Document.subject](#Documentsubject )                                       | No      | string           | No         | -                                                                             | subject                 |
+| - [Document.lastModifiedDateTime](#DocumentlastModifiedDateTime )             | No      | string           | No         | -                                                                             | lastModifiedDateTime    |
+| - [Outage.summary](#Outagesummary )                                           | No      | object           | No         | In ./ServicePointOutageSummary.json                                           | summary                 |
+| - [Outage.metersAffected](#OutagemetersAffected )                             | No      | integer          | No         | -                                                                             | metersAffected          |
+| - [Outage.actualPeriod](#OutageactualPeriod )                                 | No      | object           | No         | Same as [Outage.estimatedPeriod](#OutageestimatedPeriod )                     | actualPeriod            |
+| - [Outage.outageKind](#OutageoutageKind )                                     | No      | enum (of string) | No         | In ./OutageStatusKind.json                                                    | outageKind              |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )                   | No      | string           | No         | -                                                                             | aliasName               |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                             | No      | string           | No         | -                                                                             | mRID                    |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                             | No      | string           | No         | -                                                                             | name                    |
+
+## <a name="OutageOutageIsolationEquipment"></a>1. Property `OutageScenario > Outage.OutageIsolationEquipment`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+## <a name="Documentstatus"></a>2. Property `OutageScenario > Document.status`
+
+**Title:** status
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./Status.json                                                             |
+
+**Description:** Status of subject matter (e.g., Agreement, Work) this document represents. For status of the document itself, use 'docStatus' attribute.
+
+| Property                                | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                    |
+| --------------------------------------- | ------- | ------ | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - [value](#Documentstatus_value )       | No      | string | No         | -          | Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.<br /> |
+| - [reason](#Documentstatus_reason )     | No      | string | No         | -          | Reason code or explanation for why an object went to the current status 'value'.                                                                                     |
+| - [remark](#Documentstatus_remark )     | No      | string | No         | -          | Pertinent information regarding the current 'value', as free form text.                                                                                              |
+| - [dateTime](#Documentstatus_dateTime ) | No      | string | No         | -          | Date and time for which status 'value' applies.<br />                                                                                                               |
+
+### <a name="Documentstatus_value"></a>2.1. Property `OutageScenario > Document.status > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.
+
+### <a name="Documentstatus_reason"></a>2.2. Property `OutageScenario > Document.status > reason`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Reason code or explanation for why an object went to the current status 'value'.
+
+### <a name="Documentstatus_remark"></a>2.3. Property `OutageScenario > Document.status > remark`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Pertinent information regarding the current 'value', as free form text.
+
+### <a name="Documentstatus_dateTime"></a>2.4. Property `OutageScenario > Document.status > dateTime`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date and time for which status 'value' applies.
+
+## <a name="Documentcomment"></a>3. Property `OutageScenario > Document.comment`
+
+**Title:** comment
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Free text comment.
+
+## <a name="DocumentdocStatus"></a>4. Property `OutageScenario > Document.docStatus`
+
+**Title:** docStatus
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [Document.status](#Documentstatus)                                        |
+
+**Description:** Status of this document. For status of subject matter this document represents (e.g., Agreement, Work), use 'status' attribute.
+Example values for 'docStatus.status' are draft, approved, cancelled, etc.
+
+## <a name="DocumentelectronicAddress"></a>5. Property `OutageScenario > Document.electronicAddress`
+
+**Title:** electronicAddress
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ElectronicAddress.json                                                  |
+
+**Description:** Electronic address.
+
+| Property                                           | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                  |
+| -------------------------------------------------- | ------- | ------ | ---------- | ---------- | -------------------------------------------------------------------------------------------------- |
+| - [web](#DocumentelectronicAddress_web )           | No      | string | No         | -          | World wide web address.<br />                                                                     |
+| - [userID](#DocumentelectronicAddress_userID )     | No      | string | No         | -          | User ID needed to log in, which can be for an individual person, an organisation, a location, etc. |
+| - [mac](#DocumentelectronicAddress_mac )           | No      | string | No         | -          | MAC (Media Access Control) address.<br />                                                         |
+| - [radio](#DocumentelectronicAddress_radio )       | No      | string | No         | -          | Radio address.                                                                                     |
+| - [password](#DocumentelectronicAddress_password ) | No      | string | No         | -          | Password needed to log in.                                                                         |
+| - [email2](#DocumentelectronicAddress_email2 )     | No      | string | No         | -          | Alternate email address.<br />                                                                    |
+| - [lan](#DocumentelectronicAddress_lan )           | No      | string | No         | -          | Address on local area network.                                                                     |
+| - [email1](#DocumentelectronicAddress_email1 )     | No      | string | No         | -          | Primary email address.<br />                                                                      |
+
+### <a name="DocumentelectronicAddress_web"></a>5.1. Property `OutageScenario > Document.electronicAddress > web`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** World wide web address.
+
+### <a name="DocumentelectronicAddress_userID"></a>5.2. Property `OutageScenario > Document.electronicAddress > userID`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** User ID needed to log in, which can be for an individual person, an organisation, a location, etc.
+
+### <a name="DocumentelectronicAddress_mac"></a>5.3. Property `OutageScenario > Document.electronicAddress > mac`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** MAC (Media Access Control) address.
+
+### <a name="DocumentelectronicAddress_radio"></a>5.4. Property `OutageScenario > Document.electronicAddress > radio`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Radio address.
+
+### <a name="DocumentelectronicAddress_password"></a>5.5. Property `OutageScenario > Document.electronicAddress > password`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Password needed to log in.
+
+### <a name="DocumentelectronicAddress_email2"></a>5.6. Property `OutageScenario > Document.electronicAddress > email2`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Alternate email address.
+
+### <a name="DocumentelectronicAddress_lan"></a>5.7. Property `OutageScenario > Document.electronicAddress > lan`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Address on local area network.
+
+### <a name="DocumentelectronicAddress_email1"></a>5.8. Property `OutageScenario > Document.electronicAddress > email1`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Primary email address.
+
+## <a name="IdentifiedObjectdescription"></a>6. Property `OutageScenario > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="DocumentauthorName"></a>7. Property `OutageScenario > Document.authorName`
+
+**Title:** authorName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Name of the author of this document.
+
+## <a name="OutagestatusKind"></a>8. Property `OutageScenario > Outage.statusKind`
+
+**Title:** statusKind
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Defined in** | ./CrewStatusKind.json |
+
+**Description:** defines the status of the crew as in dispatched or arrived, etc.
+
+Must be one of:
+* "awaitingCrewAssignment"
+* "assigned"
+* "arrived"
+* "enroute"
+* "fieldComplete"
+
+## <a name="OutageScenarioanticipatedStartDay"></a>9. Property `OutageScenario > OutageScenario.anticipatedStartDay`
+
+**Title:** anticipatedStartDay
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** nan
+
+## <a name="OutageScenarioanticipatedStartHour"></a>10. Property `OutageScenario > OutageScenario.anticipatedStartHour`
+
+**Title:** anticipatedStartHour
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** nan
+
+## <a name="OutageScenarioanticipatedDuration"></a>11. Property `OutageScenario > OutageScenario.anticipatedDuration`
+
+**Title:** anticipatedDuration
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** nan
+
+## <a name="OutageScenarioloadFractionTotal"></a>12. Property `OutageScenario > OutageScenario.loadFractionTotal`
+
+**Title:** loadFractionTotal
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./PerCent.json     |
+
+**Description:** nan
+
+| Property                                                     | Pattern | Type             | Deprecated | Definition               | Title/Description                    |
+| ------------------------------------------------------------ | ------- | ---------------- | ---------- | ------------------------ | ------------------------------------ |
+| - [multiplier](#OutageScenarioloadFractionTotal_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan                                  |
+| - [unit](#OutageScenarioloadFractionTotal_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan                                  |
+| - [value](#OutageScenarioloadFractionTotal_value )           | No      | number           | No         | -                        | Normally 0 to 100 on a defined base. |
+
+### <a name="OutageScenarioloadFractionTotal_multiplier"></a>12.1. Property `OutageScenario > OutageScenario.loadFractionTotal > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="OutageScenarioloadFractionTotal_unit"></a>12.2. Property `OutageScenario > OutageScenario.loadFractionTotal > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"none"`           |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="OutageScenarioloadFractionTotal_value"></a>12.3. Property `OutageScenario > OutageScenario.loadFractionTotal > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Normally 0 to 100 on a defined base.
+
+## <a name="OutageScenarioloadFractionCritical"></a>13. Property `OutageScenario > OutageScenario.loadFractionCritical`
+
+**Title:** loadFractionCritical
+
+|                        |                                                                      |
+| ---------------------- | -------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                   |
+| **Required**           | No                                                                   |
+| **Same definition as** | [OutageScenario.loadFractionTotal](#OutageScenarioloadFractionTotal) |
+
+**Description:** nan
+
+## <a name="OutageutilityDisclaimer"></a>14. Property `OutageScenario > Outage.utilityDisclaimer`
+
+**Title:** utilityDisclaimer
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** This contains an disclaimers the utility would like to place on the data provided to any stakeholder.  This may be different for different stakeholders.  This should possibly be an attribute under the Organization class but it is placed here for now.
+
+## <a name="OutageScenarioweight"></a>15. Property `OutageScenario > OutageScenario.weight`
+
+**Title:** weight
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** nan
+
+## <a name="Documenttype"></a>16. Property `OutageScenario > Document.type`
+
+**Title:** type
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
+
+## <a name="Documenttitle"></a>17. Property `OutageScenario > Document.title`
+
+**Title:** title
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Document title.
+
+## <a name="OutagecommunityDescriptor"></a>18. Property `OutageScenario > Outage.communityDescriptor`
+
+**Title:** communityDescriptor
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** a name to denote the community - this could be a name or a code of some kind.
+
+## <a name="DocumentrevisionNumber"></a>19. Property `OutageScenario > Document.revisionNumber`
+
+**Title:** revisionNumber
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Revision number for this document.
+
+## <a name="OutageoriginalCustomersServed"></a>20. Property `OutageScenario > Outage.originalCustomersServed`
+
+**Title:** originalCustomersServed
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** the total number of customers that are served in the area (both outaged and not outaged).
+
+## <a name="OutageestimatedPeriod"></a>21. Property `OutageScenario > Outage.estimatedPeriod`
+
+**Title:** estimatedPeriod
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./DateTimeInterval.json                                                   |
+
+**Description:** Estimated outage period for a planned outage. The start of the period is the start of the planned outage and the end of the period corresponds to the end of the planned outage.
+
+| Property                                 | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                             |
+| ---------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
+| - [end](#OutageestimatedPeriod_end )     | No      | string | No         | -          | End date and time of this interval.  The end date and time where the interval is defined up to, but excluded. |
+| - [start](#OutageestimatedPeriod_start ) | No      | string | No         | -          | Start date and time of this interval.  The start date and time is included in the defined interval.           |
+
+### <a name="OutageestimatedPeriod_end"></a>21.1. Property `OutageScenario > Outage.estimatedPeriod > end`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** End date and time of this interval.  The end date and time where the interval is defined up to, but excluded.
+
+### <a name="OutageestimatedPeriod_start"></a>21.2. Property `OutageScenario > Outage.estimatedPeriod > start`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Start date and time of this interval.  The start date and time is included in the defined interval.
+
+## <a name="OutagecustomersRestored"></a>22. Property `OutageScenario > Outage.customersRestored`
+
+**Title:** customersRestored
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** number of customers that have been restored in the area.
+
+## <a name="DocumentcreatedDateTime"></a>23. Property `OutageScenario > Document.createdDateTime`
+
+**Title:** createdDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time that this document was created.
+
+## <a name="OutageoriginalMetersAffected"></a>24. Property `OutageScenario > Outage.originalMetersAffected`
+
+**Title:** originalMetersAffected
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** The original number of meters that were affected as reported by the OMS within the utility. That is, this is the total number of meters that were out at the beginning of the outage.
+
+## <a name="Documentsubject"></a>25. Property `OutageScenario > Document.subject`
+
+**Title:** subject
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Document subject.
+
+## <a name="DocumentlastModifiedDateTime"></a>26. Property `OutageScenario > Document.lastModifiedDateTime`
+
+**Title:** lastModifiedDateTime
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Date and time this document was last modified. Documents may potentially be modified many times during their lifetime.
+
+## <a name="Outagesummary"></a>27. Property `OutageScenario > Outage.summary`
+
+**Title:** summary
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./ServicePointOutageSummary.json                                          |
+
+**Description:** Summary counts of service points (customers) affected by this outage.
+
+| Property                                         | Pattern | Type    | Deprecated | Definition | Title/Description                                                   |
+| ------------------------------------------------ | ------- | ------- | ---------- | ---------- | ------------------------------------------------------------------- |
+| - [criticalCount](#Outagesummary_criticalCount ) | No      | integer | No         | -          | Number of critical service (delivery) points affected by an outage. |
+| - [totalCount](#Outagesummary_totalCount )       | No      | integer | No         | -          | Number of all service (delivery) points affected by an outage.      |
+
+### <a name="Outagesummary_criticalCount"></a>27.1. Property `OutageScenario > Outage.summary > criticalCount`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** Number of critical service (delivery) points affected by an outage.
+
+### <a name="Outagesummary_totalCount"></a>27.2. Property `OutageScenario > Outage.summary > totalCount`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** Number of all service (delivery) points affected by an outage.
+
+## <a name="OutagemetersAffected"></a>28. Property `OutageScenario > Outage.metersAffected`
+
+**Title:** metersAffected
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** The updated number of meters affected by the outage as reported by the OMS within the utility.  It is assumed this number will be updated repeatedly until the full outage is resolved.
+
+## <a name="OutageactualPeriod"></a>29. Property `OutageScenario > Outage.actualPeriod`
+
+**Title:** actualPeriod
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Same definition as**    | [Outage.estimatedPeriod](#OutageestimatedPeriod)                          |
+
+**Description:** Actual outage period; end of the period corresponds to the actual restoration time.
+
+## <a name="OutageoutageKind"></a>30. Property `OutageScenario > Outage.outageKind`
+
+**Title:** outageKind
+
+|                |                         |
+| -------------- | ----------------------- |
+| **Type**       | `enum (of string)`      |
+| **Required**   | No                      |
+| **Defined in** | ./OutageStatusKind.json |
+
+**Description:** Defines if the outage has been verified or is only estimated
+
+Must be one of:
+* "predicted"
+* "closed"
+* "confirmed"
+* "restored"
+* "partiallyRestored"
+
+## <a name="IdentifiedObjectaliasName"></a>31. Property `OutageScenario > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="IdentifiedObjectmRID"></a>32. Property `OutageScenario > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>33. Property `OutageScenario > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:24 -0600

@@ -1,0 +1,688 @@
+# TapChangerInfo
+
+- [1. Property `TapChangerInfo > TapChangerInfo.highStep`](#TapChangerInfohighStep)
+- [2. Property `TapChangerInfo > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [3. Property `TapChangerInfo > TapChangerInfo.ctRating`](#TapChangerInfoctRating)
+  - [3.1. Property `TapChangerInfo > TapChangerInfo.ctRating > multiplier`](#TapChangerInfoctRating_multiplier)
+  - [3.2. Property `TapChangerInfo > TapChangerInfo.ctRating > unit`](#TapChangerInfoctRating_unit)
+  - [3.3. Property `TapChangerInfo > TapChangerInfo.ctRating > value`](#TapChangerInfoctRating_value)
+- [4. Property `TapChangerInfo > TapChangerInfo.ptRatio`](#TapChangerInfoptRatio)
+- [5. Property `TapChangerInfo > TapChangerInfo.ratedApparentPower`](#TapChangerInforatedApparentPower)
+  - [5.1. Property `TapChangerInfo > TapChangerInfo.ratedApparentPower > multiplier`](#TapChangerInforatedApparentPower_multiplier)
+  - [5.2. Property `TapChangerInfo > TapChangerInfo.ratedApparentPower > unit`](#TapChangerInforatedApparentPower_unit)
+  - [5.3. Property `TapChangerInfo > TapChangerInfo.ratedApparentPower > value`](#TapChangerInforatedApparentPower_value)
+- [6. Property `TapChangerInfo > TapChangerInfo.stepVoltageIncrement`](#TapChangerInfostepVoltageIncrement)
+  - [6.1. Property `TapChangerInfo > TapChangerInfo.stepVoltageIncrement > multiplier`](#TapChangerInfostepVoltageIncrement_multiplier)
+  - [6.2. Property `TapChangerInfo > TapChangerInfo.stepVoltageIncrement > unit`](#TapChangerInfostepVoltageIncrement_unit)
+  - [6.3. Property `TapChangerInfo > TapChangerInfo.stepVoltageIncrement > value`](#TapChangerInfostepVoltageIncrement_value)
+- [7. Property `TapChangerInfo > TapChangerInfo.stepPhaseIncrement`](#TapChangerInfostepPhaseIncrement)
+  - [7.1. Property `TapChangerInfo > TapChangerInfo.stepPhaseIncrement > multiplier`](#TapChangerInfostepPhaseIncrement_multiplier)
+  - [7.2. Property `TapChangerInfo > TapChangerInfo.stepPhaseIncrement > unit`](#TapChangerInfostepPhaseIncrement_unit)
+  - [7.3. Property `TapChangerInfo > TapChangerInfo.stepPhaseIncrement > value`](#TapChangerInfostepPhaseIncrement_value)
+- [8. Property `TapChangerInfo > TapChangerInfo.lowStep`](#TapChangerInfolowStep)
+- [9. Property `TapChangerInfo > TapChangerInfo.neutralU`](#TapChangerInfoneutralU)
+  - [9.1. Property `TapChangerInfo > TapChangerInfo.neutralU > multiplier`](#TapChangerInfoneutralU_multiplier)
+  - [9.2. Property `TapChangerInfo > TapChangerInfo.neutralU > unit`](#TapChangerInfoneutralU_unit)
+  - [9.3. Property `TapChangerInfo > TapChangerInfo.neutralU > value`](#TapChangerInfoneutralU_value)
+- [10. Property `TapChangerInfo > TapChangerInfo.bil`](#TapChangerInfobil)
+- [11. Property `TapChangerInfo > TapChangerInfo.ctRatio`](#TapChangerInfoctRatio)
+- [12. Property `TapChangerInfo > TapChangerInfo.isTcul`](#TapChangerInfoisTcul)
+- [13. Property `TapChangerInfo > TapChangerInfo.ratedVoltage`](#TapChangerInforatedVoltage)
+- [14. Property `TapChangerInfo > TapChangerInfo.ratedCurrent`](#TapChangerInforatedCurrent)
+- [15. Property `TapChangerInfo > TapChangerInfo.neutralStep`](#TapChangerInfoneutralStep)
+- [16. Property `TapChangerInfo > TapChangerInfo.frequency`](#TapChangerInfofrequency)
+  - [16.1. Property `TapChangerInfo > TapChangerInfo.frequency > multiplier`](#TapChangerInfofrequency_multiplier)
+  - [16.2. Property `TapChangerInfo > TapChangerInfo.frequency > unit`](#TapChangerInfofrequency_unit)
+  - [16.3. Property `TapChangerInfo > TapChangerInfo.frequency > value`](#TapChangerInfofrequency_value)
+- [17. Property `TapChangerInfo > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [18. Property `TapChangerInfo > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [19. Property `TapChangerInfo > IdentifiedObject.name`](#IdentifiedObjectname)
+
+**Title:** TapChangerInfo
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Tap changer data.
+
+| Property                                                                      | Pattern | Type             | Deprecated | Definition                                                  | Title/Description    |
+| ----------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------------------- | -------------------- |
+| - [TapChangerInfo.highStep](#TapChangerInfohighStep )                         | No      | integer          | No         | -                                                           | highStep             |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )               | No      | string           | No         | -                                                           | description          |
+| - [TapChangerInfo.ctRating](#TapChangerInfoctRating )                         | No      | object or number | No         | In ./CurrentFlow.json                                       | ctRating             |
+| - [TapChangerInfo.ptRatio](#TapChangerInfoptRatio )                           | No      | number           | No         | -                                                           | ptRatio              |
+| - [TapChangerInfo.ratedApparentPower](#TapChangerInforatedApparentPower )     | No      | object or number | No         | In ./ApparentPower.json                                     | ratedApparentPower   |
+| - [TapChangerInfo.stepVoltageIncrement](#TapChangerInfostepVoltageIncrement ) | No      | object or number | No         | In ./PerCent.json                                           | stepVoltageIncrement |
+| - [TapChangerInfo.stepPhaseIncrement](#TapChangerInfostepPhaseIncrement )     | No      | object or number | No         | In ./AngleDegrees.json                                      | stepPhaseIncrement   |
+| - [TapChangerInfo.lowStep](#TapChangerInfolowStep )                           | No      | integer          | No         | -                                                           | lowStep              |
+| - [TapChangerInfo.neutralU](#TapChangerInfoneutralU )                         | No      | object or number | No         | In ./Voltage.json                                           | neutralU             |
+| - [TapChangerInfo.bil](#TapChangerInfobil )                                   | No      | object or number | No         | Same as [TapChangerInfo.neutralU](#TapChangerInfoneutralU ) | bil                  |
+| - [TapChangerInfo.ctRatio](#TapChangerInfoctRatio )                           | No      | number           | No         | -                                                           | ctRatio              |
+| - [TapChangerInfo.isTcul](#TapChangerInfoisTcul )                             | No      | boolean          | No         | -                                                           | isTcul               |
+| - [TapChangerInfo.ratedVoltage](#TapChangerInforatedVoltage )                 | No      | object or number | No         | Same as [TapChangerInfo.neutralU](#TapChangerInfoneutralU ) | ratedVoltage         |
+| - [TapChangerInfo.ratedCurrent](#TapChangerInforatedCurrent )                 | No      | object or number | No         | Same as [TapChangerInfo.ctRating](#TapChangerInfoctRating ) | ratedCurrent         |
+| - [TapChangerInfo.neutralStep](#TapChangerInfoneutralStep )                   | No      | integer          | No         | -                                                           | neutralStep          |
+| - [TapChangerInfo.frequency](#TapChangerInfofrequency )                       | No      | object or number | No         | In ./Frequency.json                                         | frequency            |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )                   | No      | string           | No         | -                                                           | aliasName            |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                             | No      | string           | No         | -                                                           | mRID                 |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                             | No      | string           | No         | -                                                           | name                 |
+
+## <a name="TapChangerInfohighStep"></a>1. Property `TapChangerInfo > TapChangerInfo.highStep`
+
+**Title:** highStep
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** Highest possible tap step position, advance from neutral.
+
+## <a name="IdentifiedObjectdescription"></a>2. Property `TapChangerInfo > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="TapChangerInfoctRating"></a>3. Property `TapChangerInfo > TapChangerInfo.ctRating`
+
+**Title:** ctRating
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./CurrentFlow.json |
+
+**Description:** Built-in current transformer primary rating.
+
+| Property                                            | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| --------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#TapChangerInfoctRating_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#TapChangerInfoctRating_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#TapChangerInfoctRating_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="TapChangerInfoctRating_multiplier"></a>3.1. Property `TapChangerInfo > TapChangerInfo.ctRating > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="TapChangerInfoctRating_unit"></a>3.2. Property `TapChangerInfo > TapChangerInfo.ctRating > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"A"`              |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="TapChangerInfoctRating_value"></a>3.3. Property `TapChangerInfo > TapChangerInfo.ctRating > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="TapChangerInfoptRatio"></a>4. Property `TapChangerInfo > TapChangerInfo.ptRatio`
+
+**Title:** ptRatio
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** Built-in voltage transducer ratio.
+
+## <a name="TapChangerInforatedApparentPower"></a>5. Property `TapChangerInfo > TapChangerInfo.ratedApparentPower`
+
+**Title:** ratedApparentPower
+
+|                |                      |
+| -------------- | -------------------- |
+| **Type**       | `object or number`   |
+| **Required**   | No                   |
+| **Defined in** | ./ApparentPower.json |
+
+**Description:** Rated apparent power.
+
+| Property                                                      | Pattern | Type             | Deprecated | Definition                                                | Title/Description |
+| ------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------- | ----------------- |
+| - [multiplier](#TapChangerInforatedApparentPower_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#TapChangerInfoctRating_multiplier ) | nan               |
+| - [unit](#TapChangerInforatedApparentPower_unit )             | No      | enum (of string) | No         | Same as [unit](#TapChangerInfoctRating_unit )             | nan               |
+| - [value](#TapChangerInforatedApparentPower_value )           | No      | number           | No         | -                                                         | nan               |
+
+### <a name="TapChangerInforatedApparentPower_multiplier"></a>5.1. Property `TapChangerInfo > TapChangerInfo.ratedApparentPower > multiplier`
+
+|                        |                                                  |
+| ---------------------- | ------------------------------------------------ |
+| **Type**               | `enum (of string)`                               |
+| **Required**           | No                                               |
+| **Default**            | `"none"`                                         |
+| **Same definition as** | [multiplier](#TapChangerInfoctRating_multiplier) |
+
+**Description:** nan
+
+### <a name="TapChangerInforatedApparentPower_unit"></a>5.2. Property `TapChangerInfo > TapChangerInfo.ratedApparentPower > unit`
+
+|                        |                                      |
+| ---------------------- | ------------------------------------ |
+| **Type**               | `enum (of string)`                   |
+| **Required**           | No                                   |
+| **Default**            | `"VA"`                               |
+| **Same definition as** | [unit](#TapChangerInfoctRating_unit) |
+
+**Description:** nan
+
+### <a name="TapChangerInforatedApparentPower_value"></a>5.3. Property `TapChangerInfo > TapChangerInfo.ratedApparentPower > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="TapChangerInfostepVoltageIncrement"></a>6. Property `TapChangerInfo > TapChangerInfo.stepVoltageIncrement`
+
+**Title:** stepVoltageIncrement
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./PerCent.json     |
+
+**Description:** Tap step increment, in per cent of rated voltage, per step position.
+
+| Property                                                        | Pattern | Type             | Deprecated | Definition                                                | Title/Description                    |
+| --------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------- | ------------------------------------ |
+| - [multiplier](#TapChangerInfostepVoltageIncrement_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#TapChangerInfoctRating_multiplier ) | nan                                  |
+| - [unit](#TapChangerInfostepVoltageIncrement_unit )             | No      | enum (of string) | No         | Same as [unit](#TapChangerInfoctRating_unit )             | nan                                  |
+| - [value](#TapChangerInfostepVoltageIncrement_value )           | No      | number           | No         | -                                                         | Normally 0 to 100 on a defined base. |
+
+### <a name="TapChangerInfostepVoltageIncrement_multiplier"></a>6.1. Property `TapChangerInfo > TapChangerInfo.stepVoltageIncrement > multiplier`
+
+|                        |                                                  |
+| ---------------------- | ------------------------------------------------ |
+| **Type**               | `enum (of string)`                               |
+| **Required**           | No                                               |
+| **Default**            | `"none"`                                         |
+| **Same definition as** | [multiplier](#TapChangerInfoctRating_multiplier) |
+
+**Description:** nan
+
+### <a name="TapChangerInfostepVoltageIncrement_unit"></a>6.2. Property `TapChangerInfo > TapChangerInfo.stepVoltageIncrement > unit`
+
+|                        |                                      |
+| ---------------------- | ------------------------------------ |
+| **Type**               | `enum (of string)`                   |
+| **Required**           | No                                   |
+| **Default**            | `"none"`                             |
+| **Same definition as** | [unit](#TapChangerInfoctRating_unit) |
+
+**Description:** nan
+
+### <a name="TapChangerInfostepVoltageIncrement_value"></a>6.3. Property `TapChangerInfo > TapChangerInfo.stepVoltageIncrement > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Normally 0 to 100 on a defined base.
+
+## <a name="TapChangerInfostepPhaseIncrement"></a>7. Property `TapChangerInfo > TapChangerInfo.stepPhaseIncrement`
+
+**Title:** stepPhaseIncrement
+
+|                |                     |
+| -------------- | ------------------- |
+| **Type**       | `object or number`  |
+| **Required**   | No                  |
+| **Defined in** | ./AngleDegrees.json |
+
+**Description:** Phase shift per step position.
+
+| Property                                                      | Pattern | Type             | Deprecated | Definition                                                | Title/Description |
+| ------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------- | ----------------- |
+| - [multiplier](#TapChangerInfostepPhaseIncrement_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#TapChangerInfoctRating_multiplier ) | nan               |
+| - [unit](#TapChangerInfostepPhaseIncrement_unit )             | No      | enum (of string) | No         | Same as [unit](#TapChangerInfoctRating_unit )             | nan               |
+| - [value](#TapChangerInfostepPhaseIncrement_value )           | No      | number           | No         | -                                                         | nan               |
+
+### <a name="TapChangerInfostepPhaseIncrement_multiplier"></a>7.1. Property `TapChangerInfo > TapChangerInfo.stepPhaseIncrement > multiplier`
+
+|                        |                                                  |
+| ---------------------- | ------------------------------------------------ |
+| **Type**               | `enum (of string)`                               |
+| **Required**           | No                                               |
+| **Default**            | `"none"`                                         |
+| **Same definition as** | [multiplier](#TapChangerInfoctRating_multiplier) |
+
+**Description:** nan
+
+### <a name="TapChangerInfostepPhaseIncrement_unit"></a>7.2. Property `TapChangerInfo > TapChangerInfo.stepPhaseIncrement > unit`
+
+|                        |                                      |
+| ---------------------- | ------------------------------------ |
+| **Type**               | `enum (of string)`                   |
+| **Required**           | No                                   |
+| **Default**            | `"deg"`                              |
+| **Same definition as** | [unit](#TapChangerInfoctRating_unit) |
+
+**Description:** nan
+
+### <a name="TapChangerInfostepPhaseIncrement_value"></a>7.3. Property `TapChangerInfo > TapChangerInfo.stepPhaseIncrement > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="TapChangerInfolowStep"></a>8. Property `TapChangerInfo > TapChangerInfo.lowStep`
+
+**Title:** lowStep
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** Lowest possible tap step position, retard from neutral.
+
+## <a name="TapChangerInfoneutralU"></a>9. Property `TapChangerInfo > TapChangerInfo.neutralU`
+
+**Title:** neutralU
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Voltage.json     |
+
+**Description:** Voltage at which the winding operates at the neutral tap setting.
+
+| Property                                            | Pattern | Type             | Deprecated | Definition                                                | Title/Description |
+| --------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------- | ----------------- |
+| - [multiplier](#TapChangerInfoneutralU_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#TapChangerInfoctRating_multiplier ) | nan               |
+| - [unit](#TapChangerInfoneutralU_unit )             | No      | enum (of string) | No         | Same as [unit](#TapChangerInfoctRating_unit )             | nan               |
+| - [value](#TapChangerInfoneutralU_value )           | No      | number           | No         | -                                                         | nan               |
+
+### <a name="TapChangerInfoneutralU_multiplier"></a>9.1. Property `TapChangerInfo > TapChangerInfo.neutralU > multiplier`
+
+|                        |                                                  |
+| ---------------------- | ------------------------------------------------ |
+| **Type**               | `enum (of string)`                               |
+| **Required**           | No                                               |
+| **Default**            | `"none"`                                         |
+| **Same definition as** | [multiplier](#TapChangerInfoctRating_multiplier) |
+
+**Description:** nan
+
+### <a name="TapChangerInfoneutralU_unit"></a>9.2. Property `TapChangerInfo > TapChangerInfo.neutralU > unit`
+
+|                        |                                      |
+| ---------------------- | ------------------------------------ |
+| **Type**               | `enum (of string)`                   |
+| **Required**           | No                                   |
+| **Default**            | `"V"`                                |
+| **Same definition as** | [unit](#TapChangerInfoctRating_unit) |
+
+**Description:** nan
+
+### <a name="TapChangerInfoneutralU_value"></a>9.3. Property `TapChangerInfo > TapChangerInfo.neutralU > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="TapChangerInfobil"></a>10. Property `TapChangerInfo > TapChangerInfo.bil`
+
+**Title:** bil
+
+|                        |                                                    |
+| ---------------------- | -------------------------------------------------- |
+| **Type**               | `object or number`                                 |
+| **Required**           | No                                                 |
+| **Same definition as** | [TapChangerInfo.neutralU](#TapChangerInfoneutralU) |
+
+**Description:** Basic Insulation Level (BIL) expressed as the impulse crest voltage of a nominal wave, typically 1.2 X 50 microsecond. This is a measure of the ability of the insulation to withstand very high voltage surges.
+
+## <a name="TapChangerInfoctRatio"></a>11. Property `TapChangerInfo > TapChangerInfo.ctRatio`
+
+**Title:** ctRatio
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** Built-in current transducer ratio.
+
+## <a name="TapChangerInfoisTcul"></a>12. Property `TapChangerInfo > TapChangerInfo.isTcul`
+
+**Title:** isTcul
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Whether this tap changer has under load tap changing capabilities.
+
+## <a name="TapChangerInforatedVoltage"></a>13. Property `TapChangerInfo > TapChangerInfo.ratedVoltage`
+
+**Title:** ratedVoltage
+
+|                        |                                                    |
+| ---------------------- | -------------------------------------------------- |
+| **Type**               | `object or number`                                 |
+| **Required**           | No                                                 |
+| **Same definition as** | [TapChangerInfo.neutralU](#TapChangerInfoneutralU) |
+
+**Description:** Rated voltage.
+
+## <a name="TapChangerInforatedCurrent"></a>14. Property `TapChangerInfo > TapChangerInfo.ratedCurrent`
+
+**Title:** ratedCurrent
+
+|                        |                                                    |
+| ---------------------- | -------------------------------------------------- |
+| **Type**               | `object or number`                                 |
+| **Required**           | No                                                 |
+| **Same definition as** | [TapChangerInfo.ctRating](#TapChangerInfoctRating) |
+
+**Description:** Rated current.
+
+## <a name="TapChangerInfoneutralStep"></a>15. Property `TapChangerInfo > TapChangerInfo.neutralStep`
+
+**Title:** neutralStep
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** The neutral tap step position for the winding.
+
+## <a name="TapChangerInfofrequency"></a>16. Property `TapChangerInfo > TapChangerInfo.frequency`
+
+**Title:** frequency
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Frequency.json   |
+
+**Description:** Frequency at which the ratings apply.
+
+| Property                                             | Pattern | Type             | Deprecated | Definition                                                | Title/Description |
+| ---------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------- | ----------------- |
+| - [multiplier](#TapChangerInfofrequency_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#TapChangerInfoctRating_multiplier ) | nan               |
+| - [unit](#TapChangerInfofrequency_unit )             | No      | enum (of string) | No         | Same as [unit](#TapChangerInfoctRating_unit )             | nan               |
+| - [value](#TapChangerInfofrequency_value )           | No      | number           | No         | -                                                         | nan               |
+
+### <a name="TapChangerInfofrequency_multiplier"></a>16.1. Property `TapChangerInfo > TapChangerInfo.frequency > multiplier`
+
+|                        |                                                  |
+| ---------------------- | ------------------------------------------------ |
+| **Type**               | `enum (of string)`                               |
+| **Required**           | No                                               |
+| **Default**            | `"none"`                                         |
+| **Same definition as** | [multiplier](#TapChangerInfoctRating_multiplier) |
+
+**Description:** nan
+
+### <a name="TapChangerInfofrequency_unit"></a>16.2. Property `TapChangerInfo > TapChangerInfo.frequency > unit`
+
+|                        |                                      |
+| ---------------------- | ------------------------------------ |
+| **Type**               | `enum (of string)`                   |
+| **Required**           | No                                   |
+| **Default**            | `"Hz"`                               |
+| **Same definition as** | [unit](#TapChangerInfoctRating_unit) |
+
+**Description:** nan
+
+### <a name="TapChangerInfofrequency_value"></a>16.3. Property `TapChangerInfo > TapChangerInfo.frequency > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="IdentifiedObjectaliasName"></a>17. Property `TapChangerInfo > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="IdentifiedObjectmRID"></a>18. Property `TapChangerInfo > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>19. Property `TapChangerInfo > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

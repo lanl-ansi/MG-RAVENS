@@ -1,0 +1,24 @@
+# MarketProductTypeAsReq
+
+**Title:** MarketProductTypeAsReq
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** RU - Regulation Up
+RD - Regulation Down
+SR - Spin Reserve
+NR - Nonspin Reserve
+AS - Upward Ancillary Service
+
+Must be one of:
+* "AS"
+* "RD"
+* "RU"
+* "NR"
+* "SR"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

@@ -1,0 +1,370 @@
+# PowerElectronicsConnectionPhase
+
+- [1. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.phase`](#PowerElectronicsConnectionPhasephase)
+- [2. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.p`](#PowerElectronicsConnectionPhasep)
+  - [2.1. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.p > multiplier`](#PowerElectronicsConnectionPhasep_multiplier)
+  - [2.2. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.p > unit`](#PowerElectronicsConnectionPhasep_unit)
+  - [2.3. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.p > value`](#PowerElectronicsConnectionPhasep_value)
+- [3. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.q`](#PowerElectronicsConnectionPhaseq)
+  - [3.1. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.q > multiplier`](#PowerElectronicsConnectionPhaseq_multiplier)
+  - [3.2. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.q > unit`](#PowerElectronicsConnectionPhaseq_unit)
+  - [3.3. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.q > value`](#PowerElectronicsConnectionPhaseq_value)
+- [4. Property `PowerElectronicsConnectionPhase > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [5. Property `PowerElectronicsConnectionPhase > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [6. Property `PowerElectronicsConnectionPhase > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [7. Property `PowerElectronicsConnectionPhase > IdentifiedObject.name`](#IdentifiedObjectname)
+
+**Title:** PowerElectronicsConnectionPhase
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** A single phase of a power electronics connection.
+
+| Property                                                                          | Pattern | Type             | Deprecated | Definition                | Title/Description |
+| --------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------- | ----------------- |
+| - [PowerElectronicsConnectionPhase.phase](#PowerElectronicsConnectionPhasephase ) | No      | enum (of string) | No         | In ./SinglePhaseKind.json | phase             |
+| - [PowerElectronicsConnectionPhase.p](#PowerElectronicsConnectionPhasep )         | No      | object or number | No         | In ./ActivePower.json     | p                 |
+| - [PowerElectronicsConnectionPhase.q](#PowerElectronicsConnectionPhaseq )         | No      | object or number | No         | In ./ReactivePower.json   | q                 |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )                   | No      | string           | No         | -                         | description       |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )                       | No      | string           | No         | -                         | aliasName         |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                                 | No      | string           | No         | -                         | mRID              |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                                 | No      | string           | No         | -                         | name              |
+
+## <a name="PowerElectronicsConnectionPhasephase"></a>1. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.phase`
+
+**Title:** phase
+
+|                |                        |
+| -------------- | ---------------------- |
+| **Type**       | `enum (of string)`     |
+| **Required**   | No                     |
+| **Defined in** | ./SinglePhaseKind.json |
+
+**Description:** Phase of this energy producer component.   If the energy producer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy producer is delta connected, the phase indicates an energy producer connected from the indicated phase to the next logical non-neutral phase.
+
+Must be one of:
+* "A"
+* "B"
+* "C"
+* "N"
+* "s1"
+* "s2"
+
+## <a name="PowerElectronicsConnectionPhasep"></a>2. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.p`
+
+**Title:** p
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./ActivePower.json |
+
+**Description:** Active power injection. Load sign convention is used, i.e. positive sign means flow into the equipment from the network.
+
+| Property                                                      | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#PowerElectronicsConnectionPhasep_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#PowerElectronicsConnectionPhasep_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#PowerElectronicsConnectionPhasep_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="PowerElectronicsConnectionPhasep_multiplier"></a>2.1. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.p > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="PowerElectronicsConnectionPhasep_unit"></a>2.2. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.p > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"W"`              |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="PowerElectronicsConnectionPhasep_value"></a>2.3. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.p > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="PowerElectronicsConnectionPhaseq"></a>3. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.q`
+
+**Title:** q
+
+|                |                      |
+| -------------- | -------------------- |
+| **Type**       | `object or number`   |
+| **Required**   | No                   |
+| **Defined in** | ./ReactivePower.json |
+
+**Description:** Reactive power injection. Load sign convention is used, i.e. positive sign means flow into the equipment from the network.
+
+| Property                                                      | Pattern | Type             | Deprecated | Definition                                                          | Title/Description |
+| ------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#PowerElectronicsConnectionPhaseq_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#PowerElectronicsConnectionPhasep_multiplier ) | nan               |
+| - [unit](#PowerElectronicsConnectionPhaseq_unit )             | No      | enum (of string) | No         | Same as [unit](#PowerElectronicsConnectionPhasep_unit )             | nan               |
+| - [value](#PowerElectronicsConnectionPhaseq_value )           | No      | number           | No         | -                                                                   | nan               |
+
+### <a name="PowerElectronicsConnectionPhaseq_multiplier"></a>3.1. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.q > multiplier`
+
+|                        |                                                            |
+| ---------------------- | ---------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                         |
+| **Required**           | No                                                         |
+| **Default**            | `"none"`                                                   |
+| **Same definition as** | [multiplier](#PowerElectronicsConnectionPhasep_multiplier) |
+
+**Description:** nan
+
+### <a name="PowerElectronicsConnectionPhaseq_unit"></a>3.2. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.q > unit`
+
+|                        |                                                |
+| ---------------------- | ---------------------------------------------- |
+| **Type**               | `enum (of string)`                             |
+| **Required**           | No                                             |
+| **Default**            | `"VAr"`                                        |
+| **Same definition as** | [unit](#PowerElectronicsConnectionPhasep_unit) |
+
+**Description:** nan
+
+### <a name="PowerElectronicsConnectionPhaseq_value"></a>3.3. Property `PowerElectronicsConnectionPhase > PowerElectronicsConnectionPhase.q > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="IdentifiedObjectdescription"></a>4. Property `PowerElectronicsConnectionPhase > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="IdentifiedObjectaliasName"></a>5. Property `PowerElectronicsConnectionPhase > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="IdentifiedObjectmRID"></a>6. Property `PowerElectronicsConnectionPhase > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>7. Property `PowerElectronicsConnectionPhase > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

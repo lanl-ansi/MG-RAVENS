@@ -1,0 +1,514 @@
+# PerLengthSequenceImpedance
+
+- [1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.b0ch`](#PerLengthSequenceImpedanceb0ch)
+  - [1.1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.b0ch > multiplier`](#PerLengthSequenceImpedanceb0ch_multiplier)
+  - [1.2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.b0ch > unit`](#PerLengthSequenceImpedanceb0ch_unit)
+  - [1.3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.b0ch > value`](#PerLengthSequenceImpedanceb0ch_value)
+- [2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.bch`](#PerLengthSequenceImpedancebch)
+- [3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.g0ch`](#PerLengthSequenceImpedanceg0ch)
+  - [3.1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.g0ch > multiplier`](#PerLengthSequenceImpedanceg0ch_multiplier)
+  - [3.2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.g0ch > unit`](#PerLengthSequenceImpedanceg0ch_unit)
+  - [3.3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.g0ch > value`](#PerLengthSequenceImpedanceg0ch_value)
+- [4. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.gch`](#PerLengthSequenceImpedancegch)
+- [5. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r`](#PerLengthSequenceImpedancer)
+  - [5.1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r > multiplier`](#PerLengthSequenceImpedancer_multiplier)
+  - [5.2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r > unit`](#PerLengthSequenceImpedancer_unit)
+  - [5.3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r > value`](#PerLengthSequenceImpedancer_value)
+- [6. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r0`](#PerLengthSequenceImpedancer0)
+- [7. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x`](#PerLengthSequenceImpedancex)
+  - [7.1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x > multiplier`](#PerLengthSequenceImpedancex_multiplier)
+  - [7.2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x > unit`](#PerLengthSequenceImpedancex_unit)
+  - [7.3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x > value`](#PerLengthSequenceImpedancex_value)
+- [8. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x0`](#PerLengthSequenceImpedancex0)
+- [9. Property `PerLengthSequenceImpedance > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [10. Property `PerLengthSequenceImpedance > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [11. Property `PerLengthSequenceImpedance > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [12. Property `PerLengthSequenceImpedance > IdentifiedObject.name`](#IdentifiedObjectname)
+
+**Title:** PerLengthSequenceImpedance
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Sequence impedance and admittance parameters per unit length, for transposed lines of 1, 2, or 3 phases. For 1-phase lines, define x=x0=xself. For 2-phase lines, define x=xs-xm and x0=xs+xm.
+
+| Property                                                              | Pattern | Type             | Deprecated | Definition                                                                  | Title/Description |
+| --------------------------------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------------------------------- | ----------------- |
+| - [PerLengthSequenceImpedance.b0ch](#PerLengthSequenceImpedanceb0ch ) | No      | object or number | No         | In ./SusceptancePerLength.json                                              | b0ch              |
+| - [PerLengthSequenceImpedance.bch](#PerLengthSequenceImpedancebch )   | No      | object or number | No         | Same as [PerLengthSequenceImpedance.b0ch](#PerLengthSequenceImpedanceb0ch ) | bch               |
+| - [PerLengthSequenceImpedance.g0ch](#PerLengthSequenceImpedanceg0ch ) | No      | object or number | No         | In ./ConductancePerLength.json                                              | g0ch              |
+| - [PerLengthSequenceImpedance.gch](#PerLengthSequenceImpedancegch )   | No      | object or number | No         | Same as [PerLengthSequenceImpedance.g0ch](#PerLengthSequenceImpedanceg0ch ) | gch               |
+| - [PerLengthSequenceImpedance.r](#PerLengthSequenceImpedancer )       | No      | object or number | No         | In ./ResistancePerLength.json                                               | r                 |
+| - [PerLengthSequenceImpedance.r0](#PerLengthSequenceImpedancer0 )     | No      | object or number | No         | Same as [PerLengthSequenceImpedance.r](#PerLengthSequenceImpedancer )       | r0                |
+| - [PerLengthSequenceImpedance.x](#PerLengthSequenceImpedancex )       | No      | object or number | No         | In ./ReactancePerLength.json                                                | x                 |
+| - [PerLengthSequenceImpedance.x0](#PerLengthSequenceImpedancex0 )     | No      | object or number | No         | Same as [PerLengthSequenceImpedance.x](#PerLengthSequenceImpedancex )       | x0                |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )       | No      | string           | No         | -                                                                           | description       |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )           | No      | string           | No         | -                                                                           | aliasName         |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                     | No      | string           | No         | -                                                                           | mRID              |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                     | No      | string           | No         | -                                                                           | name              |
+
+## <a name="PerLengthSequenceImpedanceb0ch"></a>1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.b0ch`
+
+**Title:** b0ch
+
+|                |                             |
+| -------------- | --------------------------- |
+| **Type**       | `object or number`          |
+| **Required**   | No                          |
+| **Defined in** | ./SusceptancePerLength.json |
+
+**Description:** Zero sequence shunt (charging) susceptance, per unit of length.
+
+| Property                                                    | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ----------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#PerLengthSequenceImpedanceb0ch_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#PerLengthSequenceImpedanceb0ch_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#PerLengthSequenceImpedanceb0ch_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="PerLengthSequenceImpedanceb0ch_multiplier"></a>1.1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.b0ch > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="PerLengthSequenceImpedanceb0ch_unit"></a>1.2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.b0ch > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"SPerm"`          |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="PerLengthSequenceImpedanceb0ch_value"></a>1.3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.b0ch > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="PerLengthSequenceImpedancebch"></a>2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.bch`
+
+**Title:** bch
+
+|                        |                                                                    |
+| ---------------------- | ------------------------------------------------------------------ |
+| **Type**               | `object or number`                                                 |
+| **Required**           | No                                                                 |
+| **Same definition as** | [PerLengthSequenceImpedance.b0ch](#PerLengthSequenceImpedanceb0ch) |
+
+**Description:** Positive sequence shunt (charging) susceptance, per unit of length.
+
+## <a name="PerLengthSequenceImpedanceg0ch"></a>3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.g0ch`
+
+**Title:** g0ch
+
+|                |                             |
+| -------------- | --------------------------- |
+| **Type**       | `object or number`          |
+| **Required**   | No                          |
+| **Defined in** | ./ConductancePerLength.json |
+
+**Description:** Zero sequence shunt (charging) conductance, per unit of length.
+
+| Property                                                    | Pattern | Type             | Deprecated | Definition                                                        | Title/Description |
+| ----------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------------------------- | ----------------- |
+| - [multiplier](#PerLengthSequenceImpedanceg0ch_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#PerLengthSequenceImpedanceb0ch_multiplier ) | nan               |
+| - [unit](#PerLengthSequenceImpedanceg0ch_unit )             | No      | enum (of string) | No         | Same as [unit](#PerLengthSequenceImpedanceb0ch_unit )             | nan               |
+| - [value](#PerLengthSequenceImpedanceg0ch_value )           | No      | number           | No         | -                                                                 | nan               |
+
+### <a name="PerLengthSequenceImpedanceg0ch_multiplier"></a>3.1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.g0ch > multiplier`
+
+|                        |                                                          |
+| ---------------------- | -------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                       |
+| **Required**           | No                                                       |
+| **Default**            | `"none"`                                                 |
+| **Same definition as** | [multiplier](#PerLengthSequenceImpedanceb0ch_multiplier) |
+
+**Description:** nan
+
+### <a name="PerLengthSequenceImpedanceg0ch_unit"></a>3.2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.g0ch > unit`
+
+|                        |                                              |
+| ---------------------- | -------------------------------------------- |
+| **Type**               | `enum (of string)`                           |
+| **Required**           | No                                           |
+| **Default**            | `"SPerm"`                                    |
+| **Same definition as** | [unit](#PerLengthSequenceImpedanceb0ch_unit) |
+
+**Description:** nan
+
+### <a name="PerLengthSequenceImpedanceg0ch_value"></a>3.3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.g0ch > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="PerLengthSequenceImpedancegch"></a>4. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.gch`
+
+**Title:** gch
+
+|                        |                                                                    |
+| ---------------------- | ------------------------------------------------------------------ |
+| **Type**               | `object or number`                                                 |
+| **Required**           | No                                                                 |
+| **Same definition as** | [PerLengthSequenceImpedance.g0ch](#PerLengthSequenceImpedanceg0ch) |
+
+**Description:** Positive sequence shunt (charging) conductance, per unit of length.
+
+## <a name="PerLengthSequenceImpedancer"></a>5. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r`
+
+**Title:** r
+
+|                |                            |
+| -------------- | -------------------------- |
+| **Type**       | `object or number`         |
+| **Required**   | No                         |
+| **Defined in** | ./ResistancePerLength.json |
+
+**Description:** Positive sequence series resistance, per unit of length.
+
+| Property                                                 | Pattern | Type             | Deprecated | Definition                                                        | Title/Description |
+| -------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------------------------- | ----------------- |
+| - [multiplier](#PerLengthSequenceImpedancer_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#PerLengthSequenceImpedanceb0ch_multiplier ) | nan               |
+| - [unit](#PerLengthSequenceImpedancer_unit )             | No      | enum (of string) | No         | Same as [unit](#PerLengthSequenceImpedanceb0ch_unit )             | nan               |
+| - [value](#PerLengthSequenceImpedancer_value )           | No      | number           | No         | -                                                                 | nan               |
+
+### <a name="PerLengthSequenceImpedancer_multiplier"></a>5.1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r > multiplier`
+
+|                        |                                                          |
+| ---------------------- | -------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                       |
+| **Required**           | No                                                       |
+| **Default**            | `"none"`                                                 |
+| **Same definition as** | [multiplier](#PerLengthSequenceImpedanceb0ch_multiplier) |
+
+**Description:** nan
+
+### <a name="PerLengthSequenceImpedancer_unit"></a>5.2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r > unit`
+
+|                        |                                              |
+| ---------------------- | -------------------------------------------- |
+| **Type**               | `enum (of string)`                           |
+| **Required**           | No                                           |
+| **Default**            | `"ohmPerm"`                                  |
+| **Same definition as** | [unit](#PerLengthSequenceImpedanceb0ch_unit) |
+
+**Description:** nan
+
+### <a name="PerLengthSequenceImpedancer_value"></a>5.3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="PerLengthSequenceImpedancer0"></a>6. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.r0`
+
+**Title:** r0
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [PerLengthSequenceImpedance.r](#PerLengthSequenceImpedancer) |
+
+**Description:** Zero sequence series resistance, per unit of length.
+
+## <a name="PerLengthSequenceImpedancex"></a>7. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x`
+
+**Title:** x
+
+|                |                           |
+| -------------- | ------------------------- |
+| **Type**       | `object or number`        |
+| **Required**   | No                        |
+| **Defined in** | ./ReactancePerLength.json |
+
+**Description:** Positive sequence series reactance, per unit of length.
+
+| Property                                                 | Pattern | Type             | Deprecated | Definition                                                        | Title/Description |
+| -------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------------------------- | ----------------- |
+| - [multiplier](#PerLengthSequenceImpedancex_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#PerLengthSequenceImpedanceb0ch_multiplier ) | nan               |
+| - [unit](#PerLengthSequenceImpedancex_unit )             | No      | enum (of string) | No         | Same as [unit](#PerLengthSequenceImpedanceb0ch_unit )             | nan               |
+| - [value](#PerLengthSequenceImpedancex_value )           | No      | number           | No         | -                                                                 | nan               |
+
+### <a name="PerLengthSequenceImpedancex_multiplier"></a>7.1. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x > multiplier`
+
+|                        |                                                          |
+| ---------------------- | -------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                       |
+| **Required**           | No                                                       |
+| **Default**            | `"none"`                                                 |
+| **Same definition as** | [multiplier](#PerLengthSequenceImpedanceb0ch_multiplier) |
+
+**Description:** nan
+
+### <a name="PerLengthSequenceImpedancex_unit"></a>7.2. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x > unit`
+
+|                        |                                              |
+| ---------------------- | -------------------------------------------- |
+| **Type**               | `enum (of string)`                           |
+| **Required**           | No                                           |
+| **Default**            | `"ohmPerm"`                                  |
+| **Same definition as** | [unit](#PerLengthSequenceImpedanceb0ch_unit) |
+
+**Description:** nan
+
+### <a name="PerLengthSequenceImpedancex_value"></a>7.3. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="PerLengthSequenceImpedancex0"></a>8. Property `PerLengthSequenceImpedance > PerLengthSequenceImpedance.x0`
+
+**Title:** x0
+
+|                        |                                                              |
+| ---------------------- | ------------------------------------------------------------ |
+| **Type**               | `object or number`                                           |
+| **Required**           | No                                                           |
+| **Same definition as** | [PerLengthSequenceImpedance.x](#PerLengthSequenceImpedancex) |
+
+**Description:** Zero sequence series reactance, per unit of length.
+
+## <a name="IdentifiedObjectdescription"></a>9. Property `PerLengthSequenceImpedance > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="IdentifiedObjectaliasName"></a>10. Property `PerLengthSequenceImpedance > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="IdentifiedObjectmRID"></a>11. Property `PerLengthSequenceImpedance > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>12. Property `PerLengthSequenceImpedance > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

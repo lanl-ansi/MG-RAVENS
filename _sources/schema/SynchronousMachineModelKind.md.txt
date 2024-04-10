@@ -1,0 +1,20 @@
+# SynchronousMachineModelKind
+
+**Title:** SynchronousMachineModelKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Type of synchronous machine model used in dynamic simulation applications.
+
+Must be one of:
+* "subtransient"
+* "subtransientTypeF"
+* "subtransientTypeJ"
+* "subtransientSimplified"
+* "subtransientSimplifiedDirectAxis"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

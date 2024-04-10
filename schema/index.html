@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>Schema Documentation</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="AlgorithmProperties" href="../examples/AlgorithmProperties.html" />
+  <link rel="prev" title="UML Diagrams for MG-RAVENS Schema" href="../uml/index.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <span class="site-name">MG-RAVENS</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">UML Diagrams:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../uml/index.html" class="reference internal ">UML Diagrams for MG-RAVENS Schema</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Schemas:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Schema Documentation</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#main-schema" class="reference internal">Main Schema</a></li>
+                
+                  <li class="toctree-l2"><a href="#individual-schema" class="reference internal">Individual Schema</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Examples:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/AlgorithmProperties.html" class="reference internal ">AlgorithmProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/CapacityPrices.html" class="reference internal ">CapacityPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/Conductor.html" class="reference internal ">Conductor</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/DieselFuelPrice.html" class="reference internal ">DieselFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/EconomicProperties.html" class="reference internal ">EconomicProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/EnergyConsumer.html" class="reference internal ">EnergyConsumer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/EnergySource.html" class="reference internal ">EnergySource</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/LoadForecast.html" class="reference internal ">LoadForecast</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/LocationalMarginalPrices.html" class="reference internal ">LocationalMarginalPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/NaturalGasFuelPrice.html" class="reference internal ">NaturalGasFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/OtherFossilFuelPrice.html" class="reference internal ">OtherFossilFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/OutageScenario.html" class="reference internal ">OutageScenario</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/PowerTransformer.html" class="reference internal ">PowerTransformer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedBatteryUnitOption.html" class="reference internal ">ProposedBatteryUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedConductorOption.html" class="reference internal ">ProposedConductorOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedEnergyProducerOption.html" class="reference internal ">ProposedEnergyProducerOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedGeneratingUnitOption.html" class="reference internal ">ProposedGeneratingUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedPhotovoltaicUnitOption.html" class="reference internal ">ProposedPhotovoltaicUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedSiteLocation.html" class="reference internal ">ProposedSiteLocation</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedSwitchOption.html" class="reference internal ">ProposedSwitchOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ProposedWindUnitOption.html" class="reference internal ">ProposedWindUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples/ShuntCompensator.html" class="reference internal ">ShuntCompensator</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Governance:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/charter.html" class="reference internal ">MG-RAVENS API Governance Charter</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/steering_committee.html" class="reference internal ">Steering Committee Members</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/working_group.html" class="reference internal ">Working Group Members</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>Schema Documentation</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="../uml/index.html"
+       title="previous chapter">← UML Diagrams for MG-RAVENS Schema</a>
+  </li>
+  <li class="next">
+    <a href="../examples/AlgorithmProperties.html"
+       title="next chapter">AlgorithmProperties →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="schema-documentation">
+<h1>Schema Documentation<a class="headerlink" href="#schema-documentation" title="Link to this heading">¶</a></h1>
+<section id="main-schema">
+<h2>Main Schema<a class="headerlink" href="#main-schema" title="Link to this heading">¶</a></h2>
+<p><a class="reference download internal" download="" href="../_downloads/7a8a1feea46f31c466d4ab55feb205c9/__main__.html"><span class="xref download myst">Main Schema</span></a></p>
+</section>
+<section id="individual-schema">
+<h2>Individual Schema<a class="headerlink" href="#individual-schema" title="Link to this heading">¶</a></h2>
+<p><a class="reference download internal" download="" href="../_downloads/3fadd73d0bc220ccf566880b0321f820/ACDCConverter.html"><span class="xref download myst">ACDCConverter</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f457f9dd88e692b1db5e6a485a78debe/ACLineSegment.html"><span class="xref download myst">ACLineSegment</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/42d328947e585801ee47f0136190172b/ACLineSegmentPhase.html"><span class="xref download myst">ACLineSegmentPhase</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f8f93a6439beebfbd79dfc9dad437446/ADSInstructionTypeCommitment.html"><span class="xref download myst">ADSInstructionTypeCommitment</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/56484501e385dd9c9eb13d068ffe969d/ADSInstructionTypeOOS.html"><span class="xref download myst">ADSInstructionTypeOOS</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d496f25027d551bd8205aa8eb49615ef/ASTMStandard.html"><span class="xref download myst">ASTMStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/df406a7d53e6eabbf339ba7efb660dd1/ASTMStandardEditionKind.html"><span class="xref download myst">ASTMStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c19393833644d2d24dbda975c9e58c6f/ASTMStandardKind.html"><span class="xref download myst">ASTMStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/41f2c390a783f7cb7aefae14712924d3/AcceptanceTest.html"><span class="xref download myst">AcceptanceTest</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a862d6c72422214fb8123a3ea78d69c5/AccountMovement.html"><span class="xref download myst">AccountMovement</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fa74f3eec5e84e3c7c6c12e56f193902/AccountingUnit.html"><span class="xref download myst">AccountingUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8b6cceaa2853be7192602aaaa39accfa/AccumulationKind.html"><span class="xref download myst">AccumulationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6aa84a36e409e1fdd96861e4c375b364/ActionType.html"><span class="xref download myst">ActionType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4688be3cb2d60957e8eaa4557dcb959b/ActivePower.html"><span class="xref download myst">ActivePower</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/df4abdb663fb3c93d0ff4ce661cdf2ea/ActivePowerChangeRate.html"><span class="xref download myst">ActivePowerChangeRate</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/cbbbcab305d686cbf57bd765fe6ce715/ActivePowerLimit.html"><span class="xref download myst">ActivePowerLimit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1739948495ebcab6a2619f9565537419/ActivePowerPerCurrentFlow.html"><span class="xref download myst">ActivePowerPerCurrentFlow</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/05d2a6af8aec752abe7f7a5672386faf/ActivePowerPerFrequency.html"><span class="xref download myst">ActivePowerPerFrequency</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d99e3ee2bf16962dde30de13e4c9998b/ActivityRecord.html"><span class="xref download myst">ActivityRecord</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/25323287894897ca05436cc936b71119/AdderType.html"><span class="xref download myst">AdderType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/94e2be5622da4470e79221d0408f8897/Admittance.html"><span class="xref download myst">Admittance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8fa2c5cb4b80d52d963f9e87b25df991/AggregateKind.html"><span class="xref download myst">AggregateKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b305820a28173a7ede5b5b45f2fa4a37/AlarmDisplayType.html"><span class="xref download myst">AlarmDisplayType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/55dd186c990ba4bded4d864030ad15d8/AlgorithmObjectives.html"><span class="xref download myst">AlgorithmObjectives</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8f9f3593463b1db062c65a7047a79ec0/AlgorithmProperties.html"><span class="xref download myst">AlgorithmProperties</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/371d84bf6870555bdb9fb25afd7cc10a/AllocationEnergyTypeCode.html"><span class="xref download myst">AllocationEnergyTypeCode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ef835e6d3b947cc1b1d9f2dcff8084fa/AmiBillingReadyKind.html"><span class="xref download myst">AmiBillingReadyKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/65328ee675d8084cf9d99263c8b715b4/AnalogLimitType.html"><span class="xref download myst">AnalogLimitType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d84afa88d787f1fffdbe639b2189a95d/AnalogToDigitalLogicKind.html"><span class="xref download myst">AnalogToDigitalLogicKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/eafe50beb69e69f602163b341c18f351/AnalyticKind.html"><span class="xref download myst">AnalyticKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/75ad7140765001907901d0c93d06c340/AnchorKind.html"><span class="xref download myst">AnchorKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/639cdaeef8d4e79933b2cfaf35f334c0/AncillaryCommodityType.html"><span class="xref download myst">AncillaryCommodityType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7d07555f03802a1058f01005a31f12dd/AngleDegrees.html"><span class="xref download myst">AngleDegrees</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f5f28b4877a97b19e67580e623b8ad2c/AngleRadians.html"><span class="xref download myst">AngleRadians</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fbd647e588fb7ce754920d7d58f83a9c/AnodeType.html"><span class="xref download myst">AnodeType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/62266aa2b72b0e924f9b163f5b2bd89c/ApnodeType.html"><span class="xref download myst">ApnodeType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/39894cfa3cfd8f361e268b02a58fbdae/ApparentPower.html"><span class="xref download myst">ApparentPower</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/80166bc1ab06cc4bb3ec392133b21a1f/ApparentPowerLimit.html"><span class="xref download myst">ApparentPowerLimit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/876d1944bb04c396ee0d81661e804435/ApplicationSecurityKind.html"><span class="xref download myst">ApplicationSecurityKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5f3340bfe7a173b6c6303966b9e0f3f1/Area.html"><span class="xref download myst">Area</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0fff73430beb95818418118ab01c38be/AreaControlMode.html"><span class="xref download myst">AreaControlMode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fcee6e2b9e204edb502b1806d38227d2/AreaKind.html"><span class="xref download myst">AreaKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1f9a0fcb3a87ffb7d2bb22161bab82fb/Asset.html"><span class="xref download myst">Asset</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e046d697c3d6f2a2f07ff2335d9092ea/AssetFailureClassification.html"><span class="xref download myst">AssetFailureClassification</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ccab4f0470000f01b90d45a74d53acc7/AssetFailureMode.html"><span class="xref download myst">AssetFailureMode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/dada086a656ed83bcf5a49742fedd6be/AssetGroupKind.html"><span class="xref download myst">AssetGroupKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/15446e7fa73390fd0ed3f769c3a59b4e/AssetHazardKind.html"><span class="xref download myst">AssetHazardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c8a4e985e65d120259c19b42d3112ae2/AssetInfo.html"><span class="xref download myst">AssetInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/070cd8bc6c16f0869a416f16fd07ecdd/AssetKind.html"><span class="xref download myst">AssetKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0cdbc35e3d554c7b525fde047e5f12ed/AssetLifecycleStateKind.html"><span class="xref download myst">AssetLifecycleStateKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4401997c93e93577cc67510ff5927579/AssetModelUsageKind.html"><span class="xref download myst">AssetModelUsageKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/40759da14d115c66ae9b747560d4aa7a/AssetStringKind.html"><span class="xref download myst">AssetStringKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ca4144e8ef8beacbdc1ded07ac2f0952/AssetTemperaturePressureAnalogKind.html"><span class="xref download myst">AssetTemperaturePressureAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9e4a8a32ff78ad5c5e662bcbe7e14623/AsynchronousMachineKind.html"><span class="xref download myst">AsynchronousMachineKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6207a81ca1ed5f8d70688369855e106c/AtmosphericAnalogKind.html"><span class="xref download myst">AtmosphericAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/97760c55390648e9ff5c0442ef2f2f11/AtmosphericPhenomenon.html"><span class="xref download myst">AtmosphericPhenomenon</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d1fbbe33631a35c8dc567cadeaa9c42e/AutomaticDispInstTypeCommitment.html"><span class="xref download myst">AutomaticDispInstTypeCommitment</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/03df01fffb61a1adb3ac09554649944f/AutomaticDispatchMode.html"><span class="xref download myst">AutomaticDispatchMode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/af4a64110a5ffce697539676a0c76469/BankAccountDetail.html"><span class="xref download myst">BankAccountDetail</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3af790015855494a8a9f7e95bda50e29/BaseVoltage.html"><span class="xref download myst">BaseVoltage</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/dfca7401d614516e80e749ab57e05898/BatteryResponseCharacteristic.html"><span class="xref download myst">BatteryResponseCharacteristic</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2b39f07be0e784a7cdc11949343c8eb6/BatteryStateKind.html"><span class="xref download myst">BatteryStateKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b6542b7c3d8185a84d7506f298591f96/BatteryUnit.html"><span class="xref download myst">BatteryUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/99a6defa8b9ec7e08f4d9f9f2a6fc166/Bay.html"><span class="xref download myst">Bay</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/199eefc09cb1b538157068cc4cdd74b9/Bearing.html"><span class="xref download myst">Bearing</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/af321ca4d90b2330cb42afa86b7f98ec/BidCalculationBasis.html"><span class="xref download myst">BidCalculationBasis</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/87b04b9f6ecb463be45ce5643c4ddd54/BidMitigationStatus.html"><span class="xref download myst">BidMitigationStatus</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/63dfcc8a12e00b683ce47825eaa7be20/BidMitigationType.html"><span class="xref download myst">BidMitigationType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fc8405bcba010887251f3bfe166c3cc4/BidPriceCapType.html"><span class="xref download myst">BidPriceCapType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1be9a0283b377f64e1f3257343d93b9d/BidStatusType.html"><span class="xref download myst">BidStatusType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/14aa86d0ef536caf908d23c88c8c90df/BidType.html"><span class="xref download myst">BidType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/88cc6da040e7bcc85a8f17b67598c77f/BidTypeRMR.html"><span class="xref download myst">BidTypeRMR</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/614a162eaf21ffb5a07a05853c8e7858/BillMediaKind.html"><span class="xref download myst">BillMediaKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6079a33e45f0cf2bad581467f01f2977/BoilerControlMode.html"><span class="xref download myst">BoilerControlMode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/049bb6d5d19a30a0ace43b1c87d0eb58/Boolean.html"><span class="xref download myst">Boolean</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1f8613f18e4cc2875d897519355a5ba6/Breaker.html"><span class="xref download myst">Breaker</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/aa286df9d5ee92c24b09f1108f05f585/BreakerApplicationKind.html"><span class="xref download myst">BreakerApplicationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/11dac48a56dc4d763bef201faf9a726c/BreakerConfiguration.html"><span class="xref download myst">BreakerConfiguration</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/331003e7da9b637526302cb9f3f60563/BreakerFailureReasonKind.html"><span class="xref download myst">BreakerFailureReasonKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d1c09c6a04a7582acffa6f3fdc26672e/BreakerMaintenanceKind.html"><span class="xref download myst">BreakerMaintenanceKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e111054667fd49f51619aae98c6f2fef/BreakerRepairItemKind.html"><span class="xref download myst">BreakerRepairItemKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8e1c9b5999a4784a112f17fef81ebd8f/BusVoltageObjective.html"><span class="xref download myst">BusVoltageObjective</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/897f52dd8b7823299b8dcfd1d55dbeaf/BusVoltageObjectiveSense.html"><span class="xref download myst">BusVoltageObjectiveSense</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ff7fa7c84f1b0a8068bdc2dc98637ed2/BusbarConfiguration.html"><span class="xref download myst">BusbarConfiguration</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7a8c725af8fa77af41baee42590312f1/BushingInsulationKind.html"><span class="xref download myst">BushingInsulationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7fd19f10bf4bc75ca19435d503d51487/BushingInsulationPfTestKind.html"><span class="xref download myst">BushingInsulationPfTestKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f4abf5be20a3a2a2b4aa8355e9a13a0f/CIGREStandard.html"><span class="xref download myst">CIGREStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2fb95d016be239f216d489bd66332fad/CIGREStandardEditionKind.html"><span class="xref download myst">CIGREStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2fad66e15e9666bf4d7e2a3e1041081a/CIGREStandardKind.html"><span class="xref download myst">CIGREStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/03c1675c89be6c82aa4b21275d8ee9ee/CRRCategoryType.html"><span class="xref download myst">CRRCategoryType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4f6b1715a33d70093b992a56be2c1578/CRRHedgeType.html"><span class="xref download myst">CRRHedgeType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fec9ca392ae2fad71e774ad2e67f2744/CRRRoleType.html"><span class="xref download myst">CRRRoleType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/42bb17e686bec88234ad79acad383fa6/CRRSegmentType.html"><span class="xref download myst">CRRSegmentType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f6c1deb3e868965da7489361395b66c2/CableConstructionKind.html"><span class="xref download myst">CableConstructionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d2b8d0387de461a9cf6aa6b967fd1ade/CableInfo.html"><span class="xref download myst">CableInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/56991900ecd975a02dbf5053a7c2f027/CableOuterJacketKind.html"><span class="xref download myst">CableOuterJacketKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4121daa0534fc59d9c278282bd025562/CableShieldMaterialKind.html"><span class="xref download myst">CableShieldMaterialKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/36f6a100eb659bea719fe7351d060c61/CalculationIntervalUnitKind.html"><span class="xref download myst">CalculationIntervalUnitKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9ae43b160b9f4fbf16d88b810c99d433/CalculationKind.html"><span class="xref download myst">CalculationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ab016ae4891e568026b9ebbdf758485a/CalculationModeKind.html"><span class="xref download myst">CalculationModeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d1801d85964fe79b5b566df5150c8aa8/CalculationTechniqueKind.html"><span class="xref download myst">CalculationTechniqueKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/47db1b316a4fd5f75927a91958d5006b/Capacitance.html"><span class="xref download myst">Capacitance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/42b09c5f39855c3cd51dc395e55a5215/CapacitancePerLength.html"><span class="xref download myst">CapacitancePerLength</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/da544da5c827696d1d9503a7d37fe6cf/CapacityPrices.html"><span class="xref download myst">CapacityPrices</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/76444aa7b38f0a84239358fb1edd3a90/ChargeKind.html"><span class="xref download myst">ChargeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/974e7bdb442cf94dacd47b9da4a6c681/CheckOutType.html"><span class="xref download myst">CheckOutType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/635f7053e7b08ab5600047a5baab3930/ChequeKind.html"><span class="xref download myst">ChequeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7fdf8a7c42bd5f5c03e8f909f8aee4c6/Clamp.html"><span class="xref download myst">Clamp</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/acebbac0b1af6c49ab52cce1743e3ed2/ClampAction.html"><span class="xref download myst">ClampAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9e27610b60fb679309caf14e033af2c2/Classification.html"><span class="xref download myst">Classification</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/209b30458f8295c8a79dbf619fc7a0b8/CleanTradeProductType.html"><span class="xref download myst">CleanTradeProductType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fd859ccd7dea9aabd0520d08b35e6ac6/ClearanceAction.html"><span class="xref download myst">ClearanceAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8c2a23c3ff84f60f6ae7bded79086411/ClearanceActionKind.html"><span class="xref download myst">ClearanceActionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1488093927a541a5a3aae25606630fe8/CloudKind.html"><span class="xref download myst">CloudKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fe60d3db0bc674885225f2d06486dc06/ComDirectionKind.html"><span class="xref download myst">ComDirectionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/78c46f0cdbf540e1c253f341dfb3cdd1/ComTechnologyKind.html"><span class="xref download myst">ComTechnologyKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/50a0fc1a6753974a2f3265d6879d0fc9/CommitmentType.html"><span class="xref download myst">CommitmentType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9b0b8f2f4ff2ba61963703cf7f499ab2/CommodityKind.html"><span class="xref download myst">CommodityKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ddc80c73c554696a4fb82fd3f8799fe1/CommunityFacility.html"><span class="xref download myst">CommunityFacility</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/73fc9a53305db42132821ad1d571bf6b/CompositeSwitchKind.html"><span class="xref download myst">CompositeSwitchKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6d577de8ab5dd5190bf7904ff5179498/ConcentricNeutralCableInfo.html"><span class="xref download myst">ConcentricNeutralCableInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/60d71586b59fbbe2fbdf194e0ae2ade6/ConditionFactorKind.html"><span class="xref download myst">ConditionFactorKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4ecb64990e2847f40ba0519811c90493/Conductance.html"><span class="xref download myst">Conductance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e852704acd719ba2c8a7381e78da2fd3/ConductancePerLength.html"><span class="xref download myst">ConductancePerLength</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c558adb987070eaa708a4154229c7a2f/ConductingEquipment.html"><span class="xref download myst">ConductingEquipment</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d8d3ae02def06914101cd3b700677619/Conductor.html"><span class="xref download myst">Conductor</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8fc23d3ceb73e0a16630fe1edecdd08d/ConductorType.html"><span class="xref download myst">ConductorType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d13eaf86b52997b71fc3da3cdfeafdd6/ConformLoad.html"><span class="xref download myst">ConformLoad</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6aa92a82c76ca44359a8349f85a7a36e/ConformLoadGroup.html"><span class="xref download myst">ConformLoadGroup</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/06c4452dc9e2f5b817f20339e5412a3a/ConformLoadSchedule.html"><span class="xref download myst">ConformLoadSchedule</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e86441674217557ede29720aba697542/ConnectivityNode.html"><span class="xref download myst">ConnectivityNode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2170a4aad5c66414ff636e3e98b67280/Connector.html"><span class="xref download myst">Connector</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/72961157db93fa2c77a4e8711b322486/ConstraintLimitType.html"><span class="xref download myst">ConstraintLimitType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/46094c96de5b67922eda5832a1c2767f/ConstraintRampType.html"><span class="xref download myst">ConstraintRampType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/78f5314db8e246d818a76bc49711d772/ContingencyEquipmentStatusKind.html"><span class="xref download myst">ContingencyEquipmentStatusKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a7c5ce173965cda4b21d57af6198cb5f/ContractType.html"><span class="xref download myst">ContractType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/608d3aa617aecb784c0416d6f6684394/ControlAction.html"><span class="xref download myst">ControlAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d8e9ce1c8494dbe503ae99a677adbbfa/ControlAreaTypeKind.html"><span class="xref download myst">ControlAreaTypeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/88ef5d2349510c7c72b1a2ccd895eba7/ControlledAppliance.html"><span class="xref download myst">ControlledAppliance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/80e529330ad680b7585b69c19a358644/CoolantType.html"><span class="xref download myst">CoolantType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ca2768923371d49eb7ca818d5ea7be38/CoolingKind.html"><span class="xref download myst">CoolingKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/696df5583ab2d0966f61e146108e69e1/CoordinateSystem.html"><span class="xref download myst">CoordinateSystem</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1db559925000bfb0d17de1d77720f140/CorporateStandardKind.html"><span class="xref download myst">CorporateStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e1ebebef7dc501d1a9bfb8bf8088962b/CostBasis.html"><span class="xref download myst">CostBasis</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/45bf69a5515359b3b9a5fe20da92527a/CostPerEnergyUnit.html"><span class="xref download myst">CostPerEnergyUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/78bd3269835e092d31821de391934142/CostPerHeatUnit.html"><span class="xref download myst">CostPerHeatUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/486688b88af136f3dd224cb2417f1d5d/CostPerUnitLength.html"><span class="xref download myst">CostPerUnitLength</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/301fce619801286edba45e00a6882652/CostPerVolume.html"><span class="xref download myst">CostPerVolume</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e23d8753b7ac08a3e84716aa7dbd1665/CostRate.html"><span class="xref download myst">CostRate</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5547b45226435a9be2209014c03f449e/CoverageCodeKind.html"><span class="xref download myst">CoverageCodeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e0b6eb9af48f1f2cfa0779c2811fb477/CrewStatusKind.html"><span class="xref download myst">CrewStatusKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e8caae870b94c133b6dc8e828e98cd50/CsConverter.html"><span class="xref download myst">CsConverter</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5eb9e8b625fd499d34da315326547340/CsOperatingModeKind.html"><span class="xref download myst">CsOperatingModeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/651593f851fe9ff8308352bca8e4ac23/CsPpccControlKind.html"><span class="xref download myst">CsPpccControlKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0e5a6e0e404b4c31d79395c157e7f0e4/Currency.html"><span class="xref download myst">Currency</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d6971e67aaa35ac7e2161c01686d47f3/CurrentFlow.html"><span class="xref download myst">CurrentFlow</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/af513eef1667fb513b823ca4875852cd/CurrentLimit.html"><span class="xref download myst">CurrentLimit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1c04dc96f17e30795c271f5262aa9b9d/CurrentStatusSC.html"><span class="xref download myst">CurrentStatusSC</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5ba8c3315354afbded9d45d9084c312b/Curve.html"><span class="xref download myst">Curve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2f12b4b74e6e813e586626fc3978f629/CurveData.html"><span class="xref download myst">CurveData</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7fc388b684bac0650a56d5f8811bd1ef/CurveStyle.html"><span class="xref download myst">CurveStyle</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a73155b6dbb2b0b5e7f8e1f10ff8bc4b/CustomerBillingKind.html"><span class="xref download myst">CustomerBillingKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/496ddbf710768edf9ceaf0f74a46f794/CustomerKind.html"><span class="xref download myst">CustomerKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7a5128671205408b1fb23d97ba2755fc/Cut.html"><span class="xref download myst">Cut</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/682fe64e83ed1a7f2134df7f9b357459/CutAction.html"><span class="xref download myst">CutAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/784962dfd66c256b0c39d9d18193061b/DAMMarketType.html"><span class="xref download myst">DAMMarketType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b9644e4fc73fe6564b8db69190d988f4/DCConverterOperatingModeKind.html"><span class="xref download myst">DCConverterOperatingModeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/76bee809aa1dc7159b139e0fb1eb71af/DCEquipmentContainer.html"><span class="xref download myst">DCEquipmentContainer</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a944e362c1a4e8ed08c258d4e389a2a3/DCPolarityKind.html"><span class="xref download myst">DCPolarityKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a1fcd4096e4db161f32b9c283111e6f7/DERParameterKind.html"><span class="xref download myst">DERParameterKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9968075594ebed9c3f08f2f549c4a30d/DERUnitSymbol.html"><span class="xref download myst">DERUnitSymbol</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/511c58afac411921468234a3dbe1e595/DINStandard.html"><span class="xref download myst">DINStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/85636f260141b0b76785272eeb264ae5/DINStandardEditionKind.html"><span class="xref download myst">DINStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c626bb666dd8b7094c4de28ad761e842/DINStandardKind.html"><span class="xref download myst">DINStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1879ab3cf358434ab958d9e040398e25/Damping.html"><span class="xref download myst">Damping</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ccfca6365feb09144a1f0e195a03e4cd/Date.html"><span class="xref download myst">Date</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/48593ee1b508608e80c95c6c572beb33/DateInterval.html"><span class="xref download myst">DateInterval</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f1f1f56cc1cdaaaeb9f2fc30728fa235/DateTime.html"><span class="xref download myst">DateTime</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9fdd715050b42826c5c35c7b625acbfb/DateTimeInterval.html"><span class="xref download myst">DateTimeInterval</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6125e67014e6ade0189b77a2f9625237/Decimal.html"><span class="xref download myst">Decimal</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7501c95c359317e22d8ae771605e7de5/DecimalQuantity.html"><span class="xref download myst">DecimalQuantity</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9631c9e4f1e76a7fcba717e8ab1a4495/DemographicKind.html"><span class="xref download myst">DemographicKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/965516ec2b0377b26dc21b9ab01f1b4d/DependencyKind.html"><span class="xref download myst">DependencyKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/343200574d21e7048c90a84f44a2858b/DeploymentDate.html"><span class="xref download myst">DeploymentDate</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1cf03c3e63dc46266f63811f8ae02271/DeploymentStateKind.html"><span class="xref download myst">DeploymentStateKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0c5a5ab6f23488f1e8f9ff336aa30b7d/DesignAlgorithmProperties.html"><span class="xref download myst">DesignAlgorithmProperties</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0efa4733bb66adda71ad897e41d5501f/DesignKind.html"><span class="xref download myst">DesignKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/12f7e5668584da8ddf88a0c27f1e7065/DispatchAcceptStatus.html"><span class="xref download myst">DispatchAcceptStatus</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7ee3a598f01efc04e8c1cbbb62a45ea8/DispatchResponseType.html"><span class="xref download myst">DispatchResponseType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9b7d23f03ac434364c0e3514f98a11d7/DispatchTransactionType.html"><span class="xref download myst">DispatchTransactionType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bb120fe55b89089e1b8c12b78a6808a6/Displacement.html"><span class="xref download myst">Displacement</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3ae0e91472ed92c8f1c63fdf4b63e9b2/DobleStandard.html"><span class="xref download myst">DobleStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1fd944b149585e542f60398bb4880728/DobleStandardEditionKind.html"><span class="xref download myst">DobleStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8718e23ca905187a9694fafc53f14585/DobleStandardKind.html"><span class="xref download myst">DobleStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ed4d597c75948552ecf7ced8096ebeee/Document.html"><span class="xref download myst">Document</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3489aeffea9261dfb042d8d93323f4c0/DroopSignalFeedbackKind.html"><span class="xref download myst">DroopSignalFeedbackKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/281cbcfce734aa1c4fc673a296758dd1/Due.html"><span class="xref download myst">Due</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ce484733d5c99750bd9086aedc01a6b7/Duration.html"><span class="xref download myst">Duration</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7e718545995f945acea14a97a7970318/DynamicsFunctionBlock.html"><span class="xref download myst">DynamicsFunctionBlock</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d84b8aff9e32d1a9b126cf2f44723828/EPAStandard.html"><span class="xref download myst">EPAStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ca6377d0471573b8748759716f4c195c/EPAStandardEditionKind.html"><span class="xref download myst">EPAStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4f8b1c613f4655a4f1a985f5417673c5/EPAStandardKind.html"><span class="xref download myst">EPAStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3abfbf00dc9a1d6897ae01ca411199e4/ERTConfidenceKind.html"><span class="xref download myst">ERTConfidenceKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/06d8283c90d36486f41e32683612d6c5/EarthFaultCompensator.html"><span class="xref download myst">EarthFaultCompensator</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b8a82cb8149a9f8cd9bd3575f4e3deae/EconomicProperty.html"><span class="xref download myst">EconomicProperty</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/800e165184fe25cd4e5c5cf5056ad291/ElectronicAddress.html"><span class="xref download myst">ElectronicAddress</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ec122e2efb176a760c27c244448a3858/Emission.html"><span class="xref download myst">Emission</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f48af265584479b511661ac15255a894/EmissionCurve.html"><span class="xref download myst">EmissionCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/417d272a18407ef0f275878a90d32551/EmissionType.html"><span class="xref download myst">EmissionType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/16b9e270594ff3e947cc44183b3476d2/EmissionValueSource.html"><span class="xref download myst">EmissionValueSource</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0b01dc279312855d516f3e2e48b83434/EndDeviceCapability.html"><span class="xref download myst">EndDeviceCapability</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/287eaefc9fa88fb7f5961ef5f22d8127/EndDeviceFunctionKind.html"><span class="xref download myst">EndDeviceFunctionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/951ab6d1d5841897de58b9696da38c34/EndDeviceTiming.html"><span class="xref download myst">EndDeviceTiming</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/42db5255645741ccaadcfbc3cb219aa1/EnergyArea.html"><span class="xref download myst">EnergyArea</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a8012ad8b52d92aa30eedb4485939fb3/EnergyConnection.html"><span class="xref download myst">EnergyConnection</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fd2bd5025915dc2ad45b889f5d6e9f54/EnergyConsumer.html"><span class="xref download myst">EnergyConsumer</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ce7ee0613aed9c0e8a6e2bb479fecf24/EnergyConsumerAction.html"><span class="xref download myst">EnergyConsumerAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9d1da147c978cdb4a0b7526c51549480/EnergyConsumerPhase.html"><span class="xref download myst">EnergyConsumerPhase</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ca927388c43e74778c1dcc6af23ae9e8/EnergyPriceIndexType.html"><span class="xref download myst">EnergyPriceIndexType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2ab4d29a685c1e19d7f966f102346c87/EnergyPrices.html"><span class="xref download myst">EnergyPrices</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/012dc2f10663db85f231e76a49ab4b07/EnergyProductType.html"><span class="xref download myst">EnergyProductType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fed6b7b74b52a8550e085fab49780b3b/EnergySource.html"><span class="xref download myst">EnergySource</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ad5048111969a0b3070665bf30312fff/EnergySourceAction.html"><span class="xref download myst">EnergySourceAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c51253acd3772a6479dff084064eedd7/EnergySourcePhase.html"><span class="xref download myst">EnergySourcePhase</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1d2152537c663391e1bcc174894fef49/EnergyTransactionType.html"><span class="xref download myst">EnergyTransactionType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/669bf6c9fa18e66f1d4a1ef53f741a42/EnergyTypeCode.html"><span class="xref download myst">EnergyTypeCode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0f1be4481f463bb526ca47337b44f6e8/EnergyTypeKind.html"><span class="xref download myst">EnergyTypeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/79f20748a5f6116d503b134040153a41/EnvironmentalDiscreteKind.html"><span class="xref download myst">EnvironmentalDiscreteKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e463879e3f5d2493ae317e925ecddf04/EnvironmentalEvent.html"><span class="xref download myst">EnvironmentalEvent</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6d2a3814f2eb9462b1398ba631d98532/EnvironmentalInformation.html"><span class="xref download myst">EnvironmentalInformation</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/145aef9431be20d6e6720ff9124319e2/EnvironmentalPhenomenon.html"><span class="xref download myst">EnvironmentalPhenomenon</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/69a7bead96c7806b4a43788aa32ca1e5/Equipment.html"><span class="xref download myst">Equipment</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/167a725768a3cb8618a36ba0af970a68/EquipmentContainer.html"><span class="xref download myst">EquipmentContainer</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/825034ef4538c87954e13b28bff77650/EquipmentFault.html"><span class="xref download myst">EquipmentFault</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8b97631567d50841abcc3b54141b18a8/EquipmentStatusType.html"><span class="xref download myst">EquipmentStatusType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d7d5990d4fbc4e37e7e9981972440621/EquivalentBranch.html"><span class="xref download myst">EquivalentBranch</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3fd94a27d0f9bffa045bb5fb78eae06b/EquivalentEquipment.html"><span class="xref download myst">EquivalentEquipment</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/206abc0d934a522a7d0e7da65c5be237/EquivalentInjection.html"><span class="xref download myst">EquivalentInjection</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a231a585874d5142f513749fd0534c7c/EquivalentShunt.html"><span class="xref download myst">EquivalentShunt</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/95fdf2b18bc0fc1efdf6ea047c0e8da1/ErpAccountKind.html"><span class="xref download myst">ErpAccountKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0ae5e6e55a36b79614face8589fb4876/ErpInvoiceKind.html"><span class="xref download myst">ErpInvoiceKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ba59848ed677d36cc4fe29f119aa5aa4/ErpInvoiceLineItemKind.html"><span class="xref download myst">ErpInvoiceLineItemKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fcd04eef403cc20cf5511f2bd09ef801/ExcIEEEST1AUELselectorKind.html"><span class="xref download myst">ExcIEEEST1AUELselectorKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4eb13ceaeaeb8b3c5c240d4cd2125686/ExcREXSFeedbackSignalKind.html"><span class="xref download myst">ExcREXSFeedbackSignalKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6bfbc5d7204281b593ee58a8808172c4/ExcST6BOELselectorKind.html"><span class="xref download myst">ExcST6BOELselectorKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c247517760e58cbf243e47a404d1f332/ExcST7BOELselectorKind.html"><span class="xref download myst">ExcST7BOELselectorKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d578c52333872a9a468a70b89303437a/ExcST7BUELselectorKind.html"><span class="xref download myst">ExcST7BUELselectorKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/dbc7730e500f34e11cd6323fdfd4703d/ExecutionType.html"><span class="xref download myst">ExecutionType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/27cc0c3ba51a94223f000ffdc962cde5/ExtensionItem.html"><span class="xref download myst">ExtensionItem</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/273fae54d875add03d3ec41cd5e85098/ExtensionsList.html"><span class="xref download myst">ExtensionsList</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5b9f0a260ab75cdfd701dc0976e00aa0/ExternalNetworkInjection.html"><span class="xref download myst">ExternalNetworkInjection</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7579f8e19ff5307180ed13d887328a9f/FACTSDeviceKind.html"><span class="xref download myst">FACTSDeviceKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1a2a3441726f3b2df1b299168499ade2/FScale.html"><span class="xref download myst">FScale</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5066d75f8af885ffb30718605e9188e2/FacilityCategory.html"><span class="xref download myst">FacilityCategory</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/49b3563ea4a127006167916fad4bd835/FacilityKind.html"><span class="xref download myst">FacilityKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/167747acec50ceb5b244a3927b3cb38c/FacilityService.html"><span class="xref download myst">FacilityService</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/566e3098b1bf02ffd9058f7bf6f659bf/FacilityServiceLevel.html"><span class="xref download myst">FacilityServiceLevel</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/11825f7ea0764eb0c2b7fe253584ead4/FacilityServiceType.html"><span class="xref download myst">FacilityServiceType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2cdb8d81f55985a794717518f0844df5/FailureIsolationMethodKind.html"><span class="xref download myst">FailureIsolationMethodKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/81fc45a64f59ae77439c39f3594e1f62/Fault.html"><span class="xref download myst">Fault</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1d41bcd2251183cd46eb1a30fb0b5dd0/FaultImpedance.html"><span class="xref download myst">FaultImpedance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a66cddf9726d6cb86b4a5f1ceaaa022b/FaultIndicatorResetKind.html"><span class="xref download myst">FaultIndicatorResetKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/074df305914442982dea237e2e143e44/Feeder.html"><span class="xref download myst">Feeder</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ef8a17203fc7031a2686765859706299/FlagTypeRMR.html"><span class="xref download myst">FlagTypeRMR</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/85b69812cb2b2d10433ebe0ec1199e48/Float.html"><span class="xref download myst">Float</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0a5306259b053908a5095e6c4d615819/FloatQuantity.html"><span class="xref download myst">FloatQuantity</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3d62cccbc143aa3abd9edc88b6050ac4/FlowDirectionKind.html"><span class="xref download myst">FlowDirectionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/175f9ab4d80a338e3f3be3217644fd6c/FlowDirectionType.html"><span class="xref download myst">FlowDirectionType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/338412a61473869205374c3202dc1656/FossilFuel.html"><span class="xref download myst">FossilFuel</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/137b3da5e2de3d97861ec52538e9849a/FrancisGovernorControlKind.html"><span class="xref download myst">FrancisGovernorControlKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/01960138e32816a66d4b8e2573012b39/Frequency.html"><span class="xref download myst">Frequency</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a12599ab4155370184c6727ad12bea55/FrequencyConverter.html"><span class="xref download myst">FrequencyConverter</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e827ba0bccb2d3c0daeff2c9af4c7a77/FuelCostCurve.html"><span class="xref download myst">FuelCostCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9483605971fb9dc2ed189768f040b1b6/FuelSource.html"><span class="xref download myst">FuelSource</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/709eb13630e2b55acbed7121e4e32669/FuelType.html"><span class="xref download myst">FuelType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/dfedcb272ee39e0a7c20049d355d8866/Fuse.html"><span class="xref download myst">Fuse</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/da480367eabfeb70806949a3eb94be31/GateLogicKind.html"><span class="xref download myst">GateLogicKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b948dd12c4de06376e9b023532dffecb/GenUnitOpCostCurve.html"><span class="xref download myst">GenUnitOpCostCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bfc391e7bb69c13bd2e15da6a9a7bebf/GenUnitOpSchedule.html"><span class="xref download myst">GenUnitOpSchedule</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2480390d59f845780659d9210202c1e3/GeneratingUnit.html"><span class="xref download myst">GeneratingUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d82207e5e4ea3ea8ef3d3837d1a4f13f/GeneratorControlMode.html"><span class="xref download myst">GeneratorControlMode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f5b9eb51dd1e3870ffc91476c17f5aff/GeneratorControlSource.html"><span class="xref download myst">GeneratorControlSource</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bcce50d09615703dd1e22077e6a8df00/GenericAction.html"><span class="xref download myst">GenericAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c2f37756cf693fddc152ddac89e3175b/GenericNonLinearLoadModelKind.html"><span class="xref download myst">GenericNonLinearLoadModelKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9afd2493c4938a718f8964d4213b2cdd/GeographicalRegion.html"><span class="xref download myst">GeographicalRegion</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9ec5a0b5d0f1cba3c2291ebc00126b26/GeosphericAnalogKind.html"><span class="xref download myst">GeosphericAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fc6abdd27da33c91e49f9d85a3a80815/GeosphericPhenomenon.html"><span class="xref download myst">GeosphericPhenomenon</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/288a60d9691cb199a9af7420155a51be/GovHydro4ModelKind.html"><span class="xref download myst">GovHydro4ModelKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f000565282a3444005c2fa189d15e155/GridFacility.html"><span class="xref download myst">GridFacility</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/32bfbcef4885955721160899cf77b92b/Ground.html"><span class="xref download myst">Ground</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/21bcd51817f45461c55253b4f3e6a201/GroundAction.html"><span class="xref download myst">GroundAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/60eb5b9d44972f4b26e91fcb1bde6d80/GroundDisconnector.html"><span class="xref download myst">GroundDisconnector</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9c2c41ffad3b1e37613c2bf04651a7a9/Group.html"><span class="xref download myst">Group</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b10d8c443d2808877484a75c695524f4/HVDCDynamics.html"><span class="xref download myst">HVDCDynamics</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a194919afc6deaff9c7bb25df8084959/HeatRate.html"><span class="xref download myst">HeatRate</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/78f4b06ac8ea5d65f0b9806752b52831/HeatRateCurve.html"><span class="xref download myst">HeatRateCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/38c71b1c86f09ecab6e27d149642088e/Hours.html"><span class="xref download myst">Hours</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f638312b6b7d7633c0b0c0568639973c/HydroEnergyConversionKind.html"><span class="xref download myst">HydroEnergyConversionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f79a9849178e45c320e69eabdc382357/HydroGeneratingUnit.html"><span class="xref download myst">HydroGeneratingUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/92914135f78ef60699844e26c57cded2/HydroPlantStorageKind.html"><span class="xref download myst">HydroPlantStorageKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3558d2b1e43a78ffe9389a0ec178315b/HydroTurbineKind.html"><span class="xref download myst">HydroTurbineKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/41293d8243e765ec733ff11d581e4ad8/HydrosphericAnalogKind.html"><span class="xref download myst">HydrosphericAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/935217ce227f0d6f5795b89b3968e2f6/HydrosphericPhenomenon.html"><span class="xref download myst">HydrosphericPhenomenon</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b59f7b5a25226aa8f6f251bf9afcdf20/ICCPAccessPrivilegeKind.html"><span class="xref download myst">ICCPAccessPrivilegeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1f49f3d21c231078b5a79161f90c6be9/ICCPPointKind.html"><span class="xref download myst">ICCPPointKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/34dd13c6a5bbb7951809675ce182a109/ICCPQualityKind.html"><span class="xref download myst">ICCPQualityKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3097ef1ba0dd69f56ecb22114684ee0a/ICCPScopeKind.html"><span class="xref download myst">ICCPScopeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f62925527b7b3db092de6e26a468df1b/IEC61968CIMVersion.html"><span class="xref download myst">IEC61968CIMVersion</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3c777ba5d03df189cd471da260988b93/IEC61970CIMVersion.html"><span class="xref download myst">IEC61970CIMVersion</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/65c49ae0cd01199a67068f345febd77c/IEC62325CIMVersion.html"><span class="xref download myst">IEC62325CIMVersion</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c90b2e026c7cbebc6e0e4c842f03e6f3/IECStandard.html"><span class="xref download myst">IECStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/59875952ea1bd471c5e83211b3968ad0/IECStandardEditionKind.html"><span class="xref download myst">IECStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/041044b3c6f4ea4afc757ab6ad370f10/IECStandardKind.html"><span class="xref download myst">IECStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d9b15cb6113917fde93d94266aec2a8f/IEEEStandard.html"><span class="xref download myst">IEEEStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f2fd1b59d2767a2180c3df7b72554df9/IEEEStandardEditionKind.html"><span class="xref download myst">IEEEStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/607156e4c5001be0d54549aedac41015/IEEEStandardKind.html"><span class="xref download myst">IEEEStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7af14623c2909e46cdb863a7fba55c2e/IPAddressKind.html"><span class="xref download myst">IPAddressKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/daa79dd6d72e2a02453da2e710aad07b/ISOStandard.html"><span class="xref download myst">ISOStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9638c693f9f686b07ec09fce5f5ba58d/ISOStandardEditionKind.html"><span class="xref download myst">ISOStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0877eb121f1f30933744732e0ebd0969/ISOStandardKind.html"><span class="xref download myst">ISOStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9f705846087b62ec96fdbd51da69fbfe/IfdBaseKind.html"><span class="xref download myst">IfdBaseKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/edbbec25c5aebe137c8eb6fa34ff159d/Impedance.html"><span class="xref download myst">Impedance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d76782ce1c44503f92763993f39b3972/InUseDate.html"><span class="xref download myst">InUseDate</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2ef33f07b9e62559e9481ef069b5bcc5/InUseStateKind.html"><span class="xref download myst">InUseStateKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/969fc58cc3a6e43624f7175501a06fe3/Inductance.html"><span class="xref download myst">Inductance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7ec2f3a1c1181c350d88d3fad04e370f/InductancePerLength.html"><span class="xref download myst">InductancePerLength</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/af169488016cace3aa96ff00d02c984d/InputSignalKind.html"><span class="xref download myst">InputSignalKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9d8386af50bc8b6791e2299d3f0124ad/InspectionAnalogKind.html"><span class="xref download myst">InspectionAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/921b7cea1da2b786f4c088d7c846f578/InspectionDiscreteKind.html"><span class="xref download myst">InspectionDiscreteKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bbe0ada9cb8ee3e67195cac9bd126760/Integer.html"><span class="xref download myst">Integer</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/343fc429781966182b37632460f48063/IntegerQuantity.html"><span class="xref download myst">IntegerQuantity</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/075c251fd9920e014b494c15dd5f1dd6/IntensityCodeKind.html"><span class="xref download myst">IntensityCodeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d18cdc1ad85a9a499dae1b91fd9a417f/InterTieDirection.html"><span class="xref download myst">InterTieDirection</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a63164a43eb10671fbf5e6d300bdb72f/InterruptingMediumKind.html"><span class="xref download myst">InterruptingMediumKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b731173a78235f55bde4155d865dc2c1/InverterController.html"><span class="xref download myst">InverterController</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/61c2b01310b5f381bc47417977f8ce94/JobFlagType.html"><span class="xref download myst">JobFlagType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9154703226b14e8a2b84ca8fea6b321f/JobScheduleType.html"><span class="xref download myst">JobScheduleType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4763a7fea901cc18c666d423602c1a3f/JobStartEndType.html"><span class="xref download myst">JobStartEndType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9575ecc23fd197eaaa14ce3324350125/JointConfigurationKind.html"><span class="xref download myst">JointConfigurationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/04caee2039ea949bba3381482a96a875/JointFillKind.html"><span class="xref download myst">JointFillKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c3f40bf622d5c7c3f7dc2a111f8909db/Jumper.html"><span class="xref download myst">Jumper</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/189591af4073fb6a609268a78564e3da/JumperAction.html"><span class="xref download myst">JumperAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/81ed3b277d8a71fa2656aab21a26a0ca/KiloActivePower.html"><span class="xref download myst">KiloActivePower</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/579509a9c3263065d6ce09cd9acd53b6/LFCResourceType.html"><span class="xref download myst">LFCResourceType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/35dbbd01185f3acc995bbe7c86070a6e/LaborelecStandard.html"><span class="xref download myst">LaborelecStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4fc80f39d2c4466b2f91c84e3e171272/LaborelecStandardEditionKind.html"><span class="xref download myst">LaborelecStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/41e5a3d06c908ce5a0af2aeaa5d5d6b1/LaborelecStandardKind.html"><span class="xref download myst">LaborelecStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5f90954c70d8f0c9b0eb79dc3ce80486/LandPropertyKind.html"><span class="xref download myst">LandPropertyKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7c2fffc025bc62578e90b61942717993/Length.html"><span class="xref download myst">Length</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5004c5127aac28a651ef3f7ff3259935/LifecycleDate.html"><span class="xref download myst">LifecycleDate</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8fe38d9c0bafbcc64953c6b488099d8c/Line.html"><span class="xref download myst">Line</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/36e862911168c7f6f6c7837acff2df98/LineDetail.html"><span class="xref download myst">LineDetail</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ad6a66819d513d9411ecb5d61c97ffcd/LineFault.html"><span class="xref download myst">LineFault</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9888308811395cbf65da4a7b5c875b0e/LinearShuntCompensator.html"><span class="xref download myst">LinearShuntCompensator</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7b57c1d5b58af3a3b8f0673fcb21eb8e/LinearShuntCompensatorPhase.html"><span class="xref download myst">LinearShuntCompensatorPhase</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d15b436b0374b522c5551dbfc212e813/LoadBreakSwitch.html"><span class="xref download myst">LoadBreakSwitch</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6486dab80f01f1f87741f2d73cea6d58/LoadFollowingCapacityType.html"><span class="xref download myst">LoadFollowingCapacityType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/20abb245f2a42b80e6141a3047e9372c/LoadForecastType.html"><span class="xref download myst">LoadForecastType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2fa2f67f49b2a634517bb876e13e2754/LoadGroup.html"><span class="xref download myst">LoadGroup</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5d10e2d9c9ac8f879f955ab5cf9b5b1e/LoadResponseCharacteristic.html"><span class="xref download myst">LoadResponseCharacteristic</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2237addaa5f1f45b9f6a58c1ac9c9517/Location.html"><span class="xref download myst">Location</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/000d4a4e90a0e9671a48a71a2e288871/LocationKind.html"><span class="xref download myst">LocationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1ea68ea846c3e64c903643cd48f9a496/LocationalMarginalPrices.html"><span class="xref download myst">LocationalMarginalPrices</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2d707066ed7547fa79f56f4fb65712cb/LookUpTableFunctionKind.html"><span class="xref download myst">LookUpTableFunctionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/10efd230db620b0ff7a228ebf8130bf7/MPMTestIdentifierType.html"><span class="xref download myst">MPMTestIdentifierType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/28ec8a8fdec6455487a73b00804f62e7/MPMTestMethodType.html"><span class="xref download myst">MPMTestMethodType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/dde5dce9fc512eb1e05bcb1123fd5974/MPMTestOutcome.html"><span class="xref download myst">MPMTestOutcome</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ee3f3ee36674fae436ec3c5ec756675f/MQSCHGType.html"><span class="xref download myst">MQSCHGType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0b8742dc828dca82dc3f56f40abe2387/MQSDELType.html"><span class="xref download myst">MQSDELType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/582bb1ad198001d166c7c399147862d3/MQSInstructionSource.html"><span class="xref download myst">MQSInstructionSource</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/50a6702340786334177a4de1f3628472/MacroPeriodKind.html"><span class="xref download myst">MacroPeriodKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5af7f9b78c085e79ecbeefe27316c871/MagneticField.html"><span class="xref download myst">MagneticField</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3c960fec3cd88344507d85097140482c/MarketEventStatusKind.html"><span class="xref download myst">MarketEventStatusKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/cbefa38dd21e6957932ee680c7007dfb/MarketProductSelfSchedType.html"><span class="xref download myst">MarketProductSelfSchedType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/37b604df264628d4d7b0f1e4c114cd64/MarketProductType.html"><span class="xref download myst">MarketProductType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/595ef106934e731a8c8a4d43483df502/MarketProductTypeAsReq.html"><span class="xref download myst">MarketProductTypeAsReq</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b914718416152f83bc77486de770947e/MarketRoleKind.html"><span class="xref download myst">MarketRoleKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/19440e30a602c55e2a4b4ac0b90b397c/MarketScheduleServices.html"><span class="xref download myst">MarketScheduleServices</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2fe5cd6129e81426167c7a67830dfe54/MarketStatementDescription.html"><span class="xref download myst">MarketStatementDescription</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/09021b3bf4c25f791d6b518f156cb155/MarketStatementDocStatus.html"><span class="xref download myst">MarketStatementDocStatus</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/924f96ebf7610d45e0083a4cb6a009f4/MarketStatementDocType.html"><span class="xref download myst">MarketStatementDocType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/59fe869410de6a5cac09ae7f8c92c0d7/MarketStatementLineItemAliasName.html"><span class="xref download myst">MarketStatementLineItemAliasName</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4e94d60592542e47edfca38dd1d87a24/MarketType.html"><span class="xref download myst">MarketType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/860ee1b795629147f0fe93d041a14826/Mass.html"><span class="xref download myst">Mass</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0d388832a0f0d6c1943f07766fdc2db7/MeasurementAction.html"><span class="xref download myst">MeasurementAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3bea996dfc7ff926e77f53a3139c8a1b/MeasurementKind-Old.html"><span class="xref download myst">MeasurementKind-Old</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6220a173875218f1cdcb60161a5c5c61/MeasurementKind.html"><span class="xref download myst">MeasurementKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bd9d10b2f7c727baf6eddbe7ab2df11d/MeasurementTypeEMS.html"><span class="xref download myst">MeasurementTypeEMS</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9f2ed0b08ac2c83df24fad6dd72d9f5b/MeasuringPeriodKind.html"><span class="xref download myst">MeasuringPeriodKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c1550dbdc9563dee92ee5880d9730807/MediumKind.html"><span class="xref download myst">MediumKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6444c6ea2cad90aa6801f29734b8fb38/MeterMultiplierKind.html"><span class="xref download myst">MeterMultiplierKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d64bb5b99a3ac09df8702fe5759f2e60/Minutes.html"><span class="xref download myst">Minutes</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/756497ef127373d687240571702f176b/MktAccountKind.html"><span class="xref download myst">MktAccountKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9353f212a6d38e09c8cd65ff0a6e951e/MktBillMediaKind.html"><span class="xref download myst">MktBillMediaKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3524948277dbb18f27ce0fcd5b519815/MktInvoiceLineItemKind.html"><span class="xref download myst">MktInvoiceLineItemKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/620ead1df32ab46c2cddbee4d2f5eb89/MktSubClassType.html"><span class="xref download myst">MktSubClassType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a1d4308ec5c7e9336b29a4a827349f66/Money.html"><span class="xref download myst">Money</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8e7d49ac0fe55bafdad7c903286bb64b/MonthDay.html"><span class="xref download myst">MonthDay</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b00ebd91aabd2032fae775859337a6fd/MonthDayInterval.html"><span class="xref download myst">MonthDayInterval</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f9a606c018b89082daa8ab5a24780df0/NoLoadTest.html"><span class="xref download myst">NoLoadTest</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/275b746ffddc7d33e5e6c9ffdadfe49b/NonConformLoad.html"><span class="xref download myst">NonConformLoad</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b03577c577319bfe7730e473f873f87b/NonConformLoadGroup.html"><span class="xref download myst">NonConformLoadGroup</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/21edeeaba1360dfeeb69d2039f9f78b1/NonConformLoadSchedule.html"><span class="xref download myst">NonConformLoadSchedule</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f9c9c4557ab8cc981991fd77c66cf045/NonGridFacility.html"><span class="xref download myst">NonGridFacility</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/34d1625e02c63bca06d977bea4e55f5c/NonlinearShuntCompensator.html"><span class="xref download myst">NonlinearShuntCompensator</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a23974842a7aa1881f54b9422f5471b9/NonlinearShuntCompensatorPhase.html"><span class="xref download myst">NonlinearShuntCompensatorPhase</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bc57d9c60c37ce62330f4fa8105b038b/NotificationTriggerKind.html"><span class="xref download myst">NotificationTriggerKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/098af9be23dabaeee978897fefeea852/NuclearGeneratingUnit.html"><span class="xref download myst">NuclearGeneratingUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/57c558aae5a8fe213d1a9a6d33bf74b4/OASISBidReportType.html"><span class="xref download myst">OASISBidReportType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1b1bc945c3d6729d8ff2f65a6e9fbcac/OASISDataItems.html"><span class="xref download myst">OASISDataItems</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/53c961c1129962e3578d2be9725bfb67/OASISErrCode.html"><span class="xref download myst">OASISErrCode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fbb494638ddc9bde023e1cfa79bfb210/OASISErrDescription.html"><span class="xref download myst">OASISErrDescription</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5c9c21505cc6898c4238b49353c1a075/OASISIntervalType.html"><span class="xref download myst">OASISIntervalType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/81074b11b247c9ba99c78a42a51dc2ee/OASISMarketType.html"><span class="xref download myst">OASISMarketType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bb38dd2bf7f933c9a74c2945547967c4/OASISMasterType.html"><span class="xref download myst">OASISMasterType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7fdb75f33021b273ee0612b20252dba8/OASISMeasType.html"><span class="xref download myst">OASISMeasType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2160df2c938dd8e19a45a1d53cb8202c/OASISReportType.html"><span class="xref download myst">OASISReportType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/aa219efda9a306a37cd4576fd16aaf5a/OASISStatusType.html"><span class="xref download myst">OASISStatusType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/634c9770521060efc01722ffcf398563/OilAnalysisFluidAnalogKind.html"><span class="xref download myst">OilAnalysisFluidAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/761ed8d5031869db7f4b501eefa97d3b/OilAnalysisFluidDiscreteKind.html"><span class="xref download myst">OilAnalysisFluidDiscreteKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/382144bcdf3badd5691439f7a5a23b87/OilAnalysisGasAnalogKind.html"><span class="xref download myst">OilAnalysisGasAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/825a6f1660d97e826c7fc195ad6f3bdc/OilAnalysisMetalsAnalogKind.html"><span class="xref download myst">OilAnalysisMetalsAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/feca00c040fe2aa46be46fbed1b9f2d9/OilAnalysisMoistureAnalogKind.html"><span class="xref download myst">OilAnalysisMoistureAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2371d96b8ed74f4e7be22e6778e41f9d/OilAnalysisPCBAnalogKind.html"><span class="xref download myst">OilAnalysisPCBAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2fe1c1be72ebdddc32a47f0091c9bbae/OilAnalysisPCBDiscreteKind.html"><span class="xref download myst">OilAnalysisPCBDiscreteKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e679d1bc8b6f09973a4ae2a284c187be/OilAnalysisPaperAnalogKind.html"><span class="xref download myst">OilAnalysisPaperAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/71c9591aca7e3df5f78398bbde892b31/OilAnalysisParticleAnalogKind.html"><span class="xref download myst">OilAnalysisParticleAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c3805dc31cf36a44dea56666acbdfb09/OilAnalysisParticleDiscreteKind.html"><span class="xref download myst">OilAnalysisParticleDiscreteKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ba53406724654bc564add7f04db10d46/OilPreservationKind.html"><span class="xref download myst">OilPreservationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/97d84e5afb1f6d8b750c4671ddf14b9e/OilSampleLocation.html"><span class="xref download myst">OilSampleLocation</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/29b23e2c0c235f2addd73eaea57ec6f8/OilTemperatureSource.html"><span class="xref download myst">OilTemperatureSource</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bd6afe7c08efccc7ec29e51cd9ce43b8/OnOff.html"><span class="xref download myst">OnOff</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ba6552aa61b8829353fc167ffbc82791/OperatingMechanismKind.html"><span class="xref download myst">OperatingMechanismKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/eeff804941c86fd403dc6f2ea52051f1/OperationalLimit.html"><span class="xref download myst">OperationalLimit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/29fdb920109c32a5d30745b8bc3bf99a/OperationalLimitDirectionKind.html"><span class="xref download myst">OperationalLimitDirectionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4fafe430f97ddb85554985f9f00e9315/OperationalLimitSet.html"><span class="xref download myst">OperationalLimitSet</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/42ba75456d6ae7d09da639684032c315/OperationalLimitType.html"><span class="xref download myst">OperationalLimitType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f7b5a28364444179728d99695c4e6783/OrganisationCode.html"><span class="xref download myst">OrganisationCode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e71d47822015906662cfe1cc01ac0a70/OrganisationType.html"><span class="xref download myst">OrganisationType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/48a1bb1bb715864621fc81d3fe62b210/OrientationKind.html"><span class="xref download myst">OrientationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f86ae2d32005eebabbe95aa64a4ff1b9/Outage.html"><span class="xref download myst">Outage</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5c19b665a9aae3de9595a08b3496ba9b/OutageCauseKind.html"><span class="xref download myst">OutageCauseKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5a56adf308af36534eb2946bb662f9ea/OutageScenario.html"><span class="xref download myst">OutageScenario</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6c1453f8d505b18447592c4c35913fdf/OutageStatusKind.html"><span class="xref download myst">OutageStatusKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/41c24466d436f9096e777585a0745f83/OverheadWireInfo.html"><span class="xref download myst">OverheadWireInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d61b258a894ba346948e4bbec4a341a7/PSREventKind.html"><span class="xref download myst">PSREventKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8d14d6784d6e29822bd5af395263aab7/PU.html"><span class="xref download myst">PU</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0c58eb030d424b6a9c93a7e37e46a423/ParticipationCategoryMPM.html"><span class="xref download myst">ParticipationCategoryMPM</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a99b90a8fe8affe84881074d83816560/ParticulateDensity.html"><span class="xref download myst">ParticulateDensity</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c670410afdb55f82fd9b3a747c6f09ef/PassIndicatorType.html"><span class="xref download myst">PassIndicatorType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8dccdd5bbc151a160ba3cf72819d05cf/PerCent.html"><span class="xref download myst">PerCent</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/babf5c462245bab66b49b2280d68e383/PerLengthDCLineParameter.html"><span class="xref download myst">PerLengthDCLineParameter</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3d130102e4c6b28614552fa6c2b97ca2/PerLengthImpedance.html"><span class="xref download myst">PerLengthImpedance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1b192b437ed430bf8dff9fbe4727429f/PerLengthLineParameter.html"><span class="xref download myst">PerLengthLineParameter</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4f6908cbcf174a2f59714f467417c817/PerLengthPhaseImpedance.html"><span class="xref download myst">PerLengthPhaseImpedance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7b2b852bbacff9672a2a7a093b0738be/PerLengthSequenceImpedance.html"><span class="xref download myst">PerLengthSequenceImpedance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4ce9a3a38063a3f34a91313746c73ba2/PetersenCoilModeKind.html"><span class="xref download myst">PetersenCoilModeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/be5567161a12125dff72edc1dfd0086a/PhaseCode.html"><span class="xref download myst">PhaseCode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1cb6aa27f84c2308a95cb9231d4768e3/PhaseConnectedFaultKind.html"><span class="xref download myst">PhaseConnectedFaultKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/124e614b73f514ecdf114e917ad81f8f/PhaseImpedanceData.html"><span class="xref download myst">PhaseImpedanceData</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2cec67637dc678faba174d61d86bc153/PhaseShuntConnectionKind.html"><span class="xref download myst">PhaseShuntConnectionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/66f4617bf1bd3d4de686758f7f88013e/PhaseTapChanger.html"><span class="xref download myst">PhaseTapChanger</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/20967e08cb153676f99aca3fafd31b28/PhotoVoltaicUnit.html"><span class="xref download myst">PhotoVoltaicUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ba200fd0a5ace833901dd4fbf6084224/PinBranchGroupKind.html"><span class="xref download myst">PinBranchGroupKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bfde9733a74b79733121fc80113e866d/PinEquipmentKind.html"><span class="xref download myst">PinEquipmentKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0d0688a66bbdd410b081deba94cff022/PinTerminalKind.html"><span class="xref download myst">PinTerminalKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f041607468ab547e785d5a31448d7aa3/PlannedOutage.html"><span class="xref download myst">PlannedOutage</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e4768c038f5a2dce3d9216679bc88b31/Plant.html"><span class="xref download myst">Plant</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f275e3aba286a74b07caae22cfd00bbf/PoleBaseKind.html"><span class="xref download myst">PoleBaseKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/193e0a9a1484d67574918c220c4e287a/PolePreservativeKind.html"><span class="xref download myst">PolePreservativeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d67b223e041464fb13b440d18ef3a763/PoleTreatmentKind.html"><span class="xref download myst">PoleTreatmentKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/14e801c89e99d61172bcaa0b516d166f/PopulationGroup.html"><span class="xref download myst">PopulationGroup</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d6ba5f79039a2d340be3d9f62bdea7aa/PositionPoint.html"><span class="xref download myst">PositionPoint</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/dd643730e5be75eba1c54c6f803b833f/PotentialTransformerKind.html"><span class="xref download myst">PotentialTransformerKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/be1c4d2b3831e66ff384774f895cd7cf/PowerElectronicsConnection.html"><span class="xref download myst">PowerElectronicsConnection</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/25fbfd5dab0814ba71bf25f3dfce237b/PowerElectronicsConnectionPhase.html"><span class="xref download myst">PowerElectronicsConnectionPhase</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9b67debadaec685514be15fd39efe320/PowerElectronicsUnit.html"><span class="xref download myst">PowerElectronicsUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c2cf4a549461129ac09f2a8d85aec4d2/PowerElectronicsWindUnit.html"><span class="xref download myst">PowerElectronicsWindUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/df3960845e1a5a288f5f3053f6ba512d/PowerFlowSolutionProperties.html"><span class="xref download myst">PowerFlowSolutionProperties</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b2a54853ac2ffeadd74fda4c7eb31f92/PowerSystemProjectLifecycleToBeDeleted.html"><span class="xref download myst">PowerSystemProjectLifecycleToBeDeleted</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/17b21148660588637978f2192cac48cb/PowerSystemResource.html"><span class="xref download myst">PowerSystemResource</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a53e8706d22ed799f62290dd872e3f9b/PowerTransformer.html"><span class="xref download myst">PowerTransformer</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e59012da14ec5b5baafa567ebd5d9e96/PowerTransformerEnd.html"><span class="xref download myst">PowerTransformerEnd</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f3511b1d4942033da1a5af1cc54f910f/PowerTransformerInfo.html"><span class="xref download myst">PowerTransformerInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5972cbeb2cdf838b04bd73df042defb9/PredictedEmissions.html"><span class="xref download myst">PredictedEmissions</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/55e319e965190e113ae063bca058e5ab/Pressure.html"><span class="xref download myst">Pressure</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9e3fd96576602ae3b3075c598ddf8908/PriceCurve.html"><span class="xref download myst">PriceCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a46d1ebef6428afbf96d5111d0a638e7/PriceSetFlag.html"><span class="xref download myst">PriceSetFlag</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/44f493a00176b31c236c41cce896627b/PriceTypeKind.html"><span class="xref download myst">PriceTypeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4671d90d79b2dc1051a14b6c125bc1fd/Priority.html"><span class="xref download myst">Priority</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/be38622cc9d8dabb50ad6a8103202094/ProcedureKind.html"><span class="xref download myst">ProcedureKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/273232263227ad9c40b8fb73ff066c68/ProjectStatusKind.html"><span class="xref download myst">ProjectStatusKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d3aa4c94889c276ddf457447c64901ba/ProposedAssetOption.html"><span class="xref download myst">ProposedAssetOption</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/feb0bebf3f2343b66c45580105b60e75/ProposedBatteryUnitOption.html"><span class="xref download myst">ProposedBatteryUnitOption</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ed2c0d2094c64ee3f4d16ca28f1185a3/ProposedConductorOption.html"><span class="xref download myst">ProposedConductorOption</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/13e9c380827f8548c99baab7df24335a/ProposedEnergyProducerOption.html"><span class="xref download myst">ProposedEnergyProducerOption</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2976bc391304d977a3245cb6499161b3/ProposedGeneratingUnitOption.html"><span class="xref download myst">ProposedGeneratingUnitOption</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/af8c2e4e39bf36ddd046eda65bbf94e1/ProposedPhotovoltaicUnitOption.html"><span class="xref download myst">ProposedPhotovoltaicUnitOption</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9ef60a3f24ccfb4b094fe09e27227d38/ProposedSiteLocation.html"><span class="xref download myst">ProposedSiteLocation</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4c401f98e826b97f28f2a500963d4549/ProposedSwitchOption.html"><span class="xref download myst">ProposedSwitchOption</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c5705c1291b8a4c24e12a22c16af7dbc/ProposedWindUnitOption.html"><span class="xref download myst">ProposedWindUnitOption</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/60faac60729cee43840d07a13c118446/ProtectedSwitch.html"><span class="xref download myst">ProtectedSwitch</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b29d7722ada43b88f4f187fdb3b649e5/ProtectiveActionAdjustmentKind.html"><span class="xref download myst">ProtectiveActionAdjustmentKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/33405ffbaddfa6505273055f96ad6eb9/PurposeFlagType.html"><span class="xref download myst">PurposeFlagType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5a100f3018b06ca13d0c3507e605ca6c/RampCurveType.html"><span class="xref download myst">RampCurveType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f39db6ad590e3a7f4a188ae78fcee3d5/RampRateCondition.html"><span class="xref download myst">RampRateCondition</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/28307acbffcb57e4b99a4391d56eb9fe/RampRateCurve.html"><span class="xref download myst">RampRateCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2797eda0d58b7194789a5cd4aa3a0d68/RampRateType.html"><span class="xref download myst">RampRateType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/899279638b3605e727e40a237dd8d1ec/RandomisationKind.html"><span class="xref download myst">RandomisationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ce6b5d094aa37445572b69e2adf0e420/Ratio.html"><span class="xref download myst">Ratio</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d7483079b290849f9fed99ae29b7eef7/RatioTapChanger.html"><span class="xref download myst">RatioTapChanger</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8da3885f89081b5ad704946d80ad0642/RationalNumber.html"><span class="xref download myst">RationalNumber</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8fdf3ab0173b30d2f998333304eccbcf/RavensVersion.html"><span class="xref download myst">RavensVersion</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a8b2d367ae7d869ed50c139180b2579f/Reactance.html"><span class="xref download myst">Reactance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f57b3d5435036000f6b4590f4c32f152/ReactancePerLength.html"><span class="xref download myst">ReactancePerLength</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d3f09b27c1c7343eb3b19704a92c7caa/ReactiveCapabilityCurve.html"><span class="xref download myst">ReactiveCapabilityCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ffc8654cd9dc38157b87882d3967dcde/ReactivePower.html"><span class="xref download myst">ReactivePower</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/24f32b748ed28c1ff8cd503f937768ca/ReadingInterharmonic.html"><span class="xref download myst">ReadingInterharmonic</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/270e7d12cb56a3d032e400beb2277c3d/ReadingReasonKind.html"><span class="xref download myst">ReadingReasonKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8df9cb3f439ad7f1f3c1e7a131986e75/RealEnergy.html"><span class="xref download myst">RealEnergy</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/721bb3c9abf0f23c16d91a1c2d2aafb2/RealEnergyTransferRate.html"><span class="xref download myst">RealEnergyTransferRate</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bfeb43bb1edd110386f59e1bc140f115/Recloser.html"><span class="xref download myst">Recloser</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a6623c2c05f4dceb98e0bf1e7c40271f/RegulatingCondEq.html"><span class="xref download myst">RegulatingCondEq</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/32f1407743e15dfaec5761523474346c/RegulatingControl.html"><span class="xref download myst">RegulatingControl</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c4be1b374b54e0579c2f50144fcbadeb/RegulatingControlModeKind.html"><span class="xref download myst">RegulatingControlModeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e00bc430b00948890ebc64487497e4ae/RegulationBranchKind.html"><span class="xref download myst">RegulationBranchKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/22a914484987540141f8558da1304503/RelativeDisplacement.html"><span class="xref download myst">RelativeDisplacement</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/122042ab78eab29417ffc995be8b4dc6/RelativeDisplacementKind.html"><span class="xref download myst">RelativeDisplacementKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1499c9949e07b695303c6b15b2803b04/RemedialActionSchemeKind.html"><span class="xref download myst">RemedialActionSchemeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9de1fa488c3a2776f28b6b99caf364e5/RemoteConnectDisconnectInfo.html"><span class="xref download myst">RemoteConnectDisconnectInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7560d7148c2bb85c57c508e8bc360bde/RemoteSignalKind.html"><span class="xref download myst">RemoteSignalKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/73fd24a5183f045dc6deb402ade2bd69/RemoteUnitType.html"><span class="xref download myst">RemoteUnitType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0320c216649bb886a23cfdc877f02cad/ReportingMethodKind.html"><span class="xref download myst">ReportingMethodKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a4d9135f441daeebfbf9206bc5de3303/RequestorRmrTest.html"><span class="xref download myst">RequestorRmrTest</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/97224539888068ec8f1e01f837e49e68/ReserveRequirementType.html"><span class="xref download myst">ReserveRequirementType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/37b13dae6d335d74b23d4f59f131133b/Resistance.html"><span class="xref download myst">Resistance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/73be80abaaa1dcb23575fad3bbfbf22d/ResistancePerLength.html"><span class="xref download myst">ResistancePerLength</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1ae457734caddbfbfa0051cb6a65e3a1/ResourceAssnType.html"><span class="xref download myst">ResourceAssnType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fe769482f14b42c1e9d111cabfafcb06/ResourceCapacityType.html"><span class="xref download myst">ResourceCapacityType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f09ba5e9859ecaa91c2a3eed2bb62087/ResourceCertificationCategory.html"><span class="xref download myst">ResourceCertificationCategory</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ed4fd910146e2ee1bc0a1fd68495b7b7/ResourceCertificationKind.html"><span class="xref download myst">ResourceCertificationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/cfe60051f9e3180988ad3004183f7b45/ResourceCertificationType.html"><span class="xref download myst">ResourceCertificationType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/913c6f1a1a9d48cbe6c0173cee4e8b6b/ResourceLimitIndicator.html"><span class="xref download myst">ResourceLimitIndicator</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7e31f8a47126e1c8853006496ea77f5e/ResourceRegistrationStatus.html"><span class="xref download myst">ResourceRegistrationStatus</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d4dab49423d00e8c66274edfcc042582/ResponseCharacteristic.html"><span class="xref download myst">ResponseCharacteristic</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/761524ab931f4c8a856e2868faf01575/ResultsConstraintType.html"><span class="xref download myst">ResultsConstraintType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0ff6e02f81a9cbc1728dcb4041282a63/RetiredReasonKind.html"><span class="xref download myst">RetiredReasonKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/852383b6b51dcf1f099ee1cbca26efb9/RevenueKind.html"><span class="xref download myst">RevenueKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/43f675908522d0f79def5d7a7465fe3e/RevisionKind.html"><span class="xref download myst">RevisionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7bbf87f44fb4f34b1c0a3dca328f6bee/RiskScoreKind.html"><span class="xref download myst">RiskScoreKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bce6770c22e7529fd6f357c7974e1460/RotatingMachine.html"><span class="xref download myst">RotatingMachine</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a3de711d69a3f1bad76e2456cf11b607/RotatingMachineDynamics.html"><span class="xref download myst">RotatingMachineDynamics</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8d466882eb21049be5eba6837ac4e76e/RotatingMachineResponseCharacteristic.html"><span class="xref download myst">RotatingMachineResponseCharacteristic</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2b4d8ae435987aa7143659b503caf921/RotationSpeed.html"><span class="xref download myst">RotationSpeed</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e6afc7dc214cf1b3ec52230318ce0e74/RotorKind.html"><span class="xref download myst">RotorKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3130f503e21466a94d0e5aa3d353b63b/SVCControlMode.html"><span class="xref download myst">SVCControlMode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5be67d41a8992dc47cb881d92cce6d0c/SampleContainerType.html"><span class="xref download myst">SampleContainerType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ef1b1dd1e6ed62ccc0b381e5f8b6f75b/ScaleKind.html"><span class="xref download myst">ScaleKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/51ce7d4a3f46a2787fa78a146c679975/SchedClassType.html"><span class="xref download myst">SchedClassType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fd93beb909f77e6038ba0048c192bded/SealConditionKind.html"><span class="xref download myst">SealConditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/913578eac9def1eca42f85924f82d811/SealKind.html"><span class="xref download myst">SealKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c537c08c07e890318ac544bb71bae9fa/Season.html"><span class="xref download myst">Season</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/cd5e1ab72e8e3325badd30ec09849c3e/Seconds.html"><span class="xref download myst">Seconds</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4622cd8353f971ba69b1e59cf428de7e/Sectionaliser.html"><span class="xref download myst">Sectionaliser</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7112b3301a0ce503ffcbecb5021ed3fc/SegmentCurveType.html"><span class="xref download myst">SegmentCurveType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/586f486e70bf29c3e2bd8a03967dd25b/SelfSchedReferenceType.html"><span class="xref download myst">SelfSchedReferenceType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4c5c1f81619dc59937cc144a1cfb1061/SelfSchedTypeCleanBid.html"><span class="xref download myst">SelfSchedTypeCleanBid</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/62b915115e9af4177f084d2c6fc2d2ce/SelfSchedTypeRawBid.html"><span class="xref download myst">SelfSchedTypeRawBid</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/50adb65bc7e3346672a72138d622ed72/SelfScheduleBreakdownType.html"><span class="xref download myst">SelfScheduleBreakdownType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fece510d7ca7d874be5ea1e051e5c164/SelfScheduleType.html"><span class="xref download myst">SelfScheduleType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a7d41520b55163315368ae15474c8fee/SelfScheduleTypeMB.html"><span class="xref download myst">SelfScheduleTypeMB</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4c2b6da6884aab0472ccd4dda813462b/SeriesCompensator.html"><span class="xref download myst">SeriesCompensator</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5cfde710dad26c850f0dc87758267206/ServiceKind.html"><span class="xref download myst">ServiceKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/392e54924dc2ce09fef665219391eb4d/ServiceMultiplierKind.html"><span class="xref download myst">ServiceMultiplierKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/08d7130189e39a799c6dd0e1c652f898/ServicePointOutageSummary.html"><span class="xref download myst">ServicePointOutageSummary</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5e67fa92d5cb4c8e9f4286b6603e1195/ServiceRequestKind.html"><span class="xref download myst">ServiceRequestKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/36b9d61023777c4341ade06244de9af0/ShortCircuitRotorKind.html"><span class="xref download myst">ShortCircuitRotorKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f14c7b99030cefee736df34c414bcb16/ShortCircuitTest.html"><span class="xref download myst">ShortCircuitTest</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/89425fb2fef80b626b195c11a7620341/ShuntCompensator.html"><span class="xref download myst">ShuntCompensator</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7bc8976cbce1f05f41e7423d91062d13/ShuntCompensatorAction.html"><span class="xref download myst">ShuntCompensatorAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f91c4a9bb3e1025b4a99440e8e35dbe6/ShuntCompensatorInfo.html"><span class="xref download myst">ShuntCompensatorInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a2bbc5ad5c73668e3a5d63305f703374/ShuntCompensatorPhase.html"><span class="xref download myst">ShuntCompensatorPhase</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/101a8e362b79d3e99d228e00c0e497a8/ShuntImpedanceControlKind.html"><span class="xref download myst">ShuntImpedanceControlKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/76980074de689c9f107d60dffac0e001/ShuntImpedanceLocalControlKind.html"><span class="xref download myst">ShuntImpedanceLocalControlKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/77b4b2aadb2ed45f2397a3430156f66a/ShutdownCurve.html"><span class="xref download myst">ShutdownCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f37e874cf38fd550b422550a701cb57d/SinglePhaseKind.html"><span class="xref download myst">SinglePhaseKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ebf29575788c29c4be1dee32ff231216/SkillLevelKind.html"><span class="xref download myst">SkillLevelKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/821f6106a67e63081f298054dbe85c44/SolarGeneratingUnit.html"><span class="xref download myst">SolarGeneratingUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0cce41b41fed607489f9a84d3724aadd/Source.html"><span class="xref download myst">Source</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/88ac7f289fb2402fbed67825adf34d41/SourceSinkFlag.html"><span class="xref download myst">SourceSinkFlag</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f483e5ed7ca59b188a3b67fa09382768/SourceSinkType.html"><span class="xref download myst">SourceSinkType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0722f14ecd45ae8b724ae5d8c45357be/SpaceAnalogKind.html"><span class="xref download myst">SpaceAnalogKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/548aab5c7cbd9bace0c31b07c4363f63/SpacePhenomenon.html"><span class="xref download myst">SpacePhenomenon</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/761dfcc2a562adef6113a011c34c4e3a/Speed.html"><span class="xref download myst">Speed</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2d3189bf7ef574ba6d88b8b3b9eb50d2/SpinningEventNameType.html"><span class="xref download myst">SpinningEventNameType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/18a55cdee33fe7ead18e3a17347d8f8b/SpinningEventType.html"><span class="xref download myst">SpinningEventType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2c9cedc58707e6ed977be89c2fcd4cd5/StartRampCurve.html"><span class="xref download myst">StartRampCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5dd807d259b93c0ecd4489a83f233624/StartUpCostCurve.html"><span class="xref download myst">StartUpCostCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/27424479b49f95a647fafbcddf9a1719/StartUpTimeCurve.html"><span class="xref download myst">StartUpTimeCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fdae2e537c29ec501380afe879395873/StaticLoadModelKind.html"><span class="xref download myst">StaticLoadModelKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/32392045d1437a0e51570c884dfc41e1/StaticVarCompensator.html"><span class="xref download myst">StaticVarCompensator</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e0bf47c7c099cb7355ab956aab4ad45a/StaticVarCompensatorDynamics.html"><span class="xref download myst">StaticVarCompensatorDynamics</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4bcc16fd5744fae0cafe11cb81b4711d/Status.html"><span class="xref download myst">Status</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e55134681f104b49f843dc4e72e2baf5/StreetAddress.html"><span class="xref download myst">StreetAddress</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f94cfce147d3d0b63d0e6563922e4811/StreetDetail.html"><span class="xref download myst">StreetDetail</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c88b0ec239199dae26202c5c87925cda/StreetlightLampKind.html"><span class="xref download myst">StreetlightLampKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c5b63aaac384cd50fc8bda52f215c035/String.html"><span class="xref download myst">String</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a733e148a1ebe8231422cb44f00d7d9d/StringQuantity.html"><span class="xref download myst">StringQuantity</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9c56a83643500709a8dc7de02282dfe5/StructureMaterialKind.html"><span class="xref download myst">StructureMaterialKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b253a89e2fe86f4dabc03d660b4cba12/StructureSupportKind.html"><span class="xref download myst">StructureSupportKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c294929f1becae4d1aae064cbad8112c/SubGeographicalRegion.html"><span class="xref download myst">SubGeographicalRegion</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/eca0b6f4f66fc9c728683fb1824a92ed/SubLoadArea.html"><span class="xref download myst">SubLoadArea</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/30f9609582ec1f1de6c56b4476fd8f4d/Substation.html"><span class="xref download myst">Substation</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bc4d51f1d6f505b0e7bc8f1d101ef463/SupplierKind.html"><span class="xref download myst">SupplierKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/62996b8a569db590deceb02df0fe50eb/Susceptance.html"><span class="xref download myst">Susceptance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/008a18e8f14fdb0d149a713fc353c30a/SusceptancePerLength.html"><span class="xref download myst">SusceptancePerLength</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/dcb9628a6f5802770dc04e0615e3b0fa/SvInjection.html"><span class="xref download myst">SvInjection</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d9ee8e37e0461fa0f86da770e620d0f7/SvPowerFlow.html"><span class="xref download myst">SvPowerFlow</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fd64c9b7010f862f46beb5e0e2ac52d8/SvShuntCompensatorSections.html"><span class="xref download myst">SvShuntCompensatorSections</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/aa7332962acfb2f1af4361b442a9b65d/SvStatus.html"><span class="xref download myst">SvStatus</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c73800b3ac1515884e42d2786d9b2b1e/SvSwitch.html"><span class="xref download myst">SvSwitch</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/46f709ab966ed0f2144fb6fb76eeab1e/SvTapStep.html"><span class="xref download myst">SvTapStep</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/5648fe44b816bd1a0bfcb6cb788050bd/SvVoltage.html"><span class="xref download myst">SvVoltage</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/64e962b02e12685199662fb44c995447/Switch.html"><span class="xref download myst">Switch</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3fc7cd4ac474619cfa3ec4c7b3900f68/SwitchAction.html"><span class="xref download myst">SwitchAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/94e28863dca6f3696f2eae0a963b1cb0/SwitchActionKind.html"><span class="xref download myst">SwitchActionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/816081133f65efddbffc46c42af67d96/SwitchInfo.html"><span class="xref download myst">SwitchInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/18efac5ef514393c40e996ad9494e5be/SwitchPhase.html"><span class="xref download myst">SwitchPhase</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ecc458ed30f7318bfdcbdb8d9b020d76/SwitchStatusType.html"><span class="xref download myst">SwitchStatusType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/762e4d5f0d6fd69f58068d513109ca4e/SwitchingAction.html"><span class="xref download myst">SwitchingAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0efc7fc1475ada76981aea16768c64f7/SynchronousMachineKind.html"><span class="xref download myst">SynchronousMachineKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9650e1cacd81891c3413c469bee5c587/SynchronousMachineModelKind.html"><span class="xref download myst">SynchronousMachineModelKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2d15b6265df732c8cc95795b51b90aab/SynchronousMachineOperatingMode.html"><span class="xref download myst">SynchronousMachineOperatingMode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7c8377c3b3b77eeb7d43d0dcc4f7cbfe/SystemType.html"><span class="xref download myst">SystemType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c9c80e0d5e2f44230cf7eec15c0a6d4d/TAPPIStandard.html"><span class="xref download myst">TAPPIStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6c8063012f34a3618ad7e57befe3447e/TAPPIStandardEditionKind.html"><span class="xref download myst">TAPPIStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/63954758688cd4a910e78b32df732ad3/TAPPIStandardKind.html"><span class="xref download myst">TAPPIStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8eb6eab8f341c82784518830ff88084e/TRType.html"><span class="xref download myst">TRType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e558d033e00ff11d6cfe9931144adc5d/TagAction.html"><span class="xref download myst">TagAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/44b9cbccd700d4bc4b3d2a947f4be3d7/TagActionKind.html"><span class="xref download myst">TagActionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f9f087c125658440310a081e97a363fe/TapChanger.html"><span class="xref download myst">TapChanger</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/02f7034813baa8abf6714f8295d21a8e/TapChangerControl.html"><span class="xref download myst">TapChangerControl</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/eb6d16bac47c31936273b021a0de643a/TapChangerInfo.html"><span class="xref download myst">TapChangerInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bb51ffb75d92123d3f515ffb5579a1cc/TapeShieldCableInfo.html"><span class="xref download myst">TapeShieldCableInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d330278f507e3ad91f9b2ed5616e8268/TelephoneNumber.html"><span class="xref download myst">TelephoneNumber</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4f4040857d51452b09621a66ad1eaf85/TempEquipActionKind.html"><span class="xref download myst">TempEquipActionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/99a0f7d110ed4fdf9f15586c012726ce/Temperature.html"><span class="xref download myst">Temperature</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0eedfe558392f0793c47e74c81b3ddc3/TenderKind.html"><span class="xref download myst">TenderKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/30e8ab46838622f70dfe647ea928dc7b/Terminal.html"><span class="xref download myst">Terminal</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7849d9a92c393557da167976b47e1813/TestKind.html"><span class="xref download myst">TestKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/80ddbbfafb8d51a5ed5cd127ae3b21c0/TestMethod.html"><span class="xref download myst">TestMethod</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/94689e6f7d228a340ddbdfbb9d092497/TestReason.html"><span class="xref download myst">TestReason</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c1c848c5720193995f2fe463097b129e/TestVariantKind.html"><span class="xref download myst">TestVariantKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ebb8265c5e94c0d2c0ab78997531562a/ThermalGeneratingUnit.html"><span class="xref download myst">ThermalGeneratingUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b2f92d0f69d3e72a9f36c955f5bd5b5b/Time.html"><span class="xref download myst">Time</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ffc7ea3d76dace5a65b38681608ecbdf/TimeInterval.html"><span class="xref download myst">TimeInterval</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/11de6587a3d04e7668f1b243f2c82b41/TimeIntervalKind.html"><span class="xref download myst">TimeIntervalKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ff8e27969d60a06cd984eeaa71cab432/TimeOfUse.html"><span class="xref download myst">TimeOfUse</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8106ee7eefa3f0182b9751a57128fcbf/TimePeriodUnit.html"><span class="xref download myst">TimePeriodUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0ea494254c8079d709e8eed36fbf4c24/TimeZoneType.html"><span class="xref download myst">TimeZoneType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/90388e8e2ba6ef62d9a4edb2d63b2964/TopologicalIsland.html"><span class="xref download myst">TopologicalIsland</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a52ead3b050eb817d8ed057c48c59224/TopologicalNode.html"><span class="xref download myst">TopologicalNode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ce4059aee17718d9f3c0cd0d08749406/TowerConstructionKind.html"><span class="xref download myst">TowerConstructionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/130f14159a955e2e082fbca552ab365f/TownDetail.html"><span class="xref download myst">TownDetail</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6fdcd96bb7216ed065a859e9df82d1d0/TradeProductType.html"><span class="xref download myst">TradeProductType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9e0d01bdfb0a28bdeaaeb75b4ad6109d/TradeStatusType.html"><span class="xref download myst">TradeStatusType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9237d687b3995a2b7a0d1c4c409bb72d/TradeType.html"><span class="xref download myst">TradeType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/353d256ba7c360b86014eb35c53832d9/TransactionKind.html"><span class="xref download myst">TransactionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/385bc19759c07786989d679c8d981ce4/TransformerApplicationKind.html"><span class="xref download myst">TransformerApplicationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1042298bd72adacc9fd12ade7bfffc0f/TransformerConstructionKind.html"><span class="xref download myst">TransformerConstructionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e3e9c83309836424220d54bb37fad737/TransformerControlMode.html"><span class="xref download myst">TransformerControlMode</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c454ffdf2ab9b5a36bcef54557e4d258/TransformerCoreAdmittance.html"><span class="xref download myst">TransformerCoreAdmittance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6d3f06d83d1c9bb754b9232c36058b0b/TransformerCoreKind.html"><span class="xref download myst">TransformerCoreKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/cd0f5a6395dfb7a0ae533d30f803cee8/TransformerEndInfo.html"><span class="xref download myst">TransformerEndInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9a1f3cc51762971bcac7d07f8063bd08/TransformerFailureReasonKind.html"><span class="xref download myst">TransformerFailureReasonKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/acb9fe05c43fe5938074de05b153e229/TransformerFunctionKind.html"><span class="xref download myst">TransformerFunctionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d2ea76bf2c4dafed8c8940835dd5c974/TransformerMaintenanceKind.html"><span class="xref download myst">TransformerMaintenanceKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/183892092993f8926622a6312b2770c2/TransformerMeshImpedance.html"><span class="xref download myst">TransformerMeshImpedance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/51c271935bf0d460c2b917d79356cd92/TransformerRepairItemKind.html"><span class="xref download myst">TransformerRepairItemKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/97b0af892d70e7ff21014fccebb903df/TransformerStarImpedance.html"><span class="xref download myst">TransformerStarImpedance</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/26a472daca3d5d0044fccb341fea3750/TransformerTank.html"><span class="xref download myst">TransformerTank</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1e65f6c591fe5dc1ec45d6f4dadd532f/TransformerTankEnd.html"><span class="xref download myst">TransformerTankEnd</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0937320ea2443ecc1cf5b2b22e84326b/TransformerTankInfo.html"><span class="xref download myst">TransformerTankInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8bf1882b825946b30ae8d05f95a36ee3/TransmissionModeKind.html"><span class="xref download myst">TransmissionModeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2d43f6cc65c49c88a9b9fc6510fad70f/TroubleCallKind.html"><span class="xref download myst">TroubleCallKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a7edb55759da1a7e64d8dde2ab7af3a0/TroubleReportingKind.html"><span class="xref download myst">TroubleReportingKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c800616e7a7909ea61849c2f33f4a37c/TroubleSymptomsExtentKind.html"><span class="xref download myst">TroubleSymptomsExtentKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3e1b5bcdf81e3ae530901b22855a639a/TroubleSymptomsLightKind.html"><span class="xref download myst">TroubleSymptomsLightKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/04c834e116d11aa8673ba89a47d85258/TroubleSymptomsPoleKind.html"><span class="xref download myst">TroubleSymptomsPoleKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bd183cfc2c95071f7c0fc515c5b3ec35/TroubleSymptomsTransformerKind.html"><span class="xref download myst">TroubleSymptomsTransformerKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/87989eddcd54e0eb89e908ea31d167f3/TroubleSymptomsTreeKind.html"><span class="xref download myst">TroubleSymptomsTreeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/159d804256cf11106544559b84cfc962/TroubleSymptomsWireKind.html"><span class="xref download myst">TroubleSymptomsWireKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b91db0ee5b4c5ab333ca7d482d15d667/UKMinistryOfDefenceStandard.html"><span class="xref download myst">UKMinistryOfDefenceStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/fb277a441d6e30267ca4c54f00e94ac6/UKMinistryOfDefenceStandardEditionKind.html"><span class="xref download myst">UKMinistryOfDefenceStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b648f0b2a32892e312475cf40cdfb453/UKMinistryofDefenceStandardKind.html"><span class="xref download myst">UKMinistryofDefenceStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d23b4a1d37dbdd9c3fc821c9ecd7a3bd/UOMType.html"><span class="xref download myst">UOMType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ad96fa4cdb7c77e6ae18c929c80ab0fa/UncertaintyKind.html"><span class="xref download myst">UncertaintyKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/59a88bd08e55048fbe1541979f70bae0/UndergroundStructureKind.html"><span class="xref download myst">UndergroundStructureKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0dd2e727ae3770ba9d0e17383559272e/UnitMultiplier.html"><span class="xref download myst">UnitMultiplier</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e79f9d48219f55c592d4b71565476913/UnitRegulationKind.html"><span class="xref download myst">UnitRegulationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1969316cd1dd075c70f622bad8b5532e/UnitSymbol.html"><span class="xref download myst">UnitSymbol</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/20fbc6693a0a72856b35f56d41740947/UnitType.html"><span class="xref download myst">UnitType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a119f6faa6167cdc649ff57d6e665c87/UnitTypeEMS.html"><span class="xref download myst">UnitTypeEMS</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/504d8d5cd6d0ce277a12cf518de1ac50/UnplannedOutage.html"><span class="xref download myst">UnplannedOutage</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2fd79d8e7ae734290e3bbd85911d9ef8/UsagePointConnectedKind.html"><span class="xref download myst">UsagePointConnectedKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9ddb697126465b75f2469a3c37e5dae2/Validity.html"><span class="xref download myst">Validity</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/052678655e7ebe64833f8271ffa7bff8/VehicleUsageKind.html"><span class="xref download myst">VehicleUsageKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f4dae3f6a628502574785389215279a3/VerificationAction.html"><span class="xref download myst">VerificationAction</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/1133d1ec9fbeeee6121af3fc47aed37e/Version.html"><span class="xref download myst">Version</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/74723637ca7c17837ea7c340cca4deff/Versions.html"><span class="xref download myst">Versions</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d82520d6c10927494a2bd67d4007855f/Voltage.html"><span class="xref download myst">Voltage</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7ed3c233b5f4e73162b3f4fe1fa99f16/VoltageCompensatorDynamics.html"><span class="xref download myst">VoltageCompensatorDynamics</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/dec16952413266688b824158457bd8c8/VoltageLevel.html"><span class="xref download myst">VoltageLevel</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ee64d4dc104b1ab2ec40ea7b06707744/VoltageLimit.html"><span class="xref download myst">VoltageLimit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f61cbb1c61023b2ef1cb6edb5b36485a/VoltagePerReactivePower.html"><span class="xref download myst">VoltagePerReactivePower</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6045211ad045b782029492a53c3c0c7e/Volume.html"><span class="xref download myst">Volume</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ff9c84da40d8f3492c13605b3f8c724c/VolumeFlowRate.html"><span class="xref download myst">VolumeFlowRate</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/c7abf9c0c9775e293611ad8851f1f4c8/VsCapabilityCurve.html"><span class="xref download myst">VsCapabilityCurve</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e4359609b8362eb018f9548af4cee5ad/VsConverter.html"><span class="xref download myst">VsConverter</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2aafa7c7d26bbdaca9288ffe5e42335e/VsPpccControlKind.html"><span class="xref download myst">VsPpccControlKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/484da93005ea039a8d052c49f1bb0ecf/VsQpccControlKind.html"><span class="xref download myst">VsQpccControlKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7f68c291832ee912f06b615d10e318ce/WEPStandard.html"><span class="xref download myst">WEPStandard</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/702b1e4151345bab48255b47ad9d4f1d/WEPStandardEditionKind.html"><span class="xref download myst">WEPStandardEditionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/282e60c18706387b0d9e6657e1ef2baf/WEPStandardKind.html"><span class="xref download myst">WEPStandardKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6d6764c4adbb9975e8e19d699aac7a55/WaterLevel.html"><span class="xref download myst">WaterLevel</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8bfcc26b9ba0af77042bb375d3b42fbb/WeatherCodeKind.html"><span class="xref download myst">WeatherCodeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/407806c05e24c81b442d99e1a4c87683/WindGenUnitKind.html"><span class="xref download myst">WindGenUnitKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/752407cd2074347b41b753d0c53ed70e/WindGeneratingUnit.html"><span class="xref download myst">WindGeneratingUnit</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/904c695e81060cd4e878bedf55484cf3/WindLookupTableFunctionKind.html"><span class="xref download myst">WindLookupTableFunctionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/41cd9a7578e645e6fc85bdb4df4c7445/WindPlantQcontrolModeKind.html"><span class="xref download myst">WindPlantQcontrolModeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/9953bfa76bddde3a0375094291c8089a/WindQcontrolModeKind.html"><span class="xref download myst">WindQcontrolModeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/2b44e2239549131225dd3afafde7c3be/WindUVRTQcontrolModeKind.html"><span class="xref download myst">WindUVRTQcontrolModeKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/df47f0bfea532eaed2778aed815ebbdc/WindingConnection.html"><span class="xref download myst">WindingConnection</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/ed103c476a604abeb50a6db6e54d25f7/WindingInsulationKind.html"><span class="xref download myst">WindingInsulationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bf91df0f2a3e5a6b4f5a9a60e8d0bf91/WireInfo.html"><span class="xref download myst">WireInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a58a5fa33ca3a08f38a8f355f81f2cdc/WireInsulationKind.html"><span class="xref download myst">WireInsulationKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/91216245517c1a460be1a1ee1e109ffb/WireMaterialKind.html"><span class="xref download myst">WireMaterialKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b076dc3f5d53bb1f0715da730bda6254/WirePhaseInfo.html"><span class="xref download myst">WirePhaseInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/81020a7de6dad60d7da716b9e653966a/WirePosition.html"><span class="xref download myst">WirePosition</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/d1c1920d4fe9a98d3abeb9f5af251b23/WireSegment.html"><span class="xref download myst">WireSegment</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/89257bd57f5a62c50ad824fb77e3d0f0/WireSegmentPhase.html"><span class="xref download myst">WireSegmentPhase</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b741a0604662276acf9191c5962ff10c/WireSpacingInfo.html"><span class="xref download myst">WireSpacingInfo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/bc7f179d3317ae2f59829997234550d9/WireUsageKind.html"><span class="xref download myst">WireUsageKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/8946c06f4c2ac645812fce09df508c87/WorkActionKind.html"><span class="xref download myst">WorkActionKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3f2c0a321e38907e0b002f12018262b1/WorkStatusKind.html"><span class="xref download myst">WorkStatusKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/b4eaa17f796e908f15e3cf62bd18e005/WorkTaskKind.html"><span class="xref download myst">WorkTaskKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f94afcadce36a7b51b1f1acc43928916/WorkTimeScheduleKind.html"><span class="xref download myst">WorkTimeScheduleKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/09b78beb41323d2c1ef8f28b667c190a/YesNo.html"><span class="xref download myst">YesNo</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/0cff0599012b5bfc3eb97ebcb149b4da/ZoneKind.html"><span class="xref download myst">ZoneKind</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/324cd76726b7ca1f04f1bedde28d86a6/ZoneType.html"><span class="xref download myst">ZoneType</span></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/e7a22910b160b7bdd2e3a952b9ddaacb/runTypeCAISO.html"><span class="xref download myst">runTypeCAISO</span></a></p>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="../uml/index.html"
+       title="previous chapter">← UML Diagrams for MG-RAVENS Schema</a>
+  </li>
+  <li class="next">
+    <a href="../examples/AlgorithmProperties.html"
+       title="next chapter">AlgorithmProperties →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2024, David M Fobes.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

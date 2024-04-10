@@ -1,0 +1,406 @@
+# VoltageCompensatorDynamics
+
+- [1. Property `VoltageCompensatorDynamics > IdentifiedObject.description`](#IdentifiedObjectdescription)
+- [2. Property `VoltageCompensatorDynamics > VoltageCompensatorUserDefined.proprietary`](#VoltageCompensatorUserDefinedproprietary)
+- [3. Property `VoltageCompensatorDynamics > IdentifiedObject.aliasName`](#IdentifiedObjectaliasName)
+- [4. Property `VoltageCompensatorDynamics > IdentifiedObject.mRID`](#IdentifiedObjectmRID)
+- [5. Property `VoltageCompensatorDynamics > IdentifiedObject.name`](#IdentifiedObjectname)
+- [6. Property `VoltageCompensatorDynamics > DynamicsFunctionBlock.enabled`](#DynamicsFunctionBlockenabled)
+- [7. Property `VoltageCompensatorDynamics > VCompIEEEType1.rc`](#VCompIEEEType1rc)
+  - [7.1. Property `VoltageCompensatorDynamics > VCompIEEEType1.rc > multiplier`](#VCompIEEEType1rc_multiplier)
+  - [7.2. Property `VoltageCompensatorDynamics > VCompIEEEType1.rc > unit`](#VCompIEEEType1rc_unit)
+  - [7.3. Property `VoltageCompensatorDynamics > VCompIEEEType1.rc > value`](#VCompIEEEType1rc_value)
+- [8. Property `VoltageCompensatorDynamics > VCompIEEEType1.tr`](#VCompIEEEType1tr)
+  - [8.1. Property `VoltageCompensatorDynamics > VCompIEEEType1.tr > multiplier`](#VCompIEEEType1tr_multiplier)
+  - [8.2. Property `VoltageCompensatorDynamics > VCompIEEEType1.tr > unit`](#VCompIEEEType1tr_unit)
+  - [8.3. Property `VoltageCompensatorDynamics > VCompIEEEType1.tr > value`](#VCompIEEEType1tr_value)
+- [9. Property `VoltageCompensatorDynamics > VCompIEEEType1.xc`](#VCompIEEEType1xc)
+- [10. Property `VoltageCompensatorDynamics > VCompIEEEType2.tr`](#VCompIEEEType2tr)
+
+**Title:** VoltageCompensatorDynamics
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+
+| Property                                                                                  | Pattern | Type             | Deprecated | Definition                                      | Title/Description |
+| ----------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------- | ----------------- |
+| - [IdentifiedObject.description](#IdentifiedObjectdescription )                           | No      | string           | No         | -                                               | description       |
+| - [VoltageCompensatorUserDefined.proprietary](#VoltageCompensatorUserDefinedproprietary ) | No      | boolean          | No         | -                                               | proprietary       |
+| - [IdentifiedObject.aliasName](#IdentifiedObjectaliasName )                               | No      | string           | No         | -                                               | aliasName         |
+| - [IdentifiedObject.mRID](#IdentifiedObjectmRID )                                         | No      | string           | No         | -                                               | mRID              |
+| - [IdentifiedObject.name](#IdentifiedObjectname )                                         | No      | string           | No         | -                                               | name              |
+| - [DynamicsFunctionBlock.enabled](#DynamicsFunctionBlockenabled )                         | No      | boolean          | No         | -                                               | enabled           |
+| - [VCompIEEEType1.rc](#VCompIEEEType1rc )                                                 | No      | object or number | No         | In ./PU.json                                    | rc                |
+| - [VCompIEEEType1.tr](#VCompIEEEType1tr )                                                 | No      | object or number | No         | In ./Seconds.json                               | tr                |
+| - [VCompIEEEType1.xc](#VCompIEEEType1xc )                                                 | No      | object or number | No         | Same as [VCompIEEEType1.rc](#VCompIEEEType1rc ) | xc                |
+| - [VCompIEEEType2.tr](#VCompIEEEType2tr )                                                 | No      | object or number | No         | Same as [VCompIEEEType1.tr](#VCompIEEEType1tr ) | tr                |
+
+## <a name="IdentifiedObjectdescription"></a>1. Property `VoltageCompensatorDynamics > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+## <a name="VoltageCompensatorUserDefinedproprietary"></a>2. Property `VoltageCompensatorDynamics > VoltageCompensatorUserDefined.proprietary`
+
+**Title:** proprietary
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Behaviour is based on a proprietary model as opposed to a detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+
+## <a name="IdentifiedObjectaliasName"></a>3. Property `VoltageCompensatorDynamics > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+## <a name="IdentifiedObjectmRID"></a>4. Property `VoltageCompensatorDynamics > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+## <a name="IdentifiedObjectname"></a>5. Property `VoltageCompensatorDynamics > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="DynamicsFunctionBlockenabled"></a>6. Property `VoltageCompensatorDynamics > DynamicsFunctionBlock.enabled`
+
+**Title:** enabled
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Function block used indicator.
+true = use of function block is enabled
+false = use of function block is disabled.
+
+## <a name="VCompIEEEType1rc"></a>7. Property `VoltageCompensatorDynamics > VCompIEEEType1.rc`
+
+**Title:** rc
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./PU.json          |
+
+**Description:** <font color="#0f0f0f">Resistive component of compensation of a generator (<i>Rc</i>) (>= 0).</font>
+
+| Property                                      | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| --------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#VCompIEEEType1rc_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#VCompIEEEType1rc_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#VCompIEEEType1rc_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="VCompIEEEType1rc_multiplier"></a>7.1. Property `VoltageCompensatorDynamics > VCompIEEEType1.rc > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="VCompIEEEType1rc_unit"></a>7.2. Property `VoltageCompensatorDynamics > VCompIEEEType1.rc > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"none"`           |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="VCompIEEEType1rc_value"></a>7.3. Property `VoltageCompensatorDynamics > VCompIEEEType1.rc > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="VCompIEEEType1tr"></a>8. Property `VoltageCompensatorDynamics > VCompIEEEType1.tr`
+
+**Title:** tr
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Seconds.json     |
+
+**Description:** <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (>= 0).</font>
+
+| Property                                      | Pattern | Type             | Deprecated | Definition                                          | Title/Description |
+| --------------------------------------------- | ------- | ---------------- | ---------- | --------------------------------------------------- | ----------------- |
+| - [multiplier](#VCompIEEEType1tr_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#VCompIEEEType1rc_multiplier ) | nan               |
+| - [unit](#VCompIEEEType1tr_unit )             | No      | enum (of string) | No         | Same as [unit](#VCompIEEEType1rc_unit )             | nan               |
+| - [value](#VCompIEEEType1tr_value )           | No      | number           | No         | -                                                   | Time, in seconds  |
+
+### <a name="VCompIEEEType1tr_multiplier"></a>8.1. Property `VoltageCompensatorDynamics > VCompIEEEType1.tr > multiplier`
+
+|                        |                                            |
+| ---------------------- | ------------------------------------------ |
+| **Type**               | `enum (of string)`                         |
+| **Required**           | No                                         |
+| **Default**            | `"none"`                                   |
+| **Same definition as** | [multiplier](#VCompIEEEType1rc_multiplier) |
+
+**Description:** nan
+
+### <a name="VCompIEEEType1tr_unit"></a>8.2. Property `VoltageCompensatorDynamics > VCompIEEEType1.tr > unit`
+
+|                        |                                |
+| ---------------------- | ------------------------------ |
+| **Type**               | `enum (of string)`             |
+| **Required**           | No                             |
+| **Default**            | `"s"`                          |
+| **Same definition as** | [unit](#VCompIEEEType1rc_unit) |
+
+**Description:** nan
+
+### <a name="VCompIEEEType1tr_value"></a>8.3. Property `VoltageCompensatorDynamics > VCompIEEEType1.tr > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Time, in seconds
+
+## <a name="VCompIEEEType1xc"></a>9. Property `VoltageCompensatorDynamics > VCompIEEEType1.xc`
+
+**Title:** xc
+
+|                        |                                        |
+| ---------------------- | -------------------------------------- |
+| **Type**               | `object or number`                     |
+| **Required**           | No                                     |
+| **Same definition as** | [VCompIEEEType1.rc](#VCompIEEEType1rc) |
+
+**Description:** <font color="#0f0f0f">Reactive component of compensation of a generator (<i>Xc</i>) (>= 0).</font>
+
+## <a name="VCompIEEEType2tr"></a>10. Property `VoltageCompensatorDynamics > VCompIEEEType2.tr`
+
+**Title:** tr
+
+|                        |                                        |
+| ---------------------- | -------------------------------------- |
+| **Type**               | `object or number`                     |
+| **Required**           | No                                     |
+| **Same definition as** | [VCompIEEEType1.tr](#VCompIEEEType1tr) |
+
+**Description:** <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (>= 0).</font>
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

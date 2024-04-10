@@ -1,0 +1,66 @@
+# Status
+
+- [1. Property `Status > value`](#value)
+- [2. Property `Status > reason`](#reason)
+- [3. Property `Status > remark`](#remark)
+- [4. Property `Status > dateTime`](#dateTime)
+
+**Title:** Status
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Current status information relevant to an entity.
+
+| Property                 | Pattern | Type   | Deprecated | Definition | Title/Description                                                                                                                                                    |
+| ------------------------ | ------- | ------ | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - [value](#value )       | No      | string | No         | -          | Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.<br /> |
+| - [reason](#reason )     | No      | string | No         | -          | Reason code or explanation for why an object went to the current status 'value'.                                                                                     |
+| - [remark](#remark )     | No      | string | No         | -          | Pertinent information regarding the current 'value', as free form text.                                                                                              |
+| - [dateTime](#dateTime ) | No      | string | No         | -          | Date and time for which status 'value' applies.<br />                                                                                                               |
+
+## <a name="value"></a>1. Property `Status > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.
+
+## <a name="reason"></a>2. Property `Status > reason`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Reason code or explanation for why an object went to the current status 'value'.
+
+## <a name="remark"></a>3. Property `Status > remark`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Pertinent information regarding the current 'value', as free form text.
+
+## <a name="dateTime"></a>4. Property `Status > dateTime`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Date and time for which status 'value' applies.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

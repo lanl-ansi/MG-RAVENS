@@ -1,0 +1,23 @@
+# MediumKind
+
+**Title:** MediumKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of medium.
+
+Must be one of:
+* "mineralOil"
+* "SF6CF4"
+* "solid"
+* "SF6N2"
+* "gas"
+* "air"
+* "liquid"
+* "SF6"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

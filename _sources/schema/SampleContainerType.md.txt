@@ -1,0 +1,18 @@
+# SampleContainerType
+
+**Title:** SampleContainerType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Types of sample containers.
+
+Must be one of:
+* "syringe"
+* "glassCan"
+* "metalCan"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

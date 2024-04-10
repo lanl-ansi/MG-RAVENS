@@ -1,0 +1,162 @@
+# ControlledAppliance
+
+- [1. Property `ControlledAppliance > isWaterHeater`](#isWaterHeater)
+- [2. Property `ControlledAppliance > isPoolPumpSpaJacuzzi`](#isPoolPumpSpaJacuzzi)
+- [3. Property `ControlledAppliance > isInteriorLighting`](#isInteriorLighting)
+- [4. Property `ControlledAppliance > isSimpleMiscLoad`](#isSimpleMiscLoad)
+- [5. Property `ControlledAppliance > isSmartAppliance`](#isSmartAppliance)
+- [6. Property `ControlledAppliance > isManagedCommercialIndustrialLoad`](#isManagedCommercialIndustrialLoad)
+- [7. Property `ControlledAppliance > isStripAndBaseboardHeater`](#isStripAndBaseboardHeater)
+- [8. Property `ControlledAppliance > isElectricVehicle`](#isElectricVehicle)
+- [9. Property `ControlledAppliance > isIrrigationPump`](#isIrrigationPump)
+- [10. Property `ControlledAppliance > isGenerationSystem`](#isGenerationSystem)
+- [11. Property `ControlledAppliance > isExteriorLighting`](#isExteriorLighting)
+- [12. Property `ControlledAppliance > isHvacCompressorOrFurnace`](#isHvacCompressorOrFurnace)
+
+**Title:** ControlledAppliance
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Appliance controlled with a PAN device control.
+
+| Property                                                                   | Pattern | Type    | Deprecated | Definition | Title/Description                                                      |
+| -------------------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ---------------------------------------------------------------------- |
+| - [isWaterHeater](#isWaterHeater )                                         | No      | boolean | No         | -          | True if the appliance is a water heater.<br />                        |
+| - [isPoolPumpSpaJacuzzi](#isPoolPumpSpaJacuzzi )                           | No      | boolean | No         | -          | True if the appliance is a pool, pump, spa or jacuzzi.<br />          |
+| - [isInteriorLighting](#isInteriorLighting )                               | No      | boolean | No         | -          | True if the appliance is interior lighting.<br />                     |
+| - [isSimpleMiscLoad](#isSimpleMiscLoad )                                   | No      | boolean | No         | -          | True if the appliance is a simple miscellaneous load.<br />           |
+| - [isSmartAppliance](#isSmartAppliance )                                   | No      | boolean | No         | -          | True if the appliance is a smart appliance.<br />                     |
+| - [isManagedCommercialIndustrialLoad](#isManagedCommercialIndustrialLoad ) | No      | boolean | No         | -          | True if the appliance is managed commercial or industrial load.<br /> |
+| - [isStripAndBaseboardHeater](#isStripAndBaseboardHeater )                 | No      | boolean | No         | -          | True if the appliance is a stip or baseboard heater.<br />            |
+| - [isElectricVehicle](#isElectricVehicle )                                 | No      | boolean | No         | -          | True if the appliance is an electric vehicle.<br />                   |
+| - [isIrrigationPump](#isIrrigationPump )                                   | No      | boolean | No         | -          | True if the appliance is an irrigation pump.<br />                    |
+| - [isGenerationSystem](#isGenerationSystem )                               | No      | boolean | No         | -          | True if the appliance is a generation system.<br />                   |
+| - [isExteriorLighting](#isExteriorLighting )                               | No      | boolean | No         | -          | True if the appliance is exterior lighting.<br />                     |
+| - [isHvacCompressorOrFurnace](#isHvacCompressorOrFurnace )                 | No      | boolean | No         | -          | True if the appliance is HVAC compressor or furnace.<br />            |
+
+## <a name="isWaterHeater"></a>1. Property `ControlledAppliance > isWaterHeater`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is a water heater.
+
+## <a name="isPoolPumpSpaJacuzzi"></a>2. Property `ControlledAppliance > isPoolPumpSpaJacuzzi`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is a pool, pump, spa or jacuzzi.
+
+## <a name="isInteriorLighting"></a>3. Property `ControlledAppliance > isInteriorLighting`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is interior lighting.
+
+## <a name="isSimpleMiscLoad"></a>4. Property `ControlledAppliance > isSimpleMiscLoad`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is a simple miscellaneous load.
+
+## <a name="isSmartAppliance"></a>5. Property `ControlledAppliance > isSmartAppliance`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is a smart appliance.
+
+## <a name="isManagedCommercialIndustrialLoad"></a>6. Property `ControlledAppliance > isManagedCommercialIndustrialLoad`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is managed commercial or industrial load.
+
+## <a name="isStripAndBaseboardHeater"></a>7. Property `ControlledAppliance > isStripAndBaseboardHeater`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is a stip or baseboard heater.
+
+## <a name="isElectricVehicle"></a>8. Property `ControlledAppliance > isElectricVehicle`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is an electric vehicle.
+
+## <a name="isIrrigationPump"></a>9. Property `ControlledAppliance > isIrrigationPump`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is an irrigation pump.
+
+## <a name="isGenerationSystem"></a>10. Property `ControlledAppliance > isGenerationSystem`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is a generation system.
+
+## <a name="isExteriorLighting"></a>11. Property `ControlledAppliance > isExteriorLighting`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is exterior lighting.
+
+## <a name="isHvacCompressorOrFurnace"></a>12. Property `ControlledAppliance > isHvacCompressorOrFurnace`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** True if the appliance is HVAC compressor or furnace.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

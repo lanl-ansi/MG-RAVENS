@@ -1,0 +1,19 @@
+# CalculationModeKind
+
+**Title:** CalculationModeKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** The mode of the calculation (total, periodic, sliding).
+.
+
+Must be one of:
+* "sliding"
+* "period"
+* "total"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

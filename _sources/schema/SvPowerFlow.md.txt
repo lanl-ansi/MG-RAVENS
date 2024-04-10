@@ -1,0 +1,316 @@
+# SvPowerFlow
+
+- [1. Property `SvPowerFlow > SvPowerFlow.phase`](#SvPowerFlowphase)
+- [2. Property `SvPowerFlow > SvPowerFlow.p`](#SvPowerFlowp)
+  - [2.1. Property `SvPowerFlow > SvPowerFlow.p > multiplier`](#SvPowerFlowp_multiplier)
+  - [2.2. Property `SvPowerFlow > SvPowerFlow.p > unit`](#SvPowerFlowp_unit)
+  - [2.3. Property `SvPowerFlow > SvPowerFlow.p > value`](#SvPowerFlowp_value)
+- [3. Property `SvPowerFlow > SvPowerFlow.q`](#SvPowerFlowq)
+  - [3.1. Property `SvPowerFlow > SvPowerFlow.q > multiplier`](#SvPowerFlowq_multiplier)
+  - [3.2. Property `SvPowerFlow > SvPowerFlow.q > unit`](#SvPowerFlowq_unit)
+  - [3.3. Property `SvPowerFlow > SvPowerFlow.q > value`](#SvPowerFlowq_value)
+
+**Title:** SvPowerFlow
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** State variable for power flow. Load convention is used for flow direction. This means flow out from the TopologicalNode into the equipment is positive.
+
+| Property                                  | Pattern | Type             | Deprecated | Definition                | Title/Description |
+| ----------------------------------------- | ------- | ---------------- | ---------- | ------------------------- | ----------------- |
+| - [SvPowerFlow.phase](#SvPowerFlowphase ) | No      | enum (of string) | No         | In ./SinglePhaseKind.json | phase             |
+| - [SvPowerFlow.p](#SvPowerFlowp )         | No      | object or number | No         | In ./ActivePower.json     | p                 |
+| - [SvPowerFlow.q](#SvPowerFlowq )         | No      | object or number | No         | In ./ReactivePower.json   | q                 |
+
+## <a name="SvPowerFlowphase"></a>1. Property `SvPowerFlow > SvPowerFlow.phase`
+
+**Title:** phase
+
+|                |                        |
+| -------------- | ---------------------- |
+| **Type**       | `enum (of string)`     |
+| **Required**   | No                     |
+| **Defined in** | ./SinglePhaseKind.json |
+
+**Description:** The individual phase of the flow.   If unspecified, then assumed to be balanced among phases.
+
+Must be one of:
+* "A"
+* "B"
+* "C"
+* "N"
+* "s1"
+* "s2"
+
+## <a name="SvPowerFlowp"></a>2. Property `SvPowerFlow > SvPowerFlow.p`
+
+**Title:** p
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./ActivePower.json |
+
+**Description:** The active power flow. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+
+| Property                                  | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ----------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#SvPowerFlowp_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#SvPowerFlowp_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#SvPowerFlowp_value )           | No      | number           | No         | -                        | nan               |
+
+### <a name="SvPowerFlowp_multiplier"></a>2.1. Property `SvPowerFlow > SvPowerFlow.p > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+### <a name="SvPowerFlowp_unit"></a>2.2. Property `SvPowerFlow > SvPowerFlow.p > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"W"`              |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+### <a name="SvPowerFlowp_value"></a>2.3. Property `SvPowerFlow > SvPowerFlow.p > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+## <a name="SvPowerFlowq"></a>3. Property `SvPowerFlow > SvPowerFlow.q`
+
+**Title:** q
+
+|                |                      |
+| -------------- | -------------------- |
+| **Type**       | `object or number`   |
+| **Required**   | No                   |
+| **Defined in** | ./ReactivePower.json |
+
+**Description:** The reactive power flow. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+
+| Property                                  | Pattern | Type             | Deprecated | Definition                                      | Title/Description |
+| ----------------------------------------- | ------- | ---------------- | ---------- | ----------------------------------------------- | ----------------- |
+| - [multiplier](#SvPowerFlowq_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#SvPowerFlowp_multiplier ) | nan               |
+| - [unit](#SvPowerFlowq_unit )             | No      | enum (of string) | No         | Same as [unit](#SvPowerFlowp_unit )             | nan               |
+| - [value](#SvPowerFlowq_value )           | No      | number           | No         | -                                               | nan               |
+
+### <a name="SvPowerFlowq_multiplier"></a>3.1. Property `SvPowerFlow > SvPowerFlow.q > multiplier`
+
+|                        |                                        |
+| ---------------------- | -------------------------------------- |
+| **Type**               | `enum (of string)`                     |
+| **Required**           | No                                     |
+| **Default**            | `"none"`                               |
+| **Same definition as** | [multiplier](#SvPowerFlowp_multiplier) |
+
+**Description:** nan
+
+### <a name="SvPowerFlowq_unit"></a>3.2. Property `SvPowerFlow > SvPowerFlow.q > unit`
+
+|                        |                            |
+| ---------------------- | -------------------------- |
+| **Type**               | `enum (of string)`         |
+| **Required**           | No                         |
+| **Default**            | `"VAr"`                    |
+| **Same definition as** | [unit](#SvPowerFlowp_unit) |
+
+**Description:** nan
+
+### <a name="SvPowerFlowq_value"></a>3.3. Property `SvPowerFlow > SvPowerFlow.q > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

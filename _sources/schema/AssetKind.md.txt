@@ -1,0 +1,25 @@
+# AssetKind
+
+**Title:** AssetKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kinds of assets or asset components.
+
+Must be one of:
+* "transformerTank"
+* "breakerTankAssembly"
+* "breakerBulkOilBreaker"
+* "breakerInsulatingStackAssembly"
+* "transformer"
+* "breakerMinimumOilBreaker"
+* "breakerAirBlastBreaker"
+* "other"
+* "breakerSF6LiveTankBreaker"
+* "breakerSF6DeadTankBreaker"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

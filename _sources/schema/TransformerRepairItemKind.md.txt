@@ -1,0 +1,17 @@
+# TransformerRepairItemKind
+
+**Title:** TransformerRepairItemKind
+
+|              |        |
+| ------------ | ------ |
+| **Type**     | `enum` |
+| **Required** | No     |
+
+**Description:** Transformer components and problem areas which can be the focus of a repair work task.
+WorkTimeScheduleKind enumeration
+Kind of work schedule.
+
+Must be one of:
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

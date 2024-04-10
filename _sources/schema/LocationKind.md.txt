@@ -1,0 +1,19 @@
+# LocationKind
+
+**Title:** LocationKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** The nature of the location being defined for an environmental entity. Possible values are center, perimeter, primary, secondary.
+
+Must be one of:
+* "primary"
+* "center"
+* "secondary"
+* "extent"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

@@ -1,0 +1,14 @@
+# NaturalGasFuelPrice
+
+```json
+{
+  "IdentifiedObject.mRID": "2d8b7bb3-a213-4497-8bde-b2e6238787b7",
+  "IdentifiedObject.name": "NaturalGasPrice",
+  "RavensModel.CimObjectType": "FossilFuel",
+  "FossilFuel.fuelCost": {
+    "value": 250.0,
+    "unit": "USD"
+  },
+  "FossilFuel.fossilFuelType": "gas"
+}
+```

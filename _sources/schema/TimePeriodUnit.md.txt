@@ -1,0 +1,21 @@
+# TimePeriodUnit
+
+**Title:** TimePeriodUnit
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Units in which reporting frequency is specified.
+
+Must be one of:
+* "seconds"
+* "weeks"
+* "hours"
+* "months"
+* "days"
+* "minutes"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

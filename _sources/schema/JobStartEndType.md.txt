@@ -1,0 +1,18 @@
+# JobStartEndType
+
+**Title:** JobStartEndType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** nan
+
+Must be one of:
+* "nan"
+* "START"
+* "END"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

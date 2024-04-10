@@ -1,0 +1,19 @@
+# StreetlightLampKind
+
+**Title:** StreetlightLampKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of lamp for the streetlight.
+
+Must be one of:
+* "other"
+* "highPressureSodium"
+* "metalHalide"
+* "mercuryVapor"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

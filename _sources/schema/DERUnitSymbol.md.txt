@@ -1,0 +1,45 @@
+# DERUnitSymbol
+
+**Title:** DERUnitSymbol
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** The units defined for usage in DER related contexts.  This class is a subset plus possible additions of the UnitSymbol Class in the CIM Domain Package.
+
+Must be one of:
+* "deg"
+* "Hz"
+* "As"
+* "ohmPerm"
+* "VPerVA"
+* "ohmm"
+* "Btu"
+* "s"
+* "degC"
+* "Q"
+* "Vs"
+* "ohm"
+* "VArh"
+* "A"
+* "therm"
+* "V"
+* "W"
+* "onePerHz"
+* "VAr"
+* "Vh"
+* "VA"
+* "Wh"
+* "Ah"
+* "VPerVAr"
+* "Qh"
+* "WPers"
+* "VAh"
+* "min"
+* "WPerA"
+* "h"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

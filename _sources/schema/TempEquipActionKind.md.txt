@@ -1,0 +1,19 @@
+# TempEquipActionKind
+
+**Title:** TempEquipActionKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of action on temporary equipment (such as cut, jumper, ground, energy source).
+
+Must be one of:
+* "remove"
+* "place"
+* "connect"
+* "disconnect"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:25 -0600

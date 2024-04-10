@@ -1,0 +1,37 @@
+# BreakerRepairItemKind
+
+**Title:** BreakerRepairItemKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Breaker components and problem areas which can be the focus of a repair work task.
+
+Must be one of:
+* "airCompressor"
+* "wiring"
+* "heaterOrThermostat"
+* "contactor"
+* "pumpOrMotor"
+* "pressureSwitch"
+* "storedEnergySystem"
+* "controlCircuit"
+* "tripCoil"
+* "SF6GasLeak"
+* "auxiliarySwitchAndLinkage"
+* "relay"
+* "hydraulicFluidLeak"
+* "other"
+* "gasDensitySupervision"
+* "tripControlValve"
+* "interrupterAssembly"
+* "closeCoil"
+* "corrosion"
+* "checkValve"
+* "positionIndicator"
+* "busConnection"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

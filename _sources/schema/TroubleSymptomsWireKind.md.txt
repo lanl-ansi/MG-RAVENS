@@ -1,0 +1,21 @@
+# TroubleSymptomsWireKind
+
+**Title:** TroubleSymptomsWireKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** The list of items that define the wire problem.
+
+Must be one of:
+* "wireDown"
+* "wireburning"
+* "other"
+* "ok"
+* "serviceDown"
+* "digIn"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

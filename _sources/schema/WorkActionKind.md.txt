@@ -1,0 +1,19 @@
+# WorkActionKind
+
+**Title:** WorkActionKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kinds of activities to be performed on a Compatible Unit.
+
+Must be one of:
+* "transfer"
+* "install"
+* "abandon"
+* "remove"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

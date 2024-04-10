@@ -1,0 +1,51 @@
+# EnergyTypeCode
+
+**Title:** EnergyTypeCode
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Valid Enumerations:
+1) DASE Day Ahead Scheduled Energy; 
+2) DSSE Day Ahead Incremental Self Schedule Energy; 
+3) DABE Day Ahead Incremental Energy Bid Awarded Energy; 
+4) OE Optimal Energy; 
+5) HASE Hour ahead pre-dispatched schedule energy; 
+6) SRE Standard Ramping Energy; 
+7) RED Ramping Energy Deviation; 
+8) EDE Exceptional Dispatch energy; 
+9) RMRE RMR Energy; 
+10) MSSLFE MSSLF Energy; 
+11) RE Residual Energy; 
+12) MLE Minimum Load Energy; 
+13) SE SLIC Energy; 
+14) RTSSE Real time self scheduled energy; 
+15) DMLE Day ahead minimum load energy; 
+16) PE Pumping Energy; 
+17) TEE Total Expected Energy; 
+18) DAPE - Day-Ahead Pumping Energy;
+
+Must be one of:
+* "SE"
+* "DSSE"
+* "RTSSE"
+* "MSSLFE"
+* "DASE"
+* "DAPE"
+* "OE"
+* "PE"
+* "SRE"
+* "RMRE"
+* "DMLE"
+* "HASE"
+* "DABE"
+* "TEE"
+* "MLE"
+* "RED"
+* "EDE"
+* "RE"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:24 -0600

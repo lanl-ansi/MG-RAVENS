@@ -1,0 +1,42 @@
+# RationalNumber
+
+- [1. Property `RationalNumber > denominator`](#denominator)
+- [2. Property `RationalNumber > numerator`](#numerator)
+
+**Title:** RationalNumber
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Rational number = 'numerator' / 'denominator'.
+
+| Property                       | Pattern | Type    | Deprecated | Definition | Title/Description                                                     |
+| ------------------------------ | ------- | ------- | ---------- | ---------- | --------------------------------------------------------------------- |
+| - [denominator](#denominator ) | No      | integer | No         | -          | Denominator. Value 1 indicates the number is a simple integer.<br /> |
+| - [numerator](#numerator )     | No      | integer | No         | -          | Numerator.<br />                                                     |
+
+## <a name="denominator"></a>1. Property `RationalNumber > denominator`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** Denominator. Value 1 indicates the number is a simple integer.
+
+## <a name="numerator"></a>2. Property `RationalNumber > numerator`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+| **Default**  | `null`    |
+
+**Description:** Numerator.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

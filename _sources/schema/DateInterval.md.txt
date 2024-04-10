@@ -1,0 +1,42 @@
+# DateInterval
+
+- [1. Property `DateInterval > end`](#end)
+- [2. Property `DateInterval > start`](#start)
+
+**Title:** DateInterval
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Interval between two dates.
+
+| Property           | Pattern | Type   | Deprecated | Definition | Title/Description                   |
+| ------------------ | ------- | ------ | ---------- | ---------- | ----------------------------------- |
+| - [end](#end )     | No      | string | No         | -          | End date of this interval.<br />   |
+| - [start](#start ) | No      | string | No         | -          | Start date of this interval.<br /> |
+
+## <a name="end"></a>1. Property `DateInterval > end`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** End date of this interval.
+
+## <a name="start"></a>2. Property `DateInterval > start`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Start date of this interval.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

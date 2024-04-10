@@ -1,0 +1,25 @@
+# OASISErrDescription
+
+**Title:** OASISErrDescription
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** nan
+
+Must be one of:
+* "Invalid date format, please use valid date format"
+* "Timed out waiting for query response"
+* "System Error"
+* "Data can be requested for period of 31 days only"
+* "Report name does not exit, please use valid report name"
+* "Required file does not exist"
+* "No data returned for the specified selection"
+* "Validation exception during transformation of XML"
+* "Exceptions in reading and writing of XML files"
+* "Out of memory exception"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

@@ -1,0 +1,27 @@
+# WorkStatusKind
+
+**Title:** WorkStatusKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Kind of status, specific to work.
+
+Must be one of:
+* "completed"
+* "enroute"
+* "waitingOnApproval"
+* "scheduled"
+* "dispatched"
+* "cancelled"
+* "approved"
+* "onSite"
+* "closed"
+* "waitingOnMaterial"
+* "waitingToBeScheduled"
+* "inProgress"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:22 -0600

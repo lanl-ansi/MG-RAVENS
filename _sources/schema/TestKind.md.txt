@@ -1,0 +1,20 @@
+# TestKind
+
+**Title:** TestKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** The test applied to determine if the condition is met.
+
+Must be one of:
+* "lessThanOrEqualTo"
+* "greaterThan"
+* "greaterThanOrEqualTo"
+* "equalTo"
+* "lessThan"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:21 -0600

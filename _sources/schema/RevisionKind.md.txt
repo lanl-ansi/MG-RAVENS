@@ -1,0 +1,17 @@
+# RevisionKind
+
+**Title:** RevisionKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** List of the kinds of revisions that can be made to a SwitchingStep.
+
+Must be one of:
+* "void"
+* "added"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:27 -0600

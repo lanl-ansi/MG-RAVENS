@@ -1,0 +1,18 @@
+# DINStandardEditionKind
+
+**Title:** DINStandardEditionKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** List of editions for DIN standards.
+
+Must be one of:
+* "none"
+* "unknown"
+* "1985"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:24 -0600

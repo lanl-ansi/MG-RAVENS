@@ -1,0 +1,19 @@
+# ShortCircuitRotorKind
+
+**Title:** ShortCircuitRotorKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Type of rotor, used by short circuit applications.
+
+Must be one of:
+* "salientPole1"
+* "salientPole2"
+* "turboSeries1"
+* "turboSeries2"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600

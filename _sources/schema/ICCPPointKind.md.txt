@@ -1,0 +1,21 @@
+# ICCPPointKind
+
+**Title:** ICCPPointKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** The kind of ICCP point that is to be conveyed.
+
+Must be one of:
+* "discrete"
+* "real"
+* "state"
+* "stateSupplemental"
+* "singleProtectionEvent"
+* "packedProtectionEvent"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

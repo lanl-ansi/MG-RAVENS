@@ -1,0 +1,831 @@
+# EquipmentContainer
+
+- [1. Property `EquipmentContainer > oneOf > Bay.json`](#oneOf_i0)
+  - [1.1. Property `EquipmentContainer > oneOf > Bay > Bay.bayEnergyMeasFlag`](#oneOf_i0_BaybayEnergyMeasFlag)
+  - [1.2. Property `EquipmentContainer > oneOf > Bay > Bay.bayPowerMeasFlag`](#oneOf_i0_BaybayPowerMeasFlag)
+  - [1.3. Property `EquipmentContainer > oneOf > Bay > Bay.breakerConfiguration`](#oneOf_i0_BaybreakerConfiguration)
+  - [1.4. Property `EquipmentContainer > oneOf > Bay > Bay.busBarConfiguration`](#oneOf_i0_BaybusBarConfiguration)
+  - [1.5. Property `EquipmentContainer > oneOf > Bay > IdentifiedObject.description`](#oneOf_i0_IdentifiedObjectdescription)
+  - [1.6. Property `EquipmentContainer > oneOf > Bay > IdentifiedObject.aliasName`](#oneOf_i0_IdentifiedObjectaliasName)
+  - [1.7. Property `EquipmentContainer > oneOf > Bay > IdentifiedObject.mRID`](#oneOf_i0_IdentifiedObjectmRID)
+  - [1.8. Property `EquipmentContainer > oneOf > Bay > IdentifiedObject.name`](#oneOf_i0_IdentifiedObjectname)
+- [2. Property `EquipmentContainer > oneOf > Feeder.json`](#oneOf_i1)
+  - [2.1. Property `EquipmentContainer > oneOf > Feeder > IdentifiedObject.description`](#oneOf_i1_IdentifiedObjectdescription)
+  - [2.2. Property `EquipmentContainer > oneOf > Feeder > IdentifiedObject.aliasName`](#oneOf_i1_IdentifiedObjectaliasName)
+  - [2.3. Property `EquipmentContainer > oneOf > Feeder > IdentifiedObject.mRID`](#oneOf_i1_IdentifiedObjectmRID)
+  - [2.4. Property `EquipmentContainer > oneOf > Feeder > IdentifiedObject.name`](#oneOf_i1_IdentifiedObjectname)
+- [3. Property `EquipmentContainer > oneOf > DCEquipmentContainer.json`](#oneOf_i2)
+  - [3.1. Property `EquipmentContainer > oneOf > DCEquipmentContainer > DCConverterUnit.operationMode`](#oneOf_i2_DCConverterUnitoperationMode)
+  - [3.2. Property `EquipmentContainer > oneOf > DCEquipmentContainer > IdentifiedObject.description`](#oneOf_i2_IdentifiedObjectdescription)
+  - [3.3. Property `EquipmentContainer > oneOf > DCEquipmentContainer > IdentifiedObject.aliasName`](#oneOf_i2_IdentifiedObjectaliasName)
+  - [3.4. Property `EquipmentContainer > oneOf > DCEquipmentContainer > IdentifiedObject.mRID`](#oneOf_i2_IdentifiedObjectmRID)
+  - [3.5. Property `EquipmentContainer > oneOf > DCEquipmentContainer > IdentifiedObject.name`](#oneOf_i2_IdentifiedObjectname)
+- [4. Property `EquipmentContainer > oneOf > Plant.json`](#oneOf_i3)
+  - [4.1. Property `EquipmentContainer > oneOf > Plant > IdentifiedObject.description`](#oneOf_i3_IdentifiedObjectdescription)
+  - [4.2. Property `EquipmentContainer > oneOf > Plant > IdentifiedObject.aliasName`](#oneOf_i3_IdentifiedObjectaliasName)
+  - [4.3. Property `EquipmentContainer > oneOf > Plant > IdentifiedObject.mRID`](#oneOf_i3_IdentifiedObjectmRID)
+  - [4.4. Property `EquipmentContainer > oneOf > Plant > IdentifiedObject.name`](#oneOf_i3_IdentifiedObjectname)
+- [5. Property `EquipmentContainer > oneOf > Line.json`](#oneOf_i4)
+  - [5.1. Property `EquipmentContainer > oneOf > Line > IdentifiedObject.description`](#oneOf_i4_IdentifiedObjectdescription)
+  - [5.2. Property `EquipmentContainer > oneOf > Line > IdentifiedObject.aliasName`](#oneOf_i4_IdentifiedObjectaliasName)
+  - [5.3. Property `EquipmentContainer > oneOf > Line > IdentifiedObject.mRID`](#oneOf_i4_IdentifiedObjectmRID)
+  - [5.4. Property `EquipmentContainer > oneOf > Line > IdentifiedObject.name`](#oneOf_i4_IdentifiedObjectname)
+- [6. Property `EquipmentContainer > oneOf > Substation.json`](#oneOf_i5)
+  - [6.1. Property `EquipmentContainer > oneOf > Substation > IdentifiedObject.description`](#oneOf_i5_IdentifiedObjectdescription)
+  - [6.2. Property `EquipmentContainer > oneOf > Substation > IdentifiedObject.aliasName`](#oneOf_i5_IdentifiedObjectaliasName)
+  - [6.3. Property `EquipmentContainer > oneOf > Substation > IdentifiedObject.mRID`](#oneOf_i5_IdentifiedObjectmRID)
+  - [6.4. Property `EquipmentContainer > oneOf > Substation > IdentifiedObject.name`](#oneOf_i5_IdentifiedObjectname)
+- [7. Property `EquipmentContainer > oneOf > VoltageLevel.json`](#oneOf_i6)
+  - [7.1. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.lowVoltageLimit`](#oneOf_i6_VoltageLevellowVoltageLimit)
+    - [7.1.1. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.lowVoltageLimit > multiplier`](#oneOf_i6_VoltageLevellowVoltageLimit_multiplier)
+    - [7.1.2. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.lowVoltageLimit > unit`](#oneOf_i6_VoltageLevellowVoltageLimit_unit)
+    - [7.1.3. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.lowVoltageLimit > value`](#oneOf_i6_VoltageLevellowVoltageLimit_value)
+  - [7.2. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.highVoltageLimit`](#oneOf_i6_VoltageLevelhighVoltageLimit)
+  - [7.3. Property `EquipmentContainer > oneOf > VoltageLevel > IdentifiedObject.description`](#oneOf_i6_IdentifiedObjectdescription)
+  - [7.4. Property `EquipmentContainer > oneOf > VoltageLevel > IdentifiedObject.aliasName`](#oneOf_i6_IdentifiedObjectaliasName)
+  - [7.5. Property `EquipmentContainer > oneOf > VoltageLevel > IdentifiedObject.mRID`](#oneOf_i6_IdentifiedObjectmRID)
+  - [7.6. Property `EquipmentContainer > oneOf > VoltageLevel > IdentifiedObject.name`](#oneOf_i6_IdentifiedObjectname)
+
+**Title:** EquipmentContainer
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                               |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** A modelling construct to provide a root class for containing equipment.
+
+| One of(Option)                         |
+| -------------------------------------- |
+| [Bay.json](#oneOf_i0)                  |
+| [Feeder.json](#oneOf_i1)               |
+| [DCEquipmentContainer.json](#oneOf_i2) |
+| [Plant.json](#oneOf_i3)                |
+| [Line.json](#oneOf_i4)                 |
+| [Substation.json](#oneOf_i5)           |
+| [VoltageLevel.json](#oneOf_i6)         |
+
+## <a name="oneOf_i0"></a>1. Property `EquipmentContainer > oneOf > Bay.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./Bay.json                                                                |
+
+**Description:** A collection of power system resources (within a given substation) including conducting equipment, protection relays, measurements, and telemetry.  A bay typically represents a physical grouping related to modularization of equipment.
+
+| Property                                                                 | Pattern | Type             | Deprecated | Definition                     | Title/Description    |
+| ------------------------------------------------------------------------ | ------- | ---------------- | ---------- | ------------------------------ | -------------------- |
+| - [Bay.bayEnergyMeasFlag](#oneOf_i0_BaybayEnergyMeasFlag )               | No      | boolean          | No         | -                              | bayEnergyMeasFlag    |
+| - [Bay.bayPowerMeasFlag](#oneOf_i0_BaybayPowerMeasFlag )                 | No      | boolean          | No         | -                              | bayPowerMeasFlag     |
+| - [Bay.breakerConfiguration](#oneOf_i0_BaybreakerConfiguration )         | No      | enum (of string) | No         | In ./BreakerConfiguration.json | breakerConfiguration |
+| - [Bay.busBarConfiguration](#oneOf_i0_BaybusBarConfiguration )           | No      | enum (of string) | No         | In ./BusbarConfiguration.json  | busBarConfiguration  |
+| - [IdentifiedObject.description](#oneOf_i0_IdentifiedObjectdescription ) | No      | string           | No         | -                              | description          |
+| - [IdentifiedObject.aliasName](#oneOf_i0_IdentifiedObjectaliasName )     | No      | string           | No         | -                              | aliasName            |
+| - [IdentifiedObject.mRID](#oneOf_i0_IdentifiedObjectmRID )               | No      | string           | No         | -                              | mRID                 |
+| - [IdentifiedObject.name](#oneOf_i0_IdentifiedObjectname )               | No      | string           | No         | -                              | name                 |
+
+### <a name="oneOf_i0_BaybayEnergyMeasFlag"></a>1.1. Property `EquipmentContainer > oneOf > Bay > Bay.bayEnergyMeasFlag`
+
+**Title:** bayEnergyMeasFlag
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Indicates the presence/absence of energy measurements.
+
+### <a name="oneOf_i0_BaybayPowerMeasFlag"></a>1.2. Property `EquipmentContainer > oneOf > Bay > Bay.bayPowerMeasFlag`
+
+**Title:** bayPowerMeasFlag
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Indicates the presence/absence of active/reactive power measurements.
+
+### <a name="oneOf_i0_BaybreakerConfiguration"></a>1.3. Property `EquipmentContainer > oneOf > Bay > Bay.breakerConfiguration`
+
+**Title:** breakerConfiguration
+
+|                |                             |
+| -------------- | --------------------------- |
+| **Type**       | `enum (of string)`          |
+| **Required**   | No                          |
+| **Defined in** | ./BreakerConfiguration.json |
+
+**Description:** Breaker configuration.
+
+Must be one of:
+* "singleBreaker"
+* "breakerAndAHalf"
+* "doubleBreaker"
+* "noBreaker"
+
+### <a name="oneOf_i0_BaybusBarConfiguration"></a>1.4. Property `EquipmentContainer > oneOf > Bay > Bay.busBarConfiguration`
+
+**Title:** busBarConfiguration
+
+|                |                            |
+| -------------- | -------------------------- |
+| **Type**       | `enum (of string)`         |
+| **Required**   | No                         |
+| **Defined in** | ./BusbarConfiguration.json |
+
+**Description:** Busbar configuration.
+
+Must be one of:
+* "singleBus"
+* "doubleBus"
+* "mainWithTransfer"
+* "ringBus"
+
+### <a name="oneOf_i0_IdentifiedObjectdescription"></a>1.5. Property `EquipmentContainer > oneOf > Bay > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i0_IdentifiedObjectaliasName"></a>1.6. Property `EquipmentContainer > oneOf > Bay > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i0_IdentifiedObjectmRID"></a>1.7. Property `EquipmentContainer > oneOf > Bay > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i0_IdentifiedObjectname"></a>1.8. Property `EquipmentContainer > oneOf > Bay > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i1"></a>2. Property `EquipmentContainer > oneOf > Feeder.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./Feeder.json                                                             |
+
+**Description:** A collection of equipment for organizational purposes, used for grouping distribution resources.
+The organization a feeder does not necessarily reflect connectivity or current operation state.
+
+| Property                                                                 | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [IdentifiedObject.description](#oneOf_i1_IdentifiedObjectdescription ) | No      | string | No         | -          | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i1_IdentifiedObjectaliasName )     | No      | string | No         | -          | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i1_IdentifiedObjectmRID )               | No      | string | No         | -          | mRID              |
+| - [IdentifiedObject.name](#oneOf_i1_IdentifiedObjectname )               | No      | string | No         | -          | name              |
+
+### <a name="oneOf_i1_IdentifiedObjectdescription"></a>2.1. Property `EquipmentContainer > oneOf > Feeder > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i1_IdentifiedObjectaliasName"></a>2.2. Property `EquipmentContainer > oneOf > Feeder > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i1_IdentifiedObjectmRID"></a>2.3. Property `EquipmentContainer > oneOf > Feeder > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i1_IdentifiedObjectname"></a>2.4. Property `EquipmentContainer > oneOf > Feeder > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i2"></a>3. Property `EquipmentContainer > oneOf > DCEquipmentContainer.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./DCEquipmentContainer.json                                               |
+
+**Description:** A modelling construct to provide a root class for containment of DC as well as AC equipment. The class differ from the EquipmentContaner for AC in that it may also contain DCNode-s. Hence it can contain both AC and DC equipment.
+
+| Property                                                                   | Pattern | Type             | Deprecated | Definition                             | Title/Description |
+| -------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------- | ----------------- |
+| - [DCConverterUnit.operationMode](#oneOf_i2_DCConverterUnitoperationMode ) | No      | enum (of string) | No         | In ./DCConverterOperatingModeKind.json | operationMode     |
+| - [IdentifiedObject.description](#oneOf_i2_IdentifiedObjectdescription )   | No      | string           | No         | -                                      | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i2_IdentifiedObjectaliasName )       | No      | string           | No         | -                                      | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i2_IdentifiedObjectmRID )                 | No      | string           | No         | -                                      | mRID              |
+| - [IdentifiedObject.name](#oneOf_i2_IdentifiedObjectname )                 | No      | string           | No         | -                                      | name              |
+
+### <a name="oneOf_i2_DCConverterUnitoperationMode"></a>3.1. Property `EquipmentContainer > oneOf > DCEquipmentContainer > DCConverterUnit.operationMode`
+
+**Title:** operationMode
+
+|                |                                     |
+| -------------- | ----------------------------------- |
+| **Type**       | `enum (of string)`                  |
+| **Required**   | No                                  |
+| **Defined in** | ./DCConverterOperatingModeKind.json |
+
+**Description:** The operating mode of an HVDC bipole (bipolar, monopolar metallic return, etc).
+
+Must be one of:
+* "bipolar"
+* "monopolarMetallicReturn"
+* "monopolarGroundReturn"
+
+### <a name="oneOf_i2_IdentifiedObjectdescription"></a>3.2. Property `EquipmentContainer > oneOf > DCEquipmentContainer > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i2_IdentifiedObjectaliasName"></a>3.3. Property `EquipmentContainer > oneOf > DCEquipmentContainer > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i2_IdentifiedObjectmRID"></a>3.4. Property `EquipmentContainer > oneOf > DCEquipmentContainer > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i2_IdentifiedObjectname"></a>3.5. Property `EquipmentContainer > oneOf > DCEquipmentContainer > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i3"></a>4. Property `EquipmentContainer > oneOf > Plant.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./Plant.json                                                              |
+
+**Description:** A Plant is a collection of equipment for purposes of generation.
+
+| Property                                                                 | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [IdentifiedObject.description](#oneOf_i3_IdentifiedObjectdescription ) | No      | string | No         | -          | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i3_IdentifiedObjectaliasName )     | No      | string | No         | -          | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i3_IdentifiedObjectmRID )               | No      | string | No         | -          | mRID              |
+| - [IdentifiedObject.name](#oneOf_i3_IdentifiedObjectname )               | No      | string | No         | -          | name              |
+
+### <a name="oneOf_i3_IdentifiedObjectdescription"></a>4.1. Property `EquipmentContainer > oneOf > Plant > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i3_IdentifiedObjectaliasName"></a>4.2. Property `EquipmentContainer > oneOf > Plant > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i3_IdentifiedObjectmRID"></a>4.3. Property `EquipmentContainer > oneOf > Plant > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i3_IdentifiedObjectname"></a>4.4. Property `EquipmentContainer > oneOf > Plant > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i4"></a>5. Property `EquipmentContainer > oneOf > Line.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./Line.json                                                               |
+
+**Description:** Contains equipment beyond a substation belonging to a power transmission line.
+
+| Property                                                                 | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [IdentifiedObject.description](#oneOf_i4_IdentifiedObjectdescription ) | No      | string | No         | -          | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i4_IdentifiedObjectaliasName )     | No      | string | No         | -          | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i4_IdentifiedObjectmRID )               | No      | string | No         | -          | mRID              |
+| - [IdentifiedObject.name](#oneOf_i4_IdentifiedObjectname )               | No      | string | No         | -          | name              |
+
+### <a name="oneOf_i4_IdentifiedObjectdescription"></a>5.1. Property `EquipmentContainer > oneOf > Line > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i4_IdentifiedObjectaliasName"></a>5.2. Property `EquipmentContainer > oneOf > Line > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i4_IdentifiedObjectmRID"></a>5.3. Property `EquipmentContainer > oneOf > Line > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i4_IdentifiedObjectname"></a>5.4. Property `EquipmentContainer > oneOf > Line > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i5"></a>6. Property `EquipmentContainer > oneOf > Substation.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./Substation.json                                                         |
+
+**Description:** A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.
+
+| Property                                                                 | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [IdentifiedObject.description](#oneOf_i5_IdentifiedObjectdescription ) | No      | string | No         | -          | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i5_IdentifiedObjectaliasName )     | No      | string | No         | -          | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i5_IdentifiedObjectmRID )               | No      | string | No         | -          | mRID              |
+| - [IdentifiedObject.name](#oneOf_i5_IdentifiedObjectname )               | No      | string | No         | -          | name              |
+
+### <a name="oneOf_i5_IdentifiedObjectdescription"></a>6.1. Property `EquipmentContainer > oneOf > Substation > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i5_IdentifiedObjectaliasName"></a>6.2. Property `EquipmentContainer > oneOf > Substation > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i5_IdentifiedObjectmRID"></a>6.3. Property `EquipmentContainer > oneOf > Substation > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i5_IdentifiedObjectname"></a>6.4. Property `EquipmentContainer > oneOf > Substation > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i6"></a>7. Property `EquipmentContainer > oneOf > VoltageLevel.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./VoltageLevel.json                                                       |
+
+**Description:** A collection of equipment at one common system voltage forming a switchgear. The equipment typically consists of breakers, busbars, instrumentation, control, regulation and protection devices as well as assemblies of all these.
+
+| Property                                                                   | Pattern | Type             | Deprecated | Definition                                                                     | Title/Description |
+| -------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------------------ | ----------------- |
+| - [VoltageLevel.lowVoltageLimit](#oneOf_i6_VoltageLevellowVoltageLimit )   | No      | object or number | No         | In ./Voltage.json                                                              | lowVoltageLimit   |
+| - [VoltageLevel.highVoltageLimit](#oneOf_i6_VoltageLevelhighVoltageLimit ) | No      | object or number | No         | Same as [VoltageLevel.lowVoltageLimit](#oneOf_i6_VoltageLevellowVoltageLimit ) | highVoltageLimit  |
+| - [IdentifiedObject.description](#oneOf_i6_IdentifiedObjectdescription )   | No      | string           | No         | -                                                                              | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i6_IdentifiedObjectaliasName )       | No      | string           | No         | -                                                                              | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i6_IdentifiedObjectmRID )                 | No      | string           | No         | -                                                                              | mRID              |
+| - [IdentifiedObject.name](#oneOf_i6_IdentifiedObjectname )                 | No      | string           | No         | -                                                                              | name              |
+
+### <a name="oneOf_i6_VoltageLevellowVoltageLimit"></a>7.1. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.lowVoltageLimit`
+
+**Title:** lowVoltageLimit
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Voltage.json     |
+
+**Description:** The bus bar's low voltage limit.
+The limit applies to all equipment and nodes contained in a given VoltageLevel. It is not required that it is exchanged in pair with highVoltageLimit. It is preferable to use operational VoltageLimit, which prevails, if present.
+
+| Property                                                          | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ----------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#oneOf_i6_VoltageLevellowVoltageLimit_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#oneOf_i6_VoltageLevellowVoltageLimit_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#oneOf_i6_VoltageLevellowVoltageLimit_value )           | No      | number           | No         | -                        | nan               |
+
+#### <a name="oneOf_i6_VoltageLevellowVoltageLimit_multiplier"></a>7.1.1. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.lowVoltageLimit > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+#### <a name="oneOf_i6_VoltageLevellowVoltageLimit_unit"></a>7.1.2. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.lowVoltageLimit > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"V"`              |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+#### <a name="oneOf_i6_VoltageLevellowVoltageLimit_value"></a>7.1.3. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.lowVoltageLimit > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+### <a name="oneOf_i6_VoltageLevelhighVoltageLimit"></a>7.2. Property `EquipmentContainer > oneOf > VoltageLevel > VoltageLevel.highVoltageLimit`
+
+**Title:** highVoltageLimit
+
+|                        |                                                                       |
+| ---------------------- | --------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                    |
+| **Required**           | No                                                                    |
+| **Same definition as** | [VoltageLevel.lowVoltageLimit](#oneOf_i6_VoltageLevellowVoltageLimit) |
+
+**Description:** The bus bar's high voltage limit.
+The limit applies to all equipment and nodes contained in a given VoltageLevel. It is not required that it is exchanged in pair with lowVoltageLimit. It is preferable to use operational VoltageLimit, which prevails, if present.
+
+### <a name="oneOf_i6_IdentifiedObjectdescription"></a>7.3. Property `EquipmentContainer > oneOf > VoltageLevel > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i6_IdentifiedObjectaliasName"></a>7.4. Property `EquipmentContainer > oneOf > VoltageLevel > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i6_IdentifiedObjectmRID"></a>7.5. Property `EquipmentContainer > oneOf > VoltageLevel > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i6_IdentifiedObjectname"></a>7.6. Property `EquipmentContainer > oneOf > VoltageLevel > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:20 -0600

@@ -1,0 +1,18 @@
+# CheckOutType
+
+**Title:** CheckOutType
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** To indicate a check out type such as adjusted capacity or dispatch capacity.
+
+Must be one of:
+* "PRE_SCHEDULE"
+* "PRE_HOUR"
+* "AFTER_THE_FACT"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

@@ -1,0 +1,17 @@
+# RotorKind
+
+**Title:** RotorKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Type of rotor on physical machine.
+
+Must be one of:
+* "roundRotor"
+* "salientPole"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:27 -0600

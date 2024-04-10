@@ -1,0 +1,22 @@
+# AmiBillingReadyKind
+
+**Title:** AmiBillingReadyKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Lifecycle states of the metering installation at a usage point with respect to readiness for billing via advanced metering infrastructure reads.
+
+Must be one of:
+* "amiCapable"
+* "operable"
+* "nonMetered"
+* "nonAmi"
+* "billingApproved"
+* "enabled"
+* "amiDisabled"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:23 -0600

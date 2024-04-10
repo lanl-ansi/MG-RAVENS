@@ -1,0 +1,1392 @@
+# DynamicsFunctionBlock
+
+- [1. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics.json`](#oneOf_i0)
+  - [1.1. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > DynamicsFunctionBlock.enabled`](#oneOf_i0_DynamicsFunctionBlockenabled)
+  - [1.2. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.damping`](#oneOf_i0_RotatingMachineDynamicsdamping)
+  - [1.3. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.inertia`](#oneOf_i0_RotatingMachineDynamicsinertia)
+    - [1.3.1. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.inertia > multiplier`](#oneOf_i0_RotatingMachineDynamicsinertia_multiplier)
+    - [1.3.2. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.inertia > unit`](#oneOf_i0_RotatingMachineDynamicsinertia_unit)
+    - [1.3.3. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.inertia > value`](#oneOf_i0_RotatingMachineDynamicsinertia_value)
+  - [1.4. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.saturationFactor`](#oneOf_i0_RotatingMachineDynamicssaturationFactor)
+  - [1.5. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.saturationFactor120`](#oneOf_i0_RotatingMachineDynamicssaturationFactor120)
+  - [1.6. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorLeakageReactance`](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance)
+    - [1.6.1. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorLeakageReactance > multiplier`](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance_multiplier)
+    - [1.6.2. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorLeakageReactance > unit`](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance_unit)
+    - [1.6.3. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorLeakageReactance > value`](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance_value)
+  - [1.7. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorResistance`](#oneOf_i0_RotatingMachineDynamicsstatorResistance)
+  - [1.8. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineDetailed.efdBaseRatio`](#oneOf_i0_SynchronousMachineDetailedefdBaseRatio)
+  - [1.9. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineDetailed.ifdBaseType`](#oneOf_i0_SynchronousMachineDetailedifdBaseType)
+  - [1.10. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineDetailed.saturationFactor120QAxis`](#oneOf_i0_SynchronousMachineDetailedsaturationFactor120QAxis)
+  - [1.11. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineDetailed.saturationFactorQAxis`](#oneOf_i0_SynchronousMachineDetailedsaturationFactorQAxis)
+  - [1.12. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.ks`](#oneOf_i0_SynchronousMachineTimeConstantReactanceks)
+  - [1.13. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.modelType`](#oneOf_i0_SynchronousMachineTimeConstantReactancemodelType)
+  - [1.14. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.rotorType`](#oneOf_i0_SynchronousMachineTimeConstantReactancerotorType)
+  - [1.15. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tc`](#oneOf_i0_SynchronousMachineTimeConstantReactancetc)
+  - [1.16. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tpdo`](#oneOf_i0_SynchronousMachineTimeConstantReactancetpdo)
+  - [1.17. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tppdo`](#oneOf_i0_SynchronousMachineTimeConstantReactancetppdo)
+  - [1.18. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tppqo`](#oneOf_i0_SynchronousMachineTimeConstantReactancetppqo)
+  - [1.19. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tpqo`](#oneOf_i0_SynchronousMachineTimeConstantReactancetpqo)
+  - [1.20. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xDirectSubtrans`](#oneOf_i0_SynchronousMachineTimeConstantReactancexDirectSubtrans)
+  - [1.21. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xDirectSync`](#oneOf_i0_SynchronousMachineTimeConstantReactancexDirectSync)
+  - [1.22. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xDirectTrans`](#oneOf_i0_SynchronousMachineTimeConstantReactancexDirectTrans)
+  - [1.23. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xQuadSubtrans`](#oneOf_i0_SynchronousMachineTimeConstantReactancexQuadSubtrans)
+  - [1.24. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xQuadSync`](#oneOf_i0_SynchronousMachineTimeConstantReactancexQuadSync)
+  - [1.25. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xQuadTrans`](#oneOf_i0_SynchronousMachineTimeConstantReactancexQuadTrans)
+  - [1.26. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.r1d`](#oneOf_i0_SynchronousMachineEquivalentCircuitr1d)
+  - [1.27. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.r1q`](#oneOf_i0_SynchronousMachineEquivalentCircuitr1q)
+  - [1.28. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.r2q`](#oneOf_i0_SynchronousMachineEquivalentCircuitr2q)
+  - [1.29. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.rfd`](#oneOf_i0_SynchronousMachineEquivalentCircuitrfd)
+  - [1.30. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.x1d`](#oneOf_i0_SynchronousMachineEquivalentCircuitx1d)
+  - [1.31. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.x1q`](#oneOf_i0_SynchronousMachineEquivalentCircuitx1q)
+  - [1.32. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.x2q`](#oneOf_i0_SynchronousMachineEquivalentCircuitx2q)
+  - [1.33. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.xad`](#oneOf_i0_SynchronousMachineEquivalentCircuitxad)
+  - [1.34. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.xaq`](#oneOf_i0_SynchronousMachineEquivalentCircuitxaq)
+  - [1.35. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.xf1d`](#oneOf_i0_SynchronousMachineEquivalentCircuitxf1d)
+  - [1.36. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.xfd`](#oneOf_i0_SynchronousMachineEquivalentCircuitxfd)
+  - [1.37. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > IdentifiedObject.description`](#oneOf_i0_IdentifiedObjectdescription)
+  - [1.38. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.tpo`](#oneOf_i0_AsynchronousMachineTimeConstantReactancetpo)
+  - [1.39. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.tppo`](#oneOf_i0_AsynchronousMachineTimeConstantReactancetppo)
+  - [1.40. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.xp`](#oneOf_i0_AsynchronousMachineTimeConstantReactancexp)
+  - [1.41. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.xpp`](#oneOf_i0_AsynchronousMachineTimeConstantReactancexpp)
+  - [1.42. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.xs`](#oneOf_i0_AsynchronousMachineTimeConstantReactancexs)
+  - [1.43. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.rr1`](#oneOf_i0_AsynchronousMachineEquivalentCircuitrr1)
+  - [1.44. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.rr2`](#oneOf_i0_AsynchronousMachineEquivalentCircuitrr2)
+  - [1.45. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.xlr1`](#oneOf_i0_AsynchronousMachineEquivalentCircuitxlr1)
+  - [1.46. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.xlr2`](#oneOf_i0_AsynchronousMachineEquivalentCircuitxlr2)
+  - [1.47. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.xm`](#oneOf_i0_AsynchronousMachineEquivalentCircuitxm)
+  - [1.48. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineUserDefined.proprietary`](#oneOf_i0_SynchronousMachineUserDefinedproprietary)
+  - [1.49. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineUserDefined.proprietary`](#oneOf_i0_AsynchronousMachineUserDefinedproprietary)
+  - [1.50. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > IdentifiedObject.aliasName`](#oneOf_i0_IdentifiedObjectaliasName)
+  - [1.51. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > IdentifiedObject.mRID`](#oneOf_i0_IdentifiedObjectmRID)
+  - [1.52. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > IdentifiedObject.name`](#oneOf_i0_IdentifiedObjectname)
+- [2. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics.json`](#oneOf_i1)
+  - [2.1. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > SVCUserDefined.proprietary`](#oneOf_i1_SVCUserDefinedproprietary)
+  - [2.2. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > DynamicsFunctionBlock.enabled`](#oneOf_i1_DynamicsFunctionBlockenabled)
+  - [2.3. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > IdentifiedObject.description`](#oneOf_i1_IdentifiedObjectdescription)
+  - [2.4. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > IdentifiedObject.aliasName`](#oneOf_i1_IdentifiedObjectaliasName)
+  - [2.5. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > IdentifiedObject.mRID`](#oneOf_i1_IdentifiedObjectmRID)
+  - [2.6. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > IdentifiedObject.name`](#oneOf_i1_IdentifiedObjectname)
+- [3. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics.json`](#oneOf_i2)
+  - [3.1. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > CSCUserDefined.proprietary`](#oneOf_i2_CSCUserDefinedproprietary)
+  - [3.2. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > VSCUserDefined.proprietary`](#oneOf_i2_VSCUserDefinedproprietary)
+  - [3.3. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > DynamicsFunctionBlock.enabled`](#oneOf_i2_DynamicsFunctionBlockenabled)
+  - [3.4. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > IdentifiedObject.description`](#oneOf_i2_IdentifiedObjectdescription)
+  - [3.5. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > IdentifiedObject.aliasName`](#oneOf_i2_IdentifiedObjectaliasName)
+  - [3.6. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > IdentifiedObject.mRID`](#oneOf_i2_IdentifiedObjectmRID)
+  - [3.7. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > IdentifiedObject.name`](#oneOf_i2_IdentifiedObjectname)
+- [4. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics.json`](#oneOf_i3)
+  - [4.1. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > IdentifiedObject.description`](#oneOf_i3_IdentifiedObjectdescription)
+  - [4.2. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VoltageCompensatorUserDefined.proprietary`](#oneOf_i3_VoltageCompensatorUserDefinedproprietary)
+  - [4.3. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > IdentifiedObject.aliasName`](#oneOf_i3_IdentifiedObjectaliasName)
+  - [4.4. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > IdentifiedObject.mRID`](#oneOf_i3_IdentifiedObjectmRID)
+  - [4.5. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > IdentifiedObject.name`](#oneOf_i3_IdentifiedObjectname)
+  - [4.6. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > DynamicsFunctionBlock.enabled`](#oneOf_i3_DynamicsFunctionBlockenabled)
+  - [4.7. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VCompIEEEType1.rc`](#oneOf_i3_VCompIEEEType1rc)
+  - [4.8. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VCompIEEEType1.tr`](#oneOf_i3_VCompIEEEType1tr)
+  - [4.9. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VCompIEEEType1.xc`](#oneOf_i3_VCompIEEEType1xc)
+  - [4.10. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VCompIEEEType2.tr`](#oneOf_i3_VCompIEEEType2tr)
+
+**Title:** DynamicsFunctionBlock
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                               |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Abstract parent class for all Dynamics function blocks.
+
+| One of(Option)                                 |
+| ---------------------------------------------- |
+| [RotatingMachineDynamics.json](#oneOf_i0)      |
+| [StaticVarCompensatorDynamics.json](#oneOf_i1) |
+| [HVDCDynamics.json](#oneOf_i2)                 |
+| [VoltageCompensatorDynamics.json](#oneOf_i3)   |
+
+## <a name="oneOf_i0"></a>1. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./RotatingMachineDynamics.json                                            |
+
+**Description:** Abstract parent class for all synchronous and asynchronous machine standard models.
+
+| Property                                                                                                                       | Pattern | Type             | Deprecated | Definition                                                                                                         | Title/Description        |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------- | ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------ |
+| - [DynamicsFunctionBlock.enabled](#oneOf_i0_DynamicsFunctionBlockenabled )                                                     | No      | boolean          | No         | -                                                                                                                  | enabled                  |
+| - [RotatingMachineDynamics.damping](#oneOf_i0_RotatingMachineDynamicsdamping )                                                 | No      | number           | No         | -                                                                                                                  | damping                  |
+| - [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                                                 | No      | object or number | No         | In ./Seconds.json                                                                                                  | inertia                  |
+| - [RotatingMachineDynamics.saturationFactor](#oneOf_i0_RotatingMachineDynamicssaturationFactor )                               | No      | number           | No         | -                                                                                                                  | saturationFactor         |
+| - [RotatingMachineDynamics.saturationFactor120](#oneOf_i0_RotatingMachineDynamicssaturationFactor120 )                         | No      | number           | No         | -                                                                                                                  | saturationFactor120      |
+| - [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance )                   | No      | object or number | No         | In ./PU.json                                                                                                       | statorLeakageReactance   |
+| - [RotatingMachineDynamics.statorResistance](#oneOf_i0_RotatingMachineDynamicsstatorResistance )                               | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | statorResistance         |
+| - [SynchronousMachineDetailed.efdBaseRatio](#oneOf_i0_SynchronousMachineDetailedefdBaseRatio )                                 | No      | number           | No         | -                                                                                                                  | efdBaseRatio             |
+| - [SynchronousMachineDetailed.ifdBaseType](#oneOf_i0_SynchronousMachineDetailedifdBaseType )                                   | No      | enum (of string) | No         | In ./IfdBaseKind.json                                                                                              | ifdBaseType              |
+| - [SynchronousMachineDetailed.saturationFactor120QAxis](#oneOf_i0_SynchronousMachineDetailedsaturationFactor120QAxis )         | No      | number           | No         | -                                                                                                                  | saturationFactor120QAxis |
+| - [SynchronousMachineDetailed.saturationFactorQAxis](#oneOf_i0_SynchronousMachineDetailedsaturationFactorQAxis )               | No      | number           | No         | -                                                                                                                  | saturationFactorQAxis    |
+| - [SynchronousMachineTimeConstantReactance.ks](#oneOf_i0_SynchronousMachineTimeConstantReactanceks )                           | No      | number           | No         | -                                                                                                                  | ks                       |
+| - [SynchronousMachineTimeConstantReactance.modelType](#oneOf_i0_SynchronousMachineTimeConstantReactancemodelType )             | No      | enum (of string) | No         | In ./SynchronousMachineModelKind.json                                                                              | modelType                |
+| - [SynchronousMachineTimeConstantReactance.rotorType](#oneOf_i0_SynchronousMachineTimeConstantReactancerotorType )             | No      | enum (of string) | No         | In ./RotorKind.json                                                                                                | rotorType                |
+| - [SynchronousMachineTimeConstantReactance.tc](#oneOf_i0_SynchronousMachineTimeConstantReactancetc )                           | No      | object or number | No         | Same as [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                               | tc                       |
+| - [SynchronousMachineTimeConstantReactance.tpdo](#oneOf_i0_SynchronousMachineTimeConstantReactancetpdo )                       | No      | object or number | No         | Same as [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                               | tpdo                     |
+| - [SynchronousMachineTimeConstantReactance.tppdo](#oneOf_i0_SynchronousMachineTimeConstantReactancetppdo )                     | No      | object or number | No         | Same as [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                               | tppdo                    |
+| - [SynchronousMachineTimeConstantReactance.tppqo](#oneOf_i0_SynchronousMachineTimeConstantReactancetppqo )                     | No      | object or number | No         | Same as [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                               | tppqo                    |
+| - [SynchronousMachineTimeConstantReactance.tpqo](#oneOf_i0_SynchronousMachineTimeConstantReactancetpqo )                       | No      | object or number | No         | Same as [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                               | tpqo                     |
+| - [SynchronousMachineTimeConstantReactance.xDirectSubtrans](#oneOf_i0_SynchronousMachineTimeConstantReactancexDirectSubtrans ) | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xDirectSubtrans          |
+| - [SynchronousMachineTimeConstantReactance.xDirectSync](#oneOf_i0_SynchronousMachineTimeConstantReactancexDirectSync )         | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xDirectSync              |
+| - [SynchronousMachineTimeConstantReactance.xDirectTrans](#oneOf_i0_SynchronousMachineTimeConstantReactancexDirectTrans )       | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xDirectTrans             |
+| - [SynchronousMachineTimeConstantReactance.xQuadSubtrans](#oneOf_i0_SynchronousMachineTimeConstantReactancexQuadSubtrans )     | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xQuadSubtrans            |
+| - [SynchronousMachineTimeConstantReactance.xQuadSync](#oneOf_i0_SynchronousMachineTimeConstantReactancexQuadSync )             | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xQuadSync                |
+| - [SynchronousMachineTimeConstantReactance.xQuadTrans](#oneOf_i0_SynchronousMachineTimeConstantReactancexQuadTrans )           | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xQuadTrans               |
+| - [SynchronousMachineEquivalentCircuit.r1d](#oneOf_i0_SynchronousMachineEquivalentCircuitr1d )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | r1d                      |
+| - [SynchronousMachineEquivalentCircuit.r1q](#oneOf_i0_SynchronousMachineEquivalentCircuitr1q )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | r1q                      |
+| - [SynchronousMachineEquivalentCircuit.r2q](#oneOf_i0_SynchronousMachineEquivalentCircuitr2q )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | r2q                      |
+| - [SynchronousMachineEquivalentCircuit.rfd](#oneOf_i0_SynchronousMachineEquivalentCircuitrfd )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | rfd                      |
+| - [SynchronousMachineEquivalentCircuit.x1d](#oneOf_i0_SynchronousMachineEquivalentCircuitx1d )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | x1d                      |
+| - [SynchronousMachineEquivalentCircuit.x1q](#oneOf_i0_SynchronousMachineEquivalentCircuitx1q )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | x1q                      |
+| - [SynchronousMachineEquivalentCircuit.x2q](#oneOf_i0_SynchronousMachineEquivalentCircuitx2q )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | x2q                      |
+| - [SynchronousMachineEquivalentCircuit.xad](#oneOf_i0_SynchronousMachineEquivalentCircuitxad )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xad                      |
+| - [SynchronousMachineEquivalentCircuit.xaq](#oneOf_i0_SynchronousMachineEquivalentCircuitxaq )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xaq                      |
+| - [SynchronousMachineEquivalentCircuit.xf1d](#oneOf_i0_SynchronousMachineEquivalentCircuitxf1d )                               | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xf1d                     |
+| - [SynchronousMachineEquivalentCircuit.xfd](#oneOf_i0_SynchronousMachineEquivalentCircuitxfd )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xfd                      |
+| - [IdentifiedObject.description](#oneOf_i0_IdentifiedObjectdescription )                                                       | No      | string           | No         | -                                                                                                                  | description              |
+| - [AsynchronousMachineTimeConstantReactance.tpo](#oneOf_i0_AsynchronousMachineTimeConstantReactancetpo )                       | No      | object or number | No         | Same as [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                               | tpo                      |
+| - [AsynchronousMachineTimeConstantReactance.tppo](#oneOf_i0_AsynchronousMachineTimeConstantReactancetppo )                     | No      | object or number | No         | Same as [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                               | tppo                     |
+| - [AsynchronousMachineTimeConstantReactance.xp](#oneOf_i0_AsynchronousMachineTimeConstantReactancexp )                         | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xp                       |
+| - [AsynchronousMachineTimeConstantReactance.xpp](#oneOf_i0_AsynchronousMachineTimeConstantReactancexpp )                       | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xpp                      |
+| - [AsynchronousMachineTimeConstantReactance.xs](#oneOf_i0_AsynchronousMachineTimeConstantReactancexs )                         | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xs                       |
+| - [AsynchronousMachineEquivalentCircuit.rr1](#oneOf_i0_AsynchronousMachineEquivalentCircuitrr1 )                               | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | rr1                      |
+| - [AsynchronousMachineEquivalentCircuit.rr2](#oneOf_i0_AsynchronousMachineEquivalentCircuitrr2 )                               | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | rr2                      |
+| - [AsynchronousMachineEquivalentCircuit.xlr1](#oneOf_i0_AsynchronousMachineEquivalentCircuitxlr1 )                             | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xlr1                     |
+| - [AsynchronousMachineEquivalentCircuit.xlr2](#oneOf_i0_AsynchronousMachineEquivalentCircuitxlr2 )                             | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xlr2                     |
+| - [AsynchronousMachineEquivalentCircuit.xm](#oneOf_i0_AsynchronousMachineEquivalentCircuitxm )                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xm                       |
+| - [SynchronousMachineUserDefined.proprietary](#oneOf_i0_SynchronousMachineUserDefinedproprietary )                             | No      | boolean          | No         | -                                                                                                                  | proprietary              |
+| - [AsynchronousMachineUserDefined.proprietary](#oneOf_i0_AsynchronousMachineUserDefinedproprietary )                           | No      | boolean          | No         | -                                                                                                                  | proprietary              |
+| - [IdentifiedObject.aliasName](#oneOf_i0_IdentifiedObjectaliasName )                                                           | No      | string           | No         | -                                                                                                                  | aliasName                |
+| - [IdentifiedObject.mRID](#oneOf_i0_IdentifiedObjectmRID )                                                                     | No      | string           | No         | -                                                                                                                  | mRID                     |
+| - [IdentifiedObject.name](#oneOf_i0_IdentifiedObjectname )                                                                     | No      | string           | No         | -                                                                                                                  | name                     |
+
+### <a name="oneOf_i0_DynamicsFunctionBlockenabled"></a>1.1. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > DynamicsFunctionBlock.enabled`
+
+**Title:** enabled
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Function block used indicator.
+true = use of function block is enabled
+false = use of function block is disabled.
+
+### <a name="oneOf_i0_RotatingMachineDynamicsdamping"></a>1.2. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.damping`
+
+**Title:** damping
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** Damping torque coefficient (<i>D</i>) (>= 0).  A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical value = 0.
+
+### <a name="oneOf_i0_RotatingMachineDynamicsinertia"></a>1.3. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.inertia`
+
+**Title:** inertia
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./Seconds.json     |
+
+**Description:** Inertia constant of generator or motor and mechanical load (<i>H</i>) (> 0).  This is the specification for the stored energy in the rotating mass when operating at rated speed.  For a generator, this includes the generator plus all other elements (turbine, exciter) on the same shaft and has units of MW x s.  For a motor, it includes the motor plus its mechanical load. Conventional units are PU on the generator MVA base, usually expressed as MW x s / MVA or just s. This value is used in the accelerating power reference frame for operator training simulator solutions.  Typical value = 3.
+
+| Property                                                             | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| -------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| - [multiplier](#oneOf_i0_RotatingMachineDynamicsinertia_multiplier ) | No      | enum (of string) | No         | In ./UnitMultiplier.json | nan               |
+| - [unit](#oneOf_i0_RotatingMachineDynamicsinertia_unit )             | No      | enum (of string) | No         | In ./UnitSymbol.json     | nan               |
+| - [value](#oneOf_i0_RotatingMachineDynamicsinertia_value )           | No      | number           | No         | -                        | Time, in seconds  |
+
+#### <a name="oneOf_i0_RotatingMachineDynamicsinertia_multiplier"></a>1.3.1. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.inertia > multiplier`
+
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | No                    |
+| **Default**    | `"none"`              |
+| **Defined in** | ./UnitMultiplier.json |
+
+**Description:** nan
+
+Must be one of:
+* "p"
+* "n"
+* "micro"
+* "m"
+* "c"
+* "d"
+* "k"
+* "M"
+* "G"
+* "T"
+* "none"
+* "y"
+* "z"
+* "a"
+* "f"
+* "da"
+* "h"
+* "P"
+* "E"
+* "Z"
+* "Y"
+
+#### <a name="oneOf_i0_RotatingMachineDynamicsinertia_unit"></a>1.3.2. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.inertia > unit`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"s"`              |
+| **Defined in** | ./UnitSymbol.json  |
+
+**Description:** nan
+
+Must be one of:
+* "none"
+* "m"
+* "kg"
+* "s"
+* "A"
+* "K"
+* "mol"
+* "cd"
+* "deg"
+* "rad"
+* "sr"
+* "Gy"
+* "Bq"
+* "degC"
+* "Sv"
+* "F"
+* "C"
+* "S"
+* "H"
+* "V"
+* "ohm"
+* "J"
+* "N"
+* "Hz"
+* "lx"
+* "lm"
+* "Wb"
+* "T"
+* "W"
+* "Pa"
+* "m2"
+* "m3"
+* "mPers"
+* "mPers2"
+* "m3Pers"
+* "mPerm3"
+* "kgm"
+* "kgPerm3"
+* "WPermK"
+* "JPerK"
+* "ppm"
+* "rotPers"
+* "radPers"
+* "VA"
+* "VAr"
+* "cosPhi"
+* "Vs"
+* "V2"
+* "As"
+* "A2"
+* "A2s"
+* "VAh"
+* "Wh"
+* "VArh"
+* "VPerHz"
+* "HzPers"
+* "character"
+* "charPers"
+* "kgm2"
+* "dB"
+* "WPers"
+* "lPers"
+* "dBm"
+* "h"
+* "min"
+* "Q"
+* "Qh"
+* "ohmm"
+* "APerm"
+* "V2h"
+* "A2h"
+* "Ah"
+* "count"
+* "ft3"
+* "m3Perh"
+* "gal"
+* "Btu"
+* "l"
+* "lPerh"
+* "lPerl"
+* "gPerg"
+* "molPerm3"
+* "molPermol"
+* "molPerkg"
+* "sPers"
+* "HzPerHz"
+* "VPerV"
+* "APerA"
+* "VPerVA"
+* "rev"
+* "kat"
+* "JPerkg"
+* "m3Uncompensated"
+* "m3Compensated"
+* "WPerW"
+* "therm"
+* "onePerm"
+* "m3Perkg"
+* "Pas"
+* "Nm"
+* "NPerm"
+* "radPers2"
+* "WPerm2"
+* "JPerkgK"
+* "JPerm3"
+* "VPerm"
+* "CPerm3"
+* "CPerm2"
+* "FPerm"
+* "HPerm"
+* "JPermol"
+* "JPermolK"
+* "CPerkg"
+* "GyPers"
+* "WPersr"
+* "WPerm2sr"
+* "katPerm3"
+* "d"
+* "anglemin"
+* "anglesec"
+* "ha"
+* "tonne"
+* "bar"
+* "mmHg"
+* "M"
+* "kn"
+* "Vh"
+* "Mx"
+* "G"
+* "Oe"
+* "WPerA"
+* "SPerm"
+* "onePerHz"
+* "VPerVAr"
+* "ohmPerm"
+* "kgPerJ"
+* "JPers"
+* "m2Pers"
+* "JPerm2"
+* "KPers"
+* "PaPers"
+
+#### <a name="oneOf_i0_RotatingMachineDynamicsinertia_value"></a>1.3.3. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.inertia > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** Time, in seconds
+
+### <a name="oneOf_i0_RotatingMachineDynamicssaturationFactor"></a>1.4. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.saturationFactor`
+
+**Title:** saturationFactor
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** Saturation factor at rated terminal voltage (<i>S1</i>) (>= 0).  Not used by simplified model.  Defined by defined by <i>S</i>(<i>E1</i>) in the SynchronousMachineSaturationParameters diagram.  Typical value = 0,02.
+
+### <a name="oneOf_i0_RotatingMachineDynamicssaturationFactor120"></a>1.5. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.saturationFactor120`
+
+**Title:** saturationFactor120
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** Saturation factor at 120% of rated terminal voltage (<i>S12</i>) (>= RotatingMachineDynamics.saturationFactor). Not used by the simplified model, defined by <i>S</i>(<i>E2</i>) in the SynchronousMachineSaturationParameters diagram.  Typical value = 0,12.
+
+### <a name="oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance"></a>1.6. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorLeakageReactance`
+
+**Title:** statorLeakageReactance
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `object or number` |
+| **Required**   | No                 |
+| **Defined in** | ./PU.json          |
+
+**Description:** Stator leakage reactance (<i>Xl</i>) (>= 0). Typical value = 0,15.
+
+| Property                                                                            | Pattern | Type             | Deprecated | Definition                                                                 | Title/Description |
+| ----------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | -------------------------------------------------------------------------- | ----------------- |
+| - [multiplier](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance_multiplier ) | No      | enum (of string) | No         | Same as [multiplier](#oneOf_i0_RotatingMachineDynamicsinertia_multiplier ) | nan               |
+| - [unit](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance_unit )             | No      | enum (of string) | No         | Same as [unit](#oneOf_i0_RotatingMachineDynamicsinertia_unit )             | nan               |
+| - [value](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance_value )           | No      | number           | No         | -                                                                          | nan               |
+
+#### <a name="oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance_multiplier"></a>1.6.1. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorLeakageReactance > multiplier`
+
+|                        |                                                                   |
+| ---------------------- | ----------------------------------------------------------------- |
+| **Type**               | `enum (of string)`                                                |
+| **Required**           | No                                                                |
+| **Default**            | `"none"`                                                          |
+| **Same definition as** | [multiplier](#oneOf_i0_RotatingMachineDynamicsinertia_multiplier) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance_unit"></a>1.6.2. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorLeakageReactance > unit`
+
+|                        |                                                       |
+| ---------------------- | ----------------------------------------------------- |
+| **Type**               | `enum (of string)`                                    |
+| **Required**           | No                                                    |
+| **Default**            | `"none"`                                              |
+| **Same definition as** | [unit](#oneOf_i0_RotatingMachineDynamicsinertia_unit) |
+
+**Description:** nan
+
+#### <a name="oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance_value"></a>1.6.3. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorLeakageReactance > value`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+| **Default**  | `null`   |
+
+**Description:** nan
+
+### <a name="oneOf_i0_RotatingMachineDynamicsstatorResistance"></a>1.7. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > RotatingMachineDynamics.statorResistance`
+
+**Title:** statorResistance
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Stator (armature) resistance (<i>Rs</i>) (>= 0). Typical value = 0,005.
+
+### <a name="oneOf_i0_SynchronousMachineDetailedefdBaseRatio"></a>1.8. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineDetailed.efdBaseRatio`
+
+**Title:** efdBaseRatio
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** Ratio (exciter voltage/generator voltage) of <i>Efd</i> bases of exciter and generator models (> 0). Typical value = 1.
+
+### <a name="oneOf_i0_SynchronousMachineDetailedifdBaseType"></a>1.9. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineDetailed.ifdBaseType`
+
+**Title:** ifdBaseType
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Defined in** | ./IfdBaseKind.json |
+
+**Description:** Excitation base system mode. It should be equal to the value of <i>WLMDV</i> given by the user. <i>WLMDV</i> is the PU ratio between the field voltage and the excitation current: <i>Efd</i> = <i>WLMDV</i> x <i>Ifd</i>. Typical value = ifag.
+
+Must be one of:
+* "ifag"
+* "ifnl"
+* "iffl"
+
+### <a name="oneOf_i0_SynchronousMachineDetailedsaturationFactor120QAxis"></a>1.10. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineDetailed.saturationFactor120QAxis`
+
+**Title:** saturationFactor120QAxis
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** Quadrature-axis saturation factor at 120% of rated terminal voltage (<i>S12q</i>) (>= SynchonousMachineDetailed.saturationFactorQAxis).  Typical value = 0,12.
+
+### <a name="oneOf_i0_SynchronousMachineDetailedsaturationFactorQAxis"></a>1.11. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineDetailed.saturationFactorQAxis`
+
+**Title:** saturationFactorQAxis
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** Quadrature-axis saturation factor at rated terminal voltage (<i>S1q</i>) (>= 0). Typical value = 0,02.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactanceks"></a>1.12. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.ks`
+
+**Title:** ks
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+**Description:** Saturation loading correction factor (<i>Ks</i>) (>= 0).  Used only by type J model.  Typical value = 0.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancemodelType"></a>1.13. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.modelType`
+
+**Title:** modelType
+
+|                |                                    |
+| -------------- | ---------------------------------- |
+| **Type**       | `enum (of string)`                 |
+| **Required**   | No                                 |
+| **Defined in** | ./SynchronousMachineModelKind.json |
+
+**Description:** Type of synchronous machine model used in dynamic simulation applications.
+
+Must be one of:
+* "subtransient"
+* "subtransientTypeF"
+* "subtransientTypeJ"
+* "subtransientSimplified"
+* "subtransientSimplifiedDirectAxis"
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancerotorType"></a>1.14. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.rotorType`
+
+**Title:** rotorType
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Defined in** | ./RotorKind.json   |
+
+**Description:** Type of rotor on physical machine.
+
+Must be one of:
+* "roundRotor"
+* "salientPole"
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancetc"></a>1.15. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tc`
+
+**Title:** tc
+
+|                        |                                                                             |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                          |
+| **Required**           | No                                                                          |
+| **Same definition as** | [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia) |
+
+**Description:** Damping time constant for “Canay” reactance (>= 0).  Typical value = 0.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancetpdo"></a>1.16. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tpdo`
+
+**Title:** tpdo
+
+|                        |                                                                             |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                          |
+| **Required**           | No                                                                          |
+| **Same definition as** | [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia) |
+
+**Description:** Direct-axis transient rotor time constant (<i>T'do</i>) (> SynchronousMachineTimeConstantReactance.tppdo).  Typical value = 5.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancetppdo"></a>1.17. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tppdo`
+
+**Title:** tppdo
+
+|                        |                                                                             |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                          |
+| **Required**           | No                                                                          |
+| **Same definition as** | [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia) |
+
+**Description:** Direct-axis subtransient rotor time constant (<i>T''do</i>) (> 0).  Typical value = 0,03.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancetppqo"></a>1.18. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tppqo`
+
+**Title:** tppqo
+
+|                        |                                                                             |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                          |
+| **Required**           | No                                                                          |
+| **Same definition as** | [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia) |
+
+**Description:** Quadrature-axis subtransient rotor time constant (<i>T''qo</i>) (> 0). Typical value = 0,03.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancetpqo"></a>1.19. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.tpqo`
+
+**Title:** tpqo
+
+|                        |                                                                             |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                          |
+| **Required**           | No                                                                          |
+| **Same definition as** | [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia) |
+
+**Description:** Quadrature-axis transient rotor time constant (<i>T'qo</i>) (> SynchronousMachineTimeConstantReactance.tppqo). Typical value = 0,5.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancexDirectSubtrans"></a>1.20. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xDirectSubtrans`
+
+**Title:** xDirectSubtrans
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Direct-axis subtransient reactance (unsaturated) (<i>X''d</i>) (> RotatingMachineDynamics.statorLeakageReactance).  Typical value = 0,2.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancexDirectSync"></a>1.21. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xDirectSync`
+
+**Title:** xDirectSync
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Direct-axis synchronous reactance (<i>Xd</i>) (>= SynchronousMachineTimeConstantReactance.xDirectTrans). The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed.  Typical value = 1,8.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancexDirectTrans"></a>1.22. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xDirectTrans`
+
+**Title:** xDirectTrans
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Direct-axis transient reactance (unsaturated) (<i>X'd</i>) (>= SynchronousMachineTimeConstantReactance.xDirectSubtrans).  Typical value = 0,5.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancexQuadSubtrans"></a>1.23. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xQuadSubtrans`
+
+**Title:** xQuadSubtrans
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Quadrature-axis subtransient reactance (<i>X''q</i>) (> RotatingMachineDynamics.statorLeakageReactance).  Typical value = 0,2.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancexQuadSync"></a>1.24. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xQuadSync`
+
+**Title:** xQuadSync
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Quadrature-axis synchronous reactance (<i>Xq</i>) (>= SynchronousMachineTimeConstantReactance.xQuadTrans).
+The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical value = 1,6.
+
+### <a name="oneOf_i0_SynchronousMachineTimeConstantReactancexQuadTrans"></a>1.25. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineTimeConstantReactance.xQuadTrans`
+
+**Title:** xQuadTrans
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Quadrature-axis transient reactance (<i>X'q</i>) (>= SynchronousMachineTimeConstantReactance.xQuadSubtrans).  Typical value = 0,3.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitr1d"></a>1.26. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.r1d`
+
+**Title:** r1d
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Direct-axis damper 1 winding resistance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitr1q"></a>1.27. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.r1q`
+
+**Title:** r1q
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Quadrature-axis damper 1 winding resistance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitr2q"></a>1.28. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.r2q`
+
+**Title:** r2q
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Quadrature-axis damper 2 winding resistance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitrfd"></a>1.29. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.rfd`
+
+**Title:** rfd
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Field winding resistance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitx1d"></a>1.30. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.x1d`
+
+**Title:** x1d
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Direct-axis damper 1 winding leakage reactance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitx1q"></a>1.31. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.x1q`
+
+**Title:** x1q
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Quadrature-axis damper 1 winding leakage reactance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitx2q"></a>1.32. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.x2q`
+
+**Title:** x2q
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Quadrature-axis damper 2 winding leakage reactance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitxad"></a>1.33. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.xad`
+
+**Title:** xad
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Direct-axis mutual reactance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitxaq"></a>1.34. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.xaq`
+
+**Title:** xaq
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Quadrature-axis mutual reactance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitxf1d"></a>1.35. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.xf1d`
+
+**Title:** xf1d
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Differential mutual (“Canay”) reactance.
+
+### <a name="oneOf_i0_SynchronousMachineEquivalentCircuitxfd"></a>1.36. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineEquivalentCircuit.xfd`
+
+**Title:** xfd
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Field winding leakage reactance.
+
+### <a name="oneOf_i0_IdentifiedObjectdescription"></a>1.37. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i0_AsynchronousMachineTimeConstantReactancetpo"></a>1.38. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.tpo`
+
+**Title:** tpo
+
+|                        |                                                                             |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                          |
+| **Required**           | No                                                                          |
+| **Same definition as** | [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia) |
+
+**Description:** Transient rotor time constant (<i>T'o</i>) (> AsynchronousMachineTimeConstantReactance.tppo).  Typical value = 5.
+
+### <a name="oneOf_i0_AsynchronousMachineTimeConstantReactancetppo"></a>1.39. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.tppo`
+
+**Title:** tppo
+
+|                        |                                                                             |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                          |
+| **Required**           | No                                                                          |
+| **Same definition as** | [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia) |
+
+**Description:** Subtransient rotor time constant (<i>T''o</i>) (> 0).  Typical value = 0,03.
+
+### <a name="oneOf_i0_AsynchronousMachineTimeConstantReactancexp"></a>1.40. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.xp`
+
+**Title:** xp
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Transient reactance (unsaturated) (<i>X'</i>) (>= AsynchronousMachineTimeConstantReactance.xpp).  Typical value = 0,5.
+
+### <a name="oneOf_i0_AsynchronousMachineTimeConstantReactancexpp"></a>1.41. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.xpp`
+
+**Title:** xpp
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Subtransient reactance (unsaturated) (<i>X''</i>) (> RotatingMachineDynamics.statorLeakageReactance).  Typical value = 0,2.
+
+### <a name="oneOf_i0_AsynchronousMachineTimeConstantReactancexs"></a>1.42. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineTimeConstantReactance.xs`
+
+**Title:** xs
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Synchronous reactance (<i>Xs</i>) (>= AsynchronousMachineTimeConstantReactance.xp).  Typical value = 1,8.
+
+### <a name="oneOf_i0_AsynchronousMachineEquivalentCircuitrr1"></a>1.43. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.rr1`
+
+**Title:** rr1
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Damper 1 winding resistance.
+
+### <a name="oneOf_i0_AsynchronousMachineEquivalentCircuitrr2"></a>1.44. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.rr2`
+
+**Title:** rr2
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Damper 2 winding resistance.
+
+### <a name="oneOf_i0_AsynchronousMachineEquivalentCircuitxlr1"></a>1.45. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.xlr1`
+
+**Title:** xlr1
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Damper 1 winding leakage reactance.
+
+### <a name="oneOf_i0_AsynchronousMachineEquivalentCircuitxlr2"></a>1.46. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.xlr2`
+
+**Title:** xlr2
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Damper 2 winding leakage reactance.
+
+### <a name="oneOf_i0_AsynchronousMachineEquivalentCircuitxm"></a>1.47. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineEquivalentCircuit.xm`
+
+**Title:** xm
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** Magnetizing reactance.
+
+### <a name="oneOf_i0_SynchronousMachineUserDefinedproprietary"></a>1.48. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > SynchronousMachineUserDefined.proprietary`
+
+**Title:** proprietary
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Behaviour is based on a proprietary model as opposed to a detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+
+### <a name="oneOf_i0_AsynchronousMachineUserDefinedproprietary"></a>1.49. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > AsynchronousMachineUserDefined.proprietary`
+
+**Title:** proprietary
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Behaviour is based on a proprietary model as opposed to a detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+
+### <a name="oneOf_i0_IdentifiedObjectaliasName"></a>1.50. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i0_IdentifiedObjectmRID"></a>1.51. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i0_IdentifiedObjectname"></a>1.52. Property `DynamicsFunctionBlock > oneOf > RotatingMachineDynamics > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i1"></a>2. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./StaticVarCompensatorDynamics.json                                       |
+
+**Description:** Static var compensator whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+
+| Property                                                                   | Pattern | Type    | Deprecated | Definition | Title/Description |
+| -------------------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------- |
+| - [SVCUserDefined.proprietary](#oneOf_i1_SVCUserDefinedproprietary )       | No      | boolean | No         | -          | proprietary       |
+| - [DynamicsFunctionBlock.enabled](#oneOf_i1_DynamicsFunctionBlockenabled ) | No      | boolean | No         | -          | enabled           |
+| - [IdentifiedObject.description](#oneOf_i1_IdentifiedObjectdescription )   | No      | string  | No         | -          | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i1_IdentifiedObjectaliasName )       | No      | string  | No         | -          | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i1_IdentifiedObjectmRID )                 | No      | string  | No         | -          | mRID              |
+| - [IdentifiedObject.name](#oneOf_i1_IdentifiedObjectname )                 | No      | string  | No         | -          | name              |
+
+### <a name="oneOf_i1_SVCUserDefinedproprietary"></a>2.1. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > SVCUserDefined.proprietary`
+
+**Title:** proprietary
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Behaviour is based on a proprietary model as opposed to a detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+
+### <a name="oneOf_i1_DynamicsFunctionBlockenabled"></a>2.2. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > DynamicsFunctionBlock.enabled`
+
+**Title:** enabled
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Function block used indicator.
+true = use of function block is enabled
+false = use of function block is disabled.
+
+### <a name="oneOf_i1_IdentifiedObjectdescription"></a>2.3. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i1_IdentifiedObjectaliasName"></a>2.4. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i1_IdentifiedObjectmRID"></a>2.5. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i1_IdentifiedObjectname"></a>2.6. Property `DynamicsFunctionBlock > oneOf > StaticVarCompensatorDynamics > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i2"></a>3. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./HVDCDynamics.json                                                       |
+
+**Description:** HVDC whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+
+| Property                                                                   | Pattern | Type    | Deprecated | Definition | Title/Description |
+| -------------------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------- |
+| - [CSCUserDefined.proprietary](#oneOf_i2_CSCUserDefinedproprietary )       | No      | boolean | No         | -          | proprietary       |
+| - [VSCUserDefined.proprietary](#oneOf_i2_VSCUserDefinedproprietary )       | No      | boolean | No         | -          | proprietary       |
+| - [DynamicsFunctionBlock.enabled](#oneOf_i2_DynamicsFunctionBlockenabled ) | No      | boolean | No         | -          | enabled           |
+| - [IdentifiedObject.description](#oneOf_i2_IdentifiedObjectdescription )   | No      | string  | No         | -          | description       |
+| - [IdentifiedObject.aliasName](#oneOf_i2_IdentifiedObjectaliasName )       | No      | string  | No         | -          | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i2_IdentifiedObjectmRID )                 | No      | string  | No         | -          | mRID              |
+| - [IdentifiedObject.name](#oneOf_i2_IdentifiedObjectname )                 | No      | string  | No         | -          | name              |
+
+### <a name="oneOf_i2_CSCUserDefinedproprietary"></a>3.1. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > CSCUserDefined.proprietary`
+
+**Title:** proprietary
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Behaviour is based on a proprietary model as opposed to a detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+
+### <a name="oneOf_i2_VSCUserDefinedproprietary"></a>3.2. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > VSCUserDefined.proprietary`
+
+**Title:** proprietary
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Behaviour is based on a proprietary model as opposed to a detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+
+### <a name="oneOf_i2_DynamicsFunctionBlockenabled"></a>3.3. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > DynamicsFunctionBlock.enabled`
+
+**Title:** enabled
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Function block used indicator.
+true = use of function block is enabled
+false = use of function block is disabled.
+
+### <a name="oneOf_i2_IdentifiedObjectdescription"></a>3.4. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i2_IdentifiedObjectaliasName"></a>3.5. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i2_IdentifiedObjectmRID"></a>3.6. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i2_IdentifiedObjectname"></a>3.7. Property `DynamicsFunctionBlock > oneOf > HVDCDynamics > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+## <a name="oneOf_i3"></a>4. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics.json`
+
+|                           |                                                                           |
+| ------------------------- | ------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                  |
+| **Required**              | No                                                                        |
+| **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | ./VoltageCompensatorDynamics.json                                         |
+
+**Description:** Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+
+| Property                                                                                           | Pattern | Type             | Deprecated | Definition                                                                                                         | Title/Description |
+| -------------------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------------ | ----------------- |
+| - [IdentifiedObject.description](#oneOf_i3_IdentifiedObjectdescription )                           | No      | string           | No         | -                                                                                                                  | description       |
+| - [VoltageCompensatorUserDefined.proprietary](#oneOf_i3_VoltageCompensatorUserDefinedproprietary ) | No      | boolean          | No         | -                                                                                                                  | proprietary       |
+| - [IdentifiedObject.aliasName](#oneOf_i3_IdentifiedObjectaliasName )                               | No      | string           | No         | -                                                                                                                  | aliasName         |
+| - [IdentifiedObject.mRID](#oneOf_i3_IdentifiedObjectmRID )                                         | No      | string           | No         | -                                                                                                                  | mRID              |
+| - [IdentifiedObject.name](#oneOf_i3_IdentifiedObjectname )                                         | No      | string           | No         | -                                                                                                                  | name              |
+| - [DynamicsFunctionBlock.enabled](#oneOf_i3_DynamicsFunctionBlockenabled )                         | No      | boolean          | No         | -                                                                                                                  | enabled           |
+| - [VCompIEEEType1.rc](#oneOf_i3_VCompIEEEType1rc )                                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | rc                |
+| - [VCompIEEEType1.tr](#oneOf_i3_VCompIEEEType1tr )                                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                               | tr                |
+| - [VCompIEEEType1.xc](#oneOf_i3_VCompIEEEType1xc )                                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance ) | xc                |
+| - [VCompIEEEType2.tr](#oneOf_i3_VCompIEEEType2tr )                                                 | No      | object or number | No         | Same as [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia )                               | tr                |
+
+### <a name="oneOf_i3_IdentifiedObjectdescription"></a>4.1. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > IdentifiedObject.description`
+
+**Title:** description
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+### <a name="oneOf_i3_VoltageCompensatorUserDefinedproprietary"></a>4.2. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VoltageCompensatorUserDefined.proprietary`
+
+**Title:** proprietary
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Behaviour is based on a proprietary model as opposed to a detailed model.
+true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
+false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+
+### <a name="oneOf_i3_IdentifiedObjectaliasName"></a>4.3. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > IdentifiedObject.aliasName`
+
+**Title:** aliasName
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
+
+### <a name="oneOf_i3_IdentifiedObjectmRID"></a>4.4. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > IdentifiedObject.mRID`
+
+**Title:** mRID
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+### <a name="oneOf_i3_IdentifiedObjectname"></a>4.5. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > IdentifiedObject.name`
+
+**Title:** name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The name is any free human readable and possibly non unique text naming the object.
+
+### <a name="oneOf_i3_DynamicsFunctionBlockenabled"></a>4.6. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > DynamicsFunctionBlock.enabled`
+
+**Title:** enabled
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+**Description:** Function block used indicator.
+true = use of function block is enabled
+false = use of function block is disabled.
+
+### <a name="oneOf_i3_VCompIEEEType1rc"></a>4.7. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VCompIEEEType1.rc`
+
+**Title:** rc
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** <font color="#0f0f0f">Resistive component of compensation of a generator (<i>Rc</i>) (>= 0).</font>
+
+### <a name="oneOf_i3_VCompIEEEType1tr"></a>4.8. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VCompIEEEType1.tr`
+
+**Title:** tr
+
+|                        |                                                                             |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                          |
+| **Required**           | No                                                                          |
+| **Same definition as** | [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia) |
+
+**Description:** <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (>= 0).</font>
+
+### <a name="oneOf_i3_VCompIEEEType1xc"></a>4.9. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VCompIEEEType1.xc`
+
+**Title:** xc
+
+|                        |                                                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                                                        |
+| **Required**           | No                                                                                                        |
+| **Same definition as** | [RotatingMachineDynamics.statorLeakageReactance](#oneOf_i0_RotatingMachineDynamicsstatorLeakageReactance) |
+
+**Description:** <font color="#0f0f0f">Reactive component of compensation of a generator (<i>Xc</i>) (>= 0).</font>
+
+### <a name="oneOf_i3_VCompIEEEType2tr"></a>4.10. Property `DynamicsFunctionBlock > oneOf > VoltageCompensatorDynamics > VCompIEEEType2.tr`
+
+**Title:** tr
+
+|                        |                                                                             |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Type**               | `object or number`                                                          |
+| **Required**           | No                                                                          |
+| **Same definition as** | [RotatingMachineDynamics.inertia](#oneOf_i0_RotatingMachineDynamicsinertia) |
+
+**Description:** <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (>= 0).</font>
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:24 -0600

@@ -1,0 +1,26 @@
+# InputSignalKind
+
+**Title:** InputSignalKind
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+**Description:** Types of input signals.  In dynamics modelling, commonly represented by the <i>j</i> parameter.
+
+Must be one of:
+* "rotorSpeed"
+* "rotorAngularFrequencyDeviation"
+* "busFrequency"
+* "busFrequencyDeviation"
+* "generatorElectricalPower"
+* "generatorAcceleratingPower"
+* "busVoltage"
+* "busVoltageDerivative"
+* "branchCurrent"
+* "fieldCurrent"
+* "generatorMechanicalPower"
+
+----------------------------------------------------------------------------------------------------------------------------
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-04-10 at 07:14:26 -0600
