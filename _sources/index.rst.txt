@@ -52,6 +52,9 @@ Per the Apache 2.0 Copyright, **Redistribution is provided under the following t
 3. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and
 4. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License.
 
+**Modifications**
+
+Modifications to the CIM are approved for release by LANL under LA-UR-24-23237.
 
 Indices and tables
 ==================
