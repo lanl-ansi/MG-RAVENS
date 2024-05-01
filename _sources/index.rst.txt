@@ -6,6 +6,8 @@
 MG-RAVENS Schema Documentation
 ==============================
 
+Feedback on the current version of the Schema can be provided through a `Google Forms Questionnaire <https://forms.gle/JEZEY5QkXDgE5t4LA>`__
+
 .. toctree::
    :maxdepth: 2
    :caption: UML Diagrams:
