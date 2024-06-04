@@ -56,6 +56,10 @@
 
 ![EconomicProperties](../_static/uml/EconomicProperties.png)
 
+### Facilities
+
+![Facilities](../_static/uml/Facilities.png)
+
 ### FossilFuelCosts
 
 ![FossilFuelCosts](../_static/uml/FossilFuelCosts.png)
