@@ -1,0 +1,13 @@
+{
+  "name": "ravens",
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "d3": "^7.9.0",
+    "jsdom": "^24.1.1"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/jsdom": "^21.1.7"
+  }
+}

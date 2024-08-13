@@ -1,0 +1,14 @@
+[
+  {
+    "IdentifiedObject.mRID": "9155c152-9440-417b-b722-6e9480374bc6",
+    "IdentifiedObject.name": "ProposedDER1",
+    "ProposedEnergyProducerOption.powerCapacityFixed": 500.0,
+    "ProposedAssetOption.fixedPrice": { "value": 500000.0, "unit": "USD" }
+  },
+  {
+    "IdentifiedObject.mRID": "9155c152-9440-417b-b722-6e9480374bc6",
+    "IdentifiedObject.name": "ProposedDER2",
+    "ProposedEnergyProducerOption.powerCapacityFixed": 250.0,
+    "ProposedAssetOption.fixedPrice": { "value": 250000.0, "unit": "USD" }
+  }
+]

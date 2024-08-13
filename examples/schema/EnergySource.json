@@ -1,0 +1,74 @@
+{
+  "Location": {
+    "source_Loc": {
+      "Ravens.CimObjectType": "Location",
+      "IdentifiedObject.mRID": "_1644ED97-0A79-4A59-A667-AF56B4A55346",
+      "IdentifiedObject.name": "source_Loc",
+      "Location.CoordinateSystem": "#_A9DB5178-5976-4445-A14B-5367131AAD91",
+      "Location": {
+        "ieee13nodecktassets_Location": {
+          "Location.CoordinateSystem": {
+            "Ravens.CimObjectType": "CoordinateSystem",
+            "IdentifiedObject.mRID": "_A9DB5178-5976-4445-A14B-5367131AAD91",
+            "IdentifiedObject.name": "ieee13nodecktassets_CrsUrn",
+            "CoordinateSystem.crsUrn": "OpenDSSLocalBusCoordinates"
+          }
+        }
+      },
+      "Location.PositionPoints": [
+        {
+          "Ravens.CimObjectType": "PositionPoint",
+          "PositionPoint.Location": "#_1644ED97-0A79-4A59-A667-AF56B4A55346",
+          "PositionPoint.sequenceNumber": 1,
+          "PositionPoint.xPosition": 200,
+          "PositionPoint.yPosition": 400
+        }
+      ]
+    }
+  },
+  "BaseVoltage": {
+    "BaseV_115.0000": {
+      "Ravens.CimObjectType": "BaseVoltage",
+      "IdentifiedObject.mRID": "_B77E56F4-3CA2-46E3-9701-6BEE690744A6",
+      "IdentifiedObject.name": "BaseV_115.0000",
+      "BaseVoltage.nominalVoltage": 115000
+    }
+  },
+  "ConnectivityNode": {
+    "sourcebus": {
+      "Ravens.CimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "_B8E8BF94-1E49-4002-97EF-2EDDC1304183",
+      "IdentifiedObject.name": "sourcebus",
+      "ConnectivityNode.TopologicalNode": "#_411B2600-4A9D-4EF9-84E3-F36FBCAEDEAD",
+      "ConnectivityNode.OperationalLimitSet": "#_5F93C860-5C3D-470B-8907-27FEB512483F",
+      "ConnectivityNode.ConnectivityNodeContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F"
+    }
+  },
+  "EnergySource": {
+    "source": {
+      "Ravens.CimObjectType": "EnergySource",
+      "IdentifiedObject.mRID": "_2BA9A9D8-DAD4-4BBB-B421-20F8202FD509",
+      "IdentifiedObject.name": "source",
+      "Equipment.EquipmentContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F",
+      "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_115.0000'",
+      "EnergySource.nominalVoltage": 115000,
+      "EnergySource.voltageMagnitude": 115000,
+      "EnergySource.voltageAngle": 0.52359878,
+      "EnergySource.r": 0.16037668,
+      "EnergySource.x": 0.64150673,
+      "EnergySource.r0": 0.17960358,
+      "EnergySource.x0": 0.53881075,
+      "PowerSystemResource.Location": "Location::'source_Loc'",
+      "ConductingEquipment.Terminals": [
+        {
+          "Ravens.CimObjectType": "Terminal",
+          "IdentifiedObject.mRID": "_EEBD8C64-ABE6-4A13-9CF3-38BBD773E431",
+          "IdentifiedObject.name": "source_T1",
+          "Terminal.ConductingEquipment": "#_2BA9A9D8-DAD4-4BBB-B421-20F8202FD509",
+          "ACDCTerminal.sequenceNumber": 1,
+          "Terminal.ConnectivityNode": "ConnectivityNode::'sourcebus'"
+        }
+      ]
+    }
+  }
+}

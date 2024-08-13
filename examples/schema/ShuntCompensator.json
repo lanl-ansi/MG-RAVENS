@@ -1,0 +1,36 @@
+{
+  "BaseVoltage": {},
+  "Location": {},
+  "ConnectivityNode": {},
+  "ShuntCompensator": {
+    "cap1": {
+      "Ravens.CimObjectType": "LinearShuntCompensator",
+      "IdentifiedObject.mRID": "_6EF4B9E5-9A30-480E-9309-B78DA021ED9E",
+      "IdentifiedObject.name": "cap1",
+      "Equipment.EquipmentContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F",
+      "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.1600'",
+      "ShuntCompensator.nomU": 4160,
+      "LinearShuntCompensator.bPerSection": 0.034670858,
+      "LinearShuntCompensator.gPerSection": 0,
+      "ShuntCompensator.aVRDelay": 15,
+      "ShuntCompensator.phaseConnection": "PhaseShuntConnectionKind.Y",
+      "ShuntCompensator.grounded": "true",
+      "LinearShuntCompensator.b0PerSection": 15,
+      "LinearShuntCompensator.g0PerSection": 0,
+      "ShuntCompensator.normalSections": 1,
+      "ShuntCompensator.maximumSections": 1,
+      "PowerSystemResource.Location": "Location::'cap1_Loc'",
+      "ConductingEquipment.Terminals": [
+        {
+          "Ravens.CimObjectType": "Terminal",
+          "IdentifiedObject.mRID": "_29B1738F-80C0-415B-ADF0-625CDDE22AF1",
+          "IdentifiedObject.name": "cap1_T1",
+          "Terminal.ConductingEquipment": "#_6EF4B9E5-9A30-480E-9309-B78DA021ED9E",
+          "ACDCTerminal.sequenceNumber": 1,
+          "Terminal.ConnectivityNode": "ConnectivityNode::'675'",
+          "ACDCTerminal.OperationalLimitSet": "#_CDBBF5C7-1B30-481B-B48E-06BBB233D46C"
+        }
+      ]
+    }
+  }
+}

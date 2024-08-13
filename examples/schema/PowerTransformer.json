@@ -1,0 +1,115 @@
+{
+  "Location": {
+    "sub_Loc": {
+      "Ravens.CimObjectType": "Location",
+      "IdentifiedObject.mRID": "_8986327C-0C5B-4905-8D1F-87315455E611",
+      "IdentifiedObject.name": "sub_Loc",
+      "Location.CoordinateSystem": "#_A9DB5178-5976-4445-A14B-5367131AAD91",
+      "Location": {
+        "ieee13nodecktassets_Location": {
+          "Location.CoordinateSystem": {
+            "Ravens.CimObjectType": "CoordinateSystem",
+            "IdentifiedObject.mRID": "_A9DB5178-5976-4445-A14B-5367131AAD91",
+            "IdentifiedObject.name": "ieee13nodecktassets_CrsUrn",
+            "CoordinateSystem.crsUrn": "OpenDSSLocalBusCoordinates"
+          }
+        }
+      }
+    }
+  },
+  "BaseVoltage": {
+    "BaseV_115.0000": {
+      "Ravens.CimObjectType": "BaseVoltage",
+      "IdentifiedObject.mRID": "_B77E56F4-3CA2-46E3-9701-6BEE690744A6",
+      "IdentifiedObject.name": "BaseV_115.0000",
+      "BaseVoltage.nominalVoltage": 115000
+    }
+  },
+  "ConnectivityNode": {
+    "sourcebus": {
+      "Ravens.CimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "_B8E8BF94-1E49-4002-97EF-2EDDC1304183",
+      "IdentifiedObject.name": "sourcebus",
+      "ConnectivityNode.TopologicalNode": "#_411B2600-4A9D-4EF9-84E3-F36FBCAEDEAD",
+      "ConnectivityNode.OperationalLimitSet": "#_5F93C860-5C3D-470B-8907-27FEB512483F",
+      "ConnectivityNode.ConnectivityNodeContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F"
+    },
+    "650": {
+      "Ravens.CimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "_C101AE7A-1AE4-4C41-8031-95BD9649123E",
+      "IdentifiedObject.name": 650,
+      "ConnectivityNode.TopologicalNode": "#_72EE9AF9-EC47-4F71-93F7-5BD00952F50D",
+      "ConnectivityNode.OperationalLimitSet": "#_C7A0C5E1-D50C-4537-AB7E-65E28B298C87",
+      "ConnectivityNode.ConnectivityNodeContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F"
+    }
+  },
+  "PowerTransformer": {
+    "sub": {
+      "Ravens.CimObjectType": "PowerTransformer",
+      "IdentifiedObject.mRID": "_C75865DF-D0EE-4D5A-8FF4-7787025FE378",
+      "IdentifiedObject.name": "sub",
+      "Equipment.EquipmentContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F",
+      "PowerTransformer.vectorGroup": "Dy1",
+      "PowerSystemResource.Location": "Location::'sub_Loc'",
+      "PowerTransformer.TransformerTank": [
+        {
+          "Ravens.CimObjectType": "TransformerTank",
+          "IdentifiedObject.mRID": "_603A2545-92DE-441E-B796-7BA9BC52831F",
+          "IdentifiedObject.name": "sub",
+          "Equipment.EquipmentContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F",
+          "TransformerTank.PowerTransformer": "#_C75865DF-D0EE-4D5A-8FF4-7787025FE378",
+          "PowerSystemResource.Location": "Location::'sub_Loc'",
+          "TransformerTank.TransformerTankEnd": [
+            {
+              "Ravens.CimObjectType": "TransformerTankEnd",
+              "IdentifiedObject.mRID": "_B785025D-38D0-4F7F-B6EB-C5A4EAAB5C68",
+              "IdentifiedObject.name": "sub_End_1",
+              "TransformerTankEnd.phases": "PhaseCode.ABC",
+              "TransformerTankEnd.TransformerTank": "#_603A2545-92DE-441E-B796-7BA9BC52831F",
+              "TransformerEnd.endNumber": 1,
+              "TransformerEnd.grounded": "false",
+              "TransformerEnd.Terminal": "#_4EC9FE94-58C5-4B8F-B951-216854016D4C",
+              "TransformerEnd.BaseVoltage": "#_B77E56F4-3CA2-46E3-9701-6BEE690744A6",
+              "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_115.0000'",
+              "ConductingEquipment.Terminals": [
+                {
+                  "Ravens.CimObjectType": "Terminal",
+                  "IdentifiedObject.mRID": "_4EC9FE94-58C5-4B8F-B951-216854016D4C",
+                  "IdentifiedObject.name": "sub_T1",
+                  "Terminal.ConductingEquipment": "#_C75865DF-D0EE-4D5A-8FF4-7787025FE378",
+                  "ACDCTerminal.sequenceNumber": 1,
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'sourcebus'",
+                  "ACDCTerminal.OperationalLimitSet": "#_F6E53016-B101-4A86-8242-1156A073A9A5"
+                }
+              ]
+            },
+            {
+              "Ravens.CimObjectType": "TransformerTankEnd",
+              "IdentifiedObject.mRID": "_2B2263C6-1CB4-4399-823D-4AC8C1852D8E",
+              "IdentifiedObject.name": "sub_End_2",
+              "TransformerTankEnd.phases": "PhaseCode.ABC",
+              "TransformerTankEnd.TransformerTank": "#_603A2545-92DE-441E-B796-7BA9BC52831F",
+              "TransformerEnd.endNumber": 2,
+              "TransformerEnd.grounded": "true",
+              "TransformerEnd.rground": 0,
+              "TransformerEnd.xground": 0,
+              "TransformerEnd.Terminal": "#_A85D6889-0A90-41F4-ADC2-E0121D94CCD9",
+              "TransformerEnd.BaseVoltage": "#_0D9632EB-FC83-4CC8-9FA9-406211BF5AC5",
+              "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.1600'",
+              "ConductingEquipment.Terminals": [
+                {
+                  "Ravens.CimObjectType": "Terminal",
+                  "IdentifiedObject.mRID": "_A85D6889-0A90-41F4-ADC2-E0121D94CCD9",
+                  "IdentifiedObject.name": "sub_T2",
+                  "Terminal.ConductingEquipment": "#_C75865DF-D0EE-4D5A-8FF4-7787025FE378",
+                  "ACDCTerminal.sequenceNumber": 2,
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'650'"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
