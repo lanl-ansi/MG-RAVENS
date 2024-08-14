@@ -12,19 +12,10 @@ def add_class_nodes_to_graph(G, core_data: CoreData, exclude_packages: list = No
     if exclude_objects is None:
         exclude_objects = []
 
-    attrs = {
-        obj.Index: [attr.Index for attr in core_data.attributes[core_data.attributes["Object_ID"] == obj.Index].itertuples()]
-        for obj in core_data.objects[core_data.objects["Object_Type"] == "Class"].itertuples()
-        if pd.isnull(obj.Stereotype)
-    }
+    attrs = {obj.Index: [attr.Index for attr in core_data.attributes[core_data.attributes["Object_ID"] == obj.Index].itertuples()] for obj in core_data.objects[core_data.objects["Object_Type"] == "Class"].itertuples() if pd.isnull(obj.Stereotype)}
 
     conns = {
-        obj.Index: [
-            c.Index
-            for c in core_data.connectors[
-                (core_data.connectors["Start_Object_ID"] == obj.Index) | (core_data.connectors["End_Object_ID"] == obj.Index)
-            ].itertuples()
-        ]
+        obj.Index: [c.Index for c in core_data.connectors[(core_data.connectors["Start_Object_ID"] == obj.Index) | (core_data.connectors["End_Object_ID"] == obj.Index)].itertuples()]
         for obj in core_data.objects[core_data.objects["Object_Type"] == "Class"].itertuples()
         if pd.isnull(obj.Stereotype)
     }
@@ -98,9 +89,7 @@ def build_attribute_graph(core_data: CoreData, exclude_packages: list = None, ex
     for n in list(AT.nodes):
         for attr in core_data.attributes[core_data.attributes["Object_ID"] == n].itertuples():
             AT.add_edge(attr.Index, n, Connector_Type="Attribute", Connector_ID="ATTR_" + str(attr.Index), weight=100.0)
-            AT.nodes[attr.Index].update(
-                {"Name": str(attr.Name), "Note": str(attr.Notes), "Object_Type": "Attribute", "Attribute_ID": str(attr.Index)}
-            )
+            AT.nodes[attr.Index].update({"Name": str(attr.Name), "Note": str(attr.Notes), "Object_Type": "Attribute", "Attribute_ID": str(attr.Index)})
 
     return AT
 
@@ -114,9 +103,7 @@ def build_association_graph(core_data: CoreData, exclude_packages: list = None, 
 
     AG = nx.MultiDiGraph()
     AG = add_class_nodes_to_graph(AG, core_data, exclude_packages, exclude_objects)
-    for c in core_data.connectors[
-        (core_data.connectors["Connector_Type"] == "Association") | (core_data.connectors["Connector_Type"] == "Aggregation")
-    ].itertuples():
+    for c in core_data.connectors[(core_data.connectors["Connector_Type"] == "Association") | (core_data.connectors["Connector_Type"] == "Aggregation")].itertuples():
         if (
             core_data.objects.loc[c.Start_Object_ID]["Object_Type"] == "Class"
             and core_data.objects.loc[c.End_Object_ID]["Object_Type"] == "Class"
@@ -163,11 +150,7 @@ def build_template_cim_graphs(template, core_data, GG, AG, AT, clean_dir=False):
         **{obj.Index: str(obj.Name) for obj in core_data.objects.itertuples()},
         **{attr.Index: str(attr.Name) for attr in core_data.attributes.itertuples()},
     }
-    cls_name2id = {
-        str(obj.Name): obj.Index
-        for obj in core_data.objects[core_data.objects["Object_Type"] == "Class"].itertuples()
-        if pd.isnull(obj.Stereotype)
-    }
+    cls_name2id = {str(obj.Name): obj.Index for obj in core_data.objects[core_data.objects["Object_Type"] == "Class"].itertuples() if pd.isnull(obj.Stereotype)}
 
     template_names = []
     template_names = collect_template_node_names(template, template_names)
@@ -178,12 +161,7 @@ def build_template_cim_graphs(template, core_data, GG, AG, AT, clean_dir=False):
 
     for name in template_names:
         obj_id = cls_name2id[name]
-        nodes = {
-            at
-            for n in [obj_id] + list(nx.ancestors(GG, obj_id)) + list(nx.descendants(GG, obj_id))
-            for a in list(AG.neighbors(n)) + [n]
-            for at in [n, a] + list(AT.predecessors(a)) + list(AT.predecessors(n))
-        }
+        nodes = {at for n in [obj_id] + list(nx.ancestors(GG, obj_id)) + list(nx.descendants(GG, obj_id)) for a in list(AG.neighbors(n)) + [n] for at in [n, a] + list(AT.predecessors(a)) + list(AT.predecessors(n))}
 
         SG = nx.subgraph(GG_AT_AG, nodes)
         nx.write_graphml(SG, f"out/template_graphs/{name}.graphml")
@@ -194,7 +172,7 @@ if __name__ == "__main__":
     from ravens.cim_tools.template import CIMTemplate
     from ravens.io import parse_eap_data
 
-    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1.eap"
+    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.eap"
 
     core_data = parse_eap_data(db_filename)
 

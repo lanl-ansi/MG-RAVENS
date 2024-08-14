@@ -52,19 +52,15 @@ def build_definitions(core_data: CoreData) -> dict:
                 },
             }
 
-            if (
-                all(v["default"] is not None for k, v in defs[str(obj.Name).replace(" ", "")]["properties"].items() if k != "value")
-                and "value" in defs[str(obj.Name).replace(" ", "")]["properties"]
-            ):
+            if all(v["default"] is not None for k, v in defs[str(obj.Name).replace(" ", "")]["properties"].items() if k != "value") and "value" in defs[str(obj.Name).replace(" ", "")]["properties"]:
                 defs[str(obj.Name).replace(" ", "")]["type"] = [
                     "object",
                     cim_primitives_to_json[defs[str(obj.Name).replace(" ", "")]["properties"]["value"]["type"]],
                 ]
 
-
     for k, v in defs.items():
         if "properties" in v:
-            for _k,_v in v["properties"].items():
+            for _k, _v in v["properties"].items():
                 if "type" in _v and _v["type"] in defs:
                     _v["$ref"] = f"#/$defs/{_v.pop("type")}"
 
@@ -74,7 +70,7 @@ def build_definitions(core_data: CoreData) -> dict:
 if __name__ == "__main__":
     from ravens.io import parse_eap_data
 
-    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1.eap"
+    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.eap"
 
     core_data = parse_eap_data(db_filename)
 
