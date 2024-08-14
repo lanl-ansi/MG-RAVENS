@@ -1,5 +1,6 @@
 # AlgorithmProperties
 
+
 ```json
 {
   "IdentifiedObject.mRID": "c23252a0-cd95-4f64-88e8-4553aa9e1cf6",
@@ -17,3 +18,4 @@
   }
 }
 ```
+

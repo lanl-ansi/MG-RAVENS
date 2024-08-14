@@ -1,5 +1,6 @@
 # EnergyConsumer
 
+
 ```json
 {
   "Location": {
@@ -82,3 +83,4 @@
   }
 }
 ```
+

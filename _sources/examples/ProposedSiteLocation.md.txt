@@ -1,5 +1,6 @@
 # ProposedSiteLocation
 
+
 ```json
 {
   "IdentifiedObject.mRID": "A9C5BFEE-FFFB-4CDC-94EC-813291D042A4",
@@ -17,3 +18,4 @@
   ]
 }
 ```
+

@@ -1,68 +1,88 @@
 # CapacityPrices
 
+
 ```json
 {
-  "IdentifiedObject.mRID": "5407c621-70bb-4ff2-85ca-8cee8a84d10a",
-  "IdentifiedObject.name": "CapacityPrices_1",
-  "RavensModel.CimObjectType": "Ravens.CapacityPrices",
-  "EnergyPrices.Regions": [
-    "Region_1"
-  ],
-  "CapacityPrices.CapacityPriceCurve": {
-    "IdentifiedObject.mRID": "4f8bbd63-0cd0-40c3-b7ac-3156b666f938",
-    "IdentifiedObject.name": "CapacityPriceCurve_1",
-    "xUnit": "h",
-    "y1Unit": "USD",
-    "PriceCurve.CurveDatas": [
-      {
-        "CurveData.xvalue": 0,
-        "CurveData.y1value": 0.85
-      },
-      {
-        "CurveData.xvalue": 1,
-        "CurveData.y1value": 0.28
-      },
-      {
-        "CurveData.xvalue": 2,
-        "CurveData.y1value": 0.92
-      },
-      {
-        "CurveData.xvalue": 3,
-        "CurveData.y1value": 0.68
-      },
-      {
-        "CurveData.xvalue": 4,
-        "CurveData.y1value": 0.57
-      },
-      {
-        "CurveData.xvalue": 5,
-        "CurveData.y1value": 0.87
-      },
-      {
-        "CurveData.xvalue": 6,
-        "CurveData.y1value": 0.35
-      },
-      {
-        "CurveData.xvalue": 7,
-        "CurveData.y1value": 0.15
-      },
-      {
-        "CurveData.xvalue": 8,
-        "CurveData.y1value": 0.1
-      },
-      {
-        "CurveData.xvalue": 9,
-        "CurveData.y1value": 0.5
-      },
-      {
-        "CurveData.xvalue": 10,
-        "CurveData.y1value": 0.95
-      },
-      {
-        "CurveData.xvalue": 11,
-        "CurveData.y1value": 0.69
+  "EnergyPrices": {
+    "CapacityPrices_1": {
+      "IdentifiedObject.mRID": "5407c621-70bb-4ff2-85ca-8cee8a84d10a",
+      "IdentifiedObject.name": "CapacityPrices_1",
+      "RavensModel.CimObjectType": "Ravens.CapacityPrices",
+      "EnergyPrices.Regions": [
+        "Region_1"
+      ],
+      "CapacityPrices.CapacityPriceCurve": {
+        "IdentifiedObject.mRID": "4f8bbd63-0cd0-40c3-b7ac-3156b666f938",
+        "IdentifiedObject.name": "CapacityPriceCurve_1",
+        "xUnit": "h",
+        "y1Unit": "USD",
+        "PriceCurve.CurveDatas": [
+          {
+            "CurveData.xvalue": 0,
+            "CurveData.y1value": 0.85
+          },
+          {
+            "CurveData.xvalue": 1,
+            "CurveData.y1value": 0.28
+          },
+          {
+            "CurveData.xvalue": 2,
+            "CurveData.y1value": 0.92
+          },
+          {
+            "CurveData.xvalue": 3,
+            "CurveData.y1value": 0.68
+          },
+          {
+            "CurveData.xvalue": 4,
+            "CurveData.y1value": 0.57
+          },
+          {
+            "CurveData.xvalue": 5,
+            "CurveData.y1value": 0.87
+          },
+          {
+            "CurveData.xvalue": 6,
+            "CurveData.y1value": 0.35
+          },
+          {
+            "CurveData.xvalue": 7,
+            "CurveData.y1value": 0.15
+          },
+          {
+            "CurveData.xvalue": 8,
+            "CurveData.y1value": 0.1
+          },
+          {
+            "CurveData.xvalue": 9,
+            "CurveData.y1value": 0.5
+          },
+          {
+            "CurveData.xvalue": 10,
+            "CurveData.y1value": 0.95
+          },
+          {
+            "CurveData.xvalue": 11,
+            "CurveData.y1value": 0.69
+          }
+        ]
       }
-    ]
+    }
+  },
+  "Groups": {
+    "GeographicalRegion": {
+      "PrimaryRegion": {
+        "IdentifiedObject.name": "PrimaryRegion",
+        "IdentifiedObject.mRID": "cede3a49-239b-444f-be23-0eae858a76e4",
+        "Regions.SubGeographicalRegion": {
+          "Region_1": {
+            "IdentifiedObject.name": "Region_1",
+            "IdentifiedObject.mRID": "87543f9f-7f0d-48d2-8124-94cdec090160"
+          }
+        }
+      }
+    }
   }
 }
 ```
+

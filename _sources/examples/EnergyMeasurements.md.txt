@@ -1,0 +1,28 @@
+# EnergyMeasurements
+
+
+```json
+{
+  "PowerSystemResource": {
+    "ConnectivityNodeContainer": {
+      "MeterPoints": {
+        "IdentifiedObject.name": "MeterPoints",
+        "IdentifiedObject.mRID": "03fe20b9-0a9a-4664-82da-79a7f4dd0498",
+        "Ravens.CimObjectType": "ConnectivityNodeContainer",
+        "ConnectivityNodeContainer.ConnectivityNodes": [
+          "Bus1",
+          "Bus2"
+        ],
+        "PowerSystemResource.Measurements": [
+          {
+            "IdentifiedObject.name": "MeterPoint",
+            "IdentifiedObject.mRID": "7bd0f862-7624-443f-8bc5-b969e5869fa6",
+            "Measurement.Phases": "ABC"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+

@@ -1,7 +1,11 @@
 # Schema Documentation
+
 ## Main Schema
+
 [Main Schema](../_static/schema/__main__.html)
+
 ## Individual Schema
+
 [ACDCConverter](../_static/schema/ACDCConverter.html)
 
 [ACLineSegment](../_static/schema/ACLineSegment.html)
@@ -293,6 +297,8 @@
 [CostPerEnergyUnit](../_static/schema/CostPerEnergyUnit.html)
 
 [CostPerHeatUnit](../_static/schema/CostPerHeatUnit.html)
+
+[CostPerKiloActivePower](../_static/schema/CostPerKiloActivePower.html)
 
 [CostPerUnitLength](../_static/schema/CostPerUnitLength.html)
 

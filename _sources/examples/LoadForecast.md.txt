@@ -1,5 +1,6 @@
 # LoadForecast
 
+
 ```json
 {
   "ResidentialGroup": {
@@ -87649,3 +87650,4 @@
   }
 }
 ```
+

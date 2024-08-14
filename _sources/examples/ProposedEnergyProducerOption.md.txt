@@ -1,5 +1,6 @@
 # ProposedEnergyProducerOption
 
+
 ```json
 [
   {
@@ -22,3 +23,4 @@
   }
 ]
 ```
+

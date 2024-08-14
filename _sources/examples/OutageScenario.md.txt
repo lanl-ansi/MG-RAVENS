@@ -1,5 +1,6 @@
 # OutageScenario
 
+
 ```json
 [
   {
@@ -20,3 +21,4 @@
   }
 ]
 ```
+

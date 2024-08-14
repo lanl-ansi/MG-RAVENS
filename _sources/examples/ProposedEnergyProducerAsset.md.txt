@@ -1,5 +1,6 @@
 # ProposedEnergyProducerAsset
 
+
 ```json
 [
   {
@@ -35091,3 +35092,4 @@
   }
 ]
 ```
+

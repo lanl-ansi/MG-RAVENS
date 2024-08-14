@@ -1,5 +1,6 @@
 # ProposedGeneratingUnitOption
 
+
 ```json
 [
   {
@@ -47,3 +48,4 @@
   }
 ]
 ```
+

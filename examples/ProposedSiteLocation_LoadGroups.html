@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>ProposedSiteLocation_LoadGroups</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="ProposedSwitchOption" href="ProposedSwitchOption.html" />
+  <link rel="prev" title="ProposedSiteLocation" href="ProposedSiteLocation.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <span class="site-name">MG-RAVENS</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">UML Diagrams:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../uml/index.html" class="reference internal ">UML Diagrams for MG-RAVENS Schema</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Schemas:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../schema/index.html" class="reference internal ">Schema Documentation</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Examples:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="AlgorithmProperties.html" class="reference internal ">AlgorithmProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="CapacityPrices.html" class="reference internal ">CapacityPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Conductor.html" class="reference internal ">Conductor</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="DieselFuelPrice.html" class="reference internal ">DieselFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EconomicProperties.html" class="reference internal ">EconomicProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EnergyConsumer.html" class="reference internal ">EnergyConsumer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EnergyMeasurements.html" class="reference internal ">EnergyMeasurements</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EnergySource.html" class="reference internal ">EnergySource</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="LoadForecast.html" class="reference internal ">LoadForecast</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="LocationalMarginalPrices.html" class="reference internal ">LocationalMarginalPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Messages.html" class="reference internal ">Messages</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="NaturalGasFuelPrice.html" class="reference internal ">NaturalGasFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="OtherFossilFuelPrice.html" class="reference internal ">OtherFossilFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="OutageScenario.html" class="reference internal ">OutageScenario</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PowerTransformer.html" class="reference internal ">PowerTransformer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PredictedEmissions.html" class="reference internal ">PredictedEmissions</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedBatteryUnitOption.html" class="reference internal ">ProposedBatteryUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedConductorOption.html" class="reference internal ">ProposedConductorOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedEnergyProducerAsset.html" class="reference internal ">ProposedEnergyProducerAsset</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedEnergyProducerOption.html" class="reference internal ">ProposedEnergyProducerOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedGeneratingUnitOption.html" class="reference internal ">ProposedGeneratingUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedPhotovoltaicUnitOption.html" class="reference internal ">ProposedPhotovoltaicUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSiteLocation.html" class="reference internal ">ProposedSiteLocation</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">ProposedSiteLocation_LoadGroups</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#proposedsitelocation-loadgroups" class="reference internal">ProposedSiteLocation_LoadGroups</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSwitchOption.html" class="reference internal ">ProposedSwitchOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedWindUnitOption.html" class="reference internal ">ProposedWindUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ShuntCompensator.html" class="reference internal ">ShuntCompensator</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Governance:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/charter.html" class="reference internal ">MG-RAVENS API Governance Charter</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/steering_committee.html" class="reference internal ">Steering Committee Members</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/working_group.html" class="reference internal ">Working Group Members</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>ProposedSiteLocation_LoadGroups</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="ProposedSiteLocation.html"
+       title="previous chapter">← ProposedSiteLocation</a>
+  </li>
+  <li class="next">
+    <a href="ProposedSwitchOption.html"
+       title="next chapter">ProposedSwitchOption →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="proposedsitelocation-loadgroups">
+<h1>ProposedSiteLocation_LoadGroups<a class="headerlink" href="#proposedsitelocation-loadgroups" title="Link to this heading">¶</a></h1>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ProposedSiteLocations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12fb54a8-b440-47d9-9e1c-5d95d2c08fda&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;proposedSite1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RavensModel.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ravens.ProposedSiteLocation&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ProposedSiteLocation.availableArea&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">4000.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ProposedSiteLocation.LoadGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;ResidentialGroup&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;Location.PositionPoints&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;PositionPoint.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;PositionPoint.xPosition&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;PositionPoint.yPosition&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RavensModel.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PositionPoint&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2d5eb117-3720-4fd3-8d72-21ebde32be87&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;LoadGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;ResidentialGroup&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;RavensModel.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConformLoadGroup&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ResidentialGroup&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;71f91d8e-ef0b-4657-9277-9ba7ad2eb3f0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ConformLoadGroup.ConformLoadSchedules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;RavensModel.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConformLoadSchedule&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;859b12e4-be71-451e-91ae-05595c1d4ca7&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;BasicIntervalSchedule.value1Unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;BasicIntervalSchedule.value2Unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;RegularIntervalSchedule.timeStep&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;RegularIntervalSchedule.TimePoints&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;RegularTimePoint.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RegularTimePoint.value1&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.76</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RegularTimePoint.value2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.32</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;RegularTimePoint.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RegularTimePoint.value1&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.79</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RegularTimePoint.value2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.88</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;RegularTimePoint.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RegularTimePoint.value1&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.14</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RegularTimePoint.value2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;ConformLoadGroup.EnergyConsumers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;House1&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;PowerSystemResources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Equipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;ConductingEquipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;EnergyConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;EnergyConsumer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;House1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EnergyConsumer&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bc29f8df-6cb6-4ce6-be7f-60b4d9165308&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;House1&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.p&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.customerCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.phaseConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PhaseShuntConnectionKind.Y&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.grounded&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.LoadResponseCharacteristic&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoadResponseCharacteristic&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;c6cc0984-8a0d-4362-a8fd-a254a979e2a0&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant kVA&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.exponentModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;ConductingEquipment.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;70e6b73c-3bac-441a-a82f-3d101cd780c4&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;House1_T1&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;ACDCTerminal.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;Bus_House1&#39;&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">              </span><span class="p">]</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="ProposedSiteLocation.html"
+       title="previous chapter">← ProposedSiteLocation</a>
+  </li>
+  <li class="next">
+    <a href="ProposedSwitchOption.html"
+       title="next chapter">ProposedSwitchOption →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright Triad National Security, LLC. All Rights Reserved.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.4.7 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>
