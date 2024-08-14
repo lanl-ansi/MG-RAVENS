@@ -7,7 +7,7 @@ import pandas as pd
 from ravens.io import parse_eap_data, parse_eap_diagrams
 
 ea_rgb_dec2hex = {z * 65536 + y * 256 + x: "{:02x}{:02x}{:02x}".format(x, y, z) for x in range(256) for y in range(256) for z in range(256)}
-ea_rgb_dec2hex[-1] = 13499135  # default color
+ea_rgb_dec2hex[-1] = ea_rgb_dec2hex[13499135]  # default color
 
 
 def parse_link_style(link_style_string: str):
@@ -34,7 +34,7 @@ def parse_link_style(link_style_string: str):
                                     key, value = i.split("=")
                                     if value:
                                         link_style[outer_key][key] = int(value)
-                # link_style = {item[0]: {i.split("=")[0]: int(i.split("=")[1]) for i in item[1].split(":") if len(i.split("=")) == 2} for item in [item.split("=", 1) for item in link_style_string.split("$")[1].split(";")] if len(item) == 2}
+
         else:
             for item in link_style_string.split(";"):
                 if "," in item:
@@ -43,7 +43,6 @@ def parse_link_style(link_style_string: str):
                     key, value = item.split("=", 1)
                     link_style[key] = value
 
-            # link_style = {item[0]: {i.split("=")[0]: int(i.split("=")[1]) for i in item[1].split(":") if len(i.split("=")) == 2} for item in [item.split("=", 1) for item in link_style_string.split(";")]}
     except Exception as msg:
         raise Exception(link_style_string)
 
@@ -160,6 +159,16 @@ def save_svg(uml_data, filename):
     svg_content = create_svg(uml_data)
 
 
+def save_uml_diagram_from_package_and_diagram_name(core_data, diagram_data, package_name, diagram_name, svg_dir_path):
+    pkg_id = core_data.packages[core_data.packages["Name"] == package_name].iloc[0]._name
+    diagram_id = diagram_data.diagrams[(diagram_data.diagrams["Package_ID"] == pkg_id) & (diagram_data.diagrams["Name"] == diagram_name)].iloc[0]._name
+    svg_data = create_svg_data(core_data, diagram_data, diagram_id)
+    path = os.path.join(svg_dir_path, f"{str(package_name)}.{str(diagram_name)}.svg")
+    save_svg(svg_data, path)
+
+    return path
+
+
 def save_uml_diagrams_from_package_name(core_data, diagram_data, package_name, svg_dir_path):
     paths = []
     pkg_id = core_data.packages[core_data.packages["Name"] == package_name].iloc[0]._name
@@ -202,6 +211,8 @@ def save_all_uml_diagrams(core_data, diagram_data, svg_dir_path):
 
 
 if __name__ == "__main__":
+    __file__ = os.path.join(os.getcwd(), "ravens/uml/d3.py")
+
     db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.eap"
 
     core_data = parse_eap_data(db_filename, set_index=True)
@@ -212,6 +223,8 @@ if __name__ == "__main__":
     create_svg(svg_data)
 
     save_svg(svg_data, "test.svg")
+
+    save_uml_diagram_from_package_and_diagram_name(core_data, diagram_data, "EconomicDesign", "ProposedSiteLocation", "out/uml_d3")
 
     save_uml_diagrams_from_package_name(core_data, diagram_data, "EconomicDesign", "docs/source/_static/uml")
     save_uml_diagrams_from_package_name(core_data, diagram_data, "SimplifiedDiagrams", "docs/source/_static/uml")
