@@ -37,6 +37,14 @@ The Working Group is open to anybody interested in standardizing the way that gr
 
 Details and updates as they come will be found here on GitHub.
 
+## Developer Guide
+
+The following dependencies are required:
+
+- Python >= 3.12
+- mdbtools == 1.0.0 (for Python dependency "pandas-access")
+- Nodejs >= 20.15.1 (for d3.js UML Rendering)
+
 ## Contact
 
 To request to join the Working Group, or for any other questions, please contact us at [ravens@lanl.gov](mailto:ravens@lanl.gov).
