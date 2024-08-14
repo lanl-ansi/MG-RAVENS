@@ -466,7 +466,32 @@ function createStandaloneUmlSvg(data) {
   const svgElement = createUmlDiagram(svg, data.nodes, data.links);
 
   const serializer = new window.XMLSerializer();
-  const svgString = serializer.serializeToString(svgElement);
+  let svgString = serializer.serializeToString(svgElement);
+
+  // Inline script to load D3.js from CDN and ensure custom script runs after it's loaded
+  const d3Script = `
+  <script type="text/javascript">
+    <![CDATA[
+      var script = document.createElementNS("http://www.w3.org/2000/svg", "script");
+      script.setAttribute("href", "https://d3js.org/d3.v7.min.js");
+      script.addEventListener("load", function() {
+        // D3.js is loaded, now execute the custom script
+        function embedUmlScript() {
+          const svg = d3.select("svg");
+          const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", function (event) {
+            d3.select("g.zoom-group").attr("transform", event.transform);
+          });
+          svg.call(zoom);
+
+        }
+        embedUmlScript();
+      });
+      document.documentElement.appendChild(script);
+    ]]>
+  </script>`;
+
+  // Inject the script right before the closing </svg> tag
+  svgString = svgString.replace("</svg>", `${d3Script}</svg>`);
 
   const fullSvgString = `<?xml version="1.0" encoding="UTF-8"?>\n${svgString}`;
 
