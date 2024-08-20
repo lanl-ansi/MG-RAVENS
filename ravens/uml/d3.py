@@ -26,15 +26,12 @@ def parse_link_style(link_style_string: str):
             if post:
                 for item in post.split(";"):
                     if item:
-                        if item.count("=") == 2:
-                            outer_key, values = item.split("=", 1)
-                            if ":" in values:
-                                link_style[outer_key] = {}
-                                for i in values.split(":"):
-                                    key, value = i.split("=")
-                                    if value:
-                                        link_style[outer_key][key] = int(value)
-
+                        outer_key, values = item.split("=", 1)
+                        link_style[outer_key] = {}
+                        if values:
+                            for i in values.split(":"):
+                                key, value = i.split("=")
+                                link_style[outer_key][key] = int(value)
         else:
             for item in link_style_string.split(";"):
                 if "," in item:
@@ -83,8 +80,14 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
     for o in diagram_data.objects[diagram_data.objects["Diagram_ID"] == diagram_id].itertuples():
         object_style = parse_object_style(str(o.ObjectStyle))
 
-        text_lines = [{"text": f'{str(core_data.packages.loc[core_data.objects.loc[o.Object_ID].Package_ID].Name) + "::" + str(core_data.objects.loc[o.Object_ID].Name)}', "align": "middle", "type": "title"}] + [
-            {"text": "+" + str(attr.Name) + ": " + str(attr.Type) + "[" + str(attr.LowerBound) + ".." + str(attr.UpperBound) + "]"}
+        text_lines = [
+            {
+                "text": f'{str(core_data.packages.loc[core_data.objects.loc[o.Object_ID].Package_ID].Name) + "::" + str(core_data.objects.loc[o.Object_ID].Name)}',
+                "align": "middle",
+                "type": "title",
+            }
+        ] + [
+            {"align": "start", "text": "+  " + str(attr.Name) + ": " + str(attr.Type) + " [" + str(attr.LowerBound) + ".." + str(attr.UpperBound) + "]"}
             for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples()
             if object_style.get("AttPub", "1") == "1"
         ]
@@ -114,26 +117,34 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
         if connector.Start_Object_ID not in nodes or connector.End_Object_ID not in nodes:
             continue
 
-        link_color = int(connector.LineColor)
-        if link_color == -1:
-            link_color = 0
-
-        if not pd.isnull(connector.SourceRole) and link_style.get("LLT", {}).get("HDN", 0) != 1:
-            source_text = f"+{connector.SourceRole} {connector.SourceCard}"
-        else:
-            source_text = ""
-
-        if not pd.isnull(connector.DestRole) and link_style.get("LRT", {}).get("HDN", 0) != 1:
-            target_text = f"+{connector.DestRole} {connector.DestCard}"
-        else:
-            target_text = ""
-
-        link_data = {"source": str(connector.Start_Object_ID), "target": str(connector.End_Object_ID), "type": str(connector.Connector_Type).lower(), "textStart": source_text, "textEnd": target_text, "color": f"#{ea_rgb_dec2hex[link_color]}"}
+        link_data = {
+            "source": str(connector.Start_Object_ID),
+            "target": str(connector.End_Object_ID),
+            "type": str(connector.Connector_Type).lower(),
+            "textStartTop": f"+{connector.SourceRole}" if not pd.isnull(connector.SourceRole) else "",
+            "textStartTopHidden": link_style.get("LLT", {}).get("HDN", 0),
+            "textStartTopXPos": link_style.get("LLT", {}).get("CX", 0.0),
+            "textStartTopYPos": link_style.get("LLT", {}).get("CY", 0.0),
+            "textEndTop": f"+{connector.DestRole}" if not pd.isnull(connector.DestRole) else "",
+            "textEndTopHidden": link_style.get("LRT", {}).get("HDN", 0),
+            "textEndTopXPos": link_style.get("LRT", {}).get("CX", 0.0),
+            "textEndTopYPos": link_style.get("LRT", {}).get("CY", 0.0),
+            "textStartBtm": f"{connector.SourceCard}" if not pd.isnull(connector.SourceCard) else "",
+            "textStartBtmHidden": link_style.get("LLB", {}).get("HDN", 0),
+            "textStartBtmXPos": link_style.get("LLB", {}).get("CX", 0.0),
+            "textStartBtmYPos": link_style.get("LLB", {}).get("CY", 0.0),
+            "textEndBtm": f"{connector.DestCard}" if not pd.isnull(connector.DestCard) else "",
+            "textEndBtmHidden": link_style.get("LRB", {}).get("HDN", 0),
+            "textEndBtmXPos": link_style.get("LRB", {}).get("CX", 0.0),
+            "textEndBtmYPos": link_style.get("LRB", {}).get("CY", 0.0),
+            "color": f"#{ea_rgb_dec2hex[int(connector.LineColor)]}",
+        }
 
         links_data.append(link_data)
 
     svg_data["links"] = links_data
 
+    # print(links_data)
     return svg_data
 
 
@@ -218,13 +229,13 @@ if __name__ == "__main__":
     core_data = parse_eap_data(db_filename, set_index=True)
     diagram_data = parse_eap_diagrams(db_filename, set_index=True)
 
-    svg_data = create_svg_data(core_data, diagram_data, 11099)
+    svg_data = create_svg_data(core_data, diagram_data, 11103)
 
     create_svg(svg_data)
 
     save_svg(svg_data, "test.svg")
 
-    save_uml_diagram_from_package_and_diagram_name(core_data, diagram_data, "EconomicDesign", "ProposedSiteLocation", "out/uml_d3")
+    save_uml_diagram_from_package_and_diagram_name(core_data, diagram_data, "SimplifiedDiagrams", "Faults", "out/uml_d3")
 
     save_uml_diagrams_from_package_name(core_data, diagram_data, "EconomicDesign", "docs/source/_static/uml")
     save_uml_diagrams_from_package_name(core_data, diagram_data, "SimplifiedDiagrams", "docs/source/_static/uml")

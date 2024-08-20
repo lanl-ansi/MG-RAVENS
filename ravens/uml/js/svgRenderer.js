@@ -24,16 +24,16 @@ function findBoxEdgeIntersection(sourceBox, targetBox, offset = 5) {
   let intersections = [];
 
   if (y_left >= y_c - h / 2 && y_left <= y_c + h / 2) {
-    intersections.push({ x: x_c - w / 2, y: y_left, t: t_left });
+    intersections.push({ x: x_c - w / 2, y: y_left, t: t_left, edge: 4 });
   }
   if (y_right >= y_c - h / 2 && y_right <= y_c + h / 2) {
-    intersections.push({ x: x_c + w / 2, y: y_right, t: t_right });
+    intersections.push({ x: x_c + w / 2, y: y_right, t: t_right, edge: 2 });
   }
   if (x_top >= x_c - w / 2 && x_top <= x_c + w / 2) {
-    intersections.push({ x: x_top, y: y_c - h / 2, t: t_top });
+    intersections.push({ x: x_top, y: y_c - h / 2, t: t_top, edge: 1 });
   }
   if (x_bottom >= x_c - w / 2 && x_bottom <= x_c + w / 2) {
-    intersections.push({ x: x_bottom, y: y_c + h / 2, t: t_bottom });
+    intersections.push({ x: x_bottom, y: y_c + h / 2, t: t_bottom, edge: 3 });
   }
 
   let closestIntersection = { x: Infinity, y: Infinity, t: Infinity };
@@ -62,7 +62,11 @@ function findBoxEdgeIntersection(sourceBox, targetBox, offset = 5) {
   let ex = offset * uxi;
   let ey = offset * uyi;
 
-  return { x: closestIntersection.x + ex, y: closestIntersection.y + ey };
+  return {
+    x: closestIntersection.x + ex,
+    y: closestIntersection.y + ey,
+    edge: closestIntersection.edge,
+  };
 }
 
 function calculateAngle(x1, y1, x2, y2) {
@@ -190,23 +194,7 @@ function createUmlDiagram(svg, boxesData, linksData) {
     .enter()
     .append("g")
     .attr("class", "draggable")
-    .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
-    .call(
-      d3
-        .drag()
-        .on("start", function (event, d) {
-          d3.select(this).raise().attr("stroke", "black");
-        })
-        .on("drag", function (event, d) {
-          d.x += event.dx;
-          d.y += event.dy;
-          d3.select(this).attr("transform", `translate(${d.x}, ${d.y})`);
-          updateLinks();
-        })
-        .on("end", function (event, d) {
-          d3.select(this).attr("stroke", null);
-        })
-    );
+    .attr("transform", (d) => `translate(${d.x}, ${d.y})`);
 
   groups
     .append("rect")
@@ -265,177 +253,167 @@ function createUmlDiagram(svg, boxesData, linksData) {
 
   const linkTextOffset = 10;
 
-  const linkTextStart = zoomGroup
-    .selectAll(".link-text-start")
+  const linkTextStartTop = zoomGroup
+    .selectAll(".link-text-start-top")
     .data(linksData)
     .enter()
     .append("text")
-    .attr("class", "link-text-start")
+    .attr("class", "link-text-start-top")
     .attr("x", (d) => {
       const intersection = findBoxEdgeIntersection(
         boxMap[d.source],
-        boxMap[d.target],
-        linkTextOffset
+        boxMap[d.target]
       );
-      return intersection.x;
+      if (intersection.edge == 2) {
+        return intersection.x + d.textStartTopXPos / 2;
+      } else {
+        return intersection.x - d.textStartTopXPos / 2;
+      }
     })
     .attr("y", (d) => {
       const intersection = findBoxEdgeIntersection(
         boxMap[d.source],
-        boxMap[d.target],
-        linkTextOffset
+        boxMap[d.target]
       );
-      return intersection.y;
-    })
-    .attr("transform", (d) => {
-      const intersection = findBoxEdgeIntersection(
-        boxMap[d.source],
-        boxMap[d.target],
-        linkTextOffset
-      );
-      const isHorizontal = isWithin45DegreesFromHorizontal(
-        boxMap[d.target],
-        boxMap[d.source]
-      );
-      const angle = isHorizontal ? 90 : 0;
-      return `rotate(${angle}, ${intersection.x}, ${intersection.y})`;
+      if (intersection.edge == 3) {
+        return intersection.y + d.textStartTopYPos / 2;
+      } else {
+        return intersection.y - d.textStartTopYPos / 2;
+      }
     })
     .attr("text-anchor", "middle")
-    .text((d) => d.textStart || "")
+    .text((d) => {
+      if (d.textStartTopHidden == 0) {
+        return d.textStartTop;
+      } else {
+        return "";
+      }
+    })
     .style("font-family", "Arial, sans-serif")
     .style("font-size", "12px")
     .style("fill", "black");
 
-  const linkTextEnd = zoomGroup
-    .selectAll(".link-text-end")
+  const linkTextStartBtm = zoomGroup
+    .selectAll(".link-text-start-btm")
     .data(linksData)
     .enter()
     .append("text")
-    .attr("class", "link-text-end")
+    .attr("class", "link-text-start-btm")
+    .attr("x", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.source],
+        boxMap[d.target]
+      );
+      if (intersection.edge == 2) {
+        return intersection.x + d.textStartBtmXPos / 2;
+      } else {
+        return intersection.x - d.textStartBtmXPos / 2;
+      }
+    })
+    .attr("y", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.source],
+        boxMap[d.target]
+      );
+      if (intersection.edge == 3) {
+        return intersection.y - d.textStartBtmYPos;
+      } else {
+        return intersection.y + d.textStartBtmYPos;
+      }
+    })
+    .attr("dx", "0.35em")
+    .attr("dy", "1.35em")
+    .attr("text-anchor", "middle")
+    .text((d) => {
+      if (d.textStartBtmHidden == 0) {
+        return d.textStartBtm;
+      } else {
+        return "";
+      }
+    })
+    .style("font-family", "Arial, sans-serif")
+    .style("font-size", "12px")
+    .style("fill", "black");
+
+  const linkTextEndTop = zoomGroup
+    .selectAll(".link-text-end-top")
+    .data(linksData)
+    .enter()
+    .append("text")
+    .attr("class", "link-text-end-top")
     .attr("x", (d) => {
       const intersection = findBoxEdgeIntersection(
         boxMap[d.target],
-        boxMap[d.source],
-        linkTextOffset
+        boxMap[d.source]
       );
-      return intersection.x;
+      if (intersection.edge == 2) {
+        return intersection.x + d.textEndTopXPos / 2;
+      } else {
+        return intersection.x - d.textEndTopXPos / 2;
+      }
     })
     .attr("y", (d) => {
       const intersection = findBoxEdgeIntersection(
         boxMap[d.target],
-        boxMap[d.source],
-        linkTextOffset
-      );
-      return intersection.y;
-    })
-    .attr("transform", (d) => {
-      const intersection = findBoxEdgeIntersection(
-        boxMap[d.target],
-        boxMap[d.source],
-        linkTextOffset
-      );
-      const isHorizontal = isWithin45DegreesFromHorizontal(
-        boxMap[d.target],
         boxMap[d.source]
       );
-      const angle = isHorizontal ? 90 : 0;
-      return `rotate(${angle}, ${intersection.x}, ${intersection.y})`;
+      if (intersection.edge == 3) {
+        return intersection.y + d.textEndTopYPos / 2;
+      } else {
+        return intersection.y - d.textEndTopYPos / 2;
+      }
     })
     .attr("text-anchor", "middle")
-    .text((d) => d.textEnd || "")
+    .text((d) => {
+      if (d.textEndTopHidden == 0) {
+        return d.textEndTop;
+      } else {
+        return "";
+      }
+    })
     .style("font-family", "Arial, sans-serif")
     .style("font-size", "12px")
     .style("fill", "black");
 
-  function updateLinks() {
-    links
-      .attr("x1", (d) => boxMap[d.source].x + boxMap[d.source].width / 2)
-      .attr("y1", (d) => boxMap[d.source].y + boxMap[d.source].height / 2)
-      .attr("x2", (d) => boxMap[d.target].x + boxMap[d.target].width / 2)
-      .attr("y2", (d) => boxMap[d.target].y + boxMap[d.target].height / 2);
-
-    arrows
-      .attr("x2", (d) => {
-        const intersection = findBoxEdgeIntersection(
-          boxMap[d.target],
-          boxMap[d.source],
-          10
-        );
-        return intersection.x;
-      })
-      .attr("y2", (d) => {
-        const intersection = findBoxEdgeIntersection(
-          boxMap[d.target],
-          boxMap[d.source],
-          10
-        );
-        return intersection.y;
-      })
-      .attr("x1", (d) => boxMap[d.source].x + boxMap[d.source].width / 2)
-      .attr("y1", (d) => boxMap[d.source].y + boxMap[d.source].height / 2);
-
-    linkTextStart
-      .attr("x", (d) => {
-        const intersection = findBoxEdgeIntersection(
-          boxMap[d.source],
-          boxMap[d.target],
-          linkTextOffset
-        );
-        return intersection.x;
-      })
-      .attr("y", (d) => {
-        const intersection = findBoxEdgeIntersection(
-          boxMap[d.source],
-          boxMap[d.target],
-          linkTextOffset
-        );
-        return intersection.y;
-      })
-      .attr("transform", (d) => {
-        const intersection = findBoxEdgeIntersection(
-          boxMap[d.source],
-          boxMap[d.target],
-          linkTextOffset
-        );
-        const isHorizontal = isWithin45DegreesFromHorizontal(
-          boxMap[d.target],
-          boxMap[d.source]
-        );
-        const angle = isHorizontal ? 90 : 0;
-        return `rotate(${angle}, ${intersection.x}, ${intersection.y})`;
-      });
-
-    linkTextEnd
-      .attr("x", (d) => {
-        const intersection = findBoxEdgeIntersection(
-          boxMap[d.target],
-          boxMap[d.source],
-          linkTextOffset
-        );
-        return intersection.x;
-      })
-      .attr("y", (d) => {
-        const intersection = findBoxEdgeIntersection(
-          boxMap[d.target],
-          boxMap[d.source],
-          linkTextOffset
-        );
-        return intersection.y;
-      })
-      .attr("transform", (d) => {
-        const intersection = findBoxEdgeIntersection(
-          boxMap[d.target],
-          boxMap[d.source],
-          linkTextOffset
-        );
-        const isHorizontal = isWithin45DegreesFromHorizontal(
-          boxMap[d.target],
-          boxMap[d.source]
-        );
-        const angle = isHorizontal ? 90 : 0;
-        return `rotate(${angle}, ${intersection.x}, ${intersection.y})`;
-      });
-  }
+  const linkTextEndBtm = zoomGroup
+    .selectAll(".link-text-end-btm")
+    .data(linksData)
+    .enter()
+    .append("text")
+    .attr("class", "link-text-end-btm")
+    .attr("x", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.target],
+        boxMap[d.source]
+      );
+      if (intersection.edge == 2) {
+        return intersection.x + d.textEndBtmXPos / 2;
+      } else {
+        return intersection.x - d.textEndBtmXPos / 2;
+      }
+    })
+    .attr("y", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.target],
+        boxMap[d.source]
+      );
+      if (intersection.edge == 3) {
+        return intersection.y - d.textEndBtmYPos;
+      } else {
+        return intersection.y + d.textEndBtmYPos;
+      }
+    })
+    .attr("text-anchor", "middle")
+    .text((d) => {
+      if (d.textEndBtmHidden == 0) {
+        return d.textEndBtm;
+      } else {
+        return "";
+      }
+    })
+    .style("font-family", "Arial, sans-serif")
+    .style("font-size", "12px")
+    .style("fill", "black");
 
   return svg.node();
 }
@@ -459,8 +437,8 @@ function createStandaloneUmlSvg(data) {
   const svg = d3
     .select(document.body)
     .append("svg")
-    .attr("width", data.cx)
-    .attr("height", data.cy)
+    .attr("width", data.cx + 5)
+    .attr("height", data.cy + 5)
     .attr("xmlns", "http://www.w3.org/2000/svg");
 
   const svgElement = createUmlDiagram(svg, data.nodes, data.links);
