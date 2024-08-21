@@ -55,6 +55,24 @@
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "type": "object",
       "properties": {
+        "ConnectivityNode.TopologicalNode": {
+          "$objectType": "reference",
+          "$objectId": "TopologicalNode",
+          "type": "string",
+          "$referencePath": "TopologicalNode"
+        },
+        "ConnectivityNode.OperationalLimitSet": {
+          "$objectType": "reference",
+          "$objectId": "OperationalLimitSet",
+          "type": "string",
+          "$referencePath": "OperationalLimitSet"
+        },
+        "ConnectivityNode.ConnectivityNodeContainer": {
+          "$objectType": "reference",
+          "$objectId": "ConnectivityNodeContainer",
+          "type": "string",
+          "$referencePath": "Group/EquipmentContainer"
+        },
         "ConnectivityNode.SvVoltage": {
           "type": "array",
           "items": {
@@ -84,6 +102,30 @@
         }
       }
     },
+    "TopologicalNode": {
+      "$objectType": "object",
+      "$objectSource": "cim",
+      "type": "object",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {
+        "TopologicalNode.TopologicalIsland": {
+          "$objectType": "reference",
+          "$objectId": "TopologicalIsland",
+          "type": "string",
+          "$referencePath": "Group/TopologicalIsland"
+        }
+      }
+    },
+    "CoordinateSystem": {
+      "$objectSource": "cim",
+      "$objectType": "object",
+      "$objectId": "CoordinateSystem",
+      "type": "object",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {}
+    },
     "Group": {
       "$objectSource": "mg-ravens",
       "$objectType": "container",
@@ -100,25 +142,38 @@
             "GeographicalRegion.Regions": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
-                "$objectType": "object",
+                "$objectType": "reference",
                 "$objectId": "SubGeographicalRegion",
-                "type": "object",
-                "properties": {
-                  "Regions.EconomicProperty": {
-                    "$objectType": "reference",
-                    "type": "string",
-                    "$objectId": "EconomicProperty",
-                    "$referencePath": "EconomicProperties/EconomicProperty"
-                  },
-                  "Regions.EnergyPrices": {
-                    "$objectType": "reference",
-                    "type": "string",
-                    "$objectId": "EnergyPrices",
-                    "$referencePath": "EnergyPrices"
-                  }
-                }
+                "type": "string",
+                "$referencePath": "Group/SubGeographicalRegion"
               }
+            }
+          }
+        },
+        "SubGeographicalRegion": {
+          "$objectSource": "cim",
+          "$objectType": "object",
+          "type": "object",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {
+            "SubGeographicalRegion.Region": {
+              "$objectType": "reference",
+              "$objectId": "GeographicalRegion",
+              "type": "string",
+              "$referencePath": "Group/GeographicalRegion"
+            },
+            "SubGeographicalRegion.EconomicProperty": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "EconomicProperty",
+              "$referencePath": "EconomicProperties/EconomicProperty"
+            },
+            "SubGeographicalRegion.EnergyPrices": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "EnergyPrices",
+              "$referencePath": "EnergyPrices"
             }
           }
         },
@@ -133,17 +188,6 @@
               "$objectType": "reference",
               "type": "string",
               "$referencePath": "Group/TopologicalIsland.TopologicalNodes"
-            },
-            "TopologicalIsland.TopologicalNodes": {
-              "type": "array",
-              "items": {
-                "$objectSource": "cim",
-                "$objectType": "object",
-                "$objectId": "TopologicalNode",
-                "$arrayPosition": null,
-                "type": "object",
-                "properties": {}
-              }
             }
           }
         },
@@ -194,7 +238,14 @@
               "$objectType": "object",
               "$objectId": "Substation",
               "type": "object",
-              "properties": {}
+              "properties": {
+                "Substation.Region": {
+                  "$objectType": "reference",
+                  "$objectId": "SubGeographicalRegion",
+                  "type": "string",
+                  "$referencePath": "Group/SubGeographicalRegion"
+                }
+              }
             },
             {
               "$objectSource": "cim",
@@ -1213,6 +1264,96 @@
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
+                          "$objectId": "EnergyConsumer",
+                          "properties": {
+                            "PowerSystemResource.Location": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$referencePath": "Location"
+                            },
+                            "PowerSystemResource.GenericAction": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$referencePath": "SwitchingAction"
+                            },
+                            "ConductingEquipment.Terminals": {
+                              "type": "array",
+                              "items": {
+                                "$objectSource": "cim",
+                                "$objectId": "Terminal",
+                                "$objectType": "object",
+                                "type": "object",
+                                "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                                "properties": {
+                                  "Terminal.ConnectivityNode": {
+                                    "$objectId": "ConnectivityNode",
+                                    "$objectType": "reference",
+                                    "type": "string",
+                                    "$referencePath": "ConnectivityNode"
+                                  },
+                                  "Terminal.SvPowerFlow": {
+                                    "type": "array",
+                                    "items": {
+                                      "$objectSource": "cim",
+                                      "$objectId": "SvPowerFlow",
+                                      "$objectType": "object",
+                                      "type": "object",
+                                      "$arrayPosition": null,
+                                      "properties": {}
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "EnergyConsumer.EnergyConsumerAction": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$referencePath": "SwitchingAction"
+                            },
+                            "EnergyConsumer.LoadResponseCharacteristic": {
+                              "$objectSource": "cim",
+                              "$objectType": "object",
+                              "$objectId": "LoadResponseCharacteristic",
+                              "type": "object",
+                              "$primaryObjectHash": null,
+                              "properties": {}
+                            },
+                            "ConductingEquipment.BaseVoltage": {
+                              "$objectType": "reference",
+                              "$objectId": "BaseVoltage",
+                              "type": "string",
+                              "$referencePath": "BaseVoltage"
+                            },
+                            "EnergyConsumer.EnergyConsumerPhase": {
+                              "type": "array",
+                              "items": {
+                                "$objectSource": "cim",
+                                "$objectId": "EnergyConsumerPhase",
+                                "$objectType": "object",
+                                "type": "object",
+                                "$arrayPosition": null,
+                                "properties": {}
+                              }
+                            },
+                            "ConductingEquipment.SvStatus": {
+                              "type": "array",
+                              "items": {
+                                "$objectSource": "cim",
+                                "$objectType": "object",
+                                "type": "object",
+                                "$objectId": "SvStatus",
+                                "$arrayPosition": null,
+                                "properties": {}
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "$objectSource": "cim",
+                          "$objectType": "object",
+                          "type": "object",
+                          "$primaryObjectHash": "IdentifiedObject.name",
+                          "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "$objectId": "ConformLoad",
                           "properties": {
                             "PowerSystemResource.Location": {
@@ -1396,6 +1537,11 @@
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "properties": {
+                        "Equipment.EquipmentContainer": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$referencePath": "Group/EquipmentContainer"
+                        },
                         "EnergySource.GenerationProfile": {
                           "$objectType": "reference",
                           "type": "string",
@@ -4269,17 +4415,10 @@
           }
         },
         "Location.CoordinateSystem": {
-          "$objectSource": "cim",
-          "$objectType": "object",
-          "$objectId": "CoordinateSystem",
-          "type": "object",
-          "$primaryObjectHash": null,
-          "properties": {}
-        },
-        "Location.PredictedEmissions": {
           "$objectType": "reference",
+          "$objectId": "CoordinateSystem",
           "type": "string",
-          "$referencePath": "PredictedEmissions"
+          "$referencePath": "CoordinateSystem"
         }
       }
     },
@@ -4635,12 +4774,10 @@
           }
         },
         "Location.CoordinateSystem": {
-          "$objectSource": "cim",
-          "$objectType": "object",
+          "$objectType": "reference",
           "$objectId": "CoordinateSystem",
-          "type": "object",
-          "$primaryObjectHash": null,
-          "properties": {}
+          "type": "string",
+          "$referencePath": "CoordinateSystem"
         }
       }
     },
