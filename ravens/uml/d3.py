@@ -7,7 +7,7 @@ import pandas as pd
 from ravens.io import parse_eap_data, parse_eap_diagrams
 
 ea_rgb_dec2hex = {z * 65536 + y * 256 + x: "{:02x}{:02x}{:02x}".format(x, y, z) for x in range(256) for y in range(256) for z in range(256)}
-ea_rgb_dec2hex[-1] = ea_rgb_dec2hex[13499135]  # default color
+ea_rgb_dec2hex[-1] = ea_rgb_dec2hex[0]  # default color
 
 
 def parse_link_style(link_style_string: str):
