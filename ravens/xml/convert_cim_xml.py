@@ -319,7 +319,8 @@ class RAVENSData:
                         count += 1
                 else:
                     if count == 0:
-                        raise Exception(f"Connecting subject not found: {subject}::{cim_type}")
+                        warnings.warn(f"Connecting subject not found: {subject}::{cim_type}. This may mean the data is superfluous")
+                        continue
                 self.paths[subject] = self.find_path(subject, ctype=ctypes[0])
             else:
                 self.paths[subject] = self.find_path(subject)
@@ -425,7 +426,6 @@ class RAVENSData:
                 continue
 
             if p != self.rdf_type:
-
                 if isinstance(o, Literal):
                     try:
                         value = literal_eval(o.value)
@@ -450,11 +450,11 @@ class RAVENSData:
                             position = URIRef(f"{self.cim_ns}#{self.tokenized_paths[ref.id][-1]['position']}")
                             value = f"{ref.id}::'{self.rdf.value(subject=o, predicate=position)}'"
                         else:
-                            # warnings.warn(f"Can't find reference for {o}::{self.unique_subject_types[o]} from {subject}::{self.unique_subject_types[subject]}")
+                            warnings.warn(f"Can't find reference for {o}::{self.unique_subject_types[o]} from {subject}::{self.unique_subject_types[subject]}")
                             continue
                 elif isinstance(o, URIRef) and o.startswith(self.cim_ns):
                     value = o.split("#")[-1]
-                elif self.prune_unncessary and isinstance(o, URIRef):
+                elif self.prune_unncessary or isinstance(o, URIRef):
                     continue
                 else:
                     value = o
@@ -529,7 +529,11 @@ class RAVENSData:
                         data[path.position] += [{} for i in range(_path.position - len(data[path.position]))]
 
                     data[path.position][_path.idx] = {**data_to_insert, **data[path.position][_path.idx]}
-            elif path.type == "array" and self.current_resolved_path[self.current_path_index + 1].position is None and self.current_resolved_path[self.current_path_index + 1].type == "array":
+            elif (
+                path.type == "array"
+                and self.current_resolved_path[self.current_path_index + 1].position is None
+                and self.current_resolved_path[self.current_path_index + 1].type == "array"
+            ):
                 _path = self.current_resolved_path[self.current_path_index + 1]
                 if _path.position is None and _path.type == "array":
                     data[path.position].append({})
