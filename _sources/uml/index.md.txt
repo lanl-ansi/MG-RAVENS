@@ -151,3 +151,20 @@
 ### MeterPoints
 
 <img src="../_static/uml/SimplifiedDiagrams.MeterPoints.svg" style="max-width: 100%; height: auto;" alt="MeterPoints diagram">
+
+## EquipmentExtensions
+
+### ResponseCharacteristics
+
+<img src="../_static/uml/EquipmentExtensions.ResponseCharacteristics.svg" style="max-width: 100%; height: auto;" alt="ResponseCharacteristics diagram">
+
+
+### InefficientBatteryUnit
+
+<img src="../_static/uml/EquipmentExtensions.InefficientBatteryUnit.svg" style="max-width: 100%; height: auto;" alt="InefficientBatteryUnit diagram">
+
+## Software
+
+### Software
+
+<img src="../_static/uml/Software.Software.svg" style="max-width: 100%; height: auto;" alt="Software diagram">
