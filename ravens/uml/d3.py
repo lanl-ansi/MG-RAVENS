@@ -1,4 +1,4 @@
-import json
+import
 import os
 import subprocess
 
@@ -6,8 +6,7 @@ import pandas as pd
 
 from ravens.io import parse_eap_data, parse_eap_diagrams
 
-ea_rgb_dec2hex = {z * 65536 + y * 256 + x: "{:02x}{:02x}{:02x}".format(x, y, z) for x in range(256) for y in range(256) for z in range(256)}
-ea_rgb_dec2hex[-1] = ea_rgb_dec2hex[0]  # default color
+ea_rgb_jsondec2hex = {z * 65536 + y * 256 + x: "{:02x}{:02x}{:02x}".format(x, y, z) for x in range(256) for y in range(256) for z in range(256)}
 
 
 def parse_link_style(link_style_string: str):
@@ -91,6 +90,11 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
             for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples()
             if object_style.get("AttPub", "1") == "1"
         ]
+
+        box_color = int(object_style.get("BCol", "16251645"))
+        if box_color == -1:
+            box_color = 16251645  # default color of objects
+
         box_data = {
             "id": o.Object_ID,
             "x": o.RectLeft,
@@ -98,7 +102,7 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
             "width": abs(o.RectRight - o.RectLeft),
             "height": abs(o.RectTop - o.RectBottom),
             "textLines": text_lines,
-            "color": f'#{ea_rgb_dec2hex[int(object_style.get("BCol", "13499135"))]}',
+            "color": f"#{ea_rgb_dec2hex[box_color]}",
         }
         nodes.append(o.Object_ID)
 
@@ -116,6 +120,10 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
         connector = core_data.connectors.loc[l.ConnectorID]
         if connector.Start_Object_ID not in nodes or connector.End_Object_ID not in nodes:
             continue
+
+        line_color = int(connector.LineColor)
+        if line_color == -1:
+            line_color = 9204585  # default line color different than default object color
 
         link_data = {
             "source": str(connector.Start_Object_ID),
@@ -137,7 +145,7 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
             "textEndBtmHidden": link_style.get("LRB", {}).get("HDN", 0),
             "textEndBtmXPos": link_style.get("LRB", {}).get("CX", 0.0),
             "textEndBtmYPos": link_style.get("LRB", {}).get("CY", 0.0),
-            "color": f"#{ea_rgb_dec2hex[int(connector.LineColor)]}",
+            "color": f"#{ea_rgb_dec2hex[line_color]}",
         }
 
         links_data.append(link_data)
