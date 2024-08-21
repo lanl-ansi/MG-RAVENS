@@ -13,7 +13,7 @@ def build_uml_docs():
     static_uml_path = os.path.join(current_dir, "../_static/uml")
 
     md_str = "# UML Diagrams for MG-RAVENS Schema\n"
-    for package_name in ["EconomicDesign", "SimplifiedDiagrams"]:
+    for package_name in ["EconomicDesign", "SimplifiedDiagrams", "EquipmentExtensions", "Software"]:
 
         paths = save_uml_diagrams_from_package_name(core_data, diagram_data, package_name, static_uml_path)
         md_str = (
