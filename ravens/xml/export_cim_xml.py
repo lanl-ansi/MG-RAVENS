@@ -1,6 +1,7 @@
 import json
 import re
 
+from copy import deepcopy
 from uuid import uuid4
 
 from rdflib.exceptions import UniquenessError
@@ -9,9 +10,9 @@ from rdflib.term import URIRef, Literal
 from rdflib import Graph, RDF
 
 
-class RavensExport:
+class RavensExport(object):
     def __init__(self, data):
-        self.data = data
+        self.data = deepcopy(data)
 
         self.graph = Graph()
         self.cim = Namespace("http://iec.ch/TC57/CIM100#")
@@ -20,42 +21,39 @@ class RavensExport:
         self.build_rdf_graph(self.data)
         self.update_uri_refs()
 
-    def build_rdf_graph(self, data, parent_subject=None, parent_predicate=None):
+    def build_rdf_graph(self, data, obj_name=None):
         for k, v in data.items():
             if isinstance(v, dict):
                 if "Ravens.CimObjectType" in v:
-                    child_node = self.add_object_to_graph(v, parent_subject=parent_subject, parent_predicate=parent_predicate)
+                    child_node = self.add_object_to_graph(v)
                 else:
-                    self.build_rdf_graph(v)
-            elif isinstance(v, list):
-                pass
+                    self.build_rdf_graph(v, obj_name=k)
             else:
-                pass
-                # self.add_to_graph()
+                raise Exception(f"This shouldn't happen. Error at '{k}' with value of type '{type(v)}'")
 
-    def add_object_to_graph(self, obj, obj_name=None, parent_subject=None, parent_predicate=None):
+    def add_object_to_graph(self, obj, obj_name=None):
         mrid = obj.get("IdentifiedObject.mRID", str(uuid4()))
+        cim_type = obj.pop("Ravens.CimObjectType")
+        node = URIRef(mrid)
+        self.graph.add((node, RDF.type, self.cim[cim_type]))
+
         if "IdentifiedObject.name" not in obj and obj_name is not None:
             obj["IdentifiedObject.name"] = obj_name
 
-        cim_type = obj.pop("Ravens.CimObjectType")
-
-        node = URIRef(mrid)
-
-        a = self.graph.add((node, RDF.type, self.cim[cim_type]))
-        # if parent_subject is not None and parent_predicate is not None:
-        #     self.graph.add((node, parent_predicate, parent_subject))
-
         for k, v in obj.items():
             if isinstance(v, dict):
-                self.build_rdf_graph(v, parent_subject=node, parent_predicate=self.cim[k])
+                if "Ravens.CimObjectType" in v:
+                    child_node = self.add_object_to_graph(v)
+                    self.graph.add((node, self.cim[k], child_node))
+                else:
+                    self.build_rdf_graph(v)
             elif isinstance(v, list):
                 for item in v:
                     if "Ravens.CimObjectType" in item:
-                        child_node = self.add_object_to_graph(item, parent_subject=node, parent_predicate=self.cim[k])
+                        child_node = self.add_object_to_graph(item)
                         self.graph.add((node, self.cim[k], child_node))
                     else:
-                        self.build_rdf_graph(item, parent_subject=node, parent_predicate=self.cim[k])
+                        self.build_rdf_graph(item)
             else:
                 self.graph.add((node, self.cim[k], Literal(str(v))))
 
@@ -74,10 +72,10 @@ class RavensExport:
         for (p, o), (cim_type, obj_name) in po_to_update.items():
             target_subject = None
             try:
-                target_subject = self.graph.value(predicate=CIM["IdentifiedObject.name"], object=Literal(obj_name), any=False)
+                target_subject = self.graph.value(predicate=self.cim["IdentifiedObject.name"], object=Literal(obj_name), any=False)
             except UniquenessError as msg:
-                for s in self.graph.subjects(predicate=CIM["IdentifiedObject.name"], object=Literal(obj_name)):
-                    if self.graph.value(subject=s, predicate=RDF.type) == CIM[f"{cim_type}"]:
+                for s in self.graph.subjects(predicate=self.cim["IdentifiedObject.name"], object=Literal(obj_name)):
+                    if self.graph.value(subject=s, predicate=RDF.type) == self.cim[f"{cim_type}"]:
                         target_subject = s
                         break
 
@@ -97,4 +95,4 @@ if __name__ == "__main__":
         d = json.load(f)
 
     r = RavensExport(d)
-    r.graph.serialize("out/test_output.xml", max_depth=1, base=CIM, format="pretty-xml")
+    r.graph.serialize("out/test_output.xml", max_depth=1, format="pretty-xml")
