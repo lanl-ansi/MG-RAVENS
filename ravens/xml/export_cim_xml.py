@@ -101,7 +101,7 @@ class RavensExport(object):
 
     def update_enumeration_uri_refs(self):
         triple_to_delete = []
-        for s, p, o in self.graph.triples():
+        for s, p, o in self.graph.triples((None, None, None)):
             if isinstance(o, Literal):
                 if any(o.startswith(enum) for enum in self.cim_enums):
                     self.graph.add((s, p, self.cim[str(o)]))
@@ -115,5 +115,5 @@ if __name__ == "__main__":
     with open("out/test_xml2json_case3.json", "r") as f:
         d = json.load(f)
 
-    r = RavensExport(d, core_data_path="cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.eap")
+    r = RavensExport(d, core_data_path="cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.eap")
     r.graph.serialize("out/test_output.xml", max_depth=1, format="pretty-xml")
