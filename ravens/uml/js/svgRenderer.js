@@ -215,23 +215,15 @@ function createUmlDiagram(svg, boxesData, linksData) {
     const textHeight = lineHeight * numLines + buffer;
     let currentY = (d.height - textHeight) / 2 + lineHeight / 2;
 
+    const textBox = group
+      .append("text")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("text-anchor", "start")
+      .attr("font-size", `${fontSize}px`);
+
     d.textLines.forEach((line, index) => {
-      const textElement = group
-        .append("text")
-        .attr("class", "text")
-        .attr("x", d.width / 2)
-        .attr("y", currentY)
-        .attr("dy", ".35em")
-        .attr("text-anchor", "middle")
-        .style("font-family", "Arial, sans-serif")
-        .style("fill", "black")
-        .style("font-size", `${fontSize}px`)
-        .style("pointer-events", "none")
-        .text(line.text);
-
-      currentY += lineHeight;
-
-      if (line.type === "title") {
+      if (Object.keys(line).length === 0) {
         const hasTextAfterTitle = d.textLines.length > index + 1;
 
         if (hasTextAfterTitle) {
@@ -247,6 +239,56 @@ function createUmlDiagram(svg, boxesData, linksData) {
 
           currentY += buffer;
         }
+      } else {
+        const textElement = textBox
+          .append("tspan")
+          .attr("x", (d) => {
+            if (line.align == "right") {
+              return d.width - 5;
+            } else if (line.align == "center") {
+              return d.width / 2;
+            } else {
+              return 5;
+            }
+          })
+          .attr("y", currentY)
+          .attr("dy", ".35em")
+          .attr("text-anchor", (d) => {
+            if (line.align == "right") {
+              return "end";
+            } else if (line.align == "center") {
+              return "middle";
+            } else {
+              return "start";
+            }
+          })
+          .style("font-family", "Arial, sans-serif")
+          .style("font-weight", (d) => {
+            if (line.style == "bold") {
+              return 700;
+            } else {
+              return 400;
+            }
+          })
+          .style("font-style", (d) => {
+            if (line.style == "italic") {
+              return line.style;
+            } else {
+              return "normal";
+            }
+          })
+          .style("fill", "black")
+          .style("font-size", (d) => {
+            if (line.style == "bold") {
+              return `${fontSize + 2}px`;
+            } else {
+              return `${fontSize}px`;
+            }
+          })
+          .style("pointer-events", "none")
+          .text(line.text);
+
+        currentY += lineHeight;
       }
     });
   });
@@ -265,9 +307,9 @@ function createUmlDiagram(svg, boxesData, linksData) {
         boxMap[d.target]
       );
       if (intersection.edge == 2) {
-        return intersection.x + d.textStartTopXPos / 2;
+        return intersection.x + 5;
       } else {
-        return intersection.x - d.textStartTopXPos / 2;
+        return intersection.x - 5;
       }
     })
     .attr("y", (d) => {
@@ -275,13 +317,32 @@ function createUmlDiagram(svg, boxesData, linksData) {
         boxMap[d.source],
         boxMap[d.target]
       );
-      if (intersection.edge == 3) {
-        return intersection.y + d.textStartTopYPos / 2;
+      return intersection.y;
+    })
+    .attr("text-anchor", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.source],
+        boxMap[d.target]
+      );
+      if (intersection.edge == 2) {
+        return "start";
       } else {
-        return intersection.y - d.textStartTopYPos / 2;
+        return "end";
       }
     })
-    .attr("text-anchor", "middle")
+    .attr("dy", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.source],
+        boxMap[d.target]
+      );
+      if (intersection.edge == 1) {
+        return "-1em";
+      } else if (intersection.edge == 3) {
+        return "1em";
+      } else {
+        return "-1em";
+      }
+    })
     .text((d) => {
       if (d.textStartTopHidden == 0) {
         return d.textStartTop;
@@ -290,7 +351,7 @@ function createUmlDiagram(svg, boxesData, linksData) {
       }
     })
     .style("font-family", "Arial, sans-serif")
-    .style("font-size", "12px")
+    .style("font-size", "10px")
     .style("fill", "black");
 
   const linkTextStartBtm = zoomGroup
@@ -304,10 +365,10 @@ function createUmlDiagram(svg, boxesData, linksData) {
         boxMap[d.source],
         boxMap[d.target]
       );
-      if (intersection.edge == 2) {
-        return intersection.x + d.textStartBtmXPos / 2;
+      if (intersection.edge == 4) {
+        return intersection.x - 5;
       } else {
-        return intersection.x - d.textStartBtmXPos / 2;
+        return intersection.x + 5;
       }
     })
     .attr("y", (d) => {
@@ -315,15 +376,32 @@ function createUmlDiagram(svg, boxesData, linksData) {
         boxMap[d.source],
         boxMap[d.target]
       );
-      if (intersection.edge == 3) {
-        return intersection.y - d.textStartBtmYPos;
+      return intersection.y;
+    })
+    .attr("dy", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.source],
+        boxMap[d.target]
+      );
+      if (intersection.edge == 1) {
+        return "-1em";
+      } else if (intersection.edge == 3) {
+        return "1em";
       } else {
-        return intersection.y + d.textStartBtmYPos;
+        return "1em";
       }
     })
-    .attr("dx", "0.35em")
-    .attr("dy", "1.35em")
-    .attr("text-anchor", "middle")
+    .attr("text-anchor", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.source],
+        boxMap[d.target]
+      );
+      if (intersection.edge == 4) {
+        return "end";
+      } else {
+        return "start";
+      }
+    })
     .text((d) => {
       if (d.textStartBtmHidden == 0) {
         return d.textStartBtm;
@@ -332,7 +410,7 @@ function createUmlDiagram(svg, boxesData, linksData) {
       }
     })
     .style("font-family", "Arial, sans-serif")
-    .style("font-size", "12px")
+    .style("font-size", "10px")
     .style("fill", "black");
 
   const linkTextEndTop = zoomGroup
@@ -347,9 +425,9 @@ function createUmlDiagram(svg, boxesData, linksData) {
         boxMap[d.source]
       );
       if (intersection.edge == 2) {
-        return intersection.x + d.textEndTopXPos / 2;
+        return intersection.x + 5;
       } else {
-        return intersection.x - d.textEndTopXPos / 2;
+        return intersection.x - 5;
       }
     })
     .attr("y", (d) => {
@@ -357,13 +435,32 @@ function createUmlDiagram(svg, boxesData, linksData) {
         boxMap[d.target],
         boxMap[d.source]
       );
-      if (intersection.edge == 3) {
-        return intersection.y + d.textEndTopYPos / 2;
+      return intersection.y;
+    })
+    .attr("dy", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.target],
+        boxMap[d.source]
+      );
+      if (intersection.edge == 1) {
+        return "-1em";
+      } else if (intersection.edge == 3) {
+        return "1em";
       } else {
-        return intersection.y - d.textEndTopYPos / 2;
+        return "-1em";
       }
     })
-    .attr("text-anchor", "middle")
+    .attr("text-anchor", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.target],
+        boxMap[d.source]
+      );
+      if (intersection.edge == 2) {
+        return "start";
+      } else {
+        return "end";
+      }
+    })
     .text((d) => {
       if (d.textEndTopHidden == 0) {
         return d.textEndTop;
@@ -372,7 +469,7 @@ function createUmlDiagram(svg, boxesData, linksData) {
       }
     })
     .style("font-family", "Arial, sans-serif")
-    .style("font-size", "12px")
+    .style("font-size", "10px")
     .style("fill", "black");
 
   const linkTextEndBtm = zoomGroup
@@ -386,10 +483,10 @@ function createUmlDiagram(svg, boxesData, linksData) {
         boxMap[d.target],
         boxMap[d.source]
       );
-      if (intersection.edge == 2) {
-        return intersection.x + d.textEndBtmXPos / 2;
+      if (intersection.edge == 4) {
+        return intersection.x - 5;
       } else {
-        return intersection.x - d.textEndBtmXPos / 2;
+        return intersection.x + 5;
       }
     })
     .attr("y", (d) => {
@@ -398,12 +495,35 @@ function createUmlDiagram(svg, boxesData, linksData) {
         boxMap[d.source]
       );
       if (intersection.edge == 3) {
-        return intersection.y - d.textEndBtmYPos;
+        return intersection.y;
       } else {
-        return intersection.y + d.textEndBtmYPos;
+        return intersection.y;
       }
     })
-    .attr("text-anchor", "middle")
+    .attr("dy", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.target],
+        boxMap[d.source]
+      );
+      if (intersection.edge == 1) {
+        return "-1em";
+      } else if (intersection.edge == 3) {
+        return "1em";
+      } else {
+        return "1em";
+      }
+    })
+    .attr("text-anchor", (d) => {
+      const intersection = findBoxEdgeIntersection(
+        boxMap[d.target],
+        boxMap[d.source]
+      );
+      if (intersection.edge == 4) {
+        return "end";
+      } else {
+        return "start";
+      }
+    })
     .text((d) => {
       if (d.textEndBtmHidden == 0) {
         return d.textEndBtm;
@@ -412,7 +532,7 @@ function createUmlDiagram(svg, boxesData, linksData) {
       }
     })
     .style("font-family", "Arial, sans-serif")
-    .style("font-size", "12px")
+    .style("font-size", "10px")
     .style("fill", "black");
 
   return svg.node();

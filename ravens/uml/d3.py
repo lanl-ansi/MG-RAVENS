@@ -6,7 +6,7 @@ import pandas as pd
 
 from ravens.io import parse_eap_data, parse_eap_diagrams
 
-ea_rgb_dec2hex = {z * 65536 + y * 256 + x: "{:02x}{:02x}{:02x}".format(x, y, z) for x in range(256) for y in range(256) for z in range(256)}
+ea_rgb_dec2hex = {z * 65536 + y * 256 + x: "#{:02x}{:02x}{:02x}".format(x, y, z) for x in range(256) for y in range(256) for z in range(256)}
 
 
 def parse_link_style(link_style_string: str):
@@ -76,24 +76,48 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
 
     boxes_data = []
     nodes = []
+    objs_in_diagram = [_o.Object_ID for _o in diagram_data.objects[diagram_data.objects["Diagram_ID"] == diagram_id].itertuples()]
+
     for o in diagram_data.objects[diagram_data.objects["Diagram_ID"] == diagram_id].itertuples():
         object_style = parse_object_style(str(o.ObjectStyle))
+        obj = core_data.objects.loc[o.Object_ID]
 
-        text_lines = [
-            {
-                "text": f'{str(core_data.packages.loc[core_data.objects.loc[o.Object_ID].Package_ID].Name) + "::" + str(core_data.objects.loc[o.Object_ID].Name)}',
-                "align": "middle",
-                "type": "title",
-            }
-        ] + [
-            {"align": "start", "text": "+  " + str(attr.Name) + ": " + str(attr.Type) + " [" + str(attr.LowerBound) + ".." + str(attr.UpperBound) + "]"}
-            for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples()
-            if object_style.get("AttPub", "1") == "1"
-        ]
+        text_lines = []
+        if obj.Stereotype == "enumeration":
+            text_lines.append({"text": f"<<{obj.Stereotype}>>", "align": "center"})
+            text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
+            text_lines.append({})
+            text_lines.append({"text": "literals", "align": "center", "style": "italic"})
+            for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples():
+                text_lines.append({"text": f"{attr.Name}", "align": "left"})
+        elif obj.Stereotype == "CIMDataType":
+            text_lines.append({"text": f"<<{obj.Stereotype}>>", "align": "center"})
+            text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
+            if object_style.get("AttPub", "1") == "1":
+                text_lines.append({})
+                for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples():
+                    text_lines.append({"text": f"+   {attr.Name}: {attr.Type}", "align": "left"})
+        else:
+            gen_obj_id = None
+            for c in core_data.connectors[(core_data.connectors["Start_Object_ID"] == o.Object_ID) & (core_data.connectors["Connector_Type"] == "Generalization")].itertuples():
+                gen_obj_id = c.End_Object_ID
+                break
+
+            if (gen_obj_id is not None) and (gen_obj_id not in objs_in_diagram):
+                text_lines.append({"text": f"{core_data.objects.loc[gen_obj_id].Name}", "align": "right", "style": "italic"})
+
+            text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
+            if object_style.get("AttPub", "1") == "1":
+                text_lines.append({})
+                for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples():
+                    text_lines.append({"text": f"+   {attr.Name}: {attr.Type}", "align": "left"})
 
         box_color = int(object_style.get("BCol", "16251645"))
         if box_color == -1:
-            box_color = 16251645  # default color of objects
+            if obj.Stereotype == "enumeration":
+                box_color = 14941672
+            else:
+                box_color = 16251645  # default color of Classes
 
         box_data = {
             "id": o.Object_ID,
@@ -102,7 +126,7 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
             "width": abs(o.RectRight - o.RectLeft),
             "height": abs(o.RectTop - o.RectBottom),
             "textLines": text_lines,
-            "color": f"#{ea_rgb_dec2hex[box_color]}",
+            "color": ea_rgb_dec2hex[box_color],
         }
         nodes.append(o.Object_ID)
 
@@ -145,14 +169,13 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
             "textEndBtmHidden": link_style.get("LRB", {}).get("HDN", 0),
             "textEndBtmXPos": link_style.get("LRB", {}).get("CX", 0.0),
             "textEndBtmYPos": link_style.get("LRB", {}).get("CY", 0.0),
-            "color": f"#{ea_rgb_dec2hex[line_color]}",
+            "color": ea_rgb_dec2hex[line_color],
         }
 
         links_data.append(link_data)
 
     svg_data["links"] = links_data
 
-    # print(links_data)
     return svg_data
 
 
@@ -243,6 +266,7 @@ if __name__ == "__main__":
 
     save_svg(svg_data, "test.svg")
 
+    save_uml_diagram_from_package_and_diagram_name(core_data, diagram_data, "EconomicDesign", "ProposedAssetOptions", "out/uml_d3")
     save_uml_diagram_from_package_and_diagram_name(core_data, diagram_data, "SimplifiedDiagrams", "Faults", "out/uml_d3")
 
     save_uml_diagrams_from_package_name(core_data, diagram_data, "EconomicDesign", "docs/source/_static/uml")
