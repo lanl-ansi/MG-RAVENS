@@ -1,2 +1,2 @@
 *.eap filter=lfs diff=lfs merge=lfs -text
-*.eap !text !filter !merge !diff
+*.xmi filter=lfs diff=lfs merge=lfs text
