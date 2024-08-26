@@ -90,7 +90,7 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
             text_lines.append({"text": "literals", "align": "center", "style": "italic"})
             for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples():
                 text_lines.append({"text": f"{attr.Name}", "align": "left"})
-        elif obj.Stereotype == "CIMDataType":
+        elif obj.Stereotype == "CIMDatatype":
             text_lines.append({"text": f"<<{obj.Stereotype}>>", "align": "center"})
             text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
             if object_style.get("AttPub", "1") == "1":
