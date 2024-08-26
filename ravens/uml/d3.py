@@ -112,7 +112,7 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
                 for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples():
                     text_lines.append({"text": f"+   {attr.Name}: {attr.Type}", "align": "left"})
 
-        box_color = int(object_style.get("BCol", "16251645"))
+        box_color = int(object_style.get("BCol", "-1"))
         if box_color == -1:
             if obj.Stereotype == "enumeration":
                 box_color = 14941672
