@@ -98,6 +98,12 @@ function isWithin45DegreesFromHorizontal(sourceBox, targetBox) {
 function createUmlDiagram(svg, boxesData, linksData) {
   svg.selectAll("*").remove();
 
+  svg
+    .append("rect")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("fill", "white");
+
   const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", zoomed);
 
   const zoomGroup = svg.append("g").attr("class", "zoom-group");
