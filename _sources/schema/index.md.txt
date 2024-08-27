@@ -112,6 +112,8 @@
 
 [AssetTemperaturePressureAnalogKind](../_static/schema/AssetTemperaturePressureAnalogKind.html)
 
+[AsynchronousMachine](../_static/schema/AsynchronousMachine.html)
+
 [AsynchronousMachineKind](../_static/schema/AsynchronousMachineKind.html)
 
 [AtmosphericAnalogKind](../_static/schema/AtmosphericAnalogKind.html)
@@ -1267,6 +1269,8 @@
 [SwitchStatusType](../_static/schema/SwitchStatusType.html)
 
 [SwitchingAction](../_static/schema/SwitchingAction.html)
+
+[SynchronousMachine](../_static/schema/SynchronousMachine.html)
 
 [SynchronousMachineKind](../_static/schema/SynchronousMachineKind.html)
 
