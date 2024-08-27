@@ -1038,216 +1038,662 @@
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
-                          "properties": {
-                            "RotatingMachine.RotatingMachineResponse": {
+                          "oneOf": [
+                            {
                               "$objectSource": "cim",
                               "$objectType": "object",
                               "type": "object",
-                              "$objectId": "RotatingMachineResponseCharacteristic",
-                              "$primaryObjectHash": null,
-                              "properties": {}
-                            },
-                            "PowerSystemResource.Location": {
-                              "$objectType": "reference",
-                              "type": "string",
-                              "$referencePath": "Location"
-                            },
-                            "PowerSystemResource.GenericAction": {
-                              "$objectType": "reference",
-                              "type": "string",
-                              "$referencePath": "SwitchingAction"
-                            },
-                            "ConductingEquipment.Terminals": {
-                              "type": "array",
-                              "items": {
-                                "$objectSource": "cim",
-                                "$objectId": "Terminal",
-                                "$objectType": "object",
-                                "type": "object",
-                                "$arrayPosition": "ACDCTerminal.sequenceNumber",
-                                "properties": {
-                                  "Terminal.ConnectivityNode": {
-                                    "$objectId": "ConnectivityNode",
-                                    "$objectType": "reference",
-                                    "type": "string",
-                                    "$referencePath": "ConnectivityNode"
-                                  },
-                                  "Terminal.SvPowerFlow": {
-                                    "type": "array",
-                                    "items": {
-                                      "$objectSource": "cim",
-                                      "$objectId": "SvPowerFlow",
-                                      "$objectType": "object",
-                                      "type": "object",
-                                      "$arrayPosition": null,
-                                      "properties": {}
+                              "$primaryObjectHash": "IdentifiedObject.name",
+                              "$secondaryObjectHash": "IdentifiedObject.mRID",
+                              "$objectId": "RotatingMachine",
+                              "properties": {
+                                "RotatingMachine.RotatingMachineResponse": {
+                                  "$objectSource": "cim",
+                                  "$objectType": "object",
+                                  "type": "object",
+                                  "$objectId": "RotatingMachineResponseCharacteristic",
+                                  "$primaryObjectHash": null,
+                                  "properties": {}
+                                },
+                                "PowerSystemResource.Location": {
+                                  "$objectType": "reference",
+                                  "type": "string",
+                                  "$referencePath": "Location"
+                                },
+                                "PowerSystemResource.GenericAction": {
+                                  "$objectType": "reference",
+                                  "type": "string",
+                                  "$referencePath": "SwitchingAction"
+                                },
+                                "ConductingEquipment.Terminals": {
+                                  "type": "array",
+                                  "items": {
+                                    "$objectSource": "cim",
+                                    "$objectId": "Terminal",
+                                    "$objectType": "object",
+                                    "type": "object",
+                                    "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                                    "properties": {
+                                      "Terminal.ConnectivityNode": {
+                                        "$objectId": "ConnectivityNode",
+                                        "$objectType": "reference",
+                                        "type": "string",
+                                        "$referencePath": "ConnectivityNode"
+                                      },
+                                      "Terminal.SvPowerFlow": {
+                                        "type": "array",
+                                        "items": {
+                                          "$objectSource": "cim",
+                                          "$objectId": "SvPowerFlow",
+                                          "$objectType": "object",
+                                          "type": "object",
+                                          "$arrayPosition": null,
+                                          "properties": {}
+                                        }
+                                      }
                                     }
+                                  }
+                                },
+                                "RotatingMachine.GeneratingUnit": {
+                                  "$objectSource": "cim",
+                                  "$objectType": "object",
+                                  "$objectId": "GeneratingUnit",
+                                  "$primaryObjectHash": null,
+                                  "type": "object",
+                                  "oneOf": [
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "HydroGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "SolarGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "NuclearGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "WindGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "ThermalGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                "ConductingEquipment.BaseVoltage": {
+                                  "$objectType": "reference",
+                                  "$objectId": "BaseVoltage",
+                                  "type": "string",
+                                  "$referencePath": "BaseVoltage"
+                                },
+                                "ConductingEquipment.SvStatus": {
+                                  "type": "array",
+                                  "items": {
+                                    "$objectSource": "cim",
+                                    "$objectType": "object",
+                                    "type": "object",
+                                    "$objectId": "SvStatus",
+                                    "$arrayPosition": null,
+                                    "properties": {}
                                   }
                                 }
                               }
                             },
-                            "RotatingMachine.GeneratingUnit": {
+                            {
                               "$objectSource": "cim",
                               "$objectType": "object",
-                              "$objectId": "GeneratingUnit",
-                              "$primaryObjectHash": null,
                               "type": "object",
-                              "oneOf": [
-                                {
+                              "$primaryObjectHash": "IdentifiedObject.name",
+                              "$secondaryObjectHash": "IdentifiedObject.mRID",
+                              "$objectId": "SynchronousMachine",
+                              "properties": {
+                                "RotatingMachine.RotatingMachineResponse": {
                                   "$objectSource": "cim",
                                   "$objectType": "object",
-                                  "$objectId": "HydroGeneratingUnit",
                                   "type": "object",
-                                  "properties": {
-                                    "GeneratingUnit.GenUnitOpSchedule": {
-                                      "type": "object",
-                                      "$objectSource": "cim",
-                                      "$objectId": "GenUnitOpSchedule",
-                                      "$primaryObjectHash": null,
-                                      "properties": {},
-                                      "$objectType": "object"
-                                    },
-                                    "GeneratingUnit.GenUnitOpCostCurves": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "$arrayPosition": null,
-                                        "$objectSource": "cim",
-                                        "$objectType": "object",
-                                        "$objectId": "GenUnitOpCostCurve",
-                                        "properties": {}
+                                  "$objectId": "RotatingMachineResponseCharacteristic",
+                                  "$primaryObjectHash": null,
+                                  "properties": {}
+                                },
+                                "PowerSystemResource.Location": {
+                                  "$objectType": "reference",
+                                  "type": "string",
+                                  "$referencePath": "Location"
+                                },
+                                "PowerSystemResource.GenericAction": {
+                                  "$objectType": "reference",
+                                  "type": "string",
+                                  "$referencePath": "SwitchingAction"
+                                },
+                                "ConductingEquipment.Terminals": {
+                                  "type": "array",
+                                  "items": {
+                                    "$objectSource": "cim",
+                                    "$objectId": "Terminal",
+                                    "$objectType": "object",
+                                    "type": "object",
+                                    "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                                    "properties": {
+                                      "Terminal.ConnectivityNode": {
+                                        "$objectId": "ConnectivityNode",
+                                        "$objectType": "reference",
+                                        "type": "string",
+                                        "$referencePath": "ConnectivityNode"
+                                      },
+                                      "Terminal.SvPowerFlow": {
+                                        "type": "array",
+                                        "items": {
+                                          "$objectSource": "cim",
+                                          "$objectId": "SvPowerFlow",
+                                          "$objectType": "object",
+                                          "type": "object",
+                                          "$arrayPosition": null,
+                                          "properties": {}
+                                        }
                                       }
                                     }
                                   }
                                 },
-                                {
+                                "RotatingMachine.GeneratingUnit": {
                                   "$objectSource": "cim",
                                   "$objectType": "object",
-                                  "$objectId": "SolarGeneratingUnit",
+                                  "$objectId": "GeneratingUnit",
+                                  "$primaryObjectHash": null,
                                   "type": "object",
-                                  "properties": {
-                                    "GeneratingUnit.GenUnitOpSchedule": {
-                                      "type": "object",
+                                  "oneOf": [
+                                    {
                                       "$objectSource": "cim",
-                                      "$objectId": "GenUnitOpSchedule",
-                                      "$primaryObjectHash": null,
-                                      "properties": {},
-                                      "$objectType": "object"
+                                      "$objectType": "object",
+                                      "$objectId": "HydroGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
                                     },
-                                    "GeneratingUnit.GenUnitOpCostCurves": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "$arrayPosition": null,
-                                        "$objectSource": "cim",
-                                        "$objectType": "object",
-                                        "$objectId": "GenUnitOpCostCurve",
-                                        "properties": {}
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "SolarGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "NuclearGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "WindGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "ThermalGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
                                       }
                                     }
-                                  }
+                                  ]
                                 },
-                                {
-                                  "$objectSource": "cim",
-                                  "$objectType": "object",
-                                  "$objectId": "NuclearGeneratingUnit",
-                                  "type": "object",
-                                  "properties": {
-                                    "GeneratingUnit.GenUnitOpSchedule": {
-                                      "type": "object",
-                                      "$objectSource": "cim",
-                                      "$objectId": "GenUnitOpSchedule",
-                                      "$primaryObjectHash": null,
-                                      "properties": {},
-                                      "$objectType": "object"
-                                    },
-                                    "GeneratingUnit.GenUnitOpCostCurves": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "$arrayPosition": null,
-                                        "$objectSource": "cim",
-                                        "$objectType": "object",
-                                        "$objectId": "GenUnitOpCostCurve",
-                                        "properties": {}
-                                      }
-                                    }
-                                  }
+                                "ConductingEquipment.BaseVoltage": {
+                                  "$objectType": "reference",
+                                  "$objectId": "BaseVoltage",
+                                  "type": "string",
+                                  "$referencePath": "BaseVoltage"
                                 },
-                                {
-                                  "$objectSource": "cim",
-                                  "$objectType": "object",
-                                  "$objectId": "WindGeneratingUnit",
-                                  "type": "object",
-                                  "properties": {
-                                    "GeneratingUnit.GenUnitOpSchedule": {
-                                      "type": "object",
-                                      "$objectSource": "cim",
-                                      "$objectId": "GenUnitOpSchedule",
-                                      "$primaryObjectHash": null,
-                                      "properties": {},
-                                      "$objectType": "object"
-                                    },
-                                    "GeneratingUnit.GenUnitOpCostCurves": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "$arrayPosition": null,
-                                        "$objectSource": "cim",
-                                        "$objectType": "object",
-                                        "$objectId": "GenUnitOpCostCurve",
-                                        "properties": {}
-                                      }
-                                    }
-                                  }
-                                },
-                                {
-                                  "$objectSource": "cim",
-                                  "$objectType": "object",
-                                  "$objectId": "ThermalGeneratingUnit",
-                                  "type": "object",
-                                  "properties": {
-                                    "GeneratingUnit.GenUnitOpSchedule": {
-                                      "type": "object",
-                                      "$objectSource": "cim",
-                                      "$objectId": "GenUnitOpSchedule",
-                                      "$primaryObjectHash": null,
-                                      "properties": {},
-                                      "$objectType": "object"
-                                    },
-                                    "GeneratingUnit.GenUnitOpCostCurves": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "$arrayPosition": null,
-                                        "$objectSource": "cim",
-                                        "$objectType": "object",
-                                        "$objectId": "GenUnitOpCostCurve",
-                                        "properties": {}
-                                      }
-                                    }
+                                "ConductingEquipment.SvStatus": {
+                                  "type": "array",
+                                  "items": {
+                                    "$objectSource": "cim",
+                                    "$objectType": "object",
+                                    "type": "object",
+                                    "$objectId": "SvStatus",
+                                    "$arrayPosition": null,
+                                    "properties": {}
                                   }
                                 }
-                              ]
+                              }
                             },
-                            "ConductingEquipment.BaseVoltage": {
-                              "$objectType": "reference",
-                              "$objectId": "BaseVoltage",
-                              "type": "string",
-                              "$referencePath": "BaseVoltage"
-                            },
-                            "ConductingEquipment.SvStatus": {
-                              "type": "array",
-                              "items": {
-                                "$objectSource": "cim",
-                                "$objectType": "object",
-                                "type": "object",
-                                "$objectId": "SvStatus",
-                                "$arrayPosition": null,
-                                "properties": {}
+                            {
+                              "$objectSource": "cim",
+                              "$objectType": "object",
+                              "type": "object",
+                              "$primaryObjectHash": "IdentifiedObject.name",
+                              "$secondaryObjectHash": "IdentifiedObject.mRID",
+                              "$objectId": "AsynchronousMachine",
+                              "properties": {
+                                "RotatingMachine.RotatingMachineResponse": {
+                                  "$objectSource": "cim",
+                                  "$objectType": "object",
+                                  "type": "object",
+                                  "$objectId": "RotatingMachineResponseCharacteristic",
+                                  "$primaryObjectHash": null,
+                                  "properties": {}
+                                },
+                                "PowerSystemResource.Location": {
+                                  "$objectType": "reference",
+                                  "type": "string",
+                                  "$referencePath": "Location"
+                                },
+                                "PowerSystemResource.GenericAction": {
+                                  "$objectType": "reference",
+                                  "type": "string",
+                                  "$referencePath": "SwitchingAction"
+                                },
+                                "ConductingEquipment.Terminals": {
+                                  "type": "array",
+                                  "items": {
+                                    "$objectSource": "cim",
+                                    "$objectId": "Terminal",
+                                    "$objectType": "object",
+                                    "type": "object",
+                                    "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                                    "properties": {
+                                      "Terminal.ConnectivityNode": {
+                                        "$objectId": "ConnectivityNode",
+                                        "$objectType": "reference",
+                                        "type": "string",
+                                        "$referencePath": "ConnectivityNode"
+                                      },
+                                      "Terminal.SvPowerFlow": {
+                                        "type": "array",
+                                        "items": {
+                                          "$objectSource": "cim",
+                                          "$objectId": "SvPowerFlow",
+                                          "$objectType": "object",
+                                          "type": "object",
+                                          "$arrayPosition": null,
+                                          "properties": {}
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "RotatingMachine.GeneratingUnit": {
+                                  "$objectSource": "cim",
+                                  "$objectType": "object",
+                                  "$objectId": "GeneratingUnit",
+                                  "$primaryObjectHash": null,
+                                  "type": "object",
+                                  "oneOf": [
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "HydroGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "SolarGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "NuclearGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "WindGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectSource": "cim",
+                                      "$objectType": "object",
+                                      "$objectId": "ThermalGeneratingUnit",
+                                      "type": "object",
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectSource": "cim",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectSource": "cim",
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                "ConductingEquipment.BaseVoltage": {
+                                  "$objectType": "reference",
+                                  "$objectId": "BaseVoltage",
+                                  "type": "string",
+                                  "$referencePath": "BaseVoltage"
+                                },
+                                "ConductingEquipment.SvStatus": {
+                                  "type": "array",
+                                  "items": {
+                                    "$objectSource": "cim",
+                                    "$objectType": "object",
+                                    "type": "object",
+                                    "$objectId": "SvStatus",
+                                    "$arrayPosition": null,
+                                    "properties": {}
+                                  }
+                                }
                               }
                             }
-                          }
+                          ]
                         }
                       }
                     },
