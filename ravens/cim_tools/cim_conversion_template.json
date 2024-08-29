@@ -1757,12 +1757,10 @@
                               "$referencePath": "SwitchingAction"
                             },
                             "EnergyConsumer.LoadResponseCharacteristic": {
-                              "$objectSource": "cim",
-                              "$objectType": "object",
-                              "$objectId": "LoadResponseCharacteristic",
-                              "type": "object",
-                              "$primaryObjectHash": null,
-                              "properties": {}
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$referencePath": "LoadResponseCharacteristic",
+                              "$objectId": "LoadResponseCharacteristic"
                             },
                             "ConductingEquipment.BaseVoltage": {
                               "$objectType": "reference",
@@ -1847,12 +1845,10 @@
                               "$referencePath": "SwitchingAction"
                             },
                             "EnergyConsumer.LoadResponseCharacteristic": {
-                              "$objectSource": "cim",
-                              "$objectType": "object",
-                              "$objectId": "LoadResponseCharacteristic",
-                              "type": "object",
-                              "$primaryObjectHash": null,
-                              "properties": {}
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$referencePath": "LoadResponseCharacteristic",
+                              "$objectId": "LoadResponseCharacteristic"
                             },
                             "ConductingEquipment.BaseVoltage": {
                               "$objectType": "reference",
@@ -1937,12 +1933,10 @@
                               "$referencePath": "SwitchingAction"
                             },
                             "EnergyConsumer.LoadResponseCharacteristic": {
-                              "$objectSource": "cim",
-                              "$objectType": "object",
-                              "$objectId": "LoadResponseCharacteristic",
-                              "type": "object",
-                              "$primaryObjectHash": null,
-                              "properties": {}
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$referencePath": "LoadResponseCharacteristic",
+                              "$objectId": "LoadResponseCharacteristic"
                             },
                             "ConductingEquipment.BaseVoltage": {
                               "$objectType": "reference",
@@ -4285,6 +4279,15 @@
           }
         }
       }
+    },
+    "LoadResponseCharacteristic": {
+      "$objectSource": "cim",
+      "$objectType": "object",
+      "$objectId": "LoadResponseCharacteristic",
+      "type": "object",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {}
     },
     "PerLengthLineParameter": {
       "$objectType": "container",
