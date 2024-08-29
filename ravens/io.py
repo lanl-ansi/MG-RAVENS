@@ -4,6 +4,7 @@ import json
 import os
 
 from copy import deepcopy
+import xml.etree.ElementTree as ET
 
 import json_schema_for_humans.generate as JSFHGenerate
 import pandas_access as mdb
