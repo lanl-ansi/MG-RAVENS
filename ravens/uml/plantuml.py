@@ -29,41 +29,41 @@ def build_package_paths(data: dict) -> dict:
     return pkg_paths
 
 
-def build_all_plantuml_diagrams(data, diagram_data):
-    package_paths = build_package_paths(data)
+def build_all_plantuml_diagrams(uml_data):
+    package_paths = build_package_paths(uml_data)
 
     diagrams = {}
-    for diagram in diagram_data.diagrams.itertuples():
-        diagrams[f"{diagram.Name}.{diagram.Diagram_ID}"] = "\n".join(build_plantuml_diagram(data, diagram_data, diagram, package_paths))
+    for diagram in uml_data.diagrams.itertuples():
+        diagrams[f"{diagram.Name}.{diagram.Diagram_ID}"] = "\n".join(build_plantuml_diagram(uml_data, diagram, package_paths))
 
     return diagrams
 
 
-def build_plantuml_diagram(data: CoreData, diagram_data: DiagramData, diagram, package_paths):
+def build_plantuml_diagram(uml_data: UMLData, diagram, package_paths):
     uml = [f"@startuml {diagram.Name}", "", f"title {package_paths[diagram.Package_ID]}/{diagram.Name}", ""]
 
-    for obj in diagram_data.objects[diagram_data.objects["Diagram_ID"] == diagram.Diagram_ID].itertuples():
+    for obj in uml_data.diagramobjects[uml_data.diagramobjects["Diagram_ID"] == diagram.Diagram_ID].itertuples():
         uml.extend(build_plantuml_class(data, obj))
 
-    for link in diagram_data.links[diagram_data.links["DiagramID"] == diagram.Diagram_ID].itertuples():
-        uml.extend(build_plantuml_link(data, diagram_data, link))
+    for link in uml_data.diagramlinks[uml_data.diagramlinks["DiagramID"] == diagram.Diagram_ID].itertuples():
+        uml.extend(build_plantuml_link(uml_data, link))
 
     uml.append("@enduml")
 
     return uml
 
 
-def build_plantuml_class(data: CoreData, obj):
+def build_plantuml_class(uml_data: UMLData, obj):
     uml = []
 
     attrs = []
-    for attr in data.attributes[data.attributes["Object_ID"] == obj.Object_ID].itertuples():
+    for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == obj.Object_ID].itertuples():
         if not pd.isnull(attr.Type):
             attrs.append(f"\t{attr.Name}::{attr.Type}")
         else:
             attrs.append(f"\t{attr.Name}")
 
-    obj = data.objects[data.objects["Object_ID"] == obj.Object_ID].iloc[0]
+    obj = uml_data.objects[uml_data.objects["Object_ID"] == obj.Object_ID].iloc[0]
     obj_name = obj.Name
     obj_stereotype = obj.Stereotype
     if pd.isnull(obj_name):
@@ -85,12 +85,12 @@ def build_plantuml_class(data: CoreData, obj):
     return uml
 
 
-def build_plantuml_link(data: CoreData, diagram_data: DiagramData, link):
+def build_plantuml_link(uml_data: UMLData, link):
     uml = []
 
-    connector = data.connectors[data.connectors["Connector_ID"] == link.ConnectorID].iloc[0]
-    start_object_name = data.objects[data.objects["Object_ID"] == connector.Start_Object_ID].iloc[0].Name
-    end_object_name = data.objects[data.objects["Object_ID"] == connector.End_Object_ID].iloc[0].Name
+    connector = uml_data.connectors[uml_data.connectors["Connector_ID"] == link.ConnectorID].iloc[0]
+    start_object_name = uml_data.objects[uml_data.objects["Object_ID"] == connector.Start_Object_ID].iloc[0].Name
+    end_object_name = uml_data.objects[uml_data.objects["Object_ID"] == connector.End_Object_ID].iloc[0].Name
     connector_string = connector_strings[connector.Connector_Type]
 
     start_labels = " ".join([k for k in [connector.Top_Start_Label, connector.Btm_Start_Label] if not pd.isnull(k)])
@@ -109,14 +109,13 @@ def build_plantuml_link(data: CoreData, diagram_data: DiagramData, link):
 
 
 if __name__ == "__main__":
-    from ravens.io import parse_eap_data, parse_eap_diagrams
+    from ravens.io import parse_uml_data
 
-    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.eap"
+    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi"
 
-    data = parse_eap_data(db_filename, set_index=False)
-    diagram_data = parse_eap_diagrams(db_filename, set_index=False)
+    data = parse_uml_data(db_filename, set_index=False)
 
-    plantuml_diagrams = build_all_plantuml_diagrams(data, diagram_data)
+    plantuml_diagrams = build_all_plantuml_diagrams(uml_data)
 
     for diagram_name, uml in plantuml_diagrams.items():
         with open(f"out/uml/{diagram_name}.plantuml", "w") as f:

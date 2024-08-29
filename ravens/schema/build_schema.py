@@ -58,7 +58,7 @@ def build_schema_from_map(schema_map: dict) -> dict:
 if __name__ == "__main__":
     from copy import deepcopy
     import json
-    from ravens.io import parse_eap_data, write_schema_docs
+    from ravens.io import parse_uml_data, write_schema_docs
     from ravens.cim_tools.common import build_package_exclusions, build_object_exclusions
     from ravens.cim_tools.graph import build_generalization_graph, build_attribute_graph
     from ravens.cim_tools.template import CIMTemplate
@@ -66,30 +66,30 @@ if __name__ == "__main__":
     from ravens.schema.build_map import add_attributes_to_template
     import json_schema_for_humans.generate as Gen
 
-    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.eap"
+    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi"
 
-    core_data = parse_eap_data(db_filename)
+    uml_data = parse_uml_data(db_filename)
 
-    exclude_packages = build_package_exclusions(core_data.packages, lambda x: any(str(x.Name).startswith(k) for k in ["Inf", "Mkt"]))
+    exclude_packages = build_package_exclusions(uml_data.packages, lambda x: any(str(x.Name).startswith(k) for k in ["Inf", "Mkt"]))
     exclude_objects = build_object_exclusions(
-        core_data.objects,
+        uml_data.objects,
         lambda x: any(str(x.Name).startswith(k) for k in ["Inf", "Mkt"]),
         exclude_packages=exclude_packages,
     )
 
-    GG = build_generalization_graph(core_data, exclude_packages, exclude_objects)
-    AT = build_attribute_graph(core_data, exclude_packages, exclude_objects)
+    GG = build_generalization_graph(uml_data, exclude_packages, exclude_objects)
+    AT = build_attribute_graph(uml_data, exclude_packages, exclude_objects)
 
     cim_template = CIMTemplate("ravens/cim_tools/cim_conversion_template.json")
 
-    cim_template_with_attributes = add_attributes_to_template(deepcopy(cim_template.template), cim_template.template, core_data, GG, AT)
+    cim_template_with_attributes = add_attributes_to_template(deepcopy(cim_template.template), cim_template.template, uml_data, GG, AT)
 
     with open("out/schema/cim_template_with_attributes.json", "w") as f:
         json.dump(cim_template_with_attributes, f, indent=2)
 
     schema = build_schema_from_map(cim_template_with_attributes)
 
-    schema["$defs"] = build_definitions(core_data)
+    schema["$defs"] = build_definitions(uml_data)
 
     with open("out/schema/test_schema_conversion.json", "w") as f:
         json.dump(schema, f, indent=2)
