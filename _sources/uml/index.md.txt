@@ -2,29 +2,14 @@
 
 ## EconomicDesign
 
+### EconomicProperties
+
+<img src="../_static/uml/EconomicDesign.EconomicProperties.svg" style="max-width: 100%; height: auto;" alt="EconomicProperties diagram">
+
+
 ### ProposedSiteLocation
 
 <img src="../_static/uml/EconomicDesign.ProposedSiteLocation.svg" style="max-width: 100%; height: auto;" alt="ProposedSiteLocation diagram">
-
-
-### RegionalEnergyPrices
-
-<img src="../_static/uml/EconomicDesign.RegionalEnergyPrices.svg" style="max-width: 100%; height: auto;" alt="RegionalEnergyPrices diagram">
-
-
-### ProposedAssetOptions
-
-<img src="../_static/uml/EconomicDesign.ProposedAssetOptions.svg" style="max-width: 100%; height: auto;" alt="ProposedAssetOptions diagram">
-
-
-### AlgorithmProperties
-
-<img src="../_static/uml/EconomicDesign.AlgorithmProperties.svg" style="max-width: 100%; height: auto;" alt="AlgorithmProperties diagram">
-
-
-### Facilities
-
-<img src="../_static/uml/EconomicDesign.Facilities.svg" style="max-width: 100%; height: auto;" alt="Facilities diagram">
 
 
 ### EquivalentNetwork
@@ -37,6 +22,21 @@
 <img src="../_static/uml/EconomicDesign.InverterControls.svg" style="max-width: 100%; height: auto;" alt="InverterControls diagram">
 
 
+### GenerationProfiles
+
+<img src="../_static/uml/EconomicDesign.GenerationProfiles.svg" style="max-width: 100%; height: auto;" alt="GenerationProfiles diagram">
+
+
+### RegionalEnergyPrices
+
+<img src="../_static/uml/EconomicDesign.RegionalEnergyPrices.svg" style="max-width: 100%; height: auto;" alt="RegionalEnergyPrices diagram">
+
+
+### ProposedAssetOptions
+
+<img src="../_static/uml/EconomicDesign.ProposedAssetOptions.svg" style="max-width: 100%; height: auto;" alt="ProposedAssetOptions diagram">
+
+
 ### SiteProperties
 
 <img src="../_static/uml/EconomicDesign.SiteProperties.svg" style="max-width: 100%; height: auto;" alt="SiteProperties diagram">
@@ -47,9 +47,9 @@
 <img src="../_static/uml/EconomicDesign.ProposedAssets.svg" style="max-width: 100%; height: auto;" alt="ProposedAssets diagram">
 
 
-### OutageSpecification
+### AlgorithmProperties
 
-<img src="../_static/uml/EconomicDesign.OutageSpecification.svg" style="max-width: 100%; height: auto;" alt="OutageSpecification diagram">
+<img src="../_static/uml/EconomicDesign.AlgorithmProperties.svg" style="max-width: 100%; height: auto;" alt="AlgorithmProperties diagram">
 
 
 ### FossilFuelCosts
@@ -57,20 +57,20 @@
 <img src="../_static/uml/EconomicDesign.FossilFuelCosts.svg" style="max-width: 100%; height: auto;" alt="FossilFuelCosts diagram">
 
 
-### EconomicProperties
+### OutageSpecification
 
-<img src="../_static/uml/EconomicDesign.EconomicProperties.svg" style="max-width: 100%; height: auto;" alt="EconomicProperties diagram">
+<img src="../_static/uml/EconomicDesign.OutageSpecification.svg" style="max-width: 100%; height: auto;" alt="OutageSpecification diagram">
 
 
-### GenerationProfiles
+### Facilities
 
-<img src="../_static/uml/EconomicDesign.GenerationProfiles.svg" style="max-width: 100%; height: auto;" alt="GenerationProfiles diagram">
+<img src="../_static/uml/EconomicDesign.Facilities.svg" style="max-width: 100%; height: auto;" alt="Facilities diagram">
 
 ## SimplifiedDiagrams
 
-### Transformers
+### ConnectivityNodes
 
-<img src="../_static/uml/SimplifiedDiagrams.Transformers.svg" style="max-width: 100%; height: auto;" alt="Transformers diagram">
+<img src="../_static/uml/SimplifiedDiagrams.ConnectivityNodes.svg" style="max-width: 100%; height: auto;" alt="ConnectivityNodes diagram">
 
 
 ### Conductors
@@ -78,14 +78,29 @@
 <img src="../_static/uml/SimplifiedDiagrams.Conductors.svg" style="max-width: 100%; height: auto;" alt="Conductors diagram">
 
 
-### Switches
+### LoadForecasting
 
-<img src="../_static/uml/SimplifiedDiagrams.Switches.svg" style="max-width: 100%; height: auto;" alt="Switches diagram">
+<img src="../_static/uml/SimplifiedDiagrams.LoadForecasting.svg" style="max-width: 100%; height: auto;" alt="LoadForecasting diagram">
 
 
-### EnergyProducers
+### BaseVoltage
 
-<img src="../_static/uml/SimplifiedDiagrams.EnergyProducers.svg" style="max-width: 100%; height: auto;" alt="EnergyProducers diagram">
+<img src="../_static/uml/SimplifiedDiagrams.BaseVoltage.svg" style="max-width: 100%; height: auto;" alt="BaseVoltage diagram">
+
+
+### Locations
+
+<img src="../_static/uml/SimplifiedDiagrams.Locations.svg" style="max-width: 100%; height: auto;" alt="Locations diagram">
+
+
+### Transformers
+
+<img src="../_static/uml/SimplifiedDiagrams.Transformers.svg" style="max-width: 100%; height: auto;" alt="Transformers diagram">
+
+
+### ProposedAssetOptions
+
+<img src="../_static/uml/SimplifiedDiagrams.ProposedAssetOptions.svg" style="max-width: 100%; height: auto;" alt="ProposedAssetOptions diagram">
 
 
 ### EnergyConsumers
@@ -98,19 +113,14 @@
 <img src="../_static/uml/SimplifiedDiagrams.Shunts.svg" style="max-width: 100%; height: auto;" alt="Shunts diagram">
 
 
-### LoadForecasting
+### CommunityFacilities
 
-<img src="../_static/uml/SimplifiedDiagrams.LoadForecasting.svg" style="max-width: 100%; height: auto;" alt="LoadForecasting diagram">
-
-
-### ConnectivityNodes
-
-<img src="../_static/uml/SimplifiedDiagrams.ConnectivityNodes.svg" style="max-width: 100%; height: auto;" alt="ConnectivityNodes diagram">
+<img src="../_static/uml/SimplifiedDiagrams.CommunityFacilities.svg" style="max-width: 100%; height: auto;" alt="CommunityFacilities diagram">
 
 
-### Versions
+### Switches
 
-<img src="../_static/uml/SimplifiedDiagrams.Versions.svg" style="max-width: 100%; height: auto;" alt="Versions diagram">
+<img src="../_static/uml/SimplifiedDiagrams.Switches.svg" style="max-width: 100%; height: auto;" alt="Switches diagram">
 
 
 ### Faults
@@ -123,34 +133,24 @@
 <img src="../_static/uml/SimplifiedDiagrams.Outages.svg" style="max-width: 100%; height: auto;" alt="Outages diagram">
 
 
-### CommunityFacilities
+### EnergyProducers
 
-<img src="../_static/uml/SimplifiedDiagrams.CommunityFacilities.svg" style="max-width: 100%; height: auto;" alt="CommunityFacilities diagram">
-
-
-### ProposedAssetOptions
-
-<img src="../_static/uml/SimplifiedDiagrams.ProposedAssetOptions.svg" style="max-width: 100%; height: auto;" alt="ProposedAssetOptions diagram">
-
-
-### BaseVoltage
-
-<img src="../_static/uml/SimplifiedDiagrams.BaseVoltage.svg" style="max-width: 100%; height: auto;" alt="BaseVoltage diagram">
-
-
-### Groups
-
-<img src="../_static/uml/SimplifiedDiagrams.Groups.svg" style="max-width: 100%; height: auto;" alt="Groups diagram">
-
-
-### Locations
-
-<img src="../_static/uml/SimplifiedDiagrams.Locations.svg" style="max-width: 100%; height: auto;" alt="Locations diagram">
+<img src="../_static/uml/SimplifiedDiagrams.EnergyProducers.svg" style="max-width: 100%; height: auto;" alt="EnergyProducers diagram">
 
 
 ### MeterPoints
 
 <img src="../_static/uml/SimplifiedDiagrams.MeterPoints.svg" style="max-width: 100%; height: auto;" alt="MeterPoints diagram">
+
+
+### Versions
+
+<img src="../_static/uml/SimplifiedDiagrams.Versions.svg" style="max-width: 100%; height: auto;" alt="Versions diagram">
+
+
+### Groups
+
+<img src="../_static/uml/SimplifiedDiagrams.Groups.svg" style="max-width: 100%; height: auto;" alt="Groups diagram">
 
 ## EquipmentExtensions
 
