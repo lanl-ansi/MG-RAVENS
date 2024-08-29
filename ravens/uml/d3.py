@@ -4,7 +4,7 @@ import subprocess
 
 import pandas as pd
 
-from ravens.io import parse_eap_data, parse_eap_diagrams
+from ravens.io import parse_uml_data
 
 ea_rgb_dec2hex = {z * 65536 + y * 256 + x: "#{:02x}{:02x}{:02x}".format(x, y, z) for x in range(256) for y in range(256) for z in range(256)}
 
@@ -64,8 +64,8 @@ def parse_object_style(object_style_string: str):
     return object_style
 
 
-def create_svg_data(core_data, diagram_data, diagram_id: int):
-    dobjects = diagram_data.objects[diagram_data.objects["Diagram_ID"] == diagram_id]
+def create_svg_data(uml_data, diagram_id: int):
+    dobjects = uml_data.diagramobjects[uml_data.diagramobjects["Diagram_ID"] == diagram_id]
     if dobjects.empty:
         return {"cx": 0, "cy": 0, "nodes": [], "links": []}
 
@@ -76,11 +76,11 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
 
     boxes_data = []
     nodes = []
-    objs_in_diagram = [_o.Object_ID for _o in diagram_data.objects[diagram_data.objects["Diagram_ID"] == diagram_id].itertuples()]
+    objs_in_diagram = [_o.Object_ID for _o in uml_data.diagramobjects[uml_data.diagramobjects["Diagram_ID"] == diagram_id].itertuples()]
 
-    for o in diagram_data.objects[diagram_data.objects["Diagram_ID"] == diagram_id].itertuples():
+    for o in uml_data.diagramobjects[uml_data.diagramobjects["Diagram_ID"] == diagram_id].itertuples():
         object_style = parse_object_style(str(o.ObjectStyle))
-        obj = core_data.objects.loc[o.Object_ID]
+        obj = uml_data.objects.loc[o.Object_ID]
 
         text_lines = []
         if obj.Stereotype == "enumeration":
@@ -88,28 +88,28 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
             text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
             text_lines.append({})
             text_lines.append({"text": "literals", "align": "center", "style": "italic"})
-            for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples():
+            for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == o.Object_ID].itertuples():
                 text_lines.append({"text": f"{attr.Name}", "align": "left"})
         elif obj.Stereotype == "CIMDatatype":
             text_lines.append({"text": f"<<{obj.Stereotype}>>", "align": "center"})
             text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
             if object_style.get("AttPub", "1") == "1":
                 text_lines.append({})
-                for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples():
+                for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == o.Object_ID].itertuples():
                     text_lines.append({"text": f"+   {attr.Name}: {attr.Type}", "align": "left"})
         else:
             gen_obj_id = None
-            for c in core_data.connectors[(core_data.connectors["Start_Object_ID"] == o.Object_ID) & (core_data.connectors["Connector_Type"] == "Generalization")].itertuples():
+            for c in uml_data.connectors[(uml_data.connectors["Start_Object_ID"] == o.Object_ID) & (uml_data.connectors["Connector_Type"] == "Generalization")].itertuples():
                 gen_obj_id = c.End_Object_ID
                 break
 
             if (gen_obj_id is not None) and (gen_obj_id not in objs_in_diagram):
-                text_lines.append({"text": f"{core_data.objects.loc[gen_obj_id].Name}", "align": "right", "style": "italic"})
+                text_lines.append({"text": f"{uml_data.objects.loc[gen_obj_id].Name}", "align": "right", "style": "italic"})
 
             text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
             if object_style.get("AttPub", "1") == "1":
                 text_lines.append({})
-                for attr in core_data.attributes[core_data.attributes["Object_ID"] == o.Object_ID].itertuples():
+                for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == o.Object_ID].itertuples():
                     text_lines.append({"text": f"+   {attr.Name}: {attr.Type}", "align": "left"})
 
         box_color = int(object_style.get("BCol", "-1"))
@@ -135,13 +135,13 @@ def create_svg_data(core_data, diagram_data, diagram_id: int):
     svg_data["nodes"] = boxes_data
 
     links_data = []
-    for l in diagram_data.links[diagram_data.links["DiagramID"] == diagram_id].itertuples():
+    for l in uml_data.diagramlinks[uml_data.diagramlinks["DiagramID"] == diagram_id].itertuples():
         if l.Hidden:
             continue
 
         link_style = parse_link_style(str(l.Geometry))
 
-        connector = core_data.connectors.loc[l.ConnectorID]
+        connector = uml_data.connectors.loc[l.ConnectorID]
         if connector.Start_Object_ID not in nodes or connector.End_Object_ID not in nodes:
             continue
 
@@ -201,21 +201,21 @@ def save_svg(uml_data, filename):
     svg_content = create_svg(uml_data)
 
 
-def save_uml_diagram_from_package_and_diagram_name(core_data, diagram_data, package_name, diagram_name, svg_dir_path):
-    pkg_id = core_data.packages[core_data.packages["Name"] == package_name].iloc[0]._name
-    diagram_id = diagram_data.diagrams[(diagram_data.diagrams["Package_ID"] == pkg_id) & (diagram_data.diagrams["Name"] == diagram_name)].iloc[0]._name
-    svg_data = create_svg_data(core_data, diagram_data, diagram_id)
+def save_uml_diagram_from_package_and_diagram_name(uml_data, package_name, diagram_name, svg_dir_path):
+    pkg_id = uml_data.packages[uml_data.packages["Name"] == package_name].iloc[0]._name
+    diagram_id = uml_data.diagrams[(uml_data.diagrams["Package_ID"] == pkg_id) & (uml_data.diagrams["Name"] == diagram_name)].iloc[0]._name
+    svg_data = create_svg_data(uml_data, diagram_id)
     path = os.path.join(svg_dir_path, f"{str(package_name)}.{str(diagram_name)}.svg")
     save_svg(svg_data, path)
 
     return path
 
 
-def save_uml_diagrams_from_package_name(core_data, diagram_data, package_name, svg_dir_path):
+def save_uml_diagrams_from_package_name(uml_data, package_name, svg_dir_path):
     paths = []
-    pkg_id = core_data.packages[core_data.packages["Name"] == package_name].iloc[0]._name
-    for diagram in diagram_data.diagrams[diagram_data.diagrams["Package_ID"] == pkg_id].itertuples():
-        svg_data = create_svg_data(core_data, diagram_data, diagram.Index)
+    pkg_id = uml_data.packages[uml_data.packages["Name"] == package_name].iloc[0]._name
+    for diagram in uml_data.diagrams[uml_data.diagrams["Package_ID"] == pkg_id].itertuples():
+        svg_data = create_svg_data(uml_data, diagram.Index)
         path = os.path.join(svg_dir_path, f"{str(package_name)}.{str(diagram.Name)}.svg")
         save_svg(svg_data, path)
         paths.append(path)
@@ -223,11 +223,11 @@ def save_uml_diagrams_from_package_name(core_data, diagram_data, package_name, s
     return paths
 
 
-def save_uml_diagrams_from_package_id(core_data, diagram_data, package_id, svg_dir_path):
+def save_uml_diagrams_from_package_id(uml_data, package_id, svg_dir_path):
     paths = []
-    package_name = str(core_data.packages.loc[package_id].Name).strip()
-    for diagram in diagram_data.diagrams[diagram_data.diagrams["Package_ID"] == package_id].itertuples():
-        svg_data = create_svg_data(core_data, diagram_data, diagram.Index)
+    package_name = str(uml_data.packages.loc[package_id].Name).strip()
+    for diagram in uml_data.diagrams[uml_data.diagrams["Package_ID"] == package_id].itertuples():
+        svg_data = create_svg_data(uml_data, diagram.Index)
         path = os.path.join(svg_dir_path, f"{str(package_name)}.{str(diagram.Name)}.svg")
         save_svg(svg_data, path)
         paths.append(path)
@@ -235,12 +235,12 @@ def save_uml_diagrams_from_package_id(core_data, diagram_data, package_id, svg_d
     return paths
 
 
-def save_all_uml_diagrams(core_data, diagram_data, svg_dir_path):
+def save_all_uml_diagrams(uml_data, svg_dir_path):
     paths = []
-    for diagram in diagram_data.diagrams[diagram_data.diagrams["Diagram_Type"] == "Logical"].itertuples():
-        package_name = str(core_data.packages.loc[diagram.Package_ID].Name).strip()
+    for diagram in uml_data.diagrams[uml_data.diagrams["Diagram_Type"] == "Logical"].itertuples():
+        package_name = str(uml_data.packages.loc[diagram.Package_ID].Name).strip()
         try:
-            svg_data = create_svg_data(core_data, diagram_data, diagram.Index)
+            svg_data = create_svg_data(uml_data, diagram.Index)
             path = os.path.join(svg_dir_path, f"{str(package_name)}.{str(diagram.Name)}.svg")
             save_svg(svg_data, path)
             paths.append(path)
@@ -255,21 +255,20 @@ def save_all_uml_diagrams(core_data, diagram_data, svg_dir_path):
 if __name__ == "__main__":
     __file__ = os.path.join(os.getcwd(), "ravens/uml/d3.py")
 
-    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.eap"
+    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi"
 
-    core_data = parse_eap_data(db_filename, set_index=True)
-    diagram_data = parse_eap_diagrams(db_filename, set_index=True)
+    uml_data = parse_uml_data(db_filename, set_index=True)
 
-    svg_data = create_svg_data(core_data, diagram_data, 11103)
+    svg_data = create_svg_data(uml_data, 11103)
 
     create_svg(svg_data)
 
     save_svg(svg_data, "test.svg")
 
-    save_uml_diagram_from_package_and_diagram_name(core_data, diagram_data, "EconomicDesign", "ProposedAssetOptions", "out/uml_d3")
-    save_uml_diagram_from_package_and_diagram_name(core_data, diagram_data, "SimplifiedDiagrams", "Faults", "out/uml_d3")
+    save_uml_diagram_from_package_and_diagram_name(uml_data, "EconomicDesign", "ProposedAssetOptions", "out/uml_d3")
+    save_uml_diagram_from_package_and_diagram_name(uml_data, "SimplifiedDiagrams", "Faults", "out/uml_d3")
 
-    save_uml_diagrams_from_package_name(core_data, diagram_data, "EconomicDesign", "docs/source/_static/uml")
-    save_uml_diagrams_from_package_name(core_data, diagram_data, "SimplifiedDiagrams", "docs/source/_static/uml")
+    save_uml_diagrams_from_package_name(uml_data, "EconomicDesign", "docs/source/_static/uml")
+    save_uml_diagrams_from_package_name(uml_data, "SimplifiedDiagrams", "docs/source/_static/uml")
 
-    save_all_uml_diagrams(core_data, diagram_data, "docs/source/_static/uml")
+    save_all_uml_diagrams(uml_data, "docs/source/_static/uml")
