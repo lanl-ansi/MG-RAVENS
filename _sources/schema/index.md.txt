@@ -2,1515 +2,1515 @@
 
 ## Main Schema
 
-[Main Schema](../_static/schema/__main__.html)
+[Main Schema](../_static/schema/__main__.html){.external}
 
 ## Individual Schema
 
-[ACDCConverter](../_static/schema/ACDCConverter.html)
+[ACDCConverter](../_static/schema/ACDCConverter.html){.external}
 
-[ACLineSegment](../_static/schema/ACLineSegment.html)
+[ACLineSegment](../_static/schema/ACLineSegment.html){.external}
 
-[ACLineSegmentPhase](../_static/schema/ACLineSegmentPhase.html)
+[ACLineSegmentPhase](../_static/schema/ACLineSegmentPhase.html){.external}
 
-[ADSInstructionTypeCommitment](../_static/schema/ADSInstructionTypeCommitment.html)
+[ADSInstructionTypeCommitment](../_static/schema/ADSInstructionTypeCommitment.html){.external}
 
-[ADSInstructionTypeOOS](../_static/schema/ADSInstructionTypeOOS.html)
+[ADSInstructionTypeOOS](../_static/schema/ADSInstructionTypeOOS.html){.external}
 
-[ASTMStandard](../_static/schema/ASTMStandard.html)
+[ASTMStandard](../_static/schema/ASTMStandard.html){.external}
 
-[ASTMStandardEditionKind](../_static/schema/ASTMStandardEditionKind.html)
+[ASTMStandardEditionKind](../_static/schema/ASTMStandardEditionKind.html){.external}
 
-[ASTMStandardKind](../_static/schema/ASTMStandardKind.html)
+[ASTMStandardKind](../_static/schema/ASTMStandardKind.html){.external}
 
-[AcceptanceTest](../_static/schema/AcceptanceTest.html)
+[AcceptanceTest](../_static/schema/AcceptanceTest.html){.external}
 
-[AccountMovement](../_static/schema/AccountMovement.html)
+[AccountMovement](../_static/schema/AccountMovement.html){.external}
 
-[AccountingUnit](../_static/schema/AccountingUnit.html)
+[AccountingUnit](../_static/schema/AccountingUnit.html){.external}
 
-[AccumulationKind](../_static/schema/AccumulationKind.html)
+[AccumulationKind](../_static/schema/AccumulationKind.html){.external}
 
-[ActionType](../_static/schema/ActionType.html)
+[ActionType](../_static/schema/ActionType.html){.external}
 
-[ActivePower](../_static/schema/ActivePower.html)
+[ActivePower](../_static/schema/ActivePower.html){.external}
 
-[ActivePowerChangeRate](../_static/schema/ActivePowerChangeRate.html)
+[ActivePowerChangeRate](../_static/schema/ActivePowerChangeRate.html){.external}
 
-[ActivePowerLimit](../_static/schema/ActivePowerLimit.html)
+[ActivePowerLimit](../_static/schema/ActivePowerLimit.html){.external}
 
-[ActivePowerPerCurrentFlow](../_static/schema/ActivePowerPerCurrentFlow.html)
+[ActivePowerPerCurrentFlow](../_static/schema/ActivePowerPerCurrentFlow.html){.external}
 
-[ActivePowerPerFrequency](../_static/schema/ActivePowerPerFrequency.html)
+[ActivePowerPerFrequency](../_static/schema/ActivePowerPerFrequency.html){.external}
 
-[ActivityRecord](../_static/schema/ActivityRecord.html)
+[ActivityRecord](../_static/schema/ActivityRecord.html){.external}
 
-[AdderType](../_static/schema/AdderType.html)
+[AdderType](../_static/schema/AdderType.html){.external}
 
-[Admittance](../_static/schema/Admittance.html)
+[Admittance](../_static/schema/Admittance.html){.external}
 
-[AggregateKind](../_static/schema/AggregateKind.html)
+[AggregateKind](../_static/schema/AggregateKind.html){.external}
 
-[AlarmDisplayType](../_static/schema/AlarmDisplayType.html)
+[AlarmDisplayType](../_static/schema/AlarmDisplayType.html){.external}
 
-[AlgorithmObjectives](../_static/schema/AlgorithmObjectives.html)
+[AlgorithmObjectives](../_static/schema/AlgorithmObjectives.html){.external}
 
-[AlgorithmProperties](../_static/schema/AlgorithmProperties.html)
+[AlgorithmProperties](../_static/schema/AlgorithmProperties.html){.external}
 
-[AllocationEnergyTypeCode](../_static/schema/AllocationEnergyTypeCode.html)
+[AllocationEnergyTypeCode](../_static/schema/AllocationEnergyTypeCode.html){.external}
 
-[AmiBillingReadyKind](../_static/schema/AmiBillingReadyKind.html)
+[AmiBillingReadyKind](../_static/schema/AmiBillingReadyKind.html){.external}
 
-[AnalogLimitType](../_static/schema/AnalogLimitType.html)
+[AnalogLimitType](../_static/schema/AnalogLimitType.html){.external}
 
-[AnalogToDigitalLogicKind](../_static/schema/AnalogToDigitalLogicKind.html)
+[AnalogToDigitalLogicKind](../_static/schema/AnalogToDigitalLogicKind.html){.external}
 
-[AnalyticKind](../_static/schema/AnalyticKind.html)
+[AnalyticKind](../_static/schema/AnalyticKind.html){.external}
 
-[AnchorKind](../_static/schema/AnchorKind.html)
+[AnchorKind](../_static/schema/AnchorKind.html){.external}
 
-[AncillaryCommodityType](../_static/schema/AncillaryCommodityType.html)
+[AncillaryCommodityType](../_static/schema/AncillaryCommodityType.html){.external}
 
-[AngleDegrees](../_static/schema/AngleDegrees.html)
+[AngleDegrees](../_static/schema/AngleDegrees.html){.external}
 
-[AngleRadians](../_static/schema/AngleRadians.html)
+[AngleRadians](../_static/schema/AngleRadians.html){.external}
 
-[AnodeType](../_static/schema/AnodeType.html)
+[AnodeType](../_static/schema/AnodeType.html){.external}
 
-[ApnodeType](../_static/schema/ApnodeType.html)
+[ApnodeType](../_static/schema/ApnodeType.html){.external}
 
-[ApparentPower](../_static/schema/ApparentPower.html)
+[ApparentPower](../_static/schema/ApparentPower.html){.external}
 
-[ApparentPowerLimit](../_static/schema/ApparentPowerLimit.html)
+[ApparentPowerLimit](../_static/schema/ApparentPowerLimit.html){.external}
 
-[ApplicationSecurityKind](../_static/schema/ApplicationSecurityKind.html)
+[ApplicationSecurityKind](../_static/schema/ApplicationSecurityKind.html){.external}
 
-[Area](../_static/schema/Area.html)
+[Area](../_static/schema/Area.html){.external}
 
-[AreaControlMode](../_static/schema/AreaControlMode.html)
+[AreaControlMode](../_static/schema/AreaControlMode.html){.external}
 
-[AreaKind](../_static/schema/AreaKind.html)
+[AreaKind](../_static/schema/AreaKind.html){.external}
 
-[Asset](../_static/schema/Asset.html)
+[Asset](../_static/schema/Asset.html){.external}
 
-[AssetFailureClassification](../_static/schema/AssetFailureClassification.html)
+[AssetFailureClassification](../_static/schema/AssetFailureClassification.html){.external}
 
-[AssetFailureMode](../_static/schema/AssetFailureMode.html)
+[AssetFailureMode](../_static/schema/AssetFailureMode.html){.external}
 
-[AssetGroupKind](../_static/schema/AssetGroupKind.html)
+[AssetGroupKind](../_static/schema/AssetGroupKind.html){.external}
 
-[AssetHazardKind](../_static/schema/AssetHazardKind.html)
+[AssetHazardKind](../_static/schema/AssetHazardKind.html){.external}
 
-[AssetInfo](../_static/schema/AssetInfo.html)
+[AssetInfo](../_static/schema/AssetInfo.html){.external}
 
-[AssetKind](../_static/schema/AssetKind.html)
+[AssetKind](../_static/schema/AssetKind.html){.external}
 
-[AssetLifecycleStateKind](../_static/schema/AssetLifecycleStateKind.html)
+[AssetLifecycleStateKind](../_static/schema/AssetLifecycleStateKind.html){.external}
 
-[AssetModelUsageKind](../_static/schema/AssetModelUsageKind.html)
+[AssetModelUsageKind](../_static/schema/AssetModelUsageKind.html){.external}
 
-[AssetStringKind](../_static/schema/AssetStringKind.html)
+[AssetStringKind](../_static/schema/AssetStringKind.html){.external}
 
-[AssetTemperaturePressureAnalogKind](../_static/schema/AssetTemperaturePressureAnalogKind.html)
+[AssetTemperaturePressureAnalogKind](../_static/schema/AssetTemperaturePressureAnalogKind.html){.external}
 
-[AsynchronousMachine](../_static/schema/AsynchronousMachine.html)
+[AsynchronousMachine](../_static/schema/AsynchronousMachine.html){.external}
 
-[AsynchronousMachineKind](../_static/schema/AsynchronousMachineKind.html)
+[AsynchronousMachineKind](../_static/schema/AsynchronousMachineKind.html){.external}
 
-[AtmosphericAnalogKind](../_static/schema/AtmosphericAnalogKind.html)
+[AtmosphericAnalogKind](../_static/schema/AtmosphericAnalogKind.html){.external}
 
-[AtmosphericPhenomenon](../_static/schema/AtmosphericPhenomenon.html)
+[AtmosphericPhenomenon](../_static/schema/AtmosphericPhenomenon.html){.external}
 
-[AutomaticDispInstTypeCommitment](../_static/schema/AutomaticDispInstTypeCommitment.html)
+[AutomaticDispInstTypeCommitment](../_static/schema/AutomaticDispInstTypeCommitment.html){.external}
 
-[AutomaticDispatchMode](../_static/schema/AutomaticDispatchMode.html)
+[AutomaticDispatchMode](../_static/schema/AutomaticDispatchMode.html){.external}
 
-[BankAccountDetail](../_static/schema/BankAccountDetail.html)
+[BankAccountDetail](../_static/schema/BankAccountDetail.html){.external}
 
-[BaseVoltage](../_static/schema/BaseVoltage.html)
+[BaseVoltage](../_static/schema/BaseVoltage.html){.external}
 
-[BatteryResponseCharacteristic](../_static/schema/BatteryResponseCharacteristic.html)
+[BatteryResponseCharacteristic](../_static/schema/BatteryResponseCharacteristic.html){.external}
 
-[BatteryStateKind](../_static/schema/BatteryStateKind.html)
+[BatteryStateKind](../_static/schema/BatteryStateKind.html){.external}
 
-[BatteryUnit](../_static/schema/BatteryUnit.html)
+[BatteryUnit](../_static/schema/BatteryUnit.html){.external}
 
-[Bay](../_static/schema/Bay.html)
+[Bay](../_static/schema/Bay.html){.external}
 
-[Bearing](../_static/schema/Bearing.html)
+[Bearing](../_static/schema/Bearing.html){.external}
 
-[BidCalculationBasis](../_static/schema/BidCalculationBasis.html)
+[BidCalculationBasis](../_static/schema/BidCalculationBasis.html){.external}
 
-[BidMitigationStatus](../_static/schema/BidMitigationStatus.html)
+[BidMitigationStatus](../_static/schema/BidMitigationStatus.html){.external}
 
-[BidMitigationType](../_static/schema/BidMitigationType.html)
+[BidMitigationType](../_static/schema/BidMitigationType.html){.external}
 
-[BidPriceCapType](../_static/schema/BidPriceCapType.html)
+[BidPriceCapType](../_static/schema/BidPriceCapType.html){.external}
 
-[BidStatusType](../_static/schema/BidStatusType.html)
+[BidStatusType](../_static/schema/BidStatusType.html){.external}
 
-[BidType](../_static/schema/BidType.html)
+[BidType](../_static/schema/BidType.html){.external}
 
-[BidTypeRMR](../_static/schema/BidTypeRMR.html)
+[BidTypeRMR](../_static/schema/BidTypeRMR.html){.external}
 
-[BillMediaKind](../_static/schema/BillMediaKind.html)
+[BillMediaKind](../_static/schema/BillMediaKind.html){.external}
 
-[BoilerControlMode](../_static/schema/BoilerControlMode.html)
+[BoilerControlMode](../_static/schema/BoilerControlMode.html){.external}
 
-[Boolean](../_static/schema/Boolean.html)
+[Boolean](../_static/schema/Boolean.html){.external}
 
-[Breaker](../_static/schema/Breaker.html)
+[Breaker](../_static/schema/Breaker.html){.external}
 
-[BreakerApplicationKind](../_static/schema/BreakerApplicationKind.html)
+[BreakerApplicationKind](../_static/schema/BreakerApplicationKind.html){.external}
 
-[BreakerConfiguration](../_static/schema/BreakerConfiguration.html)
+[BreakerConfiguration](../_static/schema/BreakerConfiguration.html){.external}
 
-[BreakerFailureReasonKind](../_static/schema/BreakerFailureReasonKind.html)
+[BreakerFailureReasonKind](../_static/schema/BreakerFailureReasonKind.html){.external}
 
-[BreakerMaintenanceKind](../_static/schema/BreakerMaintenanceKind.html)
+[BreakerMaintenanceKind](../_static/schema/BreakerMaintenanceKind.html){.external}
 
-[BreakerRepairItemKind](../_static/schema/BreakerRepairItemKind.html)
+[BreakerRepairItemKind](../_static/schema/BreakerRepairItemKind.html){.external}
 
-[BusVoltageObjective](../_static/schema/BusVoltageObjective.html)
+[BusVoltageObjective](../_static/schema/BusVoltageObjective.html){.external}
 
-[BusVoltageObjectiveSense](../_static/schema/BusVoltageObjectiveSense.html)
+[BusVoltageObjectiveSense](../_static/schema/BusVoltageObjectiveSense.html){.external}
 
-[BusbarConfiguration](../_static/schema/BusbarConfiguration.html)
+[BusbarConfiguration](../_static/schema/BusbarConfiguration.html){.external}
 
-[BushingInsulationKind](../_static/schema/BushingInsulationKind.html)
+[BushingInsulationKind](../_static/schema/BushingInsulationKind.html){.external}
 
-[BushingInsulationPfTestKind](../_static/schema/BushingInsulationPfTestKind.html)
+[BushingInsulationPfTestKind](../_static/schema/BushingInsulationPfTestKind.html){.external}
 
-[CIGREStandard](../_static/schema/CIGREStandard.html)
+[CIGREStandard](../_static/schema/CIGREStandard.html){.external}
 
-[CIGREStandardEditionKind](../_static/schema/CIGREStandardEditionKind.html)
+[CIGREStandardEditionKind](../_static/schema/CIGREStandardEditionKind.html){.external}
 
-[CIGREStandardKind](../_static/schema/CIGREStandardKind.html)
+[CIGREStandardKind](../_static/schema/CIGREStandardKind.html){.external}
 
-[CRRCategoryType](../_static/schema/CRRCategoryType.html)
+[CRRCategoryType](../_static/schema/CRRCategoryType.html){.external}
 
-[CRRHedgeType](../_static/schema/CRRHedgeType.html)
+[CRRHedgeType](../_static/schema/CRRHedgeType.html){.external}
 
-[CRRRoleType](../_static/schema/CRRRoleType.html)
+[CRRRoleType](../_static/schema/CRRRoleType.html){.external}
 
-[CRRSegmentType](../_static/schema/CRRSegmentType.html)
+[CRRSegmentType](../_static/schema/CRRSegmentType.html){.external}
 
-[CableConstructionKind](../_static/schema/CableConstructionKind.html)
+[CableConstructionKind](../_static/schema/CableConstructionKind.html){.external}
 
-[CableInfo](../_static/schema/CableInfo.html)
+[CableInfo](../_static/schema/CableInfo.html){.external}
 
-[CableOuterJacketKind](../_static/schema/CableOuterJacketKind.html)
+[CableOuterJacketKind](../_static/schema/CableOuterJacketKind.html){.external}
 
-[CableShieldMaterialKind](../_static/schema/CableShieldMaterialKind.html)
+[CableShieldMaterialKind](../_static/schema/CableShieldMaterialKind.html){.external}
 
-[CalculationIntervalUnitKind](../_static/schema/CalculationIntervalUnitKind.html)
+[CalculationIntervalUnitKind](../_static/schema/CalculationIntervalUnitKind.html){.external}
 
-[CalculationKind](../_static/schema/CalculationKind.html)
+[CalculationKind](../_static/schema/CalculationKind.html){.external}
 
-[CalculationModeKind](../_static/schema/CalculationModeKind.html)
+[CalculationModeKind](../_static/schema/CalculationModeKind.html){.external}
 
-[CalculationTechniqueKind](../_static/schema/CalculationTechniqueKind.html)
+[CalculationTechniqueKind](../_static/schema/CalculationTechniqueKind.html){.external}
 
-[Capacitance](../_static/schema/Capacitance.html)
+[Capacitance](../_static/schema/Capacitance.html){.external}
 
-[CapacitancePerLength](../_static/schema/CapacitancePerLength.html)
+[CapacitancePerLength](../_static/schema/CapacitancePerLength.html){.external}
 
-[CapacityPrices](../_static/schema/CapacityPrices.html)
+[CapacityPrices](../_static/schema/CapacityPrices.html){.external}
 
-[ChargeKind](../_static/schema/ChargeKind.html)
+[ChargeKind](../_static/schema/ChargeKind.html){.external}
 
-[CheckOutType](../_static/schema/CheckOutType.html)
+[CheckOutType](../_static/schema/CheckOutType.html){.external}
 
-[ChequeKind](../_static/schema/ChequeKind.html)
+[ChequeKind](../_static/schema/ChequeKind.html){.external}
 
-[Clamp](../_static/schema/Clamp.html)
+[Clamp](../_static/schema/Clamp.html){.external}
 
-[ClampAction](../_static/schema/ClampAction.html)
+[ClampAction](../_static/schema/ClampAction.html){.external}
 
-[Classification](../_static/schema/Classification.html)
+[Classification](../_static/schema/Classification.html){.external}
 
-[CleanTradeProductType](../_static/schema/CleanTradeProductType.html)
+[CleanTradeProductType](../_static/schema/CleanTradeProductType.html){.external}
 
-[ClearanceAction](../_static/schema/ClearanceAction.html)
+[ClearanceAction](../_static/schema/ClearanceAction.html){.external}
 
-[ClearanceActionKind](../_static/schema/ClearanceActionKind.html)
+[ClearanceActionKind](../_static/schema/ClearanceActionKind.html){.external}
 
-[CloudKind](../_static/schema/CloudKind.html)
+[CloudKind](../_static/schema/CloudKind.html){.external}
 
-[ComDirectionKind](../_static/schema/ComDirectionKind.html)
+[ComDirectionKind](../_static/schema/ComDirectionKind.html){.external}
 
-[ComTechnologyKind](../_static/schema/ComTechnologyKind.html)
+[ComTechnologyKind](../_static/schema/ComTechnologyKind.html){.external}
 
-[CommitmentType](../_static/schema/CommitmentType.html)
+[CommitmentType](../_static/schema/CommitmentType.html){.external}
 
-[CommodityKind](../_static/schema/CommodityKind.html)
+[CommodityKind](../_static/schema/CommodityKind.html){.external}
 
-[CommunityFacility](../_static/schema/CommunityFacility.html)
+[CommunityFacility](../_static/schema/CommunityFacility.html){.external}
 
-[CompositeSwitchKind](../_static/schema/CompositeSwitchKind.html)
+[CompositeSwitchKind](../_static/schema/CompositeSwitchKind.html){.external}
 
-[ConcentricNeutralCableInfo](../_static/schema/ConcentricNeutralCableInfo.html)
+[ConcentricNeutralCableInfo](../_static/schema/ConcentricNeutralCableInfo.html){.external}
 
-[ConditionFactorKind](../_static/schema/ConditionFactorKind.html)
+[ConditionFactorKind](../_static/schema/ConditionFactorKind.html){.external}
 
-[Conductance](../_static/schema/Conductance.html)
+[Conductance](../_static/schema/Conductance.html){.external}
 
-[ConductancePerLength](../_static/schema/ConductancePerLength.html)
+[ConductancePerLength](../_static/schema/ConductancePerLength.html){.external}
 
-[ConductingEquipment](../_static/schema/ConductingEquipment.html)
+[ConductingEquipment](../_static/schema/ConductingEquipment.html){.external}
 
-[Conductor](../_static/schema/Conductor.html)
+[Conductor](../_static/schema/Conductor.html){.external}
 
-[ConductorType](../_static/schema/ConductorType.html)
+[ConductorType](../_static/schema/ConductorType.html){.external}
 
-[ConformLoad](../_static/schema/ConformLoad.html)
+[ConformLoad](../_static/schema/ConformLoad.html){.external}
 
-[ConformLoadGroup](../_static/schema/ConformLoadGroup.html)
+[ConformLoadGroup](../_static/schema/ConformLoadGroup.html){.external}
 
-[ConformLoadSchedule](../_static/schema/ConformLoadSchedule.html)
+[ConformLoadSchedule](../_static/schema/ConformLoadSchedule.html){.external}
 
-[ConnectivityNode](../_static/schema/ConnectivityNode.html)
+[ConnectivityNode](../_static/schema/ConnectivityNode.html){.external}
 
-[Connector](../_static/schema/Connector.html)
+[Connector](../_static/schema/Connector.html){.external}
 
-[ConstraintLimitType](../_static/schema/ConstraintLimitType.html)
+[ConstraintLimitType](../_static/schema/ConstraintLimitType.html){.external}
 
-[ConstraintRampType](../_static/schema/ConstraintRampType.html)
+[ConstraintRampType](../_static/schema/ConstraintRampType.html){.external}
 
-[ContingencyEquipmentStatusKind](../_static/schema/ContingencyEquipmentStatusKind.html)
+[ContingencyEquipmentStatusKind](../_static/schema/ContingencyEquipmentStatusKind.html){.external}
 
-[ContractType](../_static/schema/ContractType.html)
+[ContractType](../_static/schema/ContractType.html){.external}
 
-[ControlAction](../_static/schema/ControlAction.html)
+[ControlAction](../_static/schema/ControlAction.html){.external}
 
-[ControlAreaTypeKind](../_static/schema/ControlAreaTypeKind.html)
+[ControlAreaTypeKind](../_static/schema/ControlAreaTypeKind.html){.external}
 
-[ControlledAppliance](../_static/schema/ControlledAppliance.html)
+[ControlledAppliance](../_static/schema/ControlledAppliance.html){.external}
 
-[CoolantType](../_static/schema/CoolantType.html)
+[CoolantType](../_static/schema/CoolantType.html){.external}
 
-[CoolingKind](../_static/schema/CoolingKind.html)
+[CoolingKind](../_static/schema/CoolingKind.html){.external}
 
-[CoordinateSystem](../_static/schema/CoordinateSystem.html)
+[CoordinateSystem](../_static/schema/CoordinateSystem.html){.external}
 
-[CorporateStandardKind](../_static/schema/CorporateStandardKind.html)
+[CorporateStandardKind](../_static/schema/CorporateStandardKind.html){.external}
 
-[CostBasis](../_static/schema/CostBasis.html)
+[CostBasis](../_static/schema/CostBasis.html){.external}
 
-[CostPerEnergyUnit](../_static/schema/CostPerEnergyUnit.html)
+[CostPerEnergyUnit](../_static/schema/CostPerEnergyUnit.html){.external}
 
-[CostPerHeatUnit](../_static/schema/CostPerHeatUnit.html)
+[CostPerHeatUnit](../_static/schema/CostPerHeatUnit.html){.external}
 
-[CostPerKiloActivePower](../_static/schema/CostPerKiloActivePower.html)
+[CostPerKiloActivePower](../_static/schema/CostPerKiloActivePower.html){.external}
 
-[CostPerUnitLength](../_static/schema/CostPerUnitLength.html)
+[CostPerUnitLength](../_static/schema/CostPerUnitLength.html){.external}
 
-[CostPerVolume](../_static/schema/CostPerVolume.html)
+[CostPerVolume](../_static/schema/CostPerVolume.html){.external}
 
-[CostRate](../_static/schema/CostRate.html)
+[CostRate](../_static/schema/CostRate.html){.external}
 
-[CoverageCodeKind](../_static/schema/CoverageCodeKind.html)
+[CoverageCodeKind](../_static/schema/CoverageCodeKind.html){.external}
 
-[CrewStatusKind](../_static/schema/CrewStatusKind.html)
+[CrewStatusKind](../_static/schema/CrewStatusKind.html){.external}
 
-[CsConverter](../_static/schema/CsConverter.html)
+[CsConverter](../_static/schema/CsConverter.html){.external}
 
-[CsOperatingModeKind](../_static/schema/CsOperatingModeKind.html)
+[CsOperatingModeKind](../_static/schema/CsOperatingModeKind.html){.external}
 
-[CsPpccControlKind](../_static/schema/CsPpccControlKind.html)
+[CsPpccControlKind](../_static/schema/CsPpccControlKind.html){.external}
 
-[Currency](../_static/schema/Currency.html)
+[Currency](../_static/schema/Currency.html){.external}
 
-[CurrentFlow](../_static/schema/CurrentFlow.html)
+[CurrentFlow](../_static/schema/CurrentFlow.html){.external}
 
-[CurrentLimit](../_static/schema/CurrentLimit.html)
+[CurrentLimit](../_static/schema/CurrentLimit.html){.external}
 
-[CurrentStatusSC](../_static/schema/CurrentStatusSC.html)
+[CurrentStatusSC](../_static/schema/CurrentStatusSC.html){.external}
 
-[Curve](../_static/schema/Curve.html)
+[Curve](../_static/schema/Curve.html){.external}
 
-[CurveData](../_static/schema/CurveData.html)
+[CurveData](../_static/schema/CurveData.html){.external}
 
-[CurveStyle](../_static/schema/CurveStyle.html)
+[CurveStyle](../_static/schema/CurveStyle.html){.external}
 
-[CustomerBillingKind](../_static/schema/CustomerBillingKind.html)
+[CustomerBillingKind](../_static/schema/CustomerBillingKind.html){.external}
 
-[CustomerKind](../_static/schema/CustomerKind.html)
+[CustomerKind](../_static/schema/CustomerKind.html){.external}
 
-[Cut](../_static/schema/Cut.html)
+[Cut](../_static/schema/Cut.html){.external}
 
-[CutAction](../_static/schema/CutAction.html)
+[CutAction](../_static/schema/CutAction.html){.external}
 
-[DAMMarketType](../_static/schema/DAMMarketType.html)
+[DAMMarketType](../_static/schema/DAMMarketType.html){.external}
 
-[DCConverterOperatingModeKind](../_static/schema/DCConverterOperatingModeKind.html)
+[DCConverterOperatingModeKind](../_static/schema/DCConverterOperatingModeKind.html){.external}
 
-[DCEquipmentContainer](../_static/schema/DCEquipmentContainer.html)
+[DCEquipmentContainer](../_static/schema/DCEquipmentContainer.html){.external}
 
-[DCPolarityKind](../_static/schema/DCPolarityKind.html)
+[DCPolarityKind](../_static/schema/DCPolarityKind.html){.external}
 
-[DERParameterKind](../_static/schema/DERParameterKind.html)
+[DERParameterKind](../_static/schema/DERParameterKind.html){.external}
 
-[DERUnitSymbol](../_static/schema/DERUnitSymbol.html)
+[DERUnitSymbol](../_static/schema/DERUnitSymbol.html){.external}
 
-[DINStandard](../_static/schema/DINStandard.html)
+[DINStandard](../_static/schema/DINStandard.html){.external}
 
-[DINStandardEditionKind](../_static/schema/DINStandardEditionKind.html)
+[DINStandardEditionKind](../_static/schema/DINStandardEditionKind.html){.external}
 
-[DINStandardKind](../_static/schema/DINStandardKind.html)
+[DINStandardKind](../_static/schema/DINStandardKind.html){.external}
 
-[Damping](../_static/schema/Damping.html)
+[Damping](../_static/schema/Damping.html){.external}
 
-[Date](../_static/schema/Date.html)
+[Date](../_static/schema/Date.html){.external}
 
-[DateInterval](../_static/schema/DateInterval.html)
+[DateInterval](../_static/schema/DateInterval.html){.external}
 
-[DateTime](../_static/schema/DateTime.html)
+[DateTime](../_static/schema/DateTime.html){.external}
 
-[DateTimeInterval](../_static/schema/DateTimeInterval.html)
+[DateTimeInterval](../_static/schema/DateTimeInterval.html){.external}
 
-[Decimal](../_static/schema/Decimal.html)
+[Decimal](../_static/schema/Decimal.html){.external}
 
-[DecimalQuantity](../_static/schema/DecimalQuantity.html)
+[DecimalQuantity](../_static/schema/DecimalQuantity.html){.external}
 
-[DemographicKind](../_static/schema/DemographicKind.html)
+[DemographicKind](../_static/schema/DemographicKind.html){.external}
 
-[DependencyKind](../_static/schema/DependencyKind.html)
+[DependencyKind](../_static/schema/DependencyKind.html){.external}
 
-[DeploymentDate](../_static/schema/DeploymentDate.html)
+[DeploymentDate](../_static/schema/DeploymentDate.html){.external}
 
-[DeploymentStateKind](../_static/schema/DeploymentStateKind.html)
+[DeploymentStateKind](../_static/schema/DeploymentStateKind.html){.external}
 
-[DesignAlgorithmProperties](../_static/schema/DesignAlgorithmProperties.html)
+[DesignAlgorithmProperties](../_static/schema/DesignAlgorithmProperties.html){.external}
 
-[DesignKind](../_static/schema/DesignKind.html)
+[DesignKind](../_static/schema/DesignKind.html){.external}
 
-[DispatchAcceptStatus](../_static/schema/DispatchAcceptStatus.html)
+[DispatchAcceptStatus](../_static/schema/DispatchAcceptStatus.html){.external}
 
-[DispatchResponseType](../_static/schema/DispatchResponseType.html)
+[DispatchResponseType](../_static/schema/DispatchResponseType.html){.external}
 
-[DispatchTransactionType](../_static/schema/DispatchTransactionType.html)
+[DispatchTransactionType](../_static/schema/DispatchTransactionType.html){.external}
 
-[Displacement](../_static/schema/Displacement.html)
+[Displacement](../_static/schema/Displacement.html){.external}
 
-[DobleStandard](../_static/schema/DobleStandard.html)
+[DobleStandard](../_static/schema/DobleStandard.html){.external}
 
-[DobleStandardEditionKind](../_static/schema/DobleStandardEditionKind.html)
+[DobleStandardEditionKind](../_static/schema/DobleStandardEditionKind.html){.external}
 
-[DobleStandardKind](../_static/schema/DobleStandardKind.html)
+[DobleStandardKind](../_static/schema/DobleStandardKind.html){.external}
 
-[Document](../_static/schema/Document.html)
+[Document](../_static/schema/Document.html){.external}
 
-[DroopSignalFeedbackKind](../_static/schema/DroopSignalFeedbackKind.html)
+[DroopSignalFeedbackKind](../_static/schema/DroopSignalFeedbackKind.html){.external}
 
-[Due](../_static/schema/Due.html)
+[Due](../_static/schema/Due.html){.external}
 
-[Duration](../_static/schema/Duration.html)
+[Duration](../_static/schema/Duration.html){.external}
 
-[DynamicsFunctionBlock](../_static/schema/DynamicsFunctionBlock.html)
+[DynamicsFunctionBlock](../_static/schema/DynamicsFunctionBlock.html){.external}
 
-[EPAStandard](../_static/schema/EPAStandard.html)
+[EPAStandard](../_static/schema/EPAStandard.html){.external}
 
-[EPAStandardEditionKind](../_static/schema/EPAStandardEditionKind.html)
+[EPAStandardEditionKind](../_static/schema/EPAStandardEditionKind.html){.external}
 
-[EPAStandardKind](../_static/schema/EPAStandardKind.html)
+[EPAStandardKind](../_static/schema/EPAStandardKind.html){.external}
 
-[ERTConfidenceKind](../_static/schema/ERTConfidenceKind.html)
+[ERTConfidenceKind](../_static/schema/ERTConfidenceKind.html){.external}
 
-[EarthFaultCompensator](../_static/schema/EarthFaultCompensator.html)
+[EarthFaultCompensator](../_static/schema/EarthFaultCompensator.html){.external}
 
-[EconomicProperty](../_static/schema/EconomicProperty.html)
+[EconomicProperty](../_static/schema/EconomicProperty.html){.external}
 
-[ElectronicAddress](../_static/schema/ElectronicAddress.html)
+[ElectronicAddress](../_static/schema/ElectronicAddress.html){.external}
 
-[Emission](../_static/schema/Emission.html)
+[Emission](../_static/schema/Emission.html){.external}
 
-[EmissionCurve](../_static/schema/EmissionCurve.html)
+[EmissionCurve](../_static/schema/EmissionCurve.html){.external}
 
-[EmissionType](../_static/schema/EmissionType.html)
+[EmissionType](../_static/schema/EmissionType.html){.external}
 
-[EmissionValueSource](../_static/schema/EmissionValueSource.html)
+[EmissionValueSource](../_static/schema/EmissionValueSource.html){.external}
 
-[EndDeviceCapability](../_static/schema/EndDeviceCapability.html)
+[EndDeviceCapability](../_static/schema/EndDeviceCapability.html){.external}
 
-[EndDeviceFunctionKind](../_static/schema/EndDeviceFunctionKind.html)
+[EndDeviceFunctionKind](../_static/schema/EndDeviceFunctionKind.html){.external}
 
-[EndDeviceTiming](../_static/schema/EndDeviceTiming.html)
+[EndDeviceTiming](../_static/schema/EndDeviceTiming.html){.external}
 
-[EnergyArea](../_static/schema/EnergyArea.html)
+[EnergyArea](../_static/schema/EnergyArea.html){.external}
 
-[EnergyConnection](../_static/schema/EnergyConnection.html)
+[EnergyConnection](../_static/schema/EnergyConnection.html){.external}
 
-[EnergyConsumer](../_static/schema/EnergyConsumer.html)
+[EnergyConsumer](../_static/schema/EnergyConsumer.html){.external}
 
-[EnergyConsumerAction](../_static/schema/EnergyConsumerAction.html)
+[EnergyConsumerAction](../_static/schema/EnergyConsumerAction.html){.external}
 
-[EnergyConsumerPhase](../_static/schema/EnergyConsumerPhase.html)
+[EnergyConsumerPhase](../_static/schema/EnergyConsumerPhase.html){.external}
 
-[EnergyPriceIndexType](../_static/schema/EnergyPriceIndexType.html)
+[EnergyPriceIndexType](../_static/schema/EnergyPriceIndexType.html){.external}
 
-[EnergyPrices](../_static/schema/EnergyPrices.html)
+[EnergyPrices](../_static/schema/EnergyPrices.html){.external}
 
-[EnergyProductType](../_static/schema/EnergyProductType.html)
+[EnergyProductType](../_static/schema/EnergyProductType.html){.external}
 
-[EnergySource](../_static/schema/EnergySource.html)
+[EnergySource](../_static/schema/EnergySource.html){.external}
 
-[EnergySourceAction](../_static/schema/EnergySourceAction.html)
+[EnergySourceAction](../_static/schema/EnergySourceAction.html){.external}
 
-[EnergySourcePhase](../_static/schema/EnergySourcePhase.html)
+[EnergySourcePhase](../_static/schema/EnergySourcePhase.html){.external}
 
-[EnergyTransactionType](../_static/schema/EnergyTransactionType.html)
+[EnergyTransactionType](../_static/schema/EnergyTransactionType.html){.external}
 
-[EnergyTypeCode](../_static/schema/EnergyTypeCode.html)
+[EnergyTypeCode](../_static/schema/EnergyTypeCode.html){.external}
 
-[EnergyTypeKind](../_static/schema/EnergyTypeKind.html)
+[EnergyTypeKind](../_static/schema/EnergyTypeKind.html){.external}
 
-[EnvironmentalDiscreteKind](../_static/schema/EnvironmentalDiscreteKind.html)
+[EnvironmentalDiscreteKind](../_static/schema/EnvironmentalDiscreteKind.html){.external}
 
-[EnvironmentalEvent](../_static/schema/EnvironmentalEvent.html)
+[EnvironmentalEvent](../_static/schema/EnvironmentalEvent.html){.external}
 
-[EnvironmentalInformation](../_static/schema/EnvironmentalInformation.html)
+[EnvironmentalInformation](../_static/schema/EnvironmentalInformation.html){.external}
 
-[EnvironmentalPhenomenon](../_static/schema/EnvironmentalPhenomenon.html)
+[EnvironmentalPhenomenon](../_static/schema/EnvironmentalPhenomenon.html){.external}
 
-[Equipment](../_static/schema/Equipment.html)
+[Equipment](../_static/schema/Equipment.html){.external}
 
-[EquipmentContainer](../_static/schema/EquipmentContainer.html)
+[EquipmentContainer](../_static/schema/EquipmentContainer.html){.external}
 
-[EquipmentFault](../_static/schema/EquipmentFault.html)
+[EquipmentFault](../_static/schema/EquipmentFault.html){.external}
 
-[EquipmentStatusType](../_static/schema/EquipmentStatusType.html)
+[EquipmentStatusType](../_static/schema/EquipmentStatusType.html){.external}
 
-[EquivalentBranch](../_static/schema/EquivalentBranch.html)
+[EquivalentBranch](../_static/schema/EquivalentBranch.html){.external}
 
-[EquivalentEquipment](../_static/schema/EquivalentEquipment.html)
+[EquivalentEquipment](../_static/schema/EquivalentEquipment.html){.external}
 
-[EquivalentInjection](../_static/schema/EquivalentInjection.html)
+[EquivalentInjection](../_static/schema/EquivalentInjection.html){.external}
 
-[EquivalentShunt](../_static/schema/EquivalentShunt.html)
+[EquivalentShunt](../_static/schema/EquivalentShunt.html){.external}
 
-[ErpAccountKind](../_static/schema/ErpAccountKind.html)
+[ErpAccountKind](../_static/schema/ErpAccountKind.html){.external}
 
-[ErpInvoiceKind](../_static/schema/ErpInvoiceKind.html)
+[ErpInvoiceKind](../_static/schema/ErpInvoiceKind.html){.external}
 
-[ErpInvoiceLineItemKind](../_static/schema/ErpInvoiceLineItemKind.html)
+[ErpInvoiceLineItemKind](../_static/schema/ErpInvoiceLineItemKind.html){.external}
 
-[ExcIEEEST1AUELselectorKind](../_static/schema/ExcIEEEST1AUELselectorKind.html)
+[ExcIEEEST1AUELselectorKind](../_static/schema/ExcIEEEST1AUELselectorKind.html){.external}
 
-[ExcREXSFeedbackSignalKind](../_static/schema/ExcREXSFeedbackSignalKind.html)
+[ExcREXSFeedbackSignalKind](../_static/schema/ExcREXSFeedbackSignalKind.html){.external}
 
-[ExcST6BOELselectorKind](../_static/schema/ExcST6BOELselectorKind.html)
+[ExcST6BOELselectorKind](../_static/schema/ExcST6BOELselectorKind.html){.external}
 
-[ExcST7BOELselectorKind](../_static/schema/ExcST7BOELselectorKind.html)
+[ExcST7BOELselectorKind](../_static/schema/ExcST7BOELselectorKind.html){.external}
 
-[ExcST7BUELselectorKind](../_static/schema/ExcST7BUELselectorKind.html)
+[ExcST7BUELselectorKind](../_static/schema/ExcST7BUELselectorKind.html){.external}
 
-[ExecutionType](../_static/schema/ExecutionType.html)
+[ExecutionType](../_static/schema/ExecutionType.html){.external}
 
-[ExtensionItem](../_static/schema/ExtensionItem.html)
+[ExtensionItem](../_static/schema/ExtensionItem.html){.external}
 
-[ExtensionsList](../_static/schema/ExtensionsList.html)
+[ExtensionsList](../_static/schema/ExtensionsList.html){.external}
 
-[ExternalNetworkInjection](../_static/schema/ExternalNetworkInjection.html)
+[ExternalNetworkInjection](../_static/schema/ExternalNetworkInjection.html){.external}
 
-[FACTSDeviceKind](../_static/schema/FACTSDeviceKind.html)
+[FACTSDeviceKind](../_static/schema/FACTSDeviceKind.html){.external}
 
-[FScale](../_static/schema/FScale.html)
+[FScale](../_static/schema/FScale.html){.external}
 
-[FacilityCategory](../_static/schema/FacilityCategory.html)
+[FacilityCategory](../_static/schema/FacilityCategory.html){.external}
 
-[FacilityKind](../_static/schema/FacilityKind.html)
+[FacilityKind](../_static/schema/FacilityKind.html){.external}
 
-[FacilityService](../_static/schema/FacilityService.html)
+[FacilityService](../_static/schema/FacilityService.html){.external}
 
-[FacilityServiceLevel](../_static/schema/FacilityServiceLevel.html)
+[FacilityServiceLevel](../_static/schema/FacilityServiceLevel.html){.external}
 
-[FacilityServiceType](../_static/schema/FacilityServiceType.html)
+[FacilityServiceType](../_static/schema/FacilityServiceType.html){.external}
 
-[FailureIsolationMethodKind](../_static/schema/FailureIsolationMethodKind.html)
+[FailureIsolationMethodKind](../_static/schema/FailureIsolationMethodKind.html){.external}
 
-[Fault](../_static/schema/Fault.html)
+[Fault](../_static/schema/Fault.html){.external}
 
-[FaultImpedance](../_static/schema/FaultImpedance.html)
+[FaultImpedance](../_static/schema/FaultImpedance.html){.external}
 
-[FaultIndicatorResetKind](../_static/schema/FaultIndicatorResetKind.html)
+[FaultIndicatorResetKind](../_static/schema/FaultIndicatorResetKind.html){.external}
 
-[Feeder](../_static/schema/Feeder.html)
+[Feeder](../_static/schema/Feeder.html){.external}
 
-[FlagTypeRMR](../_static/schema/FlagTypeRMR.html)
+[FlagTypeRMR](../_static/schema/FlagTypeRMR.html){.external}
 
-[Float](../_static/schema/Float.html)
+[Float](../_static/schema/Float.html){.external}
 
-[FloatQuantity](../_static/schema/FloatQuantity.html)
+[FloatQuantity](../_static/schema/FloatQuantity.html){.external}
 
-[FlowDirectionKind](../_static/schema/FlowDirectionKind.html)
+[FlowDirectionKind](../_static/schema/FlowDirectionKind.html){.external}
 
-[FlowDirectionType](../_static/schema/FlowDirectionType.html)
+[FlowDirectionType](../_static/schema/FlowDirectionType.html){.external}
 
-[FossilFuel](../_static/schema/FossilFuel.html)
+[FossilFuel](../_static/schema/FossilFuel.html){.external}
 
-[FrancisGovernorControlKind](../_static/schema/FrancisGovernorControlKind.html)
+[FrancisGovernorControlKind](../_static/schema/FrancisGovernorControlKind.html){.external}
 
-[Frequency](../_static/schema/Frequency.html)
+[Frequency](../_static/schema/Frequency.html){.external}
 
-[FrequencyConverter](../_static/schema/FrequencyConverter.html)
+[FrequencyConverter](../_static/schema/FrequencyConverter.html){.external}
 
-[FuelCostCurve](../_static/schema/FuelCostCurve.html)
+[FuelCostCurve](../_static/schema/FuelCostCurve.html){.external}
 
-[FuelSource](../_static/schema/FuelSource.html)
+[FuelSource](../_static/schema/FuelSource.html){.external}
 
-[FuelType](../_static/schema/FuelType.html)
+[FuelType](../_static/schema/FuelType.html){.external}
 
-[Fuse](../_static/schema/Fuse.html)
+[Fuse](../_static/schema/Fuse.html){.external}
 
-[GateLogicKind](../_static/schema/GateLogicKind.html)
+[GateLogicKind](../_static/schema/GateLogicKind.html){.external}
 
-[GenUnitOpCostCurve](../_static/schema/GenUnitOpCostCurve.html)
+[GenUnitOpCostCurve](../_static/schema/GenUnitOpCostCurve.html){.external}
 
-[GenUnitOpSchedule](../_static/schema/GenUnitOpSchedule.html)
+[GenUnitOpSchedule](../_static/schema/GenUnitOpSchedule.html){.external}
 
-[GeneratingUnit](../_static/schema/GeneratingUnit.html)
+[GeneratingUnit](../_static/schema/GeneratingUnit.html){.external}
 
-[GeneratorControlMode](../_static/schema/GeneratorControlMode.html)
+[GeneratorControlMode](../_static/schema/GeneratorControlMode.html){.external}
 
-[GeneratorControlSource](../_static/schema/GeneratorControlSource.html)
+[GeneratorControlSource](../_static/schema/GeneratorControlSource.html){.external}
 
-[GenericAction](../_static/schema/GenericAction.html)
+[GenericAction](../_static/schema/GenericAction.html){.external}
 
-[GenericNonLinearLoadModelKind](../_static/schema/GenericNonLinearLoadModelKind.html)
+[GenericNonLinearLoadModelKind](../_static/schema/GenericNonLinearLoadModelKind.html){.external}
 
-[GeographicalRegion](../_static/schema/GeographicalRegion.html)
+[GeographicalRegion](../_static/schema/GeographicalRegion.html){.external}
 
-[GeosphericAnalogKind](../_static/schema/GeosphericAnalogKind.html)
+[GeosphericAnalogKind](../_static/schema/GeosphericAnalogKind.html){.external}
 
-[GeosphericPhenomenon](../_static/schema/GeosphericPhenomenon.html)
+[GeosphericPhenomenon](../_static/schema/GeosphericPhenomenon.html){.external}
 
-[GovHydro4ModelKind](../_static/schema/GovHydro4ModelKind.html)
+[GovHydro4ModelKind](../_static/schema/GovHydro4ModelKind.html){.external}
 
-[GridFacility](../_static/schema/GridFacility.html)
+[GridFacility](../_static/schema/GridFacility.html){.external}
 
-[Ground](../_static/schema/Ground.html)
+[Ground](../_static/schema/Ground.html){.external}
 
-[GroundAction](../_static/schema/GroundAction.html)
+[GroundAction](../_static/schema/GroundAction.html){.external}
 
-[GroundDisconnector](../_static/schema/GroundDisconnector.html)
+[GroundDisconnector](../_static/schema/GroundDisconnector.html){.external}
 
-[Group](../_static/schema/Group.html)
+[Group](../_static/schema/Group.html){.external}
 
-[HVDCDynamics](../_static/schema/HVDCDynamics.html)
+[HVDCDynamics](../_static/schema/HVDCDynamics.html){.external}
 
-[HeatRate](../_static/schema/HeatRate.html)
+[HeatRate](../_static/schema/HeatRate.html){.external}
 
-[HeatRateCurve](../_static/schema/HeatRateCurve.html)
+[HeatRateCurve](../_static/schema/HeatRateCurve.html){.external}
 
-[Hours](../_static/schema/Hours.html)
+[Hours](../_static/schema/Hours.html){.external}
 
-[HydroEnergyConversionKind](../_static/schema/HydroEnergyConversionKind.html)
+[HydroEnergyConversionKind](../_static/schema/HydroEnergyConversionKind.html){.external}
 
-[HydroGeneratingUnit](../_static/schema/HydroGeneratingUnit.html)
+[HydroGeneratingUnit](../_static/schema/HydroGeneratingUnit.html){.external}
 
-[HydroPlantStorageKind](../_static/schema/HydroPlantStorageKind.html)
+[HydroPlantStorageKind](../_static/schema/HydroPlantStorageKind.html){.external}
 
-[HydroTurbineKind](../_static/schema/HydroTurbineKind.html)
+[HydroTurbineKind](../_static/schema/HydroTurbineKind.html){.external}
 
-[HydrosphericAnalogKind](../_static/schema/HydrosphericAnalogKind.html)
+[HydrosphericAnalogKind](../_static/schema/HydrosphericAnalogKind.html){.external}
 
-[HydrosphericPhenomenon](../_static/schema/HydrosphericPhenomenon.html)
+[HydrosphericPhenomenon](../_static/schema/HydrosphericPhenomenon.html){.external}
 
-[ICCPAccessPrivilegeKind](../_static/schema/ICCPAccessPrivilegeKind.html)
+[ICCPAccessPrivilegeKind](../_static/schema/ICCPAccessPrivilegeKind.html){.external}
 
-[ICCPPointKind](../_static/schema/ICCPPointKind.html)
+[ICCPPointKind](../_static/schema/ICCPPointKind.html){.external}
 
-[ICCPQualityKind](../_static/schema/ICCPQualityKind.html)
+[ICCPQualityKind](../_static/schema/ICCPQualityKind.html){.external}
 
-[ICCPScopeKind](../_static/schema/ICCPScopeKind.html)
+[ICCPScopeKind](../_static/schema/ICCPScopeKind.html){.external}
 
-[IEC61968CIMVersion](../_static/schema/IEC61968CIMVersion.html)
+[IEC61968CIMVersion](../_static/schema/IEC61968CIMVersion.html){.external}
 
-[IEC61970CIMVersion](../_static/schema/IEC61970CIMVersion.html)
+[IEC61970CIMVersion](../_static/schema/IEC61970CIMVersion.html){.external}
 
-[IEC62325CIMVersion](../_static/schema/IEC62325CIMVersion.html)
+[IEC62325CIMVersion](../_static/schema/IEC62325CIMVersion.html){.external}
 
-[IECStandard](../_static/schema/IECStandard.html)
+[IECStandard](../_static/schema/IECStandard.html){.external}
 
-[IECStandardEditionKind](../_static/schema/IECStandardEditionKind.html)
+[IECStandardEditionKind](../_static/schema/IECStandardEditionKind.html){.external}
 
-[IECStandardKind](../_static/schema/IECStandardKind.html)
+[IECStandardKind](../_static/schema/IECStandardKind.html){.external}
 
-[IEEEStandard](../_static/schema/IEEEStandard.html)
+[IEEEStandard](../_static/schema/IEEEStandard.html){.external}
 
-[IEEEStandardEditionKind](../_static/schema/IEEEStandardEditionKind.html)
+[IEEEStandardEditionKind](../_static/schema/IEEEStandardEditionKind.html){.external}
 
-[IEEEStandardKind](../_static/schema/IEEEStandardKind.html)
+[IEEEStandardKind](../_static/schema/IEEEStandardKind.html){.external}
 
-[IPAddressKind](../_static/schema/IPAddressKind.html)
+[IPAddressKind](../_static/schema/IPAddressKind.html){.external}
 
-[ISOStandard](../_static/schema/ISOStandard.html)
+[ISOStandard](../_static/schema/ISOStandard.html){.external}
 
-[ISOStandardEditionKind](../_static/schema/ISOStandardEditionKind.html)
+[ISOStandardEditionKind](../_static/schema/ISOStandardEditionKind.html){.external}
 
-[ISOStandardKind](../_static/schema/ISOStandardKind.html)
+[ISOStandardKind](../_static/schema/ISOStandardKind.html){.external}
 
-[IfdBaseKind](../_static/schema/IfdBaseKind.html)
+[IfdBaseKind](../_static/schema/IfdBaseKind.html){.external}
 
-[Impedance](../_static/schema/Impedance.html)
+[Impedance](../_static/schema/Impedance.html){.external}
 
-[InUseDate](../_static/schema/InUseDate.html)
+[InUseDate](../_static/schema/InUseDate.html){.external}
 
-[InUseStateKind](../_static/schema/InUseStateKind.html)
+[InUseStateKind](../_static/schema/InUseStateKind.html){.external}
 
-[Inductance](../_static/schema/Inductance.html)
+[Inductance](../_static/schema/Inductance.html){.external}
 
-[InductancePerLength](../_static/schema/InductancePerLength.html)
+[InductancePerLength](../_static/schema/InductancePerLength.html){.external}
 
-[InputSignalKind](../_static/schema/InputSignalKind.html)
+[InputSignalKind](../_static/schema/InputSignalKind.html){.external}
 
-[InspectionAnalogKind](../_static/schema/InspectionAnalogKind.html)
+[InspectionAnalogKind](../_static/schema/InspectionAnalogKind.html){.external}
 
-[InspectionDiscreteKind](../_static/schema/InspectionDiscreteKind.html)
+[InspectionDiscreteKind](../_static/schema/InspectionDiscreteKind.html){.external}
 
-[Integer](../_static/schema/Integer.html)
+[Integer](../_static/schema/Integer.html){.external}
 
-[IntegerQuantity](../_static/schema/IntegerQuantity.html)
+[IntegerQuantity](../_static/schema/IntegerQuantity.html){.external}
 
-[IntensityCodeKind](../_static/schema/IntensityCodeKind.html)
+[IntensityCodeKind](../_static/schema/IntensityCodeKind.html){.external}
 
-[InterTieDirection](../_static/schema/InterTieDirection.html)
+[InterTieDirection](../_static/schema/InterTieDirection.html){.external}
 
-[InterruptingMediumKind](../_static/schema/InterruptingMediumKind.html)
+[InterruptingMediumKind](../_static/schema/InterruptingMediumKind.html){.external}
 
-[InverterController](../_static/schema/InverterController.html)
+[InverterController](../_static/schema/InverterController.html){.external}
 
-[JobFlagType](../_static/schema/JobFlagType.html)
+[JobFlagType](../_static/schema/JobFlagType.html){.external}
 
-[JobScheduleType](../_static/schema/JobScheduleType.html)
+[JobScheduleType](../_static/schema/JobScheduleType.html){.external}
 
-[JobStartEndType](../_static/schema/JobStartEndType.html)
+[JobStartEndType](../_static/schema/JobStartEndType.html){.external}
 
-[JointConfigurationKind](../_static/schema/JointConfigurationKind.html)
+[JointConfigurationKind](../_static/schema/JointConfigurationKind.html){.external}
 
-[JointFillKind](../_static/schema/JointFillKind.html)
+[JointFillKind](../_static/schema/JointFillKind.html){.external}
 
-[Jumper](../_static/schema/Jumper.html)
+[Jumper](../_static/schema/Jumper.html){.external}
 
-[JumperAction](../_static/schema/JumperAction.html)
+[JumperAction](../_static/schema/JumperAction.html){.external}
 
-[KiloActivePower](../_static/schema/KiloActivePower.html)
+[KiloActivePower](../_static/schema/KiloActivePower.html){.external}
 
-[LFCResourceType](../_static/schema/LFCResourceType.html)
+[LFCResourceType](../_static/schema/LFCResourceType.html){.external}
 
-[LaborelecStandard](../_static/schema/LaborelecStandard.html)
+[LaborelecStandard](../_static/schema/LaborelecStandard.html){.external}
 
-[LaborelecStandardEditionKind](../_static/schema/LaborelecStandardEditionKind.html)
+[LaborelecStandardEditionKind](../_static/schema/LaborelecStandardEditionKind.html){.external}
 
-[LaborelecStandardKind](../_static/schema/LaborelecStandardKind.html)
+[LaborelecStandardKind](../_static/schema/LaborelecStandardKind.html){.external}
 
-[LandPropertyKind](../_static/schema/LandPropertyKind.html)
+[LandPropertyKind](../_static/schema/LandPropertyKind.html){.external}
 
-[Length](../_static/schema/Length.html)
+[Length](../_static/schema/Length.html){.external}
 
-[LifecycleDate](../_static/schema/LifecycleDate.html)
+[LifecycleDate](../_static/schema/LifecycleDate.html){.external}
 
-[Line](../_static/schema/Line.html)
+[Line](../_static/schema/Line.html){.external}
 
-[LineDetail](../_static/schema/LineDetail.html)
+[LineDetail](../_static/schema/LineDetail.html){.external}
 
-[LineFault](../_static/schema/LineFault.html)
+[LineFault](../_static/schema/LineFault.html){.external}
 
-[LinearShuntCompensator](../_static/schema/LinearShuntCompensator.html)
+[LinearShuntCompensator](../_static/schema/LinearShuntCompensator.html){.external}
 
-[LinearShuntCompensatorPhase](../_static/schema/LinearShuntCompensatorPhase.html)
+[LinearShuntCompensatorPhase](../_static/schema/LinearShuntCompensatorPhase.html){.external}
 
-[LoadBreakSwitch](../_static/schema/LoadBreakSwitch.html)
+[LoadBreakSwitch](../_static/schema/LoadBreakSwitch.html){.external}
 
-[LoadFollowingCapacityType](../_static/schema/LoadFollowingCapacityType.html)
+[LoadFollowingCapacityType](../_static/schema/LoadFollowingCapacityType.html){.external}
 
-[LoadForecastType](../_static/schema/LoadForecastType.html)
+[LoadForecastType](../_static/schema/LoadForecastType.html){.external}
 
-[LoadGroup](../_static/schema/LoadGroup.html)
+[LoadGroup](../_static/schema/LoadGroup.html){.external}
 
-[LoadResponseCharacteristic](../_static/schema/LoadResponseCharacteristic.html)
+[LoadResponseCharacteristic](../_static/schema/LoadResponseCharacteristic.html){.external}
 
-[Location](../_static/schema/Location.html)
+[Location](../_static/schema/Location.html){.external}
 
-[LocationKind](../_static/schema/LocationKind.html)
+[LocationKind](../_static/schema/LocationKind.html){.external}
 
-[LocationalMarginalPrices](../_static/schema/LocationalMarginalPrices.html)
+[LocationalMarginalPrices](../_static/schema/LocationalMarginalPrices.html){.external}
 
-[LookUpTableFunctionKind](../_static/schema/LookUpTableFunctionKind.html)
+[LookUpTableFunctionKind](../_static/schema/LookUpTableFunctionKind.html){.external}
 
-[MPMTestIdentifierType](../_static/schema/MPMTestIdentifierType.html)
+[MPMTestIdentifierType](../_static/schema/MPMTestIdentifierType.html){.external}
 
-[MPMTestMethodType](../_static/schema/MPMTestMethodType.html)
+[MPMTestMethodType](../_static/schema/MPMTestMethodType.html){.external}
 
-[MPMTestOutcome](../_static/schema/MPMTestOutcome.html)
+[MPMTestOutcome](../_static/schema/MPMTestOutcome.html){.external}
 
-[MQSCHGType](../_static/schema/MQSCHGType.html)
+[MQSCHGType](../_static/schema/MQSCHGType.html){.external}
 
-[MQSDELType](../_static/schema/MQSDELType.html)
+[MQSDELType](../_static/schema/MQSDELType.html){.external}
 
-[MQSInstructionSource](../_static/schema/MQSInstructionSource.html)
+[MQSInstructionSource](../_static/schema/MQSInstructionSource.html){.external}
 
-[MacroPeriodKind](../_static/schema/MacroPeriodKind.html)
+[MacroPeriodKind](../_static/schema/MacroPeriodKind.html){.external}
 
-[MagneticField](../_static/schema/MagneticField.html)
+[MagneticField](../_static/schema/MagneticField.html){.external}
 
-[MarketEventStatusKind](../_static/schema/MarketEventStatusKind.html)
+[MarketEventStatusKind](../_static/schema/MarketEventStatusKind.html){.external}
 
-[MarketProductSelfSchedType](../_static/schema/MarketProductSelfSchedType.html)
+[MarketProductSelfSchedType](../_static/schema/MarketProductSelfSchedType.html){.external}
 
-[MarketProductType](../_static/schema/MarketProductType.html)
+[MarketProductType](../_static/schema/MarketProductType.html){.external}
 
-[MarketProductTypeAsReq](../_static/schema/MarketProductTypeAsReq.html)
+[MarketProductTypeAsReq](../_static/schema/MarketProductTypeAsReq.html){.external}
 
-[MarketRoleKind](../_static/schema/MarketRoleKind.html)
+[MarketRoleKind](../_static/schema/MarketRoleKind.html){.external}
 
-[MarketScheduleServices](../_static/schema/MarketScheduleServices.html)
+[MarketScheduleServices](../_static/schema/MarketScheduleServices.html){.external}
 
-[MarketStatementDescription](../_static/schema/MarketStatementDescription.html)
+[MarketStatementDescription](../_static/schema/MarketStatementDescription.html){.external}
 
-[MarketStatementDocStatus](../_static/schema/MarketStatementDocStatus.html)
+[MarketStatementDocStatus](../_static/schema/MarketStatementDocStatus.html){.external}
 
-[MarketStatementDocType](../_static/schema/MarketStatementDocType.html)
+[MarketStatementDocType](../_static/schema/MarketStatementDocType.html){.external}
 
-[MarketStatementLineItemAliasName](../_static/schema/MarketStatementLineItemAliasName.html)
+[MarketStatementLineItemAliasName](../_static/schema/MarketStatementLineItemAliasName.html){.external}
 
-[MarketType](../_static/schema/MarketType.html)
+[MarketType](../_static/schema/MarketType.html){.external}
 
-[Mass](../_static/schema/Mass.html)
+[Mass](../_static/schema/Mass.html){.external}
 
-[MeasurementAction](../_static/schema/MeasurementAction.html)
+[MeasurementAction](../_static/schema/MeasurementAction.html){.external}
 
-[MeasurementKind-Old](../_static/schema/MeasurementKind-Old.html)
+[MeasurementKind-Old](../_static/schema/MeasurementKind-Old.html){.external}
 
-[MeasurementKind](../_static/schema/MeasurementKind.html)
+[MeasurementKind](../_static/schema/MeasurementKind.html){.external}
 
-[MeasurementTypeEMS](../_static/schema/MeasurementTypeEMS.html)
+[MeasurementTypeEMS](../_static/schema/MeasurementTypeEMS.html){.external}
 
-[MeasuringPeriodKind](../_static/schema/MeasuringPeriodKind.html)
+[MeasuringPeriodKind](../_static/schema/MeasuringPeriodKind.html){.external}
 
-[MediumKind](../_static/schema/MediumKind.html)
+[MediumKind](../_static/schema/MediumKind.html){.external}
 
-[MeterMultiplierKind](../_static/schema/MeterMultiplierKind.html)
+[MeterMultiplierKind](../_static/schema/MeterMultiplierKind.html){.external}
 
-[Minutes](../_static/schema/Minutes.html)
+[Minutes](../_static/schema/Minutes.html){.external}
 
-[MktAccountKind](../_static/schema/MktAccountKind.html)
+[MktAccountKind](../_static/schema/MktAccountKind.html){.external}
 
-[MktBillMediaKind](../_static/schema/MktBillMediaKind.html)
+[MktBillMediaKind](../_static/schema/MktBillMediaKind.html){.external}
 
-[MktInvoiceLineItemKind](../_static/schema/MktInvoiceLineItemKind.html)
+[MktInvoiceLineItemKind](../_static/schema/MktInvoiceLineItemKind.html){.external}
 
-[MktSubClassType](../_static/schema/MktSubClassType.html)
+[MktSubClassType](../_static/schema/MktSubClassType.html){.external}
 
-[Money](../_static/schema/Money.html)
+[Money](../_static/schema/Money.html){.external}
 
-[MonthDay](../_static/schema/MonthDay.html)
+[MonthDay](../_static/schema/MonthDay.html){.external}
 
-[MonthDayInterval](../_static/schema/MonthDayInterval.html)
+[MonthDayInterval](../_static/schema/MonthDayInterval.html){.external}
 
-[NoLoadTest](../_static/schema/NoLoadTest.html)
+[NoLoadTest](../_static/schema/NoLoadTest.html){.external}
 
-[NonConformLoad](../_static/schema/NonConformLoad.html)
+[NonConformLoad](../_static/schema/NonConformLoad.html){.external}
 
-[NonConformLoadGroup](../_static/schema/NonConformLoadGroup.html)
+[NonConformLoadGroup](../_static/schema/NonConformLoadGroup.html){.external}
 
-[NonConformLoadSchedule](../_static/schema/NonConformLoadSchedule.html)
+[NonConformLoadSchedule](../_static/schema/NonConformLoadSchedule.html){.external}
 
-[NonGridFacility](../_static/schema/NonGridFacility.html)
+[NonGridFacility](../_static/schema/NonGridFacility.html){.external}
 
-[NonlinearShuntCompensator](../_static/schema/NonlinearShuntCompensator.html)
+[NonlinearShuntCompensator](../_static/schema/NonlinearShuntCompensator.html){.external}
 
-[NonlinearShuntCompensatorPhase](../_static/schema/NonlinearShuntCompensatorPhase.html)
+[NonlinearShuntCompensatorPhase](../_static/schema/NonlinearShuntCompensatorPhase.html){.external}
 
-[NotificationTriggerKind](../_static/schema/NotificationTriggerKind.html)
+[NotificationTriggerKind](../_static/schema/NotificationTriggerKind.html){.external}
 
-[NuclearGeneratingUnit](../_static/schema/NuclearGeneratingUnit.html)
+[NuclearGeneratingUnit](../_static/schema/NuclearGeneratingUnit.html){.external}
 
-[OASISBidReportType](../_static/schema/OASISBidReportType.html)
+[OASISBidReportType](../_static/schema/OASISBidReportType.html){.external}
 
-[OASISDataItems](../_static/schema/OASISDataItems.html)
+[OASISDataItems](../_static/schema/OASISDataItems.html){.external}
 
-[OASISErrCode](../_static/schema/OASISErrCode.html)
+[OASISErrCode](../_static/schema/OASISErrCode.html){.external}
 
-[OASISErrDescription](../_static/schema/OASISErrDescription.html)
+[OASISErrDescription](../_static/schema/OASISErrDescription.html){.external}
 
-[OASISIntervalType](../_static/schema/OASISIntervalType.html)
+[OASISIntervalType](../_static/schema/OASISIntervalType.html){.external}
 
-[OASISMarketType](../_static/schema/OASISMarketType.html)
+[OASISMarketType](../_static/schema/OASISMarketType.html){.external}
 
-[OASISMasterType](../_static/schema/OASISMasterType.html)
+[OASISMasterType](../_static/schema/OASISMasterType.html){.external}
 
-[OASISMeasType](../_static/schema/OASISMeasType.html)
+[OASISMeasType](../_static/schema/OASISMeasType.html){.external}
 
-[OASISReportType](../_static/schema/OASISReportType.html)
+[OASISReportType](../_static/schema/OASISReportType.html){.external}
 
-[OASISStatusType](../_static/schema/OASISStatusType.html)
+[OASISStatusType](../_static/schema/OASISStatusType.html){.external}
 
-[OilAnalysisFluidAnalogKind](../_static/schema/OilAnalysisFluidAnalogKind.html)
+[OilAnalysisFluidAnalogKind](../_static/schema/OilAnalysisFluidAnalogKind.html){.external}
 
-[OilAnalysisFluidDiscreteKind](../_static/schema/OilAnalysisFluidDiscreteKind.html)
+[OilAnalysisFluidDiscreteKind](../_static/schema/OilAnalysisFluidDiscreteKind.html){.external}
 
-[OilAnalysisGasAnalogKind](../_static/schema/OilAnalysisGasAnalogKind.html)
+[OilAnalysisGasAnalogKind](../_static/schema/OilAnalysisGasAnalogKind.html){.external}
 
-[OilAnalysisMetalsAnalogKind](../_static/schema/OilAnalysisMetalsAnalogKind.html)
+[OilAnalysisMetalsAnalogKind](../_static/schema/OilAnalysisMetalsAnalogKind.html){.external}
 
-[OilAnalysisMoistureAnalogKind](../_static/schema/OilAnalysisMoistureAnalogKind.html)
+[OilAnalysisMoistureAnalogKind](../_static/schema/OilAnalysisMoistureAnalogKind.html){.external}
 
-[OilAnalysisPCBAnalogKind](../_static/schema/OilAnalysisPCBAnalogKind.html)
+[OilAnalysisPCBAnalogKind](../_static/schema/OilAnalysisPCBAnalogKind.html){.external}
 
-[OilAnalysisPCBDiscreteKind](../_static/schema/OilAnalysisPCBDiscreteKind.html)
+[OilAnalysisPCBDiscreteKind](../_static/schema/OilAnalysisPCBDiscreteKind.html){.external}
 
-[OilAnalysisPaperAnalogKind](../_static/schema/OilAnalysisPaperAnalogKind.html)
+[OilAnalysisPaperAnalogKind](../_static/schema/OilAnalysisPaperAnalogKind.html){.external}
 
-[OilAnalysisParticleAnalogKind](../_static/schema/OilAnalysisParticleAnalogKind.html)
+[OilAnalysisParticleAnalogKind](../_static/schema/OilAnalysisParticleAnalogKind.html){.external}
 
-[OilAnalysisParticleDiscreteKind](../_static/schema/OilAnalysisParticleDiscreteKind.html)
+[OilAnalysisParticleDiscreteKind](../_static/schema/OilAnalysisParticleDiscreteKind.html){.external}
 
-[OilPreservationKind](../_static/schema/OilPreservationKind.html)
+[OilPreservationKind](../_static/schema/OilPreservationKind.html){.external}
 
-[OilSampleLocation](../_static/schema/OilSampleLocation.html)
+[OilSampleLocation](../_static/schema/OilSampleLocation.html){.external}
 
-[OilTemperatureSource](../_static/schema/OilTemperatureSource.html)
+[OilTemperatureSource](../_static/schema/OilTemperatureSource.html){.external}
 
-[OnOff](../_static/schema/OnOff.html)
+[OnOff](../_static/schema/OnOff.html){.external}
 
-[OperatingMechanismKind](../_static/schema/OperatingMechanismKind.html)
+[OperatingMechanismKind](../_static/schema/OperatingMechanismKind.html){.external}
 
-[OperationalLimit](../_static/schema/OperationalLimit.html)
+[OperationalLimit](../_static/schema/OperationalLimit.html){.external}
 
-[OperationalLimitDirectionKind](../_static/schema/OperationalLimitDirectionKind.html)
+[OperationalLimitDirectionKind](../_static/schema/OperationalLimitDirectionKind.html){.external}
 
-[OperationalLimitSet](../_static/schema/OperationalLimitSet.html)
+[OperationalLimitSet](../_static/schema/OperationalLimitSet.html){.external}
 
-[OperationalLimitType](../_static/schema/OperationalLimitType.html)
+[OperationalLimitType](../_static/schema/OperationalLimitType.html){.external}
 
-[OrganisationCode](../_static/schema/OrganisationCode.html)
+[OrganisationCode](../_static/schema/OrganisationCode.html){.external}
 
-[OrganisationType](../_static/schema/OrganisationType.html)
+[OrganisationType](../_static/schema/OrganisationType.html){.external}
 
-[OrientationKind](../_static/schema/OrientationKind.html)
+[OrientationKind](../_static/schema/OrientationKind.html){.external}
 
-[Outage](../_static/schema/Outage.html)
+[Outage](../_static/schema/Outage.html){.external}
 
-[OutageCauseKind](../_static/schema/OutageCauseKind.html)
+[OutageCauseKind](../_static/schema/OutageCauseKind.html){.external}
 
-[OutageScenario](../_static/schema/OutageScenario.html)
+[OutageScenario](../_static/schema/OutageScenario.html){.external}
 
-[OutageStatusKind](../_static/schema/OutageStatusKind.html)
+[OutageStatusKind](../_static/schema/OutageStatusKind.html){.external}
 
-[OverheadWireInfo](../_static/schema/OverheadWireInfo.html)
+[OverheadWireInfo](../_static/schema/OverheadWireInfo.html){.external}
 
-[PSREventKind](../_static/schema/PSREventKind.html)
+[PSREventKind](../_static/schema/PSREventKind.html){.external}
 
-[PU](../_static/schema/PU.html)
+[PU](../_static/schema/PU.html){.external}
 
-[ParticipationCategoryMPM](../_static/schema/ParticipationCategoryMPM.html)
+[ParticipationCategoryMPM](../_static/schema/ParticipationCategoryMPM.html){.external}
 
-[ParticulateDensity](../_static/schema/ParticulateDensity.html)
+[ParticulateDensity](../_static/schema/ParticulateDensity.html){.external}
 
-[PassIndicatorType](../_static/schema/PassIndicatorType.html)
+[PassIndicatorType](../_static/schema/PassIndicatorType.html){.external}
 
-[PerCent](../_static/schema/PerCent.html)
+[PerCent](../_static/schema/PerCent.html){.external}
 
-[PerLengthDCLineParameter](../_static/schema/PerLengthDCLineParameter.html)
+[PerLengthDCLineParameter](../_static/schema/PerLengthDCLineParameter.html){.external}
 
-[PerLengthImpedance](../_static/schema/PerLengthImpedance.html)
+[PerLengthImpedance](../_static/schema/PerLengthImpedance.html){.external}
 
-[PerLengthLineParameter](../_static/schema/PerLengthLineParameter.html)
+[PerLengthLineParameter](../_static/schema/PerLengthLineParameter.html){.external}
 
-[PerLengthPhaseImpedance](../_static/schema/PerLengthPhaseImpedance.html)
+[PerLengthPhaseImpedance](../_static/schema/PerLengthPhaseImpedance.html){.external}
 
-[PerLengthSequenceImpedance](../_static/schema/PerLengthSequenceImpedance.html)
+[PerLengthSequenceImpedance](../_static/schema/PerLengthSequenceImpedance.html){.external}
 
-[PetersenCoilModeKind](../_static/schema/PetersenCoilModeKind.html)
+[PetersenCoilModeKind](../_static/schema/PetersenCoilModeKind.html){.external}
 
-[PhaseCode](../_static/schema/PhaseCode.html)
+[PhaseCode](../_static/schema/PhaseCode.html){.external}
 
-[PhaseConnectedFaultKind](../_static/schema/PhaseConnectedFaultKind.html)
+[PhaseConnectedFaultKind](../_static/schema/PhaseConnectedFaultKind.html){.external}
 
-[PhaseImpedanceData](../_static/schema/PhaseImpedanceData.html)
+[PhaseImpedanceData](../_static/schema/PhaseImpedanceData.html){.external}
 
-[PhaseShuntConnectionKind](../_static/schema/PhaseShuntConnectionKind.html)
+[PhaseShuntConnectionKind](../_static/schema/PhaseShuntConnectionKind.html){.external}
 
-[PhaseTapChanger](../_static/schema/PhaseTapChanger.html)
+[PhaseTapChanger](../_static/schema/PhaseTapChanger.html){.external}
 
-[PhotoVoltaicUnit](../_static/schema/PhotoVoltaicUnit.html)
+[PhotoVoltaicUnit](../_static/schema/PhotoVoltaicUnit.html){.external}
 
-[PinBranchGroupKind](../_static/schema/PinBranchGroupKind.html)
+[PinBranchGroupKind](../_static/schema/PinBranchGroupKind.html){.external}
 
-[PinEquipmentKind](../_static/schema/PinEquipmentKind.html)
+[PinEquipmentKind](../_static/schema/PinEquipmentKind.html){.external}
 
-[PinTerminalKind](../_static/schema/PinTerminalKind.html)
+[PinTerminalKind](../_static/schema/PinTerminalKind.html){.external}
 
-[PlannedOutage](../_static/schema/PlannedOutage.html)
+[PlannedOutage](../_static/schema/PlannedOutage.html){.external}
 
-[Plant](../_static/schema/Plant.html)
+[Plant](../_static/schema/Plant.html){.external}
 
-[PoleBaseKind](../_static/schema/PoleBaseKind.html)
+[PoleBaseKind](../_static/schema/PoleBaseKind.html){.external}
 
-[PolePreservativeKind](../_static/schema/PolePreservativeKind.html)
+[PolePreservativeKind](../_static/schema/PolePreservativeKind.html){.external}
 
-[PoleTreatmentKind](../_static/schema/PoleTreatmentKind.html)
+[PoleTreatmentKind](../_static/schema/PoleTreatmentKind.html){.external}
 
-[PopulationGroup](../_static/schema/PopulationGroup.html)
+[PopulationGroup](../_static/schema/PopulationGroup.html){.external}
 
-[PositionPoint](../_static/schema/PositionPoint.html)
+[PositionPoint](../_static/schema/PositionPoint.html){.external}
 
-[PotentialTransformerKind](../_static/schema/PotentialTransformerKind.html)
+[PotentialTransformerKind](../_static/schema/PotentialTransformerKind.html){.external}
 
-[PowerElectronicsConnection](../_static/schema/PowerElectronicsConnection.html)
+[PowerElectronicsConnection](../_static/schema/PowerElectronicsConnection.html){.external}
 
-[PowerElectronicsConnectionPhase](../_static/schema/PowerElectronicsConnectionPhase.html)
+[PowerElectronicsConnectionPhase](../_static/schema/PowerElectronicsConnectionPhase.html){.external}
 
-[PowerElectronicsUnit](../_static/schema/PowerElectronicsUnit.html)
+[PowerElectronicsUnit](../_static/schema/PowerElectronicsUnit.html){.external}
 
-[PowerElectronicsWindUnit](../_static/schema/PowerElectronicsWindUnit.html)
+[PowerElectronicsWindUnit](../_static/schema/PowerElectronicsWindUnit.html){.external}
 
-[PowerFlowSolutionProperties](../_static/schema/PowerFlowSolutionProperties.html)
+[PowerFlowSolutionProperties](../_static/schema/PowerFlowSolutionProperties.html){.external}
 
-[PowerSystemProjectLifecycleToBeDeleted](../_static/schema/PowerSystemProjectLifecycleToBeDeleted.html)
+[PowerSystemProjectLifecycleToBeDeleted](../_static/schema/PowerSystemProjectLifecycleToBeDeleted.html){.external}
 
-[PowerSystemResource](../_static/schema/PowerSystemResource.html)
+[PowerSystemResource](../_static/schema/PowerSystemResource.html){.external}
 
-[PowerTransformer](../_static/schema/PowerTransformer.html)
+[PowerTransformer](../_static/schema/PowerTransformer.html){.external}
 
-[PowerTransformerEnd](../_static/schema/PowerTransformerEnd.html)
+[PowerTransformerEnd](../_static/schema/PowerTransformerEnd.html){.external}
 
-[PowerTransformerInfo](../_static/schema/PowerTransformerInfo.html)
+[PowerTransformerInfo](../_static/schema/PowerTransformerInfo.html){.external}
 
-[PredictedEmissions](../_static/schema/PredictedEmissions.html)
+[PredictedEmissions](../_static/schema/PredictedEmissions.html){.external}
 
-[Pressure](../_static/schema/Pressure.html)
+[Pressure](../_static/schema/Pressure.html){.external}
 
-[PriceCurve](../_static/schema/PriceCurve.html)
+[PriceCurve](../_static/schema/PriceCurve.html){.external}
 
-[PriceSetFlag](../_static/schema/PriceSetFlag.html)
+[PriceSetFlag](../_static/schema/PriceSetFlag.html){.external}
 
-[PriceTypeKind](../_static/schema/PriceTypeKind.html)
+[PriceTypeKind](../_static/schema/PriceTypeKind.html){.external}
 
-[Priority](../_static/schema/Priority.html)
+[Priority](../_static/schema/Priority.html){.external}
 
-[ProcedureKind](../_static/schema/ProcedureKind.html)
+[ProcedureKind](../_static/schema/ProcedureKind.html){.external}
 
-[ProjectStatusKind](../_static/schema/ProjectStatusKind.html)
+[ProjectStatusKind](../_static/schema/ProjectStatusKind.html){.external}
 
-[ProposedAssetOption](../_static/schema/ProposedAssetOption.html)
+[ProposedAssetOption](../_static/schema/ProposedAssetOption.html){.external}
 
-[ProposedBatteryUnitOption](../_static/schema/ProposedBatteryUnitOption.html)
+[ProposedBatteryUnitOption](../_static/schema/ProposedBatteryUnitOption.html){.external}
 
-[ProposedConductorOption](../_static/schema/ProposedConductorOption.html)
+[ProposedConductorOption](../_static/schema/ProposedConductorOption.html){.external}
 
-[ProposedEnergyProducerOption](../_static/schema/ProposedEnergyProducerOption.html)
+[ProposedEnergyProducerOption](../_static/schema/ProposedEnergyProducerOption.html){.external}
 
-[ProposedGeneratingUnitOption](../_static/schema/ProposedGeneratingUnitOption.html)
+[ProposedGeneratingUnitOption](../_static/schema/ProposedGeneratingUnitOption.html){.external}
 
-[ProposedPhotovoltaicUnitOption](../_static/schema/ProposedPhotovoltaicUnitOption.html)
+[ProposedPhotovoltaicUnitOption](../_static/schema/ProposedPhotovoltaicUnitOption.html){.external}
 
-[ProposedSiteLocation](../_static/schema/ProposedSiteLocation.html)
+[ProposedSiteLocation](../_static/schema/ProposedSiteLocation.html){.external}
 
-[ProposedSwitchOption](../_static/schema/ProposedSwitchOption.html)
+[ProposedSwitchOption](../_static/schema/ProposedSwitchOption.html){.external}
 
-[ProposedWindUnitOption](../_static/schema/ProposedWindUnitOption.html)
+[ProposedWindUnitOption](../_static/schema/ProposedWindUnitOption.html){.external}
 
-[ProtectedSwitch](../_static/schema/ProtectedSwitch.html)
+[ProtectedSwitch](../_static/schema/ProtectedSwitch.html){.external}
 
-[ProtectiveActionAdjustmentKind](../_static/schema/ProtectiveActionAdjustmentKind.html)
+[ProtectiveActionAdjustmentKind](../_static/schema/ProtectiveActionAdjustmentKind.html){.external}
 
-[PurposeFlagType](../_static/schema/PurposeFlagType.html)
+[PurposeFlagType](../_static/schema/PurposeFlagType.html){.external}
 
-[RampCurveType](../_static/schema/RampCurveType.html)
+[RampCurveType](../_static/schema/RampCurveType.html){.external}
 
-[RampRateCondition](../_static/schema/RampRateCondition.html)
+[RampRateCondition](../_static/schema/RampRateCondition.html){.external}
 
-[RampRateCurve](../_static/schema/RampRateCurve.html)
+[RampRateCurve](../_static/schema/RampRateCurve.html){.external}
 
-[RampRateType](../_static/schema/RampRateType.html)
+[RampRateType](../_static/schema/RampRateType.html){.external}
 
-[RandomisationKind](../_static/schema/RandomisationKind.html)
+[RandomisationKind](../_static/schema/RandomisationKind.html){.external}
 
-[Ratio](../_static/schema/Ratio.html)
+[Ratio](../_static/schema/Ratio.html){.external}
 
-[RatioTapChanger](../_static/schema/RatioTapChanger.html)
+[RatioTapChanger](../_static/schema/RatioTapChanger.html){.external}
 
-[RationalNumber](../_static/schema/RationalNumber.html)
+[RationalNumber](../_static/schema/RationalNumber.html){.external}
 
-[RavensVersion](../_static/schema/RavensVersion.html)
+[RavensVersion](../_static/schema/RavensVersion.html){.external}
 
-[Reactance](../_static/schema/Reactance.html)
+[Reactance](../_static/schema/Reactance.html){.external}
 
-[ReactancePerLength](../_static/schema/ReactancePerLength.html)
+[ReactancePerLength](../_static/schema/ReactancePerLength.html){.external}
 
-[ReactiveCapabilityCurve](../_static/schema/ReactiveCapabilityCurve.html)
+[ReactiveCapabilityCurve](../_static/schema/ReactiveCapabilityCurve.html){.external}
 
-[ReactivePower](../_static/schema/ReactivePower.html)
+[ReactivePower](../_static/schema/ReactivePower.html){.external}
 
-[ReadingInterharmonic](../_static/schema/ReadingInterharmonic.html)
+[ReadingInterharmonic](../_static/schema/ReadingInterharmonic.html){.external}
 
-[ReadingReasonKind](../_static/schema/ReadingReasonKind.html)
+[ReadingReasonKind](../_static/schema/ReadingReasonKind.html){.external}
 
-[RealEnergy](../_static/schema/RealEnergy.html)
+[RealEnergy](../_static/schema/RealEnergy.html){.external}
 
-[RealEnergyTransferRate](../_static/schema/RealEnergyTransferRate.html)
+[RealEnergyTransferRate](../_static/schema/RealEnergyTransferRate.html){.external}
 
-[Recloser](../_static/schema/Recloser.html)
+[Recloser](../_static/schema/Recloser.html){.external}
 
-[RegulatingCondEq](../_static/schema/RegulatingCondEq.html)
+[RegulatingCondEq](../_static/schema/RegulatingCondEq.html){.external}
 
-[RegulatingControl](../_static/schema/RegulatingControl.html)
+[RegulatingControl](../_static/schema/RegulatingControl.html){.external}
 
-[RegulatingControlModeKind](../_static/schema/RegulatingControlModeKind.html)
+[RegulatingControlModeKind](../_static/schema/RegulatingControlModeKind.html){.external}
 
-[RegulationBranchKind](../_static/schema/RegulationBranchKind.html)
+[RegulationBranchKind](../_static/schema/RegulationBranchKind.html){.external}
 
-[RelativeDisplacement](../_static/schema/RelativeDisplacement.html)
+[RelativeDisplacement](../_static/schema/RelativeDisplacement.html){.external}
 
-[RelativeDisplacementKind](../_static/schema/RelativeDisplacementKind.html)
+[RelativeDisplacementKind](../_static/schema/RelativeDisplacementKind.html){.external}
 
-[RemedialActionSchemeKind](../_static/schema/RemedialActionSchemeKind.html)
+[RemedialActionSchemeKind](../_static/schema/RemedialActionSchemeKind.html){.external}
 
-[RemoteConnectDisconnectInfo](../_static/schema/RemoteConnectDisconnectInfo.html)
+[RemoteConnectDisconnectInfo](../_static/schema/RemoteConnectDisconnectInfo.html){.external}
 
-[RemoteSignalKind](../_static/schema/RemoteSignalKind.html)
+[RemoteSignalKind](../_static/schema/RemoteSignalKind.html){.external}
 
-[RemoteUnitType](../_static/schema/RemoteUnitType.html)
+[RemoteUnitType](../_static/schema/RemoteUnitType.html){.external}
 
-[ReportingMethodKind](../_static/schema/ReportingMethodKind.html)
+[ReportingMethodKind](../_static/schema/ReportingMethodKind.html){.external}
 
-[RequestorRmrTest](../_static/schema/RequestorRmrTest.html)
+[RequestorRmrTest](../_static/schema/RequestorRmrTest.html){.external}
 
-[ReserveRequirementType](../_static/schema/ReserveRequirementType.html)
+[ReserveRequirementType](../_static/schema/ReserveRequirementType.html){.external}
 
-[Resistance](../_static/schema/Resistance.html)
+[Resistance](../_static/schema/Resistance.html){.external}
 
-[ResistancePerLength](../_static/schema/ResistancePerLength.html)
+[ResistancePerLength](../_static/schema/ResistancePerLength.html){.external}
 
-[ResourceAssnType](../_static/schema/ResourceAssnType.html)
+[ResourceAssnType](../_static/schema/ResourceAssnType.html){.external}
 
-[ResourceCapacityType](../_static/schema/ResourceCapacityType.html)
+[ResourceCapacityType](../_static/schema/ResourceCapacityType.html){.external}
 
-[ResourceCertificationCategory](../_static/schema/ResourceCertificationCategory.html)
+[ResourceCertificationCategory](../_static/schema/ResourceCertificationCategory.html){.external}
 
-[ResourceCertificationKind](../_static/schema/ResourceCertificationKind.html)
+[ResourceCertificationKind](../_static/schema/ResourceCertificationKind.html){.external}
 
-[ResourceCertificationType](../_static/schema/ResourceCertificationType.html)
+[ResourceCertificationType](../_static/schema/ResourceCertificationType.html){.external}
 
-[ResourceLimitIndicator](../_static/schema/ResourceLimitIndicator.html)
+[ResourceLimitIndicator](../_static/schema/ResourceLimitIndicator.html){.external}
 
-[ResourceRegistrationStatus](../_static/schema/ResourceRegistrationStatus.html)
+[ResourceRegistrationStatus](../_static/schema/ResourceRegistrationStatus.html){.external}
 
-[ResponseCharacteristic](../_static/schema/ResponseCharacteristic.html)
+[ResponseCharacteristic](../_static/schema/ResponseCharacteristic.html){.external}
 
-[ResultsConstraintType](../_static/schema/ResultsConstraintType.html)
+[ResultsConstraintType](../_static/schema/ResultsConstraintType.html){.external}
 
-[RetiredReasonKind](../_static/schema/RetiredReasonKind.html)
+[RetiredReasonKind](../_static/schema/RetiredReasonKind.html){.external}
 
-[RevenueKind](../_static/schema/RevenueKind.html)
+[RevenueKind](../_static/schema/RevenueKind.html){.external}
 
-[RevisionKind](../_static/schema/RevisionKind.html)
+[RevisionKind](../_static/schema/RevisionKind.html){.external}
 
-[RiskScoreKind](../_static/schema/RiskScoreKind.html)
+[RiskScoreKind](../_static/schema/RiskScoreKind.html){.external}
 
-[RotatingMachine](../_static/schema/RotatingMachine.html)
+[RotatingMachine](../_static/schema/RotatingMachine.html){.external}
 
-[RotatingMachineDynamics](../_static/schema/RotatingMachineDynamics.html)
+[RotatingMachineDynamics](../_static/schema/RotatingMachineDynamics.html){.external}
 
-[RotatingMachineResponseCharacteristic](../_static/schema/RotatingMachineResponseCharacteristic.html)
+[RotatingMachineResponseCharacteristic](../_static/schema/RotatingMachineResponseCharacteristic.html){.external}
 
-[RotationSpeed](../_static/schema/RotationSpeed.html)
+[RotationSpeed](../_static/schema/RotationSpeed.html){.external}
 
-[RotorKind](../_static/schema/RotorKind.html)
+[RotorKind](../_static/schema/RotorKind.html){.external}
 
-[SVCControlMode](../_static/schema/SVCControlMode.html)
+[SVCControlMode](../_static/schema/SVCControlMode.html){.external}
 
-[SampleContainerType](../_static/schema/SampleContainerType.html)
+[SampleContainerType](../_static/schema/SampleContainerType.html){.external}
 
-[ScaleKind](../_static/schema/ScaleKind.html)
+[ScaleKind](../_static/schema/ScaleKind.html){.external}
 
-[SchedClassType](../_static/schema/SchedClassType.html)
+[SchedClassType](../_static/schema/SchedClassType.html){.external}
 
-[SealConditionKind](../_static/schema/SealConditionKind.html)
+[SealConditionKind](../_static/schema/SealConditionKind.html){.external}
 
-[SealKind](../_static/schema/SealKind.html)
+[SealKind](../_static/schema/SealKind.html){.external}
 
-[Season](../_static/schema/Season.html)
+[Season](../_static/schema/Season.html){.external}
 
-[Seconds](../_static/schema/Seconds.html)
+[Seconds](../_static/schema/Seconds.html){.external}
 
-[Sectionaliser](../_static/schema/Sectionaliser.html)
+[Sectionaliser](../_static/schema/Sectionaliser.html){.external}
 
-[SegmentCurveType](../_static/schema/SegmentCurveType.html)
+[SegmentCurveType](../_static/schema/SegmentCurveType.html){.external}
 
-[SelfSchedReferenceType](../_static/schema/SelfSchedReferenceType.html)
+[SelfSchedReferenceType](../_static/schema/SelfSchedReferenceType.html){.external}
 
-[SelfSchedTypeCleanBid](../_static/schema/SelfSchedTypeCleanBid.html)
+[SelfSchedTypeCleanBid](../_static/schema/SelfSchedTypeCleanBid.html){.external}
 
-[SelfSchedTypeRawBid](../_static/schema/SelfSchedTypeRawBid.html)
+[SelfSchedTypeRawBid](../_static/schema/SelfSchedTypeRawBid.html){.external}
 
-[SelfScheduleBreakdownType](../_static/schema/SelfScheduleBreakdownType.html)
+[SelfScheduleBreakdownType](../_static/schema/SelfScheduleBreakdownType.html){.external}
 
-[SelfScheduleType](../_static/schema/SelfScheduleType.html)
+[SelfScheduleType](../_static/schema/SelfScheduleType.html){.external}
 
-[SelfScheduleTypeMB](../_static/schema/SelfScheduleTypeMB.html)
+[SelfScheduleTypeMB](../_static/schema/SelfScheduleTypeMB.html){.external}
 
-[SeriesCompensator](../_static/schema/SeriesCompensator.html)
+[SeriesCompensator](../_static/schema/SeriesCompensator.html){.external}
 
-[ServiceKind](../_static/schema/ServiceKind.html)
+[ServiceKind](../_static/schema/ServiceKind.html){.external}
 
-[ServiceMultiplierKind](../_static/schema/ServiceMultiplierKind.html)
+[ServiceMultiplierKind](../_static/schema/ServiceMultiplierKind.html){.external}
 
-[ServicePointOutageSummary](../_static/schema/ServicePointOutageSummary.html)
+[ServicePointOutageSummary](../_static/schema/ServicePointOutageSummary.html){.external}
 
-[ServiceRequestKind](../_static/schema/ServiceRequestKind.html)
+[ServiceRequestKind](../_static/schema/ServiceRequestKind.html){.external}
 
-[ShortCircuitRotorKind](../_static/schema/ShortCircuitRotorKind.html)
+[ShortCircuitRotorKind](../_static/schema/ShortCircuitRotorKind.html){.external}
 
-[ShortCircuitTest](../_static/schema/ShortCircuitTest.html)
+[ShortCircuitTest](../_static/schema/ShortCircuitTest.html){.external}
 
-[ShuntCompensator](../_static/schema/ShuntCompensator.html)
+[ShuntCompensator](../_static/schema/ShuntCompensator.html){.external}
 
-[ShuntCompensatorAction](../_static/schema/ShuntCompensatorAction.html)
+[ShuntCompensatorAction](../_static/schema/ShuntCompensatorAction.html){.external}
 
-[ShuntCompensatorInfo](../_static/schema/ShuntCompensatorInfo.html)
+[ShuntCompensatorInfo](../_static/schema/ShuntCompensatorInfo.html){.external}
 
-[ShuntCompensatorPhase](../_static/schema/ShuntCompensatorPhase.html)
+[ShuntCompensatorPhase](../_static/schema/ShuntCompensatorPhase.html){.external}
 
-[ShuntImpedanceControlKind](../_static/schema/ShuntImpedanceControlKind.html)
+[ShuntImpedanceControlKind](../_static/schema/ShuntImpedanceControlKind.html){.external}
 
-[ShuntImpedanceLocalControlKind](../_static/schema/ShuntImpedanceLocalControlKind.html)
+[ShuntImpedanceLocalControlKind](../_static/schema/ShuntImpedanceLocalControlKind.html){.external}
 
-[ShutdownCurve](../_static/schema/ShutdownCurve.html)
+[ShutdownCurve](../_static/schema/ShutdownCurve.html){.external}
 
-[SinglePhaseKind](../_static/schema/SinglePhaseKind.html)
+[SinglePhaseKind](../_static/schema/SinglePhaseKind.html){.external}
 
-[SkillLevelKind](../_static/schema/SkillLevelKind.html)
+[SkillLevelKind](../_static/schema/SkillLevelKind.html){.external}
 
-[SolarGeneratingUnit](../_static/schema/SolarGeneratingUnit.html)
+[SolarGeneratingUnit](../_static/schema/SolarGeneratingUnit.html){.external}
 
-[Source](../_static/schema/Source.html)
+[Source](../_static/schema/Source.html){.external}
 
-[SourceSinkFlag](../_static/schema/SourceSinkFlag.html)
+[SourceSinkFlag](../_static/schema/SourceSinkFlag.html){.external}
 
-[SourceSinkType](../_static/schema/SourceSinkType.html)
+[SourceSinkType](../_static/schema/SourceSinkType.html){.external}
 
-[SpaceAnalogKind](../_static/schema/SpaceAnalogKind.html)
+[SpaceAnalogKind](../_static/schema/SpaceAnalogKind.html){.external}
 
-[SpacePhenomenon](../_static/schema/SpacePhenomenon.html)
+[SpacePhenomenon](../_static/schema/SpacePhenomenon.html){.external}
 
-[Speed](../_static/schema/Speed.html)
+[Speed](../_static/schema/Speed.html){.external}
 
-[SpinningEventNameType](../_static/schema/SpinningEventNameType.html)
+[SpinningEventNameType](../_static/schema/SpinningEventNameType.html){.external}
 
-[SpinningEventType](../_static/schema/SpinningEventType.html)
+[SpinningEventType](../_static/schema/SpinningEventType.html){.external}
 
-[StartRampCurve](../_static/schema/StartRampCurve.html)
+[StartRampCurve](../_static/schema/StartRampCurve.html){.external}
 
-[StartUpCostCurve](../_static/schema/StartUpCostCurve.html)
+[StartUpCostCurve](../_static/schema/StartUpCostCurve.html){.external}
 
-[StartUpTimeCurve](../_static/schema/StartUpTimeCurve.html)
+[StartUpTimeCurve](../_static/schema/StartUpTimeCurve.html){.external}
 
-[StaticLoadModelKind](../_static/schema/StaticLoadModelKind.html)
+[StaticLoadModelKind](../_static/schema/StaticLoadModelKind.html){.external}
 
-[StaticVarCompensator](../_static/schema/StaticVarCompensator.html)
+[StaticVarCompensator](../_static/schema/StaticVarCompensator.html){.external}
 
-[StaticVarCompensatorDynamics](../_static/schema/StaticVarCompensatorDynamics.html)
+[StaticVarCompensatorDynamics](../_static/schema/StaticVarCompensatorDynamics.html){.external}
 
-[Status](../_static/schema/Status.html)
+[Status](../_static/schema/Status.html){.external}
 
-[StreetAddress](../_static/schema/StreetAddress.html)
+[StreetAddress](../_static/schema/StreetAddress.html){.external}
 
-[StreetDetail](../_static/schema/StreetDetail.html)
+[StreetDetail](../_static/schema/StreetDetail.html){.external}
 
-[StreetlightLampKind](../_static/schema/StreetlightLampKind.html)
+[StreetlightLampKind](../_static/schema/StreetlightLampKind.html){.external}
 
-[String](../_static/schema/String.html)
+[String](../_static/schema/String.html){.external}
 
-[StringQuantity](../_static/schema/StringQuantity.html)
+[StringQuantity](../_static/schema/StringQuantity.html){.external}
 
-[StructureMaterialKind](../_static/schema/StructureMaterialKind.html)
+[StructureMaterialKind](../_static/schema/StructureMaterialKind.html){.external}
 
-[StructureSupportKind](../_static/schema/StructureSupportKind.html)
+[StructureSupportKind](../_static/schema/StructureSupportKind.html){.external}
 
-[SubGeographicalRegion](../_static/schema/SubGeographicalRegion.html)
+[SubGeographicalRegion](../_static/schema/SubGeographicalRegion.html){.external}
 
-[SubLoadArea](../_static/schema/SubLoadArea.html)
+[SubLoadArea](../_static/schema/SubLoadArea.html){.external}
 
-[Substation](../_static/schema/Substation.html)
+[Substation](../_static/schema/Substation.html){.external}
 
-[SupplierKind](../_static/schema/SupplierKind.html)
+[SupplierKind](../_static/schema/SupplierKind.html){.external}
 
-[Susceptance](../_static/schema/Susceptance.html)
+[Susceptance](../_static/schema/Susceptance.html){.external}
 
-[SusceptancePerLength](../_static/schema/SusceptancePerLength.html)
+[SusceptancePerLength](../_static/schema/SusceptancePerLength.html){.external}
 
-[SvInjection](../_static/schema/SvInjection.html)
+[SvInjection](../_static/schema/SvInjection.html){.external}
 
-[SvPowerFlow](../_static/schema/SvPowerFlow.html)
+[SvPowerFlow](../_static/schema/SvPowerFlow.html){.external}
 
-[SvShuntCompensatorSections](../_static/schema/SvShuntCompensatorSections.html)
+[SvShuntCompensatorSections](../_static/schema/SvShuntCompensatorSections.html){.external}
 
-[SvStatus](../_static/schema/SvStatus.html)
+[SvStatus](../_static/schema/SvStatus.html){.external}
 
-[SvSwitch](../_static/schema/SvSwitch.html)
+[SvSwitch](../_static/schema/SvSwitch.html){.external}
 
-[SvTapStep](../_static/schema/SvTapStep.html)
+[SvTapStep](../_static/schema/SvTapStep.html){.external}
 
-[SvVoltage](../_static/schema/SvVoltage.html)
+[SvVoltage](../_static/schema/SvVoltage.html){.external}
 
-[Switch](../_static/schema/Switch.html)
+[Switch](../_static/schema/Switch.html){.external}
 
-[SwitchAction](../_static/schema/SwitchAction.html)
+[SwitchAction](../_static/schema/SwitchAction.html){.external}
 
-[SwitchActionKind](../_static/schema/SwitchActionKind.html)
+[SwitchActionKind](../_static/schema/SwitchActionKind.html){.external}
 
-[SwitchInfo](../_static/schema/SwitchInfo.html)
+[SwitchInfo](../_static/schema/SwitchInfo.html){.external}
 
-[SwitchPhase](../_static/schema/SwitchPhase.html)
+[SwitchPhase](../_static/schema/SwitchPhase.html){.external}
 
-[SwitchStatusType](../_static/schema/SwitchStatusType.html)
+[SwitchStatusType](../_static/schema/SwitchStatusType.html){.external}
 
-[SwitchingAction](../_static/schema/SwitchingAction.html)
+[SwitchingAction](../_static/schema/SwitchingAction.html){.external}
 
-[SynchronousMachine](../_static/schema/SynchronousMachine.html)
+[SynchronousMachine](../_static/schema/SynchronousMachine.html){.external}
 
-[SynchronousMachineKind](../_static/schema/SynchronousMachineKind.html)
+[SynchronousMachineKind](../_static/schema/SynchronousMachineKind.html){.external}
 
-[SynchronousMachineModelKind](../_static/schema/SynchronousMachineModelKind.html)
+[SynchronousMachineModelKind](../_static/schema/SynchronousMachineModelKind.html){.external}
 
-[SynchronousMachineOperatingMode](../_static/schema/SynchronousMachineOperatingMode.html)
+[SynchronousMachineOperatingMode](../_static/schema/SynchronousMachineOperatingMode.html){.external}
 
-[SystemType](../_static/schema/SystemType.html)
+[SystemType](../_static/schema/SystemType.html){.external}
 
-[TAPPIStandard](../_static/schema/TAPPIStandard.html)
+[TAPPIStandard](../_static/schema/TAPPIStandard.html){.external}
 
-[TAPPIStandardEditionKind](../_static/schema/TAPPIStandardEditionKind.html)
+[TAPPIStandardEditionKind](../_static/schema/TAPPIStandardEditionKind.html){.external}
 
-[TAPPIStandardKind](../_static/schema/TAPPIStandardKind.html)
+[TAPPIStandardKind](../_static/schema/TAPPIStandardKind.html){.external}
 
-[TRType](../_static/schema/TRType.html)
+[TRType](../_static/schema/TRType.html){.external}
 
-[TagAction](../_static/schema/TagAction.html)
+[TagAction](../_static/schema/TagAction.html){.external}
 
-[TagActionKind](../_static/schema/TagActionKind.html)
+[TagActionKind](../_static/schema/TagActionKind.html){.external}
 
-[TapChanger](../_static/schema/TapChanger.html)
+[TapChanger](../_static/schema/TapChanger.html){.external}
 
-[TapChangerControl](../_static/schema/TapChangerControl.html)
+[TapChangerControl](../_static/schema/TapChangerControl.html){.external}
 
-[TapChangerInfo](../_static/schema/TapChangerInfo.html)
+[TapChangerInfo](../_static/schema/TapChangerInfo.html){.external}
 
-[TapeShieldCableInfo](../_static/schema/TapeShieldCableInfo.html)
+[TapeShieldCableInfo](../_static/schema/TapeShieldCableInfo.html){.external}
 
-[TelephoneNumber](../_static/schema/TelephoneNumber.html)
+[TelephoneNumber](../_static/schema/TelephoneNumber.html){.external}
 
-[TempEquipActionKind](../_static/schema/TempEquipActionKind.html)
+[TempEquipActionKind](../_static/schema/TempEquipActionKind.html){.external}
 
-[Temperature](../_static/schema/Temperature.html)
+[Temperature](../_static/schema/Temperature.html){.external}
 
-[TenderKind](../_static/schema/TenderKind.html)
+[TenderKind](../_static/schema/TenderKind.html){.external}
 
-[Terminal](../_static/schema/Terminal.html)
+[Terminal](../_static/schema/Terminal.html){.external}
 
-[TestKind](../_static/schema/TestKind.html)
+[TestKind](../_static/schema/TestKind.html){.external}
 
-[TestMethod](../_static/schema/TestMethod.html)
+[TestMethod](../_static/schema/TestMethod.html){.external}
 
-[TestReason](../_static/schema/TestReason.html)
+[TestReason](../_static/schema/TestReason.html){.external}
 
-[TestVariantKind](../_static/schema/TestVariantKind.html)
+[TestVariantKind](../_static/schema/TestVariantKind.html){.external}
 
-[ThermalGeneratingUnit](../_static/schema/ThermalGeneratingUnit.html)
+[ThermalGeneratingUnit](../_static/schema/ThermalGeneratingUnit.html){.external}
 
-[Time](../_static/schema/Time.html)
+[Time](../_static/schema/Time.html){.external}
 
-[TimeInterval](../_static/schema/TimeInterval.html)
+[TimeInterval](../_static/schema/TimeInterval.html){.external}
 
-[TimeIntervalKind](../_static/schema/TimeIntervalKind.html)
+[TimeIntervalKind](../_static/schema/TimeIntervalKind.html){.external}
 
-[TimeOfUse](../_static/schema/TimeOfUse.html)
+[TimeOfUse](../_static/schema/TimeOfUse.html){.external}
 
-[TimePeriodUnit](../_static/schema/TimePeriodUnit.html)
+[TimePeriodUnit](../_static/schema/TimePeriodUnit.html){.external}
 
-[TimeZoneType](../_static/schema/TimeZoneType.html)
+[TimeZoneType](../_static/schema/TimeZoneType.html){.external}
 
-[TopologicalIsland](../_static/schema/TopologicalIsland.html)
+[TopologicalIsland](../_static/schema/TopologicalIsland.html){.external}
 
-[TopologicalNode](../_static/schema/TopologicalNode.html)
+[TopologicalNode](../_static/schema/TopologicalNode.html){.external}
 
-[TowerConstructionKind](../_static/schema/TowerConstructionKind.html)
+[TowerConstructionKind](../_static/schema/TowerConstructionKind.html){.external}
 
-[TownDetail](../_static/schema/TownDetail.html)
+[TownDetail](../_static/schema/TownDetail.html){.external}
 
-[TradeProductType](../_static/schema/TradeProductType.html)
+[TradeProductType](../_static/schema/TradeProductType.html){.external}
 
-[TradeStatusType](../_static/schema/TradeStatusType.html)
+[TradeStatusType](../_static/schema/TradeStatusType.html){.external}
 
-[TradeType](../_static/schema/TradeType.html)
+[TradeType](../_static/schema/TradeType.html){.external}
 
-[TransactionKind](../_static/schema/TransactionKind.html)
+[TransactionKind](../_static/schema/TransactionKind.html){.external}
 
-[TransformerApplicationKind](../_static/schema/TransformerApplicationKind.html)
+[TransformerApplicationKind](../_static/schema/TransformerApplicationKind.html){.external}
 
-[TransformerConstructionKind](../_static/schema/TransformerConstructionKind.html)
+[TransformerConstructionKind](../_static/schema/TransformerConstructionKind.html){.external}
 
-[TransformerControlMode](../_static/schema/TransformerControlMode.html)
+[TransformerControlMode](../_static/schema/TransformerControlMode.html){.external}
 
-[TransformerCoreAdmittance](../_static/schema/TransformerCoreAdmittance.html)
+[TransformerCoreAdmittance](../_static/schema/TransformerCoreAdmittance.html){.external}
 
-[TransformerCoreKind](../_static/schema/TransformerCoreKind.html)
+[TransformerCoreKind](../_static/schema/TransformerCoreKind.html){.external}
 
-[TransformerEndInfo](../_static/schema/TransformerEndInfo.html)
+[TransformerEndInfo](../_static/schema/TransformerEndInfo.html){.external}
 
-[TransformerFailureReasonKind](../_static/schema/TransformerFailureReasonKind.html)
+[TransformerFailureReasonKind](../_static/schema/TransformerFailureReasonKind.html){.external}
 
-[TransformerFunctionKind](../_static/schema/TransformerFunctionKind.html)
+[TransformerFunctionKind](../_static/schema/TransformerFunctionKind.html){.external}
 
-[TransformerMaintenanceKind](../_static/schema/TransformerMaintenanceKind.html)
+[TransformerMaintenanceKind](../_static/schema/TransformerMaintenanceKind.html){.external}
 
-[TransformerMeshImpedance](../_static/schema/TransformerMeshImpedance.html)
+[TransformerMeshImpedance](../_static/schema/TransformerMeshImpedance.html){.external}
 
-[TransformerRepairItemKind](../_static/schema/TransformerRepairItemKind.html)
+[TransformerRepairItemKind](../_static/schema/TransformerRepairItemKind.html){.external}
 
-[TransformerStarImpedance](../_static/schema/TransformerStarImpedance.html)
+[TransformerStarImpedance](../_static/schema/TransformerStarImpedance.html){.external}
 
-[TransformerTank](../_static/schema/TransformerTank.html)
+[TransformerTank](../_static/schema/TransformerTank.html){.external}
 
-[TransformerTankEnd](../_static/schema/TransformerTankEnd.html)
+[TransformerTankEnd](../_static/schema/TransformerTankEnd.html){.external}
 
-[TransformerTankInfo](../_static/schema/TransformerTankInfo.html)
+[TransformerTankInfo](../_static/schema/TransformerTankInfo.html){.external}
 
-[TransmissionModeKind](../_static/schema/TransmissionModeKind.html)
+[TransmissionModeKind](../_static/schema/TransmissionModeKind.html){.external}
 
-[TroubleCallKind](../_static/schema/TroubleCallKind.html)
+[TroubleCallKind](../_static/schema/TroubleCallKind.html){.external}
 
-[TroubleReportingKind](../_static/schema/TroubleReportingKind.html)
+[TroubleReportingKind](../_static/schema/TroubleReportingKind.html){.external}
 
-[TroubleSymptomsExtentKind](../_static/schema/TroubleSymptomsExtentKind.html)
+[TroubleSymptomsExtentKind](../_static/schema/TroubleSymptomsExtentKind.html){.external}
 
-[TroubleSymptomsLightKind](../_static/schema/TroubleSymptomsLightKind.html)
+[TroubleSymptomsLightKind](../_static/schema/TroubleSymptomsLightKind.html){.external}
 
-[TroubleSymptomsPoleKind](../_static/schema/TroubleSymptomsPoleKind.html)
+[TroubleSymptomsPoleKind](../_static/schema/TroubleSymptomsPoleKind.html){.external}
 
-[TroubleSymptomsTransformerKind](../_static/schema/TroubleSymptomsTransformerKind.html)
+[TroubleSymptomsTransformerKind](../_static/schema/TroubleSymptomsTransformerKind.html){.external}
 
-[TroubleSymptomsTreeKind](../_static/schema/TroubleSymptomsTreeKind.html)
+[TroubleSymptomsTreeKind](../_static/schema/TroubleSymptomsTreeKind.html){.external}
 
-[TroubleSymptomsWireKind](../_static/schema/TroubleSymptomsWireKind.html)
+[TroubleSymptomsWireKind](../_static/schema/TroubleSymptomsWireKind.html){.external}
 
-[UKMinistryOfDefenceStandard](../_static/schema/UKMinistryOfDefenceStandard.html)
+[UKMinistryOfDefenceStandard](../_static/schema/UKMinistryOfDefenceStandard.html){.external}
 
-[UKMinistryOfDefenceStandardEditionKind](../_static/schema/UKMinistryOfDefenceStandardEditionKind.html)
+[UKMinistryOfDefenceStandardEditionKind](../_static/schema/UKMinistryOfDefenceStandardEditionKind.html){.external}
 
-[UKMinistryofDefenceStandardKind](../_static/schema/UKMinistryofDefenceStandardKind.html)
+[UKMinistryofDefenceStandardKind](../_static/schema/UKMinistryofDefenceStandardKind.html){.external}
 
-[UOMType](../_static/schema/UOMType.html)
+[UOMType](../_static/schema/UOMType.html){.external}
 
-[UncertaintyKind](../_static/schema/UncertaintyKind.html)
+[UncertaintyKind](../_static/schema/UncertaintyKind.html){.external}
 
-[UndergroundStructureKind](../_static/schema/UndergroundStructureKind.html)
+[UndergroundStructureKind](../_static/schema/UndergroundStructureKind.html){.external}
 
-[UnitMultiplier](../_static/schema/UnitMultiplier.html)
+[UnitMultiplier](../_static/schema/UnitMultiplier.html){.external}
 
-[UnitRegulationKind](../_static/schema/UnitRegulationKind.html)
+[UnitRegulationKind](../_static/schema/UnitRegulationKind.html){.external}
 
-[UnitSymbol](../_static/schema/UnitSymbol.html)
+[UnitSymbol](../_static/schema/UnitSymbol.html){.external}
 
-[UnitType](../_static/schema/UnitType.html)
+[UnitType](../_static/schema/UnitType.html){.external}
 
-[UnitTypeEMS](../_static/schema/UnitTypeEMS.html)
+[UnitTypeEMS](../_static/schema/UnitTypeEMS.html){.external}
 
-[UnplannedOutage](../_static/schema/UnplannedOutage.html)
+[UnplannedOutage](../_static/schema/UnplannedOutage.html){.external}
 
-[UsagePointConnectedKind](../_static/schema/UsagePointConnectedKind.html)
+[UsagePointConnectedKind](../_static/schema/UsagePointConnectedKind.html){.external}
 
-[Validity](../_static/schema/Validity.html)
+[Validity](../_static/schema/Validity.html){.external}
 
-[VehicleUsageKind](../_static/schema/VehicleUsageKind.html)
+[VehicleUsageKind](../_static/schema/VehicleUsageKind.html){.external}
 
-[VerificationAction](../_static/schema/VerificationAction.html)
+[VerificationAction](../_static/schema/VerificationAction.html){.external}
 
-[Version](../_static/schema/Version.html)
+[Version](../_static/schema/Version.html){.external}
 
-[Versions](../_static/schema/Versions.html)
+[Versions](../_static/schema/Versions.html){.external}
 
-[Voltage](../_static/schema/Voltage.html)
+[Voltage](../_static/schema/Voltage.html){.external}
 
-[VoltageCompensatorDynamics](../_static/schema/VoltageCompensatorDynamics.html)
+[VoltageCompensatorDynamics](../_static/schema/VoltageCompensatorDynamics.html){.external}
 
-[VoltageLevel](../_static/schema/VoltageLevel.html)
+[VoltageLevel](../_static/schema/VoltageLevel.html){.external}
 
-[VoltageLimit](../_static/schema/VoltageLimit.html)
+[VoltageLimit](../_static/schema/VoltageLimit.html){.external}
 
-[VoltagePerReactivePower](../_static/schema/VoltagePerReactivePower.html)
+[VoltagePerReactivePower](../_static/schema/VoltagePerReactivePower.html){.external}
 
-[Volume](../_static/schema/Volume.html)
+[Volume](../_static/schema/Volume.html){.external}
 
-[VolumeFlowRate](../_static/schema/VolumeFlowRate.html)
+[VolumeFlowRate](../_static/schema/VolumeFlowRate.html){.external}
 
-[VsCapabilityCurve](../_static/schema/VsCapabilityCurve.html)
+[VsCapabilityCurve](../_static/schema/VsCapabilityCurve.html){.external}
 
-[VsConverter](../_static/schema/VsConverter.html)
+[VsConverter](../_static/schema/VsConverter.html){.external}
 
-[VsPpccControlKind](../_static/schema/VsPpccControlKind.html)
+[VsPpccControlKind](../_static/schema/VsPpccControlKind.html){.external}
 
-[VsQpccControlKind](../_static/schema/VsQpccControlKind.html)
+[VsQpccControlKind](../_static/schema/VsQpccControlKind.html){.external}
 
-[WEPStandard](../_static/schema/WEPStandard.html)
+[WEPStandard](../_static/schema/WEPStandard.html){.external}
 
-[WEPStandardEditionKind](../_static/schema/WEPStandardEditionKind.html)
+[WEPStandardEditionKind](../_static/schema/WEPStandardEditionKind.html){.external}
 
-[WEPStandardKind](../_static/schema/WEPStandardKind.html)
+[WEPStandardKind](../_static/schema/WEPStandardKind.html){.external}
 
-[WaterLevel](../_static/schema/WaterLevel.html)
+[WaterLevel](../_static/schema/WaterLevel.html){.external}
 
-[WeatherCodeKind](../_static/schema/WeatherCodeKind.html)
+[WeatherCodeKind](../_static/schema/WeatherCodeKind.html){.external}
 
-[WindGenUnitKind](../_static/schema/WindGenUnitKind.html)
+[WindGenUnitKind](../_static/schema/WindGenUnitKind.html){.external}
 
-[WindGeneratingUnit](../_static/schema/WindGeneratingUnit.html)
+[WindGeneratingUnit](../_static/schema/WindGeneratingUnit.html){.external}
 
-[WindLookupTableFunctionKind](../_static/schema/WindLookupTableFunctionKind.html)
+[WindLookupTableFunctionKind](../_static/schema/WindLookupTableFunctionKind.html){.external}
 
-[WindPlantQcontrolModeKind](../_static/schema/WindPlantQcontrolModeKind.html)
+[WindPlantQcontrolModeKind](../_static/schema/WindPlantQcontrolModeKind.html){.external}
 
-[WindQcontrolModeKind](../_static/schema/WindQcontrolModeKind.html)
+[WindQcontrolModeKind](../_static/schema/WindQcontrolModeKind.html){.external}
 
-[WindUVRTQcontrolModeKind](../_static/schema/WindUVRTQcontrolModeKind.html)
+[WindUVRTQcontrolModeKind](../_static/schema/WindUVRTQcontrolModeKind.html){.external}
 
-[WindingConnection](../_static/schema/WindingConnection.html)
+[WindingConnection](../_static/schema/WindingConnection.html){.external}
 
-[WindingInsulationKind](../_static/schema/WindingInsulationKind.html)
+[WindingInsulationKind](../_static/schema/WindingInsulationKind.html){.external}
 
-[WireInfo](../_static/schema/WireInfo.html)
+[WireInfo](../_static/schema/WireInfo.html){.external}
 
-[WireInsulationKind](../_static/schema/WireInsulationKind.html)
+[WireInsulationKind](../_static/schema/WireInsulationKind.html){.external}
 
-[WireMaterialKind](../_static/schema/WireMaterialKind.html)
+[WireMaterialKind](../_static/schema/WireMaterialKind.html){.external}
 
-[WirePhaseInfo](../_static/schema/WirePhaseInfo.html)
+[WirePhaseInfo](../_static/schema/WirePhaseInfo.html){.external}
 
-[WirePosition](../_static/schema/WirePosition.html)
+[WirePosition](../_static/schema/WirePosition.html){.external}
 
-[WireSegment](../_static/schema/WireSegment.html)
+[WireSegment](../_static/schema/WireSegment.html){.external}
 
-[WireSegmentPhase](../_static/schema/WireSegmentPhase.html)
+[WireSegmentPhase](../_static/schema/WireSegmentPhase.html){.external}
 
-[WireSpacingInfo](../_static/schema/WireSpacingInfo.html)
+[WireSpacingInfo](../_static/schema/WireSpacingInfo.html){.external}
 
-[WireUsageKind](../_static/schema/WireUsageKind.html)
+[WireUsageKind](../_static/schema/WireUsageKind.html){.external}
 
-[WorkActionKind](../_static/schema/WorkActionKind.html)
+[WorkActionKind](../_static/schema/WorkActionKind.html){.external}
 
-[WorkStatusKind](../_static/schema/WorkStatusKind.html)
+[WorkStatusKind](../_static/schema/WorkStatusKind.html){.external}
 
-[WorkTaskKind](../_static/schema/WorkTaskKind.html)
+[WorkTaskKind](../_static/schema/WorkTaskKind.html){.external}
 
-[WorkTimeScheduleKind](../_static/schema/WorkTimeScheduleKind.html)
+[WorkTimeScheduleKind](../_static/schema/WorkTimeScheduleKind.html){.external}
 
-[YesNo](../_static/schema/YesNo.html)
+[YesNo](../_static/schema/YesNo.html){.external}
 
-[ZoneKind](../_static/schema/ZoneKind.html)
+[ZoneKind](../_static/schema/ZoneKind.html){.external}
 
-[ZoneType](../_static/schema/ZoneType.html)
+[ZoneType](../_static/schema/ZoneType.html){.external}
 
-[runTypeCAISO](../_static/schema/runTypeCAISO.html)
+[runTypeCAISO](../_static/schema/runTypeCAISO.html){.external}
 
