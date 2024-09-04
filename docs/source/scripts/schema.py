@@ -69,7 +69,7 @@ def build_schema_docs():
 
 ## Main Schema
 
-[Main Schema](../_static/schema/__main__.html)
+[Main Schema](../_static/schema/__main__.html){.external}
 
 ## Individual Schema
 
@@ -77,7 +77,7 @@ def build_schema_docs():
 
     for file in sorted(glob.glob("*.html", root_dir=static_schema_dir)):
         if file != "__main__.html":
-            md_file = md_file + f"[{file.split(".html")[0]}](../_static/schema/{file})\n\n"
+            md_file = md_file + f"[{file.split(".html")[0]}](../_static/schema/{file})" + "{.external}" + "\n\n"
 
     with open(os.path.join(schema_md_dir, "index.md"), "w") as f:
         f.write(md_file)
