@@ -443,6 +443,7 @@ class DssExport(object):
         load_profile_names = ["Daily", "Duty", "Growth", "Yearly", "CVRCurve", "Spectrum"]
         ecp_name = ":".join(["Load"] + [(getattr(load, attr).Name if getattr(load, attr) is not None else "") for attr in load_profile_names])
 
+        loadshape_uris = []
         if f"EnergyConnectionProfile.{ecp_name}" not in self.uuid_map:
             node = self.build_cim_obj("EnergyConnectionProfile", name=ecp_name)
             for attr in load_profile_names:
@@ -455,11 +456,17 @@ class DssExport(object):
                     else:
                         self.add_triple(node, f"EnergyConnectionProfile.dss{attr}", obj.Name)
                         if attr in ["Daily", "Yearly", "Duty", "CVRCurve"]:
-                            self._add_EnergyConsumerProfile(node, obj)
-
+                            loadshape_uris.append(self._add_EnergyConsumerProfile(subject_uri, obj))
             self.uuid_map[f"EnergyConnectionProfile.{ecp_name}"] = str(node)
+        else:
+            for attr in ["Daily", "Duty", "Yearly", "CVRCurve"]:
+                loadshape = getattr(load, attr)
+                if loadshape is not None:
+                    loadshape_uris.append(URIRef(self.uuid_map[f"EnergyConsumerProfile.{loadshape.Name}"]))
 
         self.add_triple(URIRef(self.uuid_map[f"EnergyConnectionProfile.{ecp_name}"]), "EnergyConnectionProfile.EnergyConnections", subject_uri)
+        for uri in loadshape_uris:
+            self.add_triple(subject_uri, "EnergyConsumer.LoadProfile", uri)
 
     def _add_EnergyConsumerProfile(self, subject_uri, loadshape):
         # TODO: handle irregular time points
@@ -488,7 +495,7 @@ class DssExport(object):
 
             self.uuid_map[f"EnergyConsumerProfile.{loadshape.Name}"] = str(node)
 
-        self.add_triple(URIRef(self.uuid_map[f"EnergyConsumerProfile.{loadshape.Name}"]), "EnergyConsumerProfile.EnergyConnectionProfile", subject_uri)
+        return URIRef(self.uuid_map[f"EnergyConsumerProfile.{loadshape.Name}"])
 
     def _add_RegularTimePoint(self, subject_uri: URIRef, sequence: int, value1: float, value2: float):
         node = self.build_cim_obj("RegularTimePoint", skip_mrid=True)
