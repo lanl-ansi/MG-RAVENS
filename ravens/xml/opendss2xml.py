@@ -138,7 +138,7 @@ class DssExport(object):
 
         return phase_str
 
-    def _add_rdf_object(self, rdf_type: str, mrid: str = None, name: str = None, skip_mrid: bool = False) -> URIRef:
+    def build_cim_obj(self, rdf_type: str, mrid: str = None, name: str = None, skip_mrid: bool = False) -> URIRef:
         if mrid is None:
             mrid = str(uuid4())
         node = URIRef(mrid)
@@ -151,33 +151,33 @@ class DssExport(object):
 
         return node
 
-    def _add_property(self, node: URIRef, property_name: str, property_value):
-        if isinstance(property_value, bool):
-            self.graph.add((node, self.cim[property_name], Literal(str(property_value).lower())))
-        elif isinstance(property_value, URIRef):
-            self.graph.add((node, self.cim[property_name], property_value))
+    def add_triple(self, subject: URIRef, predicate: str, obj):
+        if isinstance(obj, bool):
+            self.graph.add((subject, self.cim[predicate], Literal(str(obj).lower())))
+        elif isinstance(obj, URIRef):
+            self.graph.add((subject, self.cim[predicate], obj))
         else:
-            self.graph.add((node, self.cim[property_name], Literal(str(property_value))))
+            self.graph.add((subject, self.cim[predicate], Literal(str(obj))))
 
     def _add_SvStatus(self, source_node_uri: URIRef, in_service: bool):
         if f"SvStatus.{in_service}" not in self.uuid_map:
-            node = self._add_rdf_object("SvStatus", skip_mrid=True)
-            self._add_property(node, "SvStatus.inService", in_service)
-            self._add_property(source_node_uri, "ConductingEquipment.SvStatus", node)
+            node = self.build_cim_obj("SvStatus", skip_mrid=True)
+            self.add_triple(node, "SvStatus.inService", in_service)
+            self.add_triple(source_node_uri, "ConductingEquipment.SvStatus", node)
 
             self.uuid_map[f"SvStatus.{in_service}"] = str(node)
         else:
-            self._add_property(source_node_uri, "ConductingEquipment.SvStatus", URIRef(self.uuid_map[f"SvStatus.{in_service}"]))
+            self.add_triple(source_node_uri, "ConductingEquipment.SvStatus", URIRef(self.uuid_map[f"SvStatus.{in_service}"]))
 
     def _add_IECVersion(self):
-        node = self._add_rdf_object("IEC61970CIMVersion", skip_mrid=True)
-        self._add_property(node, "IEC61970CIMVersion.version", "IEC61970CIM100")
-        self._add_property(node, "IEC61970CIMVersion.date", "2019-04-01")
+        node = self.build_cim_obj("IEC61970CIMVersion", skip_mrid=True)
+        self.add_triple(node, "IEC61970CIMVersion.version", "IEC61970CIM100")
+        self.add_triple(node, "IEC61970CIMVersion.date", "2019-04-01")
 
     def _add_Location(self, obj_name: str, x_coords: list[float], y_coords: list[float], coord_system: str = None):
         # TODO: crsUrn
         if f"Location.{obj_name}_Location" not in self.uuid_map:
-            node = self._add_rdf_object("Location", name=f"Location.{obj_name}_Location")
+            node = self.build_cim_obj("Location", name=f"{obj_name}_Location")
 
             for i, (x, y) in enumerate(zip(x_coords, y_coords)):
                 self._add_PositionPoint(node, x, y, i + 1)
@@ -189,21 +189,21 @@ class DssExport(object):
             return URIRef(self.uuid_map[f"Location.{obj_name}_Location"])
 
     def _add_PositionPoint(self, location_uri: URIRef, x: float, y: float, seq: int):
-        node = self._add_rdf_object("PositionPoint", skip_mrid=True)
-        self._add_property(node, "PositionPoint.sequenceNumber", seq)
-        self._add_property(node, "PositionPoint.xPosition", x)
-        self._add_property(node, "PositionPoint.yPosition", y)
-        self._add_property(node, "PositionPoint.Location", location_uri)
+        node = self.build_cim_obj("PositionPoint", skip_mrid=True)
+        self.add_triple(node, "PositionPoint.sequenceNumber", seq)
+        self.add_triple(node, "PositionPoint.xPosition", x)
+        self.add_triple(node, "PositionPoint.yPosition", y)
+        self.add_triple(node, "PositionPoint.Location", location_uri)
 
     def _add_BaseVoltage(self, source_uri: URIRef, bus: str):
         base_kv = math.sqrt(3) * self.dss.Bus.kVBase()[self.dss.Bus.Name().index(self._parse_busname(bus))]
 
         if f"BaseVoltage.{base_kv}" not in self.uuid_map:
-            node = self._add_rdf_object("BaseVoltage", name=f"BaseV_{base_kv}")
-            self._add_property(node, "BaseVoltage.nominalVoltage", base_kv * 1000)
+            node = self.build_cim_obj("BaseVoltage", name=f"BaseV_{base_kv}")
+            self.add_triple(node, "BaseVoltage.nominalVoltage", base_kv * 1000)
             self.uuid_map[f"BaseVoltage.{base_kv}"] = str(node)
 
-        self._add_property(source_uri, "ConductingEquipment.BaseVoltage", URIRef(self.uuid_map[f"BaseVoltage.{base_kv}"]))
+        self.add_triple(source_uri, "ConductingEquipment.BaseVoltage", URIRef(self.uuid_map[f"BaseVoltage.{base_kv}"]))
 
     def _add_ConnectivityNodes(self):
         for bus in self.dss.Bus:
@@ -213,7 +213,7 @@ class DssExport(object):
     def _add_ConnectivityNode(self, bus: str):
         if f"ConnectivityNode.{bus}" not in self.uuid_map:
             obj_uuid = str(uuid4())
-            node = self._add_rdf_object("ConnectivityNode", name=bus)
+            node = self.build_cim_obj("ConnectivityNode", name=bus)
             self.uuid_map[f"ConnectivityNode.{bus}"] = str(node)
 
             return node
@@ -221,31 +221,31 @@ class DssExport(object):
             return URIRef(self.uuid_map[f"ConnectivityNode.{bus}"])
 
     def _add_Terminal(self, connecting_node: URIRef, element: object, bus: str = None, n_terminal: int = 1, phases="ABC"):
-        node = self._add_rdf_object("Terminal", name=f"{element.Name}_T{n_terminal}")
+        node = self.build_cim_obj("Terminal", name=f"{element.Name}_T{n_terminal}")
 
-        self._add_property(node, "ACDCTerminal.sequenceNumber", n_terminal)
-        self._add_property(node, "Terminal.phases", self.cim[f"PhaseCode.{phases}"])
-        self._add_property(node, "Terminal.ConductingEquipment", connecting_node)
+        self.add_triple(node, "ACDCTerminal.sequenceNumber", n_terminal)
+        self.add_triple(node, "Terminal.phases", self.cim[f"PhaseCode.{phases}"])
+        self.add_triple(node, "Terminal.ConductingEquipment", connecting_node)
 
         if bus is not None:
             cn_node = self._add_ConnectivityNode(bus)
-            self._add_property(node, "Terminal.ConnectivityNode", cn_node)
+            self.add_triple(node, "Terminal.ConnectivityNode", cn_node)
 
     def _add_EnergySources(self):
         for vsource in self.dss.Vsource:
             self._add_EnergySource(vsource)
 
     def _add_EnergySource(self, vsource: object):
-        node = self._add_rdf_object("EnergySource", name=vsource.Name)
+        node = self.build_cim_obj("EnergySource", name=vsource.Name)
 
-        self._add_property(node, "EnergySource.nominalVoltage", vsource.BasekV * 1000.0)
-        self._add_property(node, "EnergySource.voltageMagnitude", vsource.BasekV * 1000.0 * vsource.pu)
-        self._add_property(node, "EnergySource.voltageAngle", math.radians(vsource.Angle))
-        self._add_property(node, "EnergySource.R1", vsource.R1)
-        self._add_property(node, "EnergySource.X1", vsource.X1)
-        self._add_property(node, "EnergySource.R0", vsource.R0)
-        self._add_property(node, "EnergySource.X0", vsource.X0)
-        self._add_property(node, "Equipment.inService", vsource.Enabled)
+        self.add_triple(node, "EnergySource.nominalVoltage", vsource.BasekV * 1000.0)
+        self.add_triple(node, "EnergySource.voltageMagnitude", vsource.BasekV * 1000.0 * vsource.pu)
+        self.add_triple(node, "EnergySource.voltageAngle", math.radians(vsource.Angle))
+        self.add_triple(node, "EnergySource.R1", vsource.R1)
+        self.add_triple(node, "EnergySource.X1", vsource.X1)
+        self.add_triple(node, "EnergySource.R0", vsource.R0)
+        self.add_triple(node, "EnergySource.X0", vsource.X0)
+        self.add_triple(node, "Equipment.inService", vsource.Enabled)
 
         self._add_BaseVoltage(node, vsource.Bus1)
 
@@ -255,7 +255,13 @@ class DssExport(object):
             if phases:
                 self._add_Terminal(node, vsource, n_terminal=t + 1, phases=phases)
 
+        phases = self._parse_ordered_phase_str(vsource.Bus1, vsource.Phases)
+        if phases != "ABC":
+            for phase in phases:
+                self._add_EnergySourcePhase()
+
     def _add_EnergySourcePhase(self):
+        # TODO: EnergySourcePhase
         pass
 
     def _add_ACLineSegments(self):
@@ -266,14 +272,15 @@ class DssExport(object):
             if line.Switch:
                 self._add_Switch(line)
             else:
-                node = self._add_rdf_object("ACLineSegment", name=line.Name)
-                self._add_property(node, "Conductor.length", line.Length)
-                self._add_property(node, "Equipment.inService", line.Enabled)
+                node = self.build_cim_obj("ACLineSegment", name=line.Name)
+                self.add_triple(node, "Conductor.length", line.Length)
+                self.add_triple(node, "Equipment.inService", line.Enabled)
                 self._add_BaseVoltage(node, line.Bus1)
 
+                # TODO: Line Geometry, parameters defined on Line, etc.
                 if line.LineCode is not None:
                     uri = self._add_PerLengthPhaseImedance(line.LineCode)
-                    self._add_property(node, "ACLineSegment.PerLengthImpedance", uri)
+                    self.add_triple(node, "ACLineSegment.PerLengthImpedance", uri)
 
                 phases = self._parse_ordered_phase_str(line.Bus1, line.Phases)
                 if phases == "s12":
@@ -290,15 +297,15 @@ class DssExport(object):
                     self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=self._parse_ordered_phase_str(bus, line.Phases))
 
     def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: object, phase: str, sequence: int):
-        node = self._add_rdf_object("ACLineSegmentPhase", name=f"{line.Name}_{phase}")
-        self._add_property(node, "ACLineSegmentPhase.phase", self.cim[f"SinglePhaseKind.{phase}"])
-        self._add_property(node, "ACLineSegmentPhase.sequenceNumber", sequence)
-        self._add_property(node, "ACLineSegmentPhase.ACLineSegment", aclinesegment_uri)
+        node = self.build_cim_obj("ACLineSegmentPhase", name=f"{line.Name}_{phase}")
+        self.add_triple(node, "ACLineSegmentPhase.phase", self.cim[f"SinglePhaseKind.{phase}"])
+        self.add_triple(node, "ACLineSegmentPhase.sequenceNumber", sequence)
+        self.add_triple(node, "ACLineSegmentPhase.ACLineSegment", aclinesegment_uri)
 
     def _add_PerLengthPhaseImedance(self, linecode: object) -> URIRef:
         if f"PerLengthPhaseImpedance.{linecode.Name}" not in self.uuid_map:
-            node = self._add_rdf_object("PerLengthPhaseImpedance", name=linecode.Name)
-            self._add_property(node, "PerLengthPhaseImpedance.conductorCount", linecode.NPhases)
+            node = self.build_cim_obj("PerLengthPhaseImpedance", name=linecode.Name)
+            self.add_triple(node, "PerLengthPhaseImpedance.conductorCount", linecode.NPhases)
 
             self._add_PhaseImpedanceData(node, linecode)
 
@@ -311,17 +318,18 @@ class DssExport(object):
     def _add_PhaseImpedanceData(self, phase_impedance_uri: URIRef, linecode: object):
         for col in range(linecode.NPhases):
             for row in range(col, linecode.NPhases):
-                node = self._add_rdf_object("PhaseImpedanceData", skip_mrid=True)
-                self._add_property(node, "PhaseImpedanceData.row", row + 1)
-                self._add_property(node, "PhaseImpedanceData.column", col + 1)
-                self._add_property(node, "PhaseImpedanceData.r", linecode.RMatrix[row + col])
-                self._add_property(node, "PhaseImpedanceData.x", linecode.XMatrix[row + col])
-                self._add_property(node, "PhaseImpedanceData.b", linecode.CMatrix[row + col] * 2 * math.pi * linecode.BaseFreq / 1e9)
-                self._add_property(node, "PhaseImpedanceData.PhaseImpedance", phase_impedance_uri)
+                node = self.build_cim_obj("PhaseImpedanceData", skip_mrid=True)
+                self.add_triple(node, "PhaseImpedanceData.row", row + 1)
+                self.add_triple(node, "PhaseImpedanceData.column", col + 1)
+                self.add_triple(node, "PhaseImpedanceData.r", linecode.RMatrix[row + col])
+                self.add_triple(node, "PhaseImpedanceData.x", linecode.XMatrix[row + col])
+                self.add_triple(node, "PhaseImpedanceData.b", linecode.CMatrix[row + col] * 2 * math.pi * linecode.BaseFreq / 1e9)
+                self.add_triple(node, "PhaseImpedanceData.PhaseImpedance", phase_impedance_uri)
 
     def _add_Switch(self, line: object):
-        node = self._add_rdf_object("Switch", name=line.Name)
-        self._add_property(node, "Equipment.inService", line.Enabled)
+        # TODO: Type of switch
+        node = self.build_cim_obj("Switch", name=line.Name)
+        self.add_triple(node, "Equipment.inService", line.Enabled)
 
         phases = self._parse_ordered_phase_str(line.Bus1, line.Phases)
         if phases == "s12":
@@ -338,35 +346,40 @@ class DssExport(object):
             self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=self._parse_ordered_phase_str(bus, line.Phases))
 
     def _add_SwitchPhase(self):
-        node = self._add_rdf_object("SwitchPhase", name=f"{line.Name}_{phase}")
-        self._add_property(node, "SwitchPhase.phase", self.cim[f"SinglePhaseKind.{phase}"])
-        self._add_property(node, "SwitchPhase.sequenceNumber", sequence)
-        self._add_property(node, "SwitchPhase.Switch", aclinesegment_uri)
+        node = self.build_cim_obj("SwitchPhase", name=f"{line.Name}_{phase}")
+        self.add_triple(node, "SwitchPhase.phase", self.cim[f"SinglePhaseKind.{phase}"])
+        self.add_triple(node, "SwitchPhase.sequenceNumber", sequence)
+        self.add_triple(node, "SwitchPhase.Switch", aclinesegment_uri)
 
     def _add_EnergyConsumers(self):
         for load in self.dss.Load:
 
-            node = self._add_rdf_object("EnergyConsumer", name=load.Name)
+            node = self.build_cim_obj("EnergyConsumer", name=load.Name)
 
-            self._add_property(node, "EnergyConsumer.p", load.kW * 1000.0)
-            self._add_property(node, "EnergyConsumer.q", load.kvar * 1000.0)
-            self._add_property(node, "EnergyConsumer.customerCount", load.NumCust)
-            self._add_property(node, "EnergyConsumer.grounded", self._is_grounded([load.Bus1], load.Conn != 0))
-            self._add_property(node, "Equipment.inService", load.Enabled)
+            self.add_triple(node, "EnergyConsumer.p", load.kW * 1000.0)
+            self.add_triple(node, "EnergyConsumer.q", load.kvar * 1000.0)
+            self.add_triple(node, "EnergyConsumer.customerCount", load.NumCust)
+            self.add_triple(node, "EnergyConsumer.grounded", self._is_grounded([load.Bus1], load.Conn != 0))
+            self.add_triple(node, "Equipment.inService", load.Enabled)
             self._add_BaseVoltage(node, load.Bus1)
 
-            if load.Conn != 0:
-                self._add_property(node, "EnergyConsumer.phaseConnection", self.cim["PhaseShuntConnectionKind.D"])
+            if load.Conn_str == "delta":
+                self.add_triple(node, "EnergyConsumer.phaseConnection", self.cim["PhaseShuntConnectionKind.D"])
+            elif load.Conn_str == "wye":
+                self.add_triple(node, "EnergyConsumer.phaseConnection", self.cim["PhaseShuntConnectionKind.Y"])
             else:
-                self._add_property(node, "EnergyConsumer.phaseConnection", self.cim["PhaseShuntConnectionKind.Y"])
+                raise Exception(f"Load.{load.Name}: unrecognized load connection '{load.Conn_str}'")
 
             lrc_node = self._add_LoadResponseCharacteristic(load.Model)
             if lrc_node is not None:
-                self._add_property(node, "EnergyConsumer.LoadResponse", lrc_node)
+                self.add_triple(node, "EnergyConsumer.LoadResponse", lrc_node)
 
             phases = self._parse_phase_str(load.Bus1, load.Phases, load.kV, load.Conn != 0)
             self._add_EnergyConsumerPhases(node, load, phases)
             self._add_Terminal(node, load, bus=self._parse_busname(load.Bus1), phases=phases)
+
+            # EnergyConsumerProfile
+            self._add_EnergyConnectionProfile(node, load)
 
     def _add_EnergyConsumerPhases(self, energy_consumer_uri: URIRef, load: object, phases: str):
         if load.Phases == 3:
@@ -379,43 +392,43 @@ class DssExport(object):
                     phases = [phases]
 
             for ph in phases:
-                node = self._add_rdf_object("EnergyConsumerPhase", name=f"{load.Name}_{ph}")
-                self._add_property(node, "EnergyConsumerPhase.p", load.kW * 1000.0 / load.Phases)
-                self._add_property(node, "EnergyConsumerPhase.q", load.kvar * 1000.0 / load.Phases)
-                self._add_property(node, "EnergyConsumerPhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
-                self._add_property(node, "EnergyConsumerPhase.EnergyConsumer", energy_consumer_uri)
+                node = self.build_cim_obj("EnergyConsumerPhase", name=f"{load.Name}_{ph}")
+                self.add_triple(node, "EnergyConsumerPhase.p", load.kW * 1000.0 / load.Phases)
+                self.add_triple(node, "EnergyConsumerPhase.q", load.kvar * 1000.0 / load.Phases)
+                self.add_triple(node, "EnergyConsumerPhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
+                self.add_triple(node, "EnergyConsumerPhase.EnergyConsumer", energy_consumer_uri)
 
     def _add_LoadResponseCharacteristic(self, model):
         if f"LoadResponseCharacteristic.{model}" not in self.uuid_map:
             if model == 1:
-                node = self._add_rdf_object("LoadResponseCharacteristic", name="Constant kVA")
-                self._add_property(node, "LoadResponseCharacteristic.pConstantPower", 100)
-                self._add_property(node, "LoadResponseCharacteristic.qConstantPower", 100)
+                node = self.build_cim_obj("LoadResponseCharacteristic", name="Constant kVA")
+                self.add_triple(node, "LoadResponseCharacteristic.pConstantPower", 100)
+                self.add_triple(node, "LoadResponseCharacteristic.qConstantPower", 100)
             elif model == 2:
-                node = self._add_rdf_object("LoadResponseCharacteristic", name="Constant Z")
-                self._add_property(node, "LoadResponseCharacteristic.pConstantImpedance", 100)
-                self._add_property(node, "LoadResponseCharacteristic.qConstantImpedance", 100)
+                node = self.build_cim_obj("LoadResponseCharacteristic", name="Constant Z")
+                self.add_triple(node, "LoadResponseCharacteristic.pConstantImpedance", 100)
+                self.add_triple(node, "LoadResponseCharacteristic.qConstantImpedance", 100)
             elif model == 3:
-                node = self._add_rdf_object("LoadResponseCharacteristic", name="Motor")
-                self._add_property(node, "LoadResponseCharacteristic.pConstantPower", 100)
-                self._add_property(node, "LoadResponseCharacteristic.qConstantImpedance", 100)
+                node = self.build_cim_obj("LoadResponseCharacteristic", name="Motor")
+                self.add_triple(node, "LoadResponseCharacteristic.pConstantPower", 100)
+                self.add_triple(node, "LoadResponseCharacteristic.qConstantImpedance", 100)
             elif model == 4:
-                node = self._add_rdf_object("LoadResponseCharacteristic", name="Mix Motor/Res")
-                self._add_property(node, "LoadResponseCharacteristic.exponentModel", True)
-                self._add_property(node, "LoadResponseCharacteristic.pVoltageExponent", 1)
-                self._add_property(node, "LoadResponseCharacteristic.qVoltageExponent", 2)
+                node = self.build_cim_obj("LoadResponseCharacteristic", name="Mix Motor/Res")
+                self.add_triple(node, "LoadResponseCharacteristic.exponentModel", True)
+                self.add_triple(node, "LoadResponseCharacteristic.pVoltageExponent", 1)
+                self.add_triple(node, "LoadResponseCharacteristic.qVoltageExponent", 2)
             elif model == 5:
-                node = self._add_rdf_object("LoadResponseCharacteristic", name="Constant I")
-                self._add_property(node, "LoadResponseCharacteristic.pConstantCurrent", 100)
-                self._add_property(node, "LoadResponseCharacteristic.qConstantCurrent", 100)
+                node = self.build_cim_obj("LoadResponseCharacteristic", name="Constant I")
+                self.add_triple(node, "LoadResponseCharacteristic.pConstantCurrent", 100)
+                self.add_triple(node, "LoadResponseCharacteristic.qConstantCurrent", 100)
             elif model == 6:
-                node = self._add_rdf_object("LoadResponseCharacteristic", name="Variable P, Fixed Q")
-                self._add_property(node, "LoadResponseCharacteristic.pConstantPower", 100)
-                self._add_property(node, "LoadResponseCharacteristic.qConstantPower", 100)
+                node = self.build_cim_obj("LoadResponseCharacteristic", name="Variable P, Fixed Q")
+                self.add_triple(node, "LoadResponseCharacteristic.pConstantPower", 100)
+                self.add_triple(node, "LoadResponseCharacteristic.qConstantPower", 100)
             elif model == 7:
-                node = self._add_rdf_object("LoadResponseCharacteristic", name="Variable P, Fixed X")
-                self._add_property(node, "LoadResponseCharacteristic.pConstantPower", 100)
-                self._add_property(node, "LoadResponseCharacteristic.qConstantImpedance", 100)
+                node = self.build_cim_obj("LoadResponseCharacteristic", name="Variable P, Fixed X")
+                self.add_triple(node, "LoadResponseCharacteristic.pConstantPower", 100)
+                self.add_triple(node, "LoadResponseCharacteristic.qConstantImpedance", 100)
             else:
                 return None
 
@@ -425,6 +438,64 @@ class DssExport(object):
 
         else:
             return URIRef(self.uuid_map[f"LoadResponseCharacteristic.{model}"])
+
+    def _add_EnergyConnectionProfile(self, subject_uri, load):
+        load_profile_names = ["Daily", "Duty", "Growth", "Yearly", "CVRCurve", "Spectrum"]
+        ecp_name = ":".join(["Load"] + [(getattr(load, attr).Name if getattr(load, attr) is not None else "") for attr in load_profile_names])
+
+        if f"EnergyConnectionProfile.{ecp_name}" not in self.uuid_map:
+            node = self.build_cim_obj("EnergyConnectionProfile", name=ecp_name)
+            for attr in load_profile_names:
+                obj = getattr(load, attr)
+                if obj is not None:
+                    if attr == "CVRCurve":
+                        self.add_triple(node, "EnergyConnectionProfile.dssLoadCvrCurve", obj.Name)
+                    elif attr == "Growth":
+                        self.add_triple(node, "EnergyConnectionProfile.dssLoadGrowth", obj.Name)
+                    else:
+                        self.add_triple(node, f"EnergyConnectionProfile.dss{attr}", obj.Name)
+                        if attr in ["Daily", "Yearly", "Duty", "CVRCurve"]:
+                            self._add_EnergyConsumerProfile(node, obj)
+
+            self.uuid_map[f"EnergyConnectionProfile.{ecp_name}"] = str(node)
+
+        self.add_triple(URIRef(self.uuid_map[f"EnergyConnectionProfile.{ecp_name}"]), "EnergyConnectionProfile.EnergyConnections", subject_uri)
+
+    def _add_EnergyConsumerProfile(self, subject_uri, loadshape):
+        # TODO: handle irregular time points
+        if f"EnergyConsumerProfile.{loadshape.Name}" not in self.uuid_map:
+            node = self.build_cim_obj("EnergyConsumerProfile", name=loadshape.Name)
+
+            pmult = loadshape.PMult
+            qmult = loadshape.QMult
+
+            if loadshape.UseActual:
+                self.add_triple(node, "BasicIntervalSchedule.value1Unit", "W")
+                self.add_triple(node, "BasicIntervalSchedule.value2Unit", "var")
+                pmult *= 1000
+                qmult *= 1000
+            else:
+                self.add_triple(node, "BasicIntervalSchedule.value1Unit", "none")
+                self.add_triple(node, "BasicIntervalSchedule.value2Unit", "none")
+
+            self.add_triple(node, "RegularIntervalSchedule.timeStep", loadshape.SInterval)
+
+            if qmult.size == 0:
+                qmult = pmult
+
+            for i, (p, q) in enumerate(zip(pmult, qmult)):
+                self._add_RegularTimePoint(node, i, p, q)
+
+            self.uuid_map[f"EnergyConsumerProfile.{loadshape.Name}"] = str(node)
+
+        self.add_triple(URIRef(self.uuid_map[f"EnergyConsumerProfile.{loadshape.Name}"]), "EnergyConsumerProfile.EnergyConnectionProfile", subject_uri)
+
+    def _add_RegularTimePoint(self, subject_uri: URIRef, sequence: int, value1: float, value2: float):
+        node = self.build_cim_obj("RegularTimePoint", skip_mrid=True)
+        self.add_triple(node, "RegularTimePoint.sequenceNumber", sequence)
+        self.add_triple(node, "RegularTimePoint.value1", value1)
+        self.add_triple(node, "RegularTimePoint.value2", value2)
+        self.add_triple(node, "RegularTimePoint.IntervalSchedule", subject_uri)
 
 
 if __name__ == "__main__":
