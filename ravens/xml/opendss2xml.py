@@ -205,6 +205,8 @@ class DssExport(object):
 
         self.add_triple(source_uri, "ConductingEquipment.BaseVoltage", URIRef(self.uuid_map[f"BaseVoltage.{base_kv}"]))
 
+        return base_kv
+
     def _add_ConnectivityNodes(self):
         for bus in self.dss.Bus:
             self._add_ConnectivityNode(bus.Name)
@@ -230,6 +232,85 @@ class DssExport(object):
         if bus is not None:
             cn_node = self._add_ConnectivityNode(bus)
             self.add_triple(node, "Terminal.ConnectivityNode", cn_node)
+
+        return node
+
+    def _add_OperationalLimitSet(self, subject_uri: URIRef, limit_type: str, norm_max: float, norm_min: float = None, emerg_max: float = None, emerg_min: float = None):
+        emerg = False
+        if limit_type == "Voltage":
+            emerg = emerg_min is not None and emerg_max is not None
+
+            name = f"OpLimV_{norm_min}-{norm_max}"
+            if emerg:
+                name += f"_{emerg_min}-{emerg_max}"
+        elif limit_type == "Current":
+            emerg = emerg_max is not None
+            name = f"OpLimI_{norm_max}"
+            if emerg:
+                name += f"_{emerg_max}"
+        else:
+            # TODO: ActivePower, ApparentPower Limit Types
+            print("OperationalLimitSet with type of '{limit_type}' is not yet supported.")
+
+        if f"OperationalLimitSet.{name}" not in self.uuid_map:
+            node = self.build_cim_obj("OperationalLimitSet", name=name)
+
+            if limit_type == "Voltage":
+                for limit_direction in ["low", "high"]:
+                    limit_type_uri = self._add_OperationalLimitType(limit_direction, 5e9)
+                    self._add_VoltageLimit(node, limit_type_uri, f"{name}_RangeA{limit_direction}", (norm_min if limit_direction == "low" else norm_max))
+
+                    if emerg:
+                        limit_type_uri = self._add_OperationalLimitType(limit_direction, 60 * 60 * 24.0)
+                        self._add_VoltageLimit(node, limit_type_uri, f"{name}_RangeB{limit_direction}", (emerg_min if limit_direction == "low" else emerg_max))
+            elif limit_type == "Current":
+                limit_type_uri = self._add_OperationalLimitType("absoluteValue", 5e9)
+                self._add_CurrentLimit(node, limit_type_uri, f"{name}_Norm", norm_max)
+                if emerg:
+                    limit_type_uri = self._add_OperationalLimitType("absoluteValue", 60 * 60 * 24.0)
+                    self._add_CurrentLimit(node, limit_type_uri, f"{name}_Emerg", emerg_max)
+
+            else:
+                # TODO: ActivePower, ApparentPower Limit Types
+                return None
+
+            self.uuid_map[f"OperationalLimitSet.{name}"] = str(node)
+
+        self.add_triple(subject_uri, "ACDCTerminal.OperationalLimitSet", URIRef(self.uuid_map[f"OperationalLimitSet.{name}"]))
+
+    def _add_OperationalLimitType(self, limit_direction: str, acceptable_duration: float):
+        name = f"{limit_direction}Type_{acceptable_duration}s"
+
+        if f"OperationalLimitType.{name}" not in self.uuid_map:
+            node = self.build_cim_obj("OperationalLimitType", name=name)
+            self.add_triple(node, "OperationalLimitType.direction", self.cim[f"OperationalLimitDirectionKind.{limit_direction}"])
+            self.add_triple(node, "OperationalLimitType.acceptableDuration", acceptable_duration)
+            self.uuid_map[f"OperationalLimitType.{name}"] = str(node)
+
+        return URIRef(self.uuid_map[f"OperationalLimitType.{name}"])
+
+    def _add_VoltageLimit(self, limit_set_uri: URIRef, limit_type_uri: URIRef, name: str, value: float):
+        if f"VoltageLimit.{name}" not in self.uuid_map:
+            node = self.build_cim_obj("VoltageLimit", name=name)
+            self.add_triple(node, "VoltageLimit.value", value)
+            self.add_triple(node, "OperationalLimit.OperationalLimitType", limit_type_uri)
+            self.add_triple(node, "OperationalLimit.OperationalLimitSet", limit_set_uri)
+            self.uuid_map[f"VoltageLimit.{name}"] = str(node)
+
+    def _add_CurrentLimit(self, limit_set_uri: URIRef, limit_type_uri: URIRef, name: str, value: float):
+        if f"CurrentLimit.{name}" not in self.uuid_map:
+            print("HERE")
+            node = self.build_cim_obj("CurrentLimit", name=name)
+            self.add_triple(node, "CurrentLimit.value", value)
+            self.add_triple(node, "OperationalLimit.OperationalLimitType", limit_type_uri)
+            self.add_triple(node, "OperationalLimit.OperationalLimitSet", limit_set_uri)
+            self.uuid_map[f"CurrentLimit.{name}"] = str(node)
+
+    def _add_ActivePowerLimit(self):
+        pass
+
+    def _add_ApparentPowerLimit(self):
+        pass
 
     def _add_EnergySources(self):
         for vsource in self.dss.Vsource:
@@ -294,7 +375,8 @@ class DssExport(object):
                         self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
 
                 for i, bus in enumerate([line.Bus1, line.Bus2]):
-                    self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=self._parse_ordered_phase_str(bus, line.Phases))
+                    terminal_uri = self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=self._parse_ordered_phase_str(bus, line.Phases))
+                    self._add_OperationalLimitSet(terminal_uri, "Current", norm_max=line.NormAmps, emerg_max=line.EmergAmps)
 
     def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: object, phase: str, sequence: int):
         node = self.build_cim_obj("ACLineSegmentPhase", name=f"{line.Name}_{phase}")
@@ -361,7 +443,7 @@ class DssExport(object):
             self.add_triple(node, "EnergyConsumer.customerCount", load.NumCust)
             self.add_triple(node, "EnergyConsumer.grounded", self._is_grounded([load.Bus1], load.Conn != 0))
             self.add_triple(node, "Equipment.inService", load.Enabled)
-            self._add_BaseVoltage(node, load.Bus1)
+            base_kv = self._add_BaseVoltage(node, load.Bus1)
 
             if load.Conn_str == "delta":
                 self.add_triple(node, "EnergyConsumer.phaseConnection", self.cim["PhaseShuntConnectionKind.D"])
@@ -376,7 +458,9 @@ class DssExport(object):
 
             phases = self._parse_phase_str(load.Bus1, load.Phases, load.kV, load.Conn != 0)
             self._add_EnergyConsumerPhases(node, load, phases)
-            self._add_Terminal(node, load, bus=self._parse_busname(load.Bus1), phases=phases)
+            terminal_uri = self._add_Terminal(node, load, bus=self._parse_busname(load.Bus1), phases=phases)
+
+            self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=load.VMinpu * base_kv * 1000, norm_max=load.VMaxpu * base_kv * 1000)
 
             # EnergyConsumerProfile
             self._add_EnergyConnectionProfile(node, load)
