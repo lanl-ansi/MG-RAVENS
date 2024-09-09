@@ -34,6 +34,7 @@ class DssExport(object):
         self._add_EnergyConsumers()
         self._add_EnergySources()
         self._add_ACLineSegments()
+        self._add_SynchronousMachines()
 
     def _export_rdf_to_xml(self, path: str):
         pass
@@ -72,8 +73,9 @@ class DssExport(object):
                         return "BA"
         else:
             is_secondary = False
-            if (kv_base is not None) and (n_phases == 2 and kv_base < 0.25) or (n_phases == 1 and kv_base < 0.13):
-                is_secondary = True
+            if kv_base is not None:
+                if (n_phases == 2 and kv_base < 0.25) or (n_phases == 1 and kv_base < 0.13):
+                    is_secondary = True
 
             if bus.count(".") == 0:
                 return "ABC"
@@ -115,8 +117,9 @@ class DssExport(object):
     @staticmethod
     def _parse_ordered_phase_str(bus: str, n_phases: int, kv_base: float = None) -> str:
         is_secondary = False
-        if (kv_base is not None) and (n_phases == 2 and kv_base < 0.25) or (n_phases == 1 and kv_base < 0.13):
-            is_secondary = True
+        if kv_base is not None:
+            if (n_phases == 2 and kv_base < 0.25) or (n_phases == 1 and kv_base < 0.13):
+                is_secondary = True
 
         if bus.count(".") == 0:
             return "ABC"
@@ -299,7 +302,6 @@ class DssExport(object):
 
     def _add_CurrentLimit(self, limit_set_uri: URIRef, limit_type_uri: URIRef, name: str, value: float):
         if f"CurrentLimit.{name}" not in self.uuid_map:
-            print("HERE")
             node = self.build_cim_obj("CurrentLimit", name=name)
             self.add_triple(node, "CurrentLimit.value", value)
             self.add_triple(node, "OperationalLimit.OperationalLimitType", limit_type_uri)
@@ -362,6 +364,13 @@ class DssExport(object):
                 if line.LineCode is not None:
                     uri = self._add_PerLengthPhaseImedance(line.LineCode)
                     self.add_triple(node, "ACLineSegment.PerLengthImpedance", uri)
+                elif line.Geometry is not None:
+                    pass
+                elif line.Spacing is not None:
+                    pass
+                else:
+                    # no LineCode, Geometry, or Spacing specified
+                    pass
 
                 phases = self._parse_ordered_phase_str(line.Bus1, line.Phases)
                 if phases == "s12":
@@ -435,35 +444,37 @@ class DssExport(object):
 
     def _add_EnergyConsumers(self):
         for load in self.dss.Load:
+            self._add_EnergyConsumer(load)
 
-            node = self.build_cim_obj("EnergyConsumer", name=load.Name)
+    def _add_EnergyConsumer(self, load):
+        node = self.build_cim_obj("EnergyConsumer", name=load.Name)
 
-            self.add_triple(node, "EnergyConsumer.p", load.kW * 1000.0)
-            self.add_triple(node, "EnergyConsumer.q", load.kvar * 1000.0)
-            self.add_triple(node, "EnergyConsumer.customerCount", load.NumCust)
-            self.add_triple(node, "EnergyConsumer.grounded", self._is_grounded([load.Bus1], load.Conn != 0))
-            self.add_triple(node, "Equipment.inService", load.Enabled)
-            base_kv = self._add_BaseVoltage(node, load.Bus1)
+        self.add_triple(node, "EnergyConsumer.p", load.kW * 1000.0)
+        self.add_triple(node, "EnergyConsumer.q", load.kvar * 1000.0)
+        self.add_triple(node, "EnergyConsumer.customerCount", load.NumCust)
+        self.add_triple(node, "EnergyConsumer.grounded", self._is_grounded([load.Bus1], load.Conn != 0))
+        self.add_triple(node, "Equipment.inService", load.Enabled)
+        base_kv = self._add_BaseVoltage(node, load.Bus1)
 
-            if load.Conn_str == "delta":
-                self.add_triple(node, "EnergyConsumer.phaseConnection", self.cim["PhaseShuntConnectionKind.D"])
-            elif load.Conn_str == "wye":
-                self.add_triple(node, "EnergyConsumer.phaseConnection", self.cim["PhaseShuntConnectionKind.Y"])
-            else:
-                raise Exception(f"Load.{load.Name}: unrecognized load connection '{load.Conn_str}'")
+        if load.Conn_str == "delta":
+            self.add_triple(node, "EnergyConsumer.phaseConnection", self.cim["PhaseShuntConnectionKind.D"])
+        elif load.Conn_str == "wye":
+            self.add_triple(node, "EnergyConsumer.phaseConnection", self.cim["PhaseShuntConnectionKind.Y"])
+        else:
+            raise Exception(f"Load.{load.Name}: unrecognized load connection '{load.Conn_str}'")
 
-            lrc_node = self._add_LoadResponseCharacteristic(load.Model)
-            if lrc_node is not None:
-                self.add_triple(node, "EnergyConsumer.LoadResponse", lrc_node)
+        lrc_node = self._add_LoadResponseCharacteristic(load.Model)
+        if lrc_node is not None:
+            self.add_triple(node, "EnergyConsumer.LoadResponse", lrc_node)
 
-            phases = self._parse_phase_str(load.Bus1, load.Phases, load.kV, load.Conn != 0)
-            self._add_EnergyConsumerPhases(node, load, phases)
-            terminal_uri = self._add_Terminal(node, load, bus=self._parse_busname(load.Bus1), phases=phases)
+        phases = self._parse_phase_str(load.Bus1, load.Phases, load.kV, load.Conn != 0)
+        self._add_EnergyConsumerPhases(node, load, phases)
+        terminal_uri = self._add_Terminal(node, load, bus=self._parse_busname(load.Bus1), phases=phases)
 
-            self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=load.VMinpu * base_kv * 1000, norm_max=load.VMaxpu * base_kv * 1000)
+        self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=load.VMinpu * base_kv * 1000, norm_max=load.VMaxpu * base_kv * 1000)
 
-            # EnergyConsumerProfile
-            self._add_EnergyConnectionProfile(node, load)
+        # EnergyConsumerProfile
+        self._add_EnergyConnectionProfile(node, load)
 
     def _add_EnergyConsumerPhases(self, energy_consumer_uri: URIRef, load: object, phases: str):
         if load.Phases == 3:
@@ -587,6 +598,41 @@ class DssExport(object):
         self.add_triple(node, "RegularTimePoint.value1", value1)
         self.add_triple(node, "RegularTimePoint.value2", value2)
         self.add_triple(node, "RegularTimePoint.IntervalSchedule", subject_uri)
+
+    def _add_SynchronousMachines(self):
+        for gen in self.dss.Generator:
+            self._add_SynchronousMachine(gen)
+
+    def _add_SynchronousMachine(self, gen: object):
+        node = self.build_cim_obj("SynchronousMachine", name=gen.Name)
+        self.add_triple(node, "RotatingMachine.p", gen.kW * 1000)
+        self.add_triple(node, "RotatingMachine.q", gen.kvar * 1000)
+        self.add_triple(node, "RotatingMachine.ratedS", gen.kVA * 1000)
+        self.add_triple(node, "RotatingMachine.ratedU", gen.kV * 1000)
+
+        phases = self._parse_phase_str(gen.Bus1, gen.Phases)
+        self._add_SynchronousMachinePhases(node, gen, phases)
+
+        terminal_uri = self._add_Terminal(node, gen, bus=self._parse_busname(gen.Bus1), phases=phases)
+        base_kv = self._add_BaseVoltage(node, gen.Bus1)
+        self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=gen.VMinpu * base_kv * 1000, norm_max=gen.VMaxpu * base_kv * 1000)
+
+    def _add_SynchronousMachinePhases(self, subject_uri: URIRef, gen: object, phases: str):
+        if gen.Phases == 3:
+            return None
+        else:
+            if phases.startswith("s"):
+                if phases == "s12":
+                    phases = ["s1", "s2"]
+                else:
+                    phases = [phases]
+
+            for ph in phases:
+                node = self.build_cim_obj("SynchronousMachinePhase", name=f"{gen.Name}_{ph}")
+                self.add_triple(node, "SynchronousMachinePhase.p", gen.kW * 1000.0 / gen.Phases)
+                self.add_triple(node, "SynchronousMachinePhase.q", gen.kvar * 1000.0 / gen.Phases)
+                self.add_triple(node, "SynchronousMachinePhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
+                self.add_triple(node, "SynchronousMachinePhase.SynchronousMachine", subject_uri)
 
 
 if __name__ == "__main__":
