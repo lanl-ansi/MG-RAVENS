@@ -33,14 +33,11 @@ class DssExport(object):
         self._add_ConnectivityNodes()
         self._add_EnergyConsumers()
         self._add_EnergySources()
-        self._add_ACLineSegments()
+        self._add_ACLineSegments_and_Switches()
         self._add_SynchronousMachines()
 
-    def _export_rdf_to_xml(self, path: str):
-        pass
-
     def save(self, path: str):
-        pass
+        self.graph.serialize(path, max_depth=1, format="pretty-xml")
 
     @staticmethod
     def _parse_phase_str(bus: str, n_phases: int, kv_base: float = None, is_delta: bool = False) -> str:
@@ -347,45 +344,45 @@ class DssExport(object):
         # TODO: EnergySourcePhase
         pass
 
-    def _add_ACLineSegments(self):
+    def _add_ACLineSegments_and_Switches(self):
         for line in self.dss.Line:
-            if not line.Enabled:
-                continue
-
             if line.Switch:
                 self._add_Switch(line)
             else:
-                node = self.build_cim_obj("ACLineSegment", name=line.Name)
-                self.add_triple(node, "Conductor.length", line.Length)
-                self.add_triple(node, "Equipment.inService", line.Enabled)
-                self._add_BaseVoltage(node, line.Bus1)
+                self._add_ACLineSegment(line)
 
-                # TODO: Line Geometry, parameters defined on Line, etc.
-                if line.LineCode is not None:
-                    uri = self._add_PerLengthPhaseImedance(line.LineCode)
-                    self.add_triple(node, "ACLineSegment.PerLengthImpedance", uri)
-                elif line.Geometry is not None:
-                    pass
-                elif line.Spacing is not None:
-                    pass
-                else:
-                    # no LineCode, Geometry, or Spacing specified
-                    pass
+    def _add_ACLineSegment(self, line: object):
+        node = self.build_cim_obj("ACLineSegment", name=line.Name)
+        self.add_triple(node, "Conductor.length", line.Length)
+        self.add_triple(node, "Equipment.inService", line.Enabled)
+        self._add_BaseVoltage(node, line.Bus1)
 
-                phases = self._parse_ordered_phase_str(line.Bus1, line.Phases)
-                if phases == "s12":
-                    for seq, phase in enumerate(["s1", "s2"]):
-                        self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
-                elif phases.startswith("s"):
-                    for seq, phase in enumerate([phases]):
-                        self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
-                else:
-                    for seq, phase in enumerate([ph for ph in phases]):
-                        self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
+        # TODO: Line Geometry, parameters defined on Line, etc.
+        if line.LineCode is not None:
+            uri = self._add_PerLengthPhaseImedance(line.LineCode)
+            self.add_triple(node, "ACLineSegment.PerLengthImpedance", uri)
+        elif line.Geometry is not None:
+            pass
+        elif line.Spacing is not None:
+            pass
+        else:
+            # no LineCode, Geometry, or Spacing specified
+            pass
 
-                for i, bus in enumerate([line.Bus1, line.Bus2]):
-                    terminal_uri = self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=self._parse_ordered_phase_str(bus, line.Phases))
-                    self._add_OperationalLimitSet(terminal_uri, "Current", norm_max=line.NormAmps, emerg_max=line.EmergAmps)
+        phases = self._parse_ordered_phase_str(line.Bus1, line.Phases)
+        if phases == "s12":
+            for seq, phase in enumerate(["s1", "s2"]):
+                self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
+        elif phases.startswith("s"):
+            for seq, phase in enumerate([phases]):
+                self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
+        else:
+            for seq, phase in enumerate([ph for ph in phases]):
+                self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
+
+        for i, bus in enumerate([line.Bus1, line.Bus2]):
+            terminal_uri = self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=self._parse_ordered_phase_str(bus, line.Phases))
+            self._add_OperationalLimitSet(terminal_uri, "Current", norm_max=line.NormAmps, emerg_max=line.EmergAmps)
 
     def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: object, phase: str, sequence: int):
         node = self.build_cim_obj("ACLineSegmentPhase", name=f"{line.Name}_{phase}")
@@ -609,6 +606,7 @@ class DssExport(object):
         self.add_triple(node, "RotatingMachine.q", gen.kvar * 1000)
         self.add_triple(node, "RotatingMachine.ratedS", gen.kVA * 1000)
         self.add_triple(node, "RotatingMachine.ratedU", gen.kV * 1000)
+        self.add_triple(node, "Equipment.inService", gen.Enabled)
 
         phases = self._parse_phase_str(gen.Bus1, gen.Phases)
         self._add_SynchronousMachinePhases(node, gen, phases)
@@ -637,5 +635,4 @@ class DssExport(object):
 
 if __name__ == "__main__":
     d = DssExport("examples/case3_balanced.dss")
-
-    d.graph.serialize("out/test_opendss_convert.xml", max_depth=1, format="pretty-xml")
+    d.save("out/test_opendss_convert.xml")
