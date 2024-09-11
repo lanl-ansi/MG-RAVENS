@@ -5770,13 +5770,13 @@
           }
         }
       ]
+    },
+    "EnergyConnectionProfile": {
+      "$objectType": "object",
+      "type": "object",
+      "$objectId": "EnergyConnectionProfile",
+      "$objectSource": "cim",
+      "properties": {}
     }
-  },
-  "EnergyConnectionProfile": {
-    "$objectType": "object",
-    "type": "object",
-    "$objectId": "EnergyConnectionProfile",
-    "$objectSource": "cim",
-    "properties": {}
   }
 }
