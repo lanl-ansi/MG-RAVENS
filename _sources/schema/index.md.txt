@@ -128,6 +128,8 @@
 
 [BaseVoltage](../_static/schema/BaseVoltage.html){.external}
 
+[BasicIntervalSchedule](../_static/schema/BasicIntervalSchedule.html){.external}
+
 [BatteryResponseCharacteristic](../_static/schema/BatteryResponseCharacteristic.html){.external}
 
 [BatteryStateKind](../_static/schema/BatteryStateKind.html){.external}
@@ -368,6 +370,8 @@
 
 [DateTimeInterval](../_static/schema/DateTimeInterval.html){.external}
 
+[Day](../_static/schema/Day.html){.external}
+
 [Decimal](../_static/schema/Decimal.html){.external}
 
 [DecimalQuantity](../_static/schema/DecimalQuantity.html){.external}
@@ -440,11 +444,15 @@
 
 [EnergyConnection](../_static/schema/EnergyConnection.html){.external}
 
+[EnergyConnectionProfile](../_static/schema/EnergyConnectionProfile.html){.external}
+
 [EnergyConsumer](../_static/schema/EnergyConsumer.html){.external}
 
 [EnergyConsumerAction](../_static/schema/EnergyConsumerAction.html){.external}
 
 [EnergyConsumerPhase](../_static/schema/EnergyConsumerPhase.html){.external}
+
+[EnergyConsumerSchedule](../_static/schema/EnergyConsumerSchedule.html){.external}
 
 [EnergyPriceIndexType](../_static/schema/EnergyPriceIndexType.html){.external}
 
@@ -680,6 +688,8 @@
 
 [InverterController](../_static/schema/InverterController.html){.external}
 
+[IrregularTimePoint](../_static/schema/IrregularTimePoint.html){.external}
+
 [JobFlagType](../_static/schema/JobFlagType.html){.external}
 
 [JobScheduleType](../_static/schema/JobScheduleType.html){.external}
@@ -813,8 +823,6 @@
 [NonConformLoad](../_static/schema/NonConformLoad.html){.external}
 
 [NonConformLoadGroup](../_static/schema/NonConformLoadGroup.html){.external}
-
-[NonConformLoadSchedule](../_static/schema/NonConformLoadSchedule.html){.external}
 
 [NonGridFacility](../_static/schema/NonGridFacility.html){.external}
 
@@ -1054,6 +1062,8 @@
 
 [Recloser](../_static/schema/Recloser.html){.external}
 
+[RegularTimePoint](../_static/schema/RegularTimePoint.html){.external}
+
 [RegulatingCondEq](../_static/schema/RegulatingCondEq.html){.external}
 
 [RegulatingControl](../_static/schema/RegulatingControl.html){.external}
@@ -1131,8 +1141,6 @@
 [SealConditionKind](../_static/schema/SealConditionKind.html){.external}
 
 [SealKind](../_static/schema/SealKind.html){.external}
-
-[Season](../_static/schema/Season.html){.external}
 
 [Seconds](../_static/schema/Seconds.html){.external}
 

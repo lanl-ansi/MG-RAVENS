@@ -78,9 +78,9 @@
 <img src="../_static/uml/SimplifiedDiagrams.Conductors.svg" style="max-width: 100%; height: auto;" alt="Conductors diagram">
 
 
-### LoadForecasting
+### LoadForecastingOld
 
-<img src="../_static/uml/SimplifiedDiagrams.LoadForecasting.svg" style="max-width: 100%; height: auto;" alt="LoadForecasting diagram">
+<img src="../_static/uml/SimplifiedDiagrams.LoadForecastingOld.svg" style="max-width: 100%; height: auto;" alt="LoadForecastingOld diagram">
 
 
 ### BaseVoltage
