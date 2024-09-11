@@ -295,24 +295,10 @@
                   }
                 },
                 "ConformLoadGroup.ConformLoadSchedules": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "$objectType": "object",
-                    "$objectSource": "cim",
-                    "$objectId": "ConformLoadSchedule",
-                    "$arrayPosition": null,
-                    "properties": {
-                      "SeasonDayTypeSchedule.Season": {
-                        "type": "object",
-                        "$objectType": "object",
-                        "$objectId": "Season",
-                        "$objectSource": "cim",
-                        "$primaryObjectHash": null,
-                        "properties": {}
-                      }
-                    }
-                  }
+                  "type": "string",
+                  "$objectType": "reference",
+                  "$objectId": "ConformLoadSchedule",
+                  "$referencePath": "BasicIntervalSchedule"
                 }
               }
             },
@@ -333,23 +319,27 @@
                   }
                 },
                 "NonConformLoadGroup.NonConformLoadSchedules": {
+                  "type": "string",
+                  "$objectType": "reference",
+                  "$objectId": "NonConformLoadSchedule",
+                  "$referencePath": "BasicIntervalSchedule"
+                }
+              }
+            },
+            {
+              "$objectSource": "cim",
+              "$objectType": "object",
+              "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "$objectId": "LoadGroup",
+              "properties": {
+                "LoadGroup.EnergyConsumers": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "$objectType": "object",
-                    "$objectSource": "cim",
-                    "$objectId": "NonConformLoadSchedule",
-                    "$arrayPosition": null,
-                    "properties": {
-                      "SeasonDayTypeSchedule.Season": {
-                        "type": "object",
-                        "$objectType": "object",
-                        "$objectId": "Season",
-                        "$objectSource": "cim",
-                        "$primaryObjectHash": null,
-                        "properties": {}
-                      }
-                    }
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
                   }
                 }
               }
@@ -1712,6 +1702,11 @@
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "$objectId": "EnergyConsumer",
                           "properties": {
+                            "EnergyConsumer.LoadForecast": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$referencePath": "BasicIntervalSchedule"
+                            },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
@@ -1800,6 +1795,11 @@
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "$objectId": "ConformLoad",
                           "properties": {
+                            "EnergyConsumer.LoadForecast": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$referencePath": "BasicIntervalSchedule"
+                            },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
@@ -1888,6 +1888,11 @@
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "$objectId": "NonConformLoad",
                           "properties": {
+                            "EnergyConsumer.LoadForecast": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$referencePath": "BasicIntervalSchedule"
+                            },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
@@ -5720,6 +5725,58 @@
           ]
         }
       }
+    },
+    "BasicIntervalSchedule": {
+      "$objectType": "object",
+      "type": "object",
+      "$objectId": "BasicIntervalSchedule",
+      "$objectSource": "cim",
+      "oneOf": [
+        {
+          "$objectSource": "cim",
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "EnergyConsumerSchedule",
+          "properties": {
+            "EnergyConsumerSchedule.RegularTimePoints": {
+              "type": "object",
+              "$objectType": "object",
+              "$objectId": "RegularTimePoint",
+              "$objectSource": "cim",
+              "properties": {}
+            },
+            "EnergyConsumerSchedule.IrregularTimePoints": {
+              "type": "object",
+              "$objectType": "object",
+              "$objectId": "IrregularTimePoint",
+              "$objectSource": "cim",
+              "properties": {}
+            }
+          }
+        },
+        {
+          "$objectSource": "cim",
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "ConformLoadSchedule",
+          "properties": {
+            "RegularIntervalSchedule.TimePoints": {
+              "type": "object",
+              "$objectType": "object",
+              "$objectId": "RegularTimePoint",
+              "$objectSource": "cim",
+              "properties": {}
+            }
+          }
+        }
+      ]
     }
+  },
+  "EnergyConnectionProfile": {
+    "$objectType": "object",
+    "type": "object",
+    "$objectId": "EnergyConnectionProfile",
+    "$objectSource": "cim",
+    "properties": {}
   }
 }
