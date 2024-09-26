@@ -43921,7 +43921,7 @@
       ]
     },
     "IndustrialLoadForecast": {
-      "Ravens.CimObjectType": "RegularEnergyConsumerProfile",
+      "Ravens.CimObjectType": "EnergyConsumerSchedule",
       "IdentifiedObject.mRID": "4406d3ce-8b10-4c88-8c69-342d2fc5ab7e",
       "BasicIntervalSchedule.value1Unit": "W",
       "BasicIntervalSchedule.value1Multiplier": "k",

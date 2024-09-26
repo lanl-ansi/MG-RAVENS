@@ -7,7 +7,7 @@
     "CapacityPrices_1": {
       "IdentifiedObject.mRID": "5407c621-70bb-4ff2-85ca-8cee8a84d10a",
       "IdentifiedObject.name": "CapacityPrices_1",
-      "RavensModel.CimObjectType": "Ravens.CapacityPrices",
+      "Ravens.CimObjectType": "Ravens.CapacityPrices",
       "EnergyPrices.Regions": [
         "Region_1"
       ],

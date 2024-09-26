@@ -6,7 +6,7 @@
   "ProposedSiteLocations": {
     "IdentifiedObject.mRID": "12fb54a8-b440-47d9-9e1c-5d95d2c08fda",
     "IdentifiedObject.name": "proposedSite1",
-    "RavensModel.CimObjectType": "Ravens.ProposedSiteLocation",
+    "Ravens.CimObjectType": "Ravens.ProposedSiteLocation",
     "ProposedSiteLocation.availableArea": 4000.0,
     "ProposedSiteLocation.LoadGroups": [
       "ResidentialGroup"
@@ -16,7 +16,7 @@
         "PositionPoint.sequenceNumber": 1,
         "PositionPoint.xPosition": 0,
         "PositionPoint.yPosition": 0,
-        "RavensModel.CimObjectType": "PositionPoint",
+        "Ravens.CimObjectType": "PositionPoint",
         "IdentifiedObject.mRID": "2d5eb117-3720-4fd3-8d72-21ebde32be87"
       }
     ]
@@ -24,12 +24,12 @@
   "Groups": {
     "LoadGroups": {
       "ResidentialGroup": {
-        "RavensModel.CimObjectType": "ConformLoadGroup",
+        "Ravens.CimObjectType": "ConformLoadGroup",
         "IdentifiedObject.name": "ResidentialGroup",
         "IdentifiedObject.mRID": "71f91d8e-ef0b-4657-9277-9ba7ad2eb3f0",
         "ConformLoadGroup.ConformLoadSchedules": [
           {
-            "RavensModel.CimObjectType": "ConformLoadSchedule",
+            "Ravens.CimObjectType": "ConformLoadSchedule",
             "IdentifiedObject.mRID": "859b12e4-be71-451e-91ae-05595c1d4ca7",
             "BasicIntervalSchedule.value1Unit": "none",
             "BasicIntervalSchedule.value2Unit": "none",

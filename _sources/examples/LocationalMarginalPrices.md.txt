@@ -7,7 +7,7 @@
     "LocationalMarginalPrices_1": {
       "IdentifiedObject.mRID": "8f78e131-a843-4f12-9f32-c9f170f1f2cb",
       "IdentifiedObject.name": "LocationalMarginalPrices_1",
-      "RavensModel.CimObjectType": "Ravens.LocationalMarginalPrices",
+      "Ravens.CimObjectType": "Ravens.LocationalMarginalPrices",
       "EnergyPrices.Regions": [
         "Region_1"
       ],
@@ -35063,7 +35063,7 @@
     "LocationalMarginalPrices_2": {
       "IdentifiedObject.mRID": "683781fc-859c-4343-b359-a3d4ee979d82",
       "IdentifiedObject.name": "LocationalMarginalPrices_2",
-      "RavensModel.CimObjectType": "Ravens.LocationalMarginalPrices",
+      "Ravens.CimObjectType": "Ravens.LocationalMarginalPrices",
       "LocationalMarginalPrices.ConnectivityNodes": [
         "Bus1"
       ],
