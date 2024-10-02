@@ -574,7 +574,8 @@ if __name__ == "__main__":
     import json
 
     g = Graph()
-    g.parse("examples/case3_balanced.xml", format="application/rdf+xml", publicID="urn:uuid:")
+    g.parse("tests_fixes/case3_balanced_ravens.xml", format="application/rdf+xml", publicID="urn:uuid:")
+    # g.parse("examples/case3_balanced.xml", format="application/rdf+xml", publicID="urn:uuid:")
     # g.parse("examples/IEEE13_Assets.xml", format="application/rdf+xml", publicID="urn:uuid:")
     # g.parse("examples/ieee8500u_fuseless_CIM100x.XML", format="application/rdf+xml", publicID="urn:uuid:")
 
@@ -598,7 +599,7 @@ if __name__ == "__main__":
 
     d = RAVENSData(g, CIMTemplate("ravens/cim_tools/cim_conversion_template.json").template, prune_unncessary=False)
 
-    with open("out/test_xml2json_case3.json", "w") as f:
+    with open("tests_fixes/case3_balanced_ravens.json", "w") as f:
         json.dump(d.data, f, indent=2)
 
     # with open("out/test_xml2json_ieee13.json", "w") as f:
