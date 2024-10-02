@@ -410,14 +410,16 @@ class DssExport(object):
             return URIRef(self.uuid_map[f"PerLengthPhaseImpedance.{linecode.Name}"])
 
     def _add_PhaseImpedanceData(self, phase_impedance_uri: URIRef, linecode: object):
-        for col in range(linecode.NPhases):
-            for row in range(col, linecode.NPhases):
+        for col in range(1, linecode.NPhases+1):  # iterate over rows (upper triangular only)
+            for row in range(col, linecode.NPhases+1):
                 node = self.build_cim_obj("PhaseImpedanceData", skip_mrid=True)
-                self.add_triple(node, "PhaseImpedanceData.row", row + 1)
-                self.add_triple(node, "PhaseImpedanceData.column", col + 1)
-                self.add_triple(node, "PhaseImpedanceData.r", linecode.RMatrix[row + col])
-                self.add_triple(node, "PhaseImpedanceData.x", linecode.XMatrix[row + col])
-                self.add_triple(node, "PhaseImpedanceData.b", linecode.CMatrix[row + col] * 2 * math.pi * linecode.BaseFreq / 1e9)
+                self.add_triple(node, "PhaseImpedanceData.row", row)
+                self.add_triple(node, "PhaseImpedanceData.column", col)
+                # calculate the correct index in RMatrix, XMatrix, CMatrix
+                i = (row - 1) * 3 + (col - 1)
+                self.add_triple(node, "PhaseImpedanceData.r", linecode.RMatrix[i])
+                self.add_triple(node, "PhaseImpedanceData.x", linecode.XMatrix[i])
+                self.add_triple(node, "PhaseImpedanceData.b", linecode.CMatrix[i] * 2 * math.pi * linecode.BaseFreq / 1e9)
                 self.add_triple(node, "PhaseImpedanceData.PhaseImpedance", phase_impedance_uri)
 
     def _add_Switch(self, line: object):
