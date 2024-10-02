@@ -4344,6 +4344,15 @@
         }
       }
     },
+    "OperationalLimitType": {
+      "$objectSource": "cim",
+      "$objectType": "object",
+      "$objectId": "OperationalLimitType",
+      "type": "object",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {}
+    },
     "OperationalLimitSet": {
       "$objectSource": "cim",
       "$objectType": "object",
@@ -4368,12 +4377,10 @@
                 "title": "VoltageLimit",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
-                    "$objectSource": "cim",
-                    "$objectType": "object",
-                    "$objectId": "OperationalLimitType",
-                    "type": "object",
-                    "$primaryObjectHash": null,
-                    "properties": {}
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
                   }
                 }
               },
@@ -4385,12 +4392,10 @@
                 "title": "CurrentLimit",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
-                    "$objectSource": "cim",
-                    "$objectType": "object",
-                    "$objectId": "OperationalLimitType",
-                    "type": "object",
-                    "$primaryObjectHash": null,
-                    "properties": {}
+                   "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
                   }
                 }
               },
@@ -4402,12 +4407,10 @@
                 "type": "object",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
-                    "$objectSource": "cim",
-                    "$objectType": "object",
-                    "$objectId": "OperationalLimitType",
-                    "type": "object",
-                    "$primaryObjectHash": null,
-                    "properties": {}
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
                   }
                 }
               },
@@ -4419,12 +4422,10 @@
                 "type": "object",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
-                    "$objectSource": "cim",
-                    "$objectType": "object",
-                    "$objectId": "OperationalLimitType",
-                    "type": "object",
-                    "$primaryObjectHash": null,
-                    "properties": {}
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
                   }
                 }
               }
