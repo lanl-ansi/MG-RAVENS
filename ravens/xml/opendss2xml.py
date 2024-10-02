@@ -613,6 +613,11 @@ class DssExport(object):
         self.add_triple(node, "RotatingMachine.ratedS", gen.kVA * 1000)
         self.add_triple(node, "RotatingMachine.ratedU", gen.kV * 1000)
         self.add_triple(node, "Equipment.inService", gen.Enabled)
+        self.add_triple(node, "RotatingMachine.ratedPowerFactor", gen.PF)
+        self.add_triple(node, "GeneratingUnit.minOperatingP", 0.0)
+        self.add_triple(node, "GeneratingUnit.maxOperatingP", gen.kVA * gen.PF * 1000)
+        self.add_triple(node, "SynchronousMachine.maxQ", ((gen.kVA)**2 - (gen.kVA * gen.PF)**2)**(1/2) * 1000)
+        self.add_triple(node, "SynchronousMachine.minQ", -((gen.kVA)**2 - (gen.kVA * gen.PF)**2)**(1/2) * 1000)
 
         phases = self._parse_phase_str(gen.Bus1, gen.Phases)
         self._add_SynchronousMachinePhases(node, gen, phases)
