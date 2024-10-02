@@ -235,7 +235,7 @@ class DssExport(object):
 
         return node
 
-    def _add_OperationalLimitSet(self, subject_uri: URIRef, limit_type: str, norm_max: float, norm_min: float = None, emerg_max: float = None, emerg_min: float = None):
+    def _add_OperationalLimitSet(self, subject_uri: URIRef, limit_type: str, norm_max: float, norm_min: float = None, emerg_max: float = None, emerg_min: float = None, bus: str = None):
         emerg = False
         if limit_type == "Voltage":
             emerg = emerg_min is not None and emerg_max is not None
@@ -277,6 +277,11 @@ class DssExport(object):
             self.uuid_map[f"OperationalLimitSet.{name}"] = str(node)
 
         self.add_triple(subject_uri, "ACDCTerminal.OperationalLimitSet", URIRef(self.uuid_map[f"OperationalLimitSet.{name}"]))
+
+        if bus is not None:
+            cn_node = self._add_ConnectivityNode(bus)
+            self.add_triple(cn_node, "ConnectivityNode.OperationalLimitSet", URIRef(self.uuid_map[f"OperationalLimitSet.{name}"]))
+
 
     def _add_OperationalLimitType(self, limit_direction: str, acceptable_duration: float):
         name = f"{limit_direction}Type_{acceptable_duration}s"
@@ -382,6 +387,7 @@ class DssExport(object):
 
         for i, bus in enumerate([line.Bus1, line.Bus2]):
             terminal_uri = self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=self._parse_ordered_phase_str(bus, line.Phases))
+            # self._add_OperationalLimitSet(terminal_uri, "Current", norm_max=line.NormAmps, emerg_max=line.EmergAmps, bus=self._parse_busname(bus))
             self._add_OperationalLimitSet(terminal_uri, "Current", norm_max=line.NormAmps, emerg_max=line.EmergAmps)
 
     def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: object, phase: str, sequence: int):
@@ -468,7 +474,7 @@ class DssExport(object):
         self._add_EnergyConsumerPhases(node, load, phases)
         terminal_uri = self._add_Terminal(node, load, bus=self._parse_busname(load.Bus1), phases=phases)
 
-        self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=load.VMinpu * base_kv * 1000, norm_max=load.VMaxpu * base_kv * 1000)
+        self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=load.VMinpu * base_kv * 1000, norm_max=load.VMaxpu * base_kv * 1000, bus=self._parse_busname(load.Bus1))
 
         # EnergyConsumerProfile
         self._add_EnergyConnectionProfile(node, load)
@@ -613,7 +619,7 @@ class DssExport(object):
 
         terminal_uri = self._add_Terminal(node, gen, bus=self._parse_busname(gen.Bus1), phases=phases)
         base_kv = self._add_BaseVoltage(node, gen.Bus1)
-        self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=gen.VMinpu * base_kv * 1000, norm_max=gen.VMaxpu * base_kv * 1000)
+        self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=gen.VMinpu * base_kv * 1000, norm_max=gen.VMaxpu * base_kv * 1000, bus=self._parse_busname(gen.Bus1))
 
     def _add_SynchronousMachinePhases(self, subject_uri: URIRef, gen: object, phases: str):
         if gen.Phases == 3:
@@ -634,5 +640,5 @@ class DssExport(object):
 
 
 if __name__ == "__main__":
-    d = DssExport("examples/case3_balanced.dss")
-    d.save("out/test_opendss_convert.xml")
+    d = DssExport("tests_fixes/case3_balanced_withGens.dss")
+    d.save("tests_fixes/case3_balanced_ravens.xml")
