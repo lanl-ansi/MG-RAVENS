@@ -35,6 +35,7 @@ class DssExport(object):
         self._add_EnergySources()
         self._add_ACLineSegments_and_Switches()
         self._add_SynchronousMachines()
+        self._add_PowerElectronicsConnections()
 
     def save(self, path: str):
         self.graph.serialize(path, max_depth=1, format="pretty-xml")
@@ -646,7 +647,70 @@ class DssExport(object):
                 self.add_triple(node, "SynchronousMachinePhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
                 self.add_triple(node, "SynchronousMachinePhase.SynchronousMachine", subject_uri)
 
+    def _add_PhotoVoltaicUnit(self, connecting_node: URIRef, element: object):
+
+        node = self.build_cim_obj("PhotoVoltaicUnit", name=element.Name)
+        self.add_triple(node, "PowerElectronicsUnit.maxP", element.kVA * 1000)
+        self.add_triple(node, "PowerElectronicsUnit.minP", 0.0)
+        return node
+
+    def _add_BatteryUnit(self, connecting_node: URIRef, element: object):
+
+        node = self.build_cim_obj("BatteryUnit", name=element.Name)
+
+        self.add_triple(node, "BatteryUnit.ratedE", element.kWhRated * 1000)
+        self.add_triple(node, "BatteryUnit.limitEnergy", element.kWhRated * 1000)
+        self.add_triple(node, "BatteryUnit.storedE", (element.pctStored/100.0) * element.kWhRated * 1000)
+        self.add_triple(node, "BatteryUnit.batteryState", element.State) # TODO this is wrong! this gives a number not a string with the state
+        self.add_triple(node, "InefficientBatteryUnit.efficiencyDischarge", element.pctEffDischarge)
+        self.add_triple(node, "InefficientBatteryUnit.efficiencyCharge", element.pctEffCharge)
+        self.add_triple(node, "PowerElectronicsUnit.maxP", element.kWRated * (element.pctCharge/100.0) * 1000)
+        self.add_triple(node, "PowerElectronicsUnit.minP", 0.0)
+        self.add_triple(node, "InefficientBatteryUnit.reserveEnergy", (element.pctReserve/100.0) * element.kWhRated * 1000)
+
+        return node
+
+    def _add_PowerElectronicsConnections(self):
+
+        # flag for indicating if PV or Storage
+        pe_type = 0
+
+        for pv in self.dss.PVSystem:
+            pe_type = 1
+            self._add_PowerElectronicsConnection(pv, pe_type=pe_type)
+
+        for bat in self.dss.Storage:
+            pe_type = 2
+            self._add_PowerElectronicsConnection(bat, pe_type=pe_type)
+
+    def _add_PowerElectronicsConnection(self, pec: object, pe_type: int):
+
+        node = self.build_cim_obj("PowerElectronicsConnection", name=pec.Name)
+        self.add_triple(node, "PowerElectronicsConnection.q", pec.kvar * 1000)
+        self.add_triple(node, "PowerElectronicsConnection.ratedS", pec.kVA * 1000)
+        self.add_triple(node, "PowerElectronicsConnection.ratedU", pec.kV * 1000)
+        self.add_triple(node, "Equipment.inService", pec.Enabled)
+        self.add_triple(node, "PowerElectronicsConnection.maxIFault", 1.0 / pec.VMinpu)
+        self.add_triple(node, "PowerElectronicsConnection.r", pec.pctR / 100.0)
+        self.add_triple(node, "PowerElectronicsConnection.x", pec.pctX / 100.0)
+
+        phases = self._parse_phase_str(pec.Bus1, pec.Phases)
+        # TODO: ConnectionPhases for PEs
+        # self._add_PowerElectronicsConnectionPhases(node, pec, phases)
+
+        if(pe_type==1):
+            self.add_triple(node, "PowerElectronicsConnection.p", ((pec.kVA)**2 - (pec.kvar)**2)**(1/2) * 1000)
+            self._add_PhotoVoltaicUnit(node, pec)
+        elif(pe_type==2):
+            self.add_triple(node, "PowerElectronicsConnection.p", 0.0)
+            self._add_BatteryUnit(node, pec)
+
+        terminal_uri = self._add_Terminal(node, pec, bus=self._parse_busname(pec.Bus1), phases=phases)
+        base_kv = self._add_BaseVoltage(node, pec.Bus1)
+        self._add_OperationalLimitSet(terminal_uri, "Voltage", normal_value=base_kv * 1000, norm_min=pec.VMinpu * base_kv * 1000, norm_max=pec.VMaxpu * base_kv * 1000, bus=self._parse_busname(pec.Bus1))
+
+
 
 if __name__ == "__main__":
-    d = DssExport("tests_fixes/case3_balanced_withGens.dss")
+    d = DssExport("tests_fixes/case3_balanced_withPVandStorage.dss")
     d.save("tests_fixes/case3_balanced_ravens.xml")
