@@ -340,7 +340,7 @@ class DssExport(object):
             busname = self._parse_busname(bus)
             phases = self._parse_phase_str(bus, n_phases=vsource.Phases)
             if phases:
-                self._add_Terminal(node, vsource, n_terminal=t + 1, phases=phases)
+                self._add_Terminal(node, vsource, bus=busname, n_terminal=t + 1, phases=phases)
 
         phases = self._parse_ordered_phase_str(vsource.Bus1, vsource.Phases)
         if phases != "ABC":
@@ -389,7 +389,6 @@ class DssExport(object):
 
         for i, bus in enumerate([line.Bus1, line.Bus2]):
             terminal_uri = self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=self._parse_ordered_phase_str(bus, line.Phases))
-            # self._add_OperationalLimitSet(terminal_uri, "Current", norm_max=line.NormAmps, emerg_max=line.EmergAmps, bus=self._parse_busname(bus))
             self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=line.NormAmps, norm_max=line.NormAmps, emerg_max=line.EmergAmps)
 
     def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: object, phase: str, sequence: int):
