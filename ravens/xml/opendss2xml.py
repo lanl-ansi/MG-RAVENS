@@ -839,7 +839,7 @@ class DssExport(object):
         self._add_OperationalLimitSet(terminal_uri, "Voltage", normal_value=base_kv * 1000, norm_min=solar.VMinpu * base_kv * 1000, norm_max=solar.VMaxpu * base_kv * 1000)
 
     def _add_BatteryUnit(self, subject_uri: URIRef, storage: object):
-        node = self.build_cim_obj("InefficientBatteryUnit", name=f"{storage.Name}_Cells")
+        node = self.build_cim_obj("BatteryUnit", name=f"{storage.Name}_Cells")
 
         self.add_triple(node, "PowerElectronicsUnit.minP", storage.kWRated * storage.pctkWRated / 100.0 * 1000.0)
         self.add_triple(node, "PowerElectronicsUnit.maxP", -storage.kWRated * storage.pctkWRated / 100.0 * 1000.0)
@@ -872,7 +872,7 @@ class DssExport(object):
         self.add_triple(subject_uri, "PowerElectronicsConnection.PowerElectronicsUnit", node)
 
         phases = parse_phase_str(storage.Bus1, storage.Phases)
-        self._add_PhotoVoltaicPhases(subject_uri, storage, phases)
+        self._add_BatteryPhases(subject_uri, storage, phases)
 
         terminal_uri = self._add_Terminal(subject_uri, storage, bus=self._parse_busname(storage.Bus1), phases=phases)
         base_kv = self._add_BaseVoltage(subject_uri, storage.Bus1)
