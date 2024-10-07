@@ -836,7 +836,7 @@ class DssExport(object):
 
         terminal_uri = self._add_Terminal(subject_uri, solar, bus=self._parse_busname(solar.Bus1), phases=phases)
         base_kv = self._add_BaseVoltage(subject_uri, solar.Bus1)
-        self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=solar.VMinpu * base_kv * 1000, norm_max=solar.VMaxpu * base_kv * 1000)
+        self._add_OperationalLimitSet(terminal_uri, "Voltage", normal_value=base_kv * 1000, norm_min=solar.VMinpu * base_kv * 1000, norm_max=solar.VMaxpu * base_kv * 1000)
 
     def _add_BatteryUnit(self, subject_uri: URIRef, storage: object):
         node = self.build_cim_obj("InefficientBatteryUnit", name=f"{storage.Name}_Cells")
@@ -876,7 +876,7 @@ class DssExport(object):
 
         terminal_uri = self._add_Terminal(subject_uri, storage, bus=self._parse_busname(storage.Bus1), phases=phases)
         base_kv = self._add_BaseVoltage(subject_uri, storage.Bus1)
-        self._add_OperationalLimitSet(terminal_uri, "Voltage", norm_min=storage.VMinpu * base_kv * 1000, norm_max=storage.VMaxpu * base_kv * 1000)
+        self._add_OperationalLimitSet(terminal_uri, "Voltage", normal_value=base_kv * 1000, norm_min=storage.VMinpu * base_kv * 1000, norm_max=storage.VMaxpu * base_kv * 1000)
 
     def _add_TransformerTanks(self):
         for tr in self.dss.Transformer:
