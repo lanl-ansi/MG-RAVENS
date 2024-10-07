@@ -192,13 +192,13 @@ class DssExport(object):
         self._convert_dss_to_rdf()
 
     def _convert_dss_to_rdf(self):
-        pass
         self._add_ConnectivityNodes()
         self._add_EnergyConsumers()
         self._add_EnergySources()
         self._add_ACLineSegments_and_Switches()
         self._add_SynchronousMachines()
         self._add_PowerElectronicsConnections()
+        self._add_LinearShuntCompensators()
 
     def save(self, path: str):
         self.graph.serialize(path, max_depth=1, format="pretty-xml")
@@ -695,7 +695,7 @@ class DssExport(object):
 
     def _add_LinearShuntCompensators(self):
         for cap in self.dss.Capacitor:
-            self._add_LinearShuntCompensator(self, cap)
+            self._add_LinearShuntCompensator(cap)
 
     def _add_LinearShuntCompensator(self, cap: object):
         node = self.build_cim_obj("LinearShuntCompensator", name=cap.Name)
@@ -727,9 +727,9 @@ class DssExport(object):
 
         self.add_triple(node, "ShuntCompensator.sections", sum([1 if cap.States[i] else 0 for i in range(cap.NumSteps)]))
 
-        terminal_uri = self._add_Terminal(node, cap, bus=self._parse_busname(cap.Bus1), phases=phases)
+        terminal_uri = self._add_Terminal(node, cap, bus=self._parse_busname(cap.Bus1), phases=parse_phase_str(cap.Bus1, cap.Phases))
         base_kv = self._add_BaseVoltage(node, cap.Bus1)
-        self._add_OperationalLimitSet(terminal_uri, "Current", norm_max=cap.NormAmps, emerg_max=cap.EmergAmps)
+        self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=cap.NormAmps, norm_max=cap.NormAmps, emerg_max=cap.EmergAmps)
 
     def _add_RegulatingControls(self):
         for capcontrol in self.dss.CapControl:
