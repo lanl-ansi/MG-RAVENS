@@ -199,6 +199,7 @@ class DssExport(object):
         self._add_SynchronousMachines()
         self._add_PowerElectronicsConnections()
         self._add_LinearShuntCompensators()
+        self._add_Transformers()
 
     def save(self, path: str):
         self.graph.serialize(path, max_depth=1, format="pretty-xml")
@@ -878,22 +879,21 @@ class DssExport(object):
         base_kv = self._add_BaseVoltage(subject_uri, storage.Bus1)
         self._add_OperationalLimitSet(terminal_uri, "Voltage", normal_value=base_kv * 1000, norm_min=storage.VMinpu * base_kv * 1000, norm_max=storage.VMaxpu * base_kv * 1000)
 
-    def _add_TransformerTanks(self):
+    def _add_Transformers(self):
         for tr in self.dss.Transformer:
-            if tr.Phases == 3 and tr.XfmrCode is None:
-                pass
-                # self._add_PowerTransformer(self, tr)
+            tank_info_uri = self._add_TransformerTankInfo(tr.XfmrCode if tr.XfmrCode is not None else tr)
+            self._add_TransformerTank(tr, tank_info_uri)
 
     def _add_PowerTransformer(self, tr: object):
         pass
 
-    def _add_TransformerTank(self, tr: object, xfmrcode: object):
+    def _add_TransformerTank(self, tr: object, tank_info_uri: URIRef):
         pass
 
     def _add_TransformerEndInfo(self, i: int, xfmrcode: object, subject_uri: URIRef, ratShort: float, ratEmerg: float, Zbase: float):
-        node = self.build_cim_obj("TransformerEndInfo", name=f"{xfmrcode.Name}_{i}")
+        node = self.build_cim_obj("TransformerEndInfo", name=f"{xfmrcode.Name}_{i+1}")
         self.add_triple(node, "TransformerEndInfo.TransformerTankInfo", subject_uri)
-        self.add_triple(node, "TransformerEndInfo.endNumber", i)
+        self.add_triple(node, "TransformerEndInfo.endNumber", i + 1)
         if xfmrcode.Phases < 3:
             self.add_triple(node, "TransformerEndInfo.connectionKind", self.cim["WindingConnection.I"])
 
@@ -910,7 +910,7 @@ class DssExport(object):
                 else:
                     self.add_triple(node, "TransformerEndInfo.connectionKind", self.cim["WindingConnection.Y"])
 
-            if xfmrcode.Conns[i] == xfmrcode.Conns[0]:
+            if xfmrcode.Conns[i] != xfmrcode.Conns[0]:
                 self.add_triple(node, "TransformerEndInfo.phaseAngleClock", 1)
             else:
                 self.add_triple(node, "TransformerEndInfo.phaseAngleClock", 0)
@@ -919,24 +919,58 @@ class DssExport(object):
         self.add_triple(node, "TransformerEndInfo.ratedS", xfmrcode.kVAs[i] * 1000)
         self.add_triple(node, "TransformerEndInfo.shortTermS", xfmrcode.kVAs[i] * 1000 * ratShort)
         self.add_triple(node, "TransformerEndInfo.emergencyS", xfmrcode.kVAs[i] * 1000 * ratEmerg)
-        self.add_triple(node, "TransformerEndInfo.r", xfmrcode.pctR[i] * Zbase)
+        self.add_triple(node, "TransformerEndInfo.r", xfmrcode.pctR[i] / 100.0 * Zbase)
         self.add_triple(node, "TransformerEndInfo.insulationU", 0.0)
 
-    def _add_TransformerTankInfo(self, xfmrcode):
+        return node
+
+    def _add_TransformerTankInfo(self, xfmrcode: object):
         node = self.build_cim_obj("TransformerTankInfo", name=xfmrcode.Name)
         ratShort = xfmrcode.NormHkVA / xfmrcode.kVAs[0]
         ratEmerg = xfmrcode.EmergHkVA / xfmrcode.kVAs[0]
         Zbase = xfmrcode.kVs[0] ** 2 * 1000 / xfmrcode.kVAs[0]
+        transformer_ends = []
         for i in range(xfmrcode.Windings):
-            self._add_TransformerEndInfo(i, xfmrcode, node, ratShort, ratEmerg, Zbase)
+            transformer_ends.append(self._add_TransformerEndInfo(i, xfmrcode, node, ratShort, ratEmerg, Zbase))
 
-    def _add_NoLoadTest(self):
-        pass
+        self._add_NoLoadTest(xfmrcode, transformer_ends[0])
 
-    def _add_ShortCircuitTest(self):
-        pass
+        seq = 0
+        for i in range(xfmrcode.Windings):
+            for j in range(i + 1, xfmrcode.Windings):
+                seq += 1
+                self._add_ShortCircuitTest(xfmrcode, transformer_ends, seq, i, j)
+
+    def _add_NoLoadTest(self, xfmrcode: object, subject_uri: URIRef):
+        node = self.build_cim_obj("NoLoadTest", name=f"{xfmrcode.Name}_{1}")
+        self.add_triple(node, "NoLoadTest.EnergisedEnd", subject_uri)
+        self.add_triple(node, "NoLoadTest.energisedEndVoltage", xfmrcode.kVs[0] * 1000.0)
+        exciting_current = math.sqrt(xfmrcode.pctIMag**2 + xfmrcode.pctNoLoadLoss**2)
+        self.add_triple(node, "NoLoadTest.excitingCurrent", exciting_current)
+        self.add_triple(node, "NoLoadTest.excitingCurrentZero", exciting_current)
+        loss = 0.01 * xfmrcode.pctNoLoadLoss / 100.0 * xfmrcode.kVAs[0]
+        self.add_triple(node, "NoLoadTest.loss", loss)
+        self.add_triple(node, "NoLoadTest.lossZero", loss)
+        self.add_triple(node, "TransformerTest.basePower", xfmrcode.kVAs[0] * 1000.0)
+        self.add_triple(node, "TransformerTest.temperature", 50.0)
+
+    def _add_ShortCircuitTest(self, xfmrcode: object, subject_uris: list, seq: int, i: int, j: int):
+        node = self.build_cim_obj("ShortCircuitTest", name=f"{xfmrcode.Name}_{seq}")
+        self.add_triple(node, "ShortCircuitTest.EnergisedEnd", subject_uris[i])
+        self.add_triple(node, "ShortCircuitTest.GroundedEnds", subject_uris[j])
+        self.add_triple(node, "ShortCircuitTest.energisedEndStep", xfmrcode.Taps[i])
+        self.add_triple(node, "ShortCircuitTest.groundedEndStep", xfmrcode.Taps[j])
+
+        test_kva = xfmrcode.kVAs[0]
+        Zbase = xfmrcode.kVs[i] ** 2 / test_kva * 1000.0
+        leakage_impedance = math.sqrt((xfmrcode.pctRs[i] + xfmrcode.pctRs[j]) ** 2 + xfmrcode.XSCArray[seq - 1] ** 2) * Zbase
+        self.add_triple(node, "ShortCircuitTest.leakageImpedance", leakage_impedance)
+        self.add_triple(node, "ShortCircuitTest.leakageImpedanceZero", leakage_impedance)
+
+        self.add_triple(node, "ShortCircuitTest.basePower", test_kva * 1000.0)
+        self.add_triple(node, "ShortCircuitTest.temperature", 50.0)
 
 
 if __name__ == "__main__":
-    d = DssExport("../../ronm/PowerModelsDistribution.jl/test/data/opendss/case3_balanced_cap.dss")
+    d = DssExport("../../ronm/PowerModelsDistribution.jl/test/data/opendss/ut_trans_2w_yy.dss")
     d.save("out/test_opendss_convert.xml")
