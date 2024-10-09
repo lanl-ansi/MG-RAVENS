@@ -174,6 +174,50 @@ class TransformerBank(object):
 
 
 class DssExport(object):
+    """
+    Class for converting a DSS file into CIM XML
+
+    ## Methods
+
+    save
+
+    ## Attributes
+
+    dss
+    graph
+
+    Builds initial CIM object with (up to) three RDF triples: RDF.type as given by `rdf_type`,
+    IdentifiedObject.name and IdentifiedObject.mRID. Only RDF.type is absolutely required;
+    if `name` is None, it will be skipped, and if `skip_mrid` is True, it will not be explicitly
+    added, although the object will be assigned a unique identifier (or assigned `mrid` if
+    specified).
+
+    ## Parameters
+
+    rdf_type: str
+    mrid: str (optional, default: None)
+    name: str (optional, default: None)
+    skip_mrid (optional, default: False)
+
+    ## Returns
+
+    URIRef
+
+    Adds a RDF Triple (`subject`, `predicate`, `object`) to the RDF Graph, where the `predicate`
+    is expected to be in the CIM Namespace, and `obj` will be cast to `Literal` unless it
+    is an URIRef.
+
+    ## Parameters
+
+    subject: URIRef
+    predicate: str
+    obj: any
+
+    ## Returns
+
+    None
+    """
+
     def __init__(self, dss_file: str):
         self.raw_dss = odd
         self.raw_dss(f'redirect "{dss_file}"')
