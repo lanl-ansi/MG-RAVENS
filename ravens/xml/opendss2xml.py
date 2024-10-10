@@ -842,8 +842,8 @@ class DssExport(object):
     def _add_BatteryUnit(self, subject_uri: URIRef, storage: object):
         node = self.build_cim_obj("BatteryUnit", name=f"{storage.Name}_Cells")
 
-        self.add_triple(node, "PowerElectronicsUnit.minP", storage.kWRated * storage.pctkWRated / 100.0 * 1000.0)
-        self.add_triple(node, "PowerElectronicsUnit.maxP", -storage.kWRated * storage.pctkWRated / 100.0 * 1000.0)
+        self.add_triple(node, "PowerElectronicsUnit.minP", -storage.kWRated * storage.pctCharge / 100.0 * 1000.0)
+        self.add_triple(node, "PowerElectronicsUnit.maxP", storage.kWRated * storage.pctDischarge / 100.0 * 1000.0)
 
         self.add_triple(node, "BatteryUnit.storedE", storage.kWhStored * 1000.0)
         self.add_triple(node, "BatteryUnit.ratedE", storage.kWhRated * 1000.0)
