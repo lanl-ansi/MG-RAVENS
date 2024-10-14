@@ -704,19 +704,20 @@ class DssExport(object):
         b = 0.001 * cap.kvar / cap.kV**2 / cap.NumSteps
 
         self.add_triple(node, "ShuntCompensator.nomU", cap.kV * 1000.0)
-        self.add_triple(node, "LinearShuntCompensator.bPerSection", b)
+        self.add_triple(node, "LinearShuntCompensator.bPerSection", b[0])
         self.add_triple(node, "LinearShuntCompensator.gPerSection", 0.0)
         if cap.Conn == 0:
-            self.add_triple(node, "ShuntCompensator", self.cim[f"ShuntConnectionKind.Y"])
-            self.add_triple(node, "LinearShuntCompensator.b0PerSection", b)
+            self.add_triple(node, "ShuntCompensator.phaseConnection", self.cim[f"ShuntConnectionKind.Y"])
+            self.add_triple(node, "LinearShuntCompensator.b0PerSection", b[0])
         else:
-            self.add_triple(node, "ShuntCompensator", self.cim[f"ShuntConnectionKind.D"])
+            self.add_triple(node, "ShuntCompensator.phaseConnection", self.cim[f"ShuntConnectionKind.D"])
             self.add_triple(node, "LinearShuntCompensator.grounded", False)
             self.add_triple(node, "LinearShuntCompensator.b0PerSection", 0.0)
 
         self.add_triple(node, "LinearShuntCompensator.g0PerSection", 0.0)
         self.add_triple(node, "LinearShuntCompensator.normalSections", cap.NumSteps)
         self.add_triple(node, "LinearShuntCompensator.maximumSections", cap.NumSteps)
+        self.add_triple(node, "Equipment.inService", cap.Enabled)
 
         delay = 0.0
         for capcontrol in self.dss.CapControl:
