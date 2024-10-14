@@ -1,0 +1,80 @@
+{
+  "Location": {
+    "671_Loc": {
+      "Ravens.CimObjectType": "Location",
+      "IdentifiedObject.mRID": "_68005D78-5BFF-4482-89CF-A990499EDBA5",
+      "IdentifiedObject.name": "671_Loc",
+      "Location.CoordinateSystem": "#_A9DB5178-5976-4445-A14B-5367131AAD91",
+      "Location": {
+        "ieee13nodecktassets_Location": {
+          "Location.CoordinateSystem": {
+            "Ravens.CimObjectType": "CoordinateSystem",
+            "IdentifiedObject.mRID": "_A9DB5178-5976-4445-A14B-5367131AAD91",
+            "IdentifiedObject.name": "ieee13nodecktassets_CrsUrn",
+            "CoordinateSystem.crsUrn": "OpenDSSLocalBusCoordinates"
+          }
+        }
+      }
+    }
+  },
+  "ConnectivityNode": {
+    "671": {
+      "Ravens.CimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "_7BDEF197-D8A0-4A25-AB61-BD1E7DB2DFF0",
+      "IdentifiedObject.name": 671,
+      "ConnectivityNode.TopologicalNode": "#_E55786F7-7EA2-4642-8BD3-D78EA3B58628",
+      "ConnectivityNode.OperationalLimitSet": "#_C7A0C5E1-D50C-4537-AB7E-65E28B298C87",
+      "ConnectivityNode.ConnectivityNodeContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F"
+    }
+  },
+  "BaseVoltage": {
+    "BaseV_4.1600": {
+      "Ravens.CimObjectType": "BaseVoltage",
+      "IdentifiedObject.mRID": "_0D9632EB-FC83-4CC8-9FA9-406211BF5AC5",
+      "IdentifiedObject.name": "BaseV_4.1600",
+      "BaseVoltage.nominalVoltage": 4160
+    }
+  },
+  "EnergyConsumer": {
+    "671": {
+      "Ravens.CimObjectType": "EnergyConsumer",
+      "IdentifiedObject.mRID": "_E447D05C-AC54-4E86-AAC3-9A37D49E7331",
+      "IdentifiedObject.name": 671,
+      "Equipment.EquipmentContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F",
+      "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.1600'",
+      "EnergyConsumer.LoadResponse": "#_76833A1D-EA7A-45DB-9134-D8B3F23B9255",
+      "EnergyConsumer.p": 1155000,
+      "EnergyConsumer.q": 660000,
+      "EnergyConsumer.customerCount": 1,
+      "EnergyConsumer.phaseConnection": "PhaseShuntConnectionKind.D",
+      "EnergyConsumer.grounded": false,
+      "PowerSystemResource.Location": "Location::'671_Loc'",
+      "EnergyConsumer.LoadResponseCharacteristic": {
+        "Ravens.CimObjectType": "LoadResponseCharacteristic",
+        "IdentifiedObject.mRID": "_76833A1D-EA7A-45DB-9134-D8B3F23B9255",
+        "IdentifiedObject.name": "Constant kVA",
+        "LoadResponseCharacteristic.exponentModel": false,
+        "LoadResponseCharacteristic.pConstantImpedance": 0,
+        "LoadResponseCharacteristic.pConstantCurrent": 0,
+        "LoadResponseCharacteristic.pConstantPower": 100,
+        "LoadResponseCharacteristic.qConstantImpedance": 0,
+        "LoadResponseCharacteristic.qConstantCurrent": 0,
+        "LoadResponseCharacteristic.qConstantPower": 100,
+        "LoadResponseCharacteristic.pVoltageExponent": 0,
+        "LoadResponseCharacteristic.qVoltageExponent": 0,
+        "LoadResponseCharacteristic.pFrequencyExponent": 0,
+        "LoadResponseCharacteristic.qFrequencyExponent": 0
+      },
+      "ConductingEquipment.Terminals": [
+        {
+          "Ravens.CimObjectType": "Terminal",
+          "IdentifiedObject.mRID": "_EDD4250D-3F87-4B91-A1E3-777023DFD0E6",
+          "IdentifiedObject.name": "671_T1",
+          "Terminal.ConductingEquipment": "#_E447D05C-AC54-4E86-AAC3-9A37D49E7331",
+          "ACDCTerminal.sequenceNumber": 1,
+          "Terminal.ConnectivityNode": "ConnectivityNode::'671'"
+        }
+      ]
+    }
+  }
+}
