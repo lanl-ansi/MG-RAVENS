@@ -1,0 +1,15 @@
+{
+  "IdentifiedObject.mRID": "c23252a0-cd95-4f64-88e8-4553aa9e1cf6",
+  "IdentifiedObject.name": "DesignAlgorithmProperties",
+  "DesignAlgorithmProperties.analysisPeriod": "P25Y",
+  "DesignAlgorithmProperties.energyAvailabilityLimit": 95.0,
+  "DesignAlgorithmProperties.energyAvailabilityObjective": 100.0,
+  "DesignAlgorithmProperties.purchaseCostLimit": {
+    "value": 10000.0,
+    "unit": "USD"
+  },
+  "DesignAlgorithmProperties.purchaseCostObjective": {
+    "value": 9000.0,
+    "unit": "USD"
+  }
+}

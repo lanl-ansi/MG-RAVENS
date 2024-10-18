@@ -1,0 +1,19 @@
+[
+  {
+    "IdentifiedObject.mRID": "c90975b5-58b8-41bf-ab27-04dd0c16c118",
+    "IdentifiedObject.name": "OutageScenario1",
+    "OutageScenario.anticipatedDuration": "P1H",
+    "OutageScenario.loadFractionCritical": 100.0,
+    "OutageScenario.loadFractionTotal": 30.0
+  },
+
+  {
+    "IdentifiedObject.mRID": "c90975b5-58b8-41bf-ab27-04dd0c16c118",
+    "IdentifiedObject.name": "OutageScenario1",
+    "OutageScenario.anticipatedDuration": "P4H",
+    "OutageScenario.anticipatedStartDay": "--03-01",
+    "OutageScenario.anticipatedStartHour": 10,
+    "OutageScenario.loadFractionCritical": 100.0,
+    "OutageScenario.loadFractionTotal": 30.0
+  }
+]

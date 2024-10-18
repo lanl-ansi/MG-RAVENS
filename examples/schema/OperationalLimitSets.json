@@ -1,0 +1,35 @@
+{
+  "ConnectivityNode": {
+    "bus1": {
+      "Ravens.CimObjectType": "ConnectivityNode",
+      "IdentifiedObject.name": "bus1",
+      "IdentifiedObject.mRID": "81ac2f39-19f1-4ab9-82be-57ef70ba49c0",
+      "ConnectivityNode.OperationalLimitSet": "OperationalLimitSet::'OpLimV_0.4000'"
+    }
+  },
+  "OperationalLimitSet": {
+    "OpLimV_0.4000": {
+      "IdentifiedObject.name": "OpLimV_0.4000",
+      "IdentifiedObject.mRID": "3cbb3a4a-06b3-4853-bd58-69d9f4b6c354",
+      "Ravens.CimObjectType": "OperationalLimitSet",
+      "OperationalLimitSet.OperationalLimitValue": [
+        {
+          "Ravens.CimObjectType": "VoltageLimit",
+          "VoltageLimit.value": 380,
+          "OperationalLimit.OperationalLimitType": {
+            "Ravens.CimObjectType": "OperationalLimitType",
+            "OperationalLimitType.direction": "OperationalLimitDirectionKind.low"
+          }
+        },
+        {
+          "Ravens.CimObjectType": "VoltageLimit",
+          "VoltageLimit.value": 420,
+          "OperationalLimit.OperationalLimitType": {
+            "Ravens.CimObjectType": "OperationalLimitType",
+            "OperationalLimitType.direction": "OperationalLimitDirectionKind.high"
+          }
+        }
+      ]
+    }
+  }
+}

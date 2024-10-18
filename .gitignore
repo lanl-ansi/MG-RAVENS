@@ -1,0 +1,15 @@
+*.vscode
+node_modules/
+
+out/
+cimpy-1.0.2/
+test_env
+tests_fixes
+
+deprecated.*
+test.*
+
+poetry.lock
+package-lock.json
+
+*.xml
