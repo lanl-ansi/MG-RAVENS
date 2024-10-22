@@ -52,6 +52,8 @@
 
 [AlarmDisplayType](../_static/schema/AlarmDisplayType.html){.external}
 
+[Algorithm](../_static/schema/Algorithm.html){.external}
+
 [AlgorithmObjectives](../_static/schema/AlgorithmObjectives.html){.external}
 
 [AlgorithmProperties](../_static/schema/AlgorithmProperties.html){.external}
@@ -81,6 +83,8 @@
 [ApparentPower](../_static/schema/ApparentPower.html){.external}
 
 [ApparentPowerLimit](../_static/schema/ApparentPowerLimit.html){.external}
+
+[Application](../_static/schema/Application.html){.external}
 
 [ApplicationSecurityKind](../_static/schema/ApplicationSecurityKind.html){.external}
 
@@ -800,6 +804,8 @@
 
 [MediumKind](../_static/schema/MediumKind.html){.external}
 
+[Message](../_static/schema/Message.html){.external}
+
 [MeterMultiplierKind](../_static/schema/MeterMultiplierKind.html){.external}
 
 [Minutes](../_static/schema/Minutes.html){.external}
@@ -1001,6 +1007,8 @@
 [ProcedureKind](../_static/schema/ProcedureKind.html){.external}
 
 [ProjectStatusKind](../_static/schema/ProjectStatusKind.html){.external}
+
+[ProposedAsset](../_static/schema/ProposedAsset.html){.external}
 
 [ProposedAssetOption](../_static/schema/ProposedAssetOption.html){.external}
 
