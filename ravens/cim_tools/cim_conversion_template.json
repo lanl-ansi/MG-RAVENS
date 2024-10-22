@@ -4392,7 +4392,7 @@
                 "title": "CurrentLimit",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
-                   "$objectType": "reference",
+                    "$objectType": "reference",
                     "type": "string",
                     "$referencePath": "OperationalLimitType",
                     "$objectId": "OperationalLimitType"
@@ -5724,6 +5724,70 @@
               }
             }
           ]
+        }
+      }
+    },
+    "ProposedAsset": {
+      "$objectSource": "cim",
+      "$objectType": "object",
+      "type": "object",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "$objectId": "ProposedAsset",
+      "properties": {
+        "ProposedAsset.Application": {
+          "$objectSource": "cim",
+          "type": "string",
+          "$objectType": "reference",
+          "$objectId": "Application"
+        }
+      }
+    },
+    "Application": {
+      "$objectSource": "cim",
+      "$objectType": "object",
+      "type": "object",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "$objectId": "Application",
+      "properties": {}
+    },
+    "Algorithm": {
+      "$objectSource": "cim",
+      "$objectType": "object",
+      "type": "object",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "$objectId": "Algorithm",
+      "properties": {
+        "Algorithm.Application": {
+          "$objectType": "reference",
+          "type": "string",
+          "$objectSource": "cim",
+          "$objectId": "Application"
+        }
+      }
+    },
+    "Message": {
+      "$objectSource": "cim",
+      "type": "array",
+      "items": {
+        "$objectSource": "cim",
+        "$objectId": "Message",
+        "type": "object",
+        "properties": {
+          "Message.Application": {
+            "$objectType": "reference",
+            "type": "string",
+            "$objectSource": "cim",
+            "$objectId": "Application"
+          },
+          "Message.Algorithm": {
+            "$objectType": "reference",
+            "type": "string",
+            "$objectSource": "cim",
+            "$objectId": "Algorithm"
+          }
         }
       }
     },
