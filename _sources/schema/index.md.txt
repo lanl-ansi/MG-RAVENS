@@ -1012,6 +1012,8 @@
 
 [ProposedAssetOption](../_static/schema/ProposedAssetOption.html){.external}
 
+[ProposedAssetSet](../_static/schema/ProposedAssetSet.html){.external}
+
 [ProposedBatteryUnitOption](../_static/schema/ProposedBatteryUnitOption.html){.external}
 
 [ProposedConductorOption](../_static/schema/ProposedConductorOption.html){.external}
