@@ -4,35 +4,30 @@
   "type": "object",
   "properties": {
     "Versions": {
-      "$objectSource": "mg-ravens",
       "$objectType": "container",
       "type": "object",
       "title": "Versions",
       "description": "Specify the versions of CIM / RAVENS used in this file",
       "properties": {
         "IEC61968CIMVersion": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": null,
           "properties": {}
         },
         "IEC61970CIMVersion": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": null,
           "properties": {}
         },
         "IEC62325CIMVersion": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": null,
           "properties": {}
         },
         "RavensVersion": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": null,
@@ -41,7 +36,6 @@
       }
     },
     "BaseVoltage": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
@@ -49,7 +43,6 @@
       "properties": {}
     },
     "ConnectivityNode": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
@@ -76,7 +69,6 @@
         "ConnectivityNode.SvVoltage": {
           "type": "array",
           "items": {
-            "$objectSource": "cim",
             "$objectId": "SvVoltage",
             "$objectType": "object",
             "type": "object",
@@ -87,7 +79,6 @@
         "ConnectivityNode.SvInjection": {
           "type": "array",
           "items": {
-            "$objectSource": "cim",
             "$objectId": "SvInjection",
             "$objectType": "object",
             "type": "object",
@@ -104,7 +95,6 @@
     },
     "TopologicalNode": {
       "$objectType": "object",
-      "$objectSource": "cim",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
@@ -118,7 +108,6 @@
       }
     },
     "CoordinateSystem": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "$objectId": "CoordinateSystem",
       "type": "object",
@@ -126,14 +115,12 @@
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {}
     },
-    "Group": {
-      "$objectSource": "mg-ravens",
+    "Groups": {
       "$objectType": "container",
       "type": "object",
       "title": "Group",
       "properties": {
         "GeographicalRegion": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
@@ -151,7 +138,6 @@
           }
         },
         "SubGeographicalRegion": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
@@ -178,7 +164,6 @@
           }
         },
         "TopologicalIsland": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
@@ -192,49 +177,42 @@
           }
         },
         "EquipmentContainer": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "oneOf": [
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "Bay",
               "type": "object",
               "properties": {}
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "Feeder",
               "type": "object",
               "properties": {}
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "DCEquipmentContainer",
               "type": "object",
               "properties": {}
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "Plant",
               "type": "object",
               "properties": {}
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "Line",
               "type": "object",
               "properties": {}
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "Substation",
               "type": "object",
@@ -248,7 +226,6 @@
               }
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "VoltageLevel",
               "type": "object",
@@ -257,7 +234,6 @@
           ]
         },
         "EnergyArea": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
@@ -265,21 +241,18 @@
           "properties": {
             "SubLoadArea": {
               "type": "object",
-              "$objectSource": "cim",
               "$objectType": "object",
               "properties": {}
             }
           }
         },
         "LoadGroup": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "oneOf": [
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
@@ -303,7 +276,6 @@
               }
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
@@ -327,7 +299,6 @@
               }
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
@@ -347,7 +318,6 @@
           ]
         },
         "PopulationGroup": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
@@ -359,36 +329,55 @@
               "type": "string"
             }
           }
+        },
+        "ProposedAssetSet": {
+          "$objectType": "object",
+          "type": "object",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "$objectId": "ProposedAssetSet",
+          "properties": {
+            "ProposedAssetSet.ProposedAssets": {
+              "type": "array",
+              "items": {
+                "$objectType": "reference",
+                "type": "string",
+                "$referencePath": "ProposedAsset"
+              },
+              "ProposedAssetSet.SolutionMetrics": {
+                "type": "array",
+                "items": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$referencePath": "SolutionMetric"
+                }
+              }
+            }
+          }
         }
       }
     },
     "PowerSystemResource": {
-      "$objectSource": "cim",
       "$objectType": "container",
       "type": "object",
       "properties": {
         "Equipment": {
-          "$objectSource": "cim",
           "$objectType": "container",
           "type": "object",
           "properties": {
             "ConductingEquipment": {
-              "$objectSource": "cim",
               "$objectType": "container",
               "type": "object",
               "properties": {
                 "EnergyConnection": {
-                  "$objectSource": "cim",
                   "$objectType": "container",
                   "type": "object",
                   "properties": {
                     "RegulatingCondEq": {
-                      "$objectSource": "cim",
                       "$objectType": "container",
                       "type": "object",
                       "properties": {
                         "PowerElectronicsConnection": {
-                          "$objectSource": "cim",
                           "$objectType": "object",
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
@@ -407,7 +396,6 @@
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "$objectId": "Terminal",
                                 "type": "object",
@@ -422,7 +410,6 @@
                                   "Terminal.SvPowerFlow": {
                                     "type": "array",
                                     "items": {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "SvPowerFlow",
                                       "type": "object",
@@ -434,21 +421,18 @@
                               }
                             },
                             "PowerElectronicsConnection.PowerElectronicsUnit": {
-                              "$objectSource": "cim",
                               "$objectType": "object",
                               "$objectId": "PowerElectronicsUnit",
                               "type": "object",
                               "$primaryObjectHash": null,
                               "oneOf": [
                                 {
-                                  "$objectSource": "cim",
                                   "$objectType": "object",
                                   "$objectId": "BatteryUnit",
                                   "type": "object",
                                   "$primaryObjectHash": null,
                                   "properties": {
                                     "BatteryUnit.BatteryResponse": {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "type": "object",
                                       "$objectId": "BatteryResponseCharacteristic",
@@ -462,7 +446,6 @@
                                   }
                                 },
                                 {
-                                  "$objectSource": "cim",
                                   "$objectType": "object",
                                   "$objectId": "PhotoVoltaicUnit",
                                   "type": "object",
@@ -475,7 +458,6 @@
                                   }
                                 },
                                 {
-                                  "$objectSource": "cim",
                                   "$objectType": "object",
                                   "$objectId": "PowerElectronicsWindUnit",
                                   "type": "object",
@@ -490,7 +472,6 @@
                               ]
                             },
                             "ConductingEquipment.BaseVoltage": {
-                              "$objectSource": "cim",
                               "$objectType": "reference",
                               "$objectId": "BaseVoltage",
                               "type": "string",
@@ -499,7 +480,6 @@
                             "PowerElectronicsConnection.PowerElectronicsConnectionPhase": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "$objectId": "PowerElectronicsConnectionPhase",
                                 "type": "object",
@@ -510,7 +490,6 @@
                             "ConductingEquipment.SvStatus": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "type": "object",
                                 "$objectId": "SvStatus",
@@ -521,7 +500,6 @@
                           }
                         },
                         "StaticVarCompensator": {
-                          "$objectSource": "cim",
                           "$objectType": "object",
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
@@ -540,7 +518,6 @@
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "$objectId": "Terminal",
                                 "type": "object",
@@ -555,7 +532,6 @@
                                   "Terminal.SvPowerFlow": {
                                     "type": "array",
                                     "items": {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "SvPowerFlow",
                                       "type": "object",
@@ -575,7 +551,6 @@
                             "ConductingEquipment.SvStatus": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "type": "object",
                                 "$objectId": "SvStatus",
@@ -586,7 +561,6 @@
                           }
                         },
                         "ExternalNetworkInjection": {
-                          "$objectSource": "cim",
                           "$objectType": "object",
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
@@ -605,7 +579,6 @@
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectId": "Terminal",
                                 "$objectType": "object",
                                 "type": "object",
@@ -620,7 +593,6 @@
                                   "Terminal.SvPowerFlow": {
                                     "type": "array",
                                     "items": {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "SvPowerFlow",
                                       "type": "object",
@@ -640,7 +612,6 @@
                             "ConductingEquipment.SvStatus": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "type": "object",
                                 "$objectId": "SvStatus",
@@ -651,7 +622,6 @@
                           }
                         },
                         "FrequencyConverter": {
-                          "$objectSource": "cim",
                           "$objectType": "object",
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
@@ -670,7 +640,6 @@
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectId": "Terminal",
                                 "$objectType": "object",
                                 "type": "object",
@@ -685,7 +654,6 @@
                                   "Terminal.SvPowerFlow": {
                                     "type": "array",
                                     "items": {
-                                      "$objectSource": "cim",
                                       "$objectId": "SvPowerFlow",
                                       "$objectType": "object",
                                       "type": "object",
@@ -705,7 +673,6 @@
                             "ConductingEquipment.SvStatus": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "type": "object",
                                 "$objectId": "SvStatus",
@@ -716,7 +683,6 @@
                           }
                         },
                         "ShuntCompensator": {
-                          "$objectSource": "cim",
                           "$objectType": "object",
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
@@ -724,7 +690,6 @@
                           "$objectId": "ShuntCompensator",
                           "oneOf": [
                             {
-                              "$objectSource": "cim",
                               "$objectType": "object",
                               "type": "object",
                               "$primaryObjectHash": "IdentifiedObject.name",
@@ -744,7 +709,6 @@
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "Terminal",
                                     "$objectType": "object",
                                     "type": "object",
@@ -752,7 +716,6 @@
                                     "properties": {
                                       "Terminal.ConnectivityNode": {
                                         "$objectId": "ConnectivityNode",
-                                        "$objectSource": "cim",
                                         "$objectType": "reference",
                                         "type": "string",
                                         "$referencePath": "ConnectivityNode"
@@ -760,7 +723,6 @@
                                       "Terminal.SvPowerFlow": {
                                         "type": "array",
                                         "items": {
-                                          "$objectSource": "cim",
                                           "$objectId": "SvPowerFlow",
                                           "$objectType": "object",
                                           "type": "object",
@@ -780,7 +742,6 @@
                                 "ShuntCompensator.ShuntCompensatorPhase": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "ShuntCompensatorPhase",
                                     "$objectType": "object",
                                     "type": "object",
@@ -796,7 +757,6 @@
                                 "ShuntCompensator.SvShuntCompensatorSections": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectType": "object",
                                     "$objectId": "SvShuntCompensatorSections",
                                     "type": "object",
@@ -807,7 +767,6 @@
                                 "ConductingEquipment.SvStatus": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectType": "object",
                                     "type": "object",
                                     "$objectId": "SvStatus",
@@ -823,7 +782,6 @@
                               }
                             },
                             {
-                              "$objectSource": "cim",
                               "$objectType": "object",
                               "type": "object",
                               "$primaryObjectHash": "IdentifiedObject.name",
@@ -843,7 +801,6 @@
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "Terminal",
                                     "$objectType": "object",
                                     "type": "object",
@@ -851,7 +808,6 @@
                                     "properties": {
                                       "Terminal.ConnectivityNode": {
                                         "$objectId": "ConnectivityNode",
-                                        "$objectSource": "cim",
                                         "$objectType": "reference",
                                         "type": "string",
                                         "$referencePath": "ConnectivityNode"
@@ -859,7 +815,6 @@
                                       "Terminal.SvPowerFlow": {
                                         "type": "array",
                                         "items": {
-                                          "$objectSource": "cim",
                                           "$objectId": "SvPowerFlow",
                                           "$objectType": "object",
                                           "type": "object",
@@ -879,7 +834,6 @@
                                 "ShuntCompensator.ShuntCompensatorPhase": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "LinearShuntCompensatorPhase",
                                     "$objectType": "object",
                                     "type": "object",
@@ -895,7 +849,6 @@
                                 "ShuntCompensator.SvShuntCompensatorSections": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectType": "object",
                                     "$objectId": "SvShuntCompensatorSections",
                                     "type": "object",
@@ -906,7 +859,6 @@
                                 "ConductingEquipment.SvStatus": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectType": "object",
                                     "type": "object",
                                     "$objectId": "SvStatus",
@@ -922,7 +874,6 @@
                               }
                             },
                             {
-                              "$objectSource": "cim",
                               "$objectType": "object",
                               "type": "object",
                               "$primaryObjectHash": "IdentifiedObject.name",
@@ -942,7 +893,6 @@
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "Terminal",
                                     "$objectType": "object",
                                     "type": "object",
@@ -950,7 +900,6 @@
                                     "properties": {
                                       "Terminal.ConnectivityNode": {
                                         "$objectId": "ConnectivityNode",
-                                        "$objectSource": "cim",
                                         "$objectType": "reference",
                                         "type": "string",
                                         "$referencePath": "ConnectivityNode"
@@ -958,7 +907,6 @@
                                       "Terminal.SvPowerFlow": {
                                         "type": "array",
                                         "items": {
-                                          "$objectSource": "cim",
                                           "$objectId": "SvPowerFlow",
                                           "$objectType": "object",
                                           "type": "object",
@@ -978,7 +926,6 @@
                                 "ShuntCompensator.ShuntCompensatorPhase": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "NonlinearShuntCompensatorPhase",
                                     "$objectType": "object",
                                     "type": "object",
@@ -994,7 +941,6 @@
                                 "ShuntCompensator.SvShuntCompensatorSections": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectType": "object",
                                     "$objectId": "SvShuntCompensatorSections",
                                     "type": "object",
@@ -1005,7 +951,6 @@
                                 "ConductingEquipment.SvStatus": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectType": "object",
                                     "type": "object",
                                     "$objectId": "SvStatus",
@@ -1023,14 +968,12 @@
                           ]
                         },
                         "RotatingMachine": {
-                          "$objectSource": "cim",
                           "$objectType": "object",
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "oneOf": [
                             {
-                              "$objectSource": "cim",
                               "$objectType": "object",
                               "type": "object",
                               "$primaryObjectHash": "IdentifiedObject.name",
@@ -1038,7 +981,6 @@
                               "$objectId": "RotatingMachine",
                               "properties": {
                                 "RotatingMachine.RotatingMachineResponse": {
-                                  "$objectSource": "cim",
                                   "$objectType": "object",
                                   "type": "object",
                                   "$objectId": "RotatingMachineResponseCharacteristic",
@@ -1058,7 +1000,6 @@
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "Terminal",
                                     "$objectType": "object",
                                     "type": "object",
@@ -1073,7 +1014,6 @@
                                       "Terminal.SvPowerFlow": {
                                         "type": "array",
                                         "items": {
-                                          "$objectSource": "cim",
                                           "$objectId": "SvPowerFlow",
                                           "$objectType": "object",
                                           "type": "object",
@@ -1085,21 +1025,18 @@
                                   }
                                 },
                                 "RotatingMachine.GeneratingUnit": {
-                                  "$objectSource": "cim",
                                   "$objectType": "object",
                                   "$objectId": "GeneratingUnit",
                                   "$primaryObjectHash": null,
                                   "type": "object",
                                   "oneOf": [
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "HydroGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1110,7 +1047,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1119,14 +1055,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "SolarGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1137,7 +1071,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1146,14 +1079,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "NuclearGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1164,7 +1095,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1173,14 +1103,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "WindGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1191,7 +1119,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1200,14 +1127,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "ThermalGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1218,7 +1143,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1237,7 +1161,6 @@
                                 "ConductingEquipment.SvStatus": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectType": "object",
                                     "type": "object",
                                     "$objectId": "SvStatus",
@@ -1248,7 +1171,6 @@
                               }
                             },
                             {
-                              "$objectSource": "cim",
                               "$objectType": "object",
                               "type": "object",
                               "$primaryObjectHash": "IdentifiedObject.name",
@@ -1256,7 +1178,6 @@
                               "$objectId": "SynchronousMachine",
                               "properties": {
                                 "RotatingMachine.RotatingMachineResponse": {
-                                  "$objectSource": "cim",
                                   "$objectType": "object",
                                   "type": "object",
                                   "$objectId": "RotatingMachineResponseCharacteristic",
@@ -1276,7 +1197,6 @@
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "Terminal",
                                     "$objectType": "object",
                                     "type": "object",
@@ -1291,7 +1211,6 @@
                                       "Terminal.SvPowerFlow": {
                                         "type": "array",
                                         "items": {
-                                          "$objectSource": "cim",
                                           "$objectId": "SvPowerFlow",
                                           "$objectType": "object",
                                           "type": "object",
@@ -1303,21 +1222,18 @@
                                   }
                                 },
                                 "RotatingMachine.GeneratingUnit": {
-                                  "$objectSource": "cim",
                                   "$objectType": "object",
                                   "$objectId": "GeneratingUnit",
                                   "$primaryObjectHash": null,
                                   "type": "object",
                                   "oneOf": [
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "HydroGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1328,7 +1244,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1337,14 +1252,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "SolarGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1355,7 +1268,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1364,14 +1276,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "NuclearGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1382,7 +1292,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1391,14 +1300,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "WindGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1409,7 +1316,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1418,14 +1324,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "ThermalGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1436,7 +1340,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1455,7 +1358,6 @@
                                 "ConductingEquipment.SvStatus": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectType": "object",
                                     "type": "object",
                                     "$objectId": "SvStatus",
@@ -1466,7 +1368,6 @@
                               }
                             },
                             {
-                              "$objectSource": "cim",
                               "$objectType": "object",
                               "type": "object",
                               "$primaryObjectHash": "IdentifiedObject.name",
@@ -1474,7 +1375,6 @@
                               "$objectId": "AsynchronousMachine",
                               "properties": {
                                 "RotatingMachine.RotatingMachineResponse": {
-                                  "$objectSource": "cim",
                                   "$objectType": "object",
                                   "type": "object",
                                   "$objectId": "RotatingMachineResponseCharacteristic",
@@ -1494,7 +1394,6 @@
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "Terminal",
                                     "$objectType": "object",
                                     "type": "object",
@@ -1509,7 +1408,6 @@
                                       "Terminal.SvPowerFlow": {
                                         "type": "array",
                                         "items": {
-                                          "$objectSource": "cim",
                                           "$objectId": "SvPowerFlow",
                                           "$objectType": "object",
                                           "type": "object",
@@ -1521,21 +1419,18 @@
                                   }
                                 },
                                 "RotatingMachine.GeneratingUnit": {
-                                  "$objectSource": "cim",
                                   "$objectType": "object",
                                   "$objectId": "GeneratingUnit",
                                   "$primaryObjectHash": null,
                                   "type": "object",
                                   "oneOf": [
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "HydroGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1546,7 +1441,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1555,14 +1449,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "SolarGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1573,7 +1465,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1582,14 +1473,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "NuclearGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1600,7 +1489,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1609,14 +1497,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "WindGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1627,7 +1513,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1636,14 +1521,12 @@
                                       }
                                     },
                                     {
-                                      "$objectSource": "cim",
                                       "$objectType": "object",
                                       "$objectId": "ThermalGeneratingUnit",
                                       "type": "object",
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
-                                          "$objectSource": "cim",
                                           "$objectId": "GenUnitOpSchedule",
                                           "$primaryObjectHash": null,
                                           "properties": {},
@@ -1654,7 +1537,6 @@
                                           "items": {
                                             "type": "object",
                                             "$arrayPosition": null,
-                                            "$objectSource": "cim",
                                             "$objectType": "object",
                                             "$objectId": "GenUnitOpCostCurve",
                                             "properties": {}
@@ -1673,7 +1555,6 @@
                                 "ConductingEquipment.SvStatus": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectType": "object",
                                     "type": "object",
                                     "$objectId": "SvStatus",
@@ -1688,14 +1569,12 @@
                       }
                     },
                     "EnergyConsumer": {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "oneOf": [
                         {
-                          "$objectSource": "cim",
                           "$objectType": "object",
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
@@ -1720,7 +1599,6 @@
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectId": "Terminal",
                                 "$objectType": "object",
                                 "type": "object",
@@ -1735,7 +1613,6 @@
                                   "Terminal.SvPowerFlow": {
                                     "type": "array",
                                     "items": {
-                                      "$objectSource": "cim",
                                       "$objectId": "SvPowerFlow",
                                       "$objectType": "object",
                                       "type": "object",
@@ -1766,7 +1643,6 @@
                             "EnergyConsumer.EnergyConsumerPhase": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectId": "EnergyConsumerPhase",
                                 "$objectType": "object",
                                 "type": "object",
@@ -1777,7 +1653,6 @@
                             "ConductingEquipment.SvStatus": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "type": "object",
                                 "$objectId": "SvStatus",
@@ -1788,7 +1663,6 @@
                           }
                         },
                         {
-                          "$objectSource": "cim",
                           "$objectType": "object",
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
@@ -1813,7 +1687,6 @@
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectId": "Terminal",
                                 "$objectType": "object",
                                 "type": "object",
@@ -1828,7 +1701,6 @@
                                   "Terminal.SvPowerFlow": {
                                     "type": "array",
                                     "items": {
-                                      "$objectSource": "cim",
                                       "$objectId": "SvPowerFlow",
                                       "$objectType": "object",
                                       "type": "object",
@@ -1859,7 +1731,6 @@
                             "EnergyConsumer.EnergyConsumerPhase": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectId": "EnergyConsumerPhase",
                                 "$objectType": "object",
                                 "type": "object",
@@ -1870,7 +1741,6 @@
                             "ConductingEquipment.SvStatus": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "type": "object",
                                 "$objectId": "SvStatus",
@@ -1881,7 +1751,6 @@
                           }
                         },
                         {
-                          "$objectSource": "cim",
                           "$objectType": "object",
                           "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
@@ -1906,7 +1775,6 @@
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectId": "Terminal",
                                 "$objectType": "object",
                                 "type": "object",
@@ -1921,7 +1789,6 @@
                                   "Terminal.SvPowerFlow": {
                                     "type": "array",
                                     "items": {
-                                      "$objectSource": "cim",
                                       "$objectId": "SvPowerFlow",
                                       "$objectType": "object",
                                       "type": "object",
@@ -1952,7 +1819,6 @@
                             "EnergyConsumer.EnergyConsumerPhase": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectId": "EnergyConsumerPhase",
                                 "$objectType": "object",
                                 "type": "object",
@@ -1963,7 +1829,6 @@
                             "ConductingEquipment.SvStatus": {
                               "type": "array",
                               "items": {
-                                "$objectSource": "cim",
                                 "$objectType": "object",
                                 "type": "object",
                                 "$objectId": "SvStatus",
@@ -1976,7 +1841,6 @@
                       ]
                     },
                     "EnergySource": {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -2010,7 +1874,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -2025,7 +1888,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -2045,7 +1907,6 @@
                         "EnergySource.EnergySourcePhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "EnergySourcePhase",
                             "$objectType": "object",
                             "type": "object",
@@ -2056,7 +1917,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -2070,11 +1930,9 @@
                 },
                 "ACDCConverter": {
                   "$objectType": "container",
-                  "$objectSource": "cim",
                   "type": "object",
                   "properties": {
                     "VsConverter": {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -2093,7 +1951,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -2108,7 +1965,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -2128,7 +1984,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -2139,7 +1994,6 @@
                       }
                     },
                     "CsConverter": {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -2158,7 +2012,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -2173,7 +2026,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -2193,7 +2045,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -2207,11 +2058,9 @@
                 },
                 "EquivalentEquipment": {
                   "$objectType": "container",
-                  "$objectSource": "cim",
                   "type": "object",
                   "properties": {
                     "EquivalentInjection": {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -2230,7 +2079,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -2245,7 +2093,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -2265,7 +2112,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -2276,7 +2122,6 @@
                       }
                     },
                     "EquivalentBranch": {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -2295,7 +2140,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -2310,7 +2154,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -2330,7 +2173,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -2341,7 +2183,6 @@
                       }
                     },
                     "EquivalentShunt": {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -2360,7 +2201,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -2375,7 +2215,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -2395,7 +2234,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -2408,7 +2246,6 @@
                   }
                 },
                 "Connector": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$primaryObjectHash": "IdentifiedObject.name",
@@ -2427,7 +2264,6 @@
                     "ConductingEquipment.Terminals": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectId": "Terminal",
                         "$objectType": "object",
                         "type": "object",
@@ -2442,7 +2278,6 @@
                           "Terminal.SvPowerFlow": {
                             "type": "array",
                             "items": {
-                              "$objectSource": "cim",
                               "$objectId": "SvPowerFlow",
                               "$objectType": "object",
                               "type": "object",
@@ -2462,7 +2297,6 @@
                     "ConductingEquipment.SvStatus": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$objectId": "SvStatus",
@@ -2474,11 +2308,9 @@
                 },
                 "Conductor": {
                   "$objectType": "container",
-                  "$objectSource": "cim",
                   "type": "object",
                   "properties": {
                     "ACLineSegment": {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -2497,7 +2329,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -2512,7 +2343,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -2542,7 +2372,6 @@
                         "ACLineSegment.ACLineSegmentPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "ACLineSegmentPhase",
                             "$objectType": "object",
                             "type": "object",
@@ -2607,7 +2436,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -2618,7 +2446,6 @@
                       }
                     },
                     "WireSegment": {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -2637,7 +2464,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -2652,7 +2478,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -2672,7 +2497,6 @@
                         "WireSegment.WireSegmentPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "WireSegmentPhase",
                             "type": "object",
@@ -2683,7 +2507,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -2696,7 +2519,6 @@
                   }
                 },
                 "EarthFaultCompensator": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$primaryObjectHash": "IdentifiedObject.name",
@@ -2715,7 +2537,6 @@
                     "ConductingEquipment.Terminals": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectId": "Terminal",
                         "$objectType": "object",
                         "type": "object",
@@ -2730,7 +2551,6 @@
                           "Terminal.SvPowerFlow": {
                             "type": "array",
                             "items": {
-                              "$objectSource": "cim",
                               "$objectId": "SvPowerFlow",
                               "$objectType": "object",
                               "type": "object",
@@ -2750,7 +2570,6 @@
                     "ConductingEquipment.SvStatus": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$objectId": "SvStatus",
@@ -2761,7 +2580,6 @@
                   }
                 },
                 "Clamp": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$primaryObjectHash": "IdentifiedObject.name",
@@ -2785,7 +2603,6 @@
                     "ConductingEquipment.Terminals": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectId": "Terminal",
                         "$objectType": "object",
                         "type": "object",
@@ -2800,7 +2617,6 @@
                           "Terminal.SvPowerFlow": {
                             "type": "array",
                             "items": {
-                              "$objectSource": "cim",
                               "$objectId": "SvPowerFlow",
                               "$objectType": "object",
                               "type": "object",
@@ -2825,7 +2641,6 @@
                     "ConductingEquipment.SvStatus": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$objectId": "SvStatus",
@@ -2836,7 +2651,6 @@
                   }
                 },
                 "SeriesCompensator": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$primaryObjectHash": "IdentifiedObject.name",
@@ -2855,7 +2669,6 @@
                     "ConductingEquipment.Terminals": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectId": "Terminal",
                         "$objectType": "object",
                         "type": "object",
@@ -2870,7 +2683,6 @@
                           "Terminal.SvPowerFlow": {
                             "type": "array",
                             "items": {
-                              "$objectSource": "cim",
                               "$objectId": "SvPowerFlow",
                               "$objectType": "object",
                               "type": "object",
@@ -2890,7 +2702,6 @@
                     "ConductingEquipment.SvStatus": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$objectId": "SvStatus",
@@ -2901,7 +2712,6 @@
                   }
                 },
                 "Ground": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$primaryObjectHash": "IdentifiedObject.name",
@@ -2925,7 +2735,6 @@
                     "ConductingEquipment.Terminals": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectId": "Terminal",
                         "$objectType": "object",
                         "type": "object",
@@ -2940,7 +2749,6 @@
                           "Terminal.SvPowerFlow": {
                             "type": "array",
                             "items": {
-                              "$objectSource": "cim",
                               "$objectId": "SvPowerFlow",
                               "$objectType": "object",
                               "type": "object",
@@ -2960,7 +2768,6 @@
                     "ConductingEquipment.SvStatus": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$objectId": "SvStatus",
@@ -2971,7 +2778,6 @@
                   }
                 },
                 "Switch": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$primaryObjectHash": "IdentifiedObject.name",
@@ -2979,7 +2785,6 @@
                   "$objectId": "Switch",
                   "oneOf": [
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3004,7 +2809,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3019,7 +2823,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3033,7 +2836,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3055,7 +2857,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3066,7 +2867,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3077,7 +2877,6 @@
                       }
                     },
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3102,7 +2901,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3117,7 +2915,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3131,7 +2928,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3141,7 +2937,6 @@
                         },
                         "Switch.AssetDatasheet": {
                           "$objectType": "object",
-                          "$objectSource": "cim",
                           "$objectId": "SwitchInfo",
                           "type": "object",
                           "$primaryObjectHash": null,
@@ -3156,7 +2951,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3167,7 +2961,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3178,7 +2971,6 @@
                       }
                     },
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3203,7 +2995,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3218,7 +3009,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3232,7 +3022,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3242,7 +3031,6 @@
                         },
                         "Switch.AssetDatasheet": {
                           "$objectType": "object",
-                          "$objectSource": "cim",
                           "$objectId": "SwitchInfo",
                           "type": "object",
                           "$primaryObjectHash": null,
@@ -3257,7 +3045,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3268,7 +3055,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3279,7 +3065,6 @@
                       }
                     },
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3304,7 +3089,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3319,7 +3103,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3333,7 +3116,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3343,7 +3125,6 @@
                         },
                         "Switch.AssetDatasheet": {
                           "$objectType": "object",
-                          "$objectSource": "cim",
                           "$objectId": "SwitchInfo",
                           "type": "object",
                           "$primaryObjectHash": null,
@@ -3358,7 +3139,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3369,7 +3149,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3380,7 +3159,6 @@
                       }
                     },
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3405,7 +3183,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3420,7 +3197,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3434,7 +3210,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3444,7 +3219,6 @@
                         },
                         "Switch.AssetDatasheet": {
                           "$objectType": "object",
-                          "$objectSource": "cim",
                           "$objectId": "SwitchInfo",
                           "type": "object",
                           "$primaryObjectHash": null,
@@ -3459,7 +3233,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3470,7 +3243,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3481,7 +3253,6 @@
                       }
                     },
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3506,7 +3277,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3521,7 +3291,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3535,7 +3304,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3545,7 +3313,6 @@
                         },
                         "Switch.AssetDatasheet": {
                           "$objectType": "object",
-                          "$objectSource": "cim",
                           "$objectId": "SwitchInfo",
                           "type": "object",
                           "$primaryObjectHash": null,
@@ -3560,7 +3327,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3571,7 +3337,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3582,7 +3347,6 @@
                       }
                     },
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3607,7 +3371,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3622,7 +3385,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3636,7 +3398,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3646,7 +3407,6 @@
                         },
                         "Switch.AssetDatasheet": {
                           "$objectType": "object",
-                          "$objectSource": "cim",
                           "$objectId": "SwitchInfo",
                           "type": "object",
                           "$primaryObjectHash": null,
@@ -3661,7 +3421,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3672,7 +3431,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3683,7 +3441,6 @@
                       }
                     },
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3708,7 +3465,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3723,7 +3479,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3737,7 +3492,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3747,7 +3501,6 @@
                         },
                         "Switch.AssetDatasheet": {
                           "$objectType": "object",
-                          "$objectSource": "cim",
                           "$objectId": "SwitchInfo",
                           "type": "object",
                           "$primaryObjectHash": null,
@@ -3762,7 +3515,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3773,7 +3525,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3784,7 +3535,6 @@
                       }
                     },
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3809,7 +3559,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3824,7 +3573,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3838,7 +3586,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3848,7 +3595,6 @@
                         },
                         "Switch.AssetDatasheet": {
                           "$objectType": "object",
-                          "$objectSource": "cim",
                           "$objectId": "SwitchInfo",
                           "type": "object",
                           "$primaryObjectHash": null,
@@ -3863,7 +3609,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3874,7 +3619,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3885,7 +3629,6 @@
                       }
                     },
                     {
-                      "$objectSource": "cim",
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
@@ -3910,7 +3653,6 @@
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "Terminal",
                             "$objectType": "object",
                             "type": "object",
@@ -3925,7 +3667,6 @@
                               "Terminal.SvPowerFlow": {
                                 "type": "array",
                                 "items": {
-                                  "$objectSource": "cim",
                                   "$objectId": "SvPowerFlow",
                                   "$objectType": "object",
                                   "type": "object",
@@ -3939,7 +3680,6 @@
                         "Switch.SvSwitch": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SvSwitch",
                             "type": "object",
@@ -3949,7 +3689,6 @@
                         },
                         "Switch.AssetDatasheet": {
                           "$objectType": "object",
-                          "$objectSource": "cim",
                           "$objectId": "SwitchInfo",
                           "type": "object",
                           "$primaryObjectHash": null,
@@ -3964,7 +3703,6 @@
                         "Switch.SwitchPhase": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "SwitchPhase",
                             "type": "object",
@@ -3975,7 +3713,6 @@
                         "ConductingEquipment.SvStatus": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "type": "object",
                             "$objectId": "SvStatus",
@@ -3988,7 +3725,6 @@
                   ]
                 },
                 "PowerTransformer": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$primaryObjectHash": "IdentifiedObject.name",
@@ -3998,7 +3734,6 @@
                     "PowerTransformer.TransformerTank": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "$objectId": "TransformerTank",
                         "type": "object",
@@ -4007,7 +3742,6 @@
                           "TransformerTank.TransformerTankEnd": {
                             "type": "array",
                             "items": {
-                              "$objectSource": "cim",
                               "$objectType": "object",
                               "$objectId": "TransformerTankEnd",
                               "type": "object",
@@ -4016,7 +3750,6 @@
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "Terminal",
                                     "$objectType": "object",
                                     "type": "object",
@@ -4031,7 +3764,6 @@
                                       "Terminal.SvPowerFlow": {
                                         "type": "array",
                                         "items": {
-                                          "$objectSource": "cim",
                                           "$objectId": "SvPowerFlow",
                                           "$objectType": "object",
                                           "type": "object",
@@ -4054,7 +3786,6 @@
                           "ConductingEquipment.SvStatus": {
                             "type": "array",
                             "items": {
-                              "$objectSource": "cim",
                               "$objectType": "object",
                               "type": "object",
                               "$objectId": "SvStatus",
@@ -4068,7 +3799,6 @@
                     "PowerTransformer.PowerTransformerEnd": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "$objectId": "PowerTransformerEnd",
                         "type": "object",
@@ -4077,7 +3807,6 @@
                           "ConductingEquipment.Terminals": {
                             "type": "array",
                             "items": {
-                              "$objectSource": "cim",
                               "$objectId": "Terminal",
                               "$objectType": "object",
                               "type": "object",
@@ -4092,7 +3821,6 @@
                                 "Terminal.SvPowerFlow": {
                                   "type": "array",
                                   "items": {
-                                    "$objectSource": "cim",
                                     "$objectId": "SvPowerFlow",
                                     "$objectType": "object",
                                     "type": "object",
@@ -4120,7 +3848,6 @@
                             "type": "string"
                           },
                           "TransformerEnd.MeshImpedance": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "TransformerMeshImpedance",
                             "type": "object",
@@ -4128,7 +3855,6 @@
                             "properties": {}
                           },
                           "TransformerEnd.StarImpedance": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "TransformerStarImpedance",
                             "type": "object",
@@ -4136,7 +3862,6 @@
                             "properties": {}
                           },
                           "TransformerEnd.CoreAdmittance": {
-                            "$objectSource": "cim",
                             "$objectType": "object",
                             "$objectId": "TransformerCoreAdmittance",
                             "type": "object",
@@ -4149,7 +3874,6 @@
                     "ConductingEquipment.SvStatus": {
                       "type": "array",
                       "items": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$objectId": "SvStatus",
@@ -4170,11 +3894,9 @@
         },
         "TapChanger": {
           "$objectType": "container",
-          "$objectSource": "cim",
           "type": "object",
           "properties": {
             "RatioTapChanger": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
@@ -4198,7 +3920,6 @@
                 "TapChanger.SvTapStep": {
                   "type": "array",
                   "items": {
-                    "$objectSource": "cim",
                     "$objectType": "object",
                     "$objectId": "SvTapStep",
                     "type": "object",
@@ -4207,7 +3928,6 @@
                   }
                 },
                 "TapChanger.TapChangerControl": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "$objectId": "TapChangerControl",
                   "$primaryObjectHash": null,
@@ -4217,7 +3937,6 @@
               }
             },
             "PhaseTapChanger": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
@@ -4241,7 +3960,6 @@
                 "TapChanger.SvTapStep": {
                   "type": "array",
                   "items": {
-                    "$objectSource": "cim",
                     "$objectId": "SvTapStep",
                     "$objectType": "object",
                     "type": "object",
@@ -4250,7 +3968,6 @@
                   }
                 },
                 "TapChanger.TapChangerControl": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "$objectId": "TapChangerControl",
                   "$primaryObjectHash": null,
@@ -4262,7 +3979,6 @@
           }
         },
         "RegulatingControl": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
@@ -4277,7 +3993,6 @@
               "$objectType": "object",
               "type": "object",
               "$objectId": "Terminal",
-              "$objectSource": "cim",
               "$primaryObjectHash": null,
               "properties": {}
             }
@@ -4286,7 +4001,6 @@
       }
     },
     "LoadResponseCharacteristic": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "$objectId": "LoadResponseCharacteristic",
       "type": "object",
@@ -4296,16 +4010,13 @@
     },
     "PerLengthLineParameter": {
       "$objectType": "container",
-      "$objectSource": "cim",
       "type": "object",
       "properties": {
         "PerLengthImpedance": {
           "$objectType": "container",
-          "$objectSource": "cim",
           "type": "object",
           "properties": {
             "PerLengthSequenceImpedance": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
@@ -4313,7 +4024,6 @@
               "properties": {}
             },
             "PerLengthPhaseImpedance": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
@@ -4322,7 +4032,6 @@
                 "PerLengthPhaseImpedance.PhaseImpedanceData": {
                   "type": "array",
                   "items": {
-                    "$objectSource": "cim",
                     "$objectType": "object",
                     "$objectId": "PhaseImpedanceData",
                     "$arrayPosition": null,
@@ -4335,7 +4044,6 @@
           }
         },
         "PerLengthDCLineParameter": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
@@ -4345,7 +4053,6 @@
       }
     },
     "OperationalLimitType": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "$objectId": "OperationalLimitType",
       "type": "object",
@@ -4354,7 +4061,6 @@
       "properties": {}
     },
     "OperationalLimitSet": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
@@ -4363,14 +4069,12 @@
         "OperationalLimitSet.OperationalLimitValue": {
           "type": "array",
           "items": {
-            "$objectSource": "cim",
             "$objectId": "OperationalLimit",
             "$objectType": "object",
             "type": "object",
             "$arrayPosition": null,
             "oneOf": [
               {
-                "$objectSource": "cim",
                 "$objectType": "object",
                 "$objectId": "VoltageLimit",
                 "type": "object",
@@ -4385,7 +4089,6 @@
                 }
               },
               {
-                "$objectSource": "cim",
                 "$objectType": "object",
                 "$objectId": "CurrentLimit",
                 "type": "object",
@@ -4400,7 +4103,6 @@
                 }
               },
               {
-                "$objectSource": "cim",
                 "$objectType": "object",
                 "$objectId": "ActivePowerLimit",
                 "title": "ActivePowerLimit",
@@ -4415,7 +4117,6 @@
                 }
               },
               {
-                "$objectSource": "cim",
                 "$objectType": "object",
                 "$objectId": "ApparentPowerLimit",
                 "title": "ApparentPowerLimit",
@@ -4435,14 +4136,12 @@
       }
     },
     "Curve": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "oneOf": [
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "Curve",
           "type": "object",
@@ -4450,7 +4149,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4460,7 +4158,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "StartUpTimeCurve",
           "type": "object",
@@ -4468,7 +4165,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4478,7 +4174,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "StartRampCurve",
           "type": "object",
@@ -4486,7 +4181,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4496,7 +4190,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "ShutdownCurve",
           "type": "object",
@@ -4504,7 +4197,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4514,7 +4206,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "ReactiveCapabilityCurve",
           "type": "object",
@@ -4522,7 +4213,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4532,7 +4222,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "HeatRateCurve",
           "type": "object",
@@ -4540,7 +4229,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4550,7 +4238,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "EmissionCurve",
           "type": "object",
@@ -4558,7 +4245,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4568,7 +4254,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "VsCapabilityCurve",
           "type": "object",
@@ -4576,7 +4261,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4586,14 +4270,12 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "StartUpCostCurve",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "FuelCostCurve",
           "type": "object",
@@ -4601,7 +4283,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4611,7 +4292,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "RampRateCurve",
           "type": "object",
@@ -4619,7 +4299,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4629,7 +4308,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "StartUpTimeCurve",
           "type": "object",
@@ -4637,7 +4315,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4647,7 +4324,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "PriceCurve",
           "type": "object",
@@ -4655,7 +4331,6 @@
             "Curve.CurveDatas": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectId": "CurveData",
                 "$objectType": "object",
                 "type": "object",
@@ -4667,105 +4342,90 @@
       ]
     },
     "SwitchingAction": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "oneOf": [
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "EnergySourceAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "ControlAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "TagAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "VerificationAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "MeasurementAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "ClearanceAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "GenericAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "SwitchAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "ShuntCompensatorAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "CutAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "GroundAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "JumperAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "EnergyConsumerAction",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "ClampAction",
           "type": "object",
@@ -4774,14 +4434,12 @@
       ]
     },
     "Fault": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "oneOf": [
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "Fault",
@@ -4804,7 +4462,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "EquipmentFault",
@@ -4827,7 +4484,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "LineFault",
@@ -4852,7 +4508,6 @@
       ]
     },
     "Location": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
@@ -4861,7 +4516,6 @@
         "Location.PositionPoints": {
           "type": "array",
           "items": {
-            "$objectSource": "cim",
             "$objectType": "object",
             "$objectId": "PositionPoint",
             "type": "object",
@@ -4879,34 +4533,29 @@
     },
     "DynamicsFunctionBlock": {
       "$objectType": "object",
-      "$objectSource": "cim",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "oneOf": [
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "RotatingMachineDynamics",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "StaticVarCompensatorDynamics",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "HVDCDynamics",
           "type": "object",
           "properties": {}
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "VoltageCompensatorDynamics",
           "type": "object",
@@ -4917,10 +4566,8 @@
     "Document": {
       "$objectType": "container",
       "type": "object",
-      "$objectSource": "cim",
       "properties": {
         "Outage": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "Outage",
           "type": "object",
@@ -4928,14 +4575,12 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "oneOf": [
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "PlannedOutage",
               "type": "object",
               "properties": {}
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "UnplannedOutage",
               "type": "object",
@@ -4955,14 +4600,12 @@
       }
     },
     "ActivityRecord": {
-      "$objectSource": "cim",
       "$objectType": "container",
       "type": "object",
       "properties": {
         "EnvironmentalEvent": {
           "type": "array",
           "items": {
-            "$objectSource": "cim",
             "$objectType": "object",
             "type": "object",
             "$objectId": "EnvironmentalEvent",
@@ -4971,7 +4614,6 @@
               "EnvironmentalEvent.EnvironmentalInformation": {
                 "type": "array",
                 "items": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$objectId": "EnvironmentalInformation",
@@ -4991,7 +4633,6 @@
       }
     },
     "EnvironmentalPhenomenon": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
@@ -4999,7 +4640,6 @@
       "oneOf": [
         {
           "$objectType": "object",
-          "$objectSource": "cim",
           "$objectId": "HydrosphericPhenomenon",
           "$primaryObjectHash": null,
           "type": "object",
@@ -5007,7 +4647,6 @@
         },
         {
           "$objectType": "object",
-          "$objectSource": "cim",
           "$objectId": "AtmosphericPhenomenon",
           "$primaryObjectHash": null,
           "type": "object",
@@ -5015,7 +4654,6 @@
         },
         {
           "$objectType": "object",
-          "$objectSource": "cim",
           "$objectId": "GeosphericPhenomenon",
           "$primaryObjectHash": null,
           "type": "object",
@@ -5023,7 +4661,6 @@
         },
         {
           "$objectType": "object",
-          "$objectSource": "cim",
           "$objectId": "SpacePhenomenon",
           "$primaryObjectHash": null,
           "type": "object",
@@ -5032,13 +4669,11 @@
       ]
     },
     "AssetInfo": {
-      "$objectSource": "cim",
       "$objectType": "container",
       "type": "object",
       "$objectId": "AssetInfo",
       "properties": {
         "SwitchInfo": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "SwitchInfo",
@@ -5047,7 +4682,6 @@
           "properties": {}
         },
         "TapChangerInfo": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "TapChangerInfo",
@@ -5056,7 +4690,6 @@
           "properties": {}
         },
         "WireSpacingInfo": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "WireSpacingInfo",
@@ -5066,7 +4699,6 @@
             "WireSpacingInfo.WirePositions": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectType": "object",
                 "$objectId": "WirePosition",
                 "$arrayPosition": "sequenceNumber",
@@ -5077,13 +4709,11 @@
           }
         },
         "WireInfo": {
-          "$objectSource": "cim",
           "$objectType": "container",
           "type": "object",
           "$objectId": "WireInfo",
           "properties": {
             "OverheadWireInfo": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$objectId": "OverheadWireInfo",
@@ -5093,7 +4723,6 @@
                 "WireInfo.WirePhaseInfo": {
                   "type": "array",
                   "items": {
-                    "$objectSource": "cim",
                     "$objectType": "object",
                     "$objectId": "WirePhaseInfo",
                     "type": "object",
@@ -5104,7 +4733,6 @@
               }
             },
             "CableInfo": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$objectId": "CableInfo",
@@ -5112,7 +4740,6 @@
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "oneOf": [
                 {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$objectId": "TapeShieldCableInfo",
@@ -5121,7 +4748,6 @@
                   "properties": {}
                 },
                 {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$objectId": "ConcentricNeutralCableInfo",
@@ -5134,7 +4760,6 @@
           }
         },
         "PowerTransformerInfo": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "PowerTransformerInfo",
@@ -5144,7 +4769,6 @@
             "PowerTransformerInfo.TransformerTankInfos": {
               "type": "array",
               "items": {
-                "$objectSource": "cim",
                 "$objectType": "object",
                 "type": "object",
                 "$objectId": "TransformerTankInfo",
@@ -5153,7 +4777,6 @@
                   "TransformerTankInfo.TransformerEndInfos": {
                     "type": "array",
                     "items": {
-                      "$objectSource": "cim",
                       "$objectId": "TransformerEndInfo",
                       "$objectType": "object",
                       "type": "object",
@@ -5162,7 +4785,6 @@
                         "TransformerEndInfo.EnergisedEndNoLoadTests": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "NoLoadTest",
                             "$arrayPosition": null,
                             "$objectType": "object",
@@ -5173,7 +4795,6 @@
                         "TransformerEndInfo.EnergisedEndShortCircuitTests": {
                           "type": "array",
                           "items": {
-                            "$objectSource": "cim",
                             "$objectId": "ShortCircuitTest",
                             "$arrayPosition": null,
                             "$objectType": "object",
@@ -5190,7 +4811,6 @@
           }
         },
         "ShuntCompensatorInfo": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "ShuntCompensatorInfo",
@@ -5201,7 +4821,6 @@
       }
     },
     "Asset": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$objectId": "Asset",
@@ -5210,7 +4829,6 @@
       "properties": {}
     },
     "ProposedSiteLocation": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$objectId": "ProposedSiteLocation",
@@ -5220,7 +4838,6 @@
         "Location.PositionPoints": {
           "type": "array",
           "items": {
-            "$objectSource": "cim",
             "$objectType": "object",
             "$objectId": "PositionPoint",
             "type": "object",
@@ -5237,7 +4854,6 @@
       }
     },
     "FossilFuelCosts": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$objectId": "FossilFuel",
@@ -5246,7 +4862,6 @@
       "properties": {}
     },
     "OutageScenario": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$objectId": "OutageScenario",
@@ -5261,7 +4876,6 @@
       }
     },
     "CommunityFacility": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "$objectId": "CommunityFacility",
       "type": "object",
@@ -5269,7 +4883,6 @@
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "oneOf": [
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "GridFacility",
           "type": "object",
@@ -5285,7 +4898,6 @@
               "$referencePath": "OutageSpecification/OutageScenario"
             },
             "CommunityFacility.Category": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$objectId": "FacilityCategory",
@@ -5295,14 +4907,12 @@
                 "FacilityCategory.Services": {
                   "type": "array",
                   "items": {
-                    "$objectSource": "cim",
                     "$objectType": "object",
                     "type": "object",
                     "$objectId": "FacilityService",
                     "$arrayPosition": null,
                     "properties": {
                       "FacilityService.ServiceLevel": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$primaryObjectHash": null,
@@ -5310,7 +4920,6 @@
                         "properties": {}
                       },
                       "FacilityService.ServiceType": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$primaryObjectHash": null,
@@ -5330,7 +4939,6 @@
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "NonGridFacility",
           "type": "object",
@@ -5346,7 +4954,6 @@
               "$referencePath": "OutageSpecification/OutageScenario"
             },
             "CommunityFacility.Category": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$objectId": "FacilityCategory",
@@ -5356,14 +4963,12 @@
                 "FacilityCategory.Services": {
                   "type": "array",
                   "items": {
-                    "$objectSource": "cim",
                     "$objectType": "object",
                     "type": "object",
                     "$objectId": "FacilityService",
                     "$arrayPosition": null,
                     "properties": {
                       "FacilityService.ServiceLevel": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$primaryObjectHash": null,
@@ -5371,7 +4976,6 @@
                         "properties": {}
                       },
                       "FacilityService.ServiceType": {
-                        "$objectSource": "cim",
                         "$objectType": "object",
                         "type": "object",
                         "$primaryObjectHash": null,
@@ -5388,7 +4992,6 @@
       ]
     },
     "EconomicProperty": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$objectId": "EconomicProperty",
@@ -5406,13 +5009,11 @@
       }
     },
     "EnergyPrices": {
-      "$objectSource": "cim",
       "$objectType": "container",
       "type": "object",
       "$objectId": "EnergyPrices",
       "properties": {
         "EnergyPrices.LocationalMarginalPrices": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "LocationalMarginalPrices",
@@ -5428,7 +5029,6 @@
               }
             },
             "LocationalMarginalPrices.LMPCurve": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "PriceCurve",
               "type": "object",
@@ -5438,7 +5038,6 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "$objectSource": "cim",
                     "$objectId": "CurveData",
                     "$objectType": "object",
                     "$arrayPosition": null,
@@ -5450,7 +5049,6 @@
           }
         },
         "EnergyPrices.CapacityPrices": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "CapacityPrices",
@@ -5466,7 +5064,6 @@
               }
             },
             "LocationalMarginalPrices.CapacityPriceCurve": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "PriceCurve",
               "type": "object",
@@ -5476,7 +5073,6 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "$objectSource": "cim",
                     "$objectId": "CurveData",
                     "$objectType": "object",
                     "$arrayPosition": null,
@@ -5490,7 +5086,6 @@
       }
     },
     "PredictedEmissions": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$objectId": "PredictedEmissions",
@@ -5521,13 +5116,11 @@
       }
     },
     "AlgorithmProperties": {
-      "$objectSource": "cim",
       "$objectType": "container",
       "type": "object",
       "$objectId": "AlgorithmProperties",
       "properties": {
         "DesignAlgorithmProperties": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "DesignAlgorithmProperties",
@@ -5542,7 +5135,6 @@
           }
         },
         "PowerFlowSolutionProperties": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "PowerFlowSolutionProperties",
@@ -5551,13 +5143,11 @@
           "properties": {}
         },
         "AlgorithmObjectives": {
-          "$objectSource": "cim",
           "$objectType": "container",
           "type": "object",
           "$objectId": "AlgorithmObjectives",
           "properties": {
             "BusVoltageObjective": {
-              "$objectSource": "cim",
               "$objectType": "object",
               "type": "object",
               "$objectId": "BusVoltageObjective",
@@ -5570,13 +5160,11 @@
       }
     },
     "ProposedAssetOption": {
-      "$objectSource": "cim",
       "$objectType": "container",
       "type": "object",
       "$objectId": "ProposedAssetOption",
       "properties": {
         "ProposedConductorOption": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "ProposedConductorOption",
           "type": "object",
@@ -5594,7 +5182,6 @@
           }
         },
         "ProposedSwitchOption": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "ProposedSwitchOption",
           "type": "object",
@@ -5612,7 +5199,6 @@
           }
         },
         "ProposedEnergyProducerOption": {
-          "$objectSource": "cim",
           "$objectType": "object",
           "$objectId": "ProposedEnergyProducerOption",
           "type": "object",
@@ -5620,13 +5206,11 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "oneOf": [
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "ProposedBatteryUnitOption",
               "type": "object",
               "properties": {
                 "ProposedBatteryUnitOption.InverterController": {
-                  "$objectSource": "cim",
                   "$objectType": "object",
                   "type": "object",
                   "$objectId": "InverterController",
@@ -5666,7 +5250,6 @@
               }
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "ProposedPhotovoltaicUnitOption",
               "type": "object",
@@ -5687,7 +5270,6 @@
               }
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "ProposedWindUnitOption",
               "type": "object",
@@ -5708,7 +5290,6 @@
               }
             },
             {
-              "$objectSource": "cim",
               "$objectType": "object",
               "$objectId": "ProposedGeneratingUnitOption",
               "type": "object",
@@ -5728,7 +5309,6 @@
       }
     },
     "ProposedAsset": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
@@ -5736,7 +5316,6 @@
       "$objectId": "ProposedAsset",
       "properties": {
         "ProposedAsset.Application": {
-          "$objectSource": "cim",
           "type": "string",
           "$objectType": "reference",
           "$objectId": "Application"
@@ -5744,7 +5323,6 @@
       }
     },
     "Application": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
@@ -5753,7 +5331,6 @@
       "properties": {}
     },
     "Algorithm": {
-      "$objectSource": "cim",
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
@@ -5763,29 +5340,24 @@
         "Algorithm.Application": {
           "$objectType": "reference",
           "type": "string",
-          "$objectSource": "cim",
           "$objectId": "Application"
         }
       }
     },
     "Message": {
-      "$objectSource": "cim",
       "type": "array",
       "items": {
-        "$objectSource": "cim",
         "$objectId": "Message",
         "type": "object",
         "properties": {
           "Message.Application": {
             "$objectType": "reference",
             "type": "string",
-            "$objectSource": "cim",
             "$objectId": "Application"
           },
           "Message.Algorithm": {
             "$objectType": "reference",
             "type": "string",
-            "$objectSource": "cim",
             "$objectId": "Algorithm"
           }
         }
@@ -5795,10 +5367,8 @@
       "$objectType": "object",
       "type": "object",
       "$objectId": "BasicIntervalSchedule",
-      "$objectSource": "cim",
       "oneOf": [
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "EnergyConsumerSchedule",
@@ -5807,20 +5377,17 @@
               "type": "object",
               "$objectType": "object",
               "$objectId": "RegularTimePoint",
-              "$objectSource": "cim",
               "properties": {}
             },
             "EnergyConsumerSchedule.IrregularTimePoints": {
               "type": "object",
               "$objectType": "object",
               "$objectId": "IrregularTimePoint",
-              "$objectSource": "cim",
               "properties": {}
             }
           }
         },
         {
-          "$objectSource": "cim",
           "$objectType": "object",
           "type": "object",
           "$objectId": "ConformLoadSchedule",
@@ -5829,7 +5396,6 @@
               "type": "object",
               "$objectType": "object",
               "$objectId": "RegularTimePoint",
-              "$objectSource": "cim",
               "properties": {}
             }
           }
@@ -5840,7 +5406,6 @@
       "$objectType": "object",
       "type": "object",
       "$objectId": "EnergyConnectionProfile",
-      "$objectSource": "cim",
       "properties": {}
     }
   }

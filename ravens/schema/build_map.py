@@ -12,7 +12,7 @@ def add_attributes_to_template(data: dict, template: dict, uml_data: UMLData, GG
     "adds attributes from UML"
     if template["type"] == "object":
         for k, v in template.get("properties", {}).items():
-            if v.get("$objectSource", "") == "cim":
+            if v["type"] == "object":
                 try:
                     object_name = k
                     if "$objectId" in v.keys():
@@ -32,7 +32,7 @@ def add_attributes_to_template(data: dict, template: dict, uml_data: UMLData, GG
             elif v.get("$objectType", "") == "object":
                 if "oneOf" in v.keys():
                     for i, item in enumerate(v["oneOf"]):
-                        if item.get("$objectType", "") == "object" and item.get("$objectSource", "") == "cim":
+                        if item.get("$objectType", "") == "object":
                             object_name = item["$objectId"]
                             obj = uml_data.objects[(uml_data.objects["Name"] == object_name) & (uml_data.objects["Object_Type"] == "Class")].iloc[0]
                             if "title" not in item:
@@ -44,13 +44,7 @@ def add_attributes_to_template(data: dict, template: dict, uml_data: UMLData, GG
 
                         data["properties"][k]["oneOf"][i] = add_attributes_to_template(data["properties"][k]["oneOf"][i], item, uml_data, GG, AT)
                 else:
-                    if v.get("$objectSource", "") == "cim":
-                        data["properties"][k]["properties"] = add_cim_attributes_to_properties(data["properties"][k]["properties"], k, v, uml_data, GG, AT)
-                    elif v.get("$objectSource", "") == "mg-ravens":
-                        # TODO
-                        continue
-                    else:
-                        raise Exception(f"Object {k} $objectSource of '{v.get('objectSource')}' not recognized")
+                    data["properties"][k]["properties"] = add_cim_attributes_to_properties(data["properties"][k]["properties"], k, v, uml_data, GG, AT)
 
                     data["properties"][k] = add_attributes_to_template(data["properties"][k], v, uml_data, GG, AT)
 
@@ -59,7 +53,15 @@ def add_attributes_to_template(data: dict, template: dict, uml_data: UMLData, GG
                 continue
             elif v["type"] == "array":
                 try:
-                    if v["items"].get("$objectSource", "") == "cim":
+                    if v["items"].get("type", "") == "array":
+                        # do nothing
+                        # TODO
+                        continue
+                    elif v["items"].get("$objectType", "") == "reference":
+                        # do nothing
+                        # TODO
+                        continue
+                    else:
                         object_name = v["items"].get("$objectId", k)
                         obj = uml_data.objects[(uml_data.objects["Name"] == object_name) & (uml_data.objects["Object_Type"] == "Class")].iloc[0]
 
@@ -74,19 +76,6 @@ def add_attributes_to_template(data: dict, template: dict, uml_data: UMLData, GG
                                 data["properties"][k]["items"]["oneOf"][i] = add_attributes_to_template(data["properties"][k]["items"]["oneOf"][i], item, uml_data, GG, AT)
                         else:
                             data["properties"][k]["items"]["properties"] = add_cim_attributes_to_properties(data["properties"][k]["items"]["properties"], k, v["items"], uml_data, GG, AT)
-                    elif v["items"].get("$objectSource", "") == "mg-ravens":
-                        # TODO
-                        continue
-                    elif v["items"].get("type", "") == "array":
-                        # do nothing
-                        # TODO
-                        continue
-                    elif v["items"].get("$objectType", "") == "reference":
-                        # do nothing
-                        # TODO
-                        continue
-                    else:
-                        raise Exception(f"Object {k} $objectSource of '{v.get('objectSource')}' not recognized")
 
                     data["properties"][k]["items"] = add_attributes_to_template(data["properties"][k]["items"], v["items"], uml_data, GG, AT)
 
