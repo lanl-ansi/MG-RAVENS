@@ -1,0 +1,27 @@
+{
+  "EconomicProperty": {
+    "CountyEconomicProperties": {
+      "IdentifiedObject.mRID": "c304f0e1-8480-4da5-b2d4-90359ebf7032",
+      "IdentifiedObject.name": "CountyEconomicProperties",
+      "Ravens.CimObjectType": "EconomicProperty",
+      "EconomicProperty.discountRate": 5.8,
+      "EconomicProperty.inflationRate": 2.2,
+      "EconomicProperty.taxRate": 26.0,
+      "EconomicProperty.Regions": ["County"]
+    }
+  },
+  "Groups": {
+    "GeographicalRegion": {
+      "PrimaryRegion": {
+        "IdentifiedObject.name": "PrimaryRegion",
+        "IdentifiedObject.mRID": "41aa9de7-b45b-456e-8250-03cee3331e16",
+        "Regions.SubGeographicalRegion": {
+          "County": {
+            "IdentifiedObject.name": "County",
+            "IdentifiedObject.mRID": "26d22e22-1b24-4cf6-b576-539a2f0a9fe5"
+          }
+        }
+      }
+    }
+  }
+}

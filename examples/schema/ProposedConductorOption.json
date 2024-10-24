@@ -1,0 +1,16 @@
+[
+  {
+    "IdentifiedObject.mRID": "89d0e415-51a1-4486-a49e-c3879b56dfee",
+    "IdentifiedObject.name": "ProposedConductorUnderground",
+    "Ravens.CimObjectType": "ProposedConductorOption",
+    "ProposedConductorOption.variablePrice": { "value": 150.0, "unit": "USD" },
+    "ProposedConductorOption.conductorType": "undergroundCable"
+  },
+  {
+    "IdentifiedObject.mRID": "89d0e415-51a1-4486-a49e-c3879b56dfee",
+    "IdentifiedObject.name": "ProposedConductorOverhead",
+    "Ravens.CimObjectType": "ProposedConductorOption",
+    "ProposedConductorOption.variablePrice": { "value": 50.0, "unit": "USD" },
+    "ProposedConductorOption.conductorType": "overheadLine"
+  }
+]

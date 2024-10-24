@@ -1,0 +1,62 @@
+{
+  "ConnectivityNode": {
+    "primary": {
+      "Ravens.CimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "cea60aba-4710-4d0f-8476-9734206e3896",
+      "IdentifiedObject.name": "primary"
+    },
+    "loadbus": {
+      "Ravens.CimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "43bd066f-571b-4f5e-90e2-1dd3e8cd4464",
+      "IdentifiedObject.name": "loadbus"
+    }
+  },
+  "PowerSystemResource": {
+    "Equipment": {
+      "ConductingEquipment": {
+        "EnergyConnection": {
+          "RegulatingCondEq": {
+            "RotatingMachine": {
+              "gen1": {
+                "Ravens.CimObjectType": "SynchronousMachine",
+                "IdentifiedObject.mRID": "76051b38-3584-48bb-bcdf-dca4743dbe6b",
+                "IdentifiedObject.name": "gen1",
+                "SynchronousMachine.p": 2000,
+                "SynchronousMachine.q": 0,
+                "SynchronousMachine.ratedS": 2400,
+                "SynchronousMachine.ratedU": 461.88022,
+                "ConductingEquipment.Terminals": [
+                  {
+                    "Ravens.CimObjectType": "Terminal",
+                    "IdentifiedObject.mRID": "a7f61db9-88b6-40ca-8c68-d26bf5951011",
+                    "IdentifiedObject.name": "gen1_T1",
+                    "ACDCTerminal.sequenceNumber": 1,
+                    "Terminal.ConnectivityNode": "ConnectivityNode::'loadbus'"
+                  }
+                ]
+              },
+              "gen2": {
+                "Ravens.CimObjectType": "SynchronousMachine",
+                "IdentifiedObject.mRID": "2d3c96d9-7c0c-476f-a24b-5dbdcfe2c5dd",
+                "IdentifiedObject.name": "gen2",
+                "SynchronousMachine.p": 1000,
+                "SynchronousMachine.q": 0,
+                "SynchronousMachine.ratedS": 1200,
+                "SynchronousMachine.ratedU": 461.88022,
+                "ConductingEquipment.Terminals": [
+                  {
+                    "Ravens.CimObjectType": "Terminal",
+                    "IdentifiedObject.mRID": "daa0edf3-5476-41fb-8963-8c03ad11bcc4",
+                    "IdentifiedObject.name": "gen2_T1",
+                    "ACDCTerminal.sequenceNumber": 1,
+                    "Terminal.ConnectivityNode": "ConnectivityNode::'primary'"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

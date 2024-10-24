@@ -1,0 +1,39 @@
+{
+  "Group": {
+    "GeographicalRegion": {
+      "State": {
+        "Ravens.CimObjectType": "GeographicalRegion",
+        "IdentifiedObject.name": "State",
+        "IdentifiedObject.mRID": "ee0b075d-30b6-48c2-80cc-45a234b81e0f",
+        "GeographicalRegion.Regions": [
+          {
+            "Ravens.CimObjectType": "SubGeographicalRegion",
+            "IdentifiedObject.name": "County1",
+            "IdentifiedObject.mRID": "3d2c1f67-f27c-44aa-8916-244a1f5e527d"
+          },
+          {
+            "Ravens.CimObjectType": "SubGeographicalRegion",
+            "IdentifiedObject.name": "County2",
+            "IdentifiedObject.mRID": "181bae1a-93e5-4368-a256-5c9df59eba26"
+          }
+        ]
+      }
+    }
+  },
+  "ProposedSiteLocation": {
+    "IdentifiedObject.mRID": "A9C5BFEE-FFFB-4CDC-94EC-813291D042A4",
+    "IdentifiedObject.name": "proposedSite1",
+    "Ravens.CimObjectType": "Ravens.ProposedSiteLocation",
+    "ProposedSiteLocation.availableArea": 4000.0,
+    "ProposedSiteLocation.Region": "SubGeographicalRegion::'County1'",
+    "Location.PositionPoints": [
+      {
+        "PositionPoint.sequenceNumber": 1,
+        "PositionPoint.xPosition": 0,
+        "PositionPoint.yPosition": 0,
+        "Ravens.CimObjectType": "PositionPoint",
+        "IdentifiedObject.mRID": "704184d0-6fc1-4f99-8d14-9e51cef1a206"
+      }
+    ]
+  }
+}

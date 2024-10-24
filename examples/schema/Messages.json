@@ -1,0 +1,36 @@
+[
+  {
+    "IdentifiedObject.mRID": "3334c3ff-ae98-4ee8-b27e-d1ca3990f47a",
+    "IdentifiedObject.name": "Example Error Message",
+    "Ravens.CimObjectType": "Error",
+    "Message.message": "I am broken",
+    "Message.code": 110,
+    "Message.Application": { "Application.applicationName": "SomeApplication" },
+    "Message.Algorithm": { "Algorithm.algorithmName": "SomeFunction" }
+  },
+
+  {
+    "IdentifiedObject.mRID": "1ad65f38-f144-4afc-a9e5-7265dfe5e268",
+    "IdentifiedObject.name": "Example Warning Message",
+    "Ravens.CimObjectType": "Warning",
+    "Message.message": "Be warned, there be monsters ahead",
+    "Message.Application": { "Application.applicationName": "SomeApplication" },
+    "Message.Algorithm": { "Algorithm.algorithmName": "SomeFunction" }
+  },
+  {
+    "IdentifiedObject.mRID": "e9502612-7fdf-4e9c-9b2e-85c484476583",
+    "IdentifiedObject.name": "Example Info Message",
+    "Ravens.CimObjectType": "Info",
+    "Message.message": "FYI, this is how we do it",
+    "Message.Application": { "Application.applicationName": "SomeApplication" },
+    "Message.Algorithm": { "Algorithm.algorithmName": "SomeFunction" }
+  },
+  {
+    "IdentifiedObject.mRID": "9a61b730-105f-4292-b813-c6532ae65bb6",
+    "IdentifiedObject.name": "Example Debug Message",
+    "Ravens.CimObjectType": "Debug",
+    "Message.message": "1... 2... 3...",
+    "Message.Application": { "Application.applicationName": "SomeApplication" },
+    "Message.Algorithm": { "Algorithm.algorithmName": "SomeFunction" }
+  }
+]

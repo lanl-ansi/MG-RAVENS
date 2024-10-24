@@ -1,0 +1,39 @@
+[
+  {
+    "IdentifiedObject.mRID": "6ad66b81-e6d0-4b08-b797-5356df1622bc",
+    "IdentifiedObject.name": "Genset1",
+    "Ravens.CimObjectType": "ProposedGeneratingUnitOption",
+    "ProposedAssetOption.fixedPrice": { "value": 25000, "unit": "USD" },
+    "ProposedAssetOption.operationsAndMaintenanceRateFixed": {
+      "value": 10000,
+      "unit": "USD"
+    },
+    "ProposedGeneratingUnitOption.numUnitsMin": 0,
+    "ProposedGeneratingUnitOption.numUnitsMax": 3,
+    "ProposedEnergyProducerOption.powerCapacityFixed": 500.0,
+    "ProposedAssetOption.lifetime": "P15Y",
+    "ProposedGeneratingUnitOption.unitEfficiency": 25.0,
+    "ProposedGeneratingUnitOption.combinedHeatPowerEnabled": false,
+    "ProposedGeneratingUnitOption.fossilFuelType": "oilShale",
+    "ProposedGeneratingUnitOption.fossilFuelCapacity": 190.0
+  },
+  {
+    "IdentifiedObject.mRID": "6ad66b81-e6d0-4b08-b797-5356df1622bc",
+    "IdentifiedObject.name": "Genset1",
+    "Ravens.CimObjectType": "ProposedGeneratingUnitOption",
+    "ProposedAssetOption.lifetime": "P15Y",
+    "ProposedAssetOption.variablePrice": { "value": 250, "unit": "USD" },
+    "ProposedAssetOption.operationsAndMaintenanceRateVariable": {
+      "value": 100,
+      "unit": "USD"
+    },
+    "ProposedGeneratingUnitOption.numUnitsFixed": 1,
+    "ProposedEnergyProducerOption.powerCapacityMin": 400.0,
+    "ProposedEnergyProducerOption.powerCapacityMax": 800.0,
+    "ProposedGeneratingUnitOption.unitEfficiency": 25.0,
+    "ProposedGeneratingUnitOption.combinedHeatPowerEnabled": true,
+    "ProposedGeneratingUnitOption.heatRecoveryEfficiency": 45.0,
+    "ProposedGeneratingUnitOption.fossilFuelType": "gas",
+    "ProposedGeneratingUnitOption.fossilFuelCapacity": 190.0
+  }
+]
