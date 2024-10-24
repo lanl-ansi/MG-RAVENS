@@ -575,11 +575,11 @@ class DssExport(object):
         for i, bus in enumerate([line.Bus1, line.Bus2]):
             self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=parse_ordered_phase_str(bus, line.Phases))
 
-    def _add_SwitchPhase(self):
+    def _add_SwitchPhase(self, switch_uri: URIRef, line: object, phase: str, sequence: int):
         node = self.build_cim_obj("SwitchPhase", name=f"{line.Name}_{phase}")
         self.add_triple(node, "SwitchPhase.phase", self.cim[f"SinglePhaseKind.{phase}"])
         self.add_triple(node, "SwitchPhase.sequenceNumber", sequence)
-        self.add_triple(node, "SwitchPhase.Switch", aclinesegment_uri)
+        self.add_triple(node, "SwitchPhase.Switch", switch_uri)
 
     def _add_EnergyConsumers(self):
         for load in self.dss.Load:
