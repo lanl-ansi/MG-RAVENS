@@ -550,7 +550,7 @@ class DssExport(object):
                 self.add_triple(node, "PhaseImpedanceData.row", row)
                 self.add_triple(node, "PhaseImpedanceData.column", col)
                 # calculate the correct index in RMatrix, XMatrix, CMatrix
-                i = (row - 1) * 3 + (col - 1)
+                i = (row - 1) * linecode.NPhases + (col - 1)
                 self.add_triple(node, "PhaseImpedanceData.r", linecode.RMatrix[i])
                 self.add_triple(node, "PhaseImpedanceData.x", linecode.XMatrix[i])
                 self.add_triple(node, "PhaseImpedanceData.b", linecode.CMatrix[i] * 2 * math.pi * linecode.BaseFreq / 1e9)
