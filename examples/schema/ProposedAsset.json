@@ -4,6 +4,8 @@
       "ceb8ab0d-660b-4abe-be32-d82187b5ad22": {
         "IdentifiedObject.name": "ceb8ab0d-660b-4abe-be32-d82187b5ad22",
         "IdentifiedObject.mRID": "ceb8ab0d-660b-4abe-be32-d82187b5ad22",
+        "Ravens.CimObjectType": "ProposedAssetSet",
+        "ProposedAssetSet.rank": 1,
         "ProposedAssetSet.ProposedAssets": [
           "ProposedBranch::'switch_a'",
           "ProposedBatteryUnit::'bess_a'"
@@ -14,6 +16,8 @@
       "401c97b9-2110-4380-b9a9-3b99c3b8f7b1": {
         "IdentifiedObject.name": "401c97b9-2110-4380-b9a9-3b99c3b8f7b1",
         "IdentifiedObject.mRID": "401c97b9-2110-4380-b9a9-3b99c3b8f7b1",
+        "Ravens.CimObjectType": "ProposedAssetSet",
+        "ProposedAssetSet.rank": 2,
         "ProposedAssetSet.ProposedAssets": [
           "ProposedBranch::'switch_a'",
           "ProposedBranch::'hardened_line_a'"
