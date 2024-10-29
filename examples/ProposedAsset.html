@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>ProposedAsset</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="ProposedBatteryUnitOption" href="ProposedBatteryUnitOption.html" />
+  <link rel="prev" title="PredictedEmissions" href="PredictedEmissions.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <span class="site-name">MG-RAVENS</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">UML Diagrams:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../uml/index.html" class="reference internal ">UML Diagrams for MG-RAVENS Schema</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Schemas:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../schema/index.html" class="reference internal ">Schema Documentation</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Examples:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="AlgorithmProperties.html" class="reference internal ">AlgorithmProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="CapacityPrices.html" class="reference internal ">CapacityPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Conductor.html" class="reference internal ">Conductor</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="DieselFuelPrice.html" class="reference internal ">DieselFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EconomicProperties.html" class="reference internal ">EconomicProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EnergyConsumer.html" class="reference internal ">EnergyConsumer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EnergyMeasurements.html" class="reference internal ">EnergyMeasurements</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EnergySource.html" class="reference internal ">EnergySource</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="LoadForecast.html" class="reference internal ">LoadForecast</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="LocationalMarginalPrices.html" class="reference internal ">LocationalMarginalPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Messages.html" class="reference internal ">Messages</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="NaturalGasFuelPrice.html" class="reference internal ">NaturalGasFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="OperationalLimitSets.html" class="reference internal ">OperationalLimitSets</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="OtherFossilFuelPrice.html" class="reference internal ">OtherFossilFuelPrice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="OutageScenario.html" class="reference internal ">OutageScenario</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PowerTransformer.html" class="reference internal ">PowerTransformer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PredictedEmissions.html" class="reference internal ">PredictedEmissions</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">ProposedAsset</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#proposedasset" class="reference internal">ProposedAsset</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedBatteryUnitOption.html" class="reference internal ">ProposedBatteryUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedConductorOption.html" class="reference internal ">ProposedConductorOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedEnergyProducerAsset.html" class="reference internal ">ProposedEnergyProducerAsset</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedEnergyProducerOption.html" class="reference internal ">ProposedEnergyProducerOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedGeneratingUnitOption.html" class="reference internal ">ProposedGeneratingUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedPhotovoltaicUnitOption.html" class="reference internal ">ProposedPhotovoltaicUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSiteLocation.html" class="reference internal ">ProposedSiteLocation</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSiteLocation_LoadGroups.html" class="reference internal ">ProposedSiteLocation_LoadGroups</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSiteLocation_Region.html" class="reference internal ">ProposedSiteLocation_Region</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSwitchOption.html" class="reference internal ">ProposedSwitchOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedWindUnitOption.html" class="reference internal ">ProposedWindUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="RotatingMachine.html" class="reference internal ">RotatingMachine</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ShuntCompensator.html" class="reference internal ">ShuntCompensator</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Governance:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/charter.html" class="reference internal ">MG-RAVENS API Governance Charter</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/steering_committee.html" class="reference internal ">Steering Committee Members</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/working_group.html" class="reference internal ">Working Group Members</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>ProposedAsset</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="PredictedEmissions.html"
+       title="previous chapter">← PredictedEmissions</a>
+  </li>
+  <li class="next">
+    <a href="ProposedBatteryUnitOption.html"
+       title="next chapter">ProposedBatteryUnitOption →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="proposedasset">
+<h1>ProposedAsset<a class="headerlink" href="#proposedasset" title="Link to this heading">¶</a></h1>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Group&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ProposedAssetSet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;ceb8ab0d-660b-4abe-be32-d82187b5ad22&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ceb8ab0d-660b-4abe-be32-d82187b5ad22&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ceb8ab0d-660b-4abe-be32-d82187b5ad22&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedAssetSet&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetSet.rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetSet.ProposedAssets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;ProposedBranch::&#39;switch_a&#39;&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;ProposedBatteryUnit::&#39;bess_a&#39;&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetSet.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetSet.Application&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Application::&#39;PowerModelsDistributionRDT&#39;&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;401c97b9-2110-4380-b9a9-3b99c3b8f7b1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;401c97b9-2110-4380-b9a9-3b99c3b8f7b1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;401c97b9-2110-4380-b9a9-3b99c3b8f7b1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedAssetSet&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetSet.rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetSet.ProposedAssets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;ProposedBranch::&#39;switch_a&#39;&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;ProposedBranch::&#39;hardened_line_a&#39;&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetSet.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ProposedAsset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;switch_a_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch_a&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;07be8846-b0c0-465b-81f6-8bf8eedbdab2&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBranch&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedBranch.Terminal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;bus_a&#39;&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;bus_b&#39;&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedSwitchOption::&#39;switch_type_1&#39;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;bess_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bess_b&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eb1ea7e3-ec99-49d9-be4f-0a3859c1c2be&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBatteryUnit&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedEnergyProducerOption.capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedBatteryUnit.energyCapacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">600000.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBatteryUnitOption::&#39;battery_type_1&#39;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;hardened_line_b_c&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hardened_line_b_c&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d5b8b73e-cc04-48f1-9200-398f571e608c&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBranch&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedBranch.Terminal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;bus_b&#39;&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;bus_c&#39;&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedConductorOption::&#39;hardened_line&#39;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;switch_type_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch_type_1&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4fef55f6-3a2d-4951-8734-58ae9373f5e0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedSwitchOption&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAssetOption.fixedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;hardened_line&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hardened_line&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b3a62369-02b0-44b7-a881-677df65b9284&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedConductorOption&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedConductorOption.variablePrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedConductorOption.conductorType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;undergroundCable&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;battery_type_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery_type_1&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;670c1a10-246b-4e8b-8338-ecdf4f008a05&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBatteryUnitOption&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedBatteryUnitOption.energyCapacityMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000000.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedEnergyProducerOption.powerCapacityMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000000.0</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Application&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;PowerModelsDistributionRDT&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Application&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PowerModelsDistributionRDT&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1d1d4211-494e-4513-a04b-2dceec374791&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Application.version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;solve_rdt&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;solve_rdt&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12ddcad6-4ce4-4d7f-9120-d117f04ce4f3&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Algorithm.Application&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Application::&#39;PowerModelsDistributionRDT&#39;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5d3d6767-3a89-404c-8133-9928c710bd80&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Debug&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Message.message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is an example Debug message&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Message.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1b14f3e7-6b1f-4e8c-8cf5-a7223490864a&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Info&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Message.message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is an example Info message&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Message.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1b1a3a84-efe7-426f-a07e-08375fa35d53&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Warning&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Message.message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is an example Warning message&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Message.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6ecd6cf8-ecdb-4d77-ba07-afe820243aef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.CimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Error&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Message.message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is an example Error message&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Message.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="PredictedEmissions.html"
+       title="previous chapter">← PredictedEmissions</a>
+  </li>
+  <li class="next">
+    <a href="ProposedBatteryUnitOption.html"
+       title="next chapter">ProposedBatteryUnitOption →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright Triad National Security, LLC. All Rights Reserved.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.4.7 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>
