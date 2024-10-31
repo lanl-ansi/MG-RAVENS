@@ -68,9 +68,9 @@ def build_schema_docs():
 
     md_file = """# Schema Documentation
 
-## Main Schema
+## Root Schema
 
-[Main Schema](../_static/schema/__main__.html){.external}
+[Root Schema](../_static/schema/Root.html){.external}
 
 ## Individual Schema
 
