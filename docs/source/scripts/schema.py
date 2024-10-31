@@ -49,7 +49,8 @@ def build_schema_docs():
     add_cim_copyright_notice_to_decomposed_schemas(a.schemas, uml_data)
 
     for k, v in a.schemas.items():
-        with open(os.path.join(tmp_dir, f"{k}.json"), "w") as f:
+        filename = k.split("/")[-1].replace(".json", "")
+        with open(os.path.join(tmp_dir, f"{filename}.json"), "w") as f:
             json.dump(v, f, indent=2)
 
     config = Gen.GenerationConfiguration(template_name="js")
