@@ -1,12 +1,12 @@
 {
-  "title": "RAVENS Data Model Draft",
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Root",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Root.json",
   "type": "object",
   "properties": {
     "Versions": {
       "$objectType": "container",
       "type": "object",
-      "title": "Versions",
       "description": "Specify the versions of CIM / RAVENS used in this file",
       "properties": {
         "IEC61968CIMVersion": {
@@ -88,6 +88,7 @@
         },
         "ConnectivityNode.BusVoltageObjective": {
           "$objectType": "reference",
+          "$objectId": "BusVoltageObjective",
           "type": "string",
           "$referencePath": "AlgorithmProperties/AlgorithmObjectives/BusVoltageObjective"
         }
@@ -115,10 +116,9 @@
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {}
     },
-    "Groups": {
+    "Group": {
       "$objectType": "container",
       "type": "object",
-      "title": "Group",
       "properties": {
         "GeographicalRegion": {
           "$objectType": "object",
@@ -171,6 +171,7 @@
           "properties": {
             "TopologicalIsland.AngleRefTopologicalNode": {
               "$objectType": "reference",
+              "$objectId": "TopologicalNode",
               "type": "string",
               "$referencePath": "Group/TopologicalIsland.TopologicalNodes"
             }
@@ -178,6 +179,7 @@
         },
         "EquipmentContainer": {
           "$objectType": "object",
+          "objectId": "EquipmentContainer",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
@@ -249,6 +251,7 @@
         "LoadGroup": {
           "$objectType": "object",
           "type": "object",
+          "$objectId": "LoadGroup",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "oneOf": [
@@ -264,6 +267,7 @@
                   "items": {
                     "type": "string",
                     "$objectType": "reference",
+                    "$objectId": "EnergyConsumer",
                     "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
                   }
                 },
@@ -287,6 +291,7 @@
                   "items": {
                     "type": "string",
                     "$objectType": "reference",
+                    "$objectId": "EnergyConsumer",
                     "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
                   }
                 },
@@ -310,6 +315,7 @@
                   "items": {
                     "type": "string",
                     "$objectType": "reference",
+                    "$objectId": "EnergyConsumer",
                     "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
                   }
                 }
@@ -325,6 +331,7 @@
           "properties": {
             "PopulationGroup.Location": {
               "$objectType": "reference",
+              "$objectId": "Location",
               "$referencePath": "Location",
               "type": "string"
             }
@@ -342,13 +349,24 @@
               "items": {
                 "$objectType": "reference",
                 "type": "string",
+                "$objectId": "ProposedAsset",
                 "$referencePath": "ProposedAsset"
+              },
+              "ProposedAssetSet.EstimatedCosts": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "$objectType": "reference",
+                  "$objectId": "EstimatedAssetCosts",
+                  "$referencePath": "EstimatedAssetCosts"
+                }
               },
               "ProposedAssetSet.SolutionMetrics": {
                 "type": "array",
                 "items": {
                   "$objectType": "reference",
                   "type": "string",
+                  "$objectId": "SolutionMetric",
                   "$referencePath": "SolutionMetric"
                 }
               }
@@ -386,11 +404,13 @@
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "Location",
                               "$referencePath": "Location"
                             },
                             "PowerSystemResource.GenericAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "ConductingEquipment.Terminals": {
@@ -441,6 +461,7 @@
                                     "BatteryUnit.BatteryDispatchProfile": {
                                       "$objectType": "reference",
                                       "type": "string",
+                                      "$objectId": "Curve",
                                       "$referencePath": "Curve/Curve"
                                     }
                                   }
@@ -452,6 +473,7 @@
                                   "properties": {
                                     "PhotoVoltaicUnit.GenerationProfile": {
                                       "$objectType": "reference",
+                                      "$objectId": "Curve",
                                       "type": "string",
                                       "$referencePath": "Curve/Curve"
                                     }
@@ -464,6 +486,7 @@
                                   "properties": {
                                     "PowerElectronicsWindUnit.GenerationProfile": {
                                       "$objectType": "reference",
+                                      "$objectId": "Curve",
                                       "type": "string",
                                       "$referencePath": "Curve/Curve"
                                     }
@@ -508,11 +531,13 @@
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "Location",
                               "$referencePath": "Location"
                             },
                             "PowerSystemResource.GenericAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "ConductingEquipment.Terminals": {
@@ -569,11 +594,13 @@
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "Location",
                               "$referencePath": "Location"
                             },
                             "PowerSystemResource.GenericAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "ConductingEquipment.Terminals": {
@@ -630,11 +657,13 @@
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "Location",
                               "$referencePath": "Location"
                             },
                             "PowerSystemResource.GenericAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "ConductingEquipment.Terminals": {
@@ -699,11 +728,13 @@
                                 "PowerSystemResource.Location": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "Location",
                                   "$referencePath": "Location"
                                 },
                                 "PowerSystemResource.GenericAction": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 },
                                 "ConductingEquipment.Terminals": {
@@ -752,6 +783,7 @@
                                 "PowerSystemResource.AssetDatasheet": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "ShuntCompensatorInfo",
                                   "$referencePath": "AssetInfo/ShuntCompensatorInfo"
                                 },
                                 "ShuntCompensator.SvShuntCompensatorSections": {
@@ -777,6 +809,7 @@
                                 "ShuntCompensator.ShuntCompensatorAction": {
                                   "type": "string",
                                   "$objectType": "reference",
+                                  "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 }
                               }
@@ -791,11 +824,13 @@
                                 "PowerSystemResource.Location": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "Location",
                                   "$referencePath": "Location"
                                 },
                                 "PowerSystemResource.GenericAction": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 },
                                 "ConductingEquipment.Terminals": {
@@ -844,6 +879,7 @@
                                 "PowerSystemResource.AssetDatasheet": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "ShuntCompensatorInfo",
                                   "$referencePath": "AssetInfo/ShuntCompensatorInfo"
                                 },
                                 "ShuntCompensator.SvShuntCompensatorSections": {
@@ -869,6 +905,7 @@
                                 "ShuntCompensator.ShuntCompensatorAction": {
                                   "type": "string",
                                   "$objectType": "reference",
+                                  "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 }
                               }
@@ -883,11 +920,13 @@
                                 "PowerSystemResource.Location": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "Location",
                                   "$referencePath": "Location"
                                 },
                                 "PowerSystemResource.GenericAction": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 },
                                 "ConductingEquipment.Terminals": {
@@ -936,6 +975,7 @@
                                 "PowerSystemResource.AssetDatasheet": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "ShuntCompensatorInfo",
                                   "$referencePath": "AssetInfo/ShuntCompensatorInfo"
                                 },
                                 "ShuntCompensator.SvShuntCompensatorSections": {
@@ -961,6 +1001,7 @@
                                 "ShuntCompensator.ShuntCompensatorAction": {
                                   "type": "string",
                                   "$objectType": "reference",
+                                  "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 }
                               }
@@ -990,11 +1031,13 @@
                                 "PowerSystemResource.Location": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "Location",
                                   "$referencePath": "Location"
                                 },
                                 "PowerSystemResource.GenericAction": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 },
                                 "ConductingEquipment.Terminals": {
@@ -1187,11 +1230,13 @@
                                 "PowerSystemResource.Location": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "Location",
                                   "$referencePath": "Location"
                                 },
                                 "PowerSystemResource.GenericAction": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 },
                                 "ConductingEquipment.Terminals": {
@@ -1384,11 +1429,13 @@
                                 "PowerSystemResource.Location": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "Location",
                                   "$referencePath": "Location"
                                 },
                                 "PowerSystemResource.GenericAction": {
                                   "$objectType": "reference",
                                   "type": "string",
+                                  "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 },
                                 "ConductingEquipment.Terminals": {
@@ -1584,16 +1631,19 @@
                             "EnergyConsumer.LoadForecast": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "EnergyConsumerSchedule",
                               "$referencePath": "BasicIntervalSchedule"
                             },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "Location",
                               "$referencePath": "Location"
                             },
                             "PowerSystemResource.GenericAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "ConductingEquipment.Terminals": {
@@ -1626,6 +1676,7 @@
                             "EnergyConsumer.EnergyConsumerAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "EnergyConsumer.LoadResponseCharacteristic": {
@@ -1672,16 +1723,19 @@
                             "EnergyConsumer.LoadForecast": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "EnergyConsumerSchedule",
                               "$referencePath": "BasicIntervalSchedule"
                             },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "Location",
                               "$referencePath": "Location"
                             },
                             "PowerSystemResource.GenericAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "ConductingEquipment.Terminals": {
@@ -1714,6 +1768,7 @@
                             "EnergyConsumer.EnergyConsumerAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "EnergyConsumer.LoadResponseCharacteristic": {
@@ -1760,16 +1815,19 @@
                             "EnergyConsumer.LoadForecast": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "EnergyConsumerSchedule",
                               "$referencePath": "BasicIntervalSchedule"
                             },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "Location",
                               "$referencePath": "Location"
                             },
                             "PowerSystemResource.GenericAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "ConductingEquipment.Terminals": {
@@ -1802,6 +1860,7 @@
                             "EnergyConsumer.EnergyConsumerAction": {
                               "$objectType": "reference",
                               "type": "string",
+                              "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
                             "EnergyConsumer.LoadResponseCharacteristic": {
@@ -1849,26 +1908,31 @@
                         "Equipment.EquipmentContainer": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "EquipmentContainer",
                           "$referencePath": "Group/EquipmentContainer"
                         },
                         "EnergySource.GenerationProfile": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Curve",
                           "$referencePath": "Curve/Curve"
                         },
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "EnergySource.EnergySourceAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -1941,11 +2005,13 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -2002,11 +2068,13 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -2069,11 +2137,13 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -2130,11 +2200,13 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -2191,11 +2263,13 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -2254,11 +2328,13 @@
                     "PowerSystemResource.Location": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "Location",
                       "$referencePath": "Location"
                     },
                     "PowerSystemResource.GenericAction": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
                     "ConductingEquipment.Terminals": {
@@ -2319,11 +2395,13 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -2355,15 +2433,18 @@
                         },
                         "ACLineSegment.PerLengthImpedance": {
                           "$objectType": "reference",
+                          "$objectId": "PerLengthImpedance",
                           "type": "string",
                           "oneOf": [
                             {
                               "$objectType": "reference",
+                              "$objectId": "PerLengthSequenceImpedance",
                               "type": "string",
                               "$referencePath": "PerLengthSequenceImpedance"
                             },
                             {
                               "$objectType": "reference",
+                              "$objectId": "PerLengthPhaseImpedance",
                               "type": "string",
                               "$referencePath": "PerLengthPhaseImpedance"
                             }
@@ -2379,20 +2460,24 @@
                             "properties": {
                               "ACLineSegmentPhase.WireInfo": {
                                 "$objectType": "reference",
+                                "$objectId": "WireInfo",
                                 "type": "string",
                                 "oneOf": [
                                   {
                                     "$objectType": "reference",
+                                    "$objectId": "OverheadWireInfo",
                                     "type": "string",
                                     "$referencePath": "AssetInfo/WireInfo/OverheadWireInfo"
                                   },
                                   {
                                     "$objectType": "reference",
+                                    "$objectId": "TapeShieldCableInfo",
                                     "type": "string",
                                     "$referencePath": "AssetInfo/WireInfo/TapeShieldCableInfo"
                                   },
                                   {
                                     "$objectType": "reference",
+                                    "$objectId": "ConcentricNeutralCableInfo",
                                     "type": "string",
                                     "$referencePath": "AssetInfo/WireInfo/ConcentricNeutralCableInfo"
                                   }
@@ -2400,6 +2485,7 @@
                               },
                               "ACLineSegment.WireSpacingInfo": {
                                 "$objectType": "reference",
+                                "$objectId": "WireSpacingInfo",
                                 "type": "string",
                                 "$referencePath": "AssetInfo/WireSpacingInfo"
                               }
@@ -2415,20 +2501,24 @@
                         "ACLineSegment.WireSpacingInfo": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "WireSpacingInfo",
                           "$referencePath": "AssetInfo/WireSpacingInfo"
                         },
                         "PowerSystemResource.AssetDatasheet": {
                           "type": "string",
                           "$objectType": "reference",
+                          "$objectId": "WireInfo",
                           "oneOf": [
                             {
                               "type": "string",
                               "$objectType": "refernece",
+                              "$objectId": "CableInfo",
                               "$referencePath": "AssetInfo/WireInfo/CableInfo"
                             },
                             {
                               "type": "string",
                               "$objectType": "reference",
+                              "$objectId": "OverheadWireInfo",
                               "$referencePath": "AssetInfo/WireInfo/OverheadWireInfo"
                             }
                           ]
@@ -2454,11 +2544,13 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -2527,11 +2619,13 @@
                     "PowerSystemResource.Location": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "Location",
                       "$referencePath": "Location"
                     },
                     "PowerSystemResource.GenericAction": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
                     "ConductingEquipment.Terminals": {
@@ -2588,16 +2682,19 @@
                     "PowerSystemResource.Location": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "Location",
                       "$referencePath": "Location"
                     },
                     "PowerSystemResource.GenericAction": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
                     "Clamp.ClampAction": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
                     "ConductingEquipment.Terminals": {
@@ -2630,6 +2727,7 @@
                     "Clamp.ACLineSegment": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "ACLineSegment",
                       "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
                     },
                     "ConductingEquipment.BaseVoltage": {
@@ -2659,11 +2757,13 @@
                     "PowerSystemResource.Location": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "Location",
                       "$referencePath": "Location"
                     },
                     "PowerSystemResource.GenericAction": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
                     "ConductingEquipment.Terminals": {
@@ -2720,16 +2820,19 @@
                     "PowerSystemResource.Location": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "Location",
                       "$referencePath": "Location"
                     },
                     "PowerSystemResource.GenericAction": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
                     "Ground.GroundAction": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
                     "ConductingEquipment.Terminals": {
@@ -2794,16 +2897,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -2845,6 +2951,7 @@
                         },
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
+                          "$objectId": "SwitchInfo",
                           "$referencePath": "/AssetInfo/SwitchInfo",
                           "type": "string"
                         },
@@ -2886,16 +2993,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -2980,16 +3090,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -3074,16 +3187,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -3168,16 +3284,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -3262,16 +3381,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -3356,16 +3478,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -3450,16 +3575,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -3544,16 +3672,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -3638,16 +3769,19 @@
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "Location",
                           "$referencePath": "Location"
                         },
                         "PowerSystemResource.GenericAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
+                          "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
                         "ConductingEquipment.Terminals": {
@@ -3839,11 +3973,13 @@
                           },
                           "TransformerEnd.RatioTapChanger": {
                             "$objectType": "reference",
+                            "$objectId": "RatioTapChanger",
                             "$referencePath": "PowerSystemResource/Equipment/TapChanger/RatioTapChanger",
                             "type": "string"
                           },
                           "TransformerEnd.PhaseTapChanger": {
                             "$objectType": "reference",
+                            "$objectId": "PhaseTapChanger",
                             "$referencePath": "PowerSystemResource/Equipment/TapChanger/PhaseTapChanger",
                             "type": "string"
                           },
@@ -3883,6 +4019,7 @@
                     },
                     "PowerSystemResource.AssetDatasheet": {
                       "$objectType": "reference",
+                      "$objectId": "PowerTransformerInfo",
                       "$referencePath": "AssetInfo/PowerTransformerInfo",
                       "type": "string"
                     }
@@ -3905,16 +4042,19 @@
                 "RegulatingControl": {
                   "$objectType": "reference",
                   "type": "string",
+                  "$objectId": "RegulatingControl",
                   "$referencePath": "PowerSystemResource/Equipment/RegulatingControl"
                 },
                 "PowerSystemResource.GenericAction": {
                   "$objectType": "reference",
                   "type": "string",
+                  "$objectId": "SwitchingAction",
                   "$referencePath": "SwitchingAction"
                 },
                 "PowerSystemResource.AssetDatasheet": {
                   "$objectType": "reference",
                   "type": "string",
+                  "$objectId": "TapChangerInfo",
                   "$referencePath": "AssetInfo/TapChangerInfo"
                 },
                 "TapChanger.SvTapStep": {
@@ -3944,17 +4084,20 @@
               "properties": {
                 "RegulatingControl": {
                   "$objectType": "reference",
+                  "$objectId": "RegulatingControl",
                   "type": "string",
                   "$referencePath": "PowerSystemResource/Equipment/RegulatingControl"
                 },
                 "PowerSystemResource.GenericAction": {
                   "$objectType": "reference",
                   "type": "string",
+                  "$objectId": "SwitchingAction",
                   "$referencePath": "SwitchingAction"
                 },
                 "PowerSystemResource.AssetDatasheet": {
                   "$objectType": "reference",
                   "type": "string",
+                  "$objectId": "TapChangerInfo",
                   "$referencePath": "AssetInfo/TapChangerInfo"
                 },
                 "TapChanger.SvTapStep": {
@@ -3986,6 +4129,7 @@
           "properties": {
             "PowerSystemResource.GenericAction": {
               "$objectType": "reference",
+              "$objectId": "SwitchingAction",
               "type": "string",
               "$referencePath": "SwitchingAction"
             },
@@ -4078,7 +4222,6 @@
                 "$objectType": "object",
                 "$objectId": "VoltageLimit",
                 "type": "object",
-                "title": "VoltageLimit",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
                     "$objectType": "reference",
@@ -4092,7 +4235,6 @@
                 "$objectType": "object",
                 "$objectId": "CurrentLimit",
                 "type": "object",
-                "title": "CurrentLimit",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
                     "$objectType": "reference",
@@ -4105,7 +4247,6 @@
               {
                 "$objectType": "object",
                 "$objectId": "ActivePowerLimit",
-                "title": "ActivePowerLimit",
                 "type": "object",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
@@ -4119,7 +4260,6 @@
               {
                 "$objectType": "object",
                 "$objectId": "ApparentPowerLimit",
-                "title": "ApparentPowerLimit",
                 "type": "object",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
@@ -4449,6 +4589,7 @@
             "Fault.Location": {
               "$objectType": "reference",
               "type": "string",
+              "$objectId": "Location",
               "$referencePath": "Location"
             },
             "Fault.FaultyEquipment": {
@@ -4456,6 +4597,7 @@
               "items": {
                 "$objectType": "reference",
                 "type": "string",
+                "$objectId": "Equipment",
                 "$referencePath": "PowerSystemResource/Equipment"
               }
             }
@@ -4471,6 +4613,7 @@
             "Fault.Location": {
               "$objectType": "reference",
               "type": "string",
+              "$objectId": "Location",
               "$referencePath": "Location"
             },
             "Fault.FaultyEquipment": {
@@ -4478,6 +4621,7 @@
               "items": {
                 "$objectType": "reference",
                 "type": "string",
+                "$objectId": "Equipment",
                 "$referencePath": "PowerSystemResource/Equipment"
               }
             }
@@ -4493,6 +4637,7 @@
             "Fault.Location": {
               "$objectType": "reference",
               "type": "string",
+              "$objectId": "Location",
               "$referencePath": "Location"
             },
             "Fault.FaultyEquipment": {
@@ -4500,6 +4645,7 @@
               "items": {
                 "$objectType": "reference",
                 "type": "string",
+                "$objectId": "ACLineSegment",
                 "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
               }
             }
@@ -4589,6 +4735,7 @@
                   "type": "array",
                   "items": {
                     "$objectType": "reference",
+                    "$objectId": "ActivityRecord",
                     "$referencePath": "ActivityRecord",
                     "type": "string"
                   }
@@ -4621,6 +4768,7 @@
                   "properties": {
                     "EnvironmentalInformation.EnvironmentalPhenomenon": {
                       "$objectType": "reference",
+                      "$objectId": "EnvironmentalPhenomenon",
                       "$referencePath": "EnvironmentalPhenomenon",
                       "type": "string"
                     }
@@ -4870,6 +5018,7 @@
       "properties": {
         "Outage.OutageIsolationEquipment": {
           "$objectType": "reference",
+          "$objectId": "ConductingEquipment",
           "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment",
           "type": "string"
         }
@@ -4890,11 +5039,13 @@
             "CommunityFacility.Location": {
               "$objectType": "reference",
               "type": "string",
+              "$objectId": "Location",
               "$referencePath": "Location"
             },
             "CommunityFacility.OutageScenario": {
               "$objectType": "reference",
               "type": "string",
+              "$objectId": "OutageScenario",
               "$referencePath": "OutageSpecification/OutageScenario"
             },
             "CommunityFacility.Category": {
@@ -4933,6 +5084,7 @@
             },
             "GridFacility.FacilityPowerLine": {
               "$objectType": "reference",
+              "$objectId": "EquivalentBranch",
               "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EquivalentBranch",
               "type": "string"
             }
@@ -4946,11 +5098,13 @@
             "CommunityFacility.Location": {
               "$objectType": "reference",
               "type": "string",
+              "$objectId": "Location",
               "$referencePath": "Location"
             },
             "CommunityFacility.OutageScenario": {
               "$objectType": "reference",
               "type": "string",
+              "$objectId": "OutageScenario",
               "$referencePath": "OutageSpecification/OutageScenario"
             },
             "CommunityFacility.Category": {
@@ -5003,6 +5157,7 @@
           "items": {
             "type": "string",
             "$objectType": "reference",
+            "$objectId": "GeographicalRegion",
             "$referencePath": "Group/GeographicalRegion"
           }
         }
@@ -5024,6 +5179,7 @@
               "type": "array",
               "items": {
                 "$objectType": "reference",
+                "$objectId": "GeographicalRegion",
                 "$referencePath": "Group/GeographicalRegion",
                 "type": "string"
               }
@@ -5059,6 +5215,7 @@
               "type": "array",
               "items": {
                 "$objectType": "reference",
+                "$objectId": "GeographicalRegion",
                 "$referencePath": "Group/GeographicalRegion",
                 "type": "string"
               }
@@ -5094,14 +5251,17 @@
       "properties": {
         "PredictedEmissions.Location": {
           "type": "string",
+          "$objectId": "Location",
           "oneOf": [
             {
               "$objectType": "reference",
+              "$objectId": "Location",
               "$referencePath": "Location",
               "type": "string"
             },
             {
               "$objectType": "reference",
+              "$objectId": "ProposedSiteLocation",
               "$referencePath": "ProposedSiteLocation",
               "type": "string"
             }
@@ -5111,6 +5271,7 @@
         "PredictedEmissions.DesignAlgorithmProperties": {
           "type": "string",
           "$objectType": "reference",
+          "$objectId": "DesignAlgorithmProperties",
           "$referencePath": "AlgorithmProperties/DesignAlgorithmProperties"
         }
       }
@@ -5130,6 +5291,7 @@
             "DesignAlgorithmProperties.PredictedEmissions": {
               "$objectType": "reference",
               "type": "string",
+              "$objectId": "PredictedEmissions",
               "$referencePath": "PredictedEmissions"
             }
           }
@@ -5176,6 +5338,7 @@
               "items": {
                 "type": "string",
                 "$objectType": "reference",
+                "$objectId": "ProposedSiteLocation",
                 "$referencePath": "ProposedSiteLocation"
               }
             }
@@ -5193,6 +5356,7 @@
               "items": {
                 "type": "string",
                 "$objectType": "reference",
+                "$objectId": "ProposedSiteLocation",
                 "$referencePath": "ProposedSiteLocation"
               }
             }
@@ -5220,21 +5384,25 @@
                     "VarWattControlMode.VarWattControlCurve": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "Curve",
                       "$referencePath": "Curve/Curve"
                     },
                     "VoltVarWattControlMode.VoltVarWattControlCurve": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "Curve",
                       "$referencePath": "Curve/Curve"
                     },
                     "VoltWattControlMode.VoltWattControlCurve": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "Curve",
                       "$referencePath": "Curve/Curve"
                     },
                     "VoltVarControlMode.VoltVarControlCurve": {
                       "$objectType": "reference",
                       "type": "string",
+                      "$objectId": "Curve",
                       "$referencePath": "Curve/Curve"
                     }
                   }
@@ -5244,6 +5412,7 @@
                   "items": {
                     "type": "string",
                     "$objectType": "reference",
+                    "$objectId": "ProposedSiteLocation",
                     "$referencePath": "ProposedSiteLocation"
                   }
                 }
@@ -5257,6 +5426,7 @@
                 "ProposedPhotovoltaicUnitOption.GenerationProfile": {
                   "$objectType": "reference",
                   "type": "string",
+                  "$objectId": "Curve",
                   "$referencePath": "Curve/Curve"
                 },
                 "ProposedAssetOption.ProposedLocations": {
@@ -5264,6 +5434,7 @@
                   "items": {
                     "type": "string",
                     "$objectType": "reference",
+                    "$objectId": "ProposedSiteLocation",
                     "$referencePath": "ProposedSiteLocation"
                   }
                 }
@@ -5277,6 +5448,7 @@
                 "ProposedWindUnitOption.GenerationProfile": {
                   "$objectType": "reference",
                   "type": "string",
+                  "$objectId": "Curve",
                   "$referencePath": "Curve/Curve"
                 },
                 "ProposedAssetOption.ProposedLocations": {
@@ -5284,6 +5456,7 @@
                   "items": {
                     "type": "string",
                     "$objectType": "reference",
+                    "$objectId": "ProposedSiteLocation",
                     "$referencePath": "ProposedSiteLocation"
                   }
                 }
@@ -5299,6 +5472,7 @@
                   "items": {
                     "type": "string",
                     "$objectType": "reference",
+                    "$objectId": "ProposedSiteLocation",
                     "$referencePath": "ProposedSiteLocation"
                   }
                 }
@@ -5318,9 +5492,24 @@
         "ProposedAsset.Application": {
           "type": "string",
           "$objectType": "reference",
+          "$objectId": "Application",
           "$objectId": "Application"
+        },
+        "ProposedAsset.EstimatedCost": {
+          "type": "string",
+          "$objectType": "reference",
+          "$objectId": "EstimatedAssetCosts",
+          "$referencePath": "EstimatedAssetCost"
         }
       }
+    },
+    "EstimatedAssetCosts": {
+      "$objectType": "object",
+      "type": "object",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "$objectId": "EstimatedAssetCosts",
+      "properties": {}
     },
     "Application": {
       "$objectType": "object",
