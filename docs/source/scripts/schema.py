@@ -44,7 +44,7 @@ def build_schema_docs():
 
     schema["$defs"] = build_definitions(uml_data)
 
-    a = Schemas(schema)
+    a = Schemas(schema, base_id_url=f"file://{tmp_dir}")
 
     add_cim_copyright_notice_to_decomposed_schemas(a.schemas, uml_data)
 

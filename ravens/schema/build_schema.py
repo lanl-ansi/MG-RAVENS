@@ -12,8 +12,8 @@ def build_schema_from_map(schema_map: dict) -> dict:
                         else:
                             schema[k] = {
                                 "type": "object",
-                                "title": v.get("title", ""),
-                                "description": v.get("title", ""),
+                                "title": v.get("title", "") + "Container",
+                                "description": f"Hash table of {v.get('title', '')} objects",
                                 "patternProperties": {
                                     "^.+$": {
                                         **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "properties"},
@@ -28,6 +28,8 @@ def build_schema_from_map(schema_map: dict) -> dict:
                         else:
                             schema[k] = {
                                 "type": "object",
+                                "title": v.get("title", "") + "Container",
+                                "description": f"Hash table of {v.get('title', '')} objects",
                                 "patternProperties": {
                                     "^.+$": {
                                         **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "oneOf"},

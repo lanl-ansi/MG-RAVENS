@@ -48,30 +48,37 @@ def add_attributes_to_template(data: dict, template: dict, uml_data: UMLData, GG
 
                     data["properties"][k] = add_attributes_to_template(data["properties"][k], v, uml_data, GG, AT)
 
-            elif v.get("$objectType", "") in ["reference", "oneOfReference"]:
-                # do nothing
-                continue
+            elif v.get("$objectType", "") == "reference":
+                obj = uml_data.objects[(uml_data.objects["Name"] == v["$objectId"]) & (uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                if "title" not in v:
+                    data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "Pointer"
+                if "description" not in v:
+                    data["properties"][k]["description"] = f"Pointer to {html.unescape(str(obj.Name).strip())} object"
             elif v["type"] == "array":
                 try:
                     if v["items"].get("type", "") == "array":
                         # do nothing
-                        # TODO
                         continue
                     elif v["items"].get("$objectType", "") == "reference":
-                        # do nothing
-                        # TODO
-                        continue
+                        obj = uml_data.objects[(uml_data.objects["Name"] == v["items"].get("$objectId", k)) & (uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                        data["properties"][k]["description"] = f"Pointers to {html.unescape(str(obj.Name).strip())} objects"
+                        data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "PointerArray"
+                        data["properties"][k]["items"]["title"] = html.unescape(str(obj.Name).strip()) + "Pointer"
+                        data["properties"][k]["items"]["description"] = f"Pointer to {html.unescape(str(obj.Name).strip())} object"
                     else:
-                        object_name = v["items"].get("$objectId", k)
-                        obj = uml_data.objects[(uml_data.objects["Name"] == object_name) & (uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                        obj = uml_data.objects[(uml_data.objects["Name"] == v["items"].get("$objectId", k)) & (uml_data.objects["Object_Type"] == "Class")].iloc[0]
 
-                        if "description" not in v:
-                            data["properties"][k]["description"] = data["properties"][k]["items"]["description"] = html.unescape(str(obj.Note).strip())
-                        if "title" not in v:
-                            data["properties"][k]["title"] = data["properties"][k]["items"]["title"] = html.unescape(str(obj.Name).strip())
+                        data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "Array"
+                        data["properties"][k]["description"] = f"Array of {html.unescape(str(obj.Name).strip())} objects"
+                        data["properties"][k]["items"]["title"] = html.unescape(str(obj.Name).strip())
+                        data["properties"][k]["items"]["description"] = html.unescape(str(obj.Note).strip())
 
                         if "oneOf" in v["items"]:
                             for i, item in enumerate(v["items"]["oneOf"]):
+                                oneof_obj = uml_data.objects[(uml_data.objects["Name"] == item["$objectId"]) & (uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                                data["properties"][k]["items"]["oneOf"][i]["title"] = html.unescape(str(oneof_obj.Name).strip())
+                                data["properties"][k]["items"]["oneOf"][i]["description"] = html.unescape(str(oneof_obj.Note).strip())
+
                                 data["properties"][k]["items"]["oneOf"][i]["properties"] = add_cim_attributes_to_properties(data["properties"][k]["items"]["oneOf"][i]["properties"], k, item, uml_data, GG, AT)
                                 data["properties"][k]["items"]["oneOf"][i] = add_attributes_to_template(data["properties"][k]["items"]["oneOf"][i], item, uml_data, GG, AT)
                         else:

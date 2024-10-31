@@ -1,88 +1,103 @@
 from copy import deepcopy
 
+_default_base_id_url = "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema"
+_schema_url = "https://json-schema.org/draft/2020-12/schema"
+
 
 class Schemas:
-    def __init__(self, schema):
-        self.schemas = {"__main__": {k: v for k, v in schema.items() if k != "$defs"}}
+    def __init__(self, schema, base_id_url=_default_base_id_url):
+        self.schema = deepcopy(schema)
+        self.schemas = {}
+        self.base_id_url = base_id_url
 
-        self.decompose_schema(deepcopy(schema))
-        self.decompose_defs(schema.get("$defs", {}))
+        self.decompose_schema(deepcopy(self.schema))
+        self.decompose_defs(deepcopy(self.schema).get("$defs", {}))
+        self.schemas[f"{self.base_id_url}/Root.json"].pop("$defs")
 
         self.insert_refs()
 
-    def decompose_schema(self, schema):
-        if "patternProperties" in schema:
-            for pattern, v in schema["patternProperties"].items():
-                self.schemas[v["title"]] = v
-                self.decompose_schema(v)
-        elif "properties" in schema:
-            for k, v in schema["properties"].items():
-                try:
-                    if ("$ref" not in v) and (v["type"] == "object" or (isinstance(v["type"], list) and "object" in v["type"])):
-                        if "oneOf" in v:
-                            self.schemas[v["title"]] = deepcopy(v)
-                            for i, item in enumerate(v["oneOf"]):
-                                self.schemas[item["title"]] = deepcopy(item)
-                                self.decompose_schema(item)
-                        elif "patternProperties" in v:
-                            self.decompose_schema(v)
-                        else:
-                            self.schemas[v["title"]] = deepcopy(v)
-                            self.decompose_schema(v)
-                    elif ("$ref" not in v) and v["type"] == "array":
-                        if v["items"]["type"] == "object":
-                            if "oneOf" in v["items"]:
-                                self.schemas[v["items"]["title"]] = deepcopy(v)
-                                for i, item in enumerate(v["items"]["oneOf"]):
-                                    self.schemas[item["title"]] = deepcopy(item)
-                                    self.decompose_schema(item)
-                            else:
-                                self.schemas[v["items"]["title"]] = deepcopy(v["items"])
-                                self.decompose_schema(v["items"])
-                except Exception as msg:
-                    print(k, v.keys(), msg)
-        elif "oneOf" in schema:
-            self.schemas[schema["title"]] = deepcopy(schema)
-            for item in schema["oneOf"]:
-                self.schemas[item["title"]] = deepcopy(item)
-                self.decompose_schema(item)
-        elif "items" in schema:
-            print(schema["title"])
-            self.schemas[schema["title"]] = deepcopy(schema)
-            self.decompose_schema(schema["items"])
+    def decompose_schema(self, schema: dict, debug_key: str = None) -> str:
+        _schema = deepcopy(schema)
 
-    def decompose_defs(self, defs):
+        if isinstance(_schema, dict):
+            _schema["$schema"] = _schema_url
+            title = _schema.get("title", None)
+            if title is not None:
+                if "patternProperties" in _schema:
+                    title = f"{title}_Container"
+            else:
+                print(debug_key, _schema.keys())
+
+            _schema["$id"] = f"{self.base_id_url}/{title}.json"
+
+            if _schema.get("type", None) == "object":
+                for n in ["properties", "patternProperties"]:
+                    if n in _schema:
+                        for k, v in _schema[n].items():
+                            ref_id = self.decompose_schema(v, debug_key=k)
+                            if ref_id is not None:
+                                _schema[n][k] = {"$ref": ref_id}
+
+                if "oneOf" in _schema:
+                    _oneOf = []
+                    for item in _schema["oneOf"]:
+                        ref_id = self.decompose_schema(item, debug_key=debug_key)
+                        if ref_id is not None:
+                            _oneOf.append({"$ref": ref_id})
+                        else:
+                            _oneOf.append(item)
+
+                    _schema["oneOf"] = _oneOf
+
+            elif _schema.get("type", None) == "array":
+                ref_id = self.decompose_schema(_schema["items"], debug_key=debug_key)
+                if ref_id is not None:
+                    _schema["items"] = {"$ref": ref_id}
+            else:
+                return None
+
+            self.schemas[_schema["$id"]] = _schema
+
+            return _schema["$id"]
+
+        return None
+
+    def decompose_defs(self, defs: dict):
         for k, v in defs.items():
-            self.schemas[k] = v
+            _schema = deepcopy(v)
+            _schema["$schema"] = _schema_url
+            _schema["$id"] = f"{self.base_id_url}/{_schema["title"]}.json"
+            self.schemas[_schema["$id"]] = _schema
 
     def insert_refs(self):
         for schema_key, schema in self.schemas.items():
-            if "patternProperties" in schema:
+            # print(schema_key, schema.keys())
+            if schema.get("patternProperties", None) is not None:
                 for pattern, json_object in schema["patternProperties"].items():
-                    key = json_object.get("title", None)
-                    if key in self.schemas:
-                        self.schemas[schema_key]["patternProperties"][pattern] = {"$ref": f"./{key}.json"}
-            elif "properties" in schema:
+                    key = json_object.get("$id", None)
+                    if key in self.schemas.keys():
+                        self.schemas[schema_key]["patternProperties"][pattern] = {"$ref": key}
+            elif "properties" in schema.keys():
                 for k, v in schema["properties"].items():
                     if v.get("type", "") == "object" or (isinstance(v.get("type", ""), list) and "object" in v["type"]):
-                        key = v.get("title", k)
+                        key = v.get("$id", k)
                         if key in self.schemas:
-                            self.schemas[schema_key]["properties"][k] = {"$ref": f"./{key}.json"}
+                            self.schemas[schema_key]["properties"][k] = {"$ref": key}
 
                     elif v.get("type", "") == "array" and v["items"].get("type", "") == "object":
-                        key = v["items"].get("title", k)
+                        key = v["items"].get("$id", k)
                         if key in self.schemas:
-                            self.schemas[schema_key]["properties"][k]["items"] = {"$ref": f"./{key}.json"}
+                            self.schemas[schema_key]["properties"][k]["items"] = {"$ref": key}
                     elif v.get("$ref", "").startswith("#/$defs/"):
                         ref = v["$ref"].split("#/$defs/")[1]
-                        if ref in self.schemas:
-                            self.schemas[schema_key]["properties"][k]["$ref"] = f"./{ref}.json"
+                        if f"{self.base_id_url}/{ref}.json" in self.schemas:
+                            self.schemas[schema_key]["properties"][k]["$ref"] = f"{self.base_id_url}/{ref}.json"
             elif "oneOf" in schema:
                 for i, item in enumerate(schema["oneOf"]):
                     if item.get("$ref", "").startswith("#/$defs/"):
                         ref = v["$ref"].split("#/$defs/")[1]
-                        if ref in self.schemas:
-                            self.schemas[schema_key]["oneOf"][i]["$ref"] = f"./{ref}.json"
+                        if f"{self.base_id_url}/{ref}.json" in self.schemas:
+                            self.schemas[schema_key]["oneOf"][i]["$ref"] = f"{self.base_id_url}/{ref}.json"
                     else:
                         key = item.get("title", "")
                         if key in self.schemas:
@@ -92,20 +107,21 @@ class Schemas:
                     for i, item in enumerate(schema["items"]["oneOf"]):
                         if item.get("$ref", "").startswith("#/$defs/"):
                             ref = v["$ref"].split("#/$defs/")[1]
-                            if ref in self.schemas:
-                                self.schemas[schema_key]["items"]["oneOf"][i]["$ref"] = f"./{ref}.json"
+                            if f"{self.base_id_url}/{ref}.json" in self.schemas:
+                                self.schemas[schema_key]["items"]["oneOf"][i]["$ref"] = f"{self.base_id_url}/{ref}.json"
                         else:
-                            key = item.get("title", "")
+                            key = item.get("$id", "")
                             if key in self.schemas:
-                                self.schemas[schema_key]["items"]["oneOf"][i] = {"$ref": f"./{key}.json"}
+                                self.schemas[schema_key]["items"]["oneOf"][i] = {"$ref": key}
                 else:
-                    key = schema["items"].get("title", "")
+                    key = schema["items"].get("$id", "")
                     if key in self.schemas:
-                        self.schemas[schema_key]["items"] = {"$ref": f"./{key}.json"}
+                        self.schemas[schema_key]["items"] = {"$ref": key}
 
 
 if __name__ == "__main__":
     import json
+    import os
     from ravens.io import parse_uml_data
     from ravens.cim_tools.common import build_package_exclusions, build_object_exclusions
     from ravens.cim_tools.graph import build_generalization_graph, build_attribute_graph
@@ -137,15 +153,16 @@ if __name__ == "__main__":
 
     schema["$defs"] = build_definitions(uml_data)
 
-    a = Schemas(schema)
+    with open("out/schema/test_schema.json", "w") as f:
+        json.dump(schema, f, indent=2)
+
+    a = Schemas(schema, base_id_url=f"file://{os.getcwd()}/out/schema/separate")
 
     add_cim_copyright_notice_to_decomposed_schemas(a.schemas, uml_data)
 
-    with open("out/schema/test_schemas.json", "w") as f:
-        json.dump(a.schemas, f, indent=2)
-
     for k, v in a.schemas.items():
-        with open(f"out/schema/separate/{k}.json", "w") as f:
+        filename = k.split("/")[-1].replace(".json", "")
+        with open(f"out/schema/separate/{filename}.json", "w") as f:
             json.dump(v, f, indent=2)
 
     Gen.generate_from_filename("out/schema/separate/", "out/schema/docs/")
