@@ -142,6 +142,8 @@
 
 [AutomaticDispatchMode](../_static/schema/AutomaticDispatchMode.html){.external}
 
+[BTMEquipmentContainer](../_static/schema/BTMEquipmentContainer.html){.external}
+
 [BankAccountDetail](../_static/schema/BankAccountDetail.html){.external}
 
 [BaseVoltage](../_static/schema/BaseVoltage.html){.external}
