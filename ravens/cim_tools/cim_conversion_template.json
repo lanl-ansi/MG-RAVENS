@@ -5492,10 +5492,9 @@
         "ProposedAsset.Application": {
           "type": "string",
           "$objectType": "reference",
-          "$objectId": "Application",
           "$objectId": "Application"
         },
-        "ProposedAsset.EstimatedCost": {
+        "ProposedAsset.EstimatedCosts": {
           "type": "string",
           "$objectType": "reference",
           "$objectId": "EstimatedAssetCosts",
