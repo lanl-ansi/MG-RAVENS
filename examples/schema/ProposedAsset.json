@@ -23,12 +23,21 @@
           "ProposedBranch::'hardened_line_a'"
         ],
         "ProposedAssetSet.Algorithm": "Algorithm::'solve_rdt'"
+      },
+      "ab74a034-67ff-4ccb-81cb-e1d6d69c5cf8": {
+        "IdentifiedObject.name": "ab74a034-67ff-4ccb-81cb-e1d6d69c5cf8",
+        "IdentifiedObject.mRID": "ab74a034-67ff-4ccb-81cb-e1d6d69c5cf8",
+        "Ravens.CimObjectType": "ProposedAssetSet",
+        "ProposedAssetSet.rank": 3,
+        "ProposedAssetSet.ProposedAssets": [],
+        "ProposedAssetSet.Algorithm": "Algorithm::'solve_rdt'",
+        "ProposedAssetSet.EstimatedCosts": "EstimatedEnergyProducerAssetCosts::'BusinessAsUsual'"
       }
     }
   },
   "ProposedAsset": {
     "switch_a_b": {
-      "IdentifiedObject.name": "switch_a",
+      "IdentifiedObject.name": "switch_a_b",
       "IdentifiedObject.mRID": "07be8846-b0c0-465b-81f6-8bf8eedbdab2",
       "Ravens.CimObjectType": "ProposedBranch",
       "ProposedBranch.Terminal": [
@@ -36,6 +45,7 @@
         { "Terminal.ConnectivityNode": "ConnectivityNode::'bus_b'" }
       ],
       "ProposedAsset.ProposedAssetOption": "ProposedSwitchOption::'switch_type_1'",
+      "ProposedAsset.EstimatedCosts": "EstimatedAssetCosts::'switch_a_b'",
       "ProposedAsset.Algorithm": "Algorithm::'solve_rdt'"
     },
     "bess_b": {
@@ -45,6 +55,7 @@
       "ProposedEnergyProducerOption.capacity": 500000.0,
       "ProposedBatteryUnit.energyCapacity": 600000.0,
       "ProposedAsset.ProposedAssetOption": "ProposedBatteryUnitOption::'battery_type_1'",
+      "ProposedAsset.EstimatedCosts": "EstimatedEnergyProducerAssetCosts::'bess_b'",
       "ProposedAsset.Algorithm": "Algorithm::'solve_rdt'"
     },
     "hardened_line_b_c": {
@@ -56,7 +67,40 @@
         { "Terminal.ConnectivityNode": "ConnectivityNode::'bus_c'" }
       ],
       "ProposedAsset.ProposedAssetOption": "ProposedConductorOption::'hardened_line'",
+      "ProposedAsset.EstimatedCosts": "EstimatedAssetCosts::'hardened_line_b_c'",
       "ProposedAsset.Algorithm": "Algorithm::'solve_rdt'"
+    }
+  },
+  "EstimatedAssetCosts": {
+    "switch_a_b": {
+      "IdentifiedObject.name": "switch_a_b",
+      "IdentifiedObject.mRID": "1c843b24-385b-4722-97a9-cbc370b08107",
+      "Ravens.CimObjectType": "EstimatedAssetCosts",
+      "EstimatedAssetCosts.assetCost": 500000.0,
+      "EstimatedAssetCosts.lifecycleCost": 2000000.0
+    },
+    "bess_b": {
+      "IdentifiedObject.name": "bess_b",
+      "IdentifiedObject.mRID": "ebefdf9f-7018-48f0-8b0a-05b921582322",
+      "Ravens.CimObjectType": "EstimatedEnergyProducerAssetCosts",
+      "EstimatedAssetCosts.assetCost": 10000000.0,
+      "EstimatedEnergyProducerAssetCosts.firstYearCapacityCost": 500000.0,
+      "EstimatedEnergyProducerAssetCosts.firstYearEnergyCost": 500000.0
+    },
+    "hardened_line_b_c": {
+      "IdentifiedObject.name": "hardened_line_b_c",
+      "IdentifiedObject.mRID": "92af438c-bf2c-488d-91be-f63492306af1",
+      "Ravens.CimObjectType": "EstimatedAssetCosts",
+
+      "EstimatedAssetCosts.assetCost": 2000000.0,
+      "EstimatedAssetCosts.lifecycleCost": 10000000.0
+    },
+    "BusinessAsUsual": {
+      "IdentifiedObject.name": "BusinessAsUsual",
+      "IdentifiedObject.mRID": "5c7c2c28-bcce-48df-99fd-773730c3e9ca",
+      "Ravens.CimObjectType": "EstimatedEnergyProducerAssetCosts",
+      "EstimatedEnergyProducerAssetCosts.lifecycleCapacityCost": 100000000.0,
+      "EstimatedEnergyProducerAssetCosts.lifecycleEnergyCost": 100000000.0
     }
   },
   "ProposedAssetOption": {
