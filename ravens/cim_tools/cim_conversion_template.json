@@ -186,15 +186,64 @@
           "oneOf": [
             {
               "$objectType": "object",
+              "$objectId": "EquipmentContainer",
+              "type": "object",
+              "properties": {
+                "EquipmentContainer.Equipments": {
+                  "$objectType": "reference",
+                  "$objectId": "Equipment",
+                  "type": "string",
+                  "$referencePath": "PowerSystemResource/Equipment"
+                }
+              }
+            },
+            {
+              "$objectType": "object",
+              "$objectId": "BTMEquipmentContainer",
+              "type": "object",
+              "properties": {
+                "EquipmentContainer.Equipments": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "Equipment",
+                    "type": "string",
+                    "$referencePath": "PowerSystemResource/Equipment"
+                  }
+                }
+              }
+            },
+            {
+              "$objectType": "object",
               "$objectId": "Bay",
               "type": "object",
-              "properties": {}
+              "properties": {
+                "EquipmentContainer.Equipments": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "Equipment",
+                    "type": "string",
+                    "$referencePath": "PowerSystemResource/Equipment"
+                  }
+                }
+              }
             },
             {
               "$objectType": "object",
               "$objectId": "Feeder",
               "type": "object",
-              "properties": {}
+              "properties": {
+                "EquipmentContainer.Equipments": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "Equipment",
+                    "type": "string",
+                    "$referencePath": "PowerSystemResource/Equipment"
+                  }
+                }
+              }
             },
             {
               "$objectType": "object",
