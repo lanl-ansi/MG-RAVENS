@@ -21,6 +21,8 @@ class Schemas:
 
         if isinstance(_schema, dict):
             _schema["$schema"] = _schema_url
+            _schema["additionalProperties"] = False
+
             title = _schema.get("title", None)
             if title is not None:
                 if "patternProperties" in _schema:
