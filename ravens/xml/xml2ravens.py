@@ -37,6 +37,11 @@ class Path:
     def insert(self, path_segment):
         self.path = {**{0: path_segment}, **{k + 1: v for k, v in self.path.items()}}
 
+    def popfirst(self):
+        path_segment = self.path[0]
+
+        self.path = {i - 1: path for i, path in self.path.items() if i != 0}
+
     def __getitem__(self, i):
         if i < 0:
             return self.path[len(self.path) + i]
@@ -354,7 +359,9 @@ class RAVENSData:
                     s2p[_next_subject] = s2p[_prev_subject]
                 elif _next_subject not in s2p:
                     s2p[_next_subject] = obj_real_path.create()
-                    obj_real_path[s2p[_next_subject]] = deepcopy(obj_real_path[s2p[_prev_subject]])
+                    _tmp = deepcopy(obj_real_path[s2p[_prev_subject]])
+                    _tmp.popfirst()
+                    obj_real_path[s2p[_next_subject]] = _tmp
 
                 positions = self._build_positions(subject, _next_subject, segment)
                 if len(positions) == 1 and isinstance(positions[0], URIRef):
@@ -529,11 +536,7 @@ class RAVENSData:
                         data[path.position] += [{} for i in range(_path.position - len(data[path.position]))]
 
                     data[path.position][_path.idx] = {**data_to_insert, **data[path.position][_path.idx]}
-            elif (
-                path.type == "array"
-                and self.current_resolved_path[self.current_path_index + 1].position is None
-                and self.current_resolved_path[self.current_path_index + 1].type == "array"
-            ):
+            elif path.type == "array" and self.current_resolved_path[self.current_path_index + 1].position is None and self.current_resolved_path[self.current_path_index + 1].type == "array":
                 _path = self.current_resolved_path[self.current_path_index + 1]
                 if _path.position is None and _path.type == "array":
                     data[path.position].append({})
@@ -574,7 +577,7 @@ if __name__ == "__main__":
     import json
 
     g = Graph()
-    g.parse("tests_fixes/case3_balanced_ravens.xml", format="application/rdf+xml", publicID="urn:uuid:")
+    g.parse("examples/IEEE13_Assets.xml", format="application/rdf+xml", publicID="urn:uuid:")
     # g.parse("examples/case3_balanced.xml", format="application/rdf+xml", publicID="urn:uuid:")
     # g.parse("examples/IEEE13_Assets.xml", format="application/rdf+xml", publicID="urn:uuid:")
     # g.parse("examples/ieee8500u_fuseless_CIM100x.XML", format="application/rdf+xml", publicID="urn:uuid:")
@@ -587,11 +590,11 @@ if __name__ == "__main__":
     # for triple in rm:
     #     g.remove(triple)
 
-    G = rdflib_to_networkx_multidigraph(g)
-    for i, e in enumerate(G.edges(keys=True)):
-        G.edges[e].update({"label": str(e[-1]), "id": str(i)})
-    for n in G.nodes:
-        G.nodes[n].update({"label": str(n)})
+    # G = rdflib_to_networkx_multidigraph(g)
+    # for i, e in enumerate(G.edges(keys=True)):
+    #     G.edges[e].update({"label": str(e[-1]), "id": str(i)})
+    # for n in G.nodes:
+    #     G.nodes[n].update({"label": str(n)})
 
     # nx.write_graphml(G, "out/rdf_graphs/case3_balanced_uriref.graphml", named_key_ids=True, edge_id_from_attribute="id")
     # nx.write_graphml(G, "out/rdf_graphs/ieee13_assets_uriref.graphml", named_key_ids=True, edge_id_from_attribute="id")
@@ -599,7 +602,7 @@ if __name__ == "__main__":
 
     d = RAVENSData(g, CIMTemplate("ravens/cim_tools/cim_conversion_template.json").template, prune_unncessary=False)
 
-    with open("tests_fixes/case3_balanced_ravens.json", "w") as f:
+    with open("out/IEEE13_Assets.json", "w") as f:
         json.dump(d.data, f, indent=2)
 
     # with open("out/test_xml2json_ieee13.json", "w") as f:
