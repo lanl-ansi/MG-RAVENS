@@ -5541,7 +5541,8 @@
         "ProposedAsset.Application": {
           "type": "string",
           "$objectType": "reference",
-          "$objectId": "Application"
+          "$objectId": "Application",
+          "$referencePath": "Application"
         },
         "ProposedAsset.EstimatedCosts": {
           "type": "string",
@@ -5577,7 +5578,8 @@
         "Algorithm.Application": {
           "$objectType": "reference",
           "type": "string",
-          "$objectId": "Application"
+          "$objectId": "Application",
+          "$referencePath": "Application"
         }
       }
     },
@@ -5590,12 +5592,14 @@
           "Message.Application": {
             "$objectType": "reference",
             "type": "string",
-            "$objectId": "Application"
+            "$objectId": "Application",
+            "$referencePath": "Application"
           },
           "Message.Algorithm": {
             "$objectType": "reference",
             "type": "string",
-            "$objectId": "Algorithm"
+            "$objectId": "Algorithm",
+            "$referencePath": "Algorithm"
           }
         }
       }
