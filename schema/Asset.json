@@ -20,7 +20,7 @@
     },
     "Structure.height": {
       "title": "height",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
       "description": "Visible height of structure above ground level for overhead construction (e.g., Pole or Tower) or below ground level for an underground vault, manhole, etc. Refer to associated DimensionPropertiesInfo for other types of dimensions."
     },
     "ComModule.amrSystem": {
@@ -30,12 +30,12 @@
     },
     "StructureSupport.direction": {
       "title": "direction",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/AngleDegrees.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AngleDegrees.json",
       "description": "Direction of this support structure."
     },
     "Asset.inUseDate": {
       "title": "inUseDate",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/InUseDate.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InUseDate.json",
       "description": "In use dates for this asset."
     },
     "StructureSupport.anchorRodCount": {
@@ -65,22 +65,22 @@
     },
     "StructureSupport.kind": {
       "title": "kind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/StructureSupportKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StructureSupportKind.json",
       "description": "Kind of structure support."
     },
     "ComModule.timeZoneOffset": {
       "title": "timeZoneOffset",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Minutes.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Minutes.json",
       "description": "Time zone offset relative to GMT for the location of this com module."
     },
     "EndDevice.timeZoneOffset": {
       "title": "timeZoneOffset",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Minutes.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Minutes.json",
       "description": "Time zone offset relative to GMT for the location of this end device."
     },
     "Asset.lifecycleState": {
       "title": "lifecycleState",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/AssetLifecycleStateKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetLifecycleStateKind.json",
       "description": "Current lifecycle state of asset."
     },
     "IdentifiedObject.description": {
@@ -95,12 +95,12 @@
     },
     "Joint.configurationKind": {
       "title": "configurationKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/JointConfigurationKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/JointConfigurationKind.json",
       "description": "Configuration of joint."
     },
     "Structure.materialKind": {
       "title": "materialKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/StructureMaterialKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StructureMaterialKind.json",
       "description": "Material this structure is made of."
     },
     "Asset.critical": {
@@ -120,37 +120,37 @@
     },
     "Structure.ratedVoltage": {
       "title": "ratedVoltage",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Voltage.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
       "description": "Maximum rated voltage of the equipment that can be mounted on/contained within the structure."
     },
     "Asset.acceptanceTest": {
       "title": "acceptanceTest",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/AcceptanceTest.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AcceptanceTest.json",
       "description": "Information on acceptance test."
     },
     "Asset.lifecycleDate": {
       "title": "lifecycleDate",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/LifecycleDate.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LifecycleDate.json",
       "description": "<was lifecycle>\nLifecycle dates for this asset."
     },
     "StructureSupport.anchorKind": {
       "title": "anchorKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/AnchorKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnchorKind.json",
       "description": "(if anchor) Kind of anchor."
     },
     "Vehicle.usageKind": {
       "title": "usageKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/VehicleUsageKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VehicleUsageKind.json",
       "description": "Kind of usage of the vehicle."
     },
     "Asset.electronicAddress": {
       "title": "electronicAddress",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ElectronicAddress.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ElectronicAddress.json",
       "description": "Electronic address."
     },
     "StructureSupport.anchorRodLength": {
       "title": "anchorRodLength",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
       "description": "(if anchor) Length of rod used."
     },
     "EndDevice.installCode": {
@@ -160,7 +160,7 @@
     },
     "Asset.purchasePrice": {
       "title": "purchasePrice",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Money.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
       "description": "Purchase price of asset."
     },
     "IdentifiedObject.aliasName": {
@@ -170,7 +170,7 @@
     },
     "Joint.fillKind": {
       "title": "fillKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/JointFillKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/JointFillKind.json",
       "description": "Material used to fill the joint."
     },
     "Structure.weedRemovedDate": {
@@ -180,27 +180,27 @@
     },
     "FACTSDevice.kind": {
       "title": "kind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/FACTSDeviceKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FACTSDeviceKind.json",
       "description": "Kind of FACTS device."
     },
     "Asset.inUseState": {
       "title": "inUseState",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/InUseStateKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InUseStateKind.json",
       "description": "Indication of whether asset is currently deployed (in use), ready to be put into use or not available for use."
     },
     "Streetlight.lightRating": {
       "title": "lightRating",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
       "description": "Power rating of light."
     },
     "Streetlight.lampKind": {
       "title": "lampKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/StreetlightLampKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StreetlightLampKind.json",
       "description": "Lamp kind."
     },
     "Asset.status": {
       "title": "status",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Status.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Status.json",
       "description": "Status of this asset."
     },
     "IdentifiedObject.name": {
@@ -220,12 +220,12 @@
     },
     "Asset.retiredReason": {
       "title": "retiredReason",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/RetiredReasonKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RetiredReasonKind.json",
       "description": "Reason asset retired."
     },
     "Asset.kind": {
       "title": "kind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/AssetKind.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetKind.json",
       "description": "Kind of asset. Used in description of asset components in asset instance templates."
     },
     "EndDevice.isSmartInverter": {
@@ -255,17 +255,17 @@
     },
     "Streetlight.armLength": {
       "title": "armLength",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
       "description": "Length of arm. Note that a new light may be placed on an existing arm."
     },
     "StructureSupport.length": {
       "title": "length",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
       "description": "Length of this support structure."
     },
     "Asset.initialLossOfLife": {
       "title": "initialLossOfLife",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/PerCent.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "Percentage of initial life expectancy that has been lost as of the last life expectancy baseline. Represents \n(initial life expectancy - current life expectancy) / initial life expectancy."
     },
     "Asset.serialNumber": {
@@ -295,7 +295,7 @@
     },
     "Vehicle.odometerReading": {
       "title": "odometerReading",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
       "description": "Odometer reading of this vehicle as of the 'odometerReadingDateTime'. Refer to associated ActivityRecords for earlier readings."
     },
     "IdentifiedObject.mRID": {
@@ -311,6 +311,6 @@
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
-  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Asset.json",
+  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Asset.json",
   "license": "**Copyright**\nThe entire work provided in the UML project file is dedicated to the public domain and is copyrighted under an Apache 2\\.0 Open Source License. Major portions of this license are owned by the Electric Power Research Institute (EPRI) and the remaining portions are provided by other contributors.\n\nThe Apache 2\\.0 **Grant of Copyright License**: Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non\\-exclusive, no\\-charge, royalty\\-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.\nPer the Apache 2\\.0 Copyright, **Redistribution is provided under the following terms and conditions**. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:\n1\\. You must give any other recipients of the Work or Derivative Works a copy of this License; and\n2\\. You must cause any modified files to carry prominent notices stating that You changed the files; and \n3\\. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and \n4\\. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."
 }
