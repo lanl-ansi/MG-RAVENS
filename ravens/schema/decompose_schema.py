@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-_default_base_uri = "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema"
+_default_base_uri = "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema"
 _schema_url = "https://json-schema.org/draft/2020-12/schema"
 
 
