@@ -132,7 +132,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: schema
-        path: schema
+        path: schema_new
     - name: Set up Git user
       run: |
         git config --global user.name "github-actions[bot]"
@@ -153,7 +153,7 @@ jobs:
     - name: Copy schema artifact to schema folder
       run: |
         rm -rf schema/*  # Clear existing files in schema folder
-        cp -R schema/* schema/  # Copy new schema files to schema folder
+        cp -R schema_new/* schema/  # Copy new schema files to schema folder
     - name: Commit and push schema updates
       run: |
         git add schema
