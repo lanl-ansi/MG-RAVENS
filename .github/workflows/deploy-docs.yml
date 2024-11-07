@@ -112,7 +112,7 @@ jobs:
         poetry install
     - name: Build Schema
       run: |
-        poetry run python docs/source/scripts/schema_deploy.py  # Update to the correct command
+        poetry run python schema/build_schema.py
     - name: Upload Schema as artifact
       uses: actions/upload-artifact@v4
       with:
