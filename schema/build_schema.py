@@ -15,11 +15,11 @@ from ravens.schema.add_copyright_notice import add_cim_copyright_notice_to_decom
 from ravens.schema.decompose_schema import Schemas
 
 
-def build_schema_docs():
+def build_schema():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    template_path = os.path.join(current_dir, "../../../ravens/cim_tools/cim_conversion_template.json")
-    xmi_path = os.path.join(current_dir, "../../../cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi")
-    schema_dir = os.path.join(current_dir, "../../../schema")
+    template_path = os.path.join(current_dir, "../ravens/cim_tools/cim_conversion_template.json")
+    xmi_path = os.path.join(current_dir, "../cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi")
+    schema_dir = os.path.join(current_dir, "../schema")
 
     uml_data = parse_uml_data(xmi_path)
 
@@ -50,3 +50,7 @@ def build_schema_docs():
         filename = k.split("/")[-1].replace(".json", "")
         with open(os.path.join(schema_dir, f"{filename}.json"), "w") as f:
             json.dump(v, f, indent=2)
+
+
+if __name__ == "__main__":
+    build_schema()
