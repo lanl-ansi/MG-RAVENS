@@ -64,6 +64,7 @@ jobs:
         path: docs/build/html
 
   deploy-docs:
+    needs: build-docs
     if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
