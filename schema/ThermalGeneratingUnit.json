@@ -1,0 +1,252 @@
+{
+  "type": "object",
+  "properties": {
+    "GeneratingUnit.GenUnitOpSchedule": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/GenUnitOpSchedule.json"
+    },
+    "GeneratingUnit.GenUnitOpCostCurves": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/GenUnitOpCostCurveArray.json"
+    },
+    "GeneratingUnit.governorMPL": {
+      "title": "governorMPL",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/PU.json",
+      "description": "Governor motor position limit."
+    },
+    "GeneratingUnit.governorSCD": {
+      "title": "governorSCD",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/PerCent.json",
+      "description": "Governor Speed Changer Droop.   This is the change in generator power output divided by the change in frequency normalized by the nominal power of the generator and the nominal frequency and expressed in percent and negated. A positive value of speed change droop provides additional generator output upon a drop in frequency."
+    },
+    "GeneratingUnit.highControlLimit": {
+      "title": "highControlLimit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "High limit for secondary (AGC) control."
+    },
+    "GeneratingUnit.initialP": {
+      "title": "initialP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "Default initial active power  which is used to store a powerflow result for the initial active power for this unit in this network configuration."
+    },
+    "GeneratingUnit.longPF": {
+      "title": "longPF",
+      "type": "number",
+      "description": "Generating unit long term economic participation factor."
+    },
+    "GeneratingUnit.lowControlLimit": {
+      "title": "lowControlLimit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "Low limit for secondary (AGC) control."
+    },
+    "GeneratingUnit.lowerRampRate": {
+      "title": "lowerRampRate",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePowerChangeRate.json",
+      "description": "The normal maximum rate the generating unit active power output can be lowered by control actions."
+    },
+    "GeneratingUnit.maxEconomicP": {
+      "title": "maxEconomicP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "Maximum high economic active power limit, that should not exceed the maximum operating active power limit."
+    },
+    "GeneratingUnit.maximumAllowableSpinningReserve": {
+      "title": "maximumAllowableSpinningReserve",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "Maximum allowable spinning reserve. Spinning reserve will never be considered greater than this value regardless of the current operating point."
+    },
+    "GeneratingUnit.maxOperatingP": {
+      "title": "maxOperatingP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "This is the maximum operating active power limit the dispatcher can enter for this unit."
+    },
+    "GeneratingUnit.minEconomicP": {
+      "title": "minEconomicP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "Low economic active power limit that shall be greater than or equal to the minimum operating active power limit."
+    },
+    "GeneratingUnit.minimumOffTime": {
+      "title": "minimumOffTime",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Seconds.json",
+      "description": "Minimum time interval between unit shutdown and startup."
+    },
+    "GeneratingUnit.minOperatingP": {
+      "title": "minOperatingP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "This is the minimum operating active power limit the dispatcher can enter for this unit."
+    },
+    "GeneratingUnit.modelDetail": {
+      "title": "modelDetail",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Classification.json",
+      "description": "Detail level of the generator model data."
+    },
+    "GeneratingUnit.nominalP": {
+      "title": "nominalP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "The nominal power of the generating unit.  Used to give precise meaning to percentage based attributes such as the governor speed change droop (governorSCD attribute).\nThe attribute shall be a positive value equal to or less than RotatingMachine.ratedS."
+    },
+    "GeneratingUnit.normalPF": {
+      "title": "normalPF",
+      "type": "number",
+      "description": "Generating unit economic participation factor.  The sum of the participation factors across generating units does not have to sum to one.  It is used for representing distributed slack participation factor. The attribute shall be a positive value or zero."
+    },
+    "GeneratingUnit.penaltyFactor": {
+      "title": "penaltyFactor",
+      "type": "number",
+      "description": "Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value. The typical range of penalty factors is (0.9 to 1.1)."
+    },
+    "GeneratingUnit.raiseRampRate": {
+      "title": "raiseRampRate",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePowerChangeRate.json",
+      "description": "The normal maximum rate the generating unit active power output can be raised by control actions."
+    },
+    "GeneratingUnit.ratedGrossMaxP": {
+      "title": "ratedGrossMaxP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "The unit's gross rated maximum capacity (book value).\nThe attribute shall be a positive value."
+    },
+    "GeneratingUnit.ratedGrossMinP": {
+      "title": "ratedGrossMinP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "The gross rated minimum generation level which the unit can safely operate at while delivering power to the transmission grid.\nThe attribute shall be a positive value."
+    },
+    "GeneratingUnit.ratedNetMaxP": {
+      "title": "ratedNetMaxP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "The net rated maximum capacity determined by subtracting the auxiliary power used to operate the internal plant machinery from the rated gross maximum capacity.\nThe attribute shall be a positive value."
+    },
+    "GeneratingUnit.shortPF": {
+      "title": "shortPF",
+      "type": "number",
+      "description": "Generating unit short term economic participation factor."
+    },
+    "Ravens.CimObjectType": {
+      "title": "CimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
+    },
+    "GeneratingUnit.startupCost": {
+      "title": "startupCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Money.json",
+      "description": "The initial startup cost incurred for each start of the GeneratingUnit."
+    },
+    "GeneratingUnit.startupTime": {
+      "title": "startupTime",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Seconds.json",
+      "description": "Time it takes to get the unit on-line, from the time that the prime mover mechanical power is applied."
+    },
+    "GeneratingUnit.tieLinePF": {
+      "title": "tieLinePF",
+      "type": "number",
+      "description": "Generating unit economic participation factor."
+    },
+    "GeneratingUnit.variableCost": {
+      "title": "variableCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Money.json",
+      "description": "The variable cost component of production per unit of ActivePower."
+    },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "Equipment.aggregate": {
+      "title": "aggregate",
+      "type": "boolean",
+      "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection."
+    },
+    "Equipment.networkAnalysisEnabled": {
+      "title": "networkAnalysisEnabled",
+      "type": "boolean",
+      "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true."
+    },
+    "GeneratingUnit.totalEfficiency": {
+      "title": "totalEfficiency",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/PerCent.json",
+      "description": "The efficiency of the unit in converting the fuel into electrical energy."
+    },
+    "Equipment.normallyInService": {
+      "title": "normallyInService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "ThermalGeneratingUnit.oMCost": {
+      "title": "oMCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/CostPerHeatUnit.json",
+      "description": "Operating and maintenance cost for the thermal unit."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    },
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
+    },
+    "Equipment.inService": {
+      "title": "inService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "GeneratingUnit.allocSpinResP": {
+      "title": "allocSpinResP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "The planned unused capacity (spinning reserve) which can be used to support emergency load."
+    },
+    "GeneratingUnit.autoCntrlMarginP": {
+      "title": "autoCntrlMarginP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "The planned unused capacity which can be used to support automatic control overruns."
+    },
+    "GeneratingUnit.baseP": {
+      "title": "baseP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "For dispatchable units, this value represents the economic active power basepoint, for units that are not dispatchable, this value represents the fixed generation value. The value shall be between the operating low and high limits."
+    },
+    "GeneratingUnit.controlDeadband": {
+      "title": "controlDeadband",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePower.json",
+      "description": "Unit control error deadband. When a unit's desired active power change is less than this deadband, then no control pulses will be sent to the unit."
+    },
+    "GeneratingUnit.controlPulseHigh": {
+      "title": "controlPulseHigh",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Seconds.json",
+      "description": "Pulse high limit which is the largest control pulse that the unit can respond to."
+    },
+    "GeneratingUnit.controlPulseLow": {
+      "title": "controlPulseLow",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Seconds.json",
+      "description": "Pulse low limit which is the smallest control pulse that the unit can respond to."
+    },
+    "GeneratingUnit.controlResponseRate": {
+      "title": "controlResponseRate",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ActivePowerChangeRate.json",
+      "description": "Unit response rate which specifies the active power change for a control pulse of one second in the most responsive loading level of the unit."
+    },
+    "GeneratingUnit.efficiency": {
+      "title": "efficiency",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/PerCent.json",
+      "description": "The efficiency of the unit in converting mechanical energy, from the prime mover, into electrical energy."
+    },
+    "IdentifiedObject.aliasName": {
+      "title": "aliasName",
+      "type": "string",
+      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
+    },
+    "GeneratingUnit.genControlMode": {
+      "title": "genControlMode",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/GeneratorControlMode.json",
+      "description": "The unit control mode."
+    },
+    "GeneratingUnit.genControlSource": {
+      "title": "genControlSource",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/GeneratorControlSource.json",
+      "description": "The source of controls for a generating unit.  Defines the control status of the generating unit."
+    }
+  },
+  "title": "ThermalGeneratingUnit",
+  "description": "A generating unit whose prime mover could be a steam turbine, combustion turbine, or diesel engine.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ThermalGeneratingUnit.json",
+  "license": "**Copyright**\nThe entire work provided in the UML project file is dedicated to the public domain and is copyrighted under an Apache 2\\.0 Open Source License. Major portions of this license are owned by the Electric Power Research Institute (EPRI) and the remaining portions are provided by other contributors.\n\nThe Apache 2\\.0 **Grant of Copyright License**: Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non\\-exclusive, no\\-charge, royalty\\-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.\nPer the Apache 2\\.0 Copyright, **Redistribution is provided under the following terms and conditions**. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:\n1\\. You must give any other recipients of the Work or Derivative Works a copy of this License; and\n2\\. You must cause any modified files to carry prominent notices stating that You changed the files; and \n3\\. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and \n4\\. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."
+}

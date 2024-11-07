@@ -1,0 +1,186 @@
+{
+  "type": "object",
+  "properties": {
+    "CableInfo.isStrandFill": {
+      "title": "isStrandFill",
+      "type": "boolean",
+      "description": "True if wire strands are extruded in a way to fill the voids in the cable."
+    },
+    "WireInfo.sizeDescription": {
+      "title": "sizeDescription",
+      "type": "string",
+      "description": "Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5)."
+    },
+    "WireInfo.insulationThickness": {
+      "title": "insulationThickness",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "(if insulated conductor) Thickness of the insulation."
+    },
+    "ConcentricNeutralCableInfo.neutralStrandCount": {
+      "title": "neutralStrandCount",
+      "type": "integer",
+      "description": "Number of concentric neutral strands."
+    },
+    "WireInfo.coreStrandCount": {
+      "title": "coreStrandCount",
+      "type": "integer",
+      "description": "(if used) Number of strands in the steel core."
+    },
+    "Ravens.CimObjectType": {
+      "title": "CimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
+    },
+    "WireInfo.ratedCurrent": {
+      "title": "ratedCurrent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/CurrentFlow.json",
+      "description": "Current carrying capacity of the wire under stated thermal conditions."
+    },
+    "WireInfo.radius": {
+      "title": "radius",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "Outside radius of the wire."
+    },
+    "ConcentricNeutralCableInfo.neutralStrandGmr": {
+      "title": "neutralStrandGmr",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "Geometric mean radius of the neutral strand."
+    },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "ConcentricNeutralCableInfo.diameterOverNeutral": {
+      "title": "diameterOverNeutral",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "Diameter over the concentric neutral strands."
+    },
+    "CableInfo.outerJacketKind": {
+      "title": "outerJacketKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/CableOuterJacketKind.json",
+      "description": "Kind of outer jacket of this cable."
+    },
+    "CableInfo.nominalTemperature": {
+      "title": "nominalTemperature",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Temperature.json",
+      "description": "Maximum nominal design operating temperature."
+    },
+    "WireInfo.material": {
+      "title": "material",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/WireMaterialKind.json",
+      "description": "Conductor material."
+    },
+    "WireInfo.rDC20": {
+      "title": "rDC20",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ResistancePerLength.json",
+      "description": "DC resistance per unit length of the conductor at 20 \u00b0C."
+    },
+    "CableInfo.diameterOverCore": {
+      "title": "diameterOverCore",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "Diameter over the core, including any semi-con screen; should be the insulating layer's inside diameter."
+    },
+    "WireInfo.rAC50": {
+      "title": "rAC50",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ResistancePerLength.json",
+      "description": "AC resistance per unit length of the conductor at 50 \u00b0C."
+    },
+    "WireInfo.coreRadius": {
+      "title": "coreRadius",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "(if there is a different core material) Radius of the central core."
+    },
+    "WireInfo.insulationMaterial": {
+      "title": "insulationMaterial",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/WireInsulationKind.json",
+      "description": "(if insulated conductor) Material used for insulation."
+    },
+    "ConcentricNeutralCableInfo.neutralStrandRadius": {
+      "title": "neutralStrandRadius",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "Outside radius of the neutral strand."
+    },
+    "CableInfo.diameterOverJacket": {
+      "title": "diameterOverJacket",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "Diameter over the outermost jacketing layer."
+    },
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
+    },
+    "CableInfo.sheathAsNeutral": {
+      "title": "sheathAsNeutral",
+      "type": "boolean",
+      "description": "True if sheath / shield is used as a neutral (i.e., bonded)."
+    },
+    "CableInfo.shieldMaterial": {
+      "title": "shieldMaterial",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/CableShieldMaterialKind.json",
+      "description": "Material of the shield."
+    },
+    "WireInfo.rAC75": {
+      "title": "rAC75",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ResistancePerLength.json",
+      "description": "AC resistance per unit length of the conductor at 75 \u00b0C."
+    },
+    "WireInfo.strandCount": {
+      "title": "strandCount",
+      "type": "integer",
+      "description": "Number of strands in the conductor."
+    },
+    "ConcentricNeutralCableInfo.neutralStrandRDC20": {
+      "title": "neutralStrandRDC20",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ResistancePerLength.json",
+      "description": "DC resistance per unit length of the neutral strand at 20 \u00b0C."
+    },
+    "CableInfo.diameterOverInsulation": {
+      "title": "diameterOverInsulation",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "Diameter over the insulating layer, excluding outer screen."
+    },
+    "CableInfo.constructionKind": {
+      "title": "constructionKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/CableConstructionKind.json",
+      "description": "Kind of construction of this cable."
+    },
+    "WireInfo.rAC25": {
+      "title": "rAC25",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ResistancePerLength.json",
+      "description": "AC resistance per unit length of the conductor at 25 \u00b0C."
+    },
+    "CableInfo.diameterOverScreen": {
+      "title": "diameterOverScreen",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "Diameter over the outer screen; should be the shield's inside diameter."
+    },
+    "WireInfo.gmr": {
+      "title": "gmr",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Length.json",
+      "description": "Geometric mean radius. If we replace the conductor by a thin walled tube of radius GMR, then its reactance is identical to the reactance of the actual conductor."
+    },
+    "IdentifiedObject.aliasName": {
+      "title": "aliasName",
+      "type": "string",
+      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    },
+    "WireInfo.insulated": {
+      "title": "insulated",
+      "type": "boolean",
+      "description": "True if conductor is insulated."
+    }
+  },
+  "title": "ConcentricNeutralCableInfo",
+  "description": "Concentric neutral cable data.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/ConcentricNeutralCableInfo.json",
+  "license": "**Copyright**\nThe entire work provided in the UML project file is dedicated to the public domain and is copyrighted under an Apache 2\\.0 Open Source License. Major portions of this license are owned by the Electric Power Research Institute (EPRI) and the remaining portions are provided by other contributors.\n\nThe Apache 2\\.0 **Grant of Copyright License**: Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non\\-exclusive, no\\-charge, royalty\\-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.\nPer the Apache 2\\.0 Copyright, **Redistribution is provided under the following terms and conditions**. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:\n1\\. You must give any other recipients of the Work or Derivative Works a copy of this License; and\n2\\. You must cause any modified files to carry prominent notices stating that You changed the files; and \n3\\. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and \n4\\. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."
+}

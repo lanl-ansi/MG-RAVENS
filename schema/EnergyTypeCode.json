@@ -1,0 +1,28 @@
+{
+  "title": "EnergyTypeCode",
+  "description": "Valid Enumerations:\n1) DASE Day Ahead Scheduled Energy; \n2) DSSE Day Ahead Incremental Self Schedule Energy; \n3) DABE Day Ahead Incremental Energy Bid Awarded Energy; \n4) OE Optimal Energy; \n5) HASE Hour ahead pre-dispatched schedule energy; \n6) SRE Standard Ramping Energy; \n7) RED Ramping Energy Deviation; \n8) EDE Exceptional Dispatch energy; \n9) RMRE RMR Energy; \n10) MSSLFE MSSLF Energy; \n11) RE Residual Energy; \n12) MLE Minimum Load Energy; \n13) SE SLIC Energy; \n14) RTSSE Real time self scheduled energy; \n15) DMLE Day ahead minimum load energy; \n16) PE Pumping Energy; \n17) TEE Total Expected Energy; \n18) DAPE - Day-Ahead Pumping Energy;",
+  "type": "string",
+  "enum": [
+    "DSSE",
+    "SE",
+    "MSSLFE",
+    "DASE",
+    "DAPE",
+    "OE",
+    "PE",
+    "SRE",
+    "RMRE",
+    "RTSSE",
+    "DMLE",
+    "HASE",
+    "DABE",
+    "TEE",
+    "MLE",
+    "RED",
+    "EDE",
+    "RE"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/EnergyTypeCode.json",
+  "license": "**Copyright**\nThe entire work provided in the UML project file is dedicated to the public domain and is copyrighted under an Apache 2\\.0 Open Source License. Major portions of this license are owned by the Electric Power Research Institute (EPRI) and the remaining portions are provided by other contributors.\n\nThe Apache 2\\.0 **Grant of Copyright License**: Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non\\-exclusive, no\\-charge, royalty\\-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.\nPer the Apache 2\\.0 Copyright, **Redistribution is provided under the following terms and conditions**. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:\n1\\. You must give any other recipients of the Work or Derivative Works a copy of this License; and\n2\\. You must cause any modified files to carry prominent notices stating that You changed the files; and \n3\\. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and \n4\\. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."
+}
