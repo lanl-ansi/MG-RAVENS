@@ -1,18 +1,18 @@
 from copy import deepcopy
 
-_default_base_id_url = "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema"
+_default_base_uri = "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema"
 _schema_url = "https://json-schema.org/draft/2020-12/schema"
 
 
 class Schemas:
-    def __init__(self, schema, base_id_url=_default_base_id_url):
+    def __init__(self, schema, base_id_uri=_default_base_uri):
         self.schema = deepcopy(schema)
         self.schemas = {}
-        self.base_id_url = base_id_url
+        self.base_id_uri = base_id_uri
 
         self.decompose_schema(deepcopy(self.schema))
         self.decompose_defs(deepcopy(self.schema).get("$defs", {}))
-        self.schemas[f"{self.base_id_url}/Root.json"].pop("$defs")
+        self.schemas[f"{self.base_id_uri}/Root.json"].pop("$defs")
 
         self.insert_refs()
 
@@ -30,7 +30,7 @@ class Schemas:
             else:
                 print(debug_key, _schema.keys())
 
-            _schema["$id"] = f"{self.base_id_url}/{title}.json"
+            _schema["$id"] = f"{self.base_id_uri}/{title}.json"
 
             if _schema.get("type", None) == "object":
                 for n in ["properties", "patternProperties"]:
@@ -68,7 +68,7 @@ class Schemas:
         for k, v in defs.items():
             _schema = deepcopy(v)
             _schema["$schema"] = _schema_url
-            _schema["$id"] = f"{self.base_id_url}/{_schema["title"]}.json"
+            _schema["$id"] = f"{self.base_id_uri}/{_schema["title"]}.json"
             self.schemas[_schema["$id"]] = _schema
 
     def insert_refs(self):
@@ -92,14 +92,14 @@ class Schemas:
                             self.schemas[schema_key]["properties"][k]["items"] = {"$ref": key}
                     elif v.get("$ref", "").startswith("#/$defs/"):
                         ref = v["$ref"].split("#/$defs/")[1]
-                        if f"{self.base_id_url}/{ref}.json" in self.schemas:
-                            self.schemas[schema_key]["properties"][k]["$ref"] = f"{self.base_id_url}/{ref}.json"
+                        if f"{self.base_id_uri}/{ref}.json" in self.schemas:
+                            self.schemas[schema_key]["properties"][k]["$ref"] = f"{self.base_id_uri}/{ref}.json"
             elif "oneOf" in schema:
                 for i, item in enumerate(schema["oneOf"]):
                     if item.get("$ref", "").startswith("#/$defs/"):
                         ref = v["$ref"].split("#/$defs/")[1]
-                        if f"{self.base_id_url}/{ref}.json" in self.schemas:
-                            self.schemas[schema_key]["oneOf"][i]["$ref"] = f"{self.base_id_url}/{ref}.json"
+                        if f"{self.base_id_uri}/{ref}.json" in self.schemas:
+                            self.schemas[schema_key]["oneOf"][i]["$ref"] = f"{self.base_id_uri}/{ref}.json"
                     else:
                         key = item.get("title", "")
                         if key in self.schemas:
@@ -109,8 +109,8 @@ class Schemas:
                     for i, item in enumerate(schema["items"]["oneOf"]):
                         if item.get("$ref", "").startswith("#/$defs/"):
                             ref = v["$ref"].split("#/$defs/")[1]
-                            if f"{self.base_id_url}/{ref}.json" in self.schemas:
-                                self.schemas[schema_key]["items"]["oneOf"][i]["$ref"] = f"{self.base_id_url}/{ref}.json"
+                            if f"{self.base_id_uri}/{ref}.json" in self.schemas:
+                                self.schemas[schema_key]["items"]["oneOf"][i]["$ref"] = f"{self.base_id_uri}/{ref}.json"
                         else:
                             key = item.get("$id", "")
                             if key in self.schemas:
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     with open("out/schema/test_schema.json", "w") as f:
         json.dump(schema, f, indent=2)
 
-    a = Schemas(schema, base_id_url=f"file://{os.getcwd()}/out/schema/separate")
+    a = Schemas(schema, base_id_uri=f"file://{os.getcwd()}/out/schema/separate")
 
     add_cim_copyright_notice_to_decomposed_schemas(a.schemas, uml_data)
 
