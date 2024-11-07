@@ -137,27 +137,25 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-    - name: Create schema branch if it doesn't exist
+    - name: Fetch and create schema branch if it doesn't exist
       run: |
-        git fetch origin
-        if ! git rev-parse --verify origin/schema; then
-          git checkout --orphan schema
-          git rm -rf .
+        git fetch origin schema || git checkout --orphan schema
+        git switch schema || git checkout -b schema
+        if [ "$(git rev-parse --abbrev-ref HEAD)" != "schema" ]; then
+          git switch -c schema
+          rm -rf ./*
           mkdir -p schema
           touch schema/.gitkeep
           git add schema/.gitkeep
           git commit -m "Initialize schema branch with schema folder"
           git push -u origin schema
         fi
-    - name: Switch to schema branch
-      run: |
-        git fetch origin schema
-        git checkout schema
     - name: Copy schema artifact to schema folder
       run: |
-        cp -R schema/* .
+        rm -rf schema/*  # Clear existing files in schema folder
+        cp -R schema/* schema/  # Copy new schema files to schema folder
     - name: Commit and push schema updates
       run: |
         git add schema
-        git commit -m "Update schema files"
+        git commit -m "Update schema files" || echo "No changes to commit"
         git push origin schema
