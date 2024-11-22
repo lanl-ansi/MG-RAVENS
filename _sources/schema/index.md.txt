@@ -582,9 +582,9 @@
 
 [ErpInvoiceLineItemKind](../_static/schema/ErpInvoiceLineItemKind.html){.external}
 
-[EstimatedAssetCosts](../_static/schema/EstimatedAssetCosts.html){.external}
+[EstimatedCost](../_static/schema/EstimatedCost.html){.external}
 
-[EstimatedAssetCostsContainer_Container](../_static/schema/EstimatedAssetCostsContainer_Container.html){.external}
+[EstimatedCostContainer_Container](../_static/schema/EstimatedCostContainer_Container.html){.external}
 
 [ExcIEEEST1AUELselectorKind](../_static/schema/ExcIEEEST1AUELselectorKind.html){.external}
 
