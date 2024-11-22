@@ -406,8 +406,8 @@
                 "items": {
                   "type": "string",
                   "$objectType": "reference",
-                  "$objectId": "EstimatedAssetCosts",
-                  "$referencePath": "EstimatedAssetCosts"
+                  "$objectId": "EstimatedCost",
+                  "$referencePath": "EstimatedCost"
                 }
               },
               "ProposedAssetSet.SolutionMetrics": {
@@ -5544,20 +5544,20 @@
           "$objectId": "Application",
           "$referencePath": "Application"
         },
-        "ProposedAsset.EstimatedCosts": {
+        "ProposedAsset.EstimatedCost": {
           "type": "string",
           "$objectType": "reference",
-          "$objectId": "EstimatedAssetCosts",
-          "$referencePath": "EstimatedAssetCost"
+          "$objectId": "EstimatedCost",
+          "$referencePath": "EstimatedCost"
         }
       }
     },
-    "EstimatedAssetCosts": {
+    "EstimatedCost": {
       "$objectType": "object",
       "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "$objectId": "EstimatedAssetCosts",
+      "$objectId": "EstimatedCost",
       "properties": {}
     },
     "Application": {
