@@ -5,8 +5,8 @@
     "items": {
       "type": "string",
       "$objectType": "reference",
-      "$objectId": "EstimatedAssetCosts",
-      "$referencePath": "EstimatedAssetCosts"
+      "$objectId": "EstimatedCost",
+      "$referencePath": "EstimatedCost"
     }
   },
   "ProposedAssetSet.SolutionMetrics": {

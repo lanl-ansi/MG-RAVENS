@@ -95,8 +95,8 @@
     "ProposedAsset": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetContainer_Container.json"
     },
-    "EstimatedAssetCosts": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EstimatedAssetCostsContainer_Container.json"
+    "EstimatedCost": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EstimatedCostContainer_Container.json"
     },
     "Application": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApplicationContainer_Container.json"

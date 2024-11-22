@@ -8,10 +8,10 @@
       "title": "ApplicationPointer",
       "description": "Pointer to Application object"
     },
-    "ProposedAsset.EstimatedCosts": {
+    "ProposedAsset.EstimatedCost": {
       "type": "string",
-      "title": "EstimatedAssetCostsPointer",
-      "description": "Pointer to EstimatedAssetCosts object"
+      "title": "EstimatedCostPointer",
+      "description": "Pointer to EstimatedCost object"
     },
     "IdentifiedObject.description": {
       "title": "description",
