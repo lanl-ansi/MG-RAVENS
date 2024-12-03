@@ -29,8 +29,8 @@
       "title": "BusVoltageObjectivePointer",
       "description": "Pointer to BusVoltageObjective object"
     },
-    "Ravens.CimObjectType": {
-      "title": "CimObjectType",
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
       "type": "string",
       "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
     },

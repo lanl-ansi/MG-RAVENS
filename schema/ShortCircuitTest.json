@@ -36,8 +36,8 @@
       "type": "integer",
       "description": "Tap step number for the energised end of the test pair."
     },
-    "Ravens.CimObjectType": {
-      "title": "CimObjectType",
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
       "type": "string",
       "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
     },

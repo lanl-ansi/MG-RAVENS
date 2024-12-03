@@ -21,8 +21,8 @@
       "type": "integer",
       "description": "(if used) Number of strands in the steel core."
     },
-    "Ravens.CimObjectType": {
-      "title": "CimObjectType",
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
       "type": "string",
       "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
     },

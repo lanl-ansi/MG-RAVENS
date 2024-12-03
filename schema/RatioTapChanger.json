@@ -74,8 +74,8 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
       "description": "For an LTC, the delay for subsequent tap changer operation (second and later step changes)."
     },
-    "Ravens.CimObjectType": {
-      "title": "CimObjectType",
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
       "type": "string",
       "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
     },

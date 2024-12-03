@@ -3,8 +3,8 @@
   "description": "Common type for per-length electrical catalogues describing DC line parameters.",
   "title": "PerLengthDCLineParameter",
   "properties": {
-    "Ravens.CimObjectType": {
-      "title": "CimObjectType",
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
       "type": "string",
       "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
     },

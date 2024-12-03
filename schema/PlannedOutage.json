@@ -16,8 +16,8 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Status.json",
       "description": "Status of this document. For status of subject matter this document represents (e.g., Agreement, Work), use 'status' attribute.\nExample values for 'docStatus.status' are draft, approved, cancelled, etc."
     },
-    "Ravens.CimObjectType": {
-      "title": "CimObjectType",
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
       "type": "string",
       "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
     },

@@ -11,8 +11,8 @@
       "type": "integer",
       "description": "An indication of the \"rank\" or quality of the particular solution set with respect to the other solution sets."
     },
-    "Ravens.CimObjectType": {
-      "title": "CimObjectType",
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
       "type": "string",
       "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
     },
