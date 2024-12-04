@@ -9,6 +9,9 @@
     },
     "EquivalentShunt": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquivalentShuntContainer_Container.json"
+    },
+    "EquivalentSwitch": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquivalentSwitchContainer_Container.json"
     }
   },
   "description": "The class represents equivalent objects that are the result of a network reduction. The class is the base for equivalent objects of different types.",
