@@ -572,9 +572,17 @@
 
 [EquivalentInjectionContainer_Container](../_static/schema/EquivalentInjectionContainer_Container.html){.external}
 
+[EquivalentLine](../_static/schema/EquivalentLine.html){.external}
+
 [EquivalentShunt](../_static/schema/EquivalentShunt.html){.external}
 
 [EquivalentShuntContainer_Container](../_static/schema/EquivalentShuntContainer_Container.html){.external}
+
+[EquivalentSwitch](../_static/schema/EquivalentSwitch.html){.external}
+
+[EquivalentSwitchContainer_Container](../_static/schema/EquivalentSwitchContainer_Container.html){.external}
+
+[EquivalentSwitchPointerArray](../_static/schema/EquivalentSwitchPointerArray.html){.external}
 
 [ErpAccountKind](../_static/schema/ErpAccountKind.html){.external}
 
