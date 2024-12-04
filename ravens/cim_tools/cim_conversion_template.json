@@ -2245,6 +2245,152 @@
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
+                      "$objectId": "EquivalentBranch",
+                      "oneOf": [
+                        {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$primaryObjectHash": "IdentifiedObject.name",
+                          "$secondaryObjectHash": "IdentifiedObject.mRID",
+                          "$objectId": "EquivalentBranch",
+                          "properties": {
+                            "PowerSystemResource.Location": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$objectId": "Location",
+                              "$referencePath": "Location"
+                            },
+                            "PowerSystemResource.GenericAction": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$objectId": "SwitchingAction",
+                              "$referencePath": "SwitchingAction"
+                            },
+                            "ConductingEquipment.Terminals": {
+                              "type": "array",
+                              "items": {
+                                "$objectId": "Terminal",
+                                "$objectType": "object",
+                                "type": "object",
+                                "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                                "properties": {
+                                  "Terminal.ConnectivityNode": {
+                                    "$objectId": "ConnectivityNode",
+                                    "$objectType": "reference",
+                                    "type": "string",
+                                    "$referencePath": "ConnectivityNode"
+                                  },
+                                  "Terminal.SvPowerFlow": {
+                                    "type": "array",
+                                    "items": {
+                                      "$objectId": "SvPowerFlow",
+                                      "$objectType": "object",
+                                      "type": "object",
+                                      "$arrayPosition": null,
+                                      "properties": {}
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ConductingEquipment.BaseVoltage": {
+                              "$objectType": "reference",
+                              "$objectId": "BaseVoltage",
+                              "type": "string",
+                              "$referencePath": "BaseVoltage"
+                            },
+                            "ConductingEquipment.SvStatus": {
+                              "type": "array",
+                              "items": {
+                                "$objectType": "object",
+                                "type": "object",
+                                "$objectId": "SvStatus",
+                                "$arrayPosition": null,
+                                "properties": {}
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$primaryObjectHash": "IdentifiedObject.name",
+                          "$secondaryObjectHash": "IdentifiedObject.mRID",
+                          "$objectId": "EquivalentLine",
+                          "properties": {
+                            "EquivalentLine.EquivalentSwitches": {
+                              "type": "array",
+                              "items": {
+                                "$objectType": "reference",
+                                "$objectId": "EquivalentSwitch",
+                                "type": "string",
+                                "referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EquivalentEquipment/EquivalentSwitch"
+                              }
+                            },
+                            "PowerSystemResource.Location": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$objectId": "Location",
+                              "$referencePath": "Location"
+                            },
+                            "PowerSystemResource.GenericAction": {
+                              "$objectType": "reference",
+                              "type": "string",
+                              "$objectId": "SwitchingAction",
+                              "$referencePath": "SwitchingAction"
+                            },
+                            "ConductingEquipment.Terminals": {
+                              "type": "array",
+                              "items": {
+                                "$objectId": "Terminal",
+                                "$objectType": "object",
+                                "type": "object",
+                                "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                                "properties": {
+                                  "Terminal.ConnectivityNode": {
+                                    "$objectId": "ConnectivityNode",
+                                    "$objectType": "reference",
+                                    "type": "string",
+                                    "$referencePath": "ConnectivityNode"
+                                  },
+                                  "Terminal.SvPowerFlow": {
+                                    "type": "array",
+                                    "items": {
+                                      "$objectId": "SvPowerFlow",
+                                      "$objectType": "object",
+                                      "type": "object",
+                                      "$arrayPosition": null,
+                                      "properties": {}
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "ConductingEquipment.BaseVoltage": {
+                              "$objectType": "reference",
+                              "$objectId": "BaseVoltage",
+                              "type": "string",
+                              "$referencePath": "BaseVoltage"
+                            },
+                            "ConductingEquipment.SvStatus": {
+                              "type": "array",
+                              "items": {
+                                "$objectType": "object",
+                                "type": "object",
+                                "$objectId": "SvStatus",
+                                "$arrayPosition": null,
+                                "properties": {}
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "EquivalentShunt": {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$primaryObjectHash": "IdentifiedObject.name",
+                      "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "properties": {
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
@@ -2303,7 +2449,7 @@
                         }
                       }
                     },
-                    "EquivalentShunt": {
+                    "EquivalentSwitch": {
                       "$objectType": "object",
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
