@@ -155,12 +155,12 @@ if __name__ == "__main__":
 
     schema["$defs"] = build_definitions(uml_data)
 
-    with open("out/schema/test_schema.json", "w") as f:
-        json.dump(schema, f, indent=2)
-
     a = Schemas(schema, base_id_uri=f"file://{os.getcwd()}/out/schema/separate")
 
     add_cim_copyright_notice_to_decomposed_schemas(a.schemas, uml_data)
+
+    with open("out/schema/test_schema.json", "w") as f:
+        json.dump(schema, f, indent=2)
 
     for k, v in a.schemas.items():
         filename = k.split("/")[-1].replace(".json", "")
