@@ -494,7 +494,13 @@
 
 [EnergyArea](../_static/schema/EnergyArea.html){.external}
 
+[EnergyAreaConnector](../_static/schema/EnergyAreaConnector.html){.external}
+
+[EnergyAreaConnectorContainer_Container](../_static/schema/EnergyAreaConnectorContainer_Container.html){.external}
+
 [EnergyAreaContainer_Container](../_static/schema/EnergyAreaContainer_Container.html){.external}
+
+[EnergyAreaPointerArray](../_static/schema/EnergyAreaPointerArray.html){.external}
 
 [EnergyConnection](../_static/schema/EnergyConnection.html){.external}
 
