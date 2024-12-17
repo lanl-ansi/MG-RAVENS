@@ -290,6 +290,21 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
+            "EnergyArea.Equipments": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "$objectType": "reference",
+                "$referencePath": "PowerSystemResource/Equipment",
+                "$objectId": "Equipment"
+              },
+              "EnergyArea.EquivalentInjection": {
+                "$objectType": "reference",
+                "$objectId": "EquivalentInjection",
+                "type": "string",
+                "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EquivalentEquipment/EquivalentInjection"
+              }
+            },
             "SubLoadArea": {
               "type": "object",
               "$objectType": "object",
@@ -2177,6 +2192,24 @@
                   "$objectType": "container",
                   "type": "object",
                   "properties": {
+                    "EnergyAreaConnector": {
+                      "type": "object",
+                      "$objectType": "object",
+                      "$objectId": "EnergyAreaConnector",
+                      "$primaryObjectHash": "IdentifiedObject.name",
+                      "$secondaryObjectHash": "IdentifiedObject.mRID",
+                      "properties": {
+                        "EnergyAreaConnector.EnergyAreas": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "$objectType": "reference",
+                            "$objectId": "EnergyArea",
+                            "$referencePath": "Group/EnergyArea"
+                          }
+                        }
+                      }
+                    },
                     "EquivalentInjection": {
                       "$objectType": "object",
                       "type": "object",
