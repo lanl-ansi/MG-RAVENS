@@ -1322,8 +1322,6 @@
 
 [RiskScoreKind](../_static/schema/RiskScoreKind.html){.external}
 
-[Root](../_static/schema/Root.html){.external}
-
 [RotatingMachine](../_static/schema/RotatingMachine.html){.external}
 
 [RotatingMachineContainer_Container](../_static/schema/RotatingMachineContainer_Container.html){.external}

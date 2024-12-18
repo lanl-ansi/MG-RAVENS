@@ -1,0 +1,25 @@
+# ConnectivityNodes
+
+
+```json
+{
+  "ConnectivityNode": {
+    "sourcebus": {
+      "IdentifiedObject.name": "sourcebus",
+      "IdentifiedObject.mRID": "45984648-c6b4-41ef-9106-03787a523f41",
+      "Ravens.cimObjectType": "ConnectivityNode"
+    },
+    "primary": {
+      "IdentifiedObject.name": "primary",
+      "IdentifiedObject.mRID": "f05ce4e3-130e-4c71-a5d1-d94cf3178334",
+      "Ravens.cimObjectType": "ConnectivityNode"
+    },
+    "loadbus": {
+      "IdentifiedObject.name": "loadbus",
+      "IdentifiedObject.mRID": "197dc17e-90fd-42a5-8c5f-846bfec8c299",
+      "Ravens.cimObjectType": "ConnectivityNode"
+    }
+  }
+}
+```
+
