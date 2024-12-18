@@ -1,4 +1,5 @@
 import math
+import pathlib
 
 from copy import deepcopy
 from uuid import uuid4
@@ -173,6 +174,21 @@ class TransformerBank(object):
             self.vector_group = self.vector_group[0].upper() + self.vector_group[1::]
 
 
+class TranformerInfo:
+    def __init__(self):
+        self.max_wdg = 0
+        self.wdg_list = None
+        self.core_list = None
+        self.mesh_list = None
+
+    def set_max_wdg(self, max_wdg):
+        if max_wdg > 0:
+            self.max_wdg = max_wdg
+            self.wdg_list = [None for i in range(max_wdg)]
+            self.core_list = [None for i in range(max_wdg)]
+            self.mesh_list = [None for i in range((max_wdg - 1) * max_wdg / 2)]
+
+
 class DssExport(object):
     """
     Class for converting a DSS file into CIM XML
@@ -225,6 +241,9 @@ class DssExport(object):
         self.dss = self.raw_dss.to_altdss()
 
         self.uuid_map = {}
+
+        # Transformer specific properties
+        self.transformer_info = TransformerInfo()
         self.transformer_banks = {}
 
         self.graph = Graph()
@@ -245,7 +264,7 @@ class DssExport(object):
         self._add_LinearShuntCompensators()
         self._add_Transformers()
 
-    def save(self, path: str):
+    def save(self, path: pathlib.PosixPath):
         self.graph.serialize(path, max_depth=1, format="pretty-xml")
 
     @staticmethod
@@ -1017,5 +1036,7 @@ class DssExport(object):
 
 
 if __name__ == "__main__":
+    pathlib.Path("out").mkdir(parents=True, exist_ok=True)
+
     d = DssExport("../../ronm/PowerModelsDistribution.jl/test/data/opendss/ut_trans_2w_yy.dss")
     d.save("out/test_opendss_convert.xml")

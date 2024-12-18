@@ -1,9 +1,10 @@
 import html
 import json
+import pathlib
 
 import pandas as pd
 
-from ravens.io import CoreData, DiagramData
+from ravens.uml import UMLData
 
 connector_strings = {
     "Generalization": "-up-|>",
@@ -109,11 +110,9 @@ def build_plantuml_link(uml_data: UMLData, link):
 
 
 if __name__ == "__main__":
-    from ravens.io import parse_uml_data
+    pathlib.Path("out/uml").mkdir(parents=True, exist_ok=True)
 
-    db_filename = "cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi"
-
-    data = parse_uml_data(db_filename, set_index=False)
+    data = UMLData()
 
     plantuml_diagrams = build_all_plantuml_diagrams(uml_data)
 
