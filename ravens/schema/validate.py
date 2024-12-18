@@ -1,11 +1,13 @@
 import json
 import pathlib
+
 from jschon import create_catalog, JSON, JSONSchema, URI, LocalSource, RemoteSource
-from ravens.schema.decompose_schema import _default_base_uri
+
+from ravens.data import _RAVENS_SCHEMA_BASE_URL
 
 
 class RavensValidator:
-    def __init__(self, schema_base_uri: str = _default_base_uri, schema_url: str = None, local_path_to_schema: pathlib.PosixPath = None):
+    def __init__(self, schema_base_uri: str = _RAVENS_SCHEMA_BASE_URL, schema_url: str = None, local_path_to_schema: pathlib.PosixPath = None):
         self.catalog = create_catalog("2020-12")
 
         if schema_url is None:

@@ -1,0 +1,22 @@
+{
+  "PowerSystemResource": {
+    "Equipment": {
+      "ConductingEquipment": {
+        "EnergyConnection": {
+          "RegulatingCondEq": {
+            "PowerElectronicsConnection": {
+              "battery": {
+                "IdentifiedObject.name": "battery",
+                "IdentifiedObject.mRID": "8a611147-1eb3-4cc6-9df8-4b49873717b1",
+                "Ravens.cimObjectType": "PowerElectronicsUnit",
+                "PowerElectronicsConnection.PowerElectronicsUnit": {
+                  "Ravens.cimObjectType": "BatteryUnit"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

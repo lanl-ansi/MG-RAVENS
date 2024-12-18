@@ -1,14 +1,7 @@
-import glob
-import io
-import json
-import os
 import pathlib
 
-from copy import deepcopy
-import xml.etree.ElementTree as ET
-
-import json_schema_for_humans.generate as JSFHGenerate
 import pandas as pd
+import xml.etree.ElementTree as ET
 
 from ravens.data import _UML_XML_PATH
 
@@ -256,34 +249,7 @@ class UMLData:
         return dataframes
 
 
-def write_schemas(chemas: dict, models_path: str = "models", cleanup_model_dir: bool = False, flatten: bool = False):
-
-    "Helper function to write schema to file(s)"
-    if cleanup_model_dir:
-        for file in glob.glob(os.path.join(models_path, "*.json"), recursive=True):
-            os.remove(file)
-
-    for schema_name, schema in schemas.items():
-        if not flatten and "tags" in schema.keys():
-            save_path = os.path.join(models_path, schema["tags"][-1])
-        else:
-            save_path = models_path
-
-        if not os.path.exists(save_path):
-            os.mkdir(save_path)
-
-        with open(os.path.join(save_path, f"{schema_name}.json"), "w") as f:
-            json.dump(schema, f, indent=2)
-
-
-def write_schema_docs(schema: dict, out_file: str):
-    "Helper function to generate Schema documentation using json_schema_for_humans"
-    f = io.StringIO(json.dumps(schema))
-
-    JSFHGenerate.generate_from_file_object(f, out_file)
-
-
 if __name__ == "__main__":
     uml = UMLData()
 
-    uml2 = UMLData.loadf("ravens/lib/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi")
+    uml2 = UMLData.loadf(_UML_XML_PATH)
