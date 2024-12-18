@@ -50,6 +50,6 @@ def build_schema_docs():
 
     generate_schema_docs(tmp_dir, static_schema_dir)
 
-    modify_schema_docs_resource_paths()
+    modify_schema_docs_resource_paths(static_schema_dir)
 
     build_markdown_file(schema_md_dir, static_schema_dir)
