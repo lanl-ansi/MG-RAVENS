@@ -180,10 +180,10 @@ class MultiResolvedPath:
         return iter(self.paths)
 
 
-class RAVENSData:
+class RavensImport:
     def __init__(self, cim_profile_path: pathlib.PosixPath, schema_template: SchemaTemplate = None, prune_unncessary=False):
         g = Graph()
-        self.rdf = g.parse("examples/IEEE13_Assets.xml", format="application/rdf+xml", publicID="urn:uuid:")
+        self.rdf = g.parse(cim_profile_path, format="application/rdf+xml", publicID="urn:uuid:")
 
         self.cim_ns = "http://iec.ch/TC57/CIM100"
         self.rdf_type = URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#type")
@@ -597,6 +597,6 @@ class RAVENSData:
 if __name__ == "__main__":
     pathlib.Path("out").mkdir(parents=True, exist_ok=True)
 
-    d = RAVENSData("examples/IEEE13_Assets.xml")
+    d = RavensImport("examples/IEEE13_Assets.xml")
 
     d.dump("out/IEEE13_Assets.json", indent=2)
