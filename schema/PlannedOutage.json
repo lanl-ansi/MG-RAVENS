@@ -143,7 +143,6 @@
     }
   },
   "title": "PlannedOutage",
-  "description": "nan",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PlannedOutage.json",

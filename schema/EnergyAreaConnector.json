@@ -1,6 +1,5 @@
 {
   "type": "object",
-  "description": "nan",
   "title": "EnergyAreaConnector",
   "properties": {
     "EnergyAreaConnector.EnergyAreas": {

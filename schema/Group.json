@@ -26,7 +26,6 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetSetContainer_Container.json"
     }
   },
-  "description": "nan",
   "title": "Group",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,

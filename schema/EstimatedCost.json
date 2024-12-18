@@ -1,6 +1,5 @@
 {
   "type": "object",
-  "description": "nan",
   "title": "EstimatedCost",
   "properties": {
     "EstimatedCost.assetCost": {

@@ -11,7 +11,6 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AlgorithmObjectives.json"
     }
   },
-  "description": "nan",
   "title": "AlgorithmProperties",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,

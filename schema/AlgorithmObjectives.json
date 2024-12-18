@@ -5,7 +5,6 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BusVoltageObjectiveContainer_Container.json"
     }
   },
-  "description": "nan",
   "title": "AlgorithmObjectives",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,

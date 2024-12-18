@@ -50,7 +50,6 @@
       "description": "nan"
     }
   },
-  "description": "nan",
   "title": "PriceCurve",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,

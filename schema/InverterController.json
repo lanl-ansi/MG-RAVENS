@@ -1,6 +1,5 @@
 {
   "type": "object",
-  "description": "nan",
   "title": "InverterController",
   "properties": {
     "VarWattControlMode.VarWattControlCurve": {
