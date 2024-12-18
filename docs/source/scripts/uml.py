@@ -1,20 +1,17 @@
 import os
 
-from ravens.io import parse_uml_data
-from ravens.uml.d3 import save_uml_diagrams_from_package_name
+from ravens.uml import UMLVisualizer
 
 
 def build_uml_docs():
-    xmi_file = "../../cim/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi"
-    uml_data = parse_uml_data(xmi_file)
-
     current_dir = os.path.dirname(os.path.abspath(__file__))
     static_uml_path = os.path.join(current_dir, "../_static/uml")
+    uml_vis = UMLVisualizer()
 
     md_str = "# UML Diagrams for MG-RAVENS Schema\n"
     for package_name in ["EconomicDesign", "SimplifiedDiagrams", "EquipmentExtensions", "Software"]:
 
-        paths = save_uml_diagrams_from_package_name(uml_data, package_name, static_uml_path)
+        paths = uml_vis.save_uml_diagrams_from_package_name(package_name, static_uml_path)
         md_str = (
             md_str
             + f"\n## {package_name}\n"

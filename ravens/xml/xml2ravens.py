@@ -1,13 +1,18 @@
+import pathlib
 import re
 import warnings
+
+import networkx as nx
 
 from ast import literal_eval
 from collections import namedtuple
 from copy import deepcopy
 
 from rdflib import Graph
+from rdflib.extras.external_graph_libs import rdflib_to_networkx_multidigraph
 from rdflib.term import URIRef, Literal
 
+from ravens.schema import SchemaTemplate
 
 Reference = namedtuple("Reference", ["parent", "id"])
 
@@ -176,19 +181,24 @@ class MultiResolvedPath:
 
 
 class RAVENSData:
-    def __init__(self, rdf_graph, template, prune_unncessary=False):
+    def __init__(self, cim_profile_path: pathlib.PosixPath, schema_template: SchemaTemplate = None, prune_unncessary=False):
+        g = Graph()
+        self.rdf = g.parse("examples/IEEE13_Assets.xml", format="application/rdf+xml", publicID="urn:uuid:")
+
         self.cim_ns = "http://iec.ch/TC57/CIM100"
         self.rdf_type = URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#type")
         self.prune_unncessary = prune_unncessary
 
         self.untokenized_paths = []
         self.reference_paths = {}
-        self.build_paths_from_template(template)
+
+        if schema_template is None:
+            schema_template = SchemaTemplate()
+
+        self.build_paths_from_template(schema_template.template)
 
         self.tokenized_paths = {}
         self.tokenize_paths()
-
-        self.rdf = rdf_graph
 
         self.unique_subject_types = {s: o.split("#")[-1] for s, o in self.rdf.subject_objects(predicate=self.rdf_type)}
         self.paths = {s: [] for s, t in self.unique_subject_types.items()}
@@ -226,7 +236,7 @@ class RAVENSData:
                         pass
                     else:
                         raise Exception(f"unrecognized objectType for '{obj_id}': '{obj.get('$objectType', None)}'")
-                elif obj["type"] == "string" and obj["$objectType"] == "reference":
+                elif obj["type"] == "string" and obj.get("$objectType", None) == "reference":
                     if obj_id not in self.reference_paths:
                         self.reference_paths[obj_id] = set()
 
@@ -569,46 +579,24 @@ class RAVENSData:
         else:
             raise Exception(f"This shouldn't happen: {path}, {self.current_resolved_path}")
 
+    def export_rdf_graphml(self, file_path: pathlib.PosixPath):
+        G = rdflib_to_networkx_multidigraph(self.rdf)
+
+        for i, e in enumerate(G.edges(keys=True)):
+            G.edges[e].update({"label": str(e[-1]), "id": str(i)})
+        for n in G.nodes:
+            G.nodes[n].update({"label": str(n)})
+
+        nx.write_graphml(G, file_path, named_key_ids=True, edge_id_from_attribute="id")
+
+    def dump(self, file_path: pathlib.PosixPath, indent=None):
+        with open(file_path, "w") as f:
+            json.dump(self.data, f, indent=indent)
+
 
 if __name__ == "__main__":
-    from ravens.cim_tools.template import CIMTemplate
-    from rdflib.extras.external_graph_libs import rdflib_to_networkx_multidigraph
-    import networkx as nx
-    import json
+    pathlib.Path("out").mkdir(parents=True, exist_ok=True)
 
-    g = Graph()
-    g.parse("examples/IEEE13_Assets.xml", format="application/rdf+xml", publicID="urn:uuid:")
-    # g.parse("examples/case3_balanced.xml", format="application/rdf+xml", publicID="urn:uuid:")
-    # g.parse("examples/IEEE13_Assets.xml", format="application/rdf+xml", publicID="urn:uuid:")
-    # g.parse("examples/ieee8500u_fuseless_CIM100x.XML", format="application/rdf+xml", publicID="urn:uuid:")
+    d = RAVENSData("examples/IEEE13_Assets.xml")
 
-    # rm = set()
-    # for s, p, o in g.triples((None, None, None)):
-    #     if not isinstance(o, URIRef) or str(o).startswith("http://iec.ch"):
-    #         rm.add((s, p, o))
-
-    # for triple in rm:
-    #     g.remove(triple)
-
-    # G = rdflib_to_networkx_multidigraph(g)
-    # for i, e in enumerate(G.edges(keys=True)):
-    #     G.edges[e].update({"label": str(e[-1]), "id": str(i)})
-    # for n in G.nodes:
-    #     G.nodes[n].update({"label": str(n)})
-
-    # nx.write_graphml(G, "out/rdf_graphs/case3_balanced_uriref.graphml", named_key_ids=True, edge_id_from_attribute="id")
-    # nx.write_graphml(G, "out/rdf_graphs/ieee13_assets_uriref.graphml", named_key_ids=True, edge_id_from_attribute="id")
-    # nx.write_graphml(G, "out/rdf_graphs/ieee8500u_fuseless.graphml", named_key_ids=True, edge_id_from_attribute="id")
-
-    d = RAVENSData(g, CIMTemplate("ravens/cim_tools/cim_conversion_template.json").template, prune_unncessary=False)
-
-    with open("out/IEEE13_Assets.json", "w") as f:
-        json.dump(d.data, f, indent=2)
-
-    # with open("out/test_xml2json_ieee13.json", "w") as f:
-    #     json.dump(d.data, f, indent=2)
-
-    # with open("out/ieee8500u_fuseless.json", "w") as f:
-    #     json.dump(d.data, f, indent=2)
-
-    # g.serialize("out/rdf_graphs/case3_balanced.json", format="json-ld")
+    d.dump("out/IEEE13_Assets.json", indent=2)
