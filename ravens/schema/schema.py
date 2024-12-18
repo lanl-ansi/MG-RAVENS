@@ -4,6 +4,7 @@ import pathlib
 
 import json_schema_for_humans.generate as Gen
 import markdownify
+import pandas as pd
 
 from copy import deepcopy
 
