@@ -13,3 +13,5 @@ poetry.lock
 package-lock.json
 
 *.xml
+
+debug/
