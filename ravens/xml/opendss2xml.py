@@ -174,7 +174,7 @@ class TransformerBank(object):
             self.vector_group = self.vector_group[0].upper() + self.vector_group[1::]
 
 
-class TranformerInfo:
+class TransformerInfo:
     def __init__(self):
         self.max_wdg = 0
         self.wdg_list = None

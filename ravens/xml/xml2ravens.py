@@ -4,6 +4,8 @@ import warnings
 
 import networkx as nx
 
+import json
+
 from ast import literal_eval
 from collections import namedtuple
 from copy import deepcopy
