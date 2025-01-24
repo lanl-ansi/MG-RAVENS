@@ -304,6 +304,8 @@
 
 [ConnectivityNode](../_static/schema/ConnectivityNode.html){.external}
 
+[ConnectivityNodeContainer](../_static/schema/ConnectivityNodeContainer.html){.external}
+
 [ConnectivityNodeContainer_Container](../_static/schema/ConnectivityNodeContainer_Container.html){.external}
 
 [Connector](../_static/schema/Connector.html){.external}
