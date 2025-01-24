@@ -1,19 +1,22 @@
+import json
 import pathlib
 import re
-import warnings
+import traceback
 
 import networkx as nx
-
-import json
 
 from ast import literal_eval
 from collections import namedtuple
 from copy import deepcopy
+from datetime import datetime
 
 from rdflib import Graph
 from rdflib.extras.external_graph_libs import rdflib_to_networkx_multidigraph
 from rdflib.term import URIRef, Literal
 
+from ravens import __version__
+from ravens.logging import logger
+from ravens.data import _DEFAULT_CIM_NAMESPACE
 from ravens.schema import SchemaTemplate
 
 Reference = namedtuple("Reference", ["parent", "id"])
@@ -183,11 +186,11 @@ class MultiResolvedPath:
 
 
 class RavensImport:
-    def __init__(self, cim_profile_path: pathlib.PosixPath, schema_template: SchemaTemplate = None, prune_unncessary=False):
+    def __init__(self, cim_profile_path: pathlib.PosixPath, schema_template: SchemaTemplate = None, prune_unncessary=False, cim_namespace=_DEFAULT_CIM_NAMESPACE):
         g = Graph()
         self.rdf = g.parse(cim_profile_path, format="application/rdf+xml", publicID="urn:uuid:")
 
-        self.cim_ns = "http://iec.ch/TC57/CIM100"
+        self.cim_ns = cim_namespace
         self.rdf_type = URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#type")
         self.prune_unncessary = prune_unncessary
 
@@ -213,7 +216,18 @@ class RavensImport:
         self.current_path_index = 0
         self.current_path_id = 0
 
-        self.convert_rdf()
+        try:
+            self.convert_rdf()
+        except Exception as e:
+            traceback.print_exc()
+
+        self._add_ravens_version()
+
+    def _add_ravens_version(self):
+        if "Versions" not in self.data:
+            self.data["Versions"] = {}
+
+        self.data["Versions"]["RavensVersion"] = {"Ravens.CimObjectType": "RavensVersion", "RavensVersion.date": f"{datetime.date(datetime.now())}", "RavensVersion.version": f"v{__version__}"}
 
     def build_paths_from_template(self, template, current_path=None):
         if current_path is None:
@@ -336,7 +350,7 @@ class RavensImport:
                         count += 1
                 else:
                     if count == 0:
-                        warnings.warn(f"Connecting subject not found: {subject}::{cim_type}. This may mean the data is superfluous")
+                        logger.warning(f"Connecting subject not found: {subject}::{cim_type}. This may mean the data is superfluous")
                         continue
                 self.paths[subject] = self.find_path(subject, ctype=ctypes[0])
             else:
@@ -434,7 +448,7 @@ class RavensImport:
                 self.resolved_path = None  # reset resolved path
                 self.current_resolved_path = None
             else:
-                warnings.warn(f"Path for subject not found: {str(subject)}::{self.unique_subject_types[subject]}")
+                logger.warning(f"Path for subject not found: {str(subject)}::{self.unique_subject_types[subject]}")
                 continue
 
     def build_data(self, subject):
@@ -469,7 +483,7 @@ class RavensImport:
                             position = URIRef(f"{self.cim_ns}#{self.tokenized_paths[ref.id][-1]['position']}")
                             value = f"{ref.id}::'{self.rdf.value(subject=o, predicate=position)}'"
                         else:
-                            warnings.warn(f"Can't find reference for {o}::{self.unique_subject_types[o]} from {subject}::{self.unique_subject_types[subject]}")
+                            logger.warning(f"Can't find reference for {o}::{self.unique_subject_types[o]} from {subject}::{self.unique_subject_types[subject]}")
                             continue
                 elif isinstance(o, URIRef) and o.startswith(self.cim_ns):
                     value = o.split("#")[-1]
