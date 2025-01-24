@@ -22,8 +22,10 @@
     "Switch.SvSwitch": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvSwitchArray.json"
     },
-    "Switch.AssetDatasheet": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SwitchInfo.json"
+    "PowerSystemResource.AssetDatasheet": {
+      "type": "string",
+      "title": "SwitchInfoPointer",
+      "description": "Pointer to SwitchInfo object"
     },
     "ConductingEquipment.BaseVoltage": {
       "type": "string",

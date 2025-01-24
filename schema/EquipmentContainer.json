@@ -1,11 +1,13 @@
 {
-  "objectId": "EquipmentContainer",
   "type": "object",
   "description": "A modelling construct to provide a root class for containing equipment.",
   "title": "EquipmentContainer",
   "oneOf": [
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentContainer.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodeContainer.json"
     },
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BTMEquipmentContainer.json"

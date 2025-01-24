@@ -4,6 +4,9 @@
   "title": "CableInfo",
   "oneOf": [
     {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CableInfo.json"
+    },
+    {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TapeShieldCableInfo.json"
     },
     {
