@@ -179,7 +179,7 @@
         },
         "EquipmentContainer": {
           "$objectType": "object",
-          "objectId": "EquipmentContainer",
+          "$objectId": "EquipmentContainer",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
@@ -196,6 +196,14 @@
                   "$referencePath": "PowerSystemResource/Equipment"
                 }
               }
+            },
+            {
+              "$objectType": "object",
+              "$objectId": "ConnectivityNodeContainer",
+              "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
             },
             {
               "$objectType": "object",
