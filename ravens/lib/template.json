@@ -5126,6 +5126,14 @@
                 {
                   "$objectType": "object",
                   "type": "object",
+                  "$objectId": "CableInfo",
+                  "$primaryObjectHash": "IdentifiedObject.name",
+                  "$secondaryObjectHash": "IdentifiedObject.mRID",
+                  "properties": {}
+                },
+                {
+                  "$objectType": "object",
+                  "type": "object",
                   "$objectId": "TapeShieldCableInfo",
                   "$primaryObjectHash": "IdentifiedObject.name",
                   "$secondaryObjectHash": "IdentifiedObject.mRID",
