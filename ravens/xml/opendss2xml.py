@@ -254,6 +254,8 @@ class DssExport(object):
         self.transformer_banks = {}
         self.xfmrcodes = {}
         self.xfmrcode_uris = {}
+        self.transformer_end_uris = {}
+        self.transformer_terminal_uris = {}
 
         self.graph = Graph()
         self.cim = Namespace("http://iec.ch/TC57/CIM100#")
@@ -272,6 +274,7 @@ class DssExport(object):
         self._add_PowerElectronicsConnections()
         self._add_LinearShuntCompensators()
         self._add_Transformers()
+        self._add_RegulatingControls()
 
     def save(self, path: pathlib.PosixPath):
         self.graph.serialize(path, max_depth=1, format="pretty-xml")
@@ -794,7 +797,7 @@ class DssExport(object):
         delay = 0.0
         for capcontrol in self.dss.CapControl:
             if capcontrol.Capacitor_str == cap.Name:
-                delay = capcontrol.OnDelayVal
+                delay = capcontrol.Delay
                 break
 
         self.add_triple(node, "LinearShuntCompensator.aVRDelay", delay)
@@ -1086,6 +1089,9 @@ class DssExport(object):
             if i + 1 == 1:
                 self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=tr.NormAmps, norm_max=tr.NormAmps, emerg_max=tr.EmergAmps)
 
+            self.transformer_terminal_uris[f"Transformer={tr.Name}={i+1}"] = terminal_uri
+            self.transformer_end_uris[f"Transformer={tr.Name}={i+1}"] = node
+
     def _add_AutoPowerTransformerEnd(self, tr: object, bank: TransformerBank):
         for i in range(tr.Windings):
             node = self.build_cim_obj("PowerTransformerEnd", self.transformer_info.wdg_list[i].uuid, name=self.transformer_info.wdg_list[i].local_name)
@@ -1119,6 +1125,9 @@ class DssExport(object):
 
             if i + 1 == 1:
                 self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=tr.NormAmps, norm_max=tr.NormAmps, emerg_max=tr.EmergAmps)
+
+            self.transformer_terminal_uris[f"Transformer={tr.Name}={i+1}"] = terminal_uri
+            self.transformer_end_uris[f"Transformer={tr.Name}={i+1}"] = node
 
     def _add_TransformerTank(self, tr: object, bank_id: str):
         node = self.build_cim_obj("TransformerTank", name=tr.Name)
@@ -1159,7 +1168,9 @@ class DssExport(object):
                 self.add_triple(node, "TransformerEnd.grounded", False)
                 wye_ungrouned = True
             else:
-                pass
+                self.add_triple(node, "TransformerEnd.grounded", True)
+                self.add_triple(node, "TransformerEnd.rground", tr.RNeut[i])
+                self.add_triple(node, "TransformerEnd.rground", tr.XNeut[i])
 
             phases = phase_kind = parse_ordered_phase_str(tr.Buses[i], n_phases=tr.NumPhases(), kv_base=tr.kVs[i])
             if phases == "s1":
@@ -1176,6 +1187,17 @@ class DssExport(object):
             self.add_triple(node, "TransformerTankEnd.orderedPhases", self.cim[f"OrderedPhaseCodeKind.{phase_kind}"])
 
             self.add_triple(node, "TranformerTankEnd.TransformerTank", subject_uri)
+
+            self.add_triple(node, "TransformerEnd.endNumber", i + 1)
+
+            terminal_uri = self._add_Terminal(node, tr, bus=self._parse_busname(tr.Buses[i]), phases=phases)
+            base_kv = self._add_BaseVoltage(node, tr.Buses[i])
+
+            if i + 1 == 1:
+                self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=tr.NormAmps, norm_max=tr.NormAmps, emerg_max=tr.EmergAmps)
+
+            self.transformer_terminal_uris[f"Transformer={tr.Name}={i+1}"] = terminal_uri
+            self.transformer_end_uris[f"Transformer={tr.Name}={i+1}"] = node
 
     def _add_TransformerEndInfo(self, i: int, xfmrcode: object, subject_uri: URIRef, ratShort: float, ratEmerg: float, Zbase: float):
         node = self.build_cim_obj("TransformerEndInfo", name=f"{xfmrcode.Name}_{i+1}")
@@ -1294,9 +1316,60 @@ class DssExport(object):
 
                 seq += 1
 
+    def _add_RegulatingControls(self):
+        for reg in self.dss.RegControl:
+            v1 = reg.Transformer.kVs[reg.TapWinding - 1] / reg.PTRatio
+            tcc_node = self.build_cim_obj("TapChangerControl", name=f"{reg.Name}_Ctrl")
+
+            self.add_triple(tcc_node, "RegulatingControl.mode", self.cim["RegulatingControlModeKind.voltage"])
+            self.add_triple(tcc_node, "RegulatingControl.Terminal", self.transformer_terminal_uris[f"Transformer={reg.Transformer.Name}={reg.TapWinding}"])
+            self.add_triple(tcc_node, "RegulatingControl.enabled", reg.Enabled)
+            self.add_triple(tcc_node, "RegulatingControl.discrete", True)
+            self.add_triple(tcc_node, "RegulatingControl.targetValue", reg.VReg)
+            self.add_triple(tcc_node, "RegulatingControl.targetDeadband", reg.Band)
+            self.add_triple(tcc_node, "TapChangerControl.lineDropCompensation", reg.LDC_Z > 0.0)
+            self.add_triple(tcc_node, "TapChangerControl.lineDropR", reg.R)
+            self.add_triple(tcc_node, "TapChangerControl.lineDropX", reg.X)
+            if reg.Reversible:
+                self.add_triple(tcc_node, "TapChangerControl.reversible", True)
+                self.add_triple(tcc_node, "TapChangerControl.reverseToNeutral", reg.RevNeutral)
+                self.add_triple(tcc_node, "TapChangerControl.reversingDelay", reg.RevDelay)
+                self.add_triple(tcc_node, "TapChangerControl.reversingPowerThreshold", reg.RevThreshold)
+                self.add_triple(tcc_node, "TapChangerControl.reverseLineDropR", reg.RevR)
+                self.add_triple(tcc_node, "TapChangerControl.reverseLineDropX", reg.RevX)
+                self.add_triple(tcc_node, "TapChangerControl.reverseTargetValue", reg.RevVReg)
+                self.add_triple(tcc_node, "TapChangerControl.reverseTargetDeadband", reg.RevBand)
+            else:
+                self.add_triple(tcc_node, "TapChangerControl.reversible", False)
+
+            if reg.VLimit > 0.0:
+                self.add_triple(tcc_node, "TapChangerControl.maxLimitVoltage", reg.VLimit)
+            else:
+                self.add_triple(tcc_node, "TapChangerControl.maxLimitVoltage", reg.Transformer.MaxTap[reg.TapWinding - 1] * v1)
+
+            self.add_triple(tcc_node, "TapChangerControl.minLimitVoltage", reg.Transformer.MinTap[reg.TapWinding - 1] * v1)
+
+            rtc_node = self.build_cim_obj("RatioTapChanger", name=f"{reg.Name}")
+            self.add_triple(rtc_node, "RatioTapChanger.TransformerEnd", self.transformer_end_uris[f"Transformer={reg.Transformer.Name}={reg.TapWinding}"])
+            self.add_triple(rtc_node, "TapChanger.TapChangerControl", tcc_node)
+            self.add_triple(rtc_node, "RatioTapChanger.stepVoltageIncrement", 100.0 * reg.Transformer.Taps[reg.TapWinding - 1])
+            self.add_triple(rtc_node, "TapChanger.highStep", reg.Transformer.NumTaps / 2)
+            self.add_triple(rtc_node, "TapChanger.lowStep", -reg.Transformer.NumTaps / 2)
+            self.add_triple(rtc_node, "TapChanger.neutralStep", 0)
+            self.add_triple(rtc_node, "TapChanger.normalStep", 0)
+            self.add_triple(rtc_node, "TapChanger.neutralU", v1 * reg.PTRatio)
+            self.add_triple(rtc_node, "TapChanger.initialDelay", reg.Delay)
+            self.add_triple(rtc_node, "TapChanger.subsequentDelay", reg.TapDelay)
+            self.add_triple(rtc_node, "TapChanger.ltcFlag", True)
+            self.add_triple(rtc_node, "TapChanger.controlEnabled", reg.Enabled)
+            self.add_triple(rtc_node, "TapChanger.step", reg.Transformer.Taps[reg.TapWinding - 1])
+            self.add_triple(rtc_node, "TapChanger.ptRatio", reg.PTRatio)
+            self.add_triple(rtc_node, "TapChanger.ctRatio", reg.CTPrim / 0.2)
+            self.add_triple(rtc_node, "TapChanger.ctRating", reg.CTPrim)
+
 
 if __name__ == "__main__":
     pathlib.Path("out").mkdir(parents=True, exist_ok=True)
 
-    d = DssExport("../../ronm/PowerModelsDistribution.jl/test/data/opendss/ut_trans_2w_yy.dss")
+    d = DssExport("../../ronm/PowerModelsDistribution.jl/test/data/opendss/IEEE13_Assets.dss")
     d.save("out/test_opendss_convert.xml")
