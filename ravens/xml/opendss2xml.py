@@ -1,7 +1,6 @@
 import math
 import pathlib
 
-from copy import deepcopy
 from uuid import uuid4
 
 from opendssdirect import dss as odd
@@ -19,7 +18,7 @@ def parse_phase_str(bus: str, n_phases: int, kv_base: float = None, is_delta: bo
         if bus.count(".") == 0 or n_phases == 3:
             return "ABC"
         else:
-            phases = bus.split(".", 1)[-1]
+            phases = bus.split(".", maxsplit=1)[-1]
             if n_phases == 1:
                 if "1.2" in phases or "2.1" in phases:
                     return "A"
@@ -49,7 +48,7 @@ def parse_phase_str(bus: str, n_phases: int, kv_base: float = None, is_delta: bo
         if bus.count(".") == 0:
             return "ABC"
         else:
-            phases = bus.split(".", 1)[-1]
+            phases = bus.split(".", maxsplit=1)[-1]
             if is_secondary:
                 if "1" in phases:
                     phase_str = "s1"
@@ -98,7 +97,9 @@ def parse_ordered_phase_str(bus: str, n_phases: int, kv_base: float = None) -> s
 
 
 class TransformerBank(object):
-    def __init__(self, max_wdg: int):
+    def __init__(self, max_wdg: int, local_name: str, uuid: str = str(uuid4())):
+        self.local_name = local_name
+        self.uuid = uuid
         self.vector_group = ""
         self.max_windings = max_wdg
         self.n_windings = 0
@@ -118,7 +119,7 @@ class TransformerBank(object):
             self.n_windings = tr.Windings
 
         for i in range(tr.Windings):
-            phases = parse_phase_str(tr.Buses[i], n_phases=tr.Phases, kv_base=tr.kVs[i], is_delta=tr.Conns != 0)
+            phases = parse_phase_str(tr.Buses[i], n_phases=tr.Phases, kv_base=tr.kVs[i], is_delta=tr.Conns[i] != 0)
             if "A" in phases:
                 self.phase_a[i] = 1
             if "B" in phases:
@@ -131,7 +132,7 @@ class TransformerBank(object):
             if self.connections[i] == self.connections[0]:
                 self.angles[i] = 1
 
-            if tr.RNeut >= 0.0 or tr.Xneut >= 0.0:
+            if tr.RNeut[i] >= 0.0 or tr.XNeut[i] >= 0.0:
                 if self.connections[i] < 1:
                     self.ground[i] = 1
 
@@ -148,7 +149,7 @@ class TransformerBank(object):
             if i == 1:
                 self.ground[i] = 1
 
-    def _build_vector_group(self):
+    def build_vector_group(self):
         if self.b_auto:
             if self.n_windings < 3:
                 self.vector_group = "YNa"
@@ -162,7 +163,7 @@ class TransformerBank(object):
                     else:
                         self.vector_group += "y"
 
-                    if ground[i] > 0:
+                    if self.ground[i] > 0:
                         self.vector_group += "n"
 
                     if self.angles[i] > 0:
@@ -174,19 +175,25 @@ class TransformerBank(object):
             self.vector_group = self.vector_group[0].upper() + self.vector_group[1::]
 
 
+class Dummy(object):
+    pass
+
+
 class TransformerInfo:
-    def __init__(self):
+    def __init__(self, max_wdg: int):
         self.max_wdg = 0
         self.wdg_list = None
         self.core_list = None
         self.mesh_list = None
 
-    def set_max_wdg(self, max_wdg):
+        self.set_max_wdg(max_wdg)
+
+    def set_max_wdg(self, max_wdg: int):
         if max_wdg > 0:
             self.max_wdg = max_wdg
-            self.wdg_list = [None for i in range(max_wdg)]
-            self.core_list = [None for i in range(max_wdg)]
-            self.mesh_list = [None for i in range((max_wdg - 1) * max_wdg / 2)]
+            self.wdg_list = [Dummy() for i in range(max_wdg)]
+            self.core_list = [Dummy() for i in range(max_wdg)]
+            self.mesh_list = [Dummy() for i in range(int((max_wdg - 1) * max_wdg / 2))]
 
 
 class DssExport(object):
@@ -243,8 +250,10 @@ class DssExport(object):
         self.uuid_map = {}
 
         # Transformer specific properties
-        self.transformer_info = TransformerInfo()
+        self.transformer_info = None
         self.transformer_banks = {}
+        self.xfmrcodes = {}
+        self.xfmrcode_uris = {}
 
         self.graph = Graph()
         self.cim = Namespace("http://iec.ch/TC57/CIM100#")
@@ -944,15 +953,229 @@ class DssExport(object):
         self._add_OperationalLimitSet(terminal_uri, "Voltage", normal_value=base_kv * 1000, norm_min=storage.VMinpu * base_kv * 1000, norm_max=storage.VMaxpu * base_kv * 1000)
 
     def _add_Transformers(self):
+        transformer_wdgs = self.dss.Transformer.Windings.to_list()
+        if transformer_wdgs is not None:
+            max_wdg = max(transformer_wdgs)
+        else:
+            max_wdg = 3
+
+        max_wdg = 3 if max_wdg < 3 else max_wdg
+
+        self.transformer_info = TransformerInfo(max_wdg)
+
         for tr in self.dss.Transformer:
-            tank_info_uri = self._add_TransformerTankInfo(tr.XfmrCode if tr.XfmrCode is not None else tr)
-            self._add_TransformerTank(tr, tank_info_uri)
+            if tr.XfmrCode is None and tr.NumPhases() != 3:
+                code_id = f"CIMXfmrCode_{tr.Name}"
+                self.xfmrcodes[code_id] = tr
+            elif tr.XfmrCode is not None:
+                code_id = tr.XfmrCode_str
+                self.xfmrcodes[code_id] = tr.XfmrCode
 
-    def _add_PowerTransformer(self, tr: object):
-        pass
+        for xc_id, xc in self.xfmrcodes.items():
+            self.xfmrcode_uris[xc_id] = self._add_TransformerTankInfo(xc, xc_id)
 
-    def _add_TransformerTank(self, tr: object, tank_info_uri: URIRef):
-        pass
+        for tr in self.dss.Transformer:
+            if tr.Bank is None:
+                bank_id = f"={tr.Name}"
+            else:
+                bank_id = tr.Bank
+
+            has_tank = True
+            if tr.XfmrCode is None and tr.NumPhases() == 3:
+                has_tank = False
+
+            if bank_id not in self.transformer_banks:
+                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id)
+
+            bank = self.transformer_banks[bank_id]
+            bank.add_Transformer(tr)
+            for i in range(tr.Windings):
+                self.transformer_info.wdg_list[i].local_name = f"{tr.Name}_End_{i+1}"
+                self.transformer_info.wdg_list[i].uuid = str(uuid4())
+            self.transformer_info.core_list[0].local_name = f"{tr.Name}_Yc"
+            self.transformer_info.core_list[0].uuid = str(uuid4())
+            for i in range(int((max_wdg - 1) * max_wdg / 2)):
+                self.transformer_info.mesh_list[i].local_name = f"{tr.Name}_Zsc_{i+1}"
+                self.transformer_info.mesh_list[i].uuid = str(uuid4())
+
+            if has_tank:
+                tank_uri = self._add_TransformerTank(tr, bank_id)
+                self._add_TransformerTankEnd(tank_uri, tr)
+
+            if not has_tank:
+                self._add_CoreAdmittance(tr)
+                self._add_MeshImpedance(tr)
+                self._add_PowerTransformerEnd(tr, bank)
+
+        for atr in self.dss.AutoTrans:
+            bank_id = f"={atr.Name}" if atr.Bank is None else atr.Bank
+            if bank_id not in self.transformer_banks:
+                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id)
+
+            bank = self.transformer_banks[bank_id]
+            bank.add_AutoTransformer(atr)
+            for i in range(atr.Windings):
+                self.transformer_info.wdg_list[i].local_name = f"{atr.Name}_End_{i+1}"
+                self.transformer_info.wdg_list[i].uuid = str(uuid4())
+            self.transformer_info.core_list[0].local_name = f"{atr.Name}_Yc"
+            self.transformer_info.core_list[0].uuid = str(uuid4())
+            for i in range(int((max_wdg - 1) * max_wdg / 2)):
+                self.transformer_info.mesh_list[i].local_name = f"{atr.Name}_Zsc_{i+1}"
+                self.transformer_info.mesh_list[i].uuid = str(uuid4())
+
+            self._add_CoreAdmittance(atr)
+            self._add_MeshImpedance(atr)
+            self._add_AutoPowerTransformerEnd(atr, bank)
+
+        for bank_id, bank in self.transformer_banks.items():
+            bank.build_vector_group()
+            self._add_PowerTransformer(bank)
+
+    def _add_PowerTransformer(self, bank: TransformerBank):
+        node = self.build_cim_obj("PowerTransformer", mrid=bank.uuid, name=bank.local_name)
+        self.add_triple(node, "PowerTransformer.vectorGroup", bank.vector_group)
+
+    def _add_PowerTransformerEnd(self, tr: object, bank: TransformerBank):
+        for i in range(tr.Windings):
+            node = self.build_cim_obj("PowerTransformerEnd", mrid=self.transformer_info.wdg_list[i].uuid, name=self.transformer_info.wdg_list[i].local_name)
+
+            self.add_triple(node, "PowerTransformerEnd.PowerTransformer", URIRef(bank.uuid))
+            self.add_triple(node, "PowerTransformerEnd.ratedS", 1000.0 * tr.kVAs[i])
+            self.add_triple(node, "PowerTransformerEnd.ratedU", 1000.0 * tr.kVs[i])
+            zbase = 1000.0 * tr.kVs[i] ** 2 / tr.kVAs[i]
+            self.add_triple(node, "PowerTransformerEnd.r", zbase * tr.pctR[i] / 100.0)
+
+            if tr.Conns[i] == 1:
+                self.add_triple(node, "PowerTransformerEnd.connectionKind", self.cim["WindingConnection.D"])
+            else:
+                if tr.RNeut[i] > 0.0 or tr.XNeut[i] > 0.0:
+                    self.add_triple(node, "PowerTransformerEnd.connectionKind", self.cim["WindingConnection.Yn"])
+                else:
+                    self.add_triple(node, "PowerTransformerEnd.connectionKind", self.cim["WindingConnection.Y"])
+
+            if tr.Conns[i] != tr.Conns[0]:
+                self.add_triple(node, "PowerTransformerEnd.phaseAngleClock", 1)
+            else:
+                self.add_triple(node, "PowerTransformerEnd.phaseAngleClock", 0)
+
+            j = i * tr.NumConductors() + tr.NumPhases() + 1
+            self.raw_dss.Basic.SetActiveClass("Transformer")
+            self.raw_dss.ActiveClass.First()
+            while self.raw_dss.CktElement.Name() != f"Transformer.{tr.Name}":
+                self.raw_dss.ActiveClass.Next()
+
+            if tr.Conns[i] == 0:
+                self.add_triple(node, "TransformerEnd.grounded", False)
+            elif self.raw_dss.CktElement.NodeRef()[j] == 0:
+                self.add_triple(node, "TransformerEnd.grounded", True)
+                self.add_triple(node, "TransformerEnd.rground", 0.0)
+                self.add_triple(node, "TransformerEnd.xground", 0.0)
+            elif tr.RNeut[i] < 0.0:
+                self.add_triple(node, "TransformerEnd.grounded", False)
+            else:
+                self.add_triple(node, "TransformerEnd.grounded", True)
+                self.add_triple(node, "TransformerEnd.rground", tr.RNeut[i])
+                self.add_triple(node, "TransformerEnd.xground", tr.XNeut[i])
+
+            self.add_triple(node, "TransformerEnd.endNumber", i + 1)
+
+            phases = parse_phase_str(tr.Buses[i], tr.Phases)
+            terminal_uri = self._add_Terminal(node, tr, bus=self._parse_busname(tr.Buses[i]), phases=phases)
+            base_kv = self._add_BaseVoltage(node, tr.Buses[i])
+
+            if i + 1 == 1:
+                self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=tr.NormAmps, norm_max=tr.NormAmps, emerg_max=tr.EmergAmps)
+
+    def _add_AutoPowerTransformerEnd(self, tr: object, bank: TransformerBank):
+        for i in range(tr.Windings):
+            node = self.build_cim_obj("PowerTransformerEnd", self.transformer_info.wdg_list[i].uuid, name=self.transformer_info.wdg_list[i].local_name)
+
+            self.add_triple(node, "PowerTransformerEnd.PowerTransformer", URIRef(bank.uuid))
+            self.add_triple(node, "PowerTransformerEnd.ratedS", 1000.0 * tr.kVAs[i])
+            self.add_triple(node, "PowerTransformerEnd.ratedU", 1000.0 * tr.kVs[i])
+
+            zbase = 1000.0 * tr.kVs[i] ** 2 / tr.kVAs[i]
+            self.add_triple(node, "PowerTransformerEnd.r", zbase * tr.pctR[i] / 100.0)
+            if i + 1 == 1:
+                self.add_triple(node, "PowerTransformerEnd.connectionKind", self.cim["WindingConnection.Y"])
+                self.add_triple(node, "PowerTransformerEnd.phaseAngleClock", 0)
+                self.add_triple(node, "TransformerEnd.grounded", False)
+            elif i + 1 == 2:
+                self.add_triple(node, "PowerTransformerEnd.connectionKind", self.cim["WindingConnection.A"])
+                self.add_triple(node, "PowerTransformerEnd.phaseAngleClock", 0)
+                self.add_triple(node, "TransformerEnd.grounded", True)
+                self.add_triple(node, "TransformerEnd.rground", 0.0)
+                self.add_triple(node, "TransformerEnd.xground", 0.0)
+            else:
+                self.add_triple(node, "PowerTransformerEnd.connectionKind", self.cim["WindingConnection.D"])
+                self.add_triple(node, "PowerTransformerEnd.phaseAngleClock", 1)
+                self.add_triple(node, "TransformerEnd.grounded", False)
+
+            self.add_triple(node, "TransformerEnd.endNumber", i + 1)
+
+            phases = parse_phase_str(tr.Buses[i], tr.Phases)
+            terminal_uri = self._add_Terminal(node, tr, bus=self._parse_busname(tr.Buses[i]), phases=phases)
+            base_kv = self._add_BaseVoltage(node, tr.Buses[i])
+
+            if i + 1 == 1:
+                self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=tr.NormAmps, norm_max=tr.NormAmps, emerg_max=tr.EmergAmps)
+
+    def _add_TransformerTank(self, tr: object, bank_id: str):
+        node = self.build_cim_obj("TransformerTank", name=tr.Name)
+        xfmrcode_id = f"CIMXfmrCode_{tr.Name}" if tr.XfmrCode is None else tr.XfmrCode_str
+        self.add_triple(node, "TransformerTank.TransformerTankInfo", self.xfmrcode_uris[xfmrcode_id])
+        self.add_triple(node, "TransformerTank.PowerTransformer", URIRef(self.transformer_banks[bank_id].uuid))
+
+        return node
+
+    def _add_TransformerTankEnd(self, subject_uri: URIRef, tr: object):
+        for i in range(tr.Windings):
+            node = self.build_cim_obj("TransformerTankEnd", mrid=self.transformer_info.wdg_list[i].uuid, name=self.transformer_info.wdg_list[i].local_name)
+
+            j1 = i * tr.NumConductors() + 1
+            j2 = j1 + tr.NumPhases()
+            reverse_ground = False
+            wye_ground = False
+            wye_ungrouned = False
+
+            self.raw_dss.Basic.SetActiveClass("Transformer")
+            self.raw_dss.ActiveClass.First()
+            while self.raw_dss.CktElement.Name() != f"Transformer.{tr.Name}":
+                self.raw_dss.ActiveClass.Next()
+
+            if tr.Conns[i] == 1:
+                self.add_triple(node, "TransformerEnd.grounded", False)
+            elif self.raw_dss.CktElement.NodeRef()[j2 - 1] == 0:
+                self.add_triple(node, "TransformerEnd.grounded", True)
+                self.add_triple(node, "TransformerEnd.rground", 0.0)
+                self.add_triple(node, "TransformerEnd.xground", 0.0)
+                wye_ground = True
+            elif self.raw_dss.CktElement.NodeRef()[j1 - 1] == 0:
+                self.add_triple(node, "TransformerEnd.grounded", True)
+                self.add_triple(node, "TransformerEnd.rground", 0.0)
+                self.add_triple(node, "TransformerEnd.xground", 0.0)
+                reverse_ground = True
+            elif tr.RNeut[i] < 0.0:
+                self.add_triple(node, "TransformerEnd.grounded", False)
+                wye_ungrouned = True
+            else:
+                pass
+
+            phases = phase_kind = parse_ordered_phase_str(tr.Buses[i], n_phases=tr.NumPhases(), kv_base=tr.kVs[i])
+            if phases == "s1":
+                phase_kind = "s1N"
+            elif phases == "s2":
+                phase_kind = "Ns2"
+            elif reverse_ground:
+                phase_kind = "N" + phases
+            elif wye_ground:
+                phase_kind = phases + "N"
+            elif wye_ungrouned:
+                phase_kind = phases + "N"
+
+            self.add_triple(node, "TransformerTankEnd.orderedPhases", self.cim[f"OrderedPhaseCodeKind.{phase_kind}"])
+
+            self.add_triple(node, "TranformerTankEnd.TransformerTank", subject_uri)
 
     def _add_TransformerEndInfo(self, i: int, xfmrcode: object, subject_uri: URIRef, ratShort: float, ratEmerg: float, Zbase: float):
         node = self.build_cim_obj("TransformerEndInfo", name=f"{xfmrcode.Name}_{i+1}")
@@ -988,8 +1211,8 @@ class DssExport(object):
 
         return node
 
-    def _add_TransformerTankInfo(self, xfmrcode: object):
-        node = self.build_cim_obj("TransformerTankInfo", name=xfmrcode.Name)
+    def _add_TransformerTankInfo(self, xfmrcode: object, xfmrcode_name: str = None):
+        node = self.build_cim_obj("TransformerTankInfo", name=xfmrcode_name if xfmrcode_name is not None else xfmrcode.Name)
         ratShort = xfmrcode.NormHkVA / xfmrcode.kVAs[0]
         ratEmerg = xfmrcode.EmergHkVA / xfmrcode.kVAs[0]
         Zbase = xfmrcode.kVs[0] ** 2 * 1000 / xfmrcode.kVAs[0]
@@ -1004,6 +1227,8 @@ class DssExport(object):
             for j in range(i + 1, xfmrcode.Windings):
                 seq += 1
                 self._add_ShortCircuitTest(xfmrcode, transformer_ends, seq, i, j)
+
+        return node
 
     def _add_NoLoadTest(self, xfmrcode: object, subject_uri: URIRef):
         node = self.build_cim_obj("NoLoadTest", name=f"{xfmrcode.Name}_{1}")
@@ -1033,6 +1258,41 @@ class DssExport(object):
 
         self.add_triple(node, "ShortCircuitTest.basePower", test_kva * 1000.0)
         self.add_triple(node, "ShortCircuitTest.temperature", 50.0)
+
+    def _add_CoreAdmittance(self, tr: object):
+        node = self.build_cim_obj("TransformerCoreAdmittance", mrid=self.transformer_info.core_list[0].uuid, name=self.transformer_info.core_list[0].local_name)
+
+        zbase = 1000.0 * tr.kVs[0] ** 2 / tr.kVAs[0]
+
+        g = tr.pctNoLoadLoss / 100.0 / zbase
+        self.add_triple(node, "TransformerCoreAdmittance.g", g)
+        self.add_triple(node, "TransformerCoreAdmittance.g0", g)
+
+        b = -tr.pctIMag / 100.0 / zbase
+        self.add_triple(node, "TransformerCoreAdmittance.b", b)
+        self.add_triple(node, "TransformerCoreAdmittance.b0", b)
+        self.add_triple(node, "TransformerCoreAdmittance.TransformerEnd", URIRef(self.transformer_info.wdg_list[0].uuid))
+
+    def _add_MeshImpedance(self, tr: object):
+        seq = 0
+        for i in range(tr.Windings):
+            for k in range(i + 1, tr.Windings):
+                node = self.build_cim_obj("TransformerMeshImpedance", mrid=self.transformer_info.mesh_list[seq].uuid, name=self.transformer_info.mesh_list[seq].local_name)
+
+                zbase = 1000.0 * tr.kVs[i] ** 2 / tr.kVAs[0]
+
+                r = zbase * (tr.pctR[i] / 100.0 + tr.pctRs[k] / 100.0)
+                self.add_triple(node, "TransformerMeshImpedance.r", r)
+                self.add_triple(node, "TransformerMeshImpedance.r0", r)
+
+                x = zbase * tr.XSCArray[seq]
+                self.add_triple(node, "TransformerMeshImpedance.x", x)
+                self.add_triple(node, "TransformerMeshImpedance.x0", x)
+
+                self.add_triple(node, "TransformerMeshImpedance.FromTransformerEnd", URIRef(self.transformer_info.wdg_list[i].uuid))
+                self.add_triple(node, "TransformerMeshImpedance.ToTransformerEnd", URIRef(self.transformer_info.wdg_list[k].uuid))
+
+                seq += 1
 
 
 if __name__ == "__main__":
