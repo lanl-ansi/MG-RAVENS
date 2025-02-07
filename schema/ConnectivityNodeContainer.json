@@ -1,69 +1,42 @@
 {
   "type": "object",
-  "properties": {
-    "VoltageLevel.lowVoltageLimit": {
-      "title": "lowVoltageLimit",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
-      "description": "The bus bar's low voltage limit.\nThe limit applies to all equipment and nodes contained in a given VoltageLevel. It is not required that it is exchanged in pair with highVoltageLimit. It is preferable to use operational VoltageLimit, which prevails, if present."
-    },
-    "Bay.bayEnergyMeasFlag": {
-      "title": "bayEnergyMeasFlag",
-      "type": "boolean",
-      "description": "Indicates the presence/absence of energy measurements."
-    },
-    "Bay.bayPowerMeasFlag": {
-      "title": "bayPowerMeasFlag",
-      "type": "boolean",
-      "description": "Indicates the presence/absence of active/reactive power measurements."
-    },
-    "Bay.breakerConfiguration": {
-      "title": "breakerConfiguration",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BreakerConfiguration.json",
-      "description": "Breaker configuration."
-    },
-    "Bay.busBarConfiguration": {
-      "title": "busBarConfiguration",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BusbarConfiguration.json",
-      "description": "Busbar configuration."
-    },
-    "Ravens.cimObjectType": {
-      "title": "cimObjectType",
-      "type": "string",
-      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
-    },
-    "DCConverterUnit.operationMode": {
-      "title": "operationMode",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DCConverterOperatingModeKind.json",
-      "description": "The operating mode of an HVDC bipole (bipolar, monopolar metallic return, etc)."
-    },
-    "IdentifiedObject.name": {
-      "title": "name",
-      "type": "string",
-      "description": "The name is any free human readable and possibly non unique text naming the object."
-    },
-    "IdentifiedObject.description": {
-      "title": "description",
-      "type": "string",
-      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
-    },
-    "IdentifiedObject.aliasName": {
-      "title": "aliasName",
-      "type": "string",
-      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
-    },
-    "IdentifiedObject.mRID": {
-      "title": "mRID",
-      "type": "string",
-      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
-    },
-    "VoltageLevel.highVoltageLimit": {
-      "title": "highVoltageLimit",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
-      "description": "The bus bar's high voltage limit.\nThe limit applies to all equipment and nodes contained in a given VoltageLevel. It is not required that it is exchanged in pair with lowVoltageLimit. It is preferable to use operational VoltageLimit, which prevails, if present."
-    }
-  },
-  "title": "ConnectivityNodeContainer",
   "description": "A base class for all objects that may contain connectivity nodes or topological nodes.",
+  "title": "ConnectivityNodeContainer",
+  "oneOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodeContainer.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentContainer.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Circuit.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BTMEquipmentContainer.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Bay.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Feeder.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DCEquipmentContainer.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Plant.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Line.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Substation.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VoltageLevel.json"
+    }
+  ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodeContainer.json",

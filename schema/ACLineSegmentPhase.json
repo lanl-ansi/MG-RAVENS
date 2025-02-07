@@ -22,6 +22,19 @@
       "title": "WireSpacingInfoPointer",
       "description": "Pointer to WireSpacingInfo object"
     },
+    "PowerSystemResource.AssetDatasheet": {
+      "type": "string",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "WireInfoPointer",
+      "description": "Pointer to WireInfo object"
+    },
     "ACLineSegmentPhase.phase": {
       "title": "phase",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",

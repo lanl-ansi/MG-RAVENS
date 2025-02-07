@@ -7,6 +7,21 @@
     "TransformerEndInfo.EnergisedEndShortCircuitTests": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShortCircuitTestArray.json"
     },
+    "TransformerEndInfo.CoreAdmittance": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerCoreAdmittance.json"
+    },
+    "TransformerEndInfo.ToMeshImpedance": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerMeshImpedanceArray.json"
+    },
+    "TransformerEndInfo.FromMeshImpedance": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerMeshImpedanceArray.json"
+    },
+    "TransformerEndInfo.TransformerStarImpedance": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerStarImpedance.json"
+    },
+    "TransformerEndInfo.OpenEndOpenCircuitTest": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OpenCircuitTestArray.json"
+    },
     "TransformerEndInfo.emergencyS": {
       "title": "emergencyS",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApparentPower.json",
