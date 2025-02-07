@@ -26,12 +26,13 @@ prune_keys = ["IdentifiedObject.name", "IdentifiedObject.mRID", r"(.+)\.sequence
 
 
 class PathSegment:
-    def __init__(self, position, json_type):
+    def __init__(self, position, json_type, zero_index: bool = False):
         self.position = position
         self.type = json_type
+        self.zero_index = zero_index
 
     def __str__(self):
-        return "PathSegment(" + ", ".join([str(i) for i in [self.position, self.type]]) + ")"
+        return "PathSegment(" + ", ".join([str(i) for i in [self.position, self.type, self.zero_index]]) + ")"
 
     def __repr__(self):
         return self.__str__()
@@ -102,21 +103,25 @@ class MultiPath:
 
 
 class ResolvedPathSegment:
-    def __init__(self, position, json_type, uri, index):
+    def __init__(self, position, json_type, uri, index, zero_index: bool = False):
         self.position = position
         self.type = json_type
         self.uri = uri
         self.index = index
+        self.zero_index = zero_index
 
     @property
     def idx(self):
         if isinstance(self.position, int):
-            return self.position - 1
+            if self.zero_index:
+                return self.position
+            else:
+                return self.position - 1
         else:
             return self.position
 
     def __str__(self):
-        return "ResolvedPathSegment(" + ", ".join([str(i) for i in [self.position, self.type, self.uri, self.index]]) + ")"
+        return "ResolvedPathSegment(" + ", ".join([str(i) for i in [self.position, self.type, self.uri, self.index, self.zero_index]]) + ")"
 
     def __repr__(self):
         return self.__str__()
@@ -208,6 +213,7 @@ class RavensImport:
         self.unique_subject_types = {s: o.split("#")[-1] for s, o in self.rdf.subject_objects(predicate=self.rdf_type)}
         self.paths = {s: [] for s, t in self.unique_subject_types.items()}
 
+        self.object_ids = {}
         self.build_actual_paths()
 
         self.data = {}
@@ -227,7 +233,7 @@ class RavensImport:
         if "Versions" not in self.data:
             self.data["Versions"] = {}
 
-        self.data["Versions"]["RavensVersion"] = {"Ravens.CimObjectType": "RavensVersion", "RavensVersion.date": f"{datetime.date(datetime.now())}", "RavensVersion.version": f"v{__version__}"}
+        self.data["Versions"]["RavensVersion"] = {"Ravens.CimObjectType": "RavensVersion", "RavensVersion.date": f"{datetime.date(datetime.now())}", "RavensVersion.version": f"RAVENSv{__version__}"}
 
     def build_paths_from_template(self, template, current_path=None):
         if current_path is None:
@@ -275,6 +281,7 @@ class RavensImport:
             "id": object_id,
             "type": json_type,
             "position": obj.get(position_key, None) if position_key is not None else position_value,
+            "position_secondary": obj.get("$secondaryObjectHash", None) if position_key is not None else None,
         }
 
         if obj.get("$objectId", None) is not None:
@@ -410,19 +417,18 @@ class RavensImport:
         return obj_real_path
 
     def _build_positions(self, subject, _current_subject, segment):
+        zero_indexed = self.rdf.value(subject=subject, predicate=self.rdf_type) == URIRef(f"{self.cim_ns}#PositionPoint")
         positions = []
         if segment["type"] == "container" or (segment["type"] == "object" and segment["position"] is None):
             positions = [PathSegment(segment["path"], "object")]
         elif _current_subject != subject:
             positions = [_current_subject]
         else:
-            _position = self.rdf.value(subject=_current_subject, predicate=URIRef(f"{self.cim_ns}#{segment['position']}"))
+            _position = self.find_position_id(_current_subject, segment["position"], segment["position_secondary"])
+
             positions = [
                 PathSegment(segment["path"], segment["type"]),
-                PathSegment(
-                    str(_position) if (segment["type"] == "object") else (_position if _position is None else int(_position)),
-                    segment["type"],
-                ),
+                PathSegment(str(_position) if (segment["type"] == "object") else (_position if _position is None else int(_position)), segment["type"], zero_index=zero_indexed),
             ]
 
         return positions
@@ -451,6 +457,18 @@ class RavensImport:
                 logger.warning(f"Path for subject not found: {str(subject)}::{self.unique_subject_types[subject]}")
                 continue
 
+    def find_position_id(self, subject, position_primary, position_secondary):
+        pos_id = self.rdf.value(subject=subject, predicate=URIRef(f"{self.cim_ns}#{position_primary}"))
+        if position_primary is not None and pos_id is None:
+            pos_id = self.rdf.value(subject=subject, predicate=URIRef(f"{self.cim_ns}#{position_secondary}"))
+            if position_secondary is not None and pos_id is None:
+                pos_id = str(subject)
+
+        if pos_id is not None:
+            self.object_ids[subject] = pos_id
+
+        return pos_id
+
     def build_data(self, subject):
         data = {"Ravens.CimObjectType": self.rdf.value(subject=subject, predicate=self.rdf_type).split("#")[-1]}
         for p, o in self.rdf.predicate_objects(subject=subject):
@@ -465,11 +483,12 @@ class RavensImport:
                     except:
                         value = o.value
                 elif pn in self.reference_paths:
-                    if len(set(r.id for r in self.reference_paths[pn])) == 1:
+                    if o in self.object_ids:
+                        value = f"{self.rdf.value(subject=o, predicate=self.rdf_type).split("#")[-1]}::'{self.object_ids[o]}'"
+                    elif len(set(r.id for r in self.reference_paths[pn])) == 1:
                         ref = list(self.reference_paths[pn])[0]
                         try:
-                            position = URIRef(f"{self.cim_ns}#{self.tokenized_paths[ref.id][-1]['position']}")
-                            value = f"{ref.id}::'{self.rdf.value(subject=o, predicate=position)}'"
+                            value = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
                         except KeyError:
                             continue
                     else:
@@ -480,8 +499,7 @@ class RavensImport:
                                 break
 
                         if ref is not None:
-                            position = URIRef(f"{self.cim_ns}#{self.tokenized_paths[ref.id][-1]['position']}")
-                            value = f"{ref.id}::'{self.rdf.value(subject=o, predicate=position)}'"
+                            value = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
                         else:
                             logger.warning(f"Can't find reference for {o}::{self.unique_subject_types[o]} from {subject}::{self.unique_subject_types[subject]}")
                             continue
@@ -500,12 +518,15 @@ class RavensImport:
                     for o in self.rdf.objects(subject=subject):
                         _rdf_type = self.rdf.value(subject=o, predicate=self.rdf_type)
                         if _rdf_type is not None and _rdf_type.split("#")[-1] == ref.id:
-                            position = URIRef(f"{self.cim_ns}#{self.tokenized_paths[ref.id][-1]['position']}")
-                            data[pn] = f"{ref.id}::'{self.rdf.value(subject=o, predicate=position)}'"
+                            data[pn] = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
+
+        if "IdentifiedObject.mRID" not in data.keys() and not self.prune_unncessary:
+            data["IdentifiedObject.mRID"] = str(subject)
 
         return data
 
     def resolve_path(self, subject, path_id=None):
+        zero_indexed = self.rdf.value(subject=subject, predicate=self.rdf_type) == URIRef(f"{self.cim_ns}#PositionPoint")
         if isinstance(self.paths[subject], MultiPath):
             if self.resolved_path is None:
                 self.resolved_path = MultiResolvedPath()
@@ -516,7 +537,7 @@ class RavensImport:
                     if isinstance(item, URIRef):
                         self.resolve_path(item, path_id=path_id)
                     else:
-                        self.resolved_path.update(path_id, ResolvedPathSegment(item.position, item.type, subject, i))
+                        self.resolved_path.update(path_id, ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
         else:
             if self.resolved_path is None:
                 self.resolved_path = ResolvedPath()
@@ -525,9 +546,9 @@ class RavensImport:
                 if isinstance(item, URIRef):
                     self.resolve_path(item, path_id=path_id)
                 elif path_id is not None:
-                    self.resolved_path.update(path_id, ResolvedPathSegment(item.position, item.type, subject, i))
+                    self.resolved_path.update(path_id, ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
                 else:
-                    self.resolved_path.add(ResolvedPathSegment(item.position, item.type, subject, i))
+                    self.resolved_path.add(ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
 
     def add_to_data(self, data, data_to_insert):
         path = self.current_resolved_path[self.current_path_index]
@@ -547,6 +568,8 @@ class RavensImport:
                 if _path.position is None and _path.type == "array":
                     data[path.position].append({})
                     _position = len(data[path.position])
+                    if _path.zero_index:
+                        _position -= 1
 
                     if isinstance(self.paths[_path.uri], MultiPath):
                         self.paths[_path.uri][self.current_path_id][_path.index].position = _position
@@ -558,10 +581,14 @@ class RavensImport:
                 if (isinstance(path.position, int) and path.type == "array") and (isinstance(_path.position, str) and _path.type == "object"):
                     data[path.idx][_path.position] = {**data_to_insert, **data[path.idx].get(_path.position, {})}
                 else:
-                    if len(data[path.position]) < _path.position:
-                        data[path.position] += [{} for i in range(_path.position - len(data[path.position]))]
+                    if len(data[path.position]) < _path.position + bool(_path.zero_index):
+                        data[path.position] += [{} for i in range(_path.position - len(data[path.position]) + bool(_path.zero_index))]
 
-                    data[path.position][_path.idx] = {**data_to_insert, **data[path.position][_path.idx]}
+                    try:
+                        data[path.position][_path.idx] = {**data_to_insert, **data[path.position][_path.idx]}
+                    except IndexError as e:
+                        print(_path, path, data_to_insert, _path.idx, data[path.position])
+                        raise e
             elif path.type == "array" and self.current_resolved_path[self.current_path_index + 1].position is None and self.current_resolved_path[self.current_path_index + 1].type == "array":
                 _path = self.current_resolved_path[self.current_path_index + 1]
                 if _path.position is None and _path.type == "array":
