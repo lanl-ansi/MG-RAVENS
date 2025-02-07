@@ -177,17 +177,27 @@
             }
           }
         },
-        "EquipmentContainer": {
+        "ConnectivityNodeContainer": {
           "$objectType": "object",
-          "$objectId": "EquipmentContainer",
+          "$objectId": "ConnectivityNodeContainer",
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "oneOf": [
             {
               "$objectType": "object",
+              "$objectId": "ConnectivityNodeContainer",
+              "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
               "$objectId": "EquipmentContainer",
               "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
                 "EquipmentContainer.Equipments": {
                   "$objectType": "reference",
@@ -199,7 +209,7 @@
             },
             {
               "$objectType": "object",
-              "$objectId": "ConnectivityNodeContainer",
+              "$objectId": "Circuit",
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
@@ -209,6 +219,8 @@
               "$objectType": "object",
               "$objectId": "BTMEquipmentContainer",
               "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
                 "EquipmentContainer.Equipments": {
                   "type": "array",
@@ -241,6 +253,8 @@
               "$objectType": "object",
               "$objectId": "Feeder",
               "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
                 "EquipmentContainer.Equipments": {
                   "type": "array",
@@ -257,24 +271,32 @@
               "$objectType": "object",
               "$objectId": "DCEquipmentContainer",
               "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {}
             },
             {
               "$objectType": "object",
               "$objectId": "Plant",
               "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {}
             },
             {
               "$objectType": "object",
               "$objectId": "Line",
               "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {}
             },
             {
               "$objectType": "object",
               "$objectId": "Substation",
               "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
                 "Substation.Region": {
                   "$objectType": "reference",
@@ -288,6 +310,8 @@
               "$objectType": "object",
               "$objectId": "VoltageLevel",
               "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {}
             }
           ]
@@ -2703,19 +2727,19 @@
                                     "$objectType": "reference",
                                     "$objectId": "OverheadWireInfo",
                                     "type": "string",
-                                    "$referencePath": "AssetInfo/WireInfo/OverheadWireInfo"
+                                    "$referencePath": "AssetInfo/WireInfo"
                                   },
                                   {
                                     "$objectType": "reference",
                                     "$objectId": "TapeShieldCableInfo",
                                     "type": "string",
-                                    "$referencePath": "AssetInfo/WireInfo/TapeShieldCableInfo"
+                                    "$referencePath": "AssetInfo/WireInfo"
                                   },
                                   {
                                     "$objectType": "reference",
                                     "$objectId": "ConcentricNeutralCableInfo",
                                     "type": "string",
-                                    "$referencePath": "AssetInfo/WireInfo/ConcentricNeutralCableInfo"
+                                    "$referencePath": "AssetInfo/WireInfo"
                                   }
                                 ]
                               },
@@ -2724,6 +2748,25 @@
                                 "$objectId": "WireSpacingInfo",
                                 "type": "string",
                                 "$referencePath": "AssetInfo/WireSpacingInfo"
+                              },
+                              "PowerSystemResource.AssetDatasheet": {
+                                "type": "string",
+                                "$objectType": "reference",
+                                "$objectId": "WireInfo",
+                                "oneOf": [
+                                  {
+                                    "type": "string",
+                                    "$objectType": "reference",
+                                    "$objectId": "CableInfo",
+                                    "$referencePath": "AssetInfo/WireInfo"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "$objectType": "reference",
+                                    "$objectId": "OverheadWireInfo",
+                                    "$referencePath": "AssetInfo/WireInfo"
+                                  }
+                                ]
                               }
                             }
                           }
@@ -2747,15 +2790,15 @@
                           "oneOf": [
                             {
                               "type": "string",
-                              "$objectType": "refernece",
+                              "$objectType": "reference",
                               "$objectId": "CableInfo",
-                              "$referencePath": "AssetInfo/WireInfo/CableInfo"
+                              "$referencePath": "AssetInfo/WireInfo"
                             },
                             {
                               "type": "string",
                               "$objectType": "reference",
                               "$objectId": "OverheadWireInfo",
-                              "$referencePath": "AssetInfo/WireInfo/OverheadWireInfo"
+                              "$referencePath": "AssetInfo/WireInfo"
                             }
                           ]
                         },
@@ -3188,7 +3231,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -3284,7 +3327,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -3380,7 +3423,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -3476,7 +3519,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -3572,7 +3615,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -3668,7 +3711,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -3764,7 +3807,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -3860,7 +3903,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -3956,7 +3999,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -4052,7 +4095,7 @@
                         "PowerSystemResource.AssetDatasheet": {
                           "$objectType": "reference",
                           "$objectId": "SwitchInfo",
-                          "$referencePath": "/AssetInfo/SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
                           "type": "string"
                         },
                         "ConductingEquipment.BaseVoltage": {
@@ -5084,11 +5127,21 @@
           }
         },
         "WireInfo": {
-          "$objectType": "container",
+          "$objectType": "object",
           "type": "object",
           "$objectId": "WireInfo",
-          "properties": {
-            "OverheadWireInfo": {
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "oneOf": [
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "WireInfo",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
+            },
+            {
               "$objectType": "object",
               "type": "object",
               "$objectId": "OverheadWireInfo",
@@ -5107,40 +5160,31 @@
                 }
               }
             },
-            "CableInfo": {
+            {
               "$objectType": "object",
               "type": "object",
               "$objectId": "CableInfo",
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "oneOf": [
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "CableInfo",
-                  "$primaryObjectHash": "IdentifiedObject.name",
-                  "$secondaryObjectHash": "IdentifiedObject.mRID",
-                  "properties": {}
-                },
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "TapeShieldCableInfo",
-                  "$primaryObjectHash": "IdentifiedObject.name",
-                  "$secondaryObjectHash": "IdentifiedObject.mRID",
-                  "properties": {}
-                },
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "ConcentricNeutralCableInfo",
-                  "$primaryObjectHash": "IdentifiedObject.name",
-                  "$secondaryObjectHash": "IdentifiedObject.mRID",
-                  "properties": {}
-                }
-              ]
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "TapeShieldCableInfo",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "ConcentricNeutralCableInfo",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
             }
-          }
+          ]
         },
         "PowerTransformerInfo": {
           "$objectType": "object",
@@ -5150,40 +5194,80 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
             "PowerTransformerInfo.TransformerTankInfos": {
-              "type": "array",
-              "items": {
-                "$objectType": "object",
-                "type": "object",
-                "$objectId": "TransformerTankInfo",
-                "$arrayPosition": null,
-                "properties": {
-                  "TransformerTankInfo.TransformerEndInfos": {
-                    "type": "array",
-                    "items": {
-                      "$objectId": "TransformerEndInfo",
-                      "$objectType": "object",
-                      "type": "object",
-                      "$arrayPosition": "endNumber",
-                      "properties": {
-                        "TransformerEndInfo.EnergisedEndNoLoadTests": {
-                          "type": "array",
-                          "items": {
-                            "$objectId": "NoLoadTest",
-                            "$arrayPosition": null,
-                            "$objectType": "object",
-                            "type": "object",
-                            "properties": {}
-                          }
-                        },
-                        "TransformerEndInfo.EnergisedEndShortCircuitTests": {
-                          "type": "array",
-                          "items": {
-                            "$objectId": "ShortCircuitTest",
-                            "$arrayPosition": null,
-                            "$objectType": "object",
-                            "type": "object",
-                            "properties": {}
-                          }
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "TransformerTankInfo",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {
+                "TransformerTankInfo.TransformerEndInfos": {
+                  "type": "array",
+                  "items": {
+                    "$objectId": "TransformerEndInfo",
+                    "$objectType": "object",
+                    "type": "object",
+                    "$arrayPosition": "endNumber",
+                    "properties": {
+                      "TransformerEndInfo.EnergisedEndNoLoadTests": {
+                        "type": "array",
+                        "items": {
+                          "$objectId": "NoLoadTest",
+                          "$arrayPosition": null,
+                          "$objectType": "object",
+                          "type": "object",
+                          "properties": {}
+                        }
+                      },
+                      "TransformerEndInfo.EnergisedEndShortCircuitTests": {
+                        "type": "array",
+                        "items": {
+                          "$objectId": "ShortCircuitTest",
+                          "$arrayPosition": null,
+                          "$objectType": "object",
+                          "type": "object",
+                          "properties": {}
+                        }
+                      },
+                      "TransformerEndInfo.CoreAdmittance": {
+                        "type": "object",
+                        "$objectType": "object",
+                        "$objectId": "TransformerCoreAdmittance",
+                        "properties": {}
+                      },
+                      "TransformerEndInfo.ToMeshImpedance": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "$objectType": "object",
+                          "$objectId": "TransformerMeshImpedance",
+                          "$arrayPosition": null,
+                          "properties": {}
+                        }
+                      },
+                      "TransformerEndInfo.FromMeshImpedance": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "$objectType": "object",
+                          "$objectId": "TransformerMeshImpedance",
+                          "$arrayPosition": null,
+                          "properties": {}
+                        }
+                      },
+                      "TransformerEndInfo.TransformerStarImpedance": {
+                        "type": "object",
+                        "$objectType": "object",
+                        "$objectId": "TransformerStarImpedance",
+                        "properties": {}
+                      },
+                      "TransformerEndInfo.OpenEndOpenCircuitTest": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "$objectType": "object",
+                          "$objectId": "OpenCircuitTest",
+                          "$arrayPosition": null,
+                          "properties": {}
                         }
                       }
                     }
