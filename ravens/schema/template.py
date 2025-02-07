@@ -170,8 +170,7 @@ class SchemaTemplate:
     def convert_cim_type(cim_type: str) -> str:
         return _CIM_PRIMATIVES.get(cim_type, cim_type)
 
-    @staticmethod
-    def collect_template_node_names(template: dict, nodes: list = None, currentParent: str = None, parentObject: str = None):
+    def collect_template_node_names(self, template: dict, nodes: list = None, currentParent: str = None, parentObject: str = None):
         if nodes is None:
             nodes = []
 
