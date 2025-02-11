@@ -2,7 +2,7 @@
   {
     "IdentifiedObject.mRID": "f38da00c-0d14-435a-b231-51bce19eeeb5",
     "IdentifiedObject.name": "ProposedPV1",
-    "Ravens.CimObjectType": "ProposedPhotovoltaicUnitOption",
+    "Ravens.cimObjectType": "ProposedPhotovoltaicUnitOption",
     "ProposedAssetOption.lifetime": "P25Y",
     "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
       "value": 100.0,
@@ -8785,7 +8785,7 @@
   {
     "IdentifiedObject.mRID": "cfe98d40-ffe1-4102-88b0-2a8b337f9224",
     "IdentifiedObject.name": "ProposedPV2",
-    "Ravens.CimObjectType": "ProposedPhotovoltaicUnitOption",
+    "Ravens.cimObjectType": "ProposedPhotovoltaicUnitOption",
     "ProposedAssetOption.lifetime": "P25Y",
     "ProposedAssetOption.operationsAndMaintenanceRateFixed": {
       "value": 50000.0,

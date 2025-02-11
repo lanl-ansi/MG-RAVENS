@@ -2,7 +2,7 @@
   "Groups": {
     "LoadGroup": {
       "ResidentialGroup": {
-        "Ravens.CimObjectType": "LoadGroup",
+        "Ravens.cimObjectType": "LoadGroup",
         "IdentifiedObject.name": "ResidentialGroup",
         "IdentifiedObject.mRID": "daa87cd7-5491-40dd-aa0a-087c64324fc3",
         "LoadGroup.EnergyConsumers": [
@@ -11,7 +11,7 @@
         ]
       },
       "IndustrialGroup": {
-        "Ravens.CimObjectType": "LoadGroup",
+        "Ravens.cimObjectType": "LoadGroup",
         "IdentifiedObject.name": "IndustrialGroup",
         "IdentifiedObject.mRID": "648baaa8-a3d0-403b-9899-f37a04eb88d1",
         "LoadGroup.EnergyConsumers": [
@@ -44,7 +44,7 @@
               "EnergyConsumer.LoadProfile": "EnergyConsumerSchedule::'ResidentialLoadForecast'",
               "ConductingEquipment.Terminals": [
                 {
-                  "Ravens.CimObjectType": "Terminal",
+                  "Ravens.cimObjectType": "Terminal",
                   "IdentifiedObject.mRID": "212b3ec7-7133-4e24-9607-7df66181eef5",
                   "IdentifiedObject.name": "House1_T1",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'neighborhood'",
@@ -60,7 +60,7 @@
               "EnergyConsumer.LoadProfile": "EnergyConsumerSchedule::'ResidentialLoadForecast'",
               "ConductingEquipment.Terminals": [
                 {
-                  "Ravens.CimObjectType": "Terminal",
+                  "Ravens.cimObjectType": "Terminal",
                   "IdentifiedObject.mRID": "4450f2d3-0bb1-4c5d-8f49-b876cc2b75e9",
                   "IdentifiedObject.name": "House2_T1",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'neighborhood'",
@@ -76,7 +76,7 @@
               "EnergyConsumer.LoadProfile": "EnergyConsumerSchedule::'IndustrialLoadForecast'",
               "ConductingEquipment.Terminals": [
                 {
-                  "Ravens.CimObjectType": "Terminal",
+                  "Ravens.cimObjectType": "Terminal",
                   "IdentifiedObject.mRID": "f0abf791-fb14-4561-9535-c7ba3fd3c32d",
                   "IdentifiedObject.name": "Factory1_T1",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'industrialPark"
@@ -91,7 +91,7 @@
               "EnergyConsumer.LoadProfile": "EnergyConsumerSchedule::'IndustrialLoadForecast'",
               "ConductingEquipment.Terminals": [
                 {
-                  "Ravens.CimObjectType": "Terminal",
+                  "Ravens.cimObjectType": "Terminal",
                   "IdentifiedObject.mRID": "f0b6e2c0-9b22-4915-bc13-70efce265fda",
                   "IdentifiedObject.name": "Factory2_T1",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'industrialPark"
@@ -105,7 +105,7 @@
   },
   "BasicIntervalSchedule": {
     "ResidentialLoadForecast": {
-      "Ravens.CimObjectType": "EnergyConsumerSchedule",
+      "Ravens.cimObjectType": "EnergyConsumerSchedule",
       "IdentifiedObject.mRID": "4771e5b2-8924-4a76-ac17-47f860e41149",
       "BasicIntervalSchedule.value1Unit": "W",
       "BasicIntervalSchedule.value1Multiplier": "k",
@@ -43917,7 +43917,7 @@
       ]
     },
     "IndustrialLoadForecast": {
-      "Ravens.CimObjectType": "EnergyConsumerSchedule",
+      "Ravens.cimObjectType": "EnergyConsumerSchedule",
       "IdentifiedObject.mRID": "4406d3ce-8b10-4c88-8c69-342d2fc5ab7e",
       "BasicIntervalSchedule.value1Unit": "W",
       "BasicIntervalSchedule.value1Multiplier": "k",

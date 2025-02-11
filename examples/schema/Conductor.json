@@ -1,23 +1,23 @@
 {
   "Location": {
     "650632_Loc": {
-      "Ravens.CimObjectType": "Location",
+      "Ravens.cimObjectType": "Location",
       "Location": {
         "ieee13nodecktassets_Location": {
           "Location.CoordinateSystem": {
-            "Ravens.CimObjectType": "CoordinateSystem",
+            "Ravens.cimObjectType": "CoordinateSystem",
             "CoordinateSystem.crsUrn": "OpenDSSLocalBusCoordinates"
           }
         }
       },
       "Location.PositionPoints": [
         {
-          "Ravens.CimObjectType": "PositionPoint",
+          "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.xPosition": 200,
           "PositionPoint.yPosition": 300
         },
         {
-          "Ravens.CimObjectType": "PositionPoint",
+          "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.xPosition": 200,
           "PositionPoint.yPosition": 250
         }
@@ -26,53 +26,53 @@
   },
   "BaseVoltage": {
     "BaseV_4.1600": {
-      "Ravens.CimObjectType": "BaseVoltage",
+      "Ravens.cimObjectType": "BaseVoltage",
       "BaseVoltage.nominalVoltage": 4160
     }
   },
   "ConnectivityNode": {
     "rg60": {
-      "Ravens.CimObjectType": "ConnectivityNode"
+      "Ravens.cimObjectType": "ConnectivityNode"
     }
   },
   "Conductor": {
     "650632": {
-      "Ravens.CimObjectType": "ACLineSegment",
+      "Ravens.cimObjectType": "ACLineSegment",
       "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.1600'",
       "Conductor.length": 609.6,
       "ACLineSegment.WireSpacingInfo": "WireSpacingInfo::'601'",
       "PowerSystemResource.Location": "Location::'650632_Loc'",
       "ConductingEquipment.Terminals": [
         {
-          "Ravens.CimObjectType": "Terminal",
+          "Ravens.cimObjectType": "Terminal",
           "Terminal.ConnectivityNode": "ConnectivityNode::'rg60'"
         },
         {
-          "Ravens.CimObjectType": "Terminal",
+          "Ravens.cimObjectType": "Terminal",
           "Terminal.ConnectivityNode": "ConnectivityNode::'632'"
         }
       ],
       "ACLineSegment.ACLineSegmentPhase": [
         {
-          "Ravens.CimObjectType": "ACLineSegmentPhase",
+          "Ravens.cimObjectType": "ACLineSegmentPhase",
           "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
           "PowerSystemResource.Location": "Location::'650632_Loc'",
           "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_556_5'"
         },
         {
-          "Ravens.CimObjectType": "ACLineSegmentPhase",
+          "Ravens.cimObjectType": "ACLineSegmentPhase",
           "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
           "PowerSystemResource.Location": "Location::'650632_Loc'",
           "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_556_5'"
         },
         {
-          "Ravens.CimObjectType": "ACLineSegmentPhase",
+          "Ravens.cimObjectType": "ACLineSegmentPhase",
           "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
           "PowerSystemResource.Location": "Location::'650632_Loc'",
           "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_556_5'"
         },
         {
-          "Ravens.CimObjectType": "ACLineSegmentPhase",
+          "Ravens.cimObjectType": "ACLineSegmentPhase",
           "ACLineSegmentPhase.phase": "SinglePhaseKind.N",
           "PowerSystemResource.Location": "Location::'650632_Loc'",
           "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_4/0'"
@@ -83,29 +83,29 @@
   "AssetInfo": {
     "WireSpacingInfo": {
       "601": {
-        "Ravens.CimObjectType": "WireSpacingInfo",
+        "Ravens.cimObjectType": "WireSpacingInfo",
         "WireSpacingInfo.usage": "WireUsageKind.distribution",
         "WireSpacingInfo.phaseWireCount": 1,
         "WireSpacingInfo.phaseWireSpacing": 0,
         "WireSpacingInfo.isCable": false,
         "WireSpacingInfo.WirePositions": [
           {
-            "Ravens.CimObjectType": "WirePosition",
+            "Ravens.cimObjectType": "WirePosition",
             "WirePosition.xCoord": -1.2192,
             "WirePosition.yCoord": 8.5344
           },
           {
-            "Ravens.CimObjectType": "WirePosition",
+            "Ravens.cimObjectType": "WirePosition",
             "WirePosition.xCoord": -0.3048,
             "WirePosition.yCoord": 8.5344
           },
           {
-            "Ravens.CimObjectType": "WirePosition",
+            "Ravens.cimObjectType": "WirePosition",
             "WirePosition.xCoord": 0.9144,
             "WirePosition.yCoord": 8.5344
           },
           {
-            "Ravens.CimObjectType": "WirePosition",
+            "Ravens.cimObjectType": "WirePosition",
             "WirePosition.xCoord": 0,
             "WirePosition.yCoord": 7.3152
           }
@@ -114,7 +114,7 @@
     },
     "WireInfo": {
       "acsr_556_5": {
-        "Ravens.CimObjectType": "OverheadWireInfo",
+        "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "_9C6BD23B-D682-4D41-A331-AAA4CA515C64",
         "IdentifiedObject.name": "acsr_556_5",
         "WireInfo.sizeDescription": "WireData_acsr_556_5",

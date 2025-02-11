@@ -36,7 +36,7 @@ class RavensExport(object):
     def build_rdf_graph(self, data, obj_name=None):
         for k, v in data.items():
             if isinstance(v, dict):
-                if "Ravens.CimObjectType" in v:
+                if "Ravens.cimObjectType" in v:
                     child_node = self.add_object_to_graph(v)
                 else:
                     self.build_rdf_graph(v, obj_name=k)
@@ -45,7 +45,7 @@ class RavensExport(object):
 
     def add_object_to_graph(self, obj, obj_name=None):
         mrid = obj.get("IdentifiedObject.mRID", str(uuid4()))
-        cim_type = obj.pop("Ravens.CimObjectType")
+        cim_type = obj.pop("Ravens.cimObjectType")
         node = URIRef(mrid)
         self.graph.add((node, RDF.type, self.cim[cim_type]))
 
@@ -54,14 +54,14 @@ class RavensExport(object):
 
         for k, v in obj.items():
             if isinstance(v, dict):
-                if "Ravens.CimObjectType" in v:
+                if "Ravens.cimObjectType" in v:
                     child_node = self.add_object_to_graph(v)
                     self.graph.add((node, self.cim[k], child_node))
                 else:
                     self.build_rdf_graph(v)
             elif isinstance(v, list):
                 for item in v:
-                    if "Ravens.CimObjectType" in item:
+                    if "Ravens.cimObjectType" in item:
                         child_node = self.add_object_to_graph(item)
                         self.graph.add((node, self.cim[k], child_node))
                     else:
