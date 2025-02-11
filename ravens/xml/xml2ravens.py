@@ -233,7 +233,7 @@ class RavensImport:
         if "Versions" not in self.data:
             self.data["Versions"] = {}
 
-        self.data["Versions"]["RavensVersion"] = {"Ravens.CimObjectType": "RavensVersion", "RavensVersion.date": f"{datetime.date(datetime.now())}", "RavensVersion.version": f"RAVENSv{__version__}"}
+        self.data["Versions"]["RavensVersion"] = {"Ravens.cimObjectType": "RavensVersion", "RavensVersion.date": f"{datetime.date(datetime.now())}", "RavensVersion.version": f"RAVENSv{__version__}"}
 
     def build_paths_from_template(self, template, current_path=None):
         if current_path is None:
@@ -470,7 +470,7 @@ class RavensImport:
         return pos_id
 
     def build_data(self, subject):
-        data = {"Ravens.CimObjectType": self.rdf.value(subject=subject, predicate=self.rdf_type).split("#")[-1]}
+        data = {"Ravens.cimObjectType": self.rdf.value(subject=subject, predicate=self.rdf_type).split("#")[-1]}
         for p, o in self.rdf.predicate_objects(subject=subject):
             pn = p.split("#")[-1]
             if self.prune_unncessary and any(bool(re.search(k, pn)) for k in prune_keys):

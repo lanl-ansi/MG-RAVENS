@@ -4,7 +4,7 @@
       "MeterPoints": {
         "IdentifiedObject.name": "MeterPoints",
         "IdentifiedObject.mRID": "03fe20b9-0a9a-4664-82da-79a7f4dd0498",
-        "Ravens.CimObjectType": "ConnectivityNodeContainer",
+        "Ravens.cimObjectType": "ConnectivityNodeContainer",
         "ConnectivityNodeContainer.ConnectivityNodes": ["Bus1", "Bus2"],
         "PowerSystemResource.Measurements": [
           {

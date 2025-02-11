@@ -1,14 +1,14 @@
 {
   "Location": {
     "source_Loc": {
-      "Ravens.CimObjectType": "Location",
+      "Ravens.cimObjectType": "Location",
       "IdentifiedObject.mRID": "_1644ED97-0A79-4A59-A667-AF56B4A55346",
       "IdentifiedObject.name": "source_Loc",
       "Location.CoordinateSystem": "#_A9DB5178-5976-4445-A14B-5367131AAD91",
       "Location": {
         "ieee13nodecktassets_Location": {
           "Location.CoordinateSystem": {
-            "Ravens.CimObjectType": "CoordinateSystem",
+            "Ravens.cimObjectType": "CoordinateSystem",
             "IdentifiedObject.mRID": "_A9DB5178-5976-4445-A14B-5367131AAD91",
             "IdentifiedObject.name": "ieee13nodecktassets_CrsUrn",
             "CoordinateSystem.crsUrn": "OpenDSSLocalBusCoordinates"
@@ -17,7 +17,7 @@
       },
       "Location.PositionPoints": [
         {
-          "Ravens.CimObjectType": "PositionPoint",
+          "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.Location": "#_1644ED97-0A79-4A59-A667-AF56B4A55346",
           "PositionPoint.sequenceNumber": 1,
           "PositionPoint.xPosition": 200,
@@ -28,7 +28,7 @@
   },
   "BaseVoltage": {
     "BaseV_115.0000": {
-      "Ravens.CimObjectType": "BaseVoltage",
+      "Ravens.cimObjectType": "BaseVoltage",
       "IdentifiedObject.mRID": "_B77E56F4-3CA2-46E3-9701-6BEE690744A6",
       "IdentifiedObject.name": "BaseV_115.0000",
       "BaseVoltage.nominalVoltage": 115000
@@ -36,7 +36,7 @@
   },
   "ConnectivityNode": {
     "sourcebus": {
-      "Ravens.CimObjectType": "ConnectivityNode",
+      "Ravens.cimObjectType": "ConnectivityNode",
       "IdentifiedObject.mRID": "_B8E8BF94-1E49-4002-97EF-2EDDC1304183",
       "IdentifiedObject.name": "sourcebus",
       "ConnectivityNode.TopologicalNode": "#_411B2600-4A9D-4EF9-84E3-F36FBCAEDEAD",
@@ -46,7 +46,7 @@
   },
   "EnergySource": {
     "source": {
-      "Ravens.CimObjectType": "EnergySource",
+      "Ravens.cimObjectType": "EnergySource",
       "IdentifiedObject.mRID": "_2BA9A9D8-DAD4-4BBB-B421-20F8202FD509",
       "IdentifiedObject.name": "source",
       "Equipment.EquipmentContainer": "#_5B816B93-7A5F-B64C-8460-47C17D6E4B0F",
@@ -61,7 +61,7 @@
       "PowerSystemResource.Location": "Location::'source_Loc'",
       "ConductingEquipment.Terminals": [
         {
-          "Ravens.CimObjectType": "Terminal",
+          "Ravens.cimObjectType": "Terminal",
           "IdentifiedObject.mRID": "_EEBD8C64-ABE6-4A13-9CF3-38BBD773E431",
           "IdentifiedObject.name": "source_T1",
           "Terminal.ConductingEquipment": "#_2BA9A9D8-DAD4-4BBB-B421-20F8202FD509",

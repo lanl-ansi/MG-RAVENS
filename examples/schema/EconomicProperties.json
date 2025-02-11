@@ -3,7 +3,7 @@
     "CountyEconomicProperties": {
       "IdentifiedObject.mRID": "c304f0e1-8480-4da5-b2d4-90359ebf7032",
       "IdentifiedObject.name": "CountyEconomicProperties",
-      "Ravens.CimObjectType": "EconomicProperty",
+      "Ravens.cimObjectType": "EconomicProperty",
       "EconomicProperty.discountRate": 5.8,
       "EconomicProperty.inflationRate": 2.2,
       "EconomicProperty.taxRate": 26.0,
