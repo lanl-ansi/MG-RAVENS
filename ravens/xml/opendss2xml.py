@@ -978,8 +978,8 @@ class DssExport(object):
             self.xfmrcode_uris[xc_id] = self._add_TransformerTankInfo(xc, xc_id)
 
         for tr in self.dss.Transformer:
-            if tr.Bank is None:
-                bank_id = f"={tr.Name}"
+            if tr.Bank == "":
+                bank_id = f"{tr.Name}"
             else:
                 bank_id = tr.Bank
 
@@ -988,7 +988,7 @@ class DssExport(object):
                 has_tank = False
 
             if bank_id not in self.transformer_banks:
-                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id)
+                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id, str(uuid4()))
 
             bank = self.transformer_banks[bank_id]
             bank.add_Transformer(tr)
@@ -1013,7 +1013,7 @@ class DssExport(object):
         for atr in self.dss.AutoTrans:
             bank_id = f"={atr.Name}" if atr.Bank is None else atr.Bank
             if bank_id not in self.transformer_banks:
-                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id)
+                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id, str(uuid4()))
 
             bank = self.transformer_banks[bank_id]
             bank.add_AutoTransformer(atr)
