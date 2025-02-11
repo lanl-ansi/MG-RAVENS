@@ -6,7 +6,7 @@
   {
     "IdentifiedObject.mRID": "6ad66b81-e6d0-4b08-b797-5356df1622bc",
     "IdentifiedObject.name": "Genset1",
-    "Ravens.CimObjectType": "ProposedGeneratingUnitOption",
+    "Ravens.cimObjectType": "ProposedGeneratingUnitOption",
     "ProposedAssetOption.fixedPrice": {
       "value": 25000,
       "unit": "USD"
@@ -27,7 +27,7 @@
   {
     "IdentifiedObject.mRID": "6ad66b81-e6d0-4b08-b797-5356df1622bc",
     "IdentifiedObject.name": "Genset1",
-    "Ravens.CimObjectType": "ProposedGeneratingUnitOption",
+    "Ravens.cimObjectType": "ProposedGeneratingUnitOption",
     "ProposedAssetOption.lifetime": "P15Y",
     "ProposedAssetOption.variablePrice": {
       "value": 250,

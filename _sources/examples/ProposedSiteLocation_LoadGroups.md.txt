@@ -6,7 +6,7 @@
   "ProposedSiteLocations": {
     "IdentifiedObject.mRID": "12fb54a8-b440-47d9-9e1c-5d95d2c08fda",
     "IdentifiedObject.name": "proposedSite1",
-    "Ravens.CimObjectType": "Ravens.ProposedSiteLocation",
+    "Ravens.cimObjectType": "Ravens.ProposedSiteLocation",
     "ProposedSiteLocation.availableArea": 4000.0,
     "ProposedSiteLocation.LoadGroups": [
       "ResidentialGroup"
@@ -16,7 +16,7 @@
         "PositionPoint.sequenceNumber": 1,
         "PositionPoint.xPosition": 0,
         "PositionPoint.yPosition": 0,
-        "Ravens.CimObjectType": "PositionPoint",
+        "Ravens.cimObjectType": "PositionPoint",
         "IdentifiedObject.mRID": "2d5eb117-3720-4fd3-8d72-21ebde32be87"
       }
     ]
@@ -24,12 +24,12 @@
   "Groups": {
     "LoadGroups": {
       "ResidentialGroup": {
-        "Ravens.CimObjectType": "ConformLoadGroup",
+        "Ravens.cimObjectType": "ConformLoadGroup",
         "IdentifiedObject.name": "ResidentialGroup",
         "IdentifiedObject.mRID": "71f91d8e-ef0b-4657-9277-9ba7ad2eb3f0",
         "ConformLoadGroup.ConformLoadSchedules": [
           {
-            "Ravens.CimObjectType": "ConformLoadSchedule",
+            "Ravens.cimObjectType": "ConformLoadSchedule",
             "IdentifiedObject.mRID": "859b12e4-be71-451e-91ae-05595c1d4ca7",
             "BasicIntervalSchedule.value1Unit": "none",
             "BasicIntervalSchedule.value2Unit": "none",
@@ -65,7 +65,7 @@
         "EnergyConnection": {
           "EnergyConsumer": {
             "House1": {
-              "Ravens.CimObjectType": "EnergyConsumer",
+              "Ravens.cimObjectType": "EnergyConsumer",
               "IdentifiedObject.mRID": "bc29f8df-6cb6-4ce6-be7f-60b4d9165308",
               "IdentifiedObject.name": "House1",
               "EnergyConsumer.p": 12000,
@@ -74,7 +74,7 @@
               "EnergyConsumer.phaseConnection": "PhaseShuntConnectionKind.Y",
               "EnergyConsumer.grounded": false,
               "EnergyConsumer.LoadResponseCharacteristic": {
-                "Ravens.CimObjectType": "LoadResponseCharacteristic",
+                "Ravens.cimObjectType": "LoadResponseCharacteristic",
                 "IdentifiedObject.mRID": "c6cc0984-8a0d-4362-a8fd-a254a979e2a0",
                 "IdentifiedObject.name": "Constant kVA",
                 "LoadResponseCharacteristic.exponentModel": false,
@@ -91,7 +91,7 @@
               },
               "ConductingEquipment.Terminals": [
                 {
-                  "Ravens.CimObjectType": "Terminal",
+                  "Ravens.cimObjectType": "Terminal",
                   "IdentifiedObject.mRID": "70e6b73c-3bac-441a-a82f-3d101cd780c4",
                   "IdentifiedObject.name": "House1_T1",
                   "ACDCTerminal.sequenceNumber": 1,

@@ -8,7 +8,7 @@
       "ceb8ab0d-660b-4abe-be32-d82187b5ad22": {
         "IdentifiedObject.name": "ceb8ab0d-660b-4abe-be32-d82187b5ad22",
         "IdentifiedObject.mRID": "ceb8ab0d-660b-4abe-be32-d82187b5ad22",
-        "Ravens.CimObjectType": "ProposedAssetSet",
+        "Ravens.cimObjectType": "ProposedAssetSet",
         "ProposedAssetSet.rank": 1,
         "ProposedAssetSet.ProposedAssets": [
           "ProposedBranch::'switch_a'",
@@ -20,7 +20,7 @@
       "401c97b9-2110-4380-b9a9-3b99c3b8f7b1": {
         "IdentifiedObject.name": "401c97b9-2110-4380-b9a9-3b99c3b8f7b1",
         "IdentifiedObject.mRID": "401c97b9-2110-4380-b9a9-3b99c3b8f7b1",
-        "Ravens.CimObjectType": "ProposedAssetSet",
+        "Ravens.cimObjectType": "ProposedAssetSet",
         "ProposedAssetSet.rank": 2,
         "ProposedAssetSet.ProposedAssets": [
           "ProposedBranch::'switch_a'",
@@ -31,7 +31,7 @@
       "ab74a034-67ff-4ccb-81cb-e1d6d69c5cf8": {
         "IdentifiedObject.name": "ab74a034-67ff-4ccb-81cb-e1d6d69c5cf8",
         "IdentifiedObject.mRID": "ab74a034-67ff-4ccb-81cb-e1d6d69c5cf8",
-        "Ravens.CimObjectType": "ProposedAssetSet",
+        "Ravens.cimObjectType": "ProposedAssetSet",
         "ProposedAssetSet.rank": 3,
         "ProposedAssetSet.ProposedAssets": [],
         "ProposedAssetSet.Algorithm": "Algorithm::'solve_rdt'",
@@ -43,7 +43,7 @@
     "switch_a_b": {
       "IdentifiedObject.name": "switch_a_b",
       "IdentifiedObject.mRID": "07be8846-b0c0-465b-81f6-8bf8eedbdab2",
-      "Ravens.CimObjectType": "ProposedBranch",
+      "Ravens.cimObjectType": "ProposedBranch",
       "ProposedBranch.Terminal": [
         {
           "Terminal.ConnectivityNode": "ConnectivityNode::'bus_a'"
@@ -59,7 +59,7 @@
     "bess_b": {
       "IdentifiedObject.name": "bess_b",
       "IdentifiedObject.mRID": "eb1ea7e3-ec99-49d9-be4f-0a3859c1c2be",
-      "Ravens.CimObjectType": "ProposedBatteryUnit",
+      "Ravens.cimObjectType": "ProposedBatteryUnit",
       "ProposedEnergyProducerOption.capacity": 500000.0,
       "ProposedBatteryUnit.energyCapacity": 600000.0,
       "ProposedAsset.ProposedAssetOption": "ProposedBatteryUnitOption::'battery_type_1'",
@@ -69,7 +69,7 @@
     "hardened_line_b_c": {
       "IdentifiedObject.name": "hardened_line_b_c",
       "IdentifiedObject.mRID": "d5b8b73e-cc04-48f1-9200-398f571e608c",
-      "Ravens.CimObjectType": "ProposedBranch",
+      "Ravens.cimObjectType": "ProposedBranch",
       "ProposedBranch.Terminal": [
         {
           "Terminal.ConnectivityNode": "ConnectivityNode::'bus_b'"
@@ -87,14 +87,14 @@
     "switch_a_b": {
       "IdentifiedObject.name": "switch_a_b",
       "IdentifiedObject.mRID": "1c843b24-385b-4722-97a9-cbc370b08107",
-      "Ravens.CimObjectType": "EstimatedAssetCosts",
+      "Ravens.cimObjectType": "EstimatedAssetCosts",
       "EstimatedAssetCosts.assetCost": 500000.0,
       "EstimatedAssetCosts.lifecycleCost": 2000000.0
     },
     "bess_b": {
       "IdentifiedObject.name": "bess_b",
       "IdentifiedObject.mRID": "ebefdf9f-7018-48f0-8b0a-05b921582322",
-      "Ravens.CimObjectType": "EstimatedEnergyProducerAssetCosts",
+      "Ravens.cimObjectType": "EstimatedEnergyProducerAssetCosts",
       "EstimatedAssetCosts.assetCost": 10000000.0,
       "EstimatedEnergyProducerAssetCosts.firstYearCapacityCost": 500000.0,
       "EstimatedEnergyProducerAssetCosts.firstYearEnergyCost": 500000.0
@@ -102,14 +102,14 @@
     "hardened_line_b_c": {
       "IdentifiedObject.name": "hardened_line_b_c",
       "IdentifiedObject.mRID": "92af438c-bf2c-488d-91be-f63492306af1",
-      "Ravens.CimObjectType": "EstimatedAssetCosts",
+      "Ravens.cimObjectType": "EstimatedAssetCosts",
       "EstimatedAssetCosts.assetCost": 2000000.0,
       "EstimatedAssetCosts.lifecycleCost": 10000000.0
     },
     "BusinessAsUsual": {
       "IdentifiedObject.name": "BusinessAsUsual",
       "IdentifiedObject.mRID": "5c7c2c28-bcce-48df-99fd-773730c3e9ca",
-      "Ravens.CimObjectType": "EstimatedEnergyProducerAssetCosts",
+      "Ravens.cimObjectType": "EstimatedEnergyProducerAssetCosts",
       "EstimatedEnergyProducerAssetCosts.lifecycleCapacityCost": 100000000.0,
       "EstimatedEnergyProducerAssetCosts.lifecycleEnergyCost": 100000000.0
     }
@@ -118,27 +118,27 @@
     "switch_type_1": {
       "IdentifiedObject.name": "switch_type_1",
       "IdentifiedObject.mRID": "4fef55f6-3a2d-4951-8734-58ae9373f5e0",
-      "Ravens.CimObjectType": "ProposedSwitchOption",
+      "Ravens.cimObjectType": "ProposedSwitchOption",
       "ProposedAssetOption.fixedPrice": 10000.0
     },
     "hardened_line": {
       "IdentifiedObject.name": "hardened_line",
       "IdentifiedObject.mRID": "b3a62369-02b0-44b7-a881-677df65b9284",
-      "Ravens.CimObjectType": "ProposedConductorOption",
+      "Ravens.cimObjectType": "ProposedConductorOption",
       "ProposedConductorOption.variablePrice": 500.0,
       "ProposedConductorOption.conductorType": "undergroundCable"
     },
     "battery_type_1": {
       "IdentifiedObject.name": "battery_type_1",
       "IdentifiedObject.mRID": "670c1a10-246b-4e8b-8338-ecdf4f008a05",
-      "Ravens.CimObjectType": "ProposedBatteryUnitOption",
+      "Ravens.cimObjectType": "ProposedBatteryUnitOption",
       "ProposedBatteryUnitOption.energyCapacityMax": 5000000.0,
       "ProposedEnergyProducerOption.powerCapacityMax": 1000000.0
     }
   },
   "Application": {
     "PowerModelsDistributionRDT": {
-      "Ravens.CimObjectType": "Application",
+      "Ravens.cimObjectType": "Application",
       "IdentifiedObject.name": "PowerModelsDistributionRDT",
       "IdentifiedObject.mRID": "1d1d4211-494e-4513-a04b-2dceec374791",
       "Application.version": "0.1.0"
@@ -146,7 +146,7 @@
   },
   "Algorithm": {
     "solve_rdt": {
-      "Ravens.CimObjectType": "Algorithm",
+      "Ravens.cimObjectType": "Algorithm",
       "IdentifiedObject.name": "solve_rdt",
       "IdentifiedObject.mRID": "12ddcad6-4ce4-4d7f-9120-d117f04ce4f3",
       "IdentifiedObject.description": "",
@@ -156,25 +156,25 @@
   "Message": [
     {
       "IdentifiedObject.mRID": "5d3d6767-3a89-404c-8133-9928c710bd80",
-      "Ravens.CimObjectType": "Debug",
+      "Ravens.cimObjectType": "Debug",
       "Message.message": "This is an example Debug message",
       "Message.Algorithm": "Algorithm::'solve_rdt'"
     },
     {
       "IdentifiedObject.mRID": "1b14f3e7-6b1f-4e8c-8cf5-a7223490864a",
-      "Ravens.CimObjectType": "Info",
+      "Ravens.cimObjectType": "Info",
       "Message.message": "This is an example Info message",
       "Message.Algorithm": "Algorithm::'solve_rdt'"
     },
     {
       "IdentifiedObject.mRID": "1b1a3a84-efe7-426f-a07e-08375fa35d53",
-      "Ravens.CimObjectType": "Warning",
+      "Ravens.cimObjectType": "Warning",
       "Message.message": "This is an example Warning message",
       "Message.Algorithm": "Algorithm::'solve_rdt'"
     },
     {
       "IdentifiedObject.mRID": "6ecd6cf8-ecdb-4d77-ba07-afe820243aef",
-      "Ravens.CimObjectType": "Error",
+      "Ravens.cimObjectType": "Error",
       "Message.message": "This is an example Error message",
       "Message.Algorithm": "Algorithm::'solve_rdt'"
     }
