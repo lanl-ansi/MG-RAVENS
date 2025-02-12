@@ -11,6 +11,7 @@ from copy import deepcopy
 from datetime import datetime
 
 from rdflib import Graph
+from rdflib.namespace import Namespace
 from rdflib.extras.external_graph_libs import rdflib_to_networkx_multidigraph
 from rdflib.term import URIRef, Literal
 
@@ -195,7 +196,7 @@ class RavensImport:
         g = Graph()
         self.rdf = g.parse(cim_profile_path, format="application/rdf+xml", publicID="urn:uuid:")
 
-        self.cim_ns = cim_namespace
+        self.cim_ns = Namespace(cim_namespace)
         self.rdf_type = URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#type")
         self.prune_unncessary = prune_unncessary
 
@@ -379,7 +380,7 @@ class RavensImport:
                 if segment["id"] != self.unique_subject_types[subject]:
                     if not (segment["position"] is None and (segment["type"] != "array")):
                         for _o in [__o for __o in self.rdf.objects(subject=_current_subject)] + [__s for __s in self.rdf.subjects(object=_current_subject)]:
-                            if self.rdf.value(subject=_o, predicate=self.rdf_type) == URIRef(f"{self.cim_ns}#{segment['id']}"):
+                            if self.rdf.value(subject=_o, predicate=self.rdf_type) == self.cim_ns[segment["id"]]:
                                 count += 1
                                 _next_subjects[_o] = _current_subject
 
@@ -417,7 +418,7 @@ class RavensImport:
         return obj_real_path
 
     def _build_positions(self, subject, _current_subject, segment):
-        zero_indexed = self.rdf.value(subject=subject, predicate=self.rdf_type) == URIRef(f"{self.cim_ns}#PositionPoint")
+        zero_indexed = self.rdf.value(subject=subject, predicate=self.rdf_type) == self.cim_ns["PositionPoint"]
         positions = []
         if segment["type"] == "container" or (segment["type"] == "object" and segment["position"] is None):
             positions = [PathSegment(segment["path"], "object")]
@@ -458,9 +459,9 @@ class RavensImport:
                 continue
 
     def find_position_id(self, subject, position_primary, position_secondary):
-        pos_id = self.rdf.value(subject=subject, predicate=URIRef(f"{self.cim_ns}#{position_primary}"))
+        pos_id = self.rdf.value(subject=subject, predicate=self.cim_ns[position_primary])
         if position_primary is not None and pos_id is None:
-            pos_id = self.rdf.value(subject=subject, predicate=URIRef(f"{self.cim_ns}#{position_secondary}"))
+            pos_id = self.rdf.value(subject=subject, predicate=self.cim_ns[position_primary])
             if position_secondary is not None and pos_id is None:
                 pos_id = str(subject)
 
@@ -494,7 +495,7 @@ class RavensImport:
                     else:
                         ref = None
                         for _ref in self.reference_paths[pn]:
-                            if self.rdf.value(subject=subject, predicate=self.rdf_type) == f"{self.cim_ns}#{_ref.parent}":
+                            if self.rdf.value(subject=subject, predicate=self.rdf_type) == self.cim_ns[_ref.parent]:
                                 ref = _ref
                                 break
 
@@ -526,7 +527,7 @@ class RavensImport:
         return data
 
     def resolve_path(self, subject, path_id=None):
-        zero_indexed = self.rdf.value(subject=subject, predicate=self.rdf_type) == URIRef(f"{self.cim_ns}#PositionPoint")
+        zero_indexed = self.rdf.value(subject=subject, predicate=self.rdf_type) == self.cim_ns["PositionPoint"]
         if isinstance(self.paths[subject], MultiPath):
             if self.resolved_path is None:
                 self.resolved_path = MultiResolvedPath()
