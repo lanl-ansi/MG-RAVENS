@@ -3,6 +3,11 @@
   "description": "Impedance and admittance parameters per unit length for n-wire unbalanced lines, in matrix form.",
   "title": "PerLengthPhaseImpedance",
   "properties": {
+    "PerLengthLineParameter.WireAssemblyInfo": {
+      "type": "string",
+      "title": "WireAssemblyInfoPointer",
+      "description": "Pointer to WireAssemblyInfo object"
+    },
     "PerLengthPhaseImpedance.PhaseImpedanceData": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseImpedanceDataArray.json"
     },

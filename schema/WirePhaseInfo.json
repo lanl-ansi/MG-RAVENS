@@ -1,6 +1,9 @@
 {
   "type": "object",
   "properties": {
+    "WirePhaseInfo.WirePosition": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WirePosition.json"
+    },
     "WirePhaseInfo.phaseInfo": {
       "title": "phaseInfo",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
