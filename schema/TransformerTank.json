@@ -7,6 +7,11 @@
     "ConductingEquipment.SvStatus": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatusArray.json"
     },
+    "PowerSystemResource.AssetDatasheet": {
+      "type": "string",
+      "title": "PowerTransformerInfoPointer",
+      "description": "Pointer to PowerTransformerInfo object"
+    },
     "Equipment.aggregate": {
       "title": "aggregate",
       "type": "boolean",
