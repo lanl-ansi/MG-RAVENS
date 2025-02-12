@@ -108,10 +108,10 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MessageArray.json"
     },
     "BasicIntervalSchedule": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BasicIntervalSchedule.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BasicIntervalScheduleContainer_Container.json"
     },
     "EnergyConnectionProfile": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConnectionProfile.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConnectionProfileContainer_Container.json"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",

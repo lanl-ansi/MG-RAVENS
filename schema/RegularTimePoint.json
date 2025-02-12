@@ -17,8 +17,8 @@
       "description": "The second value at the time. The meaning of the value is defined by the derived type of the associated schedule."
     }
   },
-  "description": "Time point for a schedule where the time between the consecutive points is constant.",
   "title": "RegularTimePoint",
+  "description": "Time point for a schedule where the time between the consecutive points is constant.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegularTimePoint.json",

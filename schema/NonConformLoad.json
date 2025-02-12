@@ -1,7 +1,7 @@
 {
   "type": "object",
   "properties": {
-    "EnergyConsumer.LoadForecast": {
+    "EnergyConsumer.LoadProfile": {
       "type": "string",
       "title": "EnergyConsumerSchedulePointer",
       "description": "Pointer to EnergyConsumerSchedule object"

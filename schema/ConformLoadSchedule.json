@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "RegularIntervalSchedule.TimePoints": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegularTimePoint.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegularTimePointArray.json"
     },
     "IdentifiedObject.aliasName": {
       "title": "aliasName",
