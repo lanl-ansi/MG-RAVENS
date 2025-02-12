@@ -1762,6 +1762,8 @@
 
 [WindingInsulationKind](../_static/schema/WindingInsulationKind.html){.external}
 
+[WireAssemblyInfo](../_static/schema/WireAssemblyInfo.html){.external}
+
 [WireInfo](../_static/schema/WireInfo.html){.external}
 
 [WireInfoContainer_Container](../_static/schema/WireInfoContainer_Container.html){.external}
