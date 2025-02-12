@@ -4441,7 +4441,14 @@
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
+              "properties": {
+                "PerLengthLineParameter.WireAssemblyInfo": {
+                  "type": "string",
+                  "$objectType": "reference",
+                  "$objectId": "WireAssemblyInfo",
+                  "$referencePath": "AssetInfo/WireAssemblyInfo"
+                }
+              }
             },
             "PerLengthPhaseImpedance": {
               "$objectType": "object",
@@ -4449,6 +4456,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PerLengthLineParameter.WireAssemblyInfo": {
+                  "type": "string",
+                  "$objectType": "reference",
+                  "$objectId": "WireAssemblyInfo",
+                  "$referencePath": "AssetInfo/WireAssemblyInfo"
+                },
                 "PerLengthPhaseImpedance.PhaseImpedanceData": {
                   "type": "array",
                   "items": {
@@ -5192,6 +5205,29 @@
             }
           ]
         },
+        "WireAssemblyInfo": {
+          "type": "object",
+          "$objectType": "object",
+          "$objectId": "WireAssemblyInfo",
+          "properties": {
+            "WireAssemblyInfo.WirePhaseInfo": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$objectType": "object",
+                "$objectId": "WirePhaseInfo",
+                "properties": {
+                  "WirePhaseInfo.WirePosition": {
+                    "type": "object",
+                    "$objectType": "object",
+                    "$objectId": "WirePosition",
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          }
+        },
         "PowerTransformerInfo": {
           "$objectType": "object",
           "type": "object",
@@ -5924,7 +5960,7 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
             "RegularIntervalSchedule.TimePoints": {
-             "type": "array",
+              "type": "array",
               "items": {
                 "$objectType": "object",
                 "$objectId": "RegularTimePoint",
