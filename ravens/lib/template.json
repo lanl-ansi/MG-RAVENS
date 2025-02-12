@@ -4196,6 +4196,12 @@
                               "$arrayPosition": null,
                               "properties": {}
                             }
+                          },
+                          "PowerSystemResource.AssetDatasheet": {
+                            "$objectType": "reference",
+                            "$objectId": "PowerTransformerInfo",
+                            "$referencePath": "AssetInfo/PowerTransformerInfo/TransformerTankInfo",
+                            "type": "string"
                           }
                         }
                       }
