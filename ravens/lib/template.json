@@ -1724,7 +1724,7 @@
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "$objectId": "EnergyConsumer",
                           "properties": {
-                            "EnergyConsumer.LoadForecast": {
+                            "EnergyConsumer.LoadProfile": {
                               "$objectType": "reference",
                               "type": "string",
                               "$objectId": "EnergyConsumerSchedule",
@@ -1816,7 +1816,7 @@
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "$objectId": "ConformLoad",
                           "properties": {
-                            "EnergyConsumer.LoadForecast": {
+                            "EnergyConsumer.LoadProfile": {
                               "$objectType": "reference",
                               "type": "string",
                               "$objectId": "EnergyConsumerSchedule",
@@ -1908,7 +1908,7 @@
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "$objectId": "NonConformLoad",
                           "properties": {
-                            "EnergyConsumer.LoadForecast": {
+                            "EnergyConsumer.LoadProfile": {
                               "$objectType": "reference",
                               "type": "string",
                               "$objectId": "EnergyConsumerSchedule",
@@ -5878,23 +5878,35 @@
       "$objectType": "object",
       "type": "object",
       "$objectId": "BasicIntervalSchedule",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
       "oneOf": [
         {
           "$objectType": "object",
           "type": "object",
           "$objectId": "EnergyConsumerSchedule",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
             "EnergyConsumerSchedule.RegularTimePoints": {
-              "type": "object",
-              "$objectType": "object",
-              "$objectId": "RegularTimePoint",
-              "properties": {}
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "RegularTimePoint",
+                "type": "object",
+                "$arrayPosition": "RegularTimePoint.sequenceNumber",
+                "properties": {}
+              }
             },
             "EnergyConsumerSchedule.IrregularTimePoints": {
-              "type": "object",
-              "$objectType": "object",
-              "$objectId": "IrregularTimePoint",
-              "properties": {}
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "IrregularTimePoint",
+                "type": "object",
+                "$arrayPosition": "IrregularTimePoint.sequenceNumber",
+                "properties": {}
+              }
             }
           }
         },
@@ -5902,12 +5914,18 @@
           "$objectType": "object",
           "type": "object",
           "$objectId": "ConformLoadSchedule",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
             "RegularIntervalSchedule.TimePoints": {
-              "type": "object",
-              "$objectType": "object",
-              "$objectId": "RegularTimePoint",
-              "properties": {}
+             "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "RegularTimePoint",
+                "type": "object",
+                "$arrayPosition": "RegularTimePoint.sequenceNumber",
+                "properties": {}
+              }
             }
           }
         }
@@ -5917,6 +5935,8 @@
       "$objectType": "object",
       "type": "object",
       "$objectId": "EnergyConnectionProfile",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {}
     }
   }

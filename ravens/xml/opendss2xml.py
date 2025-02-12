@@ -764,7 +764,7 @@ class DssExport(object):
 
     def _add_RegularTimePoint(self, subject_uri: URIRef, sequence: int, value1: float, value2: float):
         node = self.build_cim_obj("RegularTimePoint", skip_mrid=True)
-        self.add_triple(node, "RegularTimePoint.sequenceNumber", sequence)
+        self.add_triple(node, "RegularTimePoint.sequenceNumber", sequence+1)  # adjust/shift sequence number from 0 to 1.
         self.add_triple(node, "RegularTimePoint.value1", value1)
         self.add_triple(node, "RegularTimePoint.value2", value2)
         self.add_triple(node, "RegularTimePoint.IntervalSchedule", subject_uri)
