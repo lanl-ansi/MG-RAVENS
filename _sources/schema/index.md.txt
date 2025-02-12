@@ -152,6 +152,8 @@
 
 [BasicIntervalSchedule](../_static/schema/BasicIntervalSchedule.html){.external}
 
+[BasicIntervalScheduleContainer_Container](../_static/schema/BasicIntervalScheduleContainer_Container.html){.external}
+
 [BatteryResponseCharacteristic](../_static/schema/BatteryResponseCharacteristic.html){.external}
 
 [BatteryStateKind](../_static/schema/BatteryStateKind.html){.external}
@@ -510,6 +512,8 @@
 
 [EnergyConnectionProfile](../_static/schema/EnergyConnectionProfile.html){.external}
 
+[EnergyConnectionProfileContainer_Container](../_static/schema/EnergyConnectionProfileContainer_Container.html){.external}
+
 [EnergyConsumer](../_static/schema/EnergyConsumer.html){.external}
 
 [EnergyConsumerAction](../_static/schema/EnergyConsumerAction.html){.external}
@@ -811,6 +815,8 @@
 [InverterControllerContainer_Container](../_static/schema/InverterControllerContainer_Container.html){.external}
 
 [IrregularTimePoint](../_static/schema/IrregularTimePoint.html){.external}
+
+[IrregularTimePointArray](../_static/schema/IrregularTimePointArray.html){.external}
 
 [JobFlagType](../_static/schema/JobFlagType.html){.external}
 
@@ -1267,6 +1273,8 @@
 [Recloser](../_static/schema/Recloser.html){.external}
 
 [RegularTimePoint](../_static/schema/RegularTimePoint.html){.external}
+
+[RegularTimePointArray](../_static/schema/RegularTimePointArray.html){.external}
 
 [RegulatingCondEq](../_static/schema/RegulatingCondEq.html){.external}
 
