@@ -9,6 +9,16 @@
       "title": "BaseVoltagePointer",
       "description": "Pointer to BaseVoltage object"
     },
+    "TransformerEnd.RatioTapChanger": {
+      "type": "string",
+      "title": "RatioTapChangerPointer",
+      "description": "Pointer to RatioTapChanger object"
+    },
+    "TransformerEnd.PhaseTapChanger": {
+      "type": "string",
+      "title": "PhaseTapChangerPointer",
+      "description": "Pointer to PhaseTapChanger object"
+    },
     "TransformerEnd.bmagSat": {
       "title": "bmagSat",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
