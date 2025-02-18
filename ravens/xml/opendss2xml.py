@@ -1367,6 +1367,8 @@ class DssExport(object):
             self.add_triple(rtc_node, "TapChanger.ctRatio", reg.CTPrim / 0.2)
             self.add_triple(rtc_node, "TapChanger.ctRating", reg.CTPrim)
 
+            # Add RatioTapChanger reference to specific transformer winding
+            self.add_triple(self.transformer_end_uris[f"Transformer={reg.Transformer.Name}={reg.TapWinding}"], "TransformerEnd.RatioTapChanger", rtc_node)
 
 if __name__ == "__main__":
     pathlib.Path("out").mkdir(parents=True, exist_ok=True)
