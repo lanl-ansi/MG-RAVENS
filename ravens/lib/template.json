@@ -4183,6 +4183,18 @@
                                   "$objectId": "BaseVoltage",
                                   "type": "string",
                                   "$referencePath": "BaseVoltage"
+                                },
+                                "TransformerEnd.RatioTapChanger": {
+                                  "$objectType": "reference",
+                                  "$objectId": "RatioTapChanger",
+                                  "$referencePath": "PowerSystemResource/TapChanger/RatioTapChanger",
+                                  "type": "string"
+                                },
+                                "TransformerEnd.PhaseTapChanger": {
+                                  "$objectType": "reference",
+                                  "$objectId": "PhaseTapChanger",
+                                  "$referencePath": "PowerSystemResource/TapChanger/PhaseTapChanger",
+                                  "type": "string"
                                 }
                               }
                             }
@@ -4250,13 +4262,13 @@
                           "TransformerEnd.RatioTapChanger": {
                             "$objectType": "reference",
                             "$objectId": "RatioTapChanger",
-                            "$referencePath": "PowerSystemResource/Equipment/TapChanger/RatioTapChanger",
+                            "$referencePath": "PowerSystemResource/TapChanger/RatioTapChanger",
                             "type": "string"
                           },
                           "TransformerEnd.PhaseTapChanger": {
                             "$objectType": "reference",
                             "$objectId": "PhaseTapChanger",
-                            "$referencePath": "PowerSystemResource/Equipment/TapChanger/PhaseTapChanger",
+                            "$referencePath": "PowerSystemResource/TapChanger/PhaseTapChanger",
                             "type": "string"
                           },
                           "TransformerEnd.MeshImpedance": {
