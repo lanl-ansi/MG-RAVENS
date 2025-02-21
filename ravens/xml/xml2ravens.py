@@ -479,10 +479,13 @@ class RavensImport:
 
             if p != self.rdf_type:
                 if isinstance(o, Literal):
-                    try:
-                        value = literal_eval(o.value)
-                    except:
-                        value = o.value
+                    if o.value.lower() in ["true", "false"]:
+                        value = bool(o.value)
+                    else:
+                        try:
+                            value = literal_eval(o.value)
+                        except:
+                            value = o.value
                 elif pn in self.reference_paths:
                     if o in self.object_ids:
                         value = f"{self.rdf.value(subject=o, predicate=self.rdf_type).split("#")[-1]}::'{self.object_ids[o]}'"
