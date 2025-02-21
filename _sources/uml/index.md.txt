@@ -68,9 +68,34 @@
 
 ## SimplifiedDiagrams
 
+### OptimizationSettings
+
+<img src="../_static/uml/SimplifiedDiagrams.OptimizationSettings.svg" style="max-width: 100%; height: auto;" alt="OptimizationSettings diagram">
+
+
+### Root
+
+<img src="../_static/uml/SimplifiedDiagrams.Root.svg" style="max-width: 100%; height: auto;" alt="Root diagram">
+
+
+### OperationalLimits
+
+<img src="../_static/uml/SimplifiedDiagrams.OperationalLimits.svg" style="max-width: 100%; height: auto;" alt="OperationalLimits diagram">
+
+
 ### ConnectivityNodes
 
 <img src="../_static/uml/SimplifiedDiagrams.ConnectivityNodes.svg" style="max-width: 100%; height: auto;" alt="ConnectivityNodes diagram">
+
+
+### Versions
+
+<img src="../_static/uml/SimplifiedDiagrams.Versions.svg" style="max-width: 100%; height: auto;" alt="Versions diagram">
+
+
+### Group
+
+<img src="../_static/uml/SimplifiedDiagrams.Group.svg" style="max-width: 100%; height: auto;" alt="Group diagram">
 
 
 ### Conductors
@@ -78,9 +103,9 @@
 <img src="../_static/uml/SimplifiedDiagrams.Conductors.svg" style="max-width: 100%; height: auto;" alt="Conductors diagram">
 
 
-### LoadForecastingOld
+### LoadForecasting
 
-<img src="../_static/uml/SimplifiedDiagrams.LoadForecastingOld.svg" style="max-width: 100%; height: auto;" alt="LoadForecastingOld diagram">
+<img src="../_static/uml/SimplifiedDiagrams.LoadForecasting.svg" style="max-width: 100%; height: auto;" alt="LoadForecasting diagram">
 
 
 ### BaseVoltage
@@ -141,11 +166,6 @@
 ### MeterPoints
 
 <img src="../_static/uml/SimplifiedDiagrams.MeterPoints.svg" style="max-width: 100%; height: auto;" alt="MeterPoints diagram">
-
-
-### Versions
-
-<img src="../_static/uml/SimplifiedDiagrams.Versions.svg" style="max-width: 100%; height: auto;" alt="Versions diagram">
 
 
 ### Groups
