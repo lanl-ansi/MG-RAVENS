@@ -32,15 +32,20 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
       "description": "nan"
     },
+    "InverterController.canGridForm": {
+      "title": "canGridForm",
+      "type": "boolean",
+      "description": "nan"
+    },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",
       "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
     },
-    "ConstantPFControlMode.powerFactorSetpoint": {
-      "title": "powerFactorSetpoint",
-      "type": "number",
-      "description": "nan"
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
     },
     "IdentifiedObject.description": {
       "title": "description",
@@ -57,10 +62,10 @@
       "type": "string",
       "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
     },
-    "IdentifiedObject.name": {
-      "title": "name",
-      "type": "string",
-      "description": "The name is any free human readable and possibly non unique text naming the object."
+    "ConstantPFControlMode.powerFactorSetpoint": {
+      "title": "powerFactorSetpoint",
+      "type": "number",
+      "description": "nan"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
