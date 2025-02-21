@@ -250,6 +250,11 @@ class DssExport(object):
 
         self.uuid_map = {}
 
+        self.terminal_map = {}
+
+        # for capacitor controls
+        self.cap_map = {}
+
         # Transformer specific properties
         self.transformer_info = None
         self.transformer_banks = {}
@@ -567,6 +572,7 @@ class DssExport(object):
 
         for i, bus in enumerate([line.Bus1, line.Bus2]):
             terminal_uri = self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=parse_ordered_phase_str(bus, line.Phases))
+            self.terminal_map[(type(line), line.Name, i + 1)] = terminal_uri
             self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=line.NormAmps, norm_max=line.NormAmps, emerg_max=line.EmergAmps)
 
     def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: object, phase: str, sequence: int, wire: object = None):
@@ -910,6 +916,11 @@ class DssExport(object):
         base_kv = self._add_BaseVoltage(node, cap.Bus1)
         self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=cap.NormAmps, norm_max=cap.NormAmps, emerg_max=cap.EmergAmps)
 
+        self.cap_map[cap.Name] = {"uri": node, "terminal": terminal_uri}
+        self.terminal_map[(type(cap), cap.Name, 1)] = terminal_uri
+        # TODO, handle multi-terminal capacitors
+        self.terminal_map[(type(cap), cap.Name, 2)] = terminal_uri
+
     def _add_RegulatingControls(self):
         for capcontrol in self.dss.CapControl:
             self._add_RegulatingControl(self, capcontrol)
@@ -1191,6 +1202,7 @@ class DssExport(object):
             if i + 1 == 1:
                 self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=tr.NormAmps, norm_max=tr.NormAmps, emerg_max=tr.EmergAmps)
 
+            self.terminal_map[(type(tr), tr.Name, i + 1)] = terminal_uri
             self.transformer_terminal_uris[f"Transformer={tr.Name}={i+1}"] = terminal_uri
             self.transformer_end_uris[f"Transformer={tr.Name}={i+1}"] = node
 
@@ -1471,6 +1483,59 @@ class DssExport(object):
 
             # Add RatioTapChanger reference to specific transformer winding
             self.add_triple(self.transformer_end_uris[f"Transformer={reg.Transformer.Name}={reg.TapWinding}"], "TransformerEnd.RatioTapChanger", rtc_node)
+
+        for capc in self.dss.CapControl:
+            node = self.build_cim_obj("RegulatingControl", name=capc.Name)
+
+            self.add_triple(node, "RegulatingControl.RegulatingCondEq", self.cap_map[capc.Capacitor.Name]["uri"])
+
+            element = capc.Element
+            terminal = None
+            if isinstance(element, altdss.Transformer):
+                terminal = element.Buses[capc.Terminal - 1]
+            else:
+                if capc.Terminal == 1:
+                    terminal = element.Bus1
+                elif capc.Terminal == 2:
+                    terminal = element.Bus2
+
+            phase_idx = 1
+            if capc.Type == 0:
+                phase_idx = capc.CTPhase
+            elif capc.Type == 1:
+                phase_idx = capc.PTPhase
+            elif capc.Type == 2:
+                phase_idx = None
+
+            phases = parse_ordered_phase_str(terminal, element.NumPhases())
+            phase = "A"
+            if phase_idx is None:
+                phase = phases
+            else:
+                if phases == "s12":
+                    phase = ["s1", "s2"][phase_idx - 1]
+                elif phases.startswith("s"):
+                    phase = [phases][phase_idx - 1]
+                else:
+                    phase = phases[phase_idx - 1]
+
+            self.add_triple(node, "RegulatingControl.Terminal", self.terminal_map[(type(element), element.Name, capc.Terminal)])
+
+            self.add_triple(node, "RegulatingControl.monitoredPhase", self.cim[f"PhaseCode.{phase}"])
+            self.add_triple(node, "RegulatingControl.mode", self.cim["RegulatingControlModeKind." + {0: "currentFlow", 1: "voltage", 2: "reactivePower", 3: "timeScheduled", 4: "powerFactor", 5: "userDefined"}.get(capc.Type, 1)])
+            self.add_triple(node, "RegulatingControl.discrete", True)
+            self.add_triple(node, "RegulatingControl.enabled", capc.Enabled)
+            mult = 1.0
+            on = capc.OnSetting
+            off = capc.OffSetting
+            if capc.Type == 0:
+                mult = capc.CTRatio
+            elif capc.Type == 1:
+                mult = capc.PTRatio
+            elif capc.Type == 2:
+                mult = 1000.0
+            self.add_triple(node, "RegulatingControl.targetValue", mult * 0.5 * (on + off))
+            self.add_triple(node, "RegulatingControl.targetDeadband", mult * (off - on))
 
     def _add_SeriesCompensators(self):
         for react in self.dss.Reactor:
