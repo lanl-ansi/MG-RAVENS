@@ -4,6 +4,7 @@ import pathlib
 from uuid import uuid4
 
 from opendssdirect import dss as odd
+import altdss
 
 from rdflib.exceptions import UniquenessError
 from rdflib.namespace import Namespace
@@ -280,6 +281,14 @@ class DssExport(object):
         self.graph.serialize(path, max_depth=1, format="pretty-xml")
 
     @staticmethod
+    def _to_meters(units: str):
+        return {"mi": 1609.3, "kft": 304.8, "km": 1000.0, "m": 1.0, "ft": 0.3048, "in": 0.0254, "cm": 0.01, "mm": 0.001}.get(units, 1.0)
+
+    @staticmethod
+    def _to_per_meter(units: str):
+        return 1.0 / {"mi": 1609.3, "kft": 304.8, "km": 1000.0, "m": 1.0, "ft": 0.3048, "in": 0.0254, "cm": 0.01, "mm": 0.001}.get(units, 1.0)
+
+    @staticmethod
     def _parse_busname(bus: str) -> str:
         return bus.split(".", 1)[0]
 
@@ -524,67 +533,160 @@ class DssExport(object):
 
     def _add_ACLineSegment(self, line: object):
         node = self.build_cim_obj("ACLineSegment", name=line.Name)
-        self.add_triple(node, "Conductor.length", line.Length)
         self.add_triple(node, "Equipment.inService", line.Enabled)
         self._add_BaseVoltage(node, line.Bus1)
 
-        # TODO: Line Geometry, parameters defined on Line, etc.
+        wires = [None for i in range(line.NumConductors())]
         if line.LineCode is not None:
-            uri = self._add_PerLengthPhaseImedance(line.LineCode)
+            units = line.Units_str if line.Units_str != "none" else line.LineCode.Units_str
+            self.add_triple(node, "Conductor.length", line.Length * self._to_meters(units))
+            uri = self._add_PerLengthPhaseImedance(line.LineCode, units=units)
             self.add_triple(node, "ACLineSegment.PerLengthImpedance", uri)
         elif line.Geometry is not None:
-            pass
+            self.add_triple(node, "Conductor.length", line.Length * self._to_meters(line.Units_str))
+            self._add_WireSpacingInfo(node, line.Geometry)
+            wires = line.Geometry.Conductors
         elif line.Spacing is not None:
-            pass
+            self.add_triple(node, "Conductor.length", line.Length * self._to_meters(line.Units_str))
+            self._add_WireSpacingInfo(node, line.Spacing)
+            wires = line.Conductors
         else:
-            # no LineCode, Geometry, or Spacing specified
-            pass
+            uri = self._add_PerLengthPhaseImedance(line, name=f"{line.Name}_PUZ", nphases=line.NumPhases())
+            self.add_triple(node, "ACLineSegment.PerLengthImpedance", uri)
 
         phases = parse_ordered_phase_str(line.Bus1, line.Phases)
         if phases == "s12":
             for seq, phase in enumerate(["s1", "s2"]):
-                self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
+                self._add_ACLineSegmentPhase(node, line, phase, seq + 1, wire=wires[seq])
         elif phases.startswith("s"):
             for seq, phase in enumerate([phases]):
-                self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
+                self._add_ACLineSegmentPhase(node, line, phase, seq + 1, wire=wires[seq])
         else:
             for seq, phase in enumerate([ph for ph in phases]):
-                self._add_ACLineSegmentPhase(node, line, phase, seq + 1)
+                self._add_ACLineSegmentPhase(node, line, phase, seq + 1, wire=wires[seq])
 
         for i, bus in enumerate([line.Bus1, line.Bus2]):
             terminal_uri = self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=parse_ordered_phase_str(bus, line.Phases))
             self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=line.NormAmps, norm_max=line.NormAmps, emerg_max=line.EmergAmps)
 
-    def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: object, phase: str, sequence: int):
+    def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: object, phase: str, sequence: int, wire: object = None):
         node = self.build_cim_obj("ACLineSegmentPhase", name=f"{line.Name}_{phase}")
         self.add_triple(node, "ACLineSegmentPhase.phase", self.cim[f"SinglePhaseKind.{phase}"])
         self.add_triple(node, "ACLineSegmentPhase.sequenceNumber", sequence)
         self.add_triple(node, "ACLineSegmentPhase.ACLineSegment", aclinesegment_uri)
+        if wire is not None:
+            if isinstance(wire, altdss.WireData):
+                n = self.build_cim_obj("OverheadWireInfo")
+                self._add_WireInfo(n, wire)
+                self.add_triple(node, "PowerSystemResource.AssetDatasheet", n)
+            elif isinstance(wire, altdss.TSData):
+                n = self.build_cim_obj("TapeShieldCableInfo")
+                self._add_WireInfo(n, wire)
+                self._add_CableInfo(n, wire)
+                self._add_TapeShieldCableInfo(n, wire)
+                self.add_triple(node, "PowerSystemResource.AssetDatasheet", n)
+            elif isinstance(wire, altdss.CNData):
+                n = self.build_cim_obj("ConcentricNeutralCableInfo")
+                self._add_WireInfo(n, wire)
+                self._add_CableInfo(n, wire)
+                self._add_ConcentricNeutralCableInfo(n, wire)
+                self.add_triple(node, "PowerSystemResource.AssetDatasheet", n)
 
-    def _add_PerLengthPhaseImedance(self, linecode: object) -> URIRef:
-        if f"PerLengthPhaseImpedance.{linecode.Name}" not in self.uuid_map:
-            node = self.build_cim_obj("PerLengthPhaseImpedance", name=linecode.Name)
-            self.add_triple(node, "PerLengthPhaseImpedance.conductorCount", linecode.NPhases)
+    def _add_WireSpacingInfo(self, subject: URIRef, linespacing: object):
+        node = self.build_cim_obj("WireSpacingInfo", name=linespacing.Name)
+        self.add_triple(node, "WireSpacingInfo.usage", self.cim[f"WireUsageKind.distribution"])
+        self.add_triple(node, "WireSpacingInfo.phaseWireCount", 1)
+        self.add_triple(node, "WireSpacingInfo.phaseWireSpacing", 0.0)
+        if getattr(linespacing, "LineType", 0) == 1 or getattr(linespacing, "H", [0.0])[0] > 0.0:
+            self.add_triple(node, "WireSpacingInfo.isCable", False)
+        else:
+            self.add_triple(node, "WireSpacingInfo.isCable", True)
 
-            self._add_PhaseImpedanceData(node, linecode)
+        for i in range(linespacing.NConds):
+            wp = self.build_cim_obj("WirePosition", name=f"WP_{linespacing.Name}_{i+1}")
+            self.add_triple(wp, "WirePosition.WireSpacingInfo", node)
+            self.add_triple(wp, "WirePosition.sequenceNumber", i + 1)
+            self.add_triple(wp, "WirePosition.xCoord", linespacing.X[i] * self._to_meters(linespacing.Units_str))
+            self.add_triple(wp, "WirePosition.yCoord", linespacing.H[i] * self._to_meters(linespacing.Units_str))
 
-            self.uuid_map[f"PerLengthPhaseImpedance.{linecode.Name}"] = str(node)
+        self.add_triple(subject, "ACLineSegment.WireSpacingInfo", node)
+
+    def _add_CableInfo(self, node: URIRef, cable: object):
+        self.add_triple(node, "WireInfo.insulated", True)
+        self.add_triple(node, "WireInfo.insulationThickness", cable.InsLayer * self._to_meters(cable.RadUnits))
+        self.add_triple(node, "WireInfo.insulationMaterial", self.cim["WireInsulationKind.crosslinkedPolyethylene"])
+        self.add_triple(node, "CableInfo.outerJacketKind", self.cim["CableOuterJacketKind.none"])
+        self.add_triple(node, "CableInfo.constructionKind", self.cim["CableConstructionKind.stranded"])
+        self.add_triple(node, "CableInfo.isStrandFill", False)
+        self.add_triple(node, "CableInfo.diameterOverCore", (cable.DiaIns - 2.0 * cable.InsLayer) * self._to_meters(cable.RadUnits))
+        self.add_triple(node, "CableInfo.diameterOverInsulation", cable.DiaIns * self._to_meters(cable.RadUnits))
+        self.add_triple(node, "CableInfo.diameterOverJacket", cable.DiaCable * self._to_meters(cable.RadUnits))
+        self.add_triple(node, "CableInfo.nominalTemperature", 90.0)
+        self.add_triple(node, "CableInfo.relativePermittivity", cable.EpsR)
+
+    def _add_TapeShieldCableInfo(self, node: URIRef, tsdata: object):
+        self.add_triple(node, "CableInfo.diameterOverScreen", (tsdata.DiaShield - 2.0 * tsdata.TapeLayer) * self._to_meters(tsdata.RadUnits))
+        self.add_triple(node, "TapShieldCableInfo.tapeLap", tsdata.TapeLap)
+        self.add_triple(node, "TapShieldCableInfo.tapeThickness", tsdata.TapeLayer * self._to_meters(tsdata.RadUnits))
+        self.add_triple(node, "CableInfo.shieldMaterial", self.cim["CableShieldMaterialKind.copper"])
+        self.add_triple(node, "CableInfo.sheathAsNeutral", True)
+
+    def _add_ConcentricNeutralCableInfo(self, node: URIRef, cndata: object):
+        self.add_triple(node, "CableInfo.diameterOverScreen", (cndata.DiaCable - 2.0 * cndata.DiaStrand) * self._to_meters(cndata.RadUnits))
+        self.add_triple(node, "ConcentricNeutralCableInfo.diameterOverNeutral", cndata.DiaCable * self._to_meters(cndata.RadUnits))
+        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRadius", cndata.DiaStrand / 2.0 * self._to_meters(cndata.RadUnits))
+        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandGmr", cndata.GMRStrand * self._to_meters(cndata.GMRUnits))
+        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRDC20", cndata.RStrand * self._to_per_meter(cndata.RUnits))
+        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandCount", cndata.k)
+
+    def _add_WireInfo(self, node: URIRef, wire: object):
+        self.add_triple(node, "WireInfo.sizeDescription", wire.Name)
+        material = "other"
+        if "aa" in wire.Name.lower():
+            material = "aluminum"
+        elif "acsr" in wire.Name.lower():
+            material = "acsr"
+        elif "cu" in wire.Name.lower():
+            material = "copper"
+        elif "ehs" in wire.Name.lower():
+            material = "steel"
+        self.add_triple(node, "WireInfo.material", self.cim[f"WireMaterialKind.{material}"])
+        self.add_triple(node, "WireInfo.gmr", wire.GMRAC * self._to_meters(wire.GMRUnits))
+        self.add_triple(node, "WireInfo.radius", wire.Radius * self._to_meters(wire.RadUnits))
+        self.add_triple(node, "WireInfo.rDC20", wire.RDC * self._to_per_meter(wire.RUnits))
+        self.add_triple(node, "WireInfo.rAC25", wire.RAC * self._to_per_meter(wire.RUnits))
+        self.add_triple(node, "WireInfo.rAC50", wire.RAC * self._to_per_meter(wire.RUnits))
+        self.add_triple(node, "WireInfo.rAC75", wire.RAC * self._to_per_meter(wire.RUnits))
+        self.add_triple(node, "WireInfo.ratedCurrent", wire.NormAmps)
+        self.add_triple(node, "WireInfo.strandCount", 0)
+        self.add_triple(node, "WireInfo.coreStrandCount", 0)
+        self.add_triple(node, "WireInfo.coreRadius", 0.0)
+
+    def _add_PerLengthPhaseImedance(self, linecode: object, name: str = "", nphases: int = None, units: int = 0) -> URIRef:
+        if f"PerLengthPhaseImpedance.{name if name else linecode.Name}" not in self.uuid_map:
+            node = self.build_cim_obj("PerLengthPhaseImpedance", name=name if name else linecode.Name)
+            self.add_triple(node, "PerLengthPhaseImpedance.conductorCount", nphases if nphases is not None else linecode.NPhases)
+
+            self._add_PhaseImpedanceData(node, linecode, nphases=nphases, units=units)
+
+            self.uuid_map[f"PerLengthPhaseImpedance.{name if name else linecode.Name}"] = str(node)
 
             return node
         else:
-            return URIRef(self.uuid_map[f"PerLengthPhaseImpedance.{linecode.Name}"])
+            return URIRef(self.uuid_map[f"PerLengthPhaseImpedance.{name if name else linecode.Name}"])
 
-    def _add_PhaseImpedanceData(self, phase_impedance_uri: URIRef, linecode: object):
-        for col in range(1, linecode.NPhases + 1):  # iterate over rows (upper triangular only)
-            for row in range(col, linecode.NPhases + 1):
+    def _add_PhaseImpedanceData(self, phase_impedance_uri: URIRef, linecode: object, nphases: int = None, units: int = 0):
+        units = linecode.Units_str if linecode.Units_str != "none" else units
+        for col in range(1, (nphases if nphases is not None else linecode.NPhases) + 1):  # iterate over rows (upper triangular only)
+            for row in range(col, (nphases if nphases is not None else linecode.NPhases) + 1):
                 node = self.build_cim_obj("PhaseImpedanceData", skip_mrid=True)
                 self.add_triple(node, "PhaseImpedanceData.row", row)
                 self.add_triple(node, "PhaseImpedanceData.column", col)
                 # calculate the correct index in RMatrix, XMatrix, CMatrix
-                i = (row - 1) * linecode.NPhases + (col - 1)
-                self.add_triple(node, "PhaseImpedanceData.r", linecode.RMatrix[i])
-                self.add_triple(node, "PhaseImpedanceData.x", linecode.XMatrix[i])
-                self.add_triple(node, "PhaseImpedanceData.b", linecode.CMatrix[i] * 2 * math.pi * linecode.BaseFreq / 1e9)
+                i = (row - 1) * (nphases if nphases is not None else linecode.NPhases) + (col - 1)
+                self.add_triple(node, "PhaseImpedanceData.r", linecode.RMatrix[i] * self._to_per_meter(units))
+                self.add_triple(node, "PhaseImpedanceData.x", linecode.XMatrix[i] * self._to_per_meter(units))
+                self.add_triple(node, "PhaseImpedanceData.b", linecode.CMatrix[i] * 2 * math.pi * linecode.BaseFreq / 1e9 * self._to_per_meter(units))
                 self.add_triple(node, "PhaseImpedanceData.PhaseImpedance", phase_impedance_uri)
 
     def _add_Switch(self, line: object):
@@ -764,7 +866,7 @@ class DssExport(object):
 
     def _add_RegularTimePoint(self, subject_uri: URIRef, sequence: int, value1: float, value2: float):
         node = self.build_cim_obj("RegularTimePoint", skip_mrid=True)
-        self.add_triple(node, "RegularTimePoint.sequenceNumber", sequence+1)  # adjust/shift sequence number from 0 to 1.
+        self.add_triple(node, "RegularTimePoint.sequenceNumber", sequence + 1)  # adjust/shift sequence number from 0 to 1.
         self.add_triple(node, "RegularTimePoint.value1", value1)
         self.add_triple(node, "RegularTimePoint.value2", value2)
         self.add_triple(node, "RegularTimePoint.IntervalSchedule", subject_uri)
