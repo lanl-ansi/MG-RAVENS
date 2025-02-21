@@ -1472,6 +1472,22 @@ class DssExport(object):
             # Add RatioTapChanger reference to specific transformer winding
             self.add_triple(self.transformer_end_uris[f"Transformer={reg.Transformer.Name}={reg.TapWinding}"], "TransformerEnd.RatioTapChanger", rtc_node)
 
+    def _add_SeriesCompensators(self):
+        for react in self.dss.Reactor:
+            self._add_SeriesCompensator(react)
+
+    def _add_SeriesCompensator(self, react: object):
+        node = self.build_cim_obj("SeriesCompensator", name=react.Name)
+        self.add_triple(node, "SeriesCompensator.r", react.R())
+        self.add_triple(node, "SeriesCompensator.x", react.X())
+        self.add_triple(node, "SeriesCompensator.r0", react.R())
+        self.add_triple(node, "SeriesCompensator.x0", react.X())
+
+        for i, bus in enumerate([react.Bus1, react.Bus2]):
+            terminal_uri = self._add_Terminal(node, react, bus=self._parse_busname(bus), n_terminal=i + 1, phases=parse_ordered_phase_str(bus, react.Phases))
+            self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=react.NormAmps, norm_max=react.NormAmps, emerg_max=react.EmergAmps)
+
+
 if __name__ == "__main__":
     pathlib.Path("out").mkdir(parents=True, exist_ok=True)
 
