@@ -17,8 +17,8 @@ class RavensValidator:
             self.catalog.add_uri_source(URI(schema_base_uri), LocalSource(local_path_to_schema.parent, suffix=""))
             self.schema = JSONSchema.loadf(local_path_to_schema)
         else:
-            self.catalog.add_uri_source(URI(schema_base_uri + "/"), RemoteSource(schema_base_uri))
-            self.schema = JSONSchema.loadr(schema_url)
+            self.catalog.add_uri_source(None, RemoteSource(URI(schema_base_uri)))
+            self.schema = JSONSchema.loadr(URI(schema_url))
 
         self.result = None
 
