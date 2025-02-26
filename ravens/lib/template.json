@@ -180,10 +180,9 @@
         "ConnectivityNodeContainer": {
           "$objectType": "object",
           "$objectId": "ConnectivityNodeContainer",
-          "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "oneOf": [
+          "anyOf": [
             {
               "$objectType": "object",
               "$objectId": "ConnectivityNodeContainer",
@@ -346,11 +345,10 @@
         },
         "LoadGroup": {
           "$objectType": "object",
-          "type": "object",
           "$objectId": "LoadGroup",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "oneOf": [
+          "anyOf": [
             {
               "$objectType": "object",
               "type": "object",
@@ -539,9 +537,8 @@
                             "PowerElectronicsConnection.PowerElectronicsUnit": {
                               "$objectType": "object",
                               "$objectId": "PowerElectronicsUnit",
-                              "type": "object",
                               "$primaryObjectHash": null,
-                              "oneOf": [
+                              "anyOf": [
                                 {
                                   "$objectType": "object",
                                   "$objectId": "BatteryUnit",
@@ -809,11 +806,10 @@
                         },
                         "ShuntCompensator": {
                           "$objectType": "object",
-                          "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "$objectId": "ShuntCompensator",
-                          "oneOf": [
+                          "anyOf": [
                             {
                               "$objectType": "object",
                               "type": "object",
@@ -1106,10 +1102,9 @@
                         },
                         "RotatingMachine": {
                           "$objectType": "object",
-                          "type": "object",
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
-                          "oneOf": [
+                          "anyOf": [
                             {
                               "$objectType": "object",
                               "type": "object",
@@ -1167,8 +1162,7 @@
                                   "$objectType": "object",
                                   "$objectId": "GeneratingUnit",
                                   "$primaryObjectHash": null,
-                                  "type": "object",
-                                  "oneOf": [
+                                  "anyOf": [
                                     {
                                       "$objectType": "object",
                                       "$objectId": "HydroGeneratingUnit",
@@ -1366,8 +1360,7 @@
                                   "$objectType": "object",
                                   "$objectId": "GeneratingUnit",
                                   "$primaryObjectHash": null,
-                                  "type": "object",
-                                  "oneOf": [
+                                  "anyOf": [
                                     {
                                       "$objectType": "object",
                                       "$objectId": "HydroGeneratingUnit",
@@ -1565,8 +1558,7 @@
                                   "$objectType": "object",
                                   "$objectId": "GeneratingUnit",
                                   "$primaryObjectHash": null,
-                                  "type": "object",
-                                  "oneOf": [
+                                  "anyOf": [
                                     {
                                       "$objectType": "object",
                                       "$objectId": "HydroGeneratingUnit",
@@ -1713,10 +1705,9 @@
                     },
                     "EnergyConsumer": {
                       "$objectType": "object",
-                      "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
-                      "oneOf": [
+                      "anyOf": [
                         {
                           "$objectType": "object",
                           "type": "object",
@@ -2311,7 +2302,7 @@
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "$objectId": "EquivalentBranch",
-                      "oneOf": [
+                      "anyOf": [
                         {
                           "$objectType": "object",
                           "type": "object",
@@ -2694,8 +2685,7 @@
                         "ACLineSegment.PerLengthImpedance": {
                           "$objectType": "reference",
                           "$objectId": "PerLengthImpedance",
-                          "type": "string",
-                          "oneOf": [
+                          "anyOf": [
                             {
                               "$objectType": "reference",
                               "$objectId": "PerLengthSequenceImpedance",
@@ -2721,8 +2711,7 @@
                               "ACLineSegmentPhase.WireInfo": {
                                 "$objectType": "reference",
                                 "$objectId": "WireInfo",
-                                "type": "string",
-                                "oneOf": [
+                                "anyOf": [
                                   {
                                     "$objectType": "reference",
                                     "$objectId": "OverheadWireInfo",
@@ -2750,10 +2739,9 @@
                                 "$referencePath": "AssetInfo/WireSpacingInfo"
                               },
                               "PowerSystemResource.AssetDatasheet": {
-                                "type": "string",
                                 "$objectType": "reference",
                                 "$objectId": "WireInfo",
-                                "oneOf": [
+                                "anyOf": [
                                   {
                                     "type": "string",
                                     "$objectType": "reference",
@@ -2784,10 +2772,9 @@
                           "$referencePath": "AssetInfo/WireSpacingInfo"
                         },
                         "PowerSystemResource.AssetDatasheet": {
-                          "type": "string",
                           "$objectType": "reference",
                           "$objectId": "WireInfo",
-                          "oneOf": [
+                          "anyOf": [
                             {
                               "type": "string",
                               "$objectType": "reference",
@@ -3161,11 +3148,10 @@
                 },
                 "Switch": {
                   "$objectType": "object",
-                  "type": "object",
                   "$primaryObjectHash": "IdentifiedObject.name",
                   "$secondaryObjectHash": "IdentifiedObject.mRID",
                   "$objectId": "Switch",
-                  "oneOf": [
+                  "anyOf": [
                     {
                       "$objectType": "object",
                       "type": "object",
@@ -4516,9 +4502,8 @@
           "items": {
             "$objectId": "OperationalLimit",
             "$objectType": "object",
-            "type": "object",
             "$arrayPosition": null,
-            "oneOf": [
+            "anyOf": [
               {
                 "$objectType": "object",
                 "$objectId": "VoltageLimit",
@@ -4578,10 +4563,9 @@
     },
     "Curve": {
       "$objectType": "object",
-      "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "oneOf": [
+      "anyOf": [
         {
           "$objectType": "object",
           "$objectId": "Curve",
@@ -4784,10 +4768,9 @@
     },
     "SwitchingAction": {
       "$objectType": "object",
-      "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "oneOf": [
+      "anyOf": [
         {
           "$objectType": "object",
           "$objectId": "EnergySourceAction",
@@ -4876,10 +4859,9 @@
     },
     "Fault": {
       "$objectType": "object",
-      "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "oneOf": [
+      "anyOf": [
         {
           "$objectType": "object",
           "type": "object",
@@ -4980,10 +4962,9 @@
     },
     "DynamicsFunctionBlock": {
       "$objectType": "object",
-      "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "oneOf": [
+      "anyOf": [
         {
           "$objectType": "object",
           "$objectId": "RotatingMachineDynamics",
@@ -5017,10 +4998,9 @@
         "Outage": {
           "$objectType": "object",
           "$objectId": "Outage",
-          "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "oneOf": [
+          "anyOf": [
             {
               "$objectType": "object",
               "$objectId": "PlannedOutage",
@@ -5083,10 +5063,9 @@
     },
     "EnvironmentalPhenomenon": {
       "$objectType": "object",
-      "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "oneOf": [
+      "anyOf": [
         {
           "$objectType": "object",
           "$objectId": "HydrosphericPhenomenon",
@@ -5159,11 +5138,10 @@
         },
         "WireInfo": {
           "$objectType": "object",
-          "type": "object",
           "$objectId": "WireInfo",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "oneOf": [
+          "anyOf": [
             {
               "$objectType": "object",
               "type": "object",
@@ -5623,9 +5601,8 @@
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {
         "PredictedEmissions.Location": {
-          "type": "string",
           "$objectId": "Location",
-          "oneOf": [
+          "anyOf": [
             {
               "$objectType": "reference",
               "$objectId": "Location",
@@ -5738,10 +5715,9 @@
         "ProposedEnergyProducerOption": {
           "$objectType": "object",
           "$objectId": "ProposedEnergyProducerOption",
-          "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "oneOf": [
+          "anyOf": [
             {
               "$objectType": "object",
               "$objectId": "ProposedBatteryUnitOption",
@@ -5930,11 +5906,10 @@
     },
     "BasicIntervalSchedule": {
       "$objectType": "object",
-      "type": "object",
       "$objectId": "BasicIntervalSchedule",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "oneOf": [
+      "anyOf": [
         {
           "$objectType": "object",
           "type": "object",
