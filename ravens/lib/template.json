@@ -1766,7 +1766,7 @@
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
-                            "EnergyConsumer.LoadResponseCharacteristic": {
+                            "EnergyConsumer.LoadResponse": {
                               "$objectType": "reference",
                               "type": "string",
                               "$referencePath": "LoadResponseCharacteristic",
@@ -1858,7 +1858,7 @@
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
-                            "EnergyConsumer.LoadResponseCharacteristic": {
+                            "EnergyConsumer.LoadResponse": {
                               "$objectType": "reference",
                               "type": "string",
                               "$referencePath": "LoadResponseCharacteristic",
@@ -1950,7 +1950,7 @@
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
-                            "EnergyConsumer.LoadResponseCharacteristic": {
+                            "EnergyConsumer.LoadResponse": {
                               "$objectType": "reference",
                               "type": "string",
                               "$referencePath": "LoadResponseCharacteristic",
