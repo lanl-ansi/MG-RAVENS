@@ -2,7 +2,7 @@ from ravens.uml import UMLData
 
 
 class UMLExclusions:
-    def __init__(self, uml_data: UMLData = None):
+    def __init__(self, uml_data: UMLData | None = None):
         if uml_data is None:
             uml_data = UMLData()
 

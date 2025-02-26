@@ -8,7 +8,7 @@ from ravens.uml import UMLData, UMLExclusions
 
 
 class UMLGraphs:
-    def __init__(self, uml_data: UMLData = None, exclusions: UMLExclusions = None, schema_template=None):
+    def __init__(self, uml_data: UMLData | None = None, exclusions: UMLExclusions | None = None, schema_template=None):
         if uml_data is None:
             uml_data = UMLData()
 
@@ -163,7 +163,7 @@ class UMLGraphs:
                 os.remove(file)
 
         for k, v in self.subgraphs.items():
-            nx.export_graphml(v, os.path.join(export_dir, f"{k}.graphml"))
+            nx.write_graphml(v, os.path.join(export_dir, f"{k}.graphml"))
 
     def export_graph(self, file_out: str):
         nx.write_graphml(self.graph, file_out, named_key_ids=True, edge_id_from_attribute="Connector_ID")
@@ -179,6 +179,9 @@ class UMLGraphs:
 
 
 if __name__ == "__main__":
+    import pathlib
+    from ravens.schema import SchemaTemplate
+
     pathlib.Path("out/CIM_graphs").mkdir(parents=True, exist_ok=True)
     pathlib.Path("out/template_graphs").mkdir(parents=True, exist_ok=True)
 
