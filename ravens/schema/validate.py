@@ -4,10 +4,10 @@ import pathlib
 from jschon import create_catalog, JSON, JSONSchema, URI, LocalSource, RemoteSource
 
 from ravens.data import _RAVENS_SCHEMA_BASE_URL
-
+from ravens.logging import logger
 
 class RavensValidator:
-    def __init__(self, schema_base_uri: str = _RAVENS_SCHEMA_BASE_URL, schema_url: str = None, local_path_to_schema: pathlib.PosixPath = None):
+    def __init__(self, schema_base_uri: str = _RAVENS_SCHEMA_BASE_URL, schema_url: str | None = None, local_path_to_schema: pathlib.PosixPath | None = None) -> None:
         self.catalog = create_catalog("2020-12")
 
         if schema_url is None:
@@ -44,12 +44,11 @@ class RavensValidator:
             else:
                 print(json.dumps(self.result.output("basic"), indent=2))
         else:
-            print("No validator results available")
+            logger.info("No validator results available")
 
 
 if __name__ == "__main__":
     import os
-    import pathlib
 
     # Online version of Validator, does not work with proxy
     validator = RavensValidator()

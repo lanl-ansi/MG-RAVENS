@@ -14,7 +14,7 @@ from ravens.uml.exclusions import UMLExclusions
 
 
 class SchemaTemplate:
-    def __init__(self, uml_data: UMLData = None, uml_graphs: UMLGraphs = None, uml_exclusions: UMLExclusions = None):
+    def __init__(self, uml_data: UMLData | None = None, uml_graphs: UMLGraphs | None = None, uml_exclusions: UMLExclusions | None = None) -> None:
         if uml_data is None:
             uml_data = UMLData()
 
@@ -42,17 +42,24 @@ class SchemaTemplate:
     def loadio(self, io):
         return self.loads(io.read())
 
-    def add_attributes_to_template(self, data: dict, template: dict):
-        GG = self.uml_graphs.gen_graph
-        AT = self.uml_graphs.attr_graph
+    @staticmethod
+    def add_cimObjectType(schema: dict, object_name: str | None):
+        if object_name is not None:
+            if "Ravens.cimObjectType" not in schema:
+                schema["Ravens.cimObjectType"] = {
+                    "title": "cimObjectType",
+                    "type": "string",
+                    "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+                }
 
-        if template["type"] == "object":
+            schema["Ravens.cimObjectType"]["enum"] = [object_name]
+
+    def add_attributes_to_template(self, data: dict, template: dict):
+        if template.get("type", None) == "object" or template.get("$objectType", None) == "object":
             for k, v in template.get("properties", {}).items():
-                if v["type"] == "object":
+                if v.get("type", None) == "object" or v.get("$objectType", None) == "object":
+                    object_name = v.get("$objectId", k)
                     try:
-                        object_name = k
-                        if "$objectId" in v.keys():
-                            object_name = v["$objectId"]
                         obj = self.uml_data.objects[(self.uml_data.objects["Name"] == object_name) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
 
                         if "description" not in v and not pd.isnull(obj.Note):
@@ -66,23 +73,26 @@ class SchemaTemplate:
                 if v.get("$objectType", "") == "container":
                     data["properties"][k] = self.add_attributes_to_template(data["properties"][k], v)
                 elif v.get("$objectType", "") == "object":
-                    if "oneOf" in v.keys():
-                        for i, item in enumerate(v["oneOf"]):
+                    if "anyOf" in v.keys():
+                        for i, item in enumerate(v["anyOf"]):
+                            object_name = item.get("$objectId", None)
                             if item.get("$objectType", "") == "object":
-                                object_name = item["$objectId"]
                                 obj = self.uml_data.objects[(self.uml_data.objects["Name"] == object_name) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
                                 if "title" not in item:
-                                    data["properties"][k]["oneOf"][i]["title"] = str(obj.Name)
+                                    data["properties"][k]["anyOf"][i]["title"] = str(obj.Name)
                                 if "description" not in item and not pd.isnull(obj.Note):
-                                    data["properties"][k]["oneOf"][i]["description"] = html.unescape(str(obj.Note).strip())
+                                    data["properties"][k]["anyOf"][i]["description"] = html.unescape(str(obj.Note).strip())
 
-                                data["properties"][k]["oneOf"][i]["properties"] = self.add_cim_attributes_to_properties(data["properties"][k]["oneOf"][i]["properties"], item["$objectId"], item)
+                                data["properties"][k]["anyOf"][i]["properties"] = self.add_cim_attributes_to_properties(data["properties"][k]["anyOf"][i]["properties"], item["$objectId"], item)
 
-                            data["properties"][k]["oneOf"][i] = self.add_attributes_to_template(data["properties"][k]["oneOf"][i], item)
+                            data["properties"][k]["anyOf"][i] = self.add_attributes_to_template(data["properties"][k]["anyOf"][i], item)
+                            self.add_cimObjectType(data["properties"][k]["anyOf"][i]["properties"], object_name)
+
                     else:
                         data["properties"][k]["properties"] = self.add_cim_attributes_to_properties(data["properties"][k]["properties"], k, v)
 
                         data["properties"][k] = self.add_attributes_to_template(data["properties"][k], v)
+                        self.add_cimObjectType(data["properties"][k]["properties"], v.get("$objectId", k))
 
                 elif v.get("$objectType", "") == "reference":
                     obj = self.uml_data.objects[(self.uml_data.objects["Name"] == v["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
@@ -90,7 +100,7 @@ class SchemaTemplate:
                         data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "Pointer"
                     if "description" not in v:
                         data["properties"][k]["description"] = f"Pointer to {html.unescape(str(obj.Name).strip())} object"
-                elif v["type"] == "array":
+                elif v.get("type", None) == "array":
                     try:
                         if v["items"].get("type", "") == "array":
                             # do nothing
@@ -107,20 +117,24 @@ class SchemaTemplate:
                             data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "Array"
                             data["properties"][k]["description"] = f"Array of {html.unescape(str(obj.Name).strip())} objects"
                             data["properties"][k]["items"]["title"] = html.unescape(str(obj.Name).strip())
+
                             if not pd.isnull(obj.Note):
                                 data["properties"][k]["items"]["description"] = html.unescape(str(obj.Note).strip())
 
-                            if "oneOf" in v["items"]:
-                                for i, item in enumerate(v["items"]["oneOf"]):
-                                    oneof_obj = self.uml_data.objects[(self.uml_data.objects["Name"] == item["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
-                                    data["properties"][k]["items"]["oneOf"][i]["title"] = html.unescape(str(oneof_obj.Name).strip())
-                                    if not pd.isnull(oneof_obj.Note):
-                                        data["properties"][k]["items"]["oneOf"][i]["description"] = html.unescape(str(oneof_obj.Note).strip())
+                            if "anyOf" in v["items"]:
+                                for i, item in enumerate(v["items"]["anyOf"]):
+                                    object_name = item.get("$objectId", None)
+                                    anyOf_obj = self.uml_data.objects[(self.uml_data.objects["Name"] == item["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                                    data["properties"][k]["items"]["anyOf"][i]["title"] = html.unescape(str(anyOf_obj.Name).strip())
+                                    if not pd.isnull(anyOf_obj.Note):
+                                        data["properties"][k]["items"]["anyOf"][i]["description"] = html.unescape(str(anyOf_obj.Note).strip())
 
-                                    data["properties"][k]["items"]["oneOf"][i]["properties"] = self.add_cim_attributes_to_properties(data["properties"][k]["items"]["oneOf"][i]["properties"], k, item)
-                                    data["properties"][k]["items"]["oneOf"][i] = self.add_attributes_to_template(data["properties"][k]["items"]["oneOf"][i], item)
+                                    data["properties"][k]["items"]["anyOf"][i]["properties"] = self.add_cim_attributes_to_properties(data["properties"][k]["items"]["anyOf"][i]["properties"], k, item)
+                                    data["properties"][k]["items"]["anyOf"][i] = self.add_attributes_to_template(data["properties"][k]["items"]["anyOf"][i], item)
+                                    self.add_cimObjectType(data["properties"][k]["items"]["anyOf"][i]["properties"], object_name)
                             else:
                                 data["properties"][k]["items"]["properties"] = self.add_cim_attributes_to_properties(data["properties"][k]["items"]["properties"], k, v["items"])
+                                self.add_cimObjectType(data["properties"][k]["items"]["properties"], v["items"].get("$objectId", None))
 
                         data["properties"][k]["items"] = self.add_attributes_to_template(data["properties"][k]["items"], v["items"])
 
@@ -135,12 +149,8 @@ class SchemaTemplate:
         GG = self.uml_graphs.gen_graph
         AT = self.uml_graphs.attr_graph
 
+        object_name: str = v.get("$objectId", k)
         try:
-            if "$objectId" in v.keys():
-                object_name = v["$objectId"]
-            else:
-                object_name = k
-
             object_id = self.uml_data.objects[(self.uml_data.objects["Name"] == object_name) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]._name
         except:
             raise KeyError(f"Object {object_name} Object_ID not found in CIM UML")
@@ -170,7 +180,7 @@ class SchemaTemplate:
     def convert_cim_type(cim_type: str) -> str:
         return _CIM_PRIMATIVES.get(cim_type, cim_type)
 
-    def collect_template_node_names(self, template: dict, nodes: list = None, currentParent: str = None, parentObject: str = None):
+    def collect_template_node_names(self, template: dict, nodes: list | None = None, currentParent: str | None = None, parentObject: str | None = None):
         if nodes is None:
             nodes = []
 

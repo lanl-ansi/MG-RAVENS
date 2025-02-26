@@ -13,10 +13,11 @@ from ravens.data import _RAVENS_SCHEMA_BASE_URL, _JSON_SCHEMA_URL, _CIM_PRIMATIV
 from ravens.io import UMLData
 from ravens.uml import UMLGraphs, UMLExclusions
 from ravens.schema.template import SchemaTemplate
+from ravens.logging import logger
 
 
 class RavensSchema:
-    def __init__(self, schema_template: SchemaTemplate = None, base_id_uri=_RAVENS_SCHEMA_BASE_URL, uml_data: UMLData = None, uml_graphs: UMLGraphs = None, uml_exclusions: UMLExclusions = None):
+    def __init__(self, schema_template: SchemaTemplate | None = None, base_id_uri=_RAVENS_SCHEMA_BASE_URL, uml_data: UMLData | None = None, uml_graphs: UMLGraphs | None = None, uml_exclusions: UMLExclusions | None = None):
         if uml_data is None:
             uml_data = UMLData()
 
@@ -48,8 +49,8 @@ class RavensSchema:
             if k.startswith("$"):
                 continue
             elif isinstance(v, dict):
-                if "type" in v:
-                    if v["type"] == "object":
+                if "type" in v or "$objectType" in v:
+                    if v.get("type", None) == "object" or v.get("$objectType", None) == "object":
                         if "properties" in v:
                             if v.get("$primaryObjectHash", None) is None:
                                 schema[k] = self.build_schema_from_map(v)
@@ -66,7 +67,7 @@ class RavensSchema:
                                     },
                                 }
 
-                        elif "oneOf" in v:
+                        elif "anyOf" in v:
                             if v.get("$primaryObjectHash", None) is None:
                                 schema[k] = self.build_schema_from_map(v)
                             else:
@@ -76,13 +77,13 @@ class RavensSchema:
                                     "description": f"Hash table of {v.get('title', '')} objects",
                                     "patternProperties": {
                                         "^.+$": {
-                                            **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "oneOf"},
-                                            **{"oneOf": [self.build_schema_from_map(item) for item in v["oneOf"]]},
+                                            **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "anyOf"},
+                                            **{"anyOf": [self.build_schema_from_map(item) for item in v["anyOf"]]},
                                         }
                                     },
                                 }
 
-                    elif v["type"] == "array":
+                    elif v.get("type", None) == "array":
                         schema[k] = {
                             **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "items"},
                             **{"items": self.build_schema_from_map(v["items"])},
@@ -91,7 +92,7 @@ class RavensSchema:
                         schema[k] = self.build_schema_from_map(v)
                 else:
                     schema[k] = self.build_schema_from_map(v)
-            elif k == "oneOf" and isinstance(v, list):
+            elif k == "anyOf" and isinstance(v, list):
                 schema[k] = [self.build_schema_from_map(item) for item in v]
             elif k == "type" and v not in ["object", "string", "array", "boolean", "number", "null", "integer"]:
                 schema["$ref"] = f"#/$defs/{v}"
@@ -108,7 +109,7 @@ class RavensSchema:
                     "title": str(obj.Name).replace(" ", ""),
                     "description": html.unescape(str(obj.Note)).strip(),
                     "type": "string",
-                    "enum": [str(attr.Name) for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == obj.Index].itertuples()],
+                    "enum": [f"{str(obj.Name)}.{str(attr.Name)}" for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == obj.Index].itertuples()],
                 }
             elif not pd.isnull(obj.Stereotype):
                 defs[str(obj.Name).replace(" ", "")] = {
@@ -139,19 +140,22 @@ class RavensSchema:
 
         return defs
 
-    def decompose_schema(self, schema: dict, debug_key: str = None) -> str:
+    def decompose_schema(self, schema: dict, debug_key: str | None = None) -> str | None:
         _schema = deepcopy(schema)
 
         if isinstance(_schema, dict):
             _schema["$schema"] = _JSON_SCHEMA_URL
-            _schema["additionalProperties"] = False
+            if "anyOf" not in _schema:
+                _schema["additionalProperties"] = False
 
             title = _schema.get("title", None)
             if title is not None:
                 if "patternProperties" in _schema:
                     title = f"{title}_Container"
+                if "anyOf" in _schema:
+                    title = f"{title}_anyOfContainer"
             else:
-                print(debug_key, _schema.keys())
+                logger.warning(f"{debug_key} {_schema.keys()}")
 
             _schema["$id"] = f"{self.base_id_uri}/{title}.json"
 
@@ -162,22 +166,21 @@ class RavensSchema:
                             ref_id = self.decompose_schema(v, debug_key=k)
                             if ref_id is not None:
                                 _schema[n][k] = {"$ref": ref_id}
-
-                if "oneOf" in _schema:
-                    _oneOf = []
-                    for item in _schema["oneOf"]:
-                        ref_id = self.decompose_schema(item, debug_key=debug_key)
-                        if ref_id is not None:
-                            _oneOf.append({"$ref": ref_id})
-                        else:
-                            _oneOf.append(item)
-
-                    _schema["oneOf"] = _oneOf
-
             elif _schema.get("type", None) == "array":
                 ref_id = self.decompose_schema(_schema["items"], debug_key=debug_key)
                 if ref_id is not None:
                     _schema["items"] = {"$ref": ref_id}
+            elif "anyOf" in _schema:
+                _anyOf = []
+                for item in _schema["anyOf"]:
+                    ref_id = self.decompose_schema(item, debug_key=debug_key)
+                    if ref_id is not None:
+                        _anyOf.append({"$ref": ref_id})
+                    else:
+                        _anyOf.append(item)
+
+                _schema["anyOf"] = _anyOf
+
             else:
                 return None
 
@@ -196,8 +199,7 @@ class RavensSchema:
 
     def insert_refs(self):
         for schema_key, schema in self.schemas.items():
-            # print(schema_key, schema.keys())
-            if schema.get("patternProperties", None) is not None:
+            if "patternProperties" in schema.keys():
                 for pattern, json_object in schema["patternProperties"].items():
                     key = json_object.get("$id", None)
                     if key in self.schemas.keys():
@@ -217,34 +219,34 @@ class RavensSchema:
                         ref = v["$ref"].split("#/$defs/")[1]
                         if f"{self.base_id_uri}/{ref}.json" in self.schemas:
                             self.schemas[schema_key]["properties"][k]["$ref"] = f"{self.base_id_uri}/{ref}.json"
-            elif "oneOf" in schema:
-                for i, item in enumerate(schema["oneOf"]):
+            elif "anyOf" in schema:
+                for i, item in enumerate(schema["anyOf"]):
                     if item.get("$ref", "").startswith("#/$defs/"):
                         ref = v["$ref"].split("#/$defs/")[1]
                         if f"{self.base_id_uri}/{ref}.json" in self.schemas:
-                            self.schemas[schema_key]["oneOf"][i]["$ref"] = f"{self.base_id_uri}/{ref}.json"
+                            self.schemas[schema_key]["anyOf"][i]["$ref"] = f"{self.base_id_uri}/{ref}.json"
                     else:
                         key = item.get("title", "")
                         if key in self.schemas:
-                            self.schemas[schema_key]["oneOf"][i] = {"$ref": f"./{key}.json"}
+                            self.schemas[schema_key]["anyOf"][i] = {"$ref": f"./{key}.json"}
             elif "items" in schema:
-                if "oneOf" in schema["items"]:
-                    for i, item in enumerate(schema["items"]["oneOf"]):
+                if "anyOf" in schema["items"]:
+                    for i, item in enumerate(schema["items"]["anyOf"]):
                         if item.get("$ref", "").startswith("#/$defs/"):
                             ref = v["$ref"].split("#/$defs/")[1]
                             if f"{self.base_id_uri}/{ref}.json" in self.schemas:
-                                self.schemas[schema_key]["items"]["oneOf"][i]["$ref"] = f"{self.base_id_uri}/{ref}.json"
+                                self.schemas[schema_key]["items"]["anyOf"][i]["$ref"] = f"{self.base_id_uri}/{ref}.json"
                         else:
                             key = item.get("$id", "")
                             if key in self.schemas:
-                                self.schemas[schema_key]["items"]["oneOf"][i] = {"$ref": key}
+                                self.schemas[schema_key]["items"]["anyOf"][i] = {"$ref": key}
                 else:
                     key = schema["items"].get("$id", "")
                     if key in self.schemas:
                         self.schemas[schema_key]["items"] = {"$ref": key}
 
     @staticmethod
-    def get_cim_copyright_notice(uml_data: UMLData, cim_copyright_notice_object_id=29601):
+    def get_cim_copyright_notice(uml_data: UMLData, cim_copyright_notice_object_id: int = 29601) -> str:
         return "\n".join(markdownify.markdownify(html.unescape(str(uml_data.objects.loc[cim_copyright_notice_object_id].Note).strip())).splitlines()).strip()
 
     def add_cim_copyright_notice_to_decomposed_schemas(self, uml_data: UMLData):
@@ -263,7 +265,7 @@ class RavensSchema:
                 json.dump(v, f, indent=2)
 
 
-def generate_schema_docs(schema_dir: pathlib.PosixPath, out_dir: pathlib.PosixPath):
+def generate_schema_docs(schema_dir: pathlib.PosixPath | str, out_dir: pathlib.PosixPath | str) -> None:
     Gen.generate_from_filename(schema_dir, out_dir, config=Gen.GenerationConfiguration(template_name="js"))
 
 
