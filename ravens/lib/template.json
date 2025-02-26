@@ -4412,7 +4412,14 @@
               "type": "object",
               "$objectId": "Terminal",
               "$primaryObjectHash": null,
-              "properties": {}
+              "properties": {
+                "Terminal.ConnectivityNode": {
+                  "$objectType": "reference",
+                  "$objectId": "ConnectivityNode",
+                  "type": "string",
+                  "$referencePath": "ConnectivityNode"
+                }
+              }
             }
           }
         }
