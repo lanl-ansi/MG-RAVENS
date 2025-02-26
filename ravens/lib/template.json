@@ -2298,7 +2298,6 @@
                     },
                     "EquivalentBranch": {
                       "$objectType": "object",
-                      "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "$objectId": "EquivalentBranch",
@@ -5385,10 +5384,9 @@
     "CommunityFacility": {
       "$objectType": "object",
       "$objectId": "CommunityFacility",
-      "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "oneOf": [
+      "anyOf": [
         {
           "$objectType": "object",
           "$objectId": "GridFacility",
