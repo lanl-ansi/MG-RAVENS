@@ -3,10 +3,10 @@
   "description": "Type of remote unit.",
   "type": "string",
   "enum": [
-    "IED",
-    "ControlCenter",
-    "RTU",
-    "SubstationControlSystem"
+    "RemoteUnitType.IED",
+    "RemoteUnitType.ControlCenter",
+    "RemoteUnitType.RTU",
+    "RemoteUnitType.SubstationControlSystem"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RemoteUnitType.json",

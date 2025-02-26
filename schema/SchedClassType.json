@@ -3,9 +3,9 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "F",
-    "P",
-    "R"
+    "SchedClassType.F",
+    "SchedClassType.P",
+    "SchedClassType.R"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SchedClassType.json",

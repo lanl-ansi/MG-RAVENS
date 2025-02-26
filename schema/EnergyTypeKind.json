@@ -3,11 +3,11 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "IndustrialLoad",
-    "PVpark",
-    "WindPark",
-    "ConsumerLoad",
-    "Other"
+    "EnergyTypeKind.IndustrialLoad",
+    "EnergyTypeKind.PVpark",
+    "EnergyTypeKind.WindPark",
+    "EnergyTypeKind.ConsumerLoad",
+    "EnergyTypeKind.Other"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyTypeKind.json",

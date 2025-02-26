@@ -3,14 +3,14 @@
   "description": "Resource capacity type.",
   "type": "string",
   "enum": [
-    "RMR",
-    "FO",
-    "RA",
-    "MO",
-    "RD",
-    "RU",
-    "NR",
-    "SR"
+    "ResourceCapacityType.RMR",
+    "ResourceCapacityType.FO",
+    "ResourceCapacityType.RA",
+    "ResourceCapacityType.MO",
+    "ResourceCapacityType.RD",
+    "ResourceCapacityType.RU",
+    "ResourceCapacityType.NR",
+    "ResourceCapacityType.SR"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResourceCapacityType.json",

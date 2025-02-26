@@ -3,13 +3,13 @@
   "description": "Define the different logical operations.",
   "type": "string",
   "enum": [
-    "or",
-    "and",
-    "xor",
-    "nand",
-    "xnor",
-    "nor",
-    "not"
+    "GateLogicKind.or",
+    "GateLogicKind.and",
+    "GateLogicKind.xor",
+    "GateLogicKind.nand",
+    "GateLogicKind.xnor",
+    "GateLogicKind.nor",
+    "GateLogicKind.not"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GateLogicKind.json",

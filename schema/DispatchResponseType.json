@@ -3,10 +3,10 @@
   "description": "For example:\nNON_RESPONSE\nACCEPT\nDECLINE\nPARTIAL",
   "type": "string",
   "enum": [
-    "PARTIAL",
-    "ACCEPT",
-    "NON_RESPONSE",
-    "DECLINE"
+    "DispatchResponseType.PARTIAL",
+    "DispatchResponseType.ACCEPT",
+    "DispatchResponseType.NON_RESPONSE",
+    "DispatchResponseType.DECLINE"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DispatchResponseType.json",

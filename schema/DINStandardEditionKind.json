@@ -3,9 +3,9 @@
   "description": "List of editions for DIN standards.",
   "type": "string",
   "enum": [
-    "none",
-    "unknown",
-    "1985"
+    "DINStandardEditionKind.none",
+    "DINStandardEditionKind.unknown",
+    "DINStandardEditionKind.1985"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DINStandardEditionKind.json",

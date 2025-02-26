@@ -10,6 +10,14 @@
       "title": "date",
       "type": "string",
       "description": "(const=2016-10-31) Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "IEC61968CIMVersion"
+      ]
     }
   },
   "description": "IEC 61968 version number assigned to this UML model.",

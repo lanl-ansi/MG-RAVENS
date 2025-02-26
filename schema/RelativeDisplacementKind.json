@@ -3,9 +3,9 @@
   "description": "The types of relative displacement",
   "type": "string",
   "enum": [
-    "ground",
-    "seaLevel",
-    "centreEarth"
+    "RelativeDisplacementKind.ground",
+    "RelativeDisplacementKind.seaLevel",
+    "RelativeDisplacementKind.centreEarth"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RelativeDisplacementKind.json",

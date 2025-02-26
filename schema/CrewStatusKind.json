@@ -3,11 +3,11 @@
   "description": "Defines the current status of the Crew - assigned, arrived, etc.",
   "type": "string",
   "enum": [
-    "awaitingCrewAssignment",
-    "assigned",
-    "arrived",
-    "enroute",
-    "fieldComplete"
+    "CrewStatusKind.awaitingCrewAssignment",
+    "CrewStatusKind.assigned",
+    "CrewStatusKind.arrived",
+    "CrewStatusKind.enroute",
+    "CrewStatusKind.fieldComplete"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CrewStatusKind.json",

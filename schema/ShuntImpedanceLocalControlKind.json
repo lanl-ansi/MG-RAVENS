@@ -3,13 +3,13 @@
   "description": "Kind of local control for shunt impedance.",
   "type": "string",
   "enum": [
-    "time",
-    "powerFactor",
-    "reactivePower",
-    "current",
-    "temperature",
-    "voltage",
-    "none"
+    "ShuntImpedanceLocalControlKind.time",
+    "ShuntImpedanceLocalControlKind.powerFactor",
+    "ShuntImpedanceLocalControlKind.reactivePower",
+    "ShuntImpedanceLocalControlKind.current",
+    "ShuntImpedanceLocalControlKind.temperature",
+    "ShuntImpedanceLocalControlKind.voltage",
+    "ShuntImpedanceLocalControlKind.none"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntImpedanceLocalControlKind.json",

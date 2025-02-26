@@ -3,11 +3,11 @@
   "description": "The list of values that define the Pole problem.",
   "type": "string",
   "enum": [
-    "other",
-    "hit",
-    "down",
-    "leaning",
-    "ok"
+    "TroubleSymptomsPoleKind.other",
+    "TroubleSymptomsPoleKind.hit",
+    "TroubleSymptomsPoleKind.down",
+    "TroubleSymptomsPoleKind.leaning",
+    "TroubleSymptomsPoleKind.ok"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TroubleSymptomsPoleKind.json",

@@ -10,6 +10,14 @@
       "title": "version",
       "type": "string",
       "description": "nan"
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "RavensVersion"
+      ]
     }
   },
   "description": "Version of the RAVENS Schema",

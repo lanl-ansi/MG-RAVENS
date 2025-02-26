@@ -3,11 +3,11 @@
   "description": "Kind of seal condition.",
   "type": "string",
   "enum": [
-    "other",
-    "broken",
-    "locked",
-    "open",
-    "missing"
+    "SealConditionKind.other",
+    "SealConditionKind.broken",
+    "SealConditionKind.locked",
+    "SealConditionKind.open",
+    "SealConditionKind.missing"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SealConditionKind.json",

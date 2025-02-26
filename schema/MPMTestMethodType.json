@@ -3,8 +3,8 @@
   "description": "Market power mitigation test method type.\n\nTests with the normal (default) thresholds or tests with the alternate thresholds.",
   "type": "string",
   "enum": [
-    "NORMAL",
-    "ALTERNATE"
+    "MPMTestMethodType.NORMAL",
+    "MPMTestMethodType.ALTERNATE"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MPMTestMethodType.json",

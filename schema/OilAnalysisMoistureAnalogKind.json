@@ -3,14 +3,14 @@
   "description": "Analogs representing oil moisture analysis result.",
   "type": "string",
   "enum": [
-    "relativeSaturation",
-    "waterContentMonitoredViaInfrared",
-    "dewPoint",
-    "waterContentMonitoredViaAluminumOxide",
-    "relativeSaturationCalculated",
-    "waterContent",
-    "waterContentMonitoredViaCapacitance",
-    "waterContentMonitoredViaOther"
+    "OilAnalysisMoistureAnalogKind.relativeSaturation",
+    "OilAnalysisMoistureAnalogKind.waterContentMonitoredViaInfrared",
+    "OilAnalysisMoistureAnalogKind.dewPoint",
+    "OilAnalysisMoistureAnalogKind.waterContentMonitoredViaAluminumOxide",
+    "OilAnalysisMoistureAnalogKind.relativeSaturationCalculated",
+    "OilAnalysisMoistureAnalogKind.waterContent",
+    "OilAnalysisMoistureAnalogKind.waterContentMonitoredViaCapacitance",
+    "OilAnalysisMoistureAnalogKind.waterContentMonitoredViaOther"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OilAnalysisMoistureAnalogKind.json",

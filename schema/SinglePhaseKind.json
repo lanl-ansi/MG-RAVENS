@@ -3,12 +3,12 @@
   "description": "Enumeration of single phase identifiers. Allows designation of single phases for both transmission and distribution equipment, circuits and loads.",
   "type": "string",
   "enum": [
-    "B",
-    "N",
-    "C",
-    "s2",
-    "A",
-    "s1"
+    "SinglePhaseKind.B",
+    "SinglePhaseKind.N",
+    "SinglePhaseKind.C",
+    "SinglePhaseKind.s2",
+    "SinglePhaseKind.A",
+    "SinglePhaseKind.s1"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",

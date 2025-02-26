@@ -3,10 +3,10 @@
   "description": "Energy product type.",
   "type": "string",
   "enum": [
-    "DYN",
-    "FIRM",
-    "NFRM",
-    "WHL"
+    "EnergyProductType.DYN",
+    "EnergyProductType.FIRM",
+    "EnergyProductType.NFRM",
+    "EnergyProductType.WHL"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyProductType.json",

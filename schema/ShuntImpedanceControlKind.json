@@ -3,10 +3,10 @@
   "description": "Kind of control for shunt impedance.",
   "type": "string",
   "enum": [
-    "remoteOnly",
-    "localOnly",
-    "remoteWithLocalOverride",
-    "fixed"
+    "ShuntImpedanceControlKind.remoteOnly",
+    "ShuntImpedanceControlKind.localOnly",
+    "ShuntImpedanceControlKind.remoteWithLocalOverride",
+    "ShuntImpedanceControlKind.fixed"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntImpedanceControlKind.json",

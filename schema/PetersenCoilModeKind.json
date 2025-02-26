@@ -3,9 +3,9 @@
   "description": "The mode of operation for a Petersen coil.",
   "type": "string",
   "enum": [
-    "automaticPositioning",
-    "manual",
-    "fixed"
+    "PetersenCoilModeKind.automaticPositioning",
+    "PetersenCoilModeKind.manual",
+    "PetersenCoilModeKind.fixed"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PetersenCoilModeKind.json",

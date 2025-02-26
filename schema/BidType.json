@@ -3,9 +3,9 @@
   "description": "For example:\nDEFAULT_ENERGY_BID\nDEFAULT_STARTUP_BID\nDEFAULT_MINIMUM_LOAD_BID",
   "type": "string",
   "enum": [
-    "DEFAULT_STARTUP_BID",
-    "DEFAULT_ENERGY_BID",
-    "DEFAULT_MINIMUM_LOAD_BID"
+    "BidType.DEFAULT_STARTUP_BID",
+    "BidType.DEFAULT_ENERGY_BID",
+    "BidType.DEFAULT_MINIMUM_LOAD_BID"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BidType.json",

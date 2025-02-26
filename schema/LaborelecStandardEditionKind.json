@@ -3,8 +3,8 @@
   "description": "List of editions for Laborelec standards.",
   "type": "string",
   "enum": [
-    "unknown",
-    "none"
+    "LaborelecStandardEditionKind.unknown",
+    "LaborelecStandardEditionKind.none"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LaborelecStandardEditionKind.json",

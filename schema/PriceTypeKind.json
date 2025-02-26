@@ -3,13 +3,13 @@
   "description": "Value of this enumeration for different prices include \"total\" for the complete/full/all-in price, \"congestion\" for the congestion cost associated with the total price, the \"loss\" for the loss price associated with the total price, \"capacity\" for prices related to installed or reserved capacity, \"mileage\" for use-based accounting, \"system\" for system-wide/copper-plate prices, and \"delivery\" for distribution-based prices.",
   "type": "string",
   "enum": [
-    "total",
-    "loss",
-    "congestion",
-    "capacity",
-    "delivery",
-    "system",
-    "mileage"
+    "PriceTypeKind.total",
+    "PriceTypeKind.loss",
+    "PriceTypeKind.congestion",
+    "PriceTypeKind.capacity",
+    "PriceTypeKind.delivery",
+    "PriceTypeKind.system",
+    "PriceTypeKind.mileage"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PriceTypeKind.json",

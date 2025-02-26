@@ -15,6 +15,14 @@
       "title": "intensity",
       "type": "integer",
       "description": "Tsunami intensity on the Papadopoulos-Imamura tsunami intensity scale. Possible values are 1-12, corresponding to I-XII."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "HydrosphericPhenomenon"
+      ]
     }
   },
   "title": "HydrosphericPhenomenon",

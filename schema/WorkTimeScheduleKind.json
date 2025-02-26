@@ -3,12 +3,12 @@
   "description": "Kind of work schedule.",
   "type": "string",
   "enum": [
-    "immediate",
-    "actual",
-    "estimate",
-    "latest",
-    "earliest",
-    "request"
+    "WorkTimeScheduleKind.immediate",
+    "WorkTimeScheduleKind.actual",
+    "WorkTimeScheduleKind.estimate",
+    "WorkTimeScheduleKind.latest",
+    "WorkTimeScheduleKind.earliest",
+    "WorkTimeScheduleKind.request"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WorkTimeScheduleKind.json",

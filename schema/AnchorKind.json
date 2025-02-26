@@ -3,13 +3,13 @@
   "description": "Kind of anchor.",
   "type": "string",
   "enum": [
-    "concrete",
-    "other",
-    "helix",
-    "rod",
-    "multiHelix",
-    "unknown",
-    "screw"
+    "AnchorKind.concrete",
+    "AnchorKind.other",
+    "AnchorKind.helix",
+    "AnchorKind.rod",
+    "AnchorKind.multiHelix",
+    "AnchorKind.unknown",
+    "AnchorKind.screw"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnchorKind.json",

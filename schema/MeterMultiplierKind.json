@@ -3,12 +3,12 @@
   "description": "Kind of meter multiplier.",
   "type": "string",
   "enum": [
-    "kE",
-    "ptRatio",
-    "ctRatio",
-    "transformerRatio",
-    "kR",
-    "kH"
+    "MeterMultiplierKind.kE",
+    "MeterMultiplierKind.ptRatio",
+    "MeterMultiplierKind.ctRatio",
+    "MeterMultiplierKind.transformerRatio",
+    "MeterMultiplierKind.kR",
+    "MeterMultiplierKind.kH"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MeterMultiplierKind.json",

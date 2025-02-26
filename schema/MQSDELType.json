@@ -3,9 +3,9 @@
   "description": "ADD - add\nDEL - delete\nCHG - change",
   "type": "string",
   "enum": [
-    "CHG",
-    "DEL",
-    "ADD"
+    "MQSDELType.CHG",
+    "MQSDELType.DEL",
+    "MQSDELType.ADD"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MQSDELType.json",

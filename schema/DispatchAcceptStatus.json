@@ -3,12 +3,12 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "ACCEPT",
-    "PARTIAL",
-    "CANNOT",
-    "NON_RESPONSE",
-    "DECLINE",
-    "OK"
+    "DispatchAcceptStatus.ACCEPT",
+    "DispatchAcceptStatus.PARTIAL",
+    "DispatchAcceptStatus.CANNOT",
+    "DispatchAcceptStatus.NON_RESPONSE",
+    "DispatchAcceptStatus.DECLINE",
+    "DispatchAcceptStatus.OK"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DispatchAcceptStatus.json",

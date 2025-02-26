@@ -3,9 +3,9 @@
   "description": "For example:\nBid Cost\nProxy Cost\nRegistered Cost",
   "type": "string",
   "enum": [
-    "PRXC",
-    "BIDC",
-    "REGC"
+    "CostBasis.PRXC",
+    "CostBasis.BIDC",
+    "CostBasis.REGC"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostBasis.json",

@@ -3,12 +3,12 @@
   "description": "Types applicable to the control of real power and/or DC voltage by voltage source converter.",
   "type": "string",
   "enum": [
-    "pPccAndUdcDroopPilot",
-    "pPcc",
-    "pPccAndUdcDroop",
-    "pPccAndUdcDroopWithCompensation",
-    "udc",
-    "phasePcc"
+    "VsPpccControlKind.pPccAndUdcDroopPilot",
+    "VsPpccControlKind.pPcc",
+    "VsPpccControlKind.pPccAndUdcDroop",
+    "VsPpccControlKind.pPccAndUdcDroopWithCompensation",
+    "VsPpccControlKind.udc",
+    "VsPpccControlKind.phasePcc"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VsPpccControlKind.json",

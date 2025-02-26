@@ -3,7 +3,7 @@
   "description": "List of WEP standards.",
   "type": "string",
   "enum": [
-    "12, 1254E"
+    "WEPStandardKind.12, 1254E"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WEPStandardKind.json",

@@ -3,11 +3,11 @@
   "description": "Limit type specified for AnalogLimits.",
   "type": "string",
   "enum": [
-    "VoltageHigh",
-    "BranchLongTerm",
-    "VoltageLow",
-    "BranchShortTerm",
-    "BranchMediumTerm"
+    "AnalogLimitType.VoltageHigh",
+    "AnalogLimitType.BranchLongTerm",
+    "AnalogLimitType.VoltageLow",
+    "AnalogLimitType.BranchShortTerm",
+    "AnalogLimitType.BranchMediumTerm"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalogLimitType.json",

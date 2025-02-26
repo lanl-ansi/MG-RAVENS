@@ -3,12 +3,12 @@
   "description": "Possible kinds of analytics.",
   "type": "string",
   "enum": [
-    "replacementAnalytic",
-    "faultAnalytic",
-    "agingAnalytic",
-    "healthAnalytic",
-    "riskAnalytic",
-    "other"
+    "AnalyticKind.replacementAnalytic",
+    "AnalyticKind.faultAnalytic",
+    "AnalyticKind.agingAnalytic",
+    "AnalyticKind.healthAnalytic",
+    "AnalyticKind.riskAnalytic",
+    "AnalyticKind.other"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalyticKind.json",

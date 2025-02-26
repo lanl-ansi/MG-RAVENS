@@ -3,9 +3,9 @@
   "description": "Possible types of breaker maintenance work.",
   "type": "string",
   "enum": [
-    "interrupterOverhaul",
-    "internalOutOfService",
-    "externalOutOfService"
+    "BreakerMaintenanceKind.interrupterOverhaul",
+    "BreakerMaintenanceKind.internalOutOfService",
+    "BreakerMaintenanceKind.externalOutOfService"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BreakerMaintenanceKind.json",

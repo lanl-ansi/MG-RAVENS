@@ -3,12 +3,12 @@
   "description": "The kind of ICCP point that is to be conveyed.",
   "type": "string",
   "enum": [
-    "state",
-    "singleProtectionEvent",
-    "stateSupplemental",
-    "packedProtectionEvent",
-    "real",
-    "discrete"
+    "ICCPPointKind.state",
+    "ICCPPointKind.singleProtectionEvent",
+    "ICCPPointKind.stateSupplemental",
+    "ICCPPointKind.packedProtectionEvent",
+    "ICCPPointKind.real",
+    "ICCPPointKind.discrete"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ICCPPointKind.json",

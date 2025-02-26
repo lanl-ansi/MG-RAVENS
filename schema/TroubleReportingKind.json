@@ -3,14 +3,14 @@
   "description": "Kind of trouble reporting.",
   "type": "string",
   "enum": [
-    "other",
-    "sms",
-    "web",
-    "email",
-    "app",
-    "letter",
-    "call",
-    "ivr"
+    "TroubleReportingKind.other",
+    "TroubleReportingKind.sms",
+    "TroubleReportingKind.web",
+    "TroubleReportingKind.email",
+    "TroubleReportingKind.app",
+    "TroubleReportingKind.letter",
+    "TroubleReportingKind.call",
+    "TroubleReportingKind.ivr"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TroubleReportingKind.json",

@@ -3,14 +3,14 @@
   "description": "Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').",
   "type": "string",
   "enum": [
-    "TOR",
-    "ETC",
-    "MT",
-    "CAP",
-    "AUC",
-    "LSE",
-    "CF",
-    "CVR"
+    "CRRSegmentType.TOR",
+    "CRRSegmentType.ETC",
+    "CRRSegmentType.MT",
+    "CRRSegmentType.CAP",
+    "CRRSegmentType.AUC",
+    "CRRSegmentType.LSE",
+    "CRRSegmentType.CF",
+    "CRRSegmentType.CVR"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CRRSegmentType.json",

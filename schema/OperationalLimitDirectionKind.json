@@ -3,9 +3,9 @@
   "description": "The direction attribute describes the side of  a limit that is a violation.",
   "type": "string",
   "enum": [
-    "low",
-    "absoluteValue",
-    "high"
+    "OperationalLimitDirectionKind.low",
+    "OperationalLimitDirectionKind.absoluteValue",
+    "OperationalLimitDirectionKind.high"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitDirectionKind.json",

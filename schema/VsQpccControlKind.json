@@ -3,10 +3,10 @@
   "description": "Kind of reactive power control at point of common coupling for a voltage source converter.",
   "type": "string",
   "enum": [
-    "voltagePcc",
-    "reactivePcc",
-    "powerFactorPcc",
-    "pulseWidthModulation"
+    "VsQpccControlKind.voltagePcc",
+    "VsQpccControlKind.reactivePcc",
+    "VsQpccControlKind.powerFactorPcc",
+    "VsQpccControlKind.pulseWidthModulation"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VsQpccControlKind.json",

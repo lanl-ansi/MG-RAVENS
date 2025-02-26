@@ -3,9 +3,9 @@
   "description": "The list of items that define the transformer problem.",
   "type": "string",
   "enum": [
-    "ok",
-    "burning",
-    "other"
+    "TroubleSymptomsTransformerKind.ok",
+    "TroubleSymptomsTransformerKind.burning",
+    "TroubleSymptomsTransformerKind.other"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TroubleSymptomsTransformerKind.json",

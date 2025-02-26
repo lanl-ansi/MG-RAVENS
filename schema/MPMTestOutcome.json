@@ -3,10 +3,10 @@
   "description": "For example:\nPassed\nFailed\nDisabled\nSkipped",
   "type": "string",
   "enum": [
-    "D",
-    "P",
-    "F",
-    "S"
+    "MPMTestOutcome.D",
+    "MPMTestOutcome.P",
+    "MPMTestOutcome.F",
+    "MPMTestOutcome.S"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MPMTestOutcome.json",

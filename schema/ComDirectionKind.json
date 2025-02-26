@@ -3,9 +3,9 @@
   "description": "Kind of communication direction.",
   "type": "string",
   "enum": [
-    "toDevice",
-    "fromDevice",
-    "biDirectional"
+    "ComDirectionKind.toDevice",
+    "ComDirectionKind.fromDevice",
+    "ComDirectionKind.biDirectional"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ComDirectionKind.json",

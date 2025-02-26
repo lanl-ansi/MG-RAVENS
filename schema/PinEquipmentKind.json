@@ -3,13 +3,13 @@
   "description": "Categorisation of type of compare done on Equipment.",
   "type": "string",
   "enum": [
-    "activePowerLimit",
-    "connected",
-    "ratedCurrent",
-    "apparentPowerLimit",
-    "currentLimit",
-    "inService",
-    "voltageLimit"
+    "PinEquipmentKind.activePowerLimit",
+    "PinEquipmentKind.connected",
+    "PinEquipmentKind.ratedCurrent",
+    "PinEquipmentKind.apparentPowerLimit",
+    "PinEquipmentKind.currentLimit",
+    "PinEquipmentKind.inService",
+    "PinEquipmentKind.voltageLimit"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PinEquipmentKind.json",

@@ -3,10 +3,10 @@
   "description": "Kind of seal.",
   "type": "string",
   "enum": [
-    "other",
-    "lock",
-    "steel",
-    "lead"
+    "SealKind.other",
+    "SealKind.lock",
+    "SealKind.steel",
+    "SealKind.lead"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SealKind.json",

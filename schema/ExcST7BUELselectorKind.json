@@ -3,10 +3,10 @@
   "description": "Types of connections for the UEL input used for static excitation systems type 7B.",
   "type": "string",
   "enum": [
-    "inputHVgate",
-    "noUELinput",
-    "addVref",
-    "outputHVgate"
+    "ExcST7BUELselectorKind.inputHVgate",
+    "ExcST7BUELselectorKind.noUELinput",
+    "ExcST7BUELselectorKind.addVref",
+    "ExcST7BUELselectorKind.outputHVgate"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ExcST7BUELselectorKind.json",

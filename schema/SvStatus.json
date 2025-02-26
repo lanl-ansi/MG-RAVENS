@@ -10,6 +10,14 @@
       "title": "phase",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
       "description": "The individual phase status.    If the attribute is unspecified, then three phase model is assumed."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "SvStatus"
+      ]
     }
   },
   "title": "SvStatus",

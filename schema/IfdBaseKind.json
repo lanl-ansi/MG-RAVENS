@@ -3,9 +3,9 @@
   "description": "Excitation base system mode.",
   "type": "string",
   "enum": [
-    "ifnl",
-    "ifag",
-    "iffl"
+    "IfdBaseKind.ifnl",
+    "IfdBaseKind.ifag",
+    "IfdBaseKind.iffl"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/IfdBaseKind.json",

@@ -3,14 +3,14 @@
   "description": "Kind of FACTS device.",
   "type": "string",
   "enum": [
-    "tcpar",
-    "tssc",
-    "svc",
-    "tcsc",
-    "tsbr",
-    "upfc",
-    "statcom",
-    "tcvl"
+    "FACTSDeviceKind.tcpar",
+    "FACTSDeviceKind.tssc",
+    "FACTSDeviceKind.svc",
+    "FACTSDeviceKind.tcsc",
+    "FACTSDeviceKind.tsbr",
+    "FACTSDeviceKind.upfc",
+    "FACTSDeviceKind.statcom",
+    "FACTSDeviceKind.tcvl"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FACTSDeviceKind.json",

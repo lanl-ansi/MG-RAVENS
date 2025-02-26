@@ -3,9 +3,9 @@
   "description": "Possible 'in use' states that an asset can be in.",
   "type": "string",
   "enum": [
-    "inUse",
-    "readyForUse",
-    "notReadyForUse"
+    "InUseStateKind.inUse",
+    "InUseStateKind.readyForUse",
+    "InUseStateKind.notReadyForUse"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InUseStateKind.json",

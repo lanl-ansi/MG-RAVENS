@@ -3,9 +3,9 @@
   "description": "The operating mode of an HVDC bipole.",
   "type": "string",
   "enum": [
-    "monopolarMetallicReturn",
-    "bipolar",
-    "monopolarGroundReturn"
+    "DCConverterOperatingModeKind.monopolarMetallicReturn",
+    "DCConverterOperatingModeKind.bipolar",
+    "DCConverterOperatingModeKind.monopolarGroundReturn"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DCConverterOperatingModeKind.json",

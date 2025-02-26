@@ -3,12 +3,12 @@
   "description": "Kinds of analogs (floats) measuring a geospheric condition.",
   "type": "string",
   "enum": [
-    "lightningDensity",
-    "temperature",
-    "seismicEastWest",
-    "seismicNorthSouth",
-    "snowPackDepth",
-    "seismicVertical"
+    "GeosphericAnalogKind.lightningDensity",
+    "GeosphericAnalogKind.temperature",
+    "GeosphericAnalogKind.seismicEastWest",
+    "GeosphericAnalogKind.seismicNorthSouth",
+    "GeosphericAnalogKind.snowPackDepth",
+    "GeosphericAnalogKind.seismicVertical"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeosphericAnalogKind.json",

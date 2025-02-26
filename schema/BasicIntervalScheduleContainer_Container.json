@@ -4,7 +4,7 @@
   "description": "Hash table of BasicIntervalSchedule objects",
   "patternProperties": {
     "^.+$": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BasicIntervalSchedule.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BasicIntervalSchedule_anyOfContainer.json"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",

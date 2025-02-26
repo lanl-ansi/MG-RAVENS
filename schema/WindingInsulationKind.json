@@ -3,10 +3,10 @@
   "description": "Insulation kind for windings.",
   "type": "string",
   "enum": [
-    "paper",
-    "nomex",
-    "other",
-    "thermallyUpgradedPaper"
+    "WindingInsulationKind.paper",
+    "WindingInsulationKind.nomex",
+    "WindingInsulationKind.other",
+    "WindingInsulationKind.thermallyUpgradedPaper"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WindingInsulationKind.json",

@@ -3,10 +3,10 @@
   "description": "Categorisation of type of compare done on Terminal.",
   "type": "string",
   "enum": [
-    "reactivePower",
-    "voltage",
-    "activePower",
-    "apparentPower"
+    "PinTerminalKind.reactivePower",
+    "PinTerminalKind.voltage",
+    "PinTerminalKind.activePower",
+    "PinTerminalKind.apparentPower"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PinTerminalKind.json",

@@ -3,8 +3,8 @@
   "description": "Kind of ERP invoice.",
   "type": "string",
   "enum": [
-    "purchase",
-    "sale"
+    "ErpInvoiceKind.purchase",
+    "ErpInvoiceKind.sale"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ErpInvoiceKind.json",

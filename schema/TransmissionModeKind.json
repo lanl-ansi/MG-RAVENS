@@ -3,9 +3,9 @@
   "description": "Transmission mode for end device display controls, applicable to premises area network (PAN) devices.",
   "type": "string",
   "enum": [
-    "normal",
-    "anonymous",
-    "both"
+    "TransmissionModeKind.normal",
+    "TransmissionModeKind.anonymous",
+    "TransmissionModeKind.both"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransmissionModeKind.json",

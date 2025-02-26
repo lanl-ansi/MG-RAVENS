@@ -3,7 +3,7 @@
   "description": "List of Laborelec standards.",
   "type": "string",
   "enum": [
-    "methanol"
+    "LaborelecStandardKind.methanol"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LaborelecStandardKind.json",

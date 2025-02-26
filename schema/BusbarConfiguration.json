@@ -3,10 +3,10 @@
   "description": "Busbar layout for bay.",
   "type": "string",
   "enum": [
-    "doubleBus",
-    "ringBus",
-    "mainWithTransfer",
-    "singleBus"
+    "BusbarConfiguration.doubleBus",
+    "BusbarConfiguration.ringBus",
+    "BusbarConfiguration.mainWithTransfer",
+    "BusbarConfiguration.singleBus"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BusbarConfiguration.json",

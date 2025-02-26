@@ -3,10 +3,10 @@
   "description": "The type of uncertainty for a reading.",
   "type": "string",
   "enum": [
-    "standard",
-    "interpolated",
-    "unknown",
-    "estimated"
+    "UncertaintyKind.standard",
+    "UncertaintyKind.interpolated",
+    "UncertaintyKind.unknown",
+    "UncertaintyKind.estimated"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UncertaintyKind.json",

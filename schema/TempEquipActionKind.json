@@ -3,10 +3,10 @@
   "description": "Kind of action on temporary equipment (such as cut, jumper, ground, energy source).",
   "type": "string",
   "enum": [
-    "remove",
-    "place",
-    "disconnect",
-    "connect"
+    "TempEquipActionKind.remove",
+    "TempEquipActionKind.place",
+    "TempEquipActionKind.disconnect",
+    "TempEquipActionKind.connect"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TempEquipActionKind.json",

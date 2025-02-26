@@ -3,11 +3,11 @@
   "description": "Kinds of analogs (floats) measuring a hydrospheric condition.",
   "type": "string",
   "enum": [
-    "surfaceTemperature",
-    "floodLevel",
-    "waterTemperature",
-    "waveHeight",
-    "stormSurgeHeight"
+    "HydrosphericAnalogKind.surfaceTemperature",
+    "HydrosphericAnalogKind.floodLevel",
+    "HydrosphericAnalogKind.waterTemperature",
+    "HydrosphericAnalogKind.waveHeight",
+    "HydrosphericAnalogKind.stormSurgeHeight"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HydrosphericAnalogKind.json",

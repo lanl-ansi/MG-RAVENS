@@ -3,8 +3,8 @@
   "description": "Specifies the direction of energy flow in the flowgate.",
   "type": "string",
   "enum": [
-    "Forward",
-    "Reverse"
+    "FlowDirectionType.Forward",
+    "FlowDirectionType.Reverse"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FlowDirectionType.json",

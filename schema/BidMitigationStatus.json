@@ -3,12 +3,12 @@
   "description": "For example:\n'S' - Mitigated by SMPM because of \"misconduct\"\n'L; - Mitigated by LMPM because of \"misconduct\"\n'R' - Modified by LMPM because of RMR rules\n'M' - Mitigated because of \"misconduct\" both by SMPM and LMPM\n'B' - Mitigated because of \"misconduct\" both by SMPM and modified by LMLM because of RMR rules\n'O' - original",
   "type": "string",
   "enum": [
-    "L",
-    "M",
-    "R",
-    "S",
-    "O",
-    "B"
+    "BidMitigationStatus.L",
+    "BidMitigationStatus.M",
+    "BidMitigationStatus.R",
+    "BidMitigationStatus.S",
+    "BidMitigationStatus.O",
+    "BidMitigationStatus.B"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BidMitigationStatus.json",

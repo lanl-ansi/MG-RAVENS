@@ -3,9 +3,9 @@
   "description": "Governor control flag for Francis hydro model.",
   "type": "string",
   "enum": [
-    "mechanicHydrolicTachoAccelerator",
-    "electromechanicalElectrohydraulic",
-    "mechanicHydraulicTransientFeedback"
+    "FrancisGovernorControlKind.mechanicHydrolicTachoAccelerator",
+    "FrancisGovernorControlKind.electromechanicalElectrohydraulic",
+    "FrancisGovernorControlKind.mechanicHydraulicTransientFeedback"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FrancisGovernorControlKind.json",

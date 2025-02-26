@@ -3,7 +3,7 @@
   "description": "Definition of type of string useful in asset domain.",
   "type": "string",
   "enum": [
-    "visualExamRemarks"
+    "AssetStringKind.visualExamRemarks"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetStringKind.json",

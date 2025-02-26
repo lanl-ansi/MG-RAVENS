@@ -3,7 +3,7 @@
   "description": "Discretes representing oil particulate analysis result.",
   "type": "string",
   "enum": [
-    "opacity"
+    "OilAnalysisParticleDiscreteKind.opacity"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OilAnalysisParticleDiscreteKind.json",

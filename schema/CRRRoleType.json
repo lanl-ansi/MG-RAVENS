@@ -3,9 +3,9 @@
   "description": "Role types an organisation can play with respect to a congestion revenue right.",
   "type": "string",
   "enum": [
-    "SELLER",
-    "BUYER",
-    "OWNER"
+    "CRRRoleType.SELLER",
+    "CRRRoleType.BUYER",
+    "CRRRoleType.OWNER"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CRRRoleType.json",

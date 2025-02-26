@@ -3,9 +3,9 @@
   "description": "Type of turbine.",
   "type": "string",
   "enum": [
-    "francis",
-    "kaplan",
-    "pelton"
+    "HydroTurbineKind.francis",
+    "HydroTurbineKind.kaplan",
+    "HydroTurbineKind.pelton"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HydroTurbineKind.json",

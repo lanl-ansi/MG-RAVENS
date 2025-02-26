@@ -3,9 +3,9 @@
   "description": "Possible types of GovHydro4 models.",
   "type": "string",
   "enum": [
-    "simple",
-    "francisPelton",
-    "kaplan"
+    "GovHydro4ModelKind.simple",
+    "GovHydro4ModelKind.francisPelton",
+    "GovHydro4ModelKind.kaplan"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GovHydro4ModelKind.json",

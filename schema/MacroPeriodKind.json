@@ -3,13 +3,13 @@
   "description": "Kind of macro period for calculations on read / measured values.",
   "type": "string",
   "enum": [
-    "billingPeriod",
-    "monthly",
-    "daily",
-    "specifiedPeriod",
-    "none",
-    "weekly",
-    "seasonal"
+    "MacroPeriodKind.billingPeriod",
+    "MacroPeriodKind.monthly",
+    "MacroPeriodKind.daily",
+    "MacroPeriodKind.specifiedPeriod",
+    "MacroPeriodKind.none",
+    "MacroPeriodKind.weekly",
+    "MacroPeriodKind.seasonal"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MacroPeriodKind.json",

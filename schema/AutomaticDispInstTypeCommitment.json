@@ -3,11 +3,11 @@
   "description": "Commitment instruction types.",
   "type": "string",
   "enum": [
-    "DR_DEPLOY",
-    "DR_ADJUSTMENT",
-    "START_UP",
-    "SHUT_DOWN",
-    "DR_RELEASE"
+    "AutomaticDispInstTypeCommitment.DR_DEPLOY",
+    "AutomaticDispInstTypeCommitment.DR_ADJUSTMENT",
+    "AutomaticDispInstTypeCommitment.START_UP",
+    "AutomaticDispInstTypeCommitment.SHUT_DOWN",
+    "AutomaticDispInstTypeCommitment.DR_RELEASE"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AutomaticDispInstTypeCommitment.json",

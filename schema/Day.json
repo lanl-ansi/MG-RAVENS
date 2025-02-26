@@ -3,13 +3,13 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "Friday",
-    "Monday",
-    "Tuesday",
-    "Thursday",
-    "Saturday",
-    "Sunday",
-    "Wednesday"
+    "Day.Friday",
+    "Day.Monday",
+    "Day.Tuesday",
+    "Day.Thursday",
+    "Day.Saturday",
+    "Day.Sunday",
+    "Day.Wednesday"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Day.json",

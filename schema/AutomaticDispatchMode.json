@@ -3,9 +3,9 @@
   "description": "Automatic Dispatch mode.",
   "type": "string",
   "enum": [
-    "CONTINGENCY",
-    "MANUAL",
-    "INTERVAL"
+    "AutomaticDispatchMode.CONTINGENCY",
+    "AutomaticDispatchMode.MANUAL",
+    "AutomaticDispatchMode.INTERVAL"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AutomaticDispatchMode.json",

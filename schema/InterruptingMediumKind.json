@@ -3,13 +3,13 @@
   "description": "Kinds of interrupting mediums.",
   "type": "string",
   "enum": [
-    "minimumOil",
-    "airMagnetic",
-    "airBlast",
-    "vacuum",
-    "gasSinglePressure",
-    "bulkOil",
-    "gasTwoPressure"
+    "InterruptingMediumKind.minimumOil",
+    "InterruptingMediumKind.airMagnetic",
+    "InterruptingMediumKind.airBlast",
+    "InterruptingMediumKind.vacuum",
+    "InterruptingMediumKind.gasSinglePressure",
+    "InterruptingMediumKind.bulkOil",
+    "InterruptingMediumKind.gasTwoPressure"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InterruptingMediumKind.json",

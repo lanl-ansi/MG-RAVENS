@@ -3,10 +3,10 @@
   "description": "Possible calculation techniques.",
   "type": "string",
   "enum": [
-    "average",
-    "maximum",
-    "minimum",
-    "trueRMS"
+    "CalculationTechniqueKind.average",
+    "CalculationTechniqueKind.maximum",
+    "CalculationTechniqueKind.minimum",
+    "CalculationTechniqueKind.trueRMS"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CalculationTechniqueKind.json",

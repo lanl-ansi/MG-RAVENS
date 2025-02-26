@@ -3,10 +3,10 @@
   "description": "Kind of configuration for joints.",
   "type": "string",
   "enum": [
-    "other",
-    "wires1to1",
-    "wires3to1",
-    "wires2to1"
+    "JointConfigurationKind.other",
+    "JointConfigurationKind.wires1to1",
+    "JointConfigurationKind.wires3to1",
+    "JointConfigurationKind.wires2to1"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/JointConfigurationKind.json",

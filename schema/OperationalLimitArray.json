@@ -3,7 +3,7 @@
   "title": "OperationalLimitArray",
   "description": "Array of OperationalLimit objects",
   "items": {
-    "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimit.json"
+    "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimit_anyOfContainer.json"
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,

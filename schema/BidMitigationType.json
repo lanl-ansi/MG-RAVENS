@@ -3,8 +3,8 @@
   "description": "For example:\nInitial\nFinal",
   "type": "string",
   "enum": [
-    "F",
-    "I"
+    "BidMitigationType.F",
+    "BidMitigationType.I"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BidMitigationType.json",

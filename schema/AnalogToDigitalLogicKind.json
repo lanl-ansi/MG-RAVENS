@@ -3,12 +3,12 @@
   "description": "Categories of analog to digital (or logical result) comparison.",
   "type": "string",
   "enum": [
-    "eq",
-    "ne",
-    "lt",
-    "ge",
-    "gt",
-    "le"
+    "AnalogToDigitalLogicKind.eq",
+    "AnalogToDigitalLogicKind.ne",
+    "AnalogToDigitalLogicKind.lt",
+    "AnalogToDigitalLogicKind.ge",
+    "AnalogToDigitalLogicKind.gt",
+    "AnalogToDigitalLogicKind.le"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalogToDigitalLogicKind.json",

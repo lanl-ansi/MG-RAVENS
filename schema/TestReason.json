@@ -3,10 +3,10 @@
   "description": "Reason for test.",
   "type": "string",
   "enum": [
-    "postOperationFault",
-    "postOilTreatment",
-    "postRepair",
-    "routine"
+    "TestReason.postOperationFault",
+    "TestReason.postOilTreatment",
+    "TestReason.postRepair",
+    "TestReason.routine"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TestReason.json",

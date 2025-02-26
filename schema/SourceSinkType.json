@@ -3,9 +3,9 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "Neither",
-    "Sink",
-    "Source"
+    "SourceSinkType.Neither",
+    "SourceSinkType.Sink",
+    "SourceSinkType.Source"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SourceSinkType.json",

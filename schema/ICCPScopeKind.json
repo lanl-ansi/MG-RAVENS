@@ -3,8 +3,8 @@
   "description": "Specifies the control centre scope.",
   "type": "string",
   "enum": [
-    "iCC",
-    "vCC"
+    "ICCPScopeKind.iCC",
+    "ICCPScopeKind.vCC"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ICCPScopeKind.json",

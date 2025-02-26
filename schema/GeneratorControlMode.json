@@ -3,8 +3,8 @@
   "description": "Unit control modes.",
   "type": "string",
   "enum": [
-    "setpoint",
-    "pulse"
+    "GeneratorControlMode.setpoint",
+    "GeneratorControlMode.pulse"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeneratorControlMode.json",

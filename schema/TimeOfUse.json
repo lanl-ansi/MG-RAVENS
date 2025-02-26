@@ -3,9 +3,9 @@
   "description": "Time of Use used by a CRR definition for specifying the time the CRR spans. ON - CRR spans the on peak hours of the day, OFF - CRR spans the off peak hours of the day, 24HR - CRR spans the entire day.",
   "type": "string",
   "enum": [
-    "24HR",
-    "OFF",
-    "ON"
+    "TimeOfUse.24HR",
+    "TimeOfUse.OFF",
+    "TimeOfUse.ON"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TimeOfUse.json",

@@ -3,8 +3,8 @@
   "description": "Kinds of analogs (floats) measuring a space condition.",
   "type": "string",
   "enum": [
-    "magneticFieldStrength",
-    "magneticFieldDirection"
+    "SpaceAnalogKind.magneticFieldStrength",
+    "SpaceAnalogKind.magneticFieldDirection"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SpaceAnalogKind.json",

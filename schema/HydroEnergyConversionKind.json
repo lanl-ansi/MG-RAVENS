@@ -3,8 +3,8 @@
   "description": "Specifies the capability of the hydro generating unit to convert energy as a generator or pump.",
   "type": "string",
   "enum": [
-    "generator",
-    "pumpAndGenerator"
+    "HydroEnergyConversionKind.generator",
+    "HydroEnergyConversionKind.pumpAndGenerator"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HydroEnergyConversionKind.json",

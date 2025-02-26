@@ -3,9 +3,9 @@
   "description": "Source gives information related to the origin of a value.",
   "type": "string",
   "enum": [
-    "PROCESS",
-    "DEFAULTED",
-    "SUBSTITUTED"
+    "Source.PROCESS",
+    "Source.DEFAULTED",
+    "Source.SUBSTITUTED"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Source.json",

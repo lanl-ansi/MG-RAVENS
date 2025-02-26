@@ -3,12 +3,12 @@
   "description": "Market power mitigation test identifier type, for example:\n\n1 - Global Price Test\n2 - Global Conduct Test\n3 - Global Impact Test\n4 - Local Price Test\n5 - Local Conduct Test\n6 - Local Impact Test",
   "type": "string",
   "enum": [
-    "4",
-    "2",
-    "6",
-    "3",
-    "5",
-    "1"
+    "MPMTestIdentifierType.4",
+    "MPMTestIdentifierType.2",
+    "MPMTestIdentifierType.6",
+    "MPMTestIdentifierType.3",
+    "MPMTestIdentifierType.5",
+    "MPMTestIdentifierType.1"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MPMTestIdentifierType.json",

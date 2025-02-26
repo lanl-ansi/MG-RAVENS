@@ -3,8 +3,8 @@
   "description": "market statement document status",
   "type": "string",
   "enum": [
-    "APPROVED",
-    "CANCELLED"
+    "MarketStatementDocStatus.APPROVED",
+    "MarketStatementDocStatus.CANCELLED"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MarketStatementDocStatus.json",

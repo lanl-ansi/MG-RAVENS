@@ -3,9 +3,9 @@
   "description": "Sources for oil temperature.",
   "type": "string",
   "enum": [
-    "topOilTemperatureGauge",
-    "other",
-    "infraredGun"
+    "OilTemperatureSource.topOilTemperatureGauge",
+    "OilTemperatureSource.other",
+    "OilTemperatureSource.infraredGun"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OilTemperatureSource.json",

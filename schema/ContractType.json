@@ -3,14 +3,14 @@
   "description": "Transmission Contract Type, For example:\nO - Other \nTE - Transmission Export \nTI - Transmission Import \nETC - Existing Transmission Contract \nRMT - RMT Contract \nTOR - Transmission Ownership Right  \nRMR - Reliability Must Run Contract \nCVR - Converted contract",
   "type": "string",
   "enum": [
-    "TI",
-    "CVR",
-    "RMT",
-    "TE",
-    "ETC",
-    "O",
-    "RMR",
-    "TOR"
+    "ContractType.TI",
+    "ContractType.CVR",
+    "ContractType.RMT",
+    "ContractType.TE",
+    "ContractType.ETC",
+    "ContractType.O",
+    "ContractType.RMR",
+    "ContractType.TOR"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ContractType.json",

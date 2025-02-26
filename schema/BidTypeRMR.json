@@ -3,8 +3,8 @@
   "description": "Bid self schedule type has two types as the required output of requirements and qualified pre-dispatch.",
   "type": "string",
   "enum": [
-    "REQUIREMENTS",
-    "QUALIFIED_PREDISPATCH"
+    "BidTypeRMR.REQUIREMENTS",
+    "BidTypeRMR.QUALIFIED_PREDISPATCH"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BidTypeRMR.json",

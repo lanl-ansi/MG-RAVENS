@@ -3,8 +3,8 @@
   "description": "Indication of which type of self schedule is being referenced.",
   "type": "string",
   "enum": [
-    "TOR",
-    "ETC"
+    "SelfSchedReferenceType.TOR",
+    "SelfSchedReferenceType.ETC"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SelfSchedReferenceType.json",

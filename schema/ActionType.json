@@ -3,7 +3,7 @@
   "description": "Action type associated with an ActionRequest against a ParticipantInterfaces::Trade.",
   "type": "string",
   "enum": [
-    "CANCEL"
+    "ActionType.CANCEL"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActionType.json",

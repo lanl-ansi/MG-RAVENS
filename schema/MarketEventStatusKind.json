@@ -3,10 +3,10 @@
   "description": "Market event status types.",
   "type": "string",
   "enum": [
-    "completed",
-    "active",
-    "planned",
-    "cancelled"
+    "MarketEventStatusKind.completed",
+    "MarketEventStatusKind.active",
+    "MarketEventStatusKind.planned",
+    "MarketEventStatusKind.cancelled"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MarketEventStatusKind.json",

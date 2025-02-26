@@ -3,13 +3,13 @@
   "description": "Kind of cable outer jacket.",
   "type": "string",
   "enum": [
-    "insulating",
-    "linearLowDensityPolyethylene",
-    "none",
-    "other",
-    "semiconducting",
-    "pvc",
-    "polyethylene"
+    "CableOuterJacketKind.insulating",
+    "CableOuterJacketKind.linearLowDensityPolyethylene",
+    "CableOuterJacketKind.none",
+    "CableOuterJacketKind.other",
+    "CableOuterJacketKind.semiconducting",
+    "CableOuterJacketKind.pvc",
+    "CableOuterJacketKind.polyethylene"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CableOuterJacketKind.json",

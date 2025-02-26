@@ -3,10 +3,10 @@
   "description": "Kinds of activities to be performed on a Compatible Unit.",
   "type": "string",
   "enum": [
-    "transfer",
-    "install",
-    "abandon",
-    "remove"
+    "WorkActionKind.transfer",
+    "WorkActionKind.install",
+    "WorkActionKind.abandon",
+    "WorkActionKind.remove"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WorkActionKind.json",

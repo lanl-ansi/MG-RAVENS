@@ -3,10 +3,10 @@
   "description": "Type of static load model.",
   "type": "string",
   "enum": [
-    "zIP2",
-    "exponential",
-    "constantZ",
-    "zIP1"
+    "StaticLoadModelKind.zIP2",
+    "StaticLoadModelKind.exponential",
+    "StaticLoadModelKind.constantZ",
+    "StaticLoadModelKind.zIP1"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StaticLoadModelKind.json",

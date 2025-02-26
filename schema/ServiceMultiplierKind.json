@@ -3,9 +3,9 @@
   "description": "Kind of service multiplier.",
   "type": "string",
   "enum": [
-    "transformerRatio",
-    "ctRatio",
-    "ptRatio"
+    "ServiceMultiplierKind.transformerRatio",
+    "ServiceMultiplierKind.ctRatio",
+    "ServiceMultiplierKind.ptRatio"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ServiceMultiplierKind.json",

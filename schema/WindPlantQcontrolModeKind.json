@@ -3,10 +3,10 @@
   "description": "Reactive power/voltage controller mode.",
   "type": "string",
   "enum": [
-    "voltageControl",
-    "powerFactor",
-    "reactivePower",
-    "uqStatic"
+    "WindPlantQcontrolModeKind.voltageControl",
+    "WindPlantQcontrolModeKind.powerFactor",
+    "WindPlantQcontrolModeKind.reactivePower",
+    "WindPlantQcontrolModeKind.uqStatic"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WindPlantQcontrolModeKind.json",

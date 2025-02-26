@@ -15,6 +15,14 @@
       "title": "value2",
       "type": "number",
       "description": "The second value at the time. The meaning of the value is defined by the derived type of the associated schedule."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "RegularTimePoint"
+      ]
     }
   },
   "title": "RegularTimePoint",

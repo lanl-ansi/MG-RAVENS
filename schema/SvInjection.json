@@ -15,6 +15,14 @@
       "title": "phase",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
       "description": "The terminal phase at which the connection is applied.   If missing, the injection is assumed to be balanced among non-neutral phases."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "SvInjection"
+      ]
     }
   },
   "title": "SvInjection",

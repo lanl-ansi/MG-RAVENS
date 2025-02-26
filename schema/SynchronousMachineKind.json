@@ -3,13 +3,13 @@
   "description": "Synchronous machine type.",
   "type": "string",
   "enum": [
-    "generatorOrCondenser",
-    "generatorOrMotor",
-    "condenser",
-    "motor",
-    "generatorOrCondenserOrMotor",
-    "generator",
-    "motorOrCondenser"
+    "SynchronousMachineKind.generatorOrCondenser",
+    "SynchronousMachineKind.generatorOrMotor",
+    "SynchronousMachineKind.condenser",
+    "SynchronousMachineKind.motor",
+    "SynchronousMachineKind.generatorOrCondenserOrMotor",
+    "SynchronousMachineKind.generator",
+    "SynchronousMachineKind.motorOrCondenser"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SynchronousMachineKind.json",

@@ -3,11 +3,11 @@
   "description": "General wind turbine Q control modes <i>M</i><i><sub>qG</sub></i><i>.</i>",
   "type": "string",
   "enum": [
-    "powerFactor",
-    "voltage",
-    "openLoopReactivePower",
-    "reactivePower",
-    "openLooppowerFactor"
+    "WindQcontrolModeKind.powerFactor",
+    "WindQcontrolModeKind.voltage",
+    "WindQcontrolModeKind.openLoopReactivePower",
+    "WindQcontrolModeKind.reactivePower",
+    "WindQcontrolModeKind.openLooppowerFactor"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WindQcontrolModeKind.json",

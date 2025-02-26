@@ -3,12 +3,12 @@
   "description": "Kind of supplier.",
   "type": "string",
   "enum": [
-    "msp",
-    "mdma",
-    "other",
-    "retailer",
-    "utility",
-    "lse"
+    "SupplierKind.msp",
+    "SupplierKind.mdma",
+    "SupplierKind.other",
+    "SupplierKind.retailer",
+    "SupplierKind.utility",
+    "SupplierKind.lse"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SupplierKind.json",

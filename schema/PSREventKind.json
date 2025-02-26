@@ -3,13 +3,13 @@
   "description": "Kind of power system resource (PSR) event.",
   "type": "string",
   "enum": [
-    "inService",
-    "pendingRemove",
-    "outOfService",
-    "unknown",
-    "pendingReplace",
-    "other",
-    "pendingAdd"
+    "PSREventKind.inService",
+    "PSREventKind.pendingRemove",
+    "PSREventKind.outOfService",
+    "PSREventKind.unknown",
+    "PSREventKind.pendingReplace",
+    "PSREventKind.other",
+    "PSREventKind.pendingAdd"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PSREventKind.json",

@@ -3,10 +3,10 @@
   "description": "organization code",
   "type": "string",
   "enum": [
-    "PROVIDED_BY",
-    "PAY_TO",
-    "SOLD_TO",
-    "BILL_TO"
+    "OrganisationCode.PROVIDED_BY",
+    "OrganisationCode.PAY_TO",
+    "OrganisationCode.SOLD_TO",
+    "OrganisationCode.BILL_TO"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OrganisationCode.json",

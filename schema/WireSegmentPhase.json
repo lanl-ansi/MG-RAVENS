@@ -4,7 +4,10 @@
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",
-      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "WireSegmentPhase"
+      ]
     },
     "WireSegmentPhase.phase": {
       "title": "phase",

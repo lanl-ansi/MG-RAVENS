@@ -3,11 +3,11 @@
   "description": "Kind of condition factor.",
   "type": "string",
   "enum": [
-    "travel",
-    "labor",
-    "accountAllocation",
-    "other",
-    "material"
+    "ConditionFactorKind.travel",
+    "ConditionFactorKind.labor",
+    "ConditionFactorKind.accountAllocation",
+    "ConditionFactorKind.other",
+    "ConditionFactorKind.material"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConditionFactorKind.json",

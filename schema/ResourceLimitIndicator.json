@@ -3,8 +3,8 @@
   "description": "Locational AS Flags indicating whether the Upper or Lower Bound limit of the AS regional procurement is binding.",
   "type": "string",
   "enum": [
-    "UPPER",
-    "LOWER"
+    "ResourceLimitIndicator.UPPER",
+    "ResourceLimitIndicator.LOWER"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResourceLimitIndicator.json",

@@ -3,10 +3,10 @@
   "description": "Types of resource registration status, for example:\n\nActive\nMothballed\nPlanned\nDecommissioned",
   "type": "string",
   "enum": [
-    "Decommissioned",
-    "Active",
-    "Mothballed",
-    "Planned"
+    "ResourceRegistrationStatus.Decommissioned",
+    "ResourceRegistrationStatus.Active",
+    "ResourceRegistrationStatus.Mothballed",
+    "ResourceRegistrationStatus.Planned"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResourceRegistrationStatus.json",

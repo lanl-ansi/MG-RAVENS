@@ -3,11 +3,11 @@
   "description": "Possible states of asset deployment.",
   "type": "string",
   "enum": [
-    "outOfService",
-    "notYetInstalled",
-    "inService",
-    "removed",
-    "installed"
+    "DeploymentStateKind.outOfService",
+    "DeploymentStateKind.notYetInstalled",
+    "DeploymentStateKind.inService",
+    "DeploymentStateKind.removed",
+    "DeploymentStateKind.installed"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DeploymentStateKind.json",

@@ -3,12 +3,12 @@
   "description": "Insulation kind for bushings.",
   "type": "string",
   "enum": [
-    "oilImpregnatedPaper",
-    "resinBondedPaper",
-    "solidPorcelain",
-    "resinImpregnatedPaper",
-    "other",
-    "compound"
+    "BushingInsulationKind.oilImpregnatedPaper",
+    "BushingInsulationKind.resinBondedPaper",
+    "BushingInsulationKind.solidPorcelain",
+    "BushingInsulationKind.resinImpregnatedPaper",
+    "BushingInsulationKind.other",
+    "BushingInsulationKind.compound"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BushingInsulationKind.json",

@@ -3,8 +3,8 @@
   "description": "Kind of PF test for bushing insulation.",
   "type": "string",
   "enum": [
-    "c2",
-    "c1"
+    "BushingInsulationPfTestKind.c2",
+    "BushingInsulationPfTestKind.c1"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BushingInsulationPfTestKind.json",

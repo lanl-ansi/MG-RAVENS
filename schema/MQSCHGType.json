@@ -3,8 +3,8 @@
   "description": "For example:\nADD - add\nCHG - change",
   "type": "string",
   "enum": [
-    "ADD",
-    "CHG"
+    "MQSCHGType.ADD",
+    "MQSCHGType.CHG"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MQSCHGType.json",

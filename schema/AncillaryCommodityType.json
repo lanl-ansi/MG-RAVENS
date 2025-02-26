@@ -3,10 +3,10 @@
   "description": "ancillary serivce types",
   "type": "string",
   "enum": [
-    "REGDN",
-    "NONSPIN",
-    "SPIN",
-    "REGUP"
+    "AncillaryCommodityType.REGDN",
+    "AncillaryCommodityType.NONSPIN",
+    "AncillaryCommodityType.SPIN",
+    "AncillaryCommodityType.REGUP"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AncillaryCommodityType.json",

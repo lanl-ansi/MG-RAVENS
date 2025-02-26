@@ -3,7 +3,7 @@
   "description": "List of CIGRE standards.",
   "type": "string",
   "enum": [
-    "TB 170"
+    "CIGREStandardKind.TB 170"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CIGREStandardKind.json",

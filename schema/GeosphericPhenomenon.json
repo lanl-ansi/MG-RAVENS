@@ -50,6 +50,14 @@
       "title": "magnitude",
       "type": "number",
       "description": "The magnitude of the earthquake as defined on the Moment Magnitude (M<sub>w</sub>) scale, which measures the size of earthquakes in terms of the energy released. Must be greater than zero."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "GeosphericPhenomenon"
+      ]
     }
   },
   "title": "GeosphericPhenomenon",

@@ -10,6 +10,14 @@
       "title": "version",
       "type": "string",
       "description": "Form is IEC61970CIMXXvYY where XX is the major CIM package version and the YY is the minor version. For example IEC61970CIM13v18."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "IEC61970CIMVersion"
+      ]
     }
   },
   "description": "This is the IEC 61970 CIM version number assigned to this UML model.",

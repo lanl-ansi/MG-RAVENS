@@ -3,10 +3,10 @@
   "description": "The source of controls for a generating unit.",
   "type": "string",
   "enum": [
-    "onAGC",
-    "unavailable",
-    "offAGC",
-    "plantControl"
+    "GeneratorControlSource.onAGC",
+    "GeneratorControlSource.unavailable",
+    "GeneratorControlSource.offAGC",
+    "GeneratorControlSource.plantControl"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeneratorControlSource.json",

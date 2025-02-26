@@ -3,10 +3,10 @@
   "description": "Ramp rate condition.",
   "type": "string",
   "enum": [
-    "NORMAL",
-    "BEST",
-    "WORST",
-    "NA"
+    "RampRateCondition.NORMAL",
+    "RampRateCondition.BEST",
+    "RampRateCondition.WORST",
+    "RampRateCondition.NA"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RampRateCondition.json",

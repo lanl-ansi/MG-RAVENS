@@ -3,11 +3,11 @@
   "description": "The configuration of phase connections for a single terminal device such as a load or capacitor.",
   "type": "string",
   "enum": [
-    "Yn",
-    "Y",
-    "G",
-    "I",
-    "D"
+    "PhaseShuntConnectionKind.Yn",
+    "PhaseShuntConnectionKind.Y",
+    "PhaseShuntConnectionKind.G",
+    "PhaseShuntConnectionKind.I",
+    "PhaseShuntConnectionKind.D"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseShuntConnectionKind.json",

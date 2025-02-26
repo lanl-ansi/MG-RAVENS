@@ -3,10 +3,10 @@
   "description": "Classifications of network roles in which transformers can be deployed. The classifications are intended to reflect both criticality of transformer in network operations and typical usage experienced by transformer.\nNote: This enumeration provides essential information to asset health analytics. The existing list is a starting point and is anticipated to be fleshed out further as requirements are better understood (PAB 2016/01/09).",
   "type": "string",
   "enum": [
-    "transmissionBusToDistribution",
-    "distribution",
-    "transmissionBusToBus",
-    "generatorStepUp"
+    "TransformerApplicationKind.transmissionBusToDistribution",
+    "TransformerApplicationKind.distribution",
+    "TransformerApplicationKind.transmissionBusToBus",
+    "TransformerApplicationKind.generatorStepUp"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerApplicationKind.json",

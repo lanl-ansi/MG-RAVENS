@@ -3,9 +3,9 @@
   "description": "For example:\n0 - Fixed ramp rate independent of rate function unit MW output\n1 - Static ramp rates as a function of unit MW output only \n2 - Dynamic ramp rates as a function of unit MW output and ramping time",
   "type": "string",
   "enum": [
-    "2",
-    "0",
-    "1"
+    "RampCurveType.2",
+    "RampCurveType.0",
+    "RampCurveType.1"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RampCurveType.json",

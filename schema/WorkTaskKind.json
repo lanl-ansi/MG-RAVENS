@@ -3,10 +3,10 @@
   "description": "Kinds of work tasks.",
   "type": "string",
   "enum": [
-    "exchange",
-    "investigate",
-    "remove",
-    "install"
+    "WorkTaskKind.exchange",
+    "WorkTaskKind.investigate",
+    "WorkTaskKind.remove",
+    "WorkTaskKind.install"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WorkTaskKind.json",

@@ -3,10 +3,10 @@
   "description": "List of editions for IEEE standards.",
   "type": "string",
   "enum": [
-    "none",
-    "1995",
-    "unknown",
-    "1978"
+    "IEEEStandardEditionKind.none",
+    "IEEEStandardEditionKind.1995",
+    "IEEEStandardEditionKind.unknown",
+    "IEEEStandardEditionKind.1978"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/IEEEStandardEditionKind.json",

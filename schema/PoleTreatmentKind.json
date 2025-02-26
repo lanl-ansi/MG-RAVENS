@@ -3,14 +3,14 @@
   "description": "Kind of treatment for poles.",
   "type": "string",
   "enum": [
-    "natural",
-    "penta",
-    "full",
-    "butt",
-    "other",
-    "greenStain",
-    "grayStain",
-    "unknown"
+    "PoleTreatmentKind.natural",
+    "PoleTreatmentKind.penta",
+    "PoleTreatmentKind.full",
+    "PoleTreatmentKind.butt",
+    "PoleTreatmentKind.other",
+    "PoleTreatmentKind.greenStain",
+    "PoleTreatmentKind.grayStain",
+    "PoleTreatmentKind.unknown"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PoleTreatmentKind.json",

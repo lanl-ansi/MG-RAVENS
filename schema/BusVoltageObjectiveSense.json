@@ -3,9 +3,9 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "Minimum",
-    "SeekValue",
-    "Maximum"
+    "BusVoltageObjectiveSense.Minimum",
+    "BusVoltageObjectiveSense.SeekValue",
+    "BusVoltageObjectiveSense.Maximum"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BusVoltageObjectiveSense.json",

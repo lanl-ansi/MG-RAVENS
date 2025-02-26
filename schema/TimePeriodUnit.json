@@ -3,12 +3,12 @@
   "description": "Units in which reporting frequency is specified.",
   "type": "string",
   "enum": [
-    "seconds",
-    "weeks",
-    "hours",
-    "months",
-    "days",
-    "minutes"
+    "TimePeriodUnit.seconds",
+    "TimePeriodUnit.weeks",
+    "TimePeriodUnit.hours",
+    "TimePeriodUnit.months",
+    "TimePeriodUnit.days",
+    "TimePeriodUnit.minutes"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TimePeriodUnit.json",

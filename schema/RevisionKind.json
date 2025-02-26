@@ -3,8 +3,8 @@
   "description": "List of the kinds of revisions that can be made to a SwitchingStep.",
   "type": "string",
   "enum": [
-    "void",
-    "added"
+    "RevisionKind.void",
+    "RevisionKind.added"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RevisionKind.json",

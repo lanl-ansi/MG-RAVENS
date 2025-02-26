@@ -3,11 +3,11 @@
   "description": "Description of market statement",
   "type": "string",
   "enum": [
-    "DAILY_RECALC_MARKET",
-    "MONTHLY_RECALC_MARKET",
-    "MONTHLY_INITIAL_MARKET",
-    "DAILY_INITIAL_CREDIT",
-    "DAILY_INITIAL_MARKET"
+    "MarketStatementDescription.DAILY_RECALC_MARKET",
+    "MarketStatementDescription.MONTHLY_RECALC_MARKET",
+    "MarketStatementDescription.MONTHLY_INITIAL_MARKET",
+    "MarketStatementDescription.DAILY_INITIAL_CREDIT",
+    "MarketStatementDescription.DAILY_INITIAL_MARKET"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MarketStatementDescription.json",

@@ -3,9 +3,9 @@
   "description": "List of editions for EPA standards.",
   "type": "string",
   "enum": [
-    "unknown",
-    "A",
-    "none"
+    "EPAStandardEditionKind.unknown",
+    "EPAStandardEditionKind.A",
+    "EPAStandardEditionKind.none"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EPAStandardEditionKind.json",

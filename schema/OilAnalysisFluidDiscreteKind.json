@@ -3,13 +3,13 @@
   "description": "Discretes representing oil fluid test analysis result.",
   "type": "string",
   "enum": [
-    "colorNumberPlatinumCobaltScale",
-    "tarnishLevel",
-    "corrosiveSulphurBy51353",
-    "colorNumber",
-    "corrosiveSulphurByD1275",
-    "sludgePrecipitation",
-    "corrosiveSulphurBy62535"
+    "OilAnalysisFluidDiscreteKind.colorNumberPlatinumCobaltScale",
+    "OilAnalysisFluidDiscreteKind.tarnishLevel",
+    "OilAnalysisFluidDiscreteKind.corrosiveSulphurBy51353",
+    "OilAnalysisFluidDiscreteKind.colorNumber",
+    "OilAnalysisFluidDiscreteKind.corrosiveSulphurByD1275",
+    "OilAnalysisFluidDiscreteKind.sludgePrecipitation",
+    "OilAnalysisFluidDiscreteKind.corrosiveSulphurBy62535"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OilAnalysisFluidDiscreteKind.json",

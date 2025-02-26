@@ -3,9 +3,9 @@
   "description": "Trade type.",
   "type": "string",
   "enum": [
-    "UCT",
-    "IST",
-    "AST"
+    "TradeType.UCT",
+    "TradeType.IST",
+    "TradeType.AST"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TradeType.json",

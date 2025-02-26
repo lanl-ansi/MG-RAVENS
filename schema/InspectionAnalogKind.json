@@ -3,11 +3,11 @@
   "description": "Analogs typically recorded during a field inspection.",
   "type": "string",
   "enum": [
-    "sF6PressureReading",
-    "airPressureLPSystemReading",
-    "airPressureReading",
-    "airPressureHPSystemReading",
-    "compressorHourMeterReading"
+    "InspectionAnalogKind.sF6PressureReading",
+    "InspectionAnalogKind.airPressureLPSystemReading",
+    "InspectionAnalogKind.airPressureReading",
+    "InspectionAnalogKind.airPressureHPSystemReading",
+    "InspectionAnalogKind.compressorHourMeterReading"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InspectionAnalogKind.json",

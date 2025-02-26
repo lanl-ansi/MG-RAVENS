@@ -1,48 +1,335 @@
 {
   "type": "object",
-  "description": "A multi-purpose curve or functional relationship between an independent variable (X-axis) and dependent (Y-axis) variables.",
-  "title": "Curve",
-  "oneOf": [
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Curve.json"
+  "properties": {
+    "Curve.CurveDatas": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurveDataArray.json"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StartUpTimeCurve.json"
+    "ResourceOperationMaintenanceCost.omCostHotStartup": {
+      "title": "omCostHotStartup",
+      "type": "number",
+      "description": "Verifiable O&M Cost ($), Hot Startup"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StartRampCurve.json"
+    "TargetLevelSchedule.lowLevelLimit": {
+      "title": "lowLevelLimit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WaterLevel.json",
+      "description": "Low target level limit, below which the reservoir operation will be penalized."
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShutdownCurve.json"
+    "ResourceOperationMaintenanceCost.gasPercentAboveLowSustainedLimit": {
+      "title": "gasPercentAboveLowSustainedLimit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "description": "Percentage of Fuel Index Price (gas) for operating above Low Sustained Limit (LSL)"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactiveCapabilityCurve.json"
+    "DefaultBidCurve.curveType": {
+      "title": "curveType",
+      "type": "string",
+      "description": "To indicate a type used for a default energy bid curve, such as LMP, cost or consultative based."
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HeatRateCurve.json"
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "Curve"
+      ]
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EmissionCurve.json"
+    "DefaultBidCurve.debAdderFlag": {
+      "title": "debAdderFlag",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/YesNo.json",
+      "description": "Default energy bid adder flag"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VsCapabilityCurve.json"
+    "ResourceOperationMaintenanceCost.oilPercentAboveLowSustainedLimit": {
+      "title": "oilPercentAboveLowSustainedLimit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "description": "Percentage of Fuel Oil Price (FOP) for operating above Low Sustained Limit (LSL)"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StartUpCostCurve.json"
+    "InterchangeSchedule.intervalLength": {
+      "title": "intervalLength",
+      "type": "integer",
+      "description": "Interval length."
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FuelCostCurve.json"
+    "EmissionCurve.emissionContent": {
+      "title": "emissionContent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Emission.json",
+      "description": "The emission content per quantity of fuel burned."
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RampRateCurve.json"
+    "EmissionCurve.emissionType": {
+      "title": "emissionType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EmissionType.json",
+      "description": "The type of emission, which also gives the production rate measurement unit. The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfur dioxide)."
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StartUpTimeCurve.json"
+    "EmissionCurve.isNetGrossP": {
+      "title": "isNetGrossP",
+      "type": "boolean",
+      "description": "Flag is set to true when output is expressed in net active power."
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PriceCurve.json"
+    "ShutdownCurve.shutdownCost": {
+      "title": "shutdownCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
+      "description": "Fixed shutdown cost."
+    },
+    "ShutdownCurve.shutdownDate": {
+      "title": "shutdownDate",
+      "type": "string",
+      "description": "The date and time of the most recent generating unit shutdown."
+    },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "TargetLevelSchedule.highLevelLimit": {
+      "title": "highLevelLimit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WaterLevel.json",
+      "description": "High target level limit, above which the reservoir operation will be penalized."
+    },
+    "FuelAllocationSchedule.fuelAllocationEndDate": {
+      "title": "fuelAllocationEndDate",
+      "type": "string",
+      "description": "The end time and date of the fuel allocation schedule."
+    },
+    "FuelAllocationSchedule.fuelAllocationStartDate": {
+      "title": "fuelAllocationStartDate",
+      "type": "string",
+      "description": "The start time and date of the fuel allocation schedule."
+    },
+    "FuelAllocationSchedule.fuelType": {
+      "title": "fuelType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FuelType.json",
+      "description": "The type of fuel, which also indicates the corresponding measurement unit."
+    },
+    "FuelAllocationSchedule.maxFuelAllocation": {
+      "title": "maxFuelAllocation",
+      "type": "number",
+      "description": "The maximum amount of fuel that is allocated for consumption for the scheduled time period."
+    },
+    "FuelAllocationSchedule.minFuelAllocation": {
+      "title": "minFuelAllocation",
+      "type": "number",
+      "description": "The minimum amount of fuel that is allocated for consumption for the scheduled time period, e.g., based on a \"take-or-pay\" contract."
+    },
+    "Curve.curveStyle": {
+      "title": "curveStyle",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurveStyle.json",
+      "description": "The style or shape of the curve."
+    },
+    "Curve.xMultiplier": {
+      "title": "xMultiplier",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitMultiplier.json",
+      "description": "Multiplier for X-axis."
+    },
+    "Curve.xUnit": {
+      "title": "xUnit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitSymbol.json",
+      "description": "The X-axis units of measure."
+    },
+    "Curve.y1Multiplier": {
+      "title": "y1Multiplier",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitMultiplier.json",
+      "description": "Multiplier for Y1-axis."
+    },
+    "Curve.y1Unit": {
+      "title": "y1Unit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitSymbol.json",
+      "description": "The Y1-axis units of measure."
+    },
+    "Curve.y2Multiplier": {
+      "title": "y2Multiplier",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitMultiplier.json",
+      "description": "Multiplier for Y2-axis."
+    },
+    "Curve.y2Unit": {
+      "title": "y2Unit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitSymbol.json",
+      "description": "The Y2-axis units of measure."
+    },
+    "Curve.y3Multiplier": {
+      "title": "y3Multiplier",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitMultiplier.json",
+      "description": "Multiplier for Y3-axis."
+    },
+    "Curve.y3Unit": {
+      "title": "y3Unit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitSymbol.json",
+      "description": "The Y3-axis units of measure."
+    },
+    "IncrementalHeatRateCurve.isNetGrossP": {
+      "title": "isNetGrossP",
+      "type": "boolean",
+      "description": "Flag is set to true when output is expressed in net active power."
+    },
+    "ResourceOperationMaintenanceCost.omCostIntermediateStartup": {
+      "title": "omCostIntermediateStartup",
+      "type": "number",
+      "description": "Verifiable O&M Cost ($), Intermediate Startup"
+    },
+    "ResourceOperationMaintenanceCost.solidfuelPercentAboveLowSustainedLimit": {
+      "title": "solidfuelPercentAboveLowSustainedLimit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "description": "Percentage of Solid Fuel for operating above Low Sustained Limit (LSL)"
+    },
+    "StartIgnFuelCurve.ignitionFuelType": {
+      "title": "ignitionFuelType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FuelType.json",
+      "description": "Type of ignition fuel."
+    },
+    "ResourceOperationMaintenanceCost.omCostLowSustainedLimit": {
+      "title": "omCostLowSustainedLimit",
+      "type": "number",
+      "description": "Verifiable O&M Cost ($/MWh), LSL"
+    },
+    "RampRateCurve.constraintRampType": {
+      "title": "constraintRampType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConstraintRampType.json",
+      "description": "The condition that identifies whether a Generating Resource should be constrained from Ancillary Service provision if its Schedule or Dispatch change across Trading Hours or Trading Intervals requires more than a specified fraction of the duration of the Trading Hour or Trading Interval. \n\nValid values are Fast/Slow"
+    },
+    "ResourceOperationMaintenanceCost.omCostColdStartup": {
+      "title": "omCostColdStartup",
+      "type": "number",
+      "description": "Verifiable O&M Cost ($), Cold Startup"
+    },
+    "HeatInputCurve.auxPowerMult": {
+      "title": "auxPowerMult",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
+      "description": "Power output - auxiliary power multiplier adjustment factor."
+    },
+    "HeatInputCurve.heatInputEff": {
+      "title": "heatInputEff",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
+      "description": "Heat input - efficiency multiplier adjustment factor."
+    },
+    "HeatInputCurve.heatInputOffset": {
+      "title": "heatInputOffset",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HeatRate.json",
+      "description": "Heat input - offset adjustment factor."
+    },
+    "InterchangeSchedule.wcrID": {
+      "title": "wcrID",
+      "type": "string",
+      "description": "Wheeling Counter-Resource ID (required when Schedule Type=Wheel)."
+    },
+    "GenUnitOpCostCurve.isNetGrossP": {
+      "title": "isNetGrossP",
+      "type": "boolean",
+      "description": "Flag is set to true when output is expressed in net active power."
+    },
+    "StartRampCurve.hotStandbyRamp": {
+      "title": "hotStandbyRamp",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePowerChangeRate.json",
+      "description": "The startup ramp rate in gross for a unit that is on hot standby."
+    },
+    "HeatInputCurve.isNetGrossP": {
+      "title": "isNetGrossP",
+      "type": "boolean",
+      "description": "Flag is set to true when output is expressed in net active power."
+    },
+    "HeatInputCurve.auxPowerOffset": {
+      "title": "auxPowerOffset",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "description": "Power output - auxiliary power offset adjustment factor."
+    },
+    "InterchangeSchedule.outOfMarketType": {
+      "title": "outOfMarketType",
+      "type": "boolean",
+      "description": "To indicate an out-of-market (OOM) schedule."
+    },
+    "IdentifiedObject.aliasName": {
+      "title": "aliasName",
+      "type": "string",
+      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
+    },
+    "ReserveDemandCurve.reserveRequirementType": {
+      "title": "reserveRequirementType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReserveRequirementType.json",
+      "description": "Reserve requirement type that the max and curve apply to. For example, operating reserve, regulation and contingency."
+    },
+    "ReactiveCapabilityCurve.coolantTemperature": {
+      "title": "coolantTemperature",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Temperature.json",
+      "description": "The machine's coolant temperature (e.g., ambient air or stator circulating water)."
+    },
+    "InterchangeSchedule.operatingDate": {
+      "title": "operatingDate",
+      "type": "string",
+      "description": "Operating date, hour."
+    },
+    "InterchangeSchedule.energyType": {
+      "title": "energyType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MarketProductType.json",
+      "description": "Energy product type."
+    },
+    "ReactiveCapabilityCurve.hydrogenPressure": {
+      "title": "hydrogenPressure",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Pressure.json",
+      "description": "The hydrogen coolant pressure."
+    },
+    "StartMainFuelCurve.mainFuelType": {
+      "title": "mainFuelType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FuelType.json",
+      "description": "Type of main fuel."
+    },
+    "EmissionAccount.emissionType": {
+      "title": "emissionType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EmissionType.json",
+      "description": "The type of emission, for example sulfur dioxide (SO2). The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfur dioxide)."
+    },
+    "EmissionAccount.emissionValueSource": {
+      "title": "emissionValueSource",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EmissionValueSource.json",
+      "description": "The source of the emission value."
+    },
+    "HeatRateCurve.isNetGrossP": {
+      "title": "isNetGrossP",
+      "type": "boolean",
+      "description": "Flag is set to true when output is expressed in net active power."
+    },
+    "RampRateCurve.rampRateType": {
+      "title": "rampRateType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RampRateType.json",
+      "description": "How ramp rate is applied (e.g. raise or lower, as when applied to a generation resource)"
+    },
+    "InterchangeSchedule.checkOutType": {
+      "title": "checkOutType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CheckOutType.json",
+      "description": "To indicate a check out type such as adjusted capacity or dispatch capacity."
+    },
+    "ReserveDemandCurve.reqMaxMW": {
+      "title": "reqMaxMW",
+      "type": "number",
+      "description": "Region requirement maximum limit"
+    },
+    "RampRateCurve.condition": {
+      "title": "condition",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RampRateCondition.json",
+      "description": "condition for the ramp rate"
+    },
+    "InterchangeSchedule.marketType": {
+      "title": "marketType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MarketType.json",
+      "description": "Market type."
+    },
+    "InterchangeSchedule.directionType": {
+      "title": "directionType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InterTieDirection.json",
+      "description": "Import or export."
+    },
+    "InterchangeSchedule.scheduleType": {
+      "title": "scheduleType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyProductType.json",
+      "description": "Schedule type."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    },
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
     }
-  ],
+  },
+  "title": "Curve",
+  "description": "A multi-purpose curve or functional relationship between an independent variable (X-axis) and dependent (Y-axis) variables.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Curve.json",

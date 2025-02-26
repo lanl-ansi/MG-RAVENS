@@ -3,9 +3,9 @@
   "description": "Specifies the expected security mechanism, per IEC 62351-4, to be utilized.",
   "type": "string",
   "enum": [
-    "secure",
-    "endToEndSecure",
-    "nonSecure"
+    "ApplicationSecurityKind.secure",
+    "ApplicationSecurityKind.endToEndSecure",
+    "ApplicationSecurityKind.nonSecure"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApplicationSecurityKind.json",

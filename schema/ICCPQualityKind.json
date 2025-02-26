@@ -3,11 +3,11 @@
   "description": "Indicates the type of quality information that is to be exchanged. For protection events the value shall be \"none\".",
   "type": "string",
   "enum": [
-    "qualityAndTime",
-    "extendedwithQualityTime",
-    "none",
-    "extended",
-    "qualityOnly"
+    "ICCPQualityKind.qualityAndTime",
+    "ICCPQualityKind.extendedwithQualityTime",
+    "ICCPQualityKind.none",
+    "ICCPQualityKind.extended",
+    "ICCPQualityKind.qualityOnly"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ICCPQualityKind.json",

@@ -3,12 +3,12 @@
   "description": "The list of items that define the wire problem.",
   "type": "string",
   "enum": [
-    "wireDown",
-    "wireburning",
-    "other",
-    "ok",
-    "serviceDown",
-    "digIn"
+    "TroubleSymptomsWireKind.wireDown",
+    "TroubleSymptomsWireKind.wireburning",
+    "TroubleSymptomsWireKind.other",
+    "TroubleSymptomsWireKind.ok",
+    "TroubleSymptomsWireKind.serviceDown",
+    "TroubleSymptomsWireKind.digIn"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TroubleSymptomsWireKind.json",

@@ -3,9 +3,9 @@
   "description": "The mode of the calculation (total, periodic, sliding).\n.",
   "type": "string",
   "enum": [
-    "sliding",
-    "period",
-    "total"
+    "CalculationModeKind.sliding",
+    "CalculationModeKind.period",
+    "CalculationModeKind.total"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CalculationModeKind.json",

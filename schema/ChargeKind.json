@@ -3,11 +3,11 @@
   "description": "Kind of charge.",
   "type": "string",
   "enum": [
-    "auxiliaryCharge",
-    "demandCharge",
-    "other",
-    "taxCharge",
-    "consumptionCharge"
+    "ChargeKind.auxiliaryCharge",
+    "ChargeKind.demandCharge",
+    "ChargeKind.other",
+    "ChargeKind.taxCharge",
+    "ChargeKind.consumptionCharge"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ChargeKind.json",

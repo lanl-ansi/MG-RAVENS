@@ -3,8 +3,8 @@
   "description": "MPM Purpose Flag, for example:\n\nNature of threshold data:\n'M' - Mitigation threshold\n'R' - Reporting threshold",
   "type": "string",
   "enum": [
-    "R",
-    "M"
+    "PurposeFlagType.R",
+    "PurposeFlagType.M"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PurposeFlagType.json",

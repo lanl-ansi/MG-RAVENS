@@ -1,18 +1,40 @@
 {
   "type": "object",
-  "description": "The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.",
-  "title": "LoadGroup",
-  "oneOf": [
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConformLoadGroup.json"
+  "properties": {
+    "LoadGroup.EnergyConsumers": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerPointerArray.json"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NonConformLoadGroup.json"
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "LoadGroup"
+      ]
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadGroup.json"
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "IdentifiedObject.aliasName": {
+      "title": "aliasName",
+      "type": "string",
+      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    },
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
     }
-  ],
+  },
+  "title": "LoadGroup",
+  "description": "The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadGroup.json",

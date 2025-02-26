@@ -3,12 +3,12 @@
   "description": "Analogs representing oil PCB analysis result.",
   "type": "string",
   "enum": [
-    "aroclor1254",
-    "aroclor1221",
-    "aroclor1242",
-    "totalPCB",
-    "aroclor1016",
-    "aroclor1260"
+    "OilAnalysisPCBAnalogKind.aroclor1254",
+    "OilAnalysisPCBAnalogKind.aroclor1221",
+    "OilAnalysisPCBAnalogKind.aroclor1242",
+    "OilAnalysisPCBAnalogKind.totalPCB",
+    "OilAnalysisPCBAnalogKind.aroclor1016",
+    "OilAnalysisPCBAnalogKind.aroclor1260"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OilAnalysisPCBAnalogKind.json",

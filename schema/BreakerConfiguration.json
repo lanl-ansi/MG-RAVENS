@@ -3,10 +3,10 @@
   "description": "Switching arrangement for bay.",
   "type": "string",
   "enum": [
-    "noBreaker",
-    "breakerAndAHalf",
-    "singleBreaker",
-    "doubleBreaker"
+    "BreakerConfiguration.noBreaker",
+    "BreakerConfiguration.breakerAndAHalf",
+    "BreakerConfiguration.singleBreaker",
+    "BreakerConfiguration.doubleBreaker"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BreakerConfiguration.json",

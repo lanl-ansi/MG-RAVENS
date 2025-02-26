@@ -3,12 +3,12 @@
   "description": "Ramp rate curve type.",
   "type": "string",
   "enum": [
-    "LD_PICKUP",
-    "LD_DROP",
-    "OP",
-    "REG",
-    "OP_RES",
-    "INTERTIE"
+    "RampRateType.LD_PICKUP",
+    "RampRateType.LD_DROP",
+    "RampRateType.OP",
+    "RampRateType.REG",
+    "RampRateType.OP_RES",
+    "RampRateType.INTERTIE"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RampRateType.json",

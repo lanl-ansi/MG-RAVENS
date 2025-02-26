@@ -3,12 +3,12 @@
   "description": "Specifies the unit of time for the intervals in the schedule.",
   "type": "string",
   "enum": [
-    "m",
-    "s",
-    "Y",
-    "h",
-    "D",
-    "M"
+    "TimeIntervalKind.m",
+    "TimeIntervalKind.s",
+    "TimeIntervalKind.Y",
+    "TimeIntervalKind.h",
+    "TimeIntervalKind.D",
+    "TimeIntervalKind.M"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TimeIntervalKind.json",

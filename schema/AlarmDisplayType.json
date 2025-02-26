@@ -3,9 +3,9 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "Appear",
-    "Disappear",
-    "Fleeting"
+    "AlarmDisplayType.Appear",
+    "AlarmDisplayType.Disappear",
+    "AlarmDisplayType.Fleeting"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AlarmDisplayType.json",

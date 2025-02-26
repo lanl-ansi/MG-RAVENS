@@ -3,13 +3,13 @@
   "description": "Lifecycle states of the metering installation at a usage point with respect to readiness for billing via advanced metering infrastructure reads.",
   "type": "string",
   "enum": [
-    "amiCapable",
-    "operable",
-    "nonMetered",
-    "billingApproved",
-    "enabled",
-    "nonAmi",
-    "amiDisabled"
+    "AmiBillingReadyKind.amiCapable",
+    "AmiBillingReadyKind.operable",
+    "AmiBillingReadyKind.nonMetered",
+    "AmiBillingReadyKind.billingApproved",
+    "AmiBillingReadyKind.enabled",
+    "AmiBillingReadyKind.nonAmi",
+    "AmiBillingReadyKind.amiDisabled"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AmiBillingReadyKind.json",

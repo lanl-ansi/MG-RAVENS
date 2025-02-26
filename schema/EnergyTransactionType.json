@@ -3,9 +3,9 @@
   "description": "Defines the state of a transaction.",
   "type": "string",
   "enum": [
-    "approve",
-    "study",
-    "deny"
+    "EnergyTransactionType.approve",
+    "EnergyTransactionType.study",
+    "EnergyTransactionType.deny"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyTransactionType.json",

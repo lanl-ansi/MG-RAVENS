@@ -3,12 +3,12 @@
   "description": "The type of emission.",
   "type": "string",
   "enum": [
-    "carbonDisulfide",
-    "chlorine",
-    "sulfurDioxide",
-    "carbonDioxide",
-    "hydrogenSulfide",
-    "nitrogenOxide"
+    "EmissionType.carbonDisulfide",
+    "EmissionType.chlorine",
+    "EmissionType.sulfurDioxide",
+    "EmissionType.carbonDioxide",
+    "EmissionType.hydrogenSulfide",
+    "EmissionType.nitrogenOxide"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EmissionType.json",

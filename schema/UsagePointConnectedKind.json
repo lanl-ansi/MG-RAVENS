@@ -3,9 +3,9 @@
   "description": "State of the usage point with respect to connection to the network.",
   "type": "string",
   "enum": [
-    "connected",
-    "logicallyDisconnected",
-    "physicallyDisconnected"
+    "UsagePointConnectedKind.connected",
+    "UsagePointConnectedKind.logicallyDisconnected",
+    "UsagePointConnectedKind.physicallyDisconnected"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UsagePointConnectedKind.json",

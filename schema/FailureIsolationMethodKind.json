@@ -3,11 +3,11 @@
   "description": "How the failure has been isolated.",
   "type": "string",
   "enum": [
-    "breakerOperation",
-    "other",
-    "manuallyIsolated",
-    "fuse",
-    "burnedInTheClear"
+    "FailureIsolationMethodKind.breakerOperation",
+    "FailureIsolationMethodKind.other",
+    "FailureIsolationMethodKind.manuallyIsolated",
+    "FailureIsolationMethodKind.fuse",
+    "FailureIsolationMethodKind.burnedInTheClear"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FailureIsolationMethodKind.json",

@@ -3,10 +3,10 @@
   "description": "Types of connections for the OEL input used for static excitation systems type 7B.",
   "type": "string",
   "enum": [
-    "outputLVgate",
-    "noOELinput",
-    "inputLVgate",
-    "addVref"
+    "ExcST7BOELselectorKind.outputLVgate",
+    "ExcST7BOELselectorKind.noOELinput",
+    "ExcST7BOELselectorKind.inputLVgate",
+    "ExcST7BOELselectorKind.addVref"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ExcST7BOELselectorKind.json",

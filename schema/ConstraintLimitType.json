@@ -3,8 +3,8 @@
   "description": "Binding constraint results limit type, For example:\nMAXIMUM\nMINIMUM",
   "type": "string",
   "enum": [
-    "MINIMUM",
-    "MAXIMUM"
+    "ConstraintLimitType.MINIMUM",
+    "ConstraintLimitType.MAXIMUM"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConstraintLimitType.json",

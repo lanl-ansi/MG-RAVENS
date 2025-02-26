@@ -3,9 +3,9 @@
   "description": "The type of control area.",
   "type": "string",
   "enum": [
-    "Forecast",
-    "AGC",
-    "Interchange"
+    "ControlAreaTypeKind.Forecast",
+    "ControlAreaTypeKind.AGC",
+    "ControlAreaTypeKind.Interchange"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ControlAreaTypeKind.json",

@@ -3,10 +3,10 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "PJM",
-    "RFC-SR",
-    "SOUTH-S",
-    "EASTERN"
+    "SpinningEventNameType.PJM",
+    "SpinningEventNameType.RFC-SR",
+    "SpinningEventNameType.SOUTH-S",
+    "SpinningEventNameType.EASTERN"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SpinningEventNameType.json",

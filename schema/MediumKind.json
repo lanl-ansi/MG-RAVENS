@@ -3,14 +3,14 @@
   "description": "Kind of medium.",
   "type": "string",
   "enum": [
-    "mineralOil",
-    "SF6CF4",
-    "solid",
-    "SF6N2",
-    "gas",
-    "air",
-    "liquid",
-    "SF6"
+    "MediumKind.mineralOil",
+    "MediumKind.SF6CF4",
+    "MediumKind.solid",
+    "MediumKind.SF6N2",
+    "MediumKind.gas",
+    "MediumKind.air",
+    "MediumKind.liquid",
+    "MediumKind.SF6"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MediumKind.json",

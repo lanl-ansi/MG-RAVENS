@@ -3,9 +3,9 @@
   "description": "Demographic kind of a land property.",
   "type": "string",
   "enum": [
-    "urban",
-    "other",
-    "rural"
+    "DemographicKind.urban",
+    "DemographicKind.other",
+    "DemographicKind.rural"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DemographicKind.json",

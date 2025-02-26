@@ -3,10 +3,10 @@
   "description": "Types of connections for the UEL input used in ExcIEEEST1A.",
   "type": "string",
   "enum": [
-    "inputAddedToErrorSignal",
-    "ignoreUELsignal",
-    "inputHVgateVoltageOutput",
-    "inputHVgateErrorSignal"
+    "ExcIEEEST1AUELselectorKind.inputAddedToErrorSignal",
+    "ExcIEEEST1AUELselectorKind.ignoreUELsignal",
+    "ExcIEEEST1AUELselectorKind.inputHVgateVoltageOutput",
+    "ExcIEEEST1AUELselectorKind.inputHVgateErrorSignal"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ExcIEEEST1AUELselectorKind.json",

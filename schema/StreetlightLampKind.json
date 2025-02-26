@@ -3,10 +3,10 @@
   "description": "Kind of lamp for the streetlight.",
   "type": "string",
   "enum": [
-    "other",
-    "highPressureSodium",
-    "metalHalide",
-    "mercuryVapor"
+    "StreetlightLampKind.other",
+    "StreetlightLampKind.highPressureSodium",
+    "StreetlightLampKind.metalHalide",
+    "StreetlightLampKind.mercuryVapor"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StreetlightLampKind.json",

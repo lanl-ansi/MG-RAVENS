@@ -3,8 +3,8 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "START_UP",
-    "SHUT_DOWN"
+    "ADSInstructionTypeCommitment.START_UP",
+    "ADSInstructionTypeCommitment.SHUT_DOWN"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ADSInstructionTypeCommitment.json",

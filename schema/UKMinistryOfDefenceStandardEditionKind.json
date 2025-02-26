@@ -3,9 +3,9 @@
   "description": "List of editions for UK Ministry of Defence standards.",
   "type": "string",
   "enum": [
-    "Issue 1",
-    "none",
-    "unknown"
+    "UKMinistryOfDefenceStandardEditionKind.Issue 1",
+    "UKMinistryOfDefenceStandardEditionKind.none",
+    "UKMinistryOfDefenceStandardEditionKind.unknown"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UKMinistryOfDefenceStandardEditionKind.json",

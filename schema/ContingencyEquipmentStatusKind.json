@@ -3,8 +3,8 @@
   "description": "Indicates the state which the contingency equipment is to be in when the contingency is applied.",
   "type": "string",
   "enum": [
-    "inService",
-    "outOfService"
+    "ContingencyEquipmentStatusKind.inService",
+    "ContingencyEquipmentStatusKind.outOfService"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ContingencyEquipmentStatusKind.json",

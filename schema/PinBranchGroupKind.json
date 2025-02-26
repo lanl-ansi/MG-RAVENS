@@ -3,8 +3,8 @@
   "description": "Categorisation of type of compare done on a branch group.",
   "type": "string",
   "enum": [
-    "activePower",
-    "reactivePower"
+    "PinBranchGroupKind.activePower",
+    "PinBranchGroupKind.reactivePower"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PinBranchGroupKind.json",

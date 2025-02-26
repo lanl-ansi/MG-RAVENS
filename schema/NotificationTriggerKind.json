@@ -3,11 +3,11 @@
   "description": "Kind of trigger to notify customer.",
   "type": "string",
   "enum": [
-    "powerOut",
-    "etrChange",
-    "powerRestored",
-    "initialEtr",
-    "informDispatched"
+    "NotificationTriggerKind.powerOut",
+    "NotificationTriggerKind.etrChange",
+    "NotificationTriggerKind.powerRestored",
+    "NotificationTriggerKind.initialEtr",
+    "NotificationTriggerKind.informDispatched"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NotificationTriggerKind.json",

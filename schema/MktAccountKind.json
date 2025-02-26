@@ -3,10 +3,10 @@
   "description": "Kind of Market account.",
   "type": "string",
   "enum": [
-    "statistical",
-    "reversal",
-    "normal",
-    "estimate"
+    "MktAccountKind.statistical",
+    "MktAccountKind.reversal",
+    "MktAccountKind.normal",
+    "MktAccountKind.estimate"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MktAccountKind.json",

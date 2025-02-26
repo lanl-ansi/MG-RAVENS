@@ -3,14 +3,14 @@
   "description": "Usage for an asset model.",
   "type": "string",
   "enum": [
-    "distributionUnderground",
-    "distributionOverhead",
-    "unknown",
-    "customerSubstation",
-    "transmission",
-    "other",
-    "streetlight",
-    "substation"
+    "AssetModelUsageKind.distributionUnderground",
+    "AssetModelUsageKind.distributionOverhead",
+    "AssetModelUsageKind.unknown",
+    "AssetModelUsageKind.customerSubstation",
+    "AssetModelUsageKind.transmission",
+    "AssetModelUsageKind.other",
+    "AssetModelUsageKind.streetlight",
+    "AssetModelUsageKind.substation"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetModelUsageKind.json",

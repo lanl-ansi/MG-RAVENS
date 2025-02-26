@@ -5,6 +5,14 @@
       "title": "position",
       "type": "number",
       "description": "The floating point tap position.   This is not the tap ratio, but rather the tap step position as defined by the related tap changer model and normally is constrained to be within the range of minimum and maximum tap positions."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "SvTapStep"
+      ]
     }
   },
   "title": "SvTapStep",

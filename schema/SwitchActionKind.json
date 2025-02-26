@@ -3,10 +3,10 @@
   "description": "Kind of action on switch.",
   "type": "string",
   "enum": [
-    "close",
-    "open",
-    "enableReclosing",
-    "disableReclosing"
+    "SwitchActionKind.close",
+    "SwitchActionKind.open",
+    "SwitchActionKind.enableReclosing",
+    "SwitchActionKind.disableReclosing"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SwitchActionKind.json",

@@ -3,11 +3,11 @@
   "description": "What asset has failed to be able to do.\nReason for breaker failure.\nNote: This enumeration provides essential information to asset health analytics. The existing list is a starting point and is anticipated to be fleshed out further as requirements are better understood (PAB 2016/01/09).",
   "type": "string",
   "enum": [
-    "failToOpen",
-    "failToProvideInsulationLevel",
-    "failToInterrupt",
-    "failToClose",
-    "failToCarryLoad"
+    "AssetFailureMode.failToOpen",
+    "AssetFailureMode.failToProvideInsulationLevel",
+    "AssetFailureMode.failToInterrupt",
+    "AssetFailureMode.failToClose",
+    "AssetFailureMode.failToCarryLoad"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetFailureMode.json",

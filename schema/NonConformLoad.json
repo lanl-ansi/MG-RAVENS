@@ -24,7 +24,7 @@
       "title": "SwitchingActionPointer",
       "description": "Pointer to SwitchingAction object"
     },
-    "EnergyConsumer.LoadResponseCharacteristic": {
+    "EnergyConsumer.LoadResponse": {
       "type": "string",
       "title": "LoadResponseCharacteristicPointer",
       "description": "Pointer to LoadResponseCharacteristic object"
@@ -68,7 +68,10 @@
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",
-      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "NonConformLoad"
+      ]
     },
     "EnergyConsumer.customerCount": {
       "title": "customerCount",

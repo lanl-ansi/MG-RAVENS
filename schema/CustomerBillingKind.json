@@ -3,10 +3,10 @@
   "description": "Kind of customer billing.",
   "type": "string",
   "enum": [
-    "other",
-    "consolidatedEss",
-    "consolidatedUdc",
-    "separateEssUdc"
+    "CustomerBillingKind.other",
+    "CustomerBillingKind.consolidatedEss",
+    "CustomerBillingKind.consolidatedUdc",
+    "CustomerBillingKind.separateEssUdc"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CustomerBillingKind.json",

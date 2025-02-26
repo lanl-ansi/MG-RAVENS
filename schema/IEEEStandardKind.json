@@ -3,7 +3,7 @@
   "description": "List of IEEE standards.",
   "type": "string",
   "enum": [
-    "62"
+    "IEEEStandardKind.62"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/IEEEStandardKind.json",

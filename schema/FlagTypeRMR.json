@@ -3,9 +3,9 @@
   "description": "Indicates whether the unit is RMR and it's condition type, for example:\nN' - not an RMR unit\n'1' - RMR Condition 1 unit\n'2' - RMR Condition 2 unit",
   "type": "string",
   "enum": [
-    "1",
-    "2",
-    "N"
+    "FlagTypeRMR.1",
+    "FlagTypeRMR.2",
+    "FlagTypeRMR.N"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FlagTypeRMR.json",

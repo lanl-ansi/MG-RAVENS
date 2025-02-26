@@ -1,39 +1,154 @@
 {
   "type": "object",
-  "description": "A generic device designed to close, or open, or both, one or more electric circuits.  All switches are two terminal devices including grounding switches. The ACDCTerminal.connected at the two sides of the switch shall not be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen and .locked are relevant.",
-  "title": "Switch",
-  "oneOf": [
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Switch.json"
+  "properties": {
+    "PowerSystemResource.Location": {
+      "type": "string",
+      "title": "LocationPointer",
+      "description": "Pointer to Location object"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProtectedSwitch.json"
+    "PowerSystemResource.GenericAction": {
+      "type": "string",
+      "title": "SwitchingActionPointer",
+      "description": "Pointer to SwitchingAction object"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Breaker.json"
+    "Switch.SwitchAction": {
+      "type": "string",
+      "title": "SwitchingActionPointer",
+      "description": "Pointer to SwitchingAction object"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadBreakSwitch.json"
+    "ConductingEquipment.Terminals": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Recloser.json"
+    "Switch.SvSwitch": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvSwitchArray.json"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Cut.json"
+    "PowerSystemResource.AssetDatasheet": {
+      "type": "string",
+      "title": "SwitchInfoPointer",
+      "description": "Pointer to SwitchInfo object"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Sectionaliser.json"
+    "ConductingEquipment.BaseVoltage": {
+      "type": "string",
+      "title": "BaseVoltagePointer",
+      "description": "Pointer to BaseVoltage object"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Fuse.json"
+    "Switch.SwitchPhase": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SwitchPhaseArray.json"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GroundDisconnector.json"
+    "ConductingEquipment.SvStatus": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatusArray.json"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Jumper.json"
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "Switch"
+      ]
+    },
+    "Switch.open": {
+      "title": "open",
+      "type": "boolean",
+      "description": "The attribute tells if the switch is considered open when used as input to topology processing."
+    },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "Breaker.inTransitTime": {
+      "title": "inTransitTime",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "description": "The transition time from open to close."
+    },
+    "EquivalentSwitch.openCost": {
+      "title": "openCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
+      "description": "nan"
+    },
+    "EquivalentSwitch.closedCost": {
+      "title": "closedCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
+      "description": "nan"
+    },
+    "Equipment.aggregate": {
+      "title": "aggregate",
+      "type": "boolean",
+      "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection."
+    },
+    "Equipment.networkAnalysisEnabled": {
+      "title": "networkAnalysisEnabled",
+      "type": "boolean",
+      "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true."
+    },
+    "Equipment.normallyInService": {
+      "title": "normallyInService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "Cut.lengthFromTerminal1": {
+      "title": "lengthFromTerminal1",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
+      "description": "The length to the place where the cut is located starting from side one of the cut line segment, i.e. the line segment Terminal with sequenceNumber equal to 1."
+    },
+    "Switch.normalOpen": {
+      "title": "normalOpen",
+      "type": "boolean",
+      "description": "The attribute is used in cases when no Measurement for the status value is present. If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen."
+    },
+    "Equipment.inService": {
+      "title": "inService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "Switch.ratedCurrent": {
+      "title": "ratedCurrent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
+      "description": "The maximum continuous current carrying capacity in amps governed by the device material and construction.\nThe attribute shall be a positive value."
+    },
+    "Switch.retained": {
+      "title": "retained",
+      "type": "boolean",
+      "description": "Branch is retained in the topological solution.  The flow through retained switches will normally be calculated in power flow."
+    },
+    "Switch.switchOnCount": {
+      "title": "switchOnCount",
+      "type": "integer",
+      "description": "The switch on count since the switch was last reset or initialized."
+    },
+    "Switch.switchOnDate": {
+      "title": "switchOnDate",
+      "type": "string",
+      "description": "The date and time when the switch was last switched on."
+    },
+    "ProtectedSwitch.breakingCapacity": {
+      "title": "breakingCapacity",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
+      "description": "The maximum fault current a breaking device can break safely under prescribed conditions of use."
+    },
+    "Switch.locked": {
+      "title": "locked",
+      "type": "boolean",
+      "description": "If true, the switch is locked. The resulting switch state is a combination of locked and Switch.open attributes as follows:\n<ul>\n\t<li>locked=true and Switch.open=true. The resulting state is open and locked;</li>\n\t<li>locked=false and Switch.open=true. The resulting state is open;</li>\n\t<li>locked=false and Switch.open=false. The resulting state is closed.</li>\n</ul>"
+    },
+    "IdentifiedObject.aliasName": {
+      "title": "aliasName",
+      "type": "string",
+      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    },
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
     }
-  ],
+  },
+  "title": "Switch",
+  "description": "A generic device designed to close, or open, or both, one or more electric circuits.  All switches are two terminal devices including grounding switches. The ACDCTerminal.connected at the two sides of the switch shall not be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen and .locked are relevant.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Switch.json",

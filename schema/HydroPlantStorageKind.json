@@ -3,9 +3,9 @@
   "description": "The type of hydro power plant.",
   "type": "string",
   "enum": [
-    "runOfRiver",
-    "storage",
-    "pumpedStorage"
+    "HydroPlantStorageKind.runOfRiver",
+    "HydroPlantStorageKind.storage",
+    "HydroPlantStorageKind.pumpedStorage"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HydroPlantStorageKind.json",

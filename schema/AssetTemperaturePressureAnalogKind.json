@@ -3,8 +3,8 @@
   "description": "Analogs representing temperatures or pressures related to assets.",
   "type": "string",
   "enum": [
-    "oilTemperatureAtValve",
-    "oilPressureAtValve"
+    "AssetTemperaturePressureAnalogKind.oilTemperatureAtValve",
+    "AssetTemperaturePressureAnalogKind.oilPressureAtValve"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetTemperaturePressureAnalogKind.json",

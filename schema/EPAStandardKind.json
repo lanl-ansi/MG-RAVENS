@@ -3,7 +3,7 @@
   "description": "List of EPA standards.",
   "type": "string",
   "enum": [
-    "8082"
+    "EPAStandardKind.8082"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EPAStandardKind.json",

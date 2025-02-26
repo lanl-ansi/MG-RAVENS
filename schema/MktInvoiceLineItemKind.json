@@ -3,9 +3,9 @@
   "description": "Kind of invoice line item.",
   "type": "string",
   "enum": [
-    "other",
-    "recalculation",
-    "initial"
+    "MktInvoiceLineItemKind.other",
+    "MktInvoiceLineItemKind.recalculation",
+    "MktInvoiceLineItemKind.initial"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MktInvoiceLineItemKind.json",

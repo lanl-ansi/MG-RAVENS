@@ -3,12 +3,12 @@
   "description": "The list of values that define the light problem.",
   "type": "string",
   "enum": [
-    "other",
-    "allOut",
-    "partOut",
-    "dim",
-    "flickering",
-    "ok"
+    "TroubleSymptomsLightKind.other",
+    "TroubleSymptomsLightKind.allOut",
+    "TroubleSymptomsLightKind.partOut",
+    "TroubleSymptomsLightKind.dim",
+    "TroubleSymptomsLightKind.flickering",
+    "TroubleSymptomsLightKind.ok"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TroubleSymptomsLightKind.json",

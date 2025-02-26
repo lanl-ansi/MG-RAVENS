@@ -3,9 +3,9 @@
   "description": "Kind of cheque.",
   "type": "string",
   "enum": [
-    "bankOrder",
-    "postalOrder",
-    "other"
+    "ChequeKind.bankOrder",
+    "ChequeKind.postalOrder",
+    "ChequeKind.other"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ChequeKind.json",

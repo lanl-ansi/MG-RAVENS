@@ -3,8 +3,8 @@
   "description": "BASELI NE\nNEGOTIATED",
   "type": "string",
   "enum": [
-    "BASELINE",
-    "NEGOTIATED"
+    "AdderType.BASELINE",
+    "AdderType.NEGOTIATED"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AdderType.json",

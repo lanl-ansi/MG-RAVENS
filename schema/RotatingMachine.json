@@ -1,18 +1,364 @@
 {
   "type": "object",
-  "description": "A rotating machine which may be used as a generator or motor.",
-  "title": "RotatingMachine",
-  "oneOf": [
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RotatingMachine.json"
+  "properties": {
+    "RotatingMachine.RotatingMachineResponse": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RotatingMachineResponseCharacteristic.json"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SynchronousMachine.json"
+    "PowerSystemResource.Location": {
+      "type": "string",
+      "title": "LocationPointer",
+      "description": "Pointer to Location object"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AsynchronousMachine.json"
+    "PowerSystemResource.GenericAction": {
+      "type": "string",
+      "title": "SwitchingActionPointer",
+      "description": "Pointer to SwitchingAction object"
+    },
+    "ConductingEquipment.Terminals": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
+    },
+    "RotatingMachine.GeneratingUnit": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeneratingUnit_anyOfContainer.json"
+    },
+    "ConductingEquipment.BaseVoltage": {
+      "type": "string",
+      "title": "BaseVoltagePointer",
+      "description": "Pointer to BaseVoltage object"
+    },
+    "ConductingEquipment.SvStatus": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatusArray.json"
+    },
+    "SynchronousMachine.ikk": {
+      "title": "ikk",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
+      "description": "Steady-state short-circuit current (in A for the profile) of generator with compound excitation during 3-phase short circuit.\n- Ikk=0: Generator with no compound excitation.\n- Ikk<>0: Generator with compound excitation.\nIkk is used to calculate the minimum steady-state short-circuit current for generators with compound excitation.\n(4.6.1.2 in IEC 60909-0:2001).\nUsed only for single fed short circuit on a generator. (4.3.4.2. in IEC 60909-0:2001)."
+    },
+    "SynchronousMachine.manualToAVR": {
+      "title": "manualToAVR",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "description": "Time delay required when switching from Manual to Automatic Voltage Regulation. This value is used in the accelerating power reference frame for powerflow solutions."
+    },
+    "SynchronousMachine.maxQ": {
+      "title": "maxQ",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
+      "description": "Maximum reactive power limit. This is the maximum (nameplate) limit for the unit."
+    },
+    "SynchronousMachine.maxU": {
+      "title": "maxU",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
+      "description": "Maximum voltage limit for the unit."
+    },
+    "SynchronousMachine.minQ": {
+      "title": "minQ",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
+      "description": "Minimum reactive power limit for the unit."
+    },
+    "SynchronousMachine.minU": {
+      "title": "minU",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
+      "description": "Minimum voltage  limit for the unit."
+    },
+    "SynchronousMachine.mu": {
+      "title": "mu",
+      "type": "number",
+      "description": "Factor to calculate the breaking current (Section 4.5.2.1 in IEC 60909-0).\nUsed only for single fed short circuit on a generator (Section 4.3.4.2. in IEC 60909-0)."
+    },
+    "SynchronousMachine.operatingMode": {
+      "title": "operatingMode",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SynchronousMachineOperatingMode.json",
+      "description": "Current mode of operation."
+    },
+    "SynchronousMachine.qPercent": {
+      "title": "qPercent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "description": "Part of the coordinated reactive control that comes from this machine. The attribute is used as a participation factor not necessarily summing up to 100% for the participating devices in the control."
+    },
+    "SynchronousMachine.r": {
+      "title": "r",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Equivalent resistance (RG) of generator. RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909."
+    },
+    "SynchronousMachine.r0": {
+      "title": "r0",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Zero sequence resistance of the synchronous machine."
+    },
+    "SynchronousMachine.r2": {
+      "title": "r2",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Negative sequence resistance."
+    },
+    "SynchronousMachine.referencePriority": {
+      "title": "referencePriority",
+      "type": "integer",
+      "description": "Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on."
+    },
+    "SynchronousMachine.satDirectSubtransX": {
+      "title": "satDirectSubtransX",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
+      "description": "Direct-axis subtransient reactance saturated, also known as Xd\"sat."
+    },
+    "SynchronousMachine.satDirectSyncX": {
+      "title": "satDirectSyncX",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
+      "description": "Direct-axes saturated synchronous reactance (xdsat); reciprocal of short-circuit ration. Used for short circuit data exchange, only for single fed short circuit on a generator. (4.3.4.2. in IEC 60909-0:2001)."
+    },
+    "SynchronousMachine.satDirectTransX": {
+      "title": "satDirectTransX",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
+      "description": "Saturated Direct-axis transient reactance. The attribute is primarily used for short circuit calculations according to ANSI."
+    },
+    "SynchronousMachine.shortCircuitRotorType": {
+      "title": "shortCircuitRotorType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShortCircuitRotorKind.json",
+      "description": "Type of rotor, used by short circuit applications, only for single fed short circuit according to IEC 60909."
+    },
+    "AsynchronousMachine.converterFedDrive": {
+      "title": "converterFedDrive",
+      "type": "boolean",
+      "description": "Indicates whether the machine is a converter fed drive. Used for short circuit data exchange according to IEC 60909."
+    },
+    "AsynchronousMachine.efficiency": {
+      "title": "efficiency",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "description": "Efficiency of the asynchronous machine at nominal operation as a percentage. Indicator for converter drive motors. Used for short circuit data exchange according to IEC 60909."
+    },
+    "AsynchronousMachine.iaIrRatio": {
+      "title": "iaIrRatio",
+      "type": "number",
+      "description": "Ratio of locked-rotor current to the rated current of the motor (Ia/Ir). Used for short circuit data exchange according to IEC 60909."
+    },
+    "AsynchronousMachine.nominalSpeed": {
+      "title": "nominalSpeed",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RotationSpeed.json",
+      "description": "Nameplate data.  Depends on the slip and number of pole pairs."
+    },
+    "SynchronousMachine.type": {
+      "title": "type",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SynchronousMachineKind.json",
+      "description": "Modes that this synchronous machine can operate in."
+    },
+    "SynchronousMachine.voltageRegulationRange": {
+      "title": "voltageRegulationRange",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "description": "Range of generator voltage regulation (PG in IEC 60909-0) used for calculation of the impedance correction factor KG defined in IEC 60909-0.\nThis attribute is used to describe the operating voltage of the generating unit."
+    },
+    "AsynchronousMachine.rr1": {
+      "title": "rr1",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Damper 1 winding resistance."
+    },
+    "SynchronousMachine.x0": {
+      "title": "x0",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Zero sequence reactance of the synchronous machine."
+    },
+    "SynchronousMachine.x2": {
+      "title": "x2",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Negative sequence reactance."
+    },
+    "AsynchronousMachine.xlr1": {
+      "title": "xlr1",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Damper 1 winding leakage reactance."
+    },
+    "AsynchronousMachine.tpo": {
+      "title": "tpo",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "description": "Transient rotor time constant (greater than tppo)."
+    },
+    "AsynchronousMachine.rr2": {
+      "title": "rr2",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Damper 2 winding resistance."
+    },
+    "AsynchronousMachine.xp": {
+      "title": "xp",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Transient reactance (unsaturated) (greater than or equal to xpp)."
+    },
+    "AsynchronousMachine.xpp": {
+      "title": "xpp",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Sub-transient reactance (unsaturated)."
+    },
+    "AsynchronousMachine.xlr2": {
+      "title": "xlr2",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Damper 2 winding leakage reactance."
+    },
+    "AsynchronousMachine.xm": {
+      "title": "xm",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Magnetizing reactance."
+    },
+    "AsynchronousMachine.tppo": {
+      "title": "tppo",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "description": "Sub-transient rotor time constant (greater than 0)."
+    },
+    "AsynchronousMachine.xs": {
+      "title": "xs",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Synchronous reactance (greater than xp)."
+    },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "RegulatingCondEq.controlEnabled": {
+      "title": "controlEnabled",
+      "type": "boolean",
+      "description": "Specifies the regulation status of the equipment.  True is regulating, false is not regulating."
+    },
+    "RotatingMachine.ratedPowerFactor": {
+      "title": "ratedPowerFactor",
+      "type": "number",
+      "description": "Power factor (nameplate data). It is primarily used for short circuit data exchange according to IEC 60909. The attribute cannot be a negative value."
+    },
+    "RotatingMachine.ratedS": {
+      "title": "ratedS",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApparentPower.json",
+      "description": "Nameplate apparent power rating for the unit.\nThe attribute shall have a positive value."
+    },
+    "RotatingMachine.ratedU": {
+      "title": "ratedU",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
+      "description": "Rated voltage (nameplate data, Ur in IEC 60909-0). It is primarily used for short circuit data exchange according to IEC 60909.\nThe attribute shall be a positive value."
+    },
+    "RotatingMachine.p": {
+      "title": "p",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "description": "Active power injection. Load sign convention is used, i.e. positive sign means flow out from a node.\nStarting value for a steady state solution."
+    },
+    "RotatingMachine.q": {
+      "title": "q",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
+      "description": "Reactive power injection. Load sign convention is used, i.e. positive sign means flow out from a node.\nStarting value for a steady state solution."
+    },
+    "AsynchronousMachine.nominalFrequency": {
+      "title": "nominalFrequency",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Frequency.json",
+      "description": "Nameplate data indicates if the machine is 50 Hz or 60 Hz."
+    },
+    "Equipment.aggregate": {
+      "title": "aggregate",
+      "type": "boolean",
+      "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection."
+    },
+    "Equipment.networkAnalysisEnabled": {
+      "title": "networkAnalysisEnabled",
+      "type": "boolean",
+      "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true."
+    },
+    "AsynchronousMachine.polePairNumber": {
+      "title": "polePairNumber",
+      "type": "integer",
+      "description": "Number of pole pairs of stator. Used for short circuit data exchange according to IEC 60909."
+    },
+    "AsynchronousMachine.ratedMechanicalPower": {
+      "title": "ratedMechanicalPower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "description": "Rated mechanical power (Pr in IEC 60909-0). Used for short circuit data exchange according to IEC 60909."
+    },
+    "Equipment.normallyInService": {
+      "title": "normallyInService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "IdentifiedObject.aliasName": {
+      "title": "aliasName",
+      "type": "string",
+      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
+    },
+    "AsynchronousMachine.asynchronousMachineType": {
+      "title": "asynchronousMachineType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AsynchronousMachineKind.json",
+      "description": "Indicates the type of Asynchronous Machine (motor or generator)."
+    },
+    "AsynchronousMachine.reversible": {
+      "title": "reversible",
+      "type": "boolean",
+      "description": "Indicates for converter drive motors if the power can be reversible. Used for short circuit data exchange according to IEC 60909."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    },
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
+    },
+    "Equipment.inService": {
+      "title": "inService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "AsynchronousMachine.rxLockedRotorRatio": {
+      "title": "rxLockedRotorRatio",
+      "type": "number",
+      "description": "Locked rotor ratio (R/X). Used for short circuit data exchange according to IEC 60909."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "RotatingMachine"
+      ]
+    },
+    "SynchronousMachine.aVRToManualLag": {
+      "title": "aVRToManualLag",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "description": "Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a lagging MVAr violation."
+    },
+    "SynchronousMachine.aVRToManualLead": {
+      "title": "aVRToManualLead",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "description": "Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a leading MVAr violation."
+    },
+    "SynchronousMachine.baseQ": {
+      "title": "baseQ",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
+      "description": "Default base reactive power value. This value represents the initial reactive power that can be used by any application function."
+    },
+    "SynchronousMachine.condenserP": {
+      "title": "condenserP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "description": "Active power consumed when in condenser mode operation."
+    },
+    "SynchronousMachine.coolantCondition": {
+      "title": "coolantCondition",
+      "type": "number",
+      "description": "Temperature or pressure of coolant medium."
+    },
+    "SynchronousMachine.coolantType": {
+      "title": "coolantType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CoolantType.json",
+      "description": "Method of cooling the machine."
+    },
+    "SynchronousMachine.earthing": {
+      "title": "earthing",
+      "type": "boolean",
+      "description": "Indicates whether or not the generator is earthed. Used for short circuit data exchange according to IEC 60909."
+    },
+    "SynchronousMachine.earthingStarPointR": {
+      "title": "earthingStarPointR",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Generator star point earthing resistance (Re). Used for short circuit data exchange according to IEC 60909."
+    },
+    "SynchronousMachine.earthingStarPointX": {
+      "title": "earthingStarPointX",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Generator star point earthing reactance (Xe). Used for short circuit data exchange according to IEC 60909."
     }
-  ],
+  },
+  "title": "RotatingMachine",
+  "description": "A rotating machine which may be used as a generator or motor.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RotatingMachine.json",

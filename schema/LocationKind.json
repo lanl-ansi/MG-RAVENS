@@ -3,10 +3,10 @@
   "description": "The nature of the location being defined for an environmental entity. Possible values are center, perimeter, primary, secondary.",
   "type": "string",
   "enum": [
-    "primary",
-    "center",
-    "secondary",
-    "extent"
+    "LocationKind.primary",
+    "LocationKind.center",
+    "LocationKind.secondary",
+    "LocationKind.extent"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LocationKind.json",

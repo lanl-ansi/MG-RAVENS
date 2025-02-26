@@ -3,11 +3,11 @@
   "description": "Kind of base for poles.",
   "type": "string",
   "enum": [
-    "dirt",
-    "asphalt",
-    "cement",
-    "unknown",
-    "other"
+    "PoleBaseKind.dirt",
+    "PoleBaseKind.asphalt",
+    "PoleBaseKind.cement",
+    "PoleBaseKind.unknown",
+    "PoleBaseKind.other"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PoleBaseKind.json",

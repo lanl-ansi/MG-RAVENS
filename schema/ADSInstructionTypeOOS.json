@@ -3,9 +3,9 @@
   "description": "MIN_CONSTRAINT\nMAX_CONSTRAINT\nFIXED_CONSTRAINT",
   "type": "string",
   "enum": [
-    "MIN_CONSTRAINT",
-    "FIXED_CONSTRAINT",
-    "MAX_CONSTRAINT"
+    "ADSInstructionTypeOOS.MIN_CONSTRAINT",
+    "ADSInstructionTypeOOS.FIXED_CONSTRAINT",
+    "ADSInstructionTypeOOS.MAX_CONSTRAINT"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ADSInstructionTypeOOS.json",

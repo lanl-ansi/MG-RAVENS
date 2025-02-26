@@ -3,13 +3,13 @@
   "description": "Kind of (land) property.",
   "type": "string",
   "enum": [
-    "gridSupplyPoint",
-    "external",
-    "customerPremise",
-    "store",
-    "building",
-    "depot",
-    "substation"
+    "LandPropertyKind.gridSupplyPoint",
+    "LandPropertyKind.external",
+    "LandPropertyKind.customerPremise",
+    "LandPropertyKind.store",
+    "LandPropertyKind.building",
+    "LandPropertyKind.depot",
+    "LandPropertyKind.substation"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LandPropertyKind.json",

@@ -1,18 +1,141 @@
 {
   "type": "object",
-  "description": "Generic user of energy - a  point of consumption on the power system model.\nEnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning only if there is no LoadResponseCharacteristic associated with EnergyConsumer or if LoadResponseCharacteristic.exponentModel is set to False.",
-  "title": "EnergyConsumer",
-  "oneOf": [
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumer.json"
+  "properties": {
+    "EnergyConsumer.LoadProfile": {
+      "type": "string",
+      "title": "EnergyConsumerSchedulePointer",
+      "description": "Pointer to EnergyConsumerSchedule object"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConformLoad.json"
+    "PowerSystemResource.Location": {
+      "type": "string",
+      "title": "LocationPointer",
+      "description": "Pointer to Location object"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NonConformLoad.json"
+    "PowerSystemResource.GenericAction": {
+      "type": "string",
+      "title": "SwitchingActionPointer",
+      "description": "Pointer to SwitchingAction object"
+    },
+    "ConductingEquipment.Terminals": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
+    },
+    "EnergyConsumer.EnergyConsumerAction": {
+      "type": "string",
+      "title": "SwitchingActionPointer",
+      "description": "Pointer to SwitchingAction object"
+    },
+    "EnergyConsumer.LoadResponse": {
+      "type": "string",
+      "title": "LoadResponseCharacteristicPointer",
+      "description": "Pointer to LoadResponseCharacteristic object"
+    },
+    "ConductingEquipment.BaseVoltage": {
+      "type": "string",
+      "title": "BaseVoltagePointer",
+      "description": "Pointer to BaseVoltage object"
+    },
+    "EnergyConsumer.EnergyConsumerPhase": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerPhaseArray.json"
+    },
+    "ConductingEquipment.SvStatus": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatusArray.json"
+    },
+    "EnergyConsumer.qfixedPct": {
+      "title": "qfixedPct",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "description": "Fixed reactive power as a percentage of load group fixed reactive power. Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node."
+    },
+    "Equipment.aggregate": {
+      "title": "aggregate",
+      "type": "boolean",
+      "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection."
+    },
+    "Equipment.networkAnalysisEnabled": {
+      "title": "networkAnalysisEnabled",
+      "type": "boolean",
+      "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true."
+    },
+    "Equipment.normallyInService": {
+      "title": "normallyInService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "EnergyConsumer"
+      ]
+    },
+    "EnergyConsumer.customerCount": {
+      "title": "customerCount",
+      "type": "integer",
+      "description": "Number of individual customers represented by this demand."
+    },
+    "EnergyConsumer.grounded": {
+      "title": "grounded",
+      "type": "boolean",
+      "description": "Used for Yn and Zn connections. True if the neutral is solidly grounded."
+    },
+    "EnergyConsumer.pfixed": {
+      "title": "pfixed",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "description": "Active power of the load that is a fixed quantity and does not vary as load group value varies. Load sign convention is used, i.e. positive sign means flow out from a node."
+    },
+    "EnergyConsumer.pfixedPct": {
+      "title": "pfixedPct",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "description": "Fixed active power as a percentage of load group fixed active power. Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node."
+    },
+    "EnergyConsumer.phaseConnection": {
+      "title": "phaseConnection",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseShuntConnectionKind.json",
+      "description": "The type of phase connection, such as wye or delta."
+    },
+    "EnergyConsumer.p": {
+      "title": "p",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "description": "Active power of the load. Load sign convention is used, i.e. positive sign means flow out from a node.\nFor voltage dependent loads the value is at rated voltage.\nStarting value for a steady state solution."
+    },
+    "EnergyConsumer.q": {
+      "title": "q",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
+      "description": "Reactive power of the load. Load sign convention is used, i.e. positive sign means flow out from a node.\nFor voltage dependent loads the value is at rated voltage.\nStarting value for a steady state solution."
+    },
+    "Equipment.inService": {
+      "title": "inService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "EnergyConsumer.qfixed": {
+      "title": "qfixed",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
+      "description": "Reactive power of the load that is a fixed quantity and does not vary as load group value varies. Load sign convention is used, i.e. positive sign means flow out from a node."
+    },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "IdentifiedObject.aliasName": {
+      "title": "aliasName",
+      "type": "string",
+      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    },
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
     }
-  ],
+  },
+  "title": "EnergyConsumer",
+  "description": "Generic user of energy - a  point of consumption on the power system model.\nEnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning only if there is no LoadResponseCharacteristic associated with EnergyConsumer or if LoadResponseCharacteristic.exponentModel is set to False.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumer.json",

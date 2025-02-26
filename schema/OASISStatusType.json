@@ -3,12 +3,12 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "Push_Failed",
-    "Valid",
-    "Data_Transfer_Procedure_Initiated",
-    "Data_Transfer_Succesful",
-    "Forced_Termination",
-    "Obsolete"
+    "OASISStatusType.Push_Failed",
+    "OASISStatusType.Valid",
+    "OASISStatusType.Data_Transfer_Procedure_Initiated",
+    "OASISStatusType.Data_Transfer_Succesful",
+    "OASISStatusType.Forced_Termination",
+    "OASISStatusType.Obsolete"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OASISStatusType.json",

@@ -3,9 +3,9 @@
   "description": "List of editions for TAPPI standards.",
   "type": "string",
   "enum": [
-    "none",
-    "2009",
-    "unknown"
+    "TAPPIStandardEditionKind.none",
+    "TAPPIStandardEditionKind.2009",
+    "TAPPIStandardEditionKind.unknown"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TAPPIStandardEditionKind.json",

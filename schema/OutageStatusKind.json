@@ -3,11 +3,11 @@
   "description": "This defines if the outage have been predicted or confirmed",
   "type": "string",
   "enum": [
-    "predicted",
-    "closed",
-    "confirmed",
-    "restored",
-    "partiallyRestored"
+    "OutageStatusKind.predicted",
+    "OutageStatusKind.closed",
+    "OutageStatusKind.confirmed",
+    "OutageStatusKind.restored",
+    "OutageStatusKind.partiallyRestored"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OutageStatusKind.json",

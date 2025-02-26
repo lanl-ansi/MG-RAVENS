@@ -3,10 +3,10 @@
   "description": "Kind of skill level.",
   "type": "string",
   "enum": [
-    "master",
-    "apprentice",
-    "standard",
-    "other"
+    "SkillLevelKind.master",
+    "SkillLevelKind.apprentice",
+    "SkillLevelKind.standard",
+    "SkillLevelKind.other"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SkillLevelKind.json",

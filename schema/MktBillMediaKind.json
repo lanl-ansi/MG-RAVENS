@@ -3,9 +3,9 @@
   "description": "Kind of bill media.",
   "type": "string",
   "enum": [
-    "electronic",
-    "paper",
-    "other"
+    "MktBillMediaKind.electronic",
+    "MktBillMediaKind.paper",
+    "MktBillMediaKind.other"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MktBillMediaKind.json",

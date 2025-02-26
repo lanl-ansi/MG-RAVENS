@@ -3,9 +3,9 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "CA",
-    "RZ",
-    "AA"
+    "SpinningEventType.CA",
+    "SpinningEventType.RZ",
+    "SpinningEventType.AA"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SpinningEventType.json",

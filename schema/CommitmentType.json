@@ -3,9 +3,9 @@
   "description": "For example:\nSELF - Self commitment\nISO - New commitment for this market period\nUC - Existing commitment that was a hold over from a previous market",
   "type": "string",
   "enum": [
-    "UC",
-    "SELF",
-    "ISO"
+    "CommitmentType.UC",
+    "CommitmentType.SELF",
+    "CommitmentType.ISO"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CommitmentType.json",

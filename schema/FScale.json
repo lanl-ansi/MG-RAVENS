@@ -3,13 +3,13 @@
   "description": "Fujita scale (referred to as EF-scale starting in 2007) for tornado damage.  A set of wind estimates (not measurements) based on damage. It uses three-second gusts estimated at the point of damage based on a judgment of 8 levels of damage to 28 indicators. These estimates vary with height and exposure.  \nThe 3 second gust is not the same wind as in standard surface observations.\nEnumerations based on NOAA conventions.",
   "type": "string",
   "enum": [
-    "zero",
-    "one",
-    "four",
-    "two",
-    "five",
-    "minusNine",
-    "three"
+    "FScale.zero",
+    "FScale.one",
+    "FScale.four",
+    "FScale.two",
+    "FScale.five",
+    "FScale.minusNine",
+    "FScale.three"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FScale.json",

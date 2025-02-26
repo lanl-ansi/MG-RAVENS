@@ -17,17 +17,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
     },
     "ACLineSegment.PerLengthImpedance": {
-      "type": "string",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "string"
-        }
-      ],
-      "title": "PerLengthImpedancePointer",
-      "description": "Pointer to PerLengthImpedance object"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerLengthImpedancePointer_anyOfContainer.json"
     },
     "ACLineSegment.ACLineSegmentPhase": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ACLineSegmentPhaseArray.json"
@@ -43,17 +33,7 @@
       "description": "Pointer to WireSpacingInfo object"
     },
     "PowerSystemResource.AssetDatasheet": {
-      "type": "string",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "string"
-        }
-      ],
-      "title": "WireInfoPointer",
-      "description": "Pointer to WireInfo object"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WireInfoPointer_anyOfContainer.json"
     },
     "ConductingEquipment.SvStatus": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatusArray.json"
@@ -61,7 +41,10 @@
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",
-      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object."
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "ACLineSegment"
+      ]
     },
     "IdentifiedObject.description": {
       "title": "description",

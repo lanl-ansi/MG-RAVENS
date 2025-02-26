@@ -3,8 +3,8 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "vdcol",
-    "additionalQcurrent"
+    "LookUpTableFunctionKind.vdcol",
+    "LookUpTableFunctionKind.additionalQcurrent"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LookUpTableFunctionKind.json",

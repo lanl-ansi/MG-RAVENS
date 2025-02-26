@@ -3,9 +3,9 @@
   "description": "Types of sample containers.",
   "type": "string",
   "enum": [
-    "syringe",
-    "glassCan",
-    "metalCan"
+    "SampleContainerType.syringe",
+    "SampleContainerType.glassCan",
+    "SampleContainerType.metalCan"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SampleContainerType.json",

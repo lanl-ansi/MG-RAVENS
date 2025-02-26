@@ -3,9 +3,9 @@
   "description": "Method of cooling a machine.",
   "type": "string",
   "enum": [
-    "water",
-    "hydrogenGas",
-    "air"
+    "CoolantType.water",
+    "CoolantType.hydrogenGas",
+    "CoolantType.air"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CoolantType.json",

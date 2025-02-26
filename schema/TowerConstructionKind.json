@@ -3,8 +3,8 @@
   "description": "Kind of tower construction.",
   "type": "string",
   "enum": [
-    "tension",
-    "suspension"
+    "TowerConstructionKind.tension",
+    "TowerConstructionKind.suspension"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TowerConstructionKind.json",

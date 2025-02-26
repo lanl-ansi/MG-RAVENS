@@ -3,10 +3,10 @@
   "description": "Kind of oil preservation.",
   "type": "string",
   "enum": [
-    "conservator",
-    "other",
-    "nitrogenBlanket",
-    "freeBreathing"
+    "OilPreservationKind.conservator",
+    "OilPreservationKind.other",
+    "OilPreservationKind.nitrogenBlanket",
+    "OilPreservationKind.freeBreathing"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OilPreservationKind.json",

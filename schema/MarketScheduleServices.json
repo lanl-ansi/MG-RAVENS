@@ -3,11 +3,11 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "retrieveDefaultBidCurves",
-    "retrieveMPMResults",
-    "retrieveStartUpShutDownInstructions",
-    "retrieveSchedulePrices",
-    "retrieveMarketAwards"
+    "MarketScheduleServices.retrieveDefaultBidCurves",
+    "MarketScheduleServices.retrieveMPMResults",
+    "MarketScheduleServices.retrieveStartUpShutDownInstructions",
+    "MarketScheduleServices.retrieveSchedulePrices",
+    "MarketScheduleServices.retrieveMarketAwards"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MarketScheduleServices.json",

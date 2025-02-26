@@ -3,13 +3,13 @@
   "description": "Preservative kind for poles.",
   "type": "string",
   "enum": [
-    "unknown",
-    "other",
-    "penta",
-    "naphthena",
-    "chemonite",
-    "cellon",
-    "creosote"
+    "PolePreservativeKind.unknown",
+    "PolePreservativeKind.other",
+    "PolePreservativeKind.penta",
+    "PolePreservativeKind.naphthena",
+    "PolePreservativeKind.chemonite",
+    "PolePreservativeKind.cellon",
+    "PolePreservativeKind.creosote"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PolePreservativeKind.json",

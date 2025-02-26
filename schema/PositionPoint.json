@@ -25,6 +25,14 @@
       "title": "xPosition",
       "type": "string",
       "description": "X axis position."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "PositionPoint"
+      ]
     }
   },
   "title": "PositionPoint",

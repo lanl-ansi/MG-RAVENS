@@ -3,9 +3,9 @@
   "description": "Types of connections for the OEL input used for static excitation systems type 6B.",
   "type": "string",
   "enum": [
-    "noOELinput",
-    "beforeUEL",
-    "afterUEL"
+    "ExcST6BOELselectorKind.noOELinput",
+    "ExcST6BOELselectorKind.beforeUEL",
+    "ExcST6BOELselectorKind.afterUEL"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ExcST6BOELselectorKind.json",

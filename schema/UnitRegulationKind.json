@@ -3,9 +3,9 @@
   "description": "Unit regulation kind.",
   "type": "string",
   "enum": [
-    "2",
-    "1",
-    "0"
+    "UnitRegulationKind.2",
+    "UnitRegulationKind.1",
+    "UnitRegulationKind.0"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitRegulationKind.json",

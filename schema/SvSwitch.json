@@ -10,6 +10,14 @@
       "title": "open",
       "type": "boolean",
       "description": "The attribute tells if the computed state of the switch is considered open."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "SvSwitch"
+      ]
     }
   },
   "title": "SvSwitch",

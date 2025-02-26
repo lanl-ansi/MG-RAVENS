@@ -3,9 +3,9 @@
   "description": "To indicate a check out type such as adjusted capacity or dispatch capacity.",
   "type": "string",
   "enum": [
-    "PRE_SCHEDULE",
-    "PRE_HOUR",
-    "AFTER_THE_FACT"
+    "CheckOutType.PRE_SCHEDULE",
+    "CheckOutType.PRE_HOUR",
+    "CheckOutType.AFTER_THE_FACT"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CheckOutType.json",

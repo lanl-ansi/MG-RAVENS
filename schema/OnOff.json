@@ -3,8 +3,8 @@
   "description": "ON\nOFF",
   "type": "string",
   "enum": [
-    "OFF",
-    "ON"
+    "OnOff.OFF",
+    "OnOff.ON"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OnOff.json",

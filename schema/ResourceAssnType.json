@@ -3,11 +3,11 @@
   "description": "For example:\nAsset Owner Sink designator for use by CRR\nAsset Owner Source designator for use by CRR\nReliability Must Run  \nScheduling Coordinator \nLoad Serving Entity",
   "type": "string",
   "enum": [
-    "SC",
-    "CSRC",
-    "RMR",
-    "LSE",
-    "CSNK"
+    "ResourceAssnType.SC",
+    "ResourceAssnType.CSRC",
+    "ResourceAssnType.RMR",
+    "ResourceAssnType.LSE",
+    "ResourceAssnType.CSNK"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResourceAssnType.json",

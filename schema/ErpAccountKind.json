@@ -3,10 +3,10 @@
   "description": "Kind of ERP account.",
   "type": "string",
   "enum": [
-    "statistical",
-    "reversal",
-    "normal",
-    "estimate"
+    "ErpAccountKind.statistical",
+    "ErpAccountKind.reversal",
+    "ErpAccountKind.normal",
+    "ErpAccountKind.estimate"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ErpAccountKind.json",

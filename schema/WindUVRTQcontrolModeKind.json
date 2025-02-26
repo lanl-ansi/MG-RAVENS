@@ -3,9 +3,9 @@
   "description": "UVRT Q control modes <i>M</i><i><sub>qUVRT</sub></i><i>.</i>",
   "type": "string",
   "enum": [
-    "mode1",
-    "mode2",
-    "mode0"
+    "WindUVRTQcontrolModeKind.mode1",
+    "WindUVRTQcontrolModeKind.mode2",
+    "WindUVRTQcontrolModeKind.mode0"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WindUVRTQcontrolModeKind.json",

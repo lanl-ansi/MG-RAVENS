@@ -3,9 +3,9 @@
   "description": "For example:\nOperating Reserve, Regulation, Contingency",
   "type": "string",
   "enum": [
-    "CONT",
-    "REG",
-    "OPRSV"
+    "ReserveRequirementType.CONT",
+    "ReserveRequirementType.REG",
+    "ReserveRequirementType.OPRSV"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReserveRequirementType.json",

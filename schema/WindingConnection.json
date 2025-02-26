@@ -3,13 +3,13 @@
   "description": "Winding connection type.",
   "type": "string",
   "enum": [
-    "A",
-    "D",
-    "Yn",
-    "Y",
-    "Z",
-    "I",
-    "Zn"
+    "WindingConnection.A",
+    "WindingConnection.D",
+    "WindingConnection.Yn",
+    "WindingConnection.Y",
+    "WindingConnection.Z",
+    "WindingConnection.I",
+    "WindingConnection.Zn"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WindingConnection.json",

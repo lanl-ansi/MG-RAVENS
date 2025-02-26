@@ -3,13 +3,13 @@
   "description": "nan",
   "type": "string",
   "enum": [
-    "PHY",
-    "NRT",
-    "RUT",
-    "RDT",
-    "APN",
-    "CAP",
-    "SRT"
+    "TradeProductType.PHY",
+    "TradeProductType.NRT",
+    "TradeProductType.RUT",
+    "TradeProductType.RDT",
+    "TradeProductType.APN",
+    "TradeProductType.CAP",
+    "TradeProductType.SRT"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TradeProductType.json",

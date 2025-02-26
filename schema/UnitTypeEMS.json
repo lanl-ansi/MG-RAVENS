@@ -3,8 +3,8 @@
   "description": "MW\nFLAG",
   "type": "string",
   "enum": [
-    "MW",
-    "FLAG"
+    "UnitTypeEMS.MW",
+    "UnitTypeEMS.FLAG"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitTypeEMS.json",

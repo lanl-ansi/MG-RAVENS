@@ -3,11 +3,11 @@
   "description": "The state of the battery unit.",
   "type": "string",
   "enum": [
-    "charging",
-    "empty",
-    "discharging",
-    "waiting",
-    "full"
+    "BatteryStateKind.charging",
+    "BatteryStateKind.empty",
+    "BatteryStateKind.discharging",
+    "BatteryStateKind.waiting",
+    "BatteryStateKind.full"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BatteryStateKind.json",

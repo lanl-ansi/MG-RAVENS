@@ -1,15 +1,173 @@
 {
   "type": "object",
-  "description": "The class represents equivalent branches. In cases where a transformer phase shift is modelled and the EquivalentBranch is spanning the same nodes, the impedance quantities for the EquivalentBranch shall consider the needed phase shift.",
-  "title": "EquivalentBranch",
-  "oneOf": [
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquivalentBranch.json"
+  "properties": {
+    "PowerSystemResource.Location": {
+      "type": "string",
+      "title": "LocationPointer",
+      "description": "Pointer to Location object"
     },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquivalentLine.json"
+    "PowerSystemResource.GenericAction": {
+      "type": "string",
+      "title": "SwitchingActionPointer",
+      "description": "Pointer to SwitchingAction object"
+    },
+    "ConductingEquipment.Terminals": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
+    },
+    "ConductingEquipment.BaseVoltage": {
+      "type": "string",
+      "title": "BaseVoltagePointer",
+      "description": "Pointer to BaseVoltage object"
+    },
+    "ConductingEquipment.SvStatus": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatusArray.json"
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "EquivalentBranch"
+      ]
+    },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "EquivalentLine.disconnectEligible": {
+      "title": "disconnectEligible",
+      "type": "boolean",
+      "description": "nan"
+    },
+    "EquivalentLine.disconnectCost": {
+      "title": "disconnectCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
+      "description": "nan"
+    },
+    "EquivalentBranch.negativeR12": {
+      "title": "negativeR12",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Negative sequence series resistance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909.\nEquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.negativeR21": {
+      "title": "negativeR21",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Negative sequence series resistance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909.\nEquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.negativeX12": {
+      "title": "negativeX12",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Negative sequence series reactance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909.\nUsage : EquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.negativeX21": {
+      "title": "negativeX21",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Negative sequence series reactance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909.\nUsage: EquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.positiveR12": {
+      "title": "positiveR12",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Positive sequence series resistance from terminal sequence  1 to terminal sequence 2 . Used for short circuit data exchange according to IEC 60909. \nEquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.positiveR21": {
+      "title": "positiveR21",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Positive sequence series resistance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909.\nEquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.positiveX12": {
+      "title": "positiveX12",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Positive sequence series reactance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909.\nUsage : EquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.positiveX21": {
+      "title": "positiveX21",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Positive sequence series reactance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909.\nUsage : EquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.r": {
+      "title": "r",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Positive sequence series resistance of the reduced branch."
+    },
+    "EquivalentBranch.r21": {
+      "title": "r21",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Resistance from terminal sequence 2 to terminal sequence 1 .Used for steady state power flow. This attribute is optional and represent unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.r is given, then EquivalentBranch.r21 is assumed equal to EquivalentBranch.r.\nUsage rule : EquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.x": {
+      "title": "x",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Positive sequence series reactance of the reduced branch."
+    },
+    "EquivalentBranch.x21": {
+      "title": "x21",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Reactance from terminal sequence 2 to terminal sequence 1. Used for steady state power flow. This attribute is optional and represents an unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x.\nUsage rule: EquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.zeroR12": {
+      "title": "zeroR12",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Zero sequence series resistance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909.\nEquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.zeroR21": {
+      "title": "zeroR21",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
+      "description": "Zero sequence series resistance from terminal sequence  2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909.\nUsage : EquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.zeroX12": {
+      "title": "zeroX12",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Zero sequence series reactance from terminal sequence  1 to terminal sequence 2. Used for short circuit data exchange according to IEC 60909.\nUsage : EquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "EquivalentBranch.zeroX21": {
+      "title": "zeroX21",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Zero sequence series reactance from terminal sequence 2 to terminal sequence 1. Used for short circuit data exchange according to IEC 60909.\nUsage : EquivalentBranch is a result of network reduction prior to the data exchange."
+    },
+    "Equipment.aggregate": {
+      "title": "aggregate",
+      "type": "boolean",
+      "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection."
+    },
+    "Equipment.networkAnalysisEnabled": {
+      "title": "networkAnalysisEnabled",
+      "type": "boolean",
+      "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true."
+    },
+    "EquivalentLine.hardeningCost": {
+      "title": "hardeningCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
+      "description": "nan"
+    },
+    "Equipment.normallyInService": {
+      "title": "normallyInService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "Equipment.inService": {
+      "title": "inService",
+      "type": "boolean",
+      "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "IdentifiedObject.aliasName": {
+      "title": "aliasName",
+      "type": "string",
+      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    },
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
     }
-  ],
+  },
+  "title": "EquivalentBranch",
+  "description": "The class represents equivalent branches. In cases where a transformer phase shift is modelled and the EquivalentBranch is spanning the same nodes, the impedance quantities for the EquivalentBranch shall consider the needed phase shift.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquivalentBranch.json",

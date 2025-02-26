@@ -3,10 +3,10 @@
   "description": "Governor droop signal feedback source.",
   "type": "string",
   "enum": [
-    "governorOutput",
-    "electricalPower",
-    "none",
-    "fuelValveStroke"
+    "DroopSignalFeedbackKind.governorOutput",
+    "DroopSignalFeedbackKind.electricalPower",
+    "DroopSignalFeedbackKind.none",
+    "DroopSignalFeedbackKind.fuelValveStroke"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DroopSignalFeedbackKind.json",

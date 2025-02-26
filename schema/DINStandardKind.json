@@ -3,7 +3,7 @@
   "description": "List of DIN standards.",
   "type": "string",
   "enum": [
-    "51353"
+    "DINStandardKind.51353"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DINStandardKind.json",

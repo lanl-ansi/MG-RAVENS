@@ -3,9 +3,9 @@
   "description": "List of editions for CIGRE standards.",
   "type": "string",
   "enum": [
-    "none",
-    "unknown",
-    "2000"
+    "CIGREStandardEditionKind.none",
+    "CIGREStandardEditionKind.unknown",
+    "CIGREStandardEditionKind.2000"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CIGREStandardEditionKind.json",

@@ -3,11 +3,11 @@
   "description": "Possible kinds of asset groups.",
   "type": "string",
   "enum": [
-    "other",
-    "inventoryGroup",
-    "functionalGroup",
-    "analysisGroup",
-    "complianceGroup"
+    "AssetGroupKind.other",
+    "AssetGroupKind.inventoryGroup",
+    "AssetGroupKind.functionalGroup",
+    "AssetGroupKind.analysisGroup",
+    "AssetGroupKind.complianceGroup"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetGroupKind.json",

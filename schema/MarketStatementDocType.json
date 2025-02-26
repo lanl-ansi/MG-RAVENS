@@ -3,9 +3,9 @@
   "description": "market statement document type",
   "type": "string",
   "enum": [
-    "MARKET_RECALC",
-    "MARKET_INITIAL",
-    "CREDIT"
+    "MarketStatementDocType.MARKET_RECALC",
+    "MarketStatementDocType.MARKET_INITIAL",
+    "MarketStatementDocType.CREDIT"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MarketStatementDocType.json",

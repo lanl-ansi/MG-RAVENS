@@ -3,13 +3,13 @@
   "description": "Reason asset retired.",
   "type": "string",
   "enum": [
-    "failed",
-    "excessiveMaintenance",
-    "environmental",
-    "sold",
-    "other",
-    "obsolescence",
-    "facilitiesUpgrade"
+    "RetiredReasonKind.failed",
+    "RetiredReasonKind.excessiveMaintenance",
+    "RetiredReasonKind.environmental",
+    "RetiredReasonKind.sold",
+    "RetiredReasonKind.other",
+    "RetiredReasonKind.obsolescence",
+    "RetiredReasonKind.facilitiesUpgrade"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RetiredReasonKind.json",

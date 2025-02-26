@@ -3,8 +3,8 @@
   "description": "The orientation of the coordinate system with respect to top, left, and the coordinate number system.",
   "type": "string",
   "enum": [
-    "negative",
-    "positive"
+    "OrientationKind.negative",
+    "OrientationKind.positive"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OrientationKind.json",

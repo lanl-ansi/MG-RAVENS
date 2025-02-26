@@ -3,10 +3,10 @@
   "description": "Usage of a vehicle.",
   "type": "string",
   "enum": [
-    "other",
-    "crew",
-    "user",
-    "contractor"
+    "VehicleUsageKind.other",
+    "VehicleUsageKind.crew",
+    "VehicleUsageKind.user",
+    "VehicleUsageKind.contractor"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VehicleUsageKind.json",

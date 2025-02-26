@@ -4,7 +4,7 @@
   "description": "Hash table of DynamicsFunctionBlock objects",
   "patternProperties": {
     "^.+$": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DynamicsFunctionBlock.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DynamicsFunctionBlock_anyOfContainer.json"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",

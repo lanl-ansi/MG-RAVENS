@@ -3,12 +3,12 @@
   "description": "Type of hazard that is posed to asset in this location.\nNote: This enumeration provides essential information to asset health analytics. The existing list is a starting point and is anticipated to be fleshed out further as requirements are better understood (PAB 2016/01/09).",
   "type": "string",
   "enum": [
-    "vegetation",
-    "fishingArea",
-    "other",
-    "ambientTempBelowMinus12",
-    "ambientTempAbove38",
-    "childrenAtPlay"
+    "AssetHazardKind.vegetation",
+    "AssetHazardKind.fishingArea",
+    "AssetHazardKind.other",
+    "AssetHazardKind.ambientTempBelowMinus12",
+    "AssetHazardKind.ambientTempAbove38",
+    "AssetHazardKind.childrenAtPlay"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetHazardKind.json",

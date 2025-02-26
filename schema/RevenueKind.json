@@ -3,13 +3,13 @@
   "description": "Accounting classification of the type of revenue collected for the customer agreement, typically used to break down accounts for revenue accounting.",
   "type": "string",
   "enum": [
-    "nonResidential",
-    "streetLight",
-    "residential",
-    "commercial",
-    "other",
-    "irrigation",
-    "industrial"
+    "RevenueKind.nonResidential",
+    "RevenueKind.streetLight",
+    "RevenueKind.residential",
+    "RevenueKind.commercial",
+    "RevenueKind.other",
+    "RevenueKind.irrigation",
+    "RevenueKind.industrial"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RevenueKind.json",

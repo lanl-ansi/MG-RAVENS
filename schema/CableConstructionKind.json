@@ -3,13 +3,13 @@
   "description": "Kind of cable construction.",
   "type": "string",
   "enum": [
-    "compacted",
-    "other",
-    "segmental",
-    "compressed",
-    "sector",
-    "solid",
-    "stranded"
+    "CableConstructionKind.compacted",
+    "CableConstructionKind.other",
+    "CableConstructionKind.segmental",
+    "CableConstructionKind.compressed",
+    "CableConstructionKind.sector",
+    "CableConstructionKind.solid",
+    "CableConstructionKind.stranded"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CableConstructionKind.json",

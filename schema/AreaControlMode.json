@@ -3,10 +3,10 @@
   "description": "Area's present control mode.",
   "type": "string",
   "enum": [
-    "CF",
-    "CTL",
-    "OFF",
-    "TLB"
+    "AreaControlMode.CF",
+    "AreaControlMode.CTL",
+    "AreaControlMode.OFF",
+    "AreaControlMode.TLB"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AreaControlMode.json",

@@ -3,14 +3,14 @@
   "description": "The kind of regulation model.   For example regulating voltage, reactive power, active power, etc.",
   "type": "string",
   "enum": [
-    "activePower",
-    "timeScheduled",
-    "voltage",
-    "admittance",
-    "temperature",
-    "reactivePower",
-    "powerFactor",
-    "currentFlow"
+    "RegulatingControlModeKind.activePower",
+    "RegulatingControlModeKind.timeScheduled",
+    "RegulatingControlModeKind.voltage",
+    "RegulatingControlModeKind.admittance",
+    "RegulatingControlModeKind.temperature",
+    "RegulatingControlModeKind.reactivePower",
+    "RegulatingControlModeKind.powerFactor",
+    "RegulatingControlModeKind.currentFlow"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegulatingControlModeKind.json",

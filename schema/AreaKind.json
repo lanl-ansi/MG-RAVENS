@@ -3,14 +3,14 @@
   "description": "Enumeration for the type of area defined; e.g., county, state, parish, zipcode, etc.",
   "type": "string",
   "enum": [
-    "zipcode",
-    "borough",
-    "ward",
-    "county",
-    "state",
-    "parish",
-    "township",
-    "serviceArea"
+    "AreaKind.zipcode",
+    "AreaKind.borough",
+    "AreaKind.ward",
+    "AreaKind.county",
+    "AreaKind.state",
+    "AreaKind.parish",
+    "AreaKind.township",
+    "AreaKind.serviceArea"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AreaKind.json",

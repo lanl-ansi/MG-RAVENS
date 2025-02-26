@@ -3,9 +3,9 @@
   "description": "Y - indicates a resource is capable of setting the Markte Clearing Price \nS - indicates the resource must submit bids for energy at $ 0\nN - indicates the resource does not have to submit bids for energy at $ 0",
   "type": "string",
   "enum": [
-    "S",
-    "N",
-    "Y"
+    "PriceSetFlag.S",
+    "PriceSetFlag.N",
+    "PriceSetFlag.Y"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PriceSetFlag.json",

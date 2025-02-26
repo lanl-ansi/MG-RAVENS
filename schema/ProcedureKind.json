@@ -3,11 +3,11 @@
   "description": "Kind of procedure.",
   "type": "string",
   "enum": [
-    "test",
-    "inspection",
-    "maintenance",
-    "other",
-    "diagnosis"
+    "ProcedureKind.test",
+    "ProcedureKind.inspection",
+    "ProcedureKind.maintenance",
+    "ProcedureKind.other",
+    "ProcedureKind.diagnosis"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProcedureKind.json",

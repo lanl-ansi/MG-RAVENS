@@ -1,10 +1,10 @@
 {
   "type": "object",
   "properties": {
-    "EnergyPrices.LocationalMarginalPrices": {
+    "LocationalMarginalPrices": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LocationalMarginalPricesContainer_Container.json"
     },
-    "EnergyPrices.CapacityPrices": {
+    "CapacityPrices": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CapacityPricesContainer_Container.json"
     }
   },

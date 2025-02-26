@@ -3,11 +3,11 @@
   "description": "Kind of randomisation to be applied to control the timing of end device control commands and/or the definition of demand response and load control events. Value other than 'none' is typically used to mitigate potential deleterious effects of simultaneous operation of multiple devices.",
   "type": "string",
   "enum": [
-    "default",
-    "start",
-    "end",
-    "none",
-    "startAndEnd"
+    "RandomisationKind.default",
+    "RandomisationKind.start",
+    "RandomisationKind.end",
+    "RandomisationKind.none",
+    "RandomisationKind.startAndEnd"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RandomisationKind.json",

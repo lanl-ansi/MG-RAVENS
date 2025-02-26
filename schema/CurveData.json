@@ -25,6 +25,14 @@
       "title": "bidSegmentCalcType",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BidCalculationBasis.json",
       "description": "Type of calculation basis used to define the default bid segment curve."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "CurveData"
+      ]
     }
   },
   "title": "CurveData",

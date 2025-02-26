@@ -3,9 +3,9 @@
   "description": "Types of risk scores.",
   "type": "string",
   "enum": [
-    "safetyRisk",
-    "financialRisk",
-    "customerRisk"
+    "RiskScoreKind.safetyRisk",
+    "RiskScoreKind.financialRisk",
+    "RiskScoreKind.customerRisk"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RiskScoreKind.json",

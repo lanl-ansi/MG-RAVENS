@@ -3,13 +3,13 @@
   "description": "Types of facilities at which an asset can be deployed.",
   "type": "string",
   "enum": [
-    "distributionPoleTop",
-    "substationTransmission",
-    "substationSubTransmission",
-    "substationNuclearPlant",
-    "substationFossilPlant",
-    "substationDistribution",
-    "substationHydroPlant"
+    "FacilityKind.distributionPoleTop",
+    "FacilityKind.substationTransmission",
+    "FacilityKind.substationSubTransmission",
+    "FacilityKind.substationNuclearPlant",
+    "FacilityKind.substationFossilPlant",
+    "FacilityKind.substationDistribution",
+    "FacilityKind.substationHydroPlant"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FacilityKind.json",

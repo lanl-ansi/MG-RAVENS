@@ -3,8 +3,8 @@
   "description": "Valid values, for example: \nINS - Instruction from RTM\nACT - Actual instruction after the fact",
   "type": "string",
   "enum": [
-    "INS",
-    "ACT"
+    "MQSInstructionSource.INS",
+    "MQSInstructionSource.ACT"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MQSInstructionSource.json",

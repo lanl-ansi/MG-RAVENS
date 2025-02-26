@@ -3,11 +3,11 @@
   "description": "Function of a transformer.",
   "type": "string",
   "enum": [
-    "powerTransformer",
-    "secondaryTransformer",
-    "other",
-    "voltageRegulator",
-    "autotransformer"
+    "TransformerFunctionKind.powerTransformer",
+    "TransformerFunctionKind.secondaryTransformer",
+    "TransformerFunctionKind.other",
+    "TransformerFunctionKind.voltageRegulator",
+    "TransformerFunctionKind.autotransformer"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerFunctionKind.json",

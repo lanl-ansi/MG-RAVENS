@@ -3,10 +3,10 @@
   "description": "For example:\n'Y' - Participates in both LMPM and SMPM\n'N' - Not included in LMP price measures\n'S' - Participates in SMPM price measures\n'L' - Participates in LMPM price measures",
   "type": "string",
   "enum": [
-    "N",
-    "Y",
-    "S",
-    "L"
+    "ParticipationCategoryMPM.N",
+    "ParticipationCategoryMPM.Y",
+    "ParticipationCategoryMPM.S",
+    "ParticipationCategoryMPM.L"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ParticipationCategoryMPM.json",

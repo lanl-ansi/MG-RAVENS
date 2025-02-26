@@ -3,10 +3,10 @@
   "description": "Categorisation of different protective action adjustments that can be performed on equipment.",
   "type": "string",
   "enum": [
-    "byValue",
-    "byPercentage",
-    "setValue",
-    "measurement"
+    "ProtectiveActionAdjustmentKind.byValue",
+    "ProtectiveActionAdjustmentKind.byPercentage",
+    "ProtectiveActionAdjustmentKind.setValue",
+    "ProtectiveActionAdjustmentKind.measurement"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProtectiveActionAdjustmentKind.json",

@@ -3,11 +3,11 @@
   "description": "RU - Regulation Up\nRD - Regulation Down\nSR - Spin Reserve\nNR - Nonspin Reserve\nAS - Upward Ancillary Service",
   "type": "string",
   "enum": [
-    "AS",
-    "RD",
-    "RU",
-    "NR",
-    "SR"
+    "MarketProductTypeAsReq.AS",
+    "MarketProductTypeAsReq.RD",
+    "MarketProductTypeAsReq.RU",
+    "MarketProductTypeAsReq.NR",
+    "MarketProductTypeAsReq.SR"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MarketProductTypeAsReq.json",

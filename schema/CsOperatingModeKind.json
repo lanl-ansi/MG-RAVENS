@@ -3,8 +3,8 @@
   "description": "Operating mode for HVDC line operating as Current Source Converter.",
   "type": "string",
   "enum": [
-    "inverter",
-    "rectifier"
+    "CsOperatingModeKind.inverter",
+    "CsOperatingModeKind.rectifier"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CsOperatingModeKind.json",

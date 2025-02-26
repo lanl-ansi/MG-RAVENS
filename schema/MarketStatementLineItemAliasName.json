@@ -3,12 +3,12 @@
   "description": "market statement line item alias name",
   "type": "string",
   "enum": [
-    "TRADE_DATE",
-    "PARENT_CHARGE_GROUP",
-    "CHARGE_GROUP",
-    "CHARGE_CODE_SUMMARY",
-    "CHARGE_CODE_INTERVAL_DETAIL",
-    "CHARGE_CODE_INTERVAL_TOTAL"
+    "MarketStatementLineItemAliasName.TRADE_DATE",
+    "MarketStatementLineItemAliasName.PARENT_CHARGE_GROUP",
+    "MarketStatementLineItemAliasName.CHARGE_GROUP",
+    "MarketStatementLineItemAliasName.CHARGE_CODE_SUMMARY",
+    "MarketStatementLineItemAliasName.CHARGE_CODE_INTERVAL_DETAIL",
+    "MarketStatementLineItemAliasName.CHARGE_CODE_INTERVAL_TOTAL"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MarketStatementLineItemAliasName.json",

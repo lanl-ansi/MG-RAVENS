@@ -3,10 +3,10 @@
   "description": "Market results binding constraint types.",
   "type": "string",
   "enum": [
-    "Interface",
-    "Actual",
-    "Contingency",
-    "FG_act"
+    "ResultsConstraintType.Interface",
+    "ResultsConstraintType.Actual",
+    "ResultsConstraintType.Contingency",
+    "ResultsConstraintType.FG_act"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResultsConstraintType.json",

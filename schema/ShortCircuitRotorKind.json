@@ -3,10 +3,10 @@
   "description": "Type of rotor, used by short circuit applications.",
   "type": "string",
   "enum": [
-    "salientPole2",
-    "turboSeries1",
-    "salientPole1",
-    "turboSeries2"
+    "ShortCircuitRotorKind.salientPole2",
+    "ShortCircuitRotorKind.turboSeries1",
+    "ShortCircuitRotorKind.salientPole1",
+    "ShortCircuitRotorKind.turboSeries2"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShortCircuitRotorKind.json",

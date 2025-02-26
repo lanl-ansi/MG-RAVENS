@@ -3,8 +3,8 @@
   "description": "Circuit Breaker Status (closed or open) of the circuit breaker.",
   "type": "string",
   "enum": [
-    "Open",
-    "Closed"
+    "SwitchStatusType.Open",
+    "SwitchStatusType.Closed"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SwitchStatusType.json",

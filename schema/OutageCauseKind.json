@@ -3,11 +3,11 @@
   "description": "This enumeration describes the primary cause of the outage - planned, unplanned, etc.",
   "type": "string",
   "enum": [
-    "treeDown",
-    "animal",
-    "lightingStrike",
-    "poleDown",
-    "lineDown"
+    "OutageCauseKind.treeDown",
+    "OutageCauseKind.animal",
+    "OutageCauseKind.lightingStrike",
+    "OutageCauseKind.poleDown",
+    "OutageCauseKind.lineDown"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OutageCauseKind.json",
