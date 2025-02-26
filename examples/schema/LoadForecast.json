@@ -1,5 +1,5 @@
 {
-  "Groups": {
+  "Group": {
     "LoadGroup": {
       "ResidentialGroup": {
         "Ravens.cimObjectType": "LoadGroup",

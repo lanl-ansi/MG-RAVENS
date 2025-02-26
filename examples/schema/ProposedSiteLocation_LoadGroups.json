@@ -15,7 +15,7 @@
       }
     ]
   },
-  "Groups": {
+  "Group": {
     "LoadGroups": {
       "ResidentialGroup": {
         "Ravens.cimObjectType": "ConformLoadGroup",

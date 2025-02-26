@@ -2,24 +2,16 @@
   "Location": {
     "650632_Loc": {
       "Ravens.cimObjectType": "Location",
-      "Location": {
-        "ieee13nodecktassets_Location": {
-          "Location.CoordinateSystem": {
-            "Ravens.cimObjectType": "CoordinateSystem",
-            "CoordinateSystem.crsUrn": "OpenDSSLocalBusCoordinates"
-          }
-        }
-      },
       "Location.PositionPoints": [
         {
           "Ravens.cimObjectType": "PositionPoint",
-          "PositionPoint.xPosition": 200,
-          "PositionPoint.yPosition": 300
+          "PositionPoint.xPosition": "200",
+          "PositionPoint.yPosition": "300"
         },
         {
           "Ravens.cimObjectType": "PositionPoint",
-          "PositionPoint.xPosition": 200,
-          "PositionPoint.yPosition": 250
+          "PositionPoint.xPosition": "200",
+          "PositionPoint.yPosition": "250"
         }
       ]
     }
@@ -35,49 +27,53 @@
       "Ravens.cimObjectType": "ConnectivityNode"
     }
   },
-  "Conductor": {
-    "650632": {
-      "Ravens.cimObjectType": "ACLineSegment",
-      "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.1600'",
-      "Conductor.length": 609.6,
-      "ACLineSegment.WireSpacingInfo": "WireSpacingInfo::'601'",
-      "PowerSystemResource.Location": "Location::'650632_Loc'",
-      "ConductingEquipment.Terminals": [
-        {
-          "Ravens.cimObjectType": "Terminal",
-          "Terminal.ConnectivityNode": "ConnectivityNode::'rg60'"
-        },
-        {
-          "Ravens.cimObjectType": "Terminal",
-          "Terminal.ConnectivityNode": "ConnectivityNode::'632'"
+  "PowerSystemResource": {
+    "Equipment": {
+      "ConductingEquipment": {
+        "Conductor": {
+          "ACLineSegment": {
+            "650632": {
+              "Ravens.cimObjectType": "ACLineSegment",
+              "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.1600'",
+              "Conductor.length": 609.6,
+              "ACLineSegment.WireSpacingInfo": "WireSpacingInfo::'601'",
+              "PowerSystemResource.Location": "Location::'650632_Loc'",
+              "ConductingEquipment.Terminals": [
+                {
+                  "Ravens.cimObjectType": "Terminal",
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'rg60'"
+                },
+                {
+                  "Ravens.cimObjectType": "Terminal",
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'632'"
+                }
+              ],
+              "ACLineSegment.ACLineSegmentPhase": [
+                {
+                  "Ravens.cimObjectType": "ACLineSegmentPhase",
+                  "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
+                  "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_556_5'"
+                },
+                {
+                  "Ravens.cimObjectType": "ACLineSegmentPhase",
+                  "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
+                  "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_556_5'"
+                },
+                {
+                  "Ravens.cimObjectType": "ACLineSegmentPhase",
+                  "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
+                  "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_556_5'"
+                },
+                {
+                  "Ravens.cimObjectType": "ACLineSegmentPhase",
+                  "ACLineSegmentPhase.phase": "SinglePhaseKind.N",
+                  "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_4/0'"
+                }
+              ]
+            }
+          }
         }
-      ],
-      "ACLineSegment.ACLineSegmentPhase": [
-        {
-          "Ravens.cimObjectType": "ACLineSegmentPhase",
-          "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
-          "PowerSystemResource.Location": "Location::'650632_Loc'",
-          "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_556_5'"
-        },
-        {
-          "Ravens.cimObjectType": "ACLineSegmentPhase",
-          "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
-          "PowerSystemResource.Location": "Location::'650632_Loc'",
-          "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_556_5'"
-        },
-        {
-          "Ravens.cimObjectType": "ACLineSegmentPhase",
-          "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
-          "PowerSystemResource.Location": "Location::'650632_Loc'",
-          "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_556_5'"
-        },
-        {
-          "Ravens.cimObjectType": "ACLineSegmentPhase",
-          "ACLineSegmentPhase.phase": "SinglePhaseKind.N",
-          "PowerSystemResource.Location": "Location::'650632_Loc'",
-          "ACLineSegmentPhase.WireInfo": "OverheadWireInfo::'acsr_4/0'"
-        }
-      ]
+      }
     }
   },
   "AssetInfo": {
