@@ -5514,14 +5514,14 @@
       "type": "object",
       "$objectId": "EnergyPrices",
       "properties": {
-        "EnergyPrices.LocationalMarginalPrices": {
+        "LocationalMarginalPrices": {
           "$objectType": "object",
           "type": "object",
           "$objectId": "LocationalMarginalPrices",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
-            "EngeryPrices.Regions": {
+            "EnergyPrices.Regions": {
               "type": "array",
               "items": {
                 "$objectType": "reference",
@@ -5550,14 +5550,14 @@
             }
           }
         },
-        "EnergyPrices.CapacityPrices": {
+        "CapacityPrices": {
           "$objectType": "object",
           "type": "object",
           "$objectId": "CapacityPrices",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
-            "EngeryPrices.Regions": {
+            "EnergyPrices.Regions": {
               "type": "array",
               "items": {
                 "$objectType": "reference",
@@ -5566,7 +5566,7 @@
                 "type": "string"
               }
             },
-            "LocationalMarginalPrices.CapacityPriceCurve": {
+            "CapacityPrices.CapacityPriceCurve": {
               "$objectType": "object",
               "$objectId": "PriceCurve",
               "type": "object",
