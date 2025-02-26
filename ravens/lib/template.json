@@ -5152,16 +5152,12 @@
               "$objectType": "object",
               "type": "object",
               "$objectId": "WireInfo",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {}
             },
             {
               "$objectType": "object",
               "type": "object",
               "$objectId": "OverheadWireInfo",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
                 "WireInfo.WirePhaseInfo": {
                   "type": "array",
@@ -5179,24 +5175,18 @@
               "$objectType": "object",
               "type": "object",
               "$objectId": "CableInfo",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {}
             },
             {
               "$objectType": "object",
               "type": "object",
               "$objectId": "TapeShieldCableInfo",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {}
             },
             {
               "$objectType": "object",
               "type": "object",
               "$objectId": "ConcentricNeutralCableInfo",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {}
             }
           ]
