@@ -8,9 +8,6 @@ on:
     branches:
       - develop
 
-env:
-  PYTHON_VERSION: '3.13'
-
 jobs:
   build-docs:
     runs-on: ubuntu-latest
@@ -24,7 +21,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '$PYTHON_VERSION'
+        python-version: '3.13'
     - name: Install mdbtools
       run: |
         sudo apt-get update
@@ -94,7 +91,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '$PYTHON_VERSION'
+        python-version: '3.13'
     - name: Install mdbtools
       run: |
         sudo apt-get update
