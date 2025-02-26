@@ -562,9 +562,12 @@ Example values for 'docStatus.status' are draft, approved, cancelled, etc.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#RavenscimObjectType" onclick="anchorLink('RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+    <a href="#RavenscimObjectType" onclick="anchorLink('RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
 <span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-</span>
+</span><div class="enum-value" id="RavenscimObjectType_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnplannedOutage"</li></ul>
+            </div>
         
 
         
@@ -1034,7 +1037,7 @@ Example values for 'docStatus.status' are draft, approved, cancelled, etc.</p>
 
     <div class="enum-value" id="OutagestatusKind_enum">
             <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"awaitingCrewAssignment"</li><li class="list-group-item enum-item">"assigned"</li><li class="list-group-item enum-item">"arrived"</li><li class="list-group-item enum-item">"enroute"</li><li class="list-group-item enum-item">"fieldComplete"</li></ul>
+            <ul class="list-group"><li class="list-group-item enum-item">"CrewStatusKind.awaitingCrewAssignment"</li><li class="list-group-item enum-item">"CrewStatusKind.assigned"</li><li class="list-group-item enum-item">"CrewStatusKind.arrived"</li><li class="list-group-item enum-item">"CrewStatusKind.enroute"</li><li class="list-group-item enum-item">"CrewStatusKind.fieldComplete"</li></ul>
             </div>
         
 
@@ -1463,7 +1466,7 @@ Example values for 'docStatus.status' are draft, approved, cancelled, etc.</p>
 
     <div class="enum-value" id="UnplannedOutagecauseKind_enum">
             <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"treeDown"</li><li class="list-group-item enum-item">"animal"</li><li class="list-group-item enum-item">"lightingStrike"</li><li class="list-group-item enum-item">"poleDown"</li><li class="list-group-item enum-item">"lineDown"</li></ul>
+            <ul class="list-group"><li class="list-group-item enum-item">"OutageCauseKind.treeDown"</li><li class="list-group-item enum-item">"OutageCauseKind.animal"</li><li class="list-group-item enum-item">"OutageCauseKind.lightingStrike"</li><li class="list-group-item enum-item">"OutageCauseKind.poleDown"</li><li class="list-group-item enum-item">"OutageCauseKind.lineDown"</li></ul>
             </div>
         
 
@@ -1943,7 +1946,7 @@ Note: At present, this is a free string text; it could be replaced with an enume
 
     <div class="enum-value" id="OutageoutageKind_enum">
             <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"predicted"</li><li class="list-group-item enum-item">"closed"</li><li class="list-group-item enum-item">"confirmed"</li><li class="list-group-item enum-item">"restored"</li><li class="list-group-item enum-item">"partiallyRestored"</li></ul>
+            <ul class="list-group"><li class="list-group-item enum-item">"OutageStatusKind.predicted"</li><li class="list-group-item enum-item">"OutageStatusKind.closed"</li><li class="list-group-item enum-item">"OutageStatusKind.confirmed"</li><li class="list-group-item enum-item">"OutageStatusKind.restored"</li><li class="list-group-item enum-item">"OutageStatusKind.partiallyRestored"</li></ul>
             </div>
         
 
@@ -2061,6 +2064,6 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 </div>
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-02-24 at 15:51:36 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-02-26 at 20:45:04 +0000</p>
     </footer></body>
 </html>

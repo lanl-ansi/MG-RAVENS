@@ -150,9 +150,9 @@
 
 [BaseVoltageContainer_Container](../_static/schema/BaseVoltageContainer_Container.html){.external}
 
-[BasicIntervalSchedule](../_static/schema/BasicIntervalSchedule.html){.external}
-
 [BasicIntervalScheduleContainer_Container](../_static/schema/BasicIntervalScheduleContainer_Container.html){.external}
+
+[BasicIntervalSchedule_anyOfContainer](../_static/schema/BasicIntervalSchedule_anyOfContainer.html){.external}
 
 [BatteryResponseCharacteristic](../_static/schema/BatteryResponseCharacteristic.html){.external}
 
@@ -278,9 +278,9 @@
 
 [CommodityKind](../_static/schema/CommodityKind.html){.external}
 
-[CommunityFacility](../_static/schema/CommunityFacility.html){.external}
-
 [CommunityFacilityContainer_Container](../_static/schema/CommunityFacilityContainer_Container.html){.external}
+
+[CommunityFacility_anyOfContainer](../_static/schema/CommunityFacility_anyOfContainer.html){.external}
 
 [CompositeSwitchKind](../_static/schema/CompositeSwitchKind.html){.external}
 
@@ -311,6 +311,8 @@
 [ConnectivityNodeContainerContainer_Container](../_static/schema/ConnectivityNodeContainerContainer_Container.html){.external}
 
 [ConnectivityNodeContainer_Container](../_static/schema/ConnectivityNodeContainer_Container.html){.external}
+
+[ConnectivityNodeContainer_anyOfContainer](../_static/schema/ConnectivityNodeContainer_anyOfContainer.html){.external}
 
 [Connector](../_static/schema/Connector.html){.external}
 
@@ -383,6 +385,8 @@
 [CurveDataArray](../_static/schema/CurveDataArray.html){.external}
 
 [CurveStyle](../_static/schema/CurveStyle.html){.external}
+
+[Curve_anyOfContainer](../_static/schema/Curve_anyOfContainer.html){.external}
 
 [CustomerBillingKind](../_static/schema/CustomerBillingKind.html){.external}
 
@@ -462,9 +466,9 @@
 
 [Duration](../_static/schema/Duration.html){.external}
 
-[DynamicsFunctionBlock](../_static/schema/DynamicsFunctionBlock.html){.external}
-
 [DynamicsFunctionBlockContainer_Container](../_static/schema/DynamicsFunctionBlockContainer_Container.html){.external}
+
+[DynamicsFunctionBlock_anyOfContainer](../_static/schema/DynamicsFunctionBlock_anyOfContainer.html){.external}
 
 [EPAStandard](../_static/schema/EPAStandard.html){.external}
 
@@ -528,6 +532,8 @@
 
 [EnergyConsumerSchedule](../_static/schema/EnergyConsumerSchedule.html){.external}
 
+[EnergyConsumer_anyOfContainer](../_static/schema/EnergyConsumer_anyOfContainer.html){.external}
+
 [EnergyPriceIndexType](../_static/schema/EnergyPriceIndexType.html){.external}
 
 [EnergyPrices](../_static/schema/EnergyPrices.html){.external}
@@ -560,9 +566,9 @@
 
 [EnvironmentalInformationArray](../_static/schema/EnvironmentalInformationArray.html){.external}
 
-[EnvironmentalPhenomenon](../_static/schema/EnvironmentalPhenomenon.html){.external}
-
 [EnvironmentalPhenomenonContainer_Container](../_static/schema/EnvironmentalPhenomenonContainer_Container.html){.external}
+
+[EnvironmentalPhenomenon_anyOfContainer](../_static/schema/EnvironmentalPhenomenon_anyOfContainer.html){.external}
 
 [Equipment](../_static/schema/Equipment.html){.external}
 
@@ -577,6 +583,8 @@
 [EquivalentBranch](../_static/schema/EquivalentBranch.html){.external}
 
 [EquivalentBranchContainer_Container](../_static/schema/EquivalentBranchContainer_Container.html){.external}
+
+[EquivalentBranch_anyOfContainer](../_static/schema/EquivalentBranch_anyOfContainer.html){.external}
 
 [EquivalentEquipment](../_static/schema/EquivalentEquipment.html){.external}
 
@@ -654,6 +662,8 @@
 
 [FaultIndicatorResetKind](../_static/schema/FaultIndicatorResetKind.html){.external}
 
+[Fault_anyOfContainer](../_static/schema/Fault_anyOfContainer.html){.external}
+
 [Feeder](../_static/schema/Feeder.html){.external}
 
 [FlagTypeRMR](../_static/schema/FlagTypeRMR.html){.external}
@@ -694,7 +704,7 @@
 
 [GenUnitOpSchedule](../_static/schema/GenUnitOpSchedule.html){.external}
 
-[GeneratingUnit](../_static/schema/GeneratingUnit.html){.external}
+[GeneratingUnit_anyOfContainer](../_static/schema/GeneratingUnit_anyOfContainer.html){.external}
 
 [GeneratorControlMode](../_static/schema/GeneratorControlMode.html){.external}
 
@@ -870,6 +880,8 @@
 
 [LoadGroupContainer_Container](../_static/schema/LoadGroupContainer_Container.html){.external}
 
+[LoadGroup_anyOfContainer](../_static/schema/LoadGroup_anyOfContainer.html){.external}
+
 [LoadResponseCharacteristic](../_static/schema/LoadResponseCharacteristic.html){.external}
 
 [LoadResponseCharacteristicContainer_Container](../_static/schema/LoadResponseCharacteristicContainer_Container.html){.external}
@@ -879,6 +891,8 @@
 [LocationContainer_Container](../_static/schema/LocationContainer_Container.html){.external}
 
 [LocationKind](../_static/schema/LocationKind.html){.external}
+
+[LocationPointer_anyOfContainer](../_static/schema/LocationPointer_anyOfContainer.html){.external}
 
 [LocationalMarginalPrices](../_static/schema/LocationalMarginalPrices.html){.external}
 
@@ -1034,8 +1048,6 @@
 
 [OperatingMechanismKind](../_static/schema/OperatingMechanismKind.html){.external}
 
-[OperationalLimit](../_static/schema/OperationalLimit.html){.external}
-
 [OperationalLimitArray](../_static/schema/OperationalLimitArray.html){.external}
 
 [OperationalLimitDirectionKind](../_static/schema/OperationalLimitDirectionKind.html){.external}
@@ -1048,13 +1060,13 @@
 
 [OperationalLimitTypeContainer_Container](../_static/schema/OperationalLimitTypeContainer_Container.html){.external}
 
+[OperationalLimit_anyOfContainer](../_static/schema/OperationalLimit_anyOfContainer.html){.external}
+
 [OrganisationCode](../_static/schema/OrganisationCode.html){.external}
 
 [OrganisationType](../_static/schema/OrganisationType.html){.external}
 
 [OrientationKind](../_static/schema/OrientationKind.html){.external}
-
-[Outage](../_static/schema/Outage.html){.external}
 
 [OutageCauseKind](../_static/schema/OutageCauseKind.html){.external}
 
@@ -1065,6 +1077,8 @@
 [OutageScenarioContainer_Container](../_static/schema/OutageScenarioContainer_Container.html){.external}
 
 [OutageStatusKind](../_static/schema/OutageStatusKind.html){.external}
+
+[Outage_anyOfContainer](../_static/schema/Outage_anyOfContainer.html){.external}
 
 [OverheadWireInfo](../_static/schema/OverheadWireInfo.html){.external}
 
@@ -1085,6 +1099,8 @@
 [PerLengthDCLineParameterContainer_Container](../_static/schema/PerLengthDCLineParameterContainer_Container.html){.external}
 
 [PerLengthImpedance](../_static/schema/PerLengthImpedance.html){.external}
+
+[PerLengthImpedancePointer_anyOfContainer](../_static/schema/PerLengthImpedancePointer_anyOfContainer.html){.external}
 
 [PerLengthLineParameter](../_static/schema/PerLengthLineParameter.html){.external}
 
@@ -1148,7 +1164,7 @@
 
 [PowerElectronicsConnectionPhaseArray](../_static/schema/PowerElectronicsConnectionPhaseArray.html){.external}
 
-[PowerElectronicsUnit](../_static/schema/PowerElectronicsUnit.html){.external}
+[PowerElectronicsUnit_anyOfContainer](../_static/schema/PowerElectronicsUnit_anyOfContainer.html){.external}
 
 [PowerElectronicsWindUnit](../_static/schema/PowerElectronicsWindUnit.html){.external}
 
@@ -1208,9 +1224,9 @@
 
 [ProposedConductorOptionContainer_Container](../_static/schema/ProposedConductorOptionContainer_Container.html){.external}
 
-[ProposedEnergyProducerOption](../_static/schema/ProposedEnergyProducerOption.html){.external}
-
 [ProposedEnergyProducerOptionContainer_Container](../_static/schema/ProposedEnergyProducerOptionContainer_Container.html){.external}
+
+[ProposedEnergyProducerOption_anyOfContainer](../_static/schema/ProposedEnergyProducerOption_anyOfContainer.html){.external}
 
 [ProposedGeneratingUnitOption](../_static/schema/ProposedGeneratingUnitOption.html){.external}
 
@@ -1342,6 +1358,8 @@
 
 [RotatingMachineResponseCharacteristic](../_static/schema/RotatingMachineResponseCharacteristic.html){.external}
 
+[RotatingMachine_anyOfContainer](../_static/schema/RotatingMachine_anyOfContainer.html){.external}
+
 [RotationSpeed](../_static/schema/RotationSpeed.html){.external}
 
 [RotorKind](../_static/schema/RotorKind.html){.external}
@@ -1407,6 +1425,8 @@
 [ShuntCompensatorPhase](../_static/schema/ShuntCompensatorPhase.html){.external}
 
 [ShuntCompensatorPhaseArray](../_static/schema/ShuntCompensatorPhaseArray.html){.external}
+
+[ShuntCompensator_anyOfContainer](../_static/schema/ShuntCompensator_anyOfContainer.html){.external}
 
 [ShuntImpedanceControlKind](../_static/schema/ShuntImpedanceControlKind.html){.external}
 
@@ -1528,9 +1548,11 @@
 
 [SwitchStatusType](../_static/schema/SwitchStatusType.html){.external}
 
-[SwitchingAction](../_static/schema/SwitchingAction.html){.external}
+[Switch_anyOfContainer](../_static/schema/Switch_anyOfContainer.html){.external}
 
 [SwitchingActionContainer_Container](../_static/schema/SwitchingActionContainer_Container.html){.external}
+
+[SwitchingAction_anyOfContainer](../_static/schema/SwitchingAction_anyOfContainer.html){.external}
 
 [SynchronousMachine](../_static/schema/SynchronousMachine.html){.external}
 
@@ -1767,6 +1789,10 @@
 [WireInfo](../_static/schema/WireInfo.html){.external}
 
 [WireInfoContainer_Container](../_static/schema/WireInfoContainer_Container.html){.external}
+
+[WireInfoPointer_anyOfContainer](../_static/schema/WireInfoPointer_anyOfContainer.html){.external}
+
+[WireInfo_anyOfContainer](../_static/schema/WireInfo_anyOfContainer.html){.external}
 
 [WireInsulationKind](../_static/schema/WireInsulationKind.html){.external}
 

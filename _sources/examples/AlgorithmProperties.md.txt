@@ -8,6 +8,7 @@
       "DesignAlgorithmProperties_1": {
         "IdentifiedObject.mRID": "c23252a0-cd95-4f64-88e8-4553aa9e1cf6",
         "IdentifiedObject.name": "DesignAlgorithmProperties_1",
+        "Ravens.cimObjectType": "DesignAlgorithmProperties",
         "DesignAlgorithmProperties.analysisPeriod": "P25Y",
         "DesignAlgorithmProperties.energyAvailabilityLimit": 95.0,
         "DesignAlgorithmProperties.energyAvailabilityObjective": 100.0,

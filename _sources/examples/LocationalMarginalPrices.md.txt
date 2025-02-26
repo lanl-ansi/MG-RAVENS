@@ -35093,7 +35093,7 @@
       }
     }
   },
-  "Groups": {
+  "Group": {
     "GeographicalRegion": {
       "PrimaryRegion": {
         "IdentifiedObject.name": "PrimaryRegion",
