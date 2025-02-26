@@ -9,7 +9,7 @@ packages = [{include = "ravens"}]
 include = ["lib/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi", "lib/template.json"]
 
 [tool.poetry.dependencies]
-python = "^3.12, ^3.13"
+python = ">=3.12, <3.14"
 networkx = "^3.2"
 pandas = "^2.1"
 rdflib = "^7.0"
