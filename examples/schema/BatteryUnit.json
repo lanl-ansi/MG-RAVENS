@@ -10,7 +10,10 @@
                 "IdentifiedObject.mRID": "8a611147-1eb3-4cc6-9df8-4b49873717b1",
                 "Ravens.cimObjectType": "PowerElectronicsUnit",
                 "PowerElectronicsConnection.PowerElectronicsUnit": {
-                  "Ravens.cimObjectType": "BatteryUnit"
+                  "IdentifiedObject.mRID": "e7dea97b-80be-4f5d-9c3d-f7f6e71b188c",
+                  "IdentifiedObject.name": "battery_unit1",
+                  "Ravens.cimObjectType": "BatteryUnit",
+                  "BatteryUnit.ratedE": 1000.0
                 }
               }
             }
