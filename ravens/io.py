@@ -212,7 +212,7 @@ class UMLData:
         return obj
 
     @staticmethod
-    def _create_dataframes(file: pathlib.PosixPath = _UML_XML_PATH, set_index: bool = True) -> object:
+    def _create_dataframes(file: pathlib.PosixPath = _UML_XML_PATH, set_index: bool = True) -> dict:
         tree = ET.parse(file)
         root = tree.getroot()
 
@@ -256,7 +256,7 @@ class UMLData:
         return dataframes
 
 
-def write_schemas(chemas: dict, models_path: str = "models", cleanup_model_dir: bool = False, flatten: bool = False):
+def write_schemas(schemas: dict, models_path: str = "models", cleanup_model_dir: bool = False, flatten: bool = False):
 
     "Helper function to write schema to file(s)"
     if cleanup_model_dir:

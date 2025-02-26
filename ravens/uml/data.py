@@ -191,13 +191,21 @@ _expected_dtypes = {
 
 class UMLData:
     def __init__(self):
-        dataframes = self._create_dataframes()
+        self.objects: pd.DataFrame | None = None
+        self.connectors: pd.DataFrame | None = None
+        self.attributes: pd.DataFrame | None = None
+        self.packages: pd.DataFrame | None = None
+        self.diagrams: pd.DataFrame | None = None
+        self.diagramlinks: pd.DataFrame | None = None
+        self.diagramobjects: pd.DataFrame | None = None
+
+        dataframes: dict = self._create_dataframes()
         for table_name, df in dataframes.items():
             setattr(self, _attr_names[table_name], df)
 
     @classmethod
     def loadf(cls, file: pathlib.PosixPath = _UML_XML_PATH, set_index: bool = True) -> object:
-        dataframes = cls._create_dataframes(file, set_index=set_index)
+        dataframes: dict = cls._create_dataframes(file, set_index=set_index)
         obj = cls()
         for table_name, df in dataframes.items():
             setattr(obj, _attr_names[table_name], df)
@@ -205,7 +213,7 @@ class UMLData:
         return obj
 
     @staticmethod
-    def _create_dataframes(file: pathlib.PosixPath = _UML_XML_PATH, set_index: bool = True) -> object:
+    def _create_dataframes(file: pathlib.PosixPath = _UML_XML_PATH, set_index: bool = True) -> dict:
         tree = ET.parse(file)
         root = tree.getroot()
 
