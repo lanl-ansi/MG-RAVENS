@@ -102,7 +102,7 @@ The BaseVoltage at the two ends of ACLineSegments in a Line shall have the same 
         </svg>
     <a href="#pattern1_PowerSystemResourceLocation" onclick="anchorLink('pattern1_PowerSystemResourceLocation')">PowerSystemResource.Location</a></div><h4>LocationPointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>Pointer to Location object</p>
-</span>
+</span><span class="pattern-value" id="pattern1_PowerSystemResourceLocation_pattern">Must match regular expression: <code>^Location::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -143,7 +143,7 @@ The BaseVoltage at the two ends of ACLineSegments in a Line shall have the same 
         </svg>
     <a href="#pattern1_PowerSystemResourceGenericAction" onclick="anchorLink('pattern1_PowerSystemResourceGenericAction')">PowerSystemResource.GenericAction</a></div><h4>SwitchingActionPointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>Pointer to SwitchingAction object</p>
-</span>
+</span><span class="pattern-value" id="pattern1_PowerSystemResourceGenericAction_pattern">Must match regular expression: <code>^SwitchingAction::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -273,7 +273,7 @@ The BaseVoltage at the two ends of ACLineSegments in a Line shall have the same 
         </svg>
     <a href="#pattern1_ConductingEquipmentTerminals_items_TerminalConnectivityNode" onclick="anchorLink('pattern1_ConductingEquipmentTerminals_items_TerminalConnectivityNode')">Terminal.ConnectivityNode</a></div><h4>ConnectivityNodePointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>Pointer to ConnectivityNode object</p>
-</span>
+</span><span class="pattern-value" id="pattern1_ConductingEquipmentTerminals_items_TerminalConnectivityNode_pattern">Must match regular expression: <code>^ConnectivityNode::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -784,7 +784,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_ACLineSegmentPerLengthImpedance" onclick="anchorLink('pattern1_ACLineSegmentPerLengthImpedance')">ACLineSegment.PerLengthImpedance</a></div><h4>PerLengthImpedancePointer</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+    <a href="#pattern1_ACLineSegmentPerLengthImpedance" onclick="anchorLink('pattern1_ACLineSegmentPerLengthImpedance')">ACLineSegment.PerLengthImpedance</a></div><h4>PerLengthImpedanceanyOfPointer</h4><span class="badge badge-dark value-type">Type: object</span><br/>
 <span class="description"><p>Pointer to PerLengthImpedance object</p>
 </span>
 
@@ -794,12 +794,12 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
             <a class="nav-link active anyOf-option"
                id="pattern1_ACLineSegmentPerLengthImpedance_anyOf_i0" data-toggle="tab" href="#tab-pane_pattern1_ACLineSegmentPerLengthImpedance_anyOf_i0" role="tab"
                onclick="setAnchor('#pattern1_ACLineSegmentPerLengthImpedance_anyOf_i0')"
-            >Option 1</a>
+            >PerLengthSequenceImpedancePointer</a>
         </li><li class="nav-item">
             <a class="nav-link anyOf-option"
                id="pattern1_ACLineSegmentPerLengthImpedance_anyOf_i1" data-toggle="tab" href="#tab-pane_pattern1_ACLineSegmentPerLengthImpedance_anyOf_i1" role="tab"
                onclick="setAnchor('#pattern1_ACLineSegmentPerLengthImpedance_anyOf_i1')"
-            >Option 2</a>
+            >PerLengthPhaseImpedancePointer</a>
         </li></ul>
 <div class="tab-content card"><div class="tab-pane fade card-body active show"
              id="tab-pane_pattern1_ACLineSegmentPerLengthImpedance_anyOf_i0" role="tabpanel">
@@ -833,8 +833,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_ACLineSegmentPerLengthImpedance_anyOf_i0" onclick="anchorLink('pattern1_ACLineSegmentPerLengthImpedance_anyOf_i0')">item 0</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
+    <a href="#pattern1_ACLineSegmentPerLengthImpedance_anyOf_i0" onclick="anchorLink('pattern1_ACLineSegmentPerLengthImpedance_anyOf_i0')">PerLengthSequenceImpedancePointer</a></div><h4>PerLengthSequenceImpedancePointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Pointer to PerLengthSequenceImpedance object</p>
+</span><span class="pattern-value" id="pattern1_ACLineSegmentPerLengthImpedance_anyOf_i0_pattern">Must match regular expression: <code>^PerLengthSequenceImpedance::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -873,8 +874,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_ACLineSegmentPerLengthImpedance_anyOf_i1" onclick="anchorLink('pattern1_ACLineSegmentPerLengthImpedance_anyOf_i1')">item 1</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
+    <a href="#pattern1_ACLineSegmentPerLengthImpedance_anyOf_i1" onclick="anchorLink('pattern1_ACLineSegmentPerLengthImpedance_anyOf_i1')">PerLengthPhaseImpedancePointer</a></div><h4>PerLengthPhaseImpedancePointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Pointer to PerLengthPhaseImpedance object</p>
+</span><span class="pattern-value" id="pattern1_ACLineSegmentPerLengthImpedance_anyOf_i1_pattern">Must match regular expression: <code>^PerLengthPhaseImpedance::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -1009,7 +1011,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo')">ACLineSegmentPhase.WireInfo</a></div><h4>WireInfoPointer</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+    <a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo')">ACLineSegmentPhase.WireInfo</a></div><h4>WireInfoanyOfPointer</h4><span class="badge badge-dark value-type">Type: object</span><br/>
 <span class="description"><p>Pointer to WireInfo object</p>
 </span>
 
@@ -1019,12 +1021,12 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
             <a class="nav-link active anyOf-option"
                id="pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i0" data-toggle="tab" href="#tab-pane_pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i0" role="tab"
                onclick="setAnchor('#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i0')"
-            >Option 1</a>
+            >CableInfoPointer</a>
         </li><li class="nav-item">
             <a class="nav-link anyOf-option"
                id="pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i1" data-toggle="tab" href="#tab-pane_pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i1" role="tab"
                onclick="setAnchor('#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i1')"
-            >Option 2</a>
+            >OverheadWireInfoPointer</a>
         </li></ul>
 <div class="tab-content card"><div class="tab-pane fade card-body active show"
              id="tab-pane_pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i0" role="tabpanel">
@@ -1072,8 +1074,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i0" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i0')">item 0</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
+    <a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i0" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i0')">CableInfoPointer</a></div><h4>CableInfoPointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Pointer to CableInfo object</p>
+</span><span class="pattern-value" id="pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i0_pattern">Must match regular expression: <code>^CableInfo::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -1126,8 +1129,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i1" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i1')">item 1</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
+    <a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i1" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i1')">OverheadWireInfoPointer</a></div><h4>OverheadWireInfoPointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Pointer to OverheadWireInfo object</p>
+</span><span class="pattern-value" id="pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo_anyOf_i1_pattern">Must match regular expression: <code>^OverheadWireInfo::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -1189,7 +1193,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         </svg>
     <a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentWireSpacingInfo" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentWireSpacingInfo')">ACLineSegment.WireSpacingInfo</a></div><h4>WireSpacingInfoPointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>Pointer to WireSpacingInfo object</p>
-</span>
+</span><span class="pattern-value" id="pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentWireSpacingInfo_pattern">Must match regular expression: <code>^WireSpacingInfo::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -1242,7 +1246,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_PowerSystemResourceAssetDatasheet" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_PowerSystemResourceAssetDatasheet')">PowerSystemResource.AssetDatasheet</a></div><h4>WireInfoPointer</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+    <a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_PowerSystemResourceAssetDatasheet" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_PowerSystemResourceAssetDatasheet')">PowerSystemResource.AssetDatasheet</a></div><h4>WireInfoanyOfPointer</h4><span class="badge badge-dark value-type">Type: object</span><br/>
 <span class="description"><p>Pointer to WireInfo object</p>
 </span><a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo')" class="ref-link">Same definition as ACLineSegmentPhase.WireInfo</a>
             </div>
@@ -1680,7 +1684,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         </svg>
     <a href="#pattern1_ConductingEquipmentBaseVoltage" onclick="anchorLink('pattern1_ConductingEquipmentBaseVoltage')">ConductingEquipment.BaseVoltage</a></div><h4>BaseVoltagePointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>Pointer to BaseVoltage object</p>
-</span>
+</span><span class="pattern-value" id="pattern1_ConductingEquipmentBaseVoltage_pattern">Must match regular expression: <code>^BaseVoltage::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -1721,7 +1725,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         </svg>
     <a href="#pattern1_ACLineSegmentWireSpacingInfo" onclick="anchorLink('pattern1_ACLineSegmentWireSpacingInfo')">ACLineSegment.WireSpacingInfo</a></div><h4>WireSpacingInfoPointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>Pointer to WireSpacingInfo object</p>
-</span>
+</span><span class="pattern-value" id="pattern1_ACLineSegmentWireSpacingInfo_pattern">Must match regular expression: <code>^WireSpacingInfo::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -1760,7 +1764,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_PowerSystemResourceAssetDatasheet" onclick="anchorLink('pattern1_PowerSystemResourceAssetDatasheet')">PowerSystemResource.AssetDatasheet</a></div><h4>WireInfoPointer</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+    <a href="#pattern1_PowerSystemResourceAssetDatasheet" onclick="anchorLink('pattern1_PowerSystemResourceAssetDatasheet')">PowerSystemResource.AssetDatasheet</a></div><h4>WireInfoanyOfPointer</h4><span class="badge badge-dark value-type">Type: object</span><br/>
 <span class="description"><p>Pointer to WireInfo object</p>
 </span><a href="#pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo" onclick="anchorLink('pattern1_ACLineSegmentACLineSegmentPhase_items_ACLineSegmentPhaseWireInfo')" class="ref-link">Same definition as ACLineSegmentPhase.WireInfo</a>
             </div>
@@ -4379,6 +4383,6 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 </div>
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-02-27 at 19:59:14 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-02-27 at 20:03:53 +0000</p>
     </footer></body>
 </html>
