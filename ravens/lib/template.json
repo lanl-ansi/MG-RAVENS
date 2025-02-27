@@ -191,6 +191,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -209,6 +215,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -233,6 +245,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -251,6 +269,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -276,6 +300,12 @@
               "$objectId": "Bay",
               "type": "object",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -303,6 +333,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -330,6 +366,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -348,6 +390,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -366,6 +414,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -384,6 +438,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
@@ -408,6 +468,12 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
                 "ConnectivityNodeContainer.ConnectivityNodes": {
                   "type": "array",
                   "items": {
