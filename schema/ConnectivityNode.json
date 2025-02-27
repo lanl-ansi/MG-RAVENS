@@ -6,17 +6,20 @@
     "ConnectivityNode.TopologicalNode": {
       "type": "string",
       "title": "TopologicalNodePointer",
-      "description": "Pointer to TopologicalNode object"
+      "description": "Pointer to TopologicalNode object",
+      "pattern": "^TopologicalNode::'(.+)'$"
     },
     "ConnectivityNode.OperationalLimitSet": {
       "type": "string",
       "title": "OperationalLimitSetPointer",
-      "description": "Pointer to OperationalLimitSet object"
+      "description": "Pointer to OperationalLimitSet object",
+      "pattern": "^OperationalLimitSet::'(.+)'$"
     },
     "ConnectivityNode.ConnectivityNodeContainer": {
       "type": "string",
       "title": "ConnectivityNodeContainerPointer",
-      "description": "Pointer to ConnectivityNodeContainer object"
+      "description": "Pointer to ConnectivityNodeContainer object",
+      "pattern": "^ConnectivityNodeContainer::'(.+)'$"
     },
     "ConnectivityNode.SvVoltage": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvVoltageArray.json"
@@ -27,7 +30,8 @@
     "ConnectivityNode.BusVoltageObjective": {
       "type": "string",
       "title": "BusVoltageObjectivePointer",
-      "description": "Pointer to BusVoltageObjective object"
+      "description": "Pointer to BusVoltageObjective object",
+      "pattern": "^BusVoltageObjective::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

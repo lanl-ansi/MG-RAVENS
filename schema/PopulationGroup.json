@@ -5,7 +5,8 @@
     "PopulationGroup.Location": {
       "type": "string",
       "title": "LocationPointer",
-      "description": "Pointer to Location object"
+      "description": "Pointer to Location object",
+      "pattern": "^Location::'(.+)'$"
     },
     "IdentifiedObject.description": {
       "title": "description",

@@ -6,18 +6,20 @@
     "PowerSystemResource.Location": {
       "type": "string",
       "title": "LocationPointer",
-      "description": "Pointer to Location object"
+      "description": "Pointer to Location object",
+      "pattern": "^Location::'(.+)'$"
     },
     "PowerSystemResource.GenericAction": {
       "type": "string",
       "title": "SwitchingActionPointer",
-      "description": "Pointer to SwitchingAction object"
+      "description": "Pointer to SwitchingAction object",
+      "pattern": "^SwitchingAction::'(.+)'$"
     },
     "ConductingEquipment.Terminals": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
     },
     "ACLineSegment.PerLengthImpedance": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerLengthImpedancePointer_anyOfContainer.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerLengthImpedanceanyOfPointer_anyOfContainer.json"
     },
     "ACLineSegment.ACLineSegmentPhase": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ACLineSegmentPhaseArray.json"
@@ -25,15 +27,17 @@
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
       "title": "BaseVoltagePointer",
-      "description": "Pointer to BaseVoltage object"
+      "description": "Pointer to BaseVoltage object",
+      "pattern": "^BaseVoltage::'(.+)'$"
     },
     "ACLineSegment.WireSpacingInfo": {
       "type": "string",
       "title": "WireSpacingInfoPointer",
-      "description": "Pointer to WireSpacingInfo object"
+      "description": "Pointer to WireSpacingInfo object",
+      "pattern": "^WireSpacingInfo::'(.+)'$"
     },
     "PowerSystemResource.AssetDatasheet": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WireInfoPointer_anyOfContainer.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WireInfoanyOfPointer_anyOfContainer.json"
     },
     "ConductingEquipment.SvStatus": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatusArray.json"

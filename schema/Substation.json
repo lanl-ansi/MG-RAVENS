@@ -1,10 +1,14 @@
 {
   "type": "object",
   "properties": {
+    "ConnectivityNodeContainer.ConnectivityNodes": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+    },
     "Substation.Region": {
       "type": "string",
       "title": "SubGeographicalRegionPointer",
-      "description": "Pointer to SubGeographicalRegion object"
+      "description": "Pointer to SubGeographicalRegion object",
+      "pattern": "^SubGeographicalRegion::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

@@ -4,12 +4,14 @@
     "PowerSystemResource.Location": {
       "type": "string",
       "title": "LocationPointer",
-      "description": "Pointer to Location object"
+      "description": "Pointer to Location object",
+      "pattern": "^Location::'(.+)'$"
     },
     "PowerSystemResource.GenericAction": {
       "type": "string",
       "title": "SwitchingActionPointer",
-      "description": "Pointer to SwitchingAction object"
+      "description": "Pointer to SwitchingAction object",
+      "pattern": "^SwitchingAction::'(.+)'$"
     },
     "ConductingEquipment.Terminals": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
@@ -17,7 +19,8 @@
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
       "title": "BaseVoltagePointer",
-      "description": "Pointer to BaseVoltage object"
+      "description": "Pointer to BaseVoltage object",
+      "pattern": "^BaseVoltage::'(.+)'$"
     },
     "ConductingEquipment.SvStatus": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatusArray.json"

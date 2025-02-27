@@ -4,7 +4,8 @@
     "Fault.Location": {
       "type": "string",
       "title": "LocationPointer",
-      "description": "Pointer to Location object"
+      "description": "Pointer to Location object",
+      "pattern": "^Location::'(.+)'$"
     },
     "Fault.FaultyEquipment": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentPointerArray.json"

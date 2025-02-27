@@ -7,7 +7,8 @@
     "BatteryUnit.BatteryDispatchProfile": {
       "type": "string",
       "title": "CurvePointer",
-      "description": "Pointer to Curve object"
+      "description": "Pointer to Curve object",
+      "pattern": "^Curve::'(.+)'$"
     },
     "BatteryUnit.ratedE": {
       "title": "ratedE",

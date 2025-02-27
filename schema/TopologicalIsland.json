@@ -6,7 +6,8 @@
     "TopologicalIsland.AngleRefTopologicalNode": {
       "type": "string",
       "title": "TopologicalNodePointer",
-      "description": "Pointer to TopologicalNode object"
+      "description": "Pointer to TopologicalNode object",
+      "pattern": "^TopologicalNode::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

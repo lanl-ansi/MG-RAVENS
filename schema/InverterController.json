@@ -5,22 +5,26 @@
     "VarWattControlMode.VarWattControlCurve": {
       "type": "string",
       "title": "CurvePointer",
-      "description": "Pointer to Curve object"
+      "description": "Pointer to Curve object",
+      "pattern": "^Curve::'(.+)'$"
     },
     "VoltVarWattControlMode.VoltVarWattControlCurve": {
       "type": "string",
       "title": "CurvePointer",
-      "description": "Pointer to Curve object"
+      "description": "Pointer to Curve object",
+      "pattern": "^Curve::'(.+)'$"
     },
     "VoltWattControlMode.VoltWattControlCurve": {
       "type": "string",
       "title": "CurvePointer",
-      "description": "Pointer to Curve object"
+      "description": "Pointer to Curve object",
+      "pattern": "^Curve::'(.+)'$"
     },
     "VoltVarControlMode.VoltVarControlCurve": {
       "type": "string",
       "title": "CurvePointer",
-      "description": "Pointer to Curve object"
+      "description": "Pointer to Curve object",
+      "pattern": "^Curve::'(.+)'$"
     },
     "DroopControlMode.p": {
       "title": "p",

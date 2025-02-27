@@ -5,7 +5,8 @@
     "DesignAlgorithmProperties.PredictedEmissions": {
       "type": "string",
       "title": "PredictedEmissionsPointer",
-      "description": "Pointer to PredictedEmissions object"
+      "description": "Pointer to PredictedEmissions object",
+      "pattern": "^PredictedEmissions::'(.+)'$"
     },
     "DesignAlgorithmProperties.energyAvailabilityLimit": {
       "title": "energyAvailabilityLimit",

@@ -7,17 +7,20 @@
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
       "title": "BaseVoltagePointer",
-      "description": "Pointer to BaseVoltage object"
+      "description": "Pointer to BaseVoltage object",
+      "pattern": "^BaseVoltage::'(.+)'$"
     },
     "TransformerEnd.RatioTapChanger": {
       "type": "string",
       "title": "RatioTapChangerPointer",
-      "description": "Pointer to RatioTapChanger object"
+      "description": "Pointer to RatioTapChanger object",
+      "pattern": "^RatioTapChanger::'(.+)'$"
     },
     "TransformerEnd.PhaseTapChanger": {
       "type": "string",
       "title": "PhaseTapChangerPointer",
-      "description": "Pointer to PhaseTapChanger object"
+      "description": "Pointer to PhaseTapChanger object",
+      "pattern": "^PhaseTapChanger::'(.+)'$"
     },
     "TransformerEnd.bmagSat": {
       "title": "bmagSat",

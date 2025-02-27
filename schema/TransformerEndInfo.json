@@ -47,10 +47,20 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WindingConnection.json",
       "description": "Kind of connection."
     },
+    "OldTransformerEndInfo.dayOverLoadRating": {
+      "title": "dayOverLoadRating",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApparentPower.json",
+      "description": "Overload rating for 24 hours."
+    },
     "TransformerEndInfo.r": {
       "title": "r",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
       "description": "DC resistance."
+    },
+    "OldTransformerEndInfo.windingInsulationKind": {
+      "title": "windingInsulationKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WindingInsulationKind.json",
+      "description": "Type of insultation used for transformer windings."
     },
     "TransformerEndInfo.ratedS": {
       "title": "ratedS",
@@ -65,6 +75,11 @@
         "TransformerEndInfo"
       ]
     },
+    "OldTransformerEndInfo.hourOverLoadRating": {
+      "title": "hourOverLoadRating",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApparentPower.json",
+      "description": "Overload rating for 1 hour."
+    },
     "TransformerEndInfo.shortTermS": {
       "title": "shortTermS",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApparentPower.json",
@@ -74,6 +89,11 @@
       "title": "endNumber",
       "type": "integer",
       "description": "Number for this transformer end, corresponding to the end's order in the PowerTransformer.vectorGroup attribute. Highest voltage winding should be 1."
+    },
+    "IdentifiedObject.name": {
+      "title": "name",
+      "type": "string",
+      "description": "The name is any free human readable and possibly non unique text naming the object."
     },
     "IdentifiedObject.description": {
       "title": "description",
@@ -90,10 +110,10 @@
       "type": "string",
       "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
     },
-    "IdentifiedObject.name": {
-      "title": "name",
-      "type": "string",
-      "description": "The name is any free human readable and possibly non unique text naming the object."
+    "OldTransformerEndInfo.solidInsulationWeight": {
+      "title": "solidInsulationWeight",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Mass.json",
+      "description": "Weight of solid insultation in transformer."
     }
   },
   "title": "TransformerEndInfo",

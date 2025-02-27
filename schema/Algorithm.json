@@ -6,7 +6,8 @@
     "Algorithm.Application": {
       "type": "string",
       "title": "ApplicationPointer",
-      "description": "Pointer to Application object"
+      "description": "Pointer to Application object",
+      "pattern": "^Application::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

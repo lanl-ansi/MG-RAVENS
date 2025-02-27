@@ -6,7 +6,8 @@
     "PerLengthLineParameter.WireAssemblyInfo": {
       "type": "string",
       "title": "WireAssemblyInfoPointer",
-      "description": "Pointer to WireAssemblyInfo object"
+      "description": "Pointer to WireAssemblyInfo object",
+      "pattern": "^WireAssemblyInfo::'(.+)'$"
     },
     "PerLengthPhaseImpedance.PhaseImpedanceData": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseImpedanceDataArray.json"

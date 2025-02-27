@@ -4,7 +4,8 @@
     "ProposedPhotovoltaicUnitOption.GenerationProfile": {
       "type": "string",
       "title": "CurvePointer",
-      "description": "Pointer to Curve object"
+      "description": "Pointer to Curve object",
+      "pattern": "^Curve::'(.+)'$"
     },
     "ProposedAssetOption.ProposedLocations": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocationPointerArray.json"

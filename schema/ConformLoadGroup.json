@@ -7,7 +7,8 @@
     "ConformLoadGroup.ConformLoadSchedules": {
       "type": "string",
       "title": "ConformLoadSchedulePointer",
-      "description": "Pointer to ConformLoadSchedule object"
+      "description": "Pointer to ConformLoadSchedule object",
+      "pattern": "^ConformLoadSchedule::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

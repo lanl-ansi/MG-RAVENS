@@ -1,10 +1,14 @@
 {
   "type": "object",
   "properties": {
+    "ConnectivityNodeContainer.ConnectivityNodes": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+    },
     "EquipmentContainer.Equipments": {
       "type": "string",
       "title": "EquipmentPointer",
-      "description": "Pointer to Equipment object"
+      "description": "Pointer to Equipment object",
+      "pattern": "^Equipment::'(.+)'$"
     },
     "VoltageLevel.lowVoltageLimit": {
       "title": "lowVoltageLimit",

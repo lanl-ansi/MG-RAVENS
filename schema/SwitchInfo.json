@@ -8,10 +8,38 @@
       "type": "boolean",
       "description": "If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases)."
     },
-    "SwitchInfo.lowPressureAlarm": {
-      "title": "lowPressureAlarm",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Pressure.json",
-      "description": "Gas or air pressure at or below which a low pressure alarm is generated."
+    "RecloserInfo.groundTripCapable": {
+      "title": "groundTripCapable",
+      "type": "boolean",
+      "description": "True if device has ground trip capability."
+    },
+    "SwitchInfo.ratedInterruptingTime": {
+      "title": "ratedInterruptingTime",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "description": "Switch rated interrupting time in seconds."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "SwitchInfo"
+      ]
+    },
+    "RecloserInfo.recloseLockoutCount": {
+      "title": "recloseLockoutCount",
+      "type": "integer",
+      "description": "Total number of phase reclose operations."
+    },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "OldSwitchInfo.loadBreak": {
+      "title": "loadBreak",
+      "type": "boolean",
+      "description": "True if switch has load breaking capabiity. Unless specified false, this is always assumed to be true for breakers and reclosers."
     },
     "SwitchInfo.ratedImpulseWithstandVoltage": {
       "title": "ratedImpulseWithstandVoltage",
@@ -23,16 +51,6 @@
       "type": "boolean",
       "description": "If true, it is a single phase switch."
     },
-    "SwitchInfo.ratedInterruptingTime": {
-      "title": "ratedInterruptingTime",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
-      "description": "Switch rated interrupting time in seconds."
-    },
-    "SwitchInfo.ratedVoltage": {
-      "title": "ratedVoltage",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
-      "description": "Rated voltage."
-    },
     "SwitchInfo.oilVolumePerTank": {
       "title": "oilVolumePerTank",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Volume.json",
@@ -43,18 +61,55 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Mass.json",
       "description": "Weight of gas in each tank of SF6 dead tank breaker."
     },
-    "Ravens.cimObjectType": {
-      "title": "cimObjectType",
-      "type": "string",
-      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
-      "enum": [
-        "SwitchInfo"
-      ]
+    "SwitchInfo.ratedCurrent": {
+      "title": "ratedCurrent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
+      "description": "Rated current."
+    },
+    "OldSwitchInfo.remote": {
+      "title": "remote",
+      "type": "boolean",
+      "description": "True if device is capable of being operated by remote control."
+    },
+    "SwitchInfo.lowPressureAlarm": {
+      "title": "lowPressureAlarm",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Pressure.json",
+      "description": "Gas or air pressure at or below which a low pressure alarm is generated."
+    },
+    "RecloserInfo.groundTripNormalEnabled": {
+      "title": "groundTripNormalEnabled",
+      "type": "boolean",
+      "description": "True if normal status of ground trip is enabled."
+    },
+    "SwitchInfo.ratedVoltage": {
+      "title": "ratedVoltage",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
+      "description": "Rated voltage."
+    },
+    "RecloserInfo.groundTripRating": {
+      "title": "groundTripRating",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
+      "description": "Ground trip rating."
+    },
+    "OldSwitchInfo.dielectricStrength": {
+      "title": "dielectricStrength",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
+      "description": "The maximum rms voltage that may be applied across an open contact without breaking down the dielectric properties of the switch in the open position."
     },
     "SwitchInfo.breakingCapacity": {
       "title": "breakingCapacity",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
       "description": "The maximum fault current a breaking device can break safely under prescribed conditions of use."
+    },
+    "OldSwitchInfo.minimumCurrent": {
+      "title": "minimumCurrent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
+      "description": "The lowest value of current that the switch can make, carry and break in uninterrupted duty at the rated voltage under specified operating conditions without suffering significant deterioration of its performance."
+    },
+    "OldSwitchInfo.poleCount": {
+      "title": "poleCount",
+      "type": "integer",
+      "description": "Number of poles (i.e. of current carrying conductors that are switched)."
     },
     "SwitchInfo.lowPressureLockOut": {
       "title": "lowPressureLockOut",
@@ -66,15 +121,25 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Frequency.json",
       "description": "Frequency for which switch is rated."
     },
-    "SwitchInfo.ratedCurrent": {
-      "title": "ratedCurrent",
+    "OldSwitchInfo.makingCapacity": {
+      "title": "makingCapacity",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
-      "description": "Rated current."
+      "description": "The highest value of current the switch can make at the rated voltage under specified operating conditions without suffering significant deterioration of its performance."
     },
-    "IdentifiedObject.description": {
-      "title": "description",
-      "type": "string",
-      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    "RecloserInfo.phaseTripRating": {
+      "title": "phaseTripRating",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
+      "description": "Phase trip rating."
+    },
+    "OldSwitchInfo.withstandCurrent": {
+      "title": "withstandCurrent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
+      "description": "The highest value of current the switch can carry in the closed position at the rated voltage under specified operating conditions without suffering significant deterioration of its performance."
+    },
+    "BreakerInfo.phaseTrip": {
+      "title": "phaseTrip",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
+      "description": "Phase trip rating."
     },
     "IdentifiedObject.aliasName": {
       "title": "aliasName",

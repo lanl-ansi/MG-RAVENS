@@ -4,12 +4,14 @@
     "PowerSystemResource.Location": {
       "type": "string",
       "title": "LocationPointer",
-      "description": "Pointer to Location object"
+      "description": "Pointer to Location object",
+      "pattern": "^Location::'(.+)'$"
     },
     "PowerSystemResource.GenericAction": {
       "type": "string",
       "title": "SwitchingActionPointer",
-      "description": "Pointer to SwitchingAction object"
+      "description": "Pointer to SwitchingAction object",
+      "pattern": "^SwitchingAction::'(.+)'$"
     },
     "ConductingEquipment.Terminals": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
@@ -17,7 +19,8 @@
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
       "title": "BaseVoltagePointer",
-      "description": "Pointer to BaseVoltage object"
+      "description": "Pointer to BaseVoltage object",
+      "pattern": "^BaseVoltage::'(.+)'$"
     },
     "ShuntCompensator.ShuntCompensatorPhase": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntCompensatorPhaseArray.json"
@@ -25,7 +28,8 @@
     "PowerSystemResource.AssetDatasheet": {
       "type": "string",
       "title": "ShuntCompensatorInfoPointer",
-      "description": "Pointer to ShuntCompensatorInfo object"
+      "description": "Pointer to ShuntCompensatorInfo object",
+      "pattern": "^ShuntCompensatorInfo::'(.+)'$"
     },
     "ShuntCompensator.SvShuntCompensatorSections": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvShuntCompensatorSectionsArray.json"
@@ -36,7 +40,8 @@
     "ShuntCompensator.ShuntCompensatorAction": {
       "type": "string",
       "title": "SwitchingActionPointer",
-      "description": "Pointer to SwitchingAction object"
+      "description": "Pointer to SwitchingAction object",
+      "pattern": "^SwitchingAction::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
@@ -145,6 +150,16 @@
       "title": "inService",
       "type": "boolean",
       "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model."
+    },
+    "SVC.capacitiveRating": {
+      "title": "capacitiveRating",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Maximum capacitive reactive power."
+    },
+    "SVC.inductiveRating": {
+      "title": "inductiveRating",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "description": "Maximum inductive reactive power."
     },
     "IdentifiedObject.aliasName": {
       "title": "aliasName",

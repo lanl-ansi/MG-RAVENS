@@ -6,10 +6,31 @@
     "PowerSystemResource.GenericAction": {
       "type": "string",
       "title": "SwitchingActionPointer",
-      "description": "Pointer to SwitchingAction object"
+      "description": "Pointer to SwitchingAction object",
+      "pattern": "^SwitchingAction::'(.+)'$"
     },
     "RegulatingControl.Terminal": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal.json"
+    },
+    "ShuntCompensatorControl.sensingPhaseCode": {
+      "title": "sensingPhaseCode",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseCode.json",
+      "description": "Phases that are measured for controlling the device."
+    },
+    "ShuntCompensatorControl.localOnLevel": {
+      "title": "localOnLevel",
+      "type": "string",
+      "description": "Lower control setting."
+    },
+    "ShuntCompensatorControl.regBranchKind": {
+      "title": "regBranchKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegulationBranchKind.json",
+      "description": "(For VAR, amp, or power factor locally controlled shunt impedances) Kind of regulation branch."
+    },
+    "ShuntCompensatorControl.localControlKind": {
+      "title": "localControlKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntImpedanceLocalControlKind.json",
+      "description": "Kind of local controller."
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
@@ -18,6 +39,11 @@
       "enum": [
         "RegulatingControl"
       ]
+    },
+    "ShuntCompensatorControl.localOffLevel": {
+      "title": "localOffLevel",
+      "type": "string",
+      "description": "Upper control setting."
     },
     "TapChangerControl.limitVoltage": {
       "title": "limitVoltage",
@@ -49,10 +75,35 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "Line drop compensator reactance setting for reverse power flow."
     },
+    "ShuntCompensatorControl.localOverride": {
+      "title": "localOverride",
+      "type": "boolean",
+      "description": "True if the locally controlled capacitor has voltage override capability."
+    },
     "IdentifiedObject.description": {
       "title": "description",
       "type": "string",
       "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "ShuntCompensatorControl.highVoltageOverride": {
+      "title": "highVoltageOverride",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
+      "description": "For locally controlled shunt impedances which have a voltage override feature, the high voltage override value. If the voltage is above this value, the shunt impedance will be turned off regardless of the other local controller settings."
+    },
+    "ShuntCompensatorControl.regBranchEnd": {
+      "title": "regBranchEnd",
+      "type": "integer",
+      "description": "For VAR, amp, or power factor locally controlled shunt impedances, the end of the branch that is regulated. The field has the following values: from side, to side, and tertiary (only if the branch is a transformer)."
+    },
+    "ShuntCompensatorControl.normalOpen": {
+      "title": "normalOpen",
+      "type": "boolean",
+      "description": "True if open is normal status for a fixed capacitor bank, otherwise normal status is closed."
+    },
+    "ShuntCompensatorControl.switchOperationCycle": {
+      "title": "switchOperationCycle",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Hours.json",
+      "description": "Time interval between consecutive switching operations."
     },
     "RegulatingControl.discrete": {
       "title": "discrete",
@@ -79,6 +130,26 @@
       "type": "number",
       "description": "The target value specified for case input.   This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute."
     },
+    "ShuntCompensatorControl.cellSize": {
+      "title": "cellSize",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
+      "description": "The size of the individual units that make up the bank."
+    },
+    "ShuntCompensatorControl.branchDirect": {
+      "title": "branchDirect",
+      "type": "integer",
+      "description": "For VAR, amp, or power factor locally controlled shunt impedances, the flow direction: in, out."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    },
+    "ShuntCompensatorControl.lowVoltageOverride": {
+      "title": "lowVoltageOverride",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
+      "description": "For locally controlled shunt impedances which have a voltage override feature, the low voltage override value. If the voltage is below this value, the shunt impedance will be turned on regardless of the other local controller settings."
+    },
     "RegulatingControl.targetValueUnitMultiplier": {
       "title": "targetValueUnitMultiplier",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitMultiplier.json",
@@ -88,6 +159,11 @@
       "title": "enabled",
       "type": "boolean",
       "description": "The flag tells if regulation is enabled."
+    },
+    "ShuntCompensatorControl.regBranch": {
+      "title": "regBranch",
+      "type": "string",
+      "description": "For VAR, amp, or power factor locally controlled shunt impedances, the index of the regulation branch."
     },
     "RegulatingControl.maxAllowedTargetValue": {
       "title": "maxAllowedTargetValue",
@@ -99,15 +175,25 @@
       "type": "number",
       "description": "Minimum allowed target value (RegulatingControl.targetValue)."
     },
+    "ShuntCompensatorControl.maxSwitchOperationCount": {
+      "title": "maxSwitchOperationCount",
+      "type": "integer",
+      "description": "IdmsShuntImpedanceData.maxNumSwitchOps."
+    },
+    "ShuntCompensatorControl.vRegLineLine": {
+      "title": "vRegLineLine",
+      "type": "boolean",
+      "description": "True if regulated voltages are measured line to line, otherwise they are measured line to ground."
+    },
     "IdentifiedObject.aliasName": {
       "title": "aliasName",
       "type": "string",
       "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
     },
-    "IdentifiedObject.mRID": {
-      "title": "mRID",
-      "type": "string",
-      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
+    "ShuntCompensatorControl.controlKind": {
+      "title": "controlKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntImpedanceControlKind.json",
+      "description": "Kind of control (if any)."
     },
     "IdentifiedObject.name": {
       "title": "name",

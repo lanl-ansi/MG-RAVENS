@@ -4,7 +4,8 @@
     "EnvironmentalInformation.EnvironmentalPhenomenon": {
       "type": "string",
       "title": "EnvironmentalPhenomenonPointer",
-      "description": "Pointer to EnvironmentalPhenomenon object"
+      "description": "Pointer to EnvironmentalPhenomenon object",
+      "pattern": "^EnvironmentalPhenomenon::'(.+)'$"
     },
     "EnvironmentalInformation.created": {
       "title": "created",

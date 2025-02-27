@@ -4,17 +4,20 @@
     "EnergyConsumer.LoadProfile": {
       "type": "string",
       "title": "EnergyConsumerSchedulePointer",
-      "description": "Pointer to EnergyConsumerSchedule object"
+      "description": "Pointer to EnergyConsumerSchedule object",
+      "pattern": "^EnergyConsumerSchedule::'(.+)'$"
     },
     "PowerSystemResource.Location": {
       "type": "string",
       "title": "LocationPointer",
-      "description": "Pointer to Location object"
+      "description": "Pointer to Location object",
+      "pattern": "^Location::'(.+)'$"
     },
     "PowerSystemResource.GenericAction": {
       "type": "string",
       "title": "SwitchingActionPointer",
-      "description": "Pointer to SwitchingAction object"
+      "description": "Pointer to SwitchingAction object",
+      "pattern": "^SwitchingAction::'(.+)'$"
     },
     "ConductingEquipment.Terminals": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
@@ -22,17 +25,20 @@
     "EnergyConsumer.EnergyConsumerAction": {
       "type": "string",
       "title": "SwitchingActionPointer",
-      "description": "Pointer to SwitchingAction object"
+      "description": "Pointer to SwitchingAction object",
+      "pattern": "^SwitchingAction::'(.+)'$"
     },
     "EnergyConsumer.LoadResponse": {
       "type": "string",
       "title": "LoadResponseCharacteristicPointer",
-      "description": "Pointer to LoadResponseCharacteristic object"
+      "description": "Pointer to LoadResponseCharacteristic object",
+      "pattern": "^LoadResponseCharacteristic::'(.+)'$"
     },
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
       "title": "BaseVoltagePointer",
-      "description": "Pointer to BaseVoltage object"
+      "description": "Pointer to BaseVoltage object",
+      "pattern": "^BaseVoltage::'(.+)'$"
     },
     "EnergyConsumer.EnergyConsumerPhase": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerPhaseArray.json"

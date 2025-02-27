@@ -6,7 +6,8 @@
     "TopologicalNode.TopologicalIsland": {
       "type": "string",
       "title": "TopologicalIslandPointer",
-      "description": "Pointer to TopologicalIsland object"
+      "description": "Pointer to TopologicalIsland object",
+      "pattern": "^TopologicalIsland::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

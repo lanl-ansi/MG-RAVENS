@@ -72,6 +72,11 @@
       "type": "string",
       "description": "The date and time of the most recent generating unit shutdown."
     },
+    "LoadReductionTimeCurve.loadReductionTimeCurveType": {
+      "title": "loadReductionTimeCurveType",
+      "type": "string",
+      "description": "type of the curve: Possible values are but not limited to:\n\nMax, Min,"
+    },
     "IdentifiedObject.description": {
       "title": "description",
       "type": "string",

@@ -9,7 +9,8 @@
     "Location.CoordinateSystem": {
       "type": "string",
       "title": "CoordinateSystemPointer",
-      "description": "Pointer to CoordinateSystem object"
+      "description": "Pointer to CoordinateSystem object",
+      "pattern": "^CoordinateSystem::'(.+)'$"
     },
     "Location.mainAddress": {
       "title": "mainAddress",

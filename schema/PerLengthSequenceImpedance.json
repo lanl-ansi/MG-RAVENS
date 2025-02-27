@@ -6,7 +6,8 @@
     "PerLengthLineParameter.WireAssemblyInfo": {
       "type": "string",
       "title": "WireAssemblyInfoPointer",
-      "description": "Pointer to WireAssemblyInfo object"
+      "description": "Pointer to WireAssemblyInfo object",
+      "pattern": "^WireAssemblyInfo::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

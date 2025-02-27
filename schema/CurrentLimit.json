@@ -4,7 +4,8 @@
     "OperationalLimit.OperationalLimitType": {
       "type": "string",
       "title": "OperationalLimitTypePointer",
-      "description": "Pointer to OperationalLimitType object"
+      "description": "Pointer to OperationalLimitType object",
+      "pattern": "^OperationalLimitType::'(.+)'$"
     },
     "CurrentLimit.value": {
       "title": "value",

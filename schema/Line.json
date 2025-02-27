@@ -1,6 +1,9 @@
 {
   "type": "object",
   "properties": {
+    "ConnectivityNodeContainer.ConnectivityNodes": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+    },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",

@@ -4,12 +4,14 @@
     "CommunityFacility.Location": {
       "type": "string",
       "title": "LocationPointer",
-      "description": "Pointer to Location object"
+      "description": "Pointer to Location object",
+      "pattern": "^Location::'(.+)'$"
     },
     "CommunityFacility.OutageScenario": {
       "type": "string",
       "title": "OutageScenarioPointer",
-      "description": "Pointer to OutageScenario object"
+      "description": "Pointer to OutageScenario object",
+      "pattern": "^OutageScenario::'(.+)'$"
     },
     "CommunityFacility.Category": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FacilityCategoryContainer_Container.json"
@@ -17,7 +19,8 @@
     "GridFacility.FacilityPowerLine": {
       "type": "string",
       "title": "EquivalentBranchPointer",
-      "description": "Pointer to EquivalentBranch object"
+      "description": "Pointer to EquivalentBranch object",
+      "pattern": "^EquivalentBranch::'(.+)'$"
     },
     "CommunityFacility.operational": {
       "title": "operational",

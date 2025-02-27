@@ -6,6 +6,31 @@
     "TransformerTankInfo.TransformerEndInfos": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerEndInfoArray.json"
     },
+    "OldTransformerTankInfo.oilPreservationKind": {
+      "title": "oilPreservationKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OilPreservationKind.json",
+      "description": "Kind of oil preservation system."
+    },
+    "OldTransformerTankInfo.coreKind": {
+      "title": "coreKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerCoreKind.json",
+      "description": "Core kind of this transformer product."
+    },
+    "OldTransformerTankInfo.function": {
+      "title": "function",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerFunctionKind.json",
+      "description": "Function of this transformer."
+    },
+    "OldTransformerTankInfo.constructionKind": {
+      "title": "constructionKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerConstructionKind.json",
+      "description": "Kind of construction for this transformer."
+    },
+    "OldTransformerTankInfo.coreCoilsWeight": {
+      "title": "coreCoilsWeight",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Mass.json",
+      "description": "Weight of core and coils in transformer."
+    },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",
@@ -13,6 +38,11 @@
       "enum": [
         "TransformerTankInfo"
       ]
+    },
+    "OldTransformerTankInfo.neutralBIL": {
+      "title": "neutralBIL",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
+      "description": "Basic insulation level of neutral."
     },
     "IdentifiedObject.description": {
       "title": "description",

@@ -6,17 +6,20 @@
     "SubGeographicalRegion.Region": {
       "type": "string",
       "title": "GeographicalRegionPointer",
-      "description": "Pointer to GeographicalRegion object"
+      "description": "Pointer to GeographicalRegion object",
+      "pattern": "^GeographicalRegion::'(.+)'$"
     },
     "SubGeographicalRegion.EconomicProperty": {
       "type": "string",
       "title": "EconomicPropertyPointer",
-      "description": "Pointer to EconomicProperty object"
+      "description": "Pointer to EconomicProperty object",
+      "pattern": "^EconomicProperty::'(.+)'$"
     },
     "SubGeographicalRegion.EnergyPrices": {
       "type": "string",
       "title": "EnergyPricesPointer",
-      "description": "Pointer to EnergyPrices object"
+      "description": "Pointer to EnergyPrices object",
+      "pattern": "^EnergyPrices::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

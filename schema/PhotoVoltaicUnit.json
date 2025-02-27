@@ -4,7 +4,8 @@
     "PhotoVoltaicUnit.GenerationProfile": {
       "type": "string",
       "title": "CurvePointer",
-      "description": "Pointer to Curve object"
+      "description": "Pointer to Curve object",
+      "pattern": "^Curve::'(.+)'$"
     },
     "Equipment.aggregate": {
       "title": "aggregate",

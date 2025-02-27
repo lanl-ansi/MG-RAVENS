@@ -9,7 +9,8 @@
     "Location.CoordinateSystem": {
       "type": "string",
       "title": "CoordinateSystemPointer",
-      "description": "Pointer to CoordinateSystem object"
+      "description": "Pointer to CoordinateSystem object",
+      "pattern": "^CoordinateSystem::'(.+)'$"
     },
     "MaintenanceLocation.nearestIntersection": {
       "title": "nearestIntersection",
@@ -123,6 +124,11 @@
       "title": "direction",
       "type": "string",
       "description": "(if applicable) Direction that allows field crews to quickly find a given asset. For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building."
+    },
+    "Zone.kind": {
+      "title": "kind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ZoneKind.json",
+      "description": "Kind of this zone."
     },
     "Location.geoInfoReference": {
       "title": "geoInfoReference",

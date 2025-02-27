@@ -5,7 +5,8 @@
     "Outage.OutageIsolationEquipment": {
       "type": "string",
       "title": "ConductingEquipmentPointer",
-      "description": "Pointer to ConductingEquipment object"
+      "description": "Pointer to ConductingEquipment object",
+      "pattern": "^ConductingEquipment::'(.+)'$"
     },
     "Document.status": {
       "title": "status",

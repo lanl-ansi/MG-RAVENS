@@ -4,7 +4,8 @@
     "Terminal.ConnectivityNode": {
       "type": "string",
       "title": "ConnectivityNodePointer",
-      "description": "Pointer to ConnectivityNode object"
+      "description": "Pointer to ConnectivityNode object",
+      "pattern": "^ConnectivityNode::'(.+)'$"
     },
     "ACDCTerminal.connected": {
       "title": "connected",

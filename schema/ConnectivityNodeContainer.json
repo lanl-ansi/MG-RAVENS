@@ -1,6 +1,9 @@
 {
   "type": "object",
   "properties": {
+    "ConnectivityNodeContainer.ConnectivityNodes": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+    },
     "VoltageLevel.lowVoltageLimit": {
       "title": "lowVoltageLimit",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
