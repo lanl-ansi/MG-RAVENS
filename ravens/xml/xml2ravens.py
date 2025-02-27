@@ -18,7 +18,7 @@ from rdflib.term import URIRef, Literal
 from ravens import __version__
 from ravens.logging import logger
 from ravens.data import _DEFAULT_CIM_NAMESPACE
-from ravens.schema import SchemaTemplate
+from ravens.schema import SchemaTemplate, RavensSchema
 
 Reference = namedtuple("Reference", ["parent", "id"])
 
@@ -192,7 +192,7 @@ class MultiResolvedPath:
 
 
 class RavensImport:
-    def __init__(self, cim_profile_path: pathlib.PosixPath, schema_template: SchemaTemplate = None, prune_unncessary=False, cim_namespace=_DEFAULT_CIM_NAMESPACE):
+    def __init__(self, cim_profile_path: pathlib.PosixPath, schema_template: SchemaTemplate | None = None, prune_unncessary: bool = False, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, schema: RavensSchema | None = None):
         g = Graph()
         self.rdf = g.parse(cim_profile_path, format="application/rdf+xml", publicID="urn:uuid:")
 
@@ -206,7 +206,12 @@ class RavensImport:
         if schema_template is None:
             schema_template = SchemaTemplate()
 
+        if schema is None:
+            schema = RavensSchema(schema_template=schema_template)
+
         self.build_paths_from_template(schema_template.template)
+
+        self.schema = schema
 
         self.tokenized_paths = {}
         self.tokenize_paths()
@@ -229,6 +234,28 @@ class RavensImport:
             traceback.print_exc()
 
         self._add_ravens_version()
+
+    @staticmethod
+    def _convert_with_schema(attr, attr_type: str):
+        funcs = {"string": str, "integer": int, "boolean": bool, "number": float}
+        value = str(attr)
+        if attr_type in funcs:
+            value = funcs[attr_type](value)
+
+        return value
+
+    @staticmethod
+    def _convert_with_literal_eval(attr):
+        value = attr
+        if attr.lower() in ["true", "false"]:
+            value = bool(attr)
+        else:
+            try:
+                value = literal_eval(node_or_string=attr)
+            except:
+                pass
+
+        return attr
 
     def _add_ravens_version(self):
         if "Versions" not in self.data:
@@ -473,19 +500,30 @@ class RavensImport:
     def build_data(self, subject):
         data = {"Ravens.cimObjectType": self.rdf.value(subject=subject, predicate=self.rdf_type).split("#")[-1]}
         for p, o in self.rdf.predicate_objects(subject=subject):
-            pn = p.split("#")[-1]
+            pn = str(p).split("#")[-1]
             if self.prune_unncessary and any(bool(re.search(k, pn)) for k in prune_keys):
                 continue
 
             if p != self.rdf_type:
+                value = o
+
                 if isinstance(o, Literal):
-                    if o.value.lower() in ["true", "false"]:
-                        value = bool(o.value)
-                    else:
+                    if self.schema is not None:
                         try:
-                            value = literal_eval(o.value)
-                        except:
-                            value = o.value
+                            attr_schema = self.schema.schemas[f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json"]["properties"][pn]
+                            if "type" in attr_schema:
+                                attr_type = attr_schema["type"]
+                            elif "$ref" in attr_schema:
+                                attr_schema = self.schema.schemas[attr_schema["$ref"]]
+                                attr_type = attr_schema["type"][1]
+                            else:
+                                raise KeyError
+
+                            value = self._convert_with_schema(o.value, attr_type)
+                        except KeyError:
+                            value = self._convert_with_literal_eval(o.value)
+                    else:
+                        value = self._convert_with_literal_eval(o.value)
                 elif pn in self.reference_paths:
                     if o in self.object_ids:
                         value = f"{self.rdf.value(subject=o, predicate=self.rdf_type).split("#")[-1]}::'{self.object_ids[o]}'"
@@ -511,8 +549,6 @@ class RavensImport:
                     value = o.split("#")[-1]
                 elif self.prune_unncessary or isinstance(o, URIRef):
                     continue
-                else:
-                    value = o
 
                 data[pn] = value
 
@@ -525,7 +561,8 @@ class RavensImport:
                             data[pn] = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
 
         if "IdentifiedObject.mRID" not in data.keys() and not self.prune_unncessary:
-            data["IdentifiedObject.mRID"] = str(subject)
+            if "IdentifiedObject.mRID" in self.schema.schemas[f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json"]["properties"]:
+                data["IdentifiedObject.mRID"] = str(subject)
 
         return data
 
