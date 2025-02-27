@@ -5882,21 +5882,85 @@
       "type": "array",
       "items": {
         "$objectId": "Message",
-        "type": "object",
-        "properties": {
-          "Message.Application": {
-            "$objectType": "reference",
-            "type": "string",
-            "$objectId": "Application",
-            "$referencePath": "Application"
+        "$objectType": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "$objectType": "object",
+            "$objectId": "Error",
+            "properties": {
+              "Message.Application": {
+                "$objectType": "reference",
+                "type": "string",
+                "$objectId": "Application",
+                "$referencePath": "Application"
+              },
+              "Message.Algorithm": {
+                "$objectType": "reference",
+                "type": "string",
+                "$objectId": "Algorithm",
+                "$referencePath": "Algorithm"
+              }
+            }
           },
-          "Message.Algorithm": {
-            "$objectType": "reference",
-            "type": "string",
-            "$objectId": "Algorithm",
-            "$referencePath": "Algorithm"
+          {
+            "type": "object",
+            "$objectType": "object",
+            "$objectId": "Warning",
+            "properties": {
+              "Message.Application": {
+                "$objectType": "reference",
+                "type": "string",
+                "$objectId": "Application",
+                "$referencePath": "Application"
+              },
+              "Message.Algorithm": {
+                "$objectType": "reference",
+                "type": "string",
+                "$objectId": "Algorithm",
+                "$referencePath": "Algorithm"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "$objectType": "object",
+            "$objectId": "Info",
+            "properties": {
+              "Message.Application": {
+                "$objectType": "reference",
+                "type": "string",
+                "$objectId": "Application",
+                "$referencePath": "Application"
+              },
+              "Message.Algorithm": {
+                "$objectType": "reference",
+                "type": "string",
+                "$objectId": "Algorithm",
+                "$referencePath": "Algorithm"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "$objectType": "object",
+            "$objectId": "Debug",
+            "properties": {
+              "Message.Application": {
+                "$objectType": "reference",
+                "type": "string",
+                "$objectId": "Application",
+                "$referencePath": "Application"
+              },
+              "Message.Algorithm": {
+                "$objectType": "reference",
+                "type": "string",
+                "$objectId": "Algorithm",
+                "$referencePath": "Algorithm"
+              }
+            }
           }
-        }
+        ]
       }
     },
     "BasicIntervalSchedule": {
