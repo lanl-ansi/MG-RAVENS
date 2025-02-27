@@ -189,7 +189,17 @@
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
+              "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                }
+              }
             },
             {
               "$objectType": "object",
@@ -198,6 +208,15 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
                 "EquipmentContainer.Equipments": {
                   "$objectType": "reference",
                   "$objectId": "Equipment",
@@ -212,7 +231,17 @@
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
+              "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                }
+              }
             },
             {
               "$objectType": "object",
@@ -221,6 +250,15 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
                 "EquipmentContainer.Equipments": {
                   "type": "array",
                   "items": {
@@ -237,6 +275,15 @@
               "$objectId": "Bay",
               "type": "object",
               "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
                 "EquipmentContainer.Equipments": {
                   "type": "array",
                   "items": {
@@ -255,6 +302,15 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
                 "EquipmentContainer.Equipments": {
                   "type": "array",
                   "items": {
@@ -272,7 +328,17 @@
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
+              "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                }
+              }
             },
             {
               "$objectType": "object",
@@ -280,7 +346,17 @@
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
+              "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                }
+              }
             },
             {
               "$objectType": "object",
@@ -288,7 +364,17 @@
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
+              "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                }
+              }
             },
             {
               "$objectType": "object",
@@ -297,6 +383,15 @@
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
                 "Substation.Region": {
                   "$objectType": "reference",
                   "$objectId": "SubGeographicalRegion",
@@ -311,7 +406,17 @@
               "type": "object",
               "$primaryObjectHash": "IdentifiedObject.name",
               "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
+              "properties": {
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                }
+              }
             }
           ]
         },
