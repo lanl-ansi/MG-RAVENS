@@ -242,15 +242,15 @@ class RavensImport:
 
         for obj_id, obj in template.get("properties", {}).items():
             try:
-                if obj["type"] == "array":
+                if obj.get("type", None) == "array":
                     self.parse_array(obj_id, obj, current_path=current_path)
-                elif obj["type"] == "object":
+                elif obj.get("type", None) == "object" or obj.get("$objectType", None) == "object":
                     if obj.get("$objectType", None) == "container":
                         _path_info = {"path": obj_id, "id": obj_id, "type": "container", "position": None}
                         self.build_paths_from_template(obj, current_path=current_path + [_path_info])
                     elif obj.get("$objectType", None) == "object":
-                        if "oneOf" in obj:
-                            for i, item in enumerate(obj["oneOf"]):
+                        if "anyOf" in obj:
+                            for i, item in enumerate(obj["anyOf"]):
                                 self.parse_object(obj_id, item.get("$objectId", obj_id), item, current_path)
                         else:
                             self.parse_object(obj_id, obj.get("$objectId", obj_id), obj, current_path)
@@ -259,12 +259,12 @@ class RavensImport:
                         pass
                     else:
                         raise Exception(f"unrecognized objectType for '{obj_id}': '{obj.get('$objectType', None)}'")
-                elif obj["type"] == "string" and obj.get("$objectType", None) == "reference":
+                elif obj.get("$objectType", None) == "reference":
                     if obj_id not in self.reference_paths:
                         self.reference_paths[obj_id] = set()
 
-                    if "oneOf" in obj:
-                        for item in obj["oneOf"]:
+                    if "anyOf" in obj:
+                        for item in obj["anyOf"]:
                             _ref = Reference(current_path[-1]["id"], item["$referencePath"].split("/")[-1])
                             self.reference_paths[obj_id].add(_ref)
                     else:
@@ -294,9 +294,9 @@ class RavensImport:
 
     def parse_array(self, obj_id, obj, current_path):
         if obj.get("items", None) is not None:
-            if obj["items"]["type"] == "object":
-                if "oneOf" in obj["items"]:
-                    for i, item in enumerate(obj["items"]["oneOf"]):
+            if obj["items"].get("type", None) == "object" or obj["items"].get("$objectType", None) == "object":
+                if "anyOf" in obj["items"]:
+                    for i, item in enumerate(obj["items"]["anyOf"]):
                         self.parse_object(
                             obj_id,
                             item.get("$objectId", obj_id),
@@ -315,7 +315,7 @@ class RavensImport:
                         json_type="array",
                         position_key="$arrayPosition",
                     )
-            elif obj["items"]["type"] == "array":
+            elif obj["items"].get("type", None) == "array":
                 self.parse_array(obj["items"], current_path=current_path + [{"path": ""}])
             else:
                 # Nothing to do
