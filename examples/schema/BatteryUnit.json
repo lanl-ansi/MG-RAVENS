@@ -1,4 +1,10 @@
 {
+  "ConnectivityNode": {
+    "battery_bus": {
+      "IdentifiedObject.name": "battery_bus",
+      "IdentifiedObject.mRID": "cabbb7b1-d3af-4c4f-8112-f33a4298bcb5"
+    }
+  },
   "PowerSystemResource": {
     "Equipment": {
       "ConductingEquipment": {
@@ -8,13 +14,21 @@
               "battery": {
                 "IdentifiedObject.name": "battery",
                 "IdentifiedObject.mRID": "8a611147-1eb3-4cc6-9df8-4b49873717b1",
-                "Ravens.cimObjectType": "PowerElectronicsUnit",
+                "Ravens.cimObjectType": "PowerElectronicsConnection",
                 "PowerElectronicsConnection.PowerElectronicsUnit": {
                   "IdentifiedObject.mRID": "e7dea97b-80be-4f5d-9c3d-f7f6e71b188c",
                   "IdentifiedObject.name": "battery_unit1",
                   "Ravens.cimObjectType": "BatteryUnit",
                   "BatteryUnit.ratedE": 1000.0
-                }
+                },
+                "ConductingEquipment.Terminals": [
+                  {
+                    "Ravens.cimObjectType": "Terminal",
+                    "IdentifiedObject.name": "battery_terminal",
+                    "IdentifiedObject.mRID": "6e99593f-d8c5-4858-92fc-8608ade4d78c",
+                    "Terminal.ConnectivityNode": "ConnectivityNode::'battery_bus'"
+                  }
+                ]
               }
             }
           }

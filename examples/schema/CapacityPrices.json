@@ -4,11 +4,11 @@
       "CapacityPrices_1": {
         "IdentifiedObject.mRID": "5407c621-70bb-4ff2-85ca-8cee8a84d10a",
         "IdentifiedObject.name": "CapacityPrices_1",
-        "Ravens.cimObjectType": "Ravens.CapacityPrices",
+        "Ravens.cimObjectType": "CapacityPrices",
         "EnergyPrices.Regions": ["Region_1"],
         "CapacityPrices.CapacityPriceCurve": {
-          "PriceCurve.xUnit": "h",
-          "PriceCurve.y1Unit": "USD",
+          "PriceCurve.xUnit": "UnitSymbol.h",
+          "PriceCurve.y1Unit": "Currency.USD",
           "PriceCurve.CurveDatas": [
             { "CurveData.xvalue": 0, "CurveData.y1value": 0.85 },
             { "CurveData.xvalue": 1, "CurveData.y1value": 0.28 },
