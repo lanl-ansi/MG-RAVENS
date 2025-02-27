@@ -10,7 +10,7 @@ def build_schema():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     schema_dir = os.path.join(current_dir, "../schema")
 
-    a = RavensSchema(uml_exclusions=UMLExclusions().exclude_by_name_startswith(["Inf", "Mkt"]))
+    a = RavensSchema(uml_exclusions=UMLExclusions().exclude_by_name_startswith(["Mkt"]))
 
     a.export_schemas(schema_dir)
 
