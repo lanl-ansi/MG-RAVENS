@@ -100,6 +100,20 @@ class SchemaTemplate:
                         data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "Pointer"
                     if "description" not in v:
                         data["properties"][k]["description"] = f"Pointer to {html.unescape(str(obj.Name).strip())} object"
+                    if not "anyOf" in v:
+                        data["properties"][k]["pattern"] = f"^{obj.Name}::'(.+)'$"
+
+                    if "anyOf" in v:
+                        data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "anyOfPointer"
+                        for (i, item) in enumerate(v["anyOf"]):
+                            _obj = self.uml_data.objects[(self.uml_data.objects["Name"] == item["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                            if "title" not in item:
+                                data["properties"][k]["anyOf"][i]["title"] = html.unescape(str(_obj.Name).strip()) + "Pointer"
+                            if "description" not in v:
+                                data["properties"][k]["anyOf"][i]["description"] = f"Pointer to {html.unescape(str(_obj.Name).strip())} object"
+
+                            data["properties"][k]["anyOf"][i]["pattern"] = f"^{_obj.Name}::'(.+)'$"
+
                 elif v.get("type", None) == "array":
                     try:
                         if v["items"].get("type", "") == "array":
