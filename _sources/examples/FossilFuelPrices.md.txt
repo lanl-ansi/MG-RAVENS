@@ -1,0 +1,40 @@
+# FossilFuelPrices
+
+
+```json
+{
+  "FossilFuelCosts": {
+    "diesel": {
+      "IdentifiedObject.mRID": "2d8b7bb3-a213-4497-8bde-b2e6238787b7",
+      "IdentifiedObject.name": "other",
+      "Ravens.cimObjectType": "FossilFuel",
+      "DieselFuel.fuelCost": {
+        "value": 350.0,
+        "unit": "Currency.USD"
+      },
+      "FossilFuel.fossilFuelType": "FuelType.oilShale"
+    },
+    "NaturalGasPrice": {
+      "IdentifiedObject.mRID": "2d8b7bb3-a213-4497-8bde-b2e6238787b7",
+      "IdentifiedObject.name": "NaturalGasPrice",
+      "Ravens.cimObjectType": "FossilFuel",
+      "FossilFuel.fuelCost": {
+        "value": 250.0,
+        "unit": "Currency.USD"
+      },
+      "FossilFuel.fossilFuelType": "FuelType.gas"
+    },
+    "other": {
+      "IdentifiedObject.mRID": "2d8b7bb3-a213-4497-8bde-b2e6238787b7",
+      "IdentifiedObject.name": "other",
+      "Ravens.cimObjectType": "FossilFuel",
+      "DieselFuel.fuelCost": {
+        "value": 350.0,
+        "unit": "Currency.USD"
+      },
+      "FossilFuel.fossilFuelType": "FuelType.oilShale"
+    }
+  }
+}
+```
+

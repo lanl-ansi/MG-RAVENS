@@ -213,15 +213,6 @@
         
           <li class="toctree-l1 ">
             
-              <a href="CommunityFacilities.html" class="reference internal ">CommunityFacilities</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="Conductor.html" class="reference internal ">Conductor</a>
             
 
@@ -232,15 +223,6 @@
           <li class="toctree-l1 ">
             
               <a href="ConnectivityNodes.html" class="reference internal ">ConnectivityNodes</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="DieselFuelPrice.html" class="reference internal ">DieselFuelPrice</a>
             
 
             
@@ -267,15 +249,6 @@
         
           <li class="toctree-l1 ">
             
-              <a href="EnergyMeasurements.html" class="reference internal ">EnergyMeasurements</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="EnergySource.html" class="reference internal ">EnergySource</a>
             
 
@@ -285,7 +258,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="EquivalentNetwork.html" class="reference internal ">EquivalentNetwork</a>
+              <a href="Faults.html" class="reference internal ">Faults</a>
             
 
             
@@ -294,7 +267,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="Faults.html" class="reference internal ">Faults</a>
+              <a href="FossilFuelPrices.html" class="reference internal ">FossilFuelPrices</a>
             
 
             
@@ -339,25 +312,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="NaturalGasFuelPrice.html" class="reference internal ">NaturalGasFuelPrice</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="OperationalLimitSets.html" class="reference internal ">OperationalLimitSets</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="OtherFossilFuelPrice.html" class="reference internal ">OtherFossilFuelPrice</a>
             
 
             
@@ -624,7 +579,7 @@
 <h1>BTMEquipmentContainer<a class="headerlink" href="#btmequipmentcontainer" title="Link to this heading">¶</a></h1>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;Group&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;EquipmentContainer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ConnectivityNodeContainer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;BehindTheMeter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BehindTheMeter&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;52b9883e-5bf0-475a-8707-63a60506f7e8&quot;</span><span class="p">,</span>
@@ -701,7 +656,7 @@
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.customerCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.phaseConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PhaseShuntConnectionKind.Y&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;EnergyConsumer.grounded&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.grounded&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;l1_Loc&#39;&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;ConductingEquipment.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="p">{</span>
@@ -712,22 +667,7 @@
 <span class="w">                  </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;loadbus&#39;&quot;</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">&quot;EnergyConsumer.LoadResponseCharacteristic&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoadResponseCharacteristic&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0EBDA2D2-84CA-450B-B76D-6518BFFAB5B2&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant kVA&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.exponentModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.pFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;LoadResponseCharacteristic.qFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.LoadResponse&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoadResponseCharacteristic::&#39;Constant kVA&#39;&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.EnergyConsumerPhase&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EnergyConsumerPhase&quot;</span><span class="p">,</span>
@@ -735,8 +675,7 @@
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l1_A&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.phase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SinglePhaseKind.A&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.p&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;l1_Loc&#39;&quot;</span>
+<span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
@@ -749,8 +688,9 @@
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.customerCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.phaseConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PhaseShuntConnectionKind.Y&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;EnergyConsumer.grounded&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.grounded&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;l2_Loc&#39;&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.LoadResponse&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoadResponseCharacteristic::&#39;Constant kVA&#39;&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;ConductingEquipment.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
@@ -760,34 +700,6 @@
 <span class="w">                  </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;loadbus&#39;&quot;</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">&quot;PowerSystemResource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;Equipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;ConductingEquipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;EnergyConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                      </span><span class="nt">&quot;EnergyConsumer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;l1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                          </span><span class="nt">&quot;EnergyConsumer.LoadResponseCharacteristic&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoadResponseCharacteristic&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0EBDA2D2-84CA-450B-B76D-6518BFFAB5B2&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant kVA&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.exponentModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">                          </span><span class="p">}</span>
-<span class="w">                        </span><span class="p">}</span>
-<span class="w">                      </span><span class="p">}</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                  </span><span class="p">}</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">},</span>
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.EnergyConsumerPhase&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EnergyConsumerPhase&quot;</span><span class="p">,</span>
@@ -795,8 +707,7 @@
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l2_B&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.phase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SinglePhaseKind.B&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.p&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;l2_Loc&#39;&quot;</span>
+<span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
@@ -809,7 +720,7 @@
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.customerCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.phaseConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PhaseShuntConnectionKind.Y&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;EnergyConsumer.grounded&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.grounded&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;l3_Loc&#39;&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;ConductingEquipment.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="p">{</span>
@@ -820,34 +731,7 @@
 <span class="w">                  </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;loadbus&#39;&quot;</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">&quot;PowerSystemResource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;Equipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;ConductingEquipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;EnergyConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                      </span><span class="nt">&quot;EnergyConsumer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;l1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                          </span><span class="nt">&quot;EnergyConsumer.LoadResponseCharacteristic&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoadResponseCharacteristic&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0EBDA2D2-84CA-450B-B76D-6518BFFAB5B2&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant kVA&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.exponentModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.pFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;LoadResponseCharacteristic.qFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">                          </span><span class="p">}</span>
-<span class="w">                        </span><span class="p">}</span>
-<span class="w">                      </span><span class="p">}</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                  </span><span class="p">}</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;EnergyConsumer.LoadResponse&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoadResponseCharacteristic::&#39;Constant kVA&#39;&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;EnergyConsumer.EnergyConsumerPhase&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EnergyConsumerPhase&quot;</span><span class="p">,</span>
@@ -855,8 +739,7 @@
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l3_C&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.phase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SinglePhaseKind.C&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.p&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;l3_Loc&#39;&quot;</span>
+<span class="w">                  </span><span class="nt">&quot;EnergyConsumerPhase.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">}</span>
@@ -894,24 +777,21 @@
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;D17AD79B-4C9D-4145-96E5-3730A8B302B1&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ohline_A&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.phase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SinglePhaseKind.A&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;ohline_Loc&#39;&quot;</span>
+<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACLineSegmentPhase&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BAF5D874-53AF-4BD7-843B-2AF5E5B51096&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ohline_B&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.phase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SinglePhaseKind.B&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;ohline_Loc&#39;&quot;</span>
+<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACLineSegmentPhase&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;64F4C2E5-4976-412A-9975-32561C4A58C4&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ohline_C&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.phase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SinglePhaseKind.C&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;ohline_Loc&#39;&quot;</span>
+<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
@@ -945,30 +825,45 @@
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;61916E4A-B45D-48CB-88E5-D101E54C6F0E&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quad_A&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.phase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SinglePhaseKind.A&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;quad_Loc&#39;&quot;</span>
+<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACLineSegmentPhase&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;461ADBEA-56C7-47FF-AA0F-9924CF296B4A&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quad_B&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.phase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SinglePhaseKind.B&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;quad_Loc&#39;&quot;</span>
+<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACLineSegmentPhase&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FC99A019-D6AE-4A1D-85DA-613397524D13&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quad_C&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.phase&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SinglePhaseKind.C&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;PowerSystemResource.Location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Location::&#39;quad_Loc&#39;&quot;</span>
+<span class="w">                  </span><span class="nt">&quot;ACLineSegmentPhase.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">]</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;LoadResponseCharacteristic&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Constant kVA&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LoadResponseCharacteristic&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0EBDA2D2-84CA-450B-B76D-6518BFFAB5B2&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant kVA&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.exponentModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.pConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantImpedance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.qConstantPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.pVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.qVoltageExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.pFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;LoadResponseCharacteristic.qFrequencyExponent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>

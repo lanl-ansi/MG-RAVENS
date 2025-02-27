@@ -314,6 +314,8 @@
 
 [ConnectivityNodeContainer_anyOfContainer](../_static/schema/ConnectivityNodeContainer_anyOfContainer.html){.external}
 
+[ConnectivityNodePointerArray](../_static/schema/ConnectivityNodePointerArray.html){.external}
+
 [Connector](../_static/schema/Connector.html){.external}
 
 [ConnectorContainer_Container](../_static/schema/ConnectorContainer_Container.html){.external}
@@ -425,6 +427,8 @@
 [DateTimeInterval](../_static/schema/DateTimeInterval.html){.external}
 
 [Day](../_static/schema/Day.html){.external}
+
+[Debug](../_static/schema/Debug.html){.external}
 
 [Decimal](../_static/schema/Decimal.html){.external}
 
@@ -609,6 +613,8 @@
 [ErpInvoiceKind](../_static/schema/ErpInvoiceKind.html){.external}
 
 [ErpInvoiceLineItemKind](../_static/schema/ErpInvoiceLineItemKind.html){.external}
+
+[Error](../_static/schema/Error.html){.external}
 
 [EstimatedCost](../_static/schema/EstimatedCost.html){.external}
 
@@ -804,6 +810,8 @@
 
 [InductancePerLength](../_static/schema/InductancePerLength.html){.external}
 
+[Info](../_static/schema/Info.html){.external}
+
 [InputSignalKind](../_static/schema/InputSignalKind.html){.external}
 
 [InspectionAnalogKind](../_static/schema/InspectionAnalogKind.html){.external}
@@ -892,11 +900,11 @@
 
 [LocationKind](../_static/schema/LocationKind.html){.external}
 
-[LocationPointer_anyOfContainer](../_static/schema/LocationPointer_anyOfContainer.html){.external}
-
 [LocationalMarginalPrices](../_static/schema/LocationalMarginalPrices.html){.external}
 
 [LocationalMarginalPricesContainer_Container](../_static/schema/LocationalMarginalPricesContainer_Container.html){.external}
+
+[LocationanyOfPointer_anyOfContainer](../_static/schema/LocationanyOfPointer_anyOfContainer.html){.external}
 
 [LookUpTableFunctionKind](../_static/schema/LookUpTableFunctionKind.html){.external}
 
@@ -952,9 +960,9 @@
 
 [MediumKind](../_static/schema/MediumKind.html){.external}
 
-[Message](../_static/schema/Message.html){.external}
-
 [MessageArray](../_static/schema/MessageArray.html){.external}
+
+[Message_anyOfContainer](../_static/schema/Message_anyOfContainer.html){.external}
 
 [MeterMultiplierKind](../_static/schema/MeterMultiplierKind.html){.external}
 
@@ -1100,7 +1108,7 @@
 
 [PerLengthImpedance](../_static/schema/PerLengthImpedance.html){.external}
 
-[PerLengthImpedancePointer_anyOfContainer](../_static/schema/PerLengthImpedancePointer_anyOfContainer.html){.external}
+[PerLengthImpedanceanyOfPointer_anyOfContainer](../_static/schema/PerLengthImpedanceanyOfPointer_anyOfContainer.html){.external}
 
 [PerLengthLineParameter](../_static/schema/PerLengthLineParameter.html){.external}
 
@@ -1764,6 +1772,8 @@
 
 [WEPStandardKind](../_static/schema/WEPStandardKind.html){.external}
 
+[Warning](../_static/schema/Warning.html){.external}
+
 [WaterLevel](../_static/schema/WaterLevel.html){.external}
 
 [WeatherCodeKind](../_static/schema/WeatherCodeKind.html){.external}
@@ -1790,9 +1800,9 @@
 
 [WireInfoContainer_Container](../_static/schema/WireInfoContainer_Container.html){.external}
 
-[WireInfoPointer_anyOfContainer](../_static/schema/WireInfoPointer_anyOfContainer.html){.external}
-
 [WireInfo_anyOfContainer](../_static/schema/WireInfo_anyOfContainer.html){.external}
+
+[WireInfoanyOfPointer_anyOfContainer](../_static/schema/WireInfoanyOfPointer_anyOfContainer.html){.external}
 
 [WireInsulationKind](../_static/schema/WireInsulationKind.html){.external}
 

@@ -4,7 +4,7 @@
 ```json
 {
   "Group": {
-    "EquipmentContainer": {
+    "ConnectivityNodeContainer": {
       "BehindTheMeter": {
         "IdentifiedObject.name": "BehindTheMeter",
         "IdentifiedObject.mRID": "52b9883e-5bf0-475a-8707-63a60506f7e8",
@@ -81,7 +81,7 @@
               "EnergyConsumer.q": 3000,
               "EnergyConsumer.customerCount": 1,
               "EnergyConsumer.phaseConnection": "PhaseShuntConnectionKind.Y",
-              "EnergyConsumer.grounded": "true",
+              "EnergyConsumer.grounded": true,
               "PowerSystemResource.Location": "Location::'l1_Loc'",
               "ConductingEquipment.Terminals": [
                 {
@@ -92,22 +92,7 @@
                   "Terminal.ConnectivityNode": "ConnectivityNode::'loadbus'"
                 }
               ],
-              "EnergyConsumer.LoadResponseCharacteristic": {
-                "Ravens.cimObjectType": "LoadResponseCharacteristic",
-                "IdentifiedObject.mRID": "0EBDA2D2-84CA-450B-B76D-6518BFFAB5B2",
-                "IdentifiedObject.name": "Constant kVA",
-                "LoadResponseCharacteristic.exponentModel": "false",
-                "LoadResponseCharacteristic.pConstantImpedance": 0,
-                "LoadResponseCharacteristic.pConstantCurrent": 0,
-                "LoadResponseCharacteristic.pConstantPower": 100,
-                "LoadResponseCharacteristic.qConstantImpedance": 0,
-                "LoadResponseCharacteristic.qConstantCurrent": 0,
-                "LoadResponseCharacteristic.qConstantPower": 100,
-                "LoadResponseCharacteristic.pVoltageExponent": 0,
-                "LoadResponseCharacteristic.qVoltageExponent": 0,
-                "LoadResponseCharacteristic.pFrequencyExponent": 0,
-                "LoadResponseCharacteristic.qFrequencyExponent": 0
-              },
+              "EnergyConsumer.LoadResponse": "LoadResponseCharacteristic::'Constant kVA'",
               "EnergyConsumer.EnergyConsumerPhase": [
                 {
                   "Ravens.cimObjectType": "EnergyConsumerPhase",
@@ -115,8 +100,7 @@
                   "IdentifiedObject.name": "l1_A",
                   "EnergyConsumerPhase.phase": "SinglePhaseKind.A",
                   "EnergyConsumerPhase.p": 6000,
-                  "EnergyConsumerPhase.q": 3000,
-                  "PowerSystemResource.Location": "Location::'l1_Loc'"
+                  "EnergyConsumerPhase.q": 3000
                 }
               ]
             },
@@ -129,8 +113,9 @@
               "EnergyConsumer.q": 3000,
               "EnergyConsumer.customerCount": 1,
               "EnergyConsumer.phaseConnection": "PhaseShuntConnectionKind.Y",
-              "EnergyConsumer.grounded": "true",
+              "EnergyConsumer.grounded": true,
               "PowerSystemResource.Location": "Location::'l2_Loc'",
+              "EnergyConsumer.LoadResponse": "LoadResponseCharacteristic::'Constant kVA'",
               "ConductingEquipment.Terminals": [
                 {
                   "Ravens.cimObjectType": "Terminal",
@@ -140,34 +125,6 @@
                   "Terminal.ConnectivityNode": "ConnectivityNode::'loadbus'"
                 }
               ],
-              "PowerSystemResource": {
-                "Equipment": {
-                  "ConductingEquipment": {
-                    "EnergyConnection": {
-                      "EnergyConsumer": {
-                        "l1": {
-                          "EnergyConsumer.LoadResponseCharacteristic": {
-                            "Ravens.cimObjectType": "LoadResponseCharacteristic",
-                            "IdentifiedObject.mRID": "0EBDA2D2-84CA-450B-B76D-6518BFFAB5B2",
-                            "IdentifiedObject.name": "Constant kVA",
-                            "LoadResponseCharacteristic.exponentModel": "false",
-                            "LoadResponseCharacteristic.pConstantImpedance": 0,
-                            "LoadResponseCharacteristic.pConstantCurrent": 0,
-                            "LoadResponseCharacteristic.pConstantPower": 100,
-                            "LoadResponseCharacteristic.qConstantImpedance": 0,
-                            "LoadResponseCharacteristic.qConstantCurrent": 0,
-                            "LoadResponseCharacteristic.qConstantPower": 100,
-                            "LoadResponseCharacteristic.pVoltageExponent": 0,
-                            "LoadResponseCharacteristic.qVoltageExponent": 0,
-                            "LoadResponseCharacteristic.pFrequencyExponent": 0,
-                            "LoadResponseCharacteristic.qFrequencyExponent": 0
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
               "EnergyConsumer.EnergyConsumerPhase": [
                 {
                   "Ravens.cimObjectType": "EnergyConsumerPhase",
@@ -175,8 +132,7 @@
                   "IdentifiedObject.name": "l2_B",
                   "EnergyConsumerPhase.phase": "SinglePhaseKind.B",
                   "EnergyConsumerPhase.p": 6000,
-                  "EnergyConsumerPhase.q": 3000,
-                  "PowerSystemResource.Location": "Location::'l2_Loc'"
+                  "EnergyConsumerPhase.q": 3000
                 }
               ]
             },
@@ -189,7 +145,7 @@
               "EnergyConsumer.q": 3000,
               "EnergyConsumer.customerCount": 1,
               "EnergyConsumer.phaseConnection": "PhaseShuntConnectionKind.Y",
-              "EnergyConsumer.grounded": "true",
+              "EnergyConsumer.grounded": true,
               "PowerSystemResource.Location": "Location::'l3_Loc'",
               "ConductingEquipment.Terminals": [
                 {
@@ -200,34 +156,7 @@
                   "Terminal.ConnectivityNode": "ConnectivityNode::'loadbus'"
                 }
               ],
-              "PowerSystemResource": {
-                "Equipment": {
-                  "ConductingEquipment": {
-                    "EnergyConnection": {
-                      "EnergyConsumer": {
-                        "l1": {
-                          "EnergyConsumer.LoadResponseCharacteristic": {
-                            "Ravens.cimObjectType": "LoadResponseCharacteristic",
-                            "IdentifiedObject.mRID": "0EBDA2D2-84CA-450B-B76D-6518BFFAB5B2",
-                            "IdentifiedObject.name": "Constant kVA",
-                            "LoadResponseCharacteristic.exponentModel": "false",
-                            "LoadResponseCharacteristic.pConstantImpedance": 0,
-                            "LoadResponseCharacteristic.pConstantCurrent": 0,
-                            "LoadResponseCharacteristic.pConstantPower": 100,
-                            "LoadResponseCharacteristic.qConstantImpedance": 0,
-                            "LoadResponseCharacteristic.qConstantCurrent": 0,
-                            "LoadResponseCharacteristic.qConstantPower": 100,
-                            "LoadResponseCharacteristic.pVoltageExponent": 0,
-                            "LoadResponseCharacteristic.qVoltageExponent": 0,
-                            "LoadResponseCharacteristic.pFrequencyExponent": 0,
-                            "LoadResponseCharacteristic.qFrequencyExponent": 0
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
+              "EnergyConsumer.LoadResponse": "LoadResponseCharacteristic::'Constant kVA'",
               "EnergyConsumer.EnergyConsumerPhase": [
                 {
                   "Ravens.cimObjectType": "EnergyConsumerPhase",
@@ -235,8 +164,7 @@
                   "IdentifiedObject.name": "l3_C",
                   "EnergyConsumerPhase.phase": "SinglePhaseKind.C",
                   "EnergyConsumerPhase.p": 6000,
-                  "EnergyConsumerPhase.q": 3000,
-                  "PowerSystemResource.Location": "Location::'l3_Loc'"
+                  "EnergyConsumerPhase.q": 3000
                 }
               ]
             }
@@ -274,24 +202,21 @@
                   "IdentifiedObject.mRID": "D17AD79B-4C9D-4145-96E5-3730A8B302B1",
                   "IdentifiedObject.name": "ohline_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
-                  "ACLineSegmentPhase.sequenceNumber": 1,
-                  "PowerSystemResource.Location": "Location::'ohline_Loc'"
+                  "ACLineSegmentPhase.sequenceNumber": 1
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
                   "IdentifiedObject.mRID": "BAF5D874-53AF-4BD7-843B-2AF5E5B51096",
                   "IdentifiedObject.name": "ohline_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
-                  "ACLineSegmentPhase.sequenceNumber": 2,
-                  "PowerSystemResource.Location": "Location::'ohline_Loc'"
+                  "ACLineSegmentPhase.sequenceNumber": 2
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
                   "IdentifiedObject.mRID": "64F4C2E5-4976-412A-9975-32561C4A58C4",
                   "IdentifiedObject.name": "ohline_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
-                  "ACLineSegmentPhase.sequenceNumber": 3,
-                  "PowerSystemResource.Location": "Location::'ohline_Loc'"
+                  "ACLineSegmentPhase.sequenceNumber": 3
                 }
               ]
             },
@@ -325,30 +250,45 @@
                   "IdentifiedObject.mRID": "61916E4A-B45D-48CB-88E5-D101E54C6F0E",
                   "IdentifiedObject.name": "quad_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
-                  "ACLineSegmentPhase.sequenceNumber": 1,
-                  "PowerSystemResource.Location": "Location::'quad_Loc'"
+                  "ACLineSegmentPhase.sequenceNumber": 1
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
                   "IdentifiedObject.mRID": "461ADBEA-56C7-47FF-AA0F-9924CF296B4A",
                   "IdentifiedObject.name": "quad_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
-                  "ACLineSegmentPhase.sequenceNumber": 2,
-                  "PowerSystemResource.Location": "Location::'quad_Loc'"
+                  "ACLineSegmentPhase.sequenceNumber": 2
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
                   "IdentifiedObject.mRID": "FC99A019-D6AE-4A1D-85DA-613397524D13",
                   "IdentifiedObject.name": "quad_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
-                  "ACLineSegmentPhase.sequenceNumber": 3,
-                  "PowerSystemResource.Location": "Location::'quad_Loc'"
+                  "ACLineSegmentPhase.sequenceNumber": 3
                 }
               ]
             }
           }
         }
       }
+    }
+  },
+  "LoadResponseCharacteristic": {
+    "Constant kVA": {
+      "Ravens.cimObjectType": "LoadResponseCharacteristic",
+      "IdentifiedObject.mRID": "0EBDA2D2-84CA-450B-B76D-6518BFFAB5B2",
+      "IdentifiedObject.name": "Constant kVA",
+      "LoadResponseCharacteristic.exponentModel": false,
+      "LoadResponseCharacteristic.pConstantImpedance": 0,
+      "LoadResponseCharacteristic.pConstantCurrent": 0,
+      "LoadResponseCharacteristic.pConstantPower": 100,
+      "LoadResponseCharacteristic.qConstantImpedance": 0,
+      "LoadResponseCharacteristic.qConstantCurrent": 0,
+      "LoadResponseCharacteristic.qConstantPower": 100,
+      "LoadResponseCharacteristic.pVoltageExponent": 0,
+      "LoadResponseCharacteristic.qVoltageExponent": 0,
+      "LoadResponseCharacteristic.pFrequencyExponent": 0,
+      "LoadResponseCharacteristic.qFrequencyExponent": 0
     }
   }
 }

@@ -13,12 +13,12 @@
     <meta charset="utf-8"/>
         
     
-    <title>Message</title>
+    <title>Warning</title>
 </head>
 <body onload="anchorOnLoad();" id="root">
 
-    <div class="breadcrumbs"></div> <h1>Message</h1><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Class used to communicate generic messages from software to users, e.g. errors, warnings, etc.</p>
+    <div class="breadcrumbs"></div> <h1>Warning</h1><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Generalization of Message to communicate Warnings.</p>
 </span> <span class="badge badge-info no-additional">No Additional Properties</span>
         
 
@@ -49,7 +49,7 @@
         </svg>
     <a href="#MessageApplication" onclick="anchorLink('MessageApplication')">Message.Application</a></div><h4>ApplicationPointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>Pointer to Application object</p>
-</span>
+</span><span class="pattern-value" id="MessageApplication_pattern">Must match regular expression: <code>^Application::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -83,7 +83,7 @@
         </svg>
     <a href="#MessageAlgorithm" onclick="anchorLink('MessageAlgorithm')">Message.Algorithm</a></div><h4>AlgorithmPointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>Pointer to Algorithm object</p>
-</span>
+</span><span class="pattern-value" id="MessageAlgorithm_pattern">Must match regular expression: <code>^Algorithm::&#39;(.+)&#39;$</code></span>
         
 
         
@@ -187,7 +187,7 @@
 <span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
 </span><div class="enum-value" id="RavenscimObjectType_enum">
             <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"Message"</li></ul>
+            <ul class="list-group"><li class="list-group-item enum-item">"Warning"</li></ul>
             </div>
         
 
@@ -339,6 +339,6 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 </div>
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-02-26 at 20:43:41 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-02-27 at 19:59:36 +0000</p>
     </footer></body>
 </html>

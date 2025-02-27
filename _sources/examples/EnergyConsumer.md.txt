@@ -27,8 +27,8 @@
       "Ravens.cimObjectType": "ConnectivityNode",
       "IdentifiedObject.mRID": "_7BDEF197-D8A0-4A25-AB61-BD1E7DB2DFF0",
       "IdentifiedObject.name": "671",
-      "ConnectivityNode.TopologicalNode": "#_E55786F7-7EA2-4642-8BD3-D78EA3B58628",
-      "ConnectivityNode.OperationalLimitSet": "#_C7A0C5E1-D50C-4537-AB7E-65E28B298C87"
+      "ConnectivityNode.TopologicalNode": "TopologicalNode::'#_E55786F7-7EA2-4642-8BD3-D78EA3B58628'",
+      "ConnectivityNode.OperationalLimitSet": "OperationalLimitSet::'#_C7A0C5E1-D50C-4537-AB7E-65E28B298C87'"
     }
   },
   "BaseVoltage": {

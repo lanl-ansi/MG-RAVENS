@@ -213,15 +213,6 @@
         
           <li class="toctree-l1 ">
             
-              <a href="CommunityFacilities.html" class="reference internal ">CommunityFacilities</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="Conductor.html" class="reference internal ">Conductor</a>
             
 
@@ -232,15 +223,6 @@
           <li class="toctree-l1 ">
             
               <a href="ConnectivityNodes.html" class="reference internal ">ConnectivityNodes</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="DieselFuelPrice.html" class="reference internal ">DieselFuelPrice</a>
             
 
             
@@ -267,15 +249,6 @@
         
           <li class="toctree-l1 ">
             
-              <a href="EnergyMeasurements.html" class="reference internal ">EnergyMeasurements</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="EnergySource.html" class="reference internal ">EnergySource</a>
             
 
@@ -285,7 +258,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="EquivalentNetwork.html" class="reference internal ">EquivalentNetwork</a>
+              <a href="Faults.html" class="reference internal ">Faults</a>
             
 
             
@@ -294,7 +267,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="Faults.html" class="reference internal ">Faults</a>
+              <a href="FossilFuelPrices.html" class="reference internal ">FossilFuelPrices</a>
             
 
             
@@ -339,25 +312,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="NaturalGasFuelPrice.html" class="reference internal ">NaturalGasFuelPrice</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="OperationalLimitSets.html" class="reference internal ">OperationalLimitSets</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="OtherFossilFuelPrice.html" class="reference internal ">OtherFossilFuelPrice</a>
             
 
             
@@ -623,6 +578,12 @@
   <section id="batteryunit">
 <h1>BatteryUnit<a class="headerlink" href="#batteryunit" title="Link to this heading">¶</a></h1>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;battery_bus&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery_bus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cabbb7b1-d3af-4c4f-8112-f33a4298bcb5&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;PowerSystemResource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;Equipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;ConductingEquipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -632,13 +593,21 @@
 <span class="w">              </span><span class="nt">&quot;battery&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8a611147-1eb3-4cc6-9df8-4b49873717b1&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PowerElectronicsUnit&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PowerElectronicsConnection&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.PowerElectronicsUnit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e7dea97b-80be-4f5d-9c3d-f7f6e71b188c&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery_unit1&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BatteryUnit&quot;</span><span class="p">,</span>
 <span class="w">                  </span><span class="nt">&quot;BatteryUnit.ratedE&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span>
-<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;ConductingEquipment.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery_terminal&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6e99593f-d8c5-4858-92fc-8608ade4d78c&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;battery_bus&#39;&quot;</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
 <span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">}</span>

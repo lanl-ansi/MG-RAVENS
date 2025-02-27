@@ -41,6 +41,7 @@
         "EnergyConnection": {
           "EnergyConsumer": {
             "House1": {
+              "Ravens.cimObjectType": "EnergyConsumer",
               "IdentifiedObject.name": "House1",
               "IdentifiedObject.mRID": "de6d0304-0dd3-41c6-8092-ea066156685f",
               "EnergyConsumer.p": 0.5,
@@ -57,6 +58,7 @@
               ]
             },
             "House2": {
+              "Ravens.cimObjectType": "EnergyConsumer",
               "IdentifiedObject.name": "House2",
               "IdentifiedObject.mRID": "63a1a21d-a9b7-4107-8271-7f39e752af48",
               "EnergyConsumer.p": 0.5,
@@ -73,6 +75,7 @@
               ]
             },
             "Factory1": {
+              "Ravens.cimObjectType": "EnergyConsumer",
               "IdentifiedObject.name": "Factory1",
               "IdentifiedObject.mRID": "b67383f0-3344-45f8-ae77-16f8b3d38990",
               "EnergyConsumer.p": 1.0,
@@ -83,11 +86,12 @@
                   "Ravens.cimObjectType": "Terminal",
                   "IdentifiedObject.mRID": "f0abf791-fb14-4561-9535-c7ba3fd3c32d",
                   "IdentifiedObject.name": "Factory1_T1",
-                  "Terminal.ConnectivityNode": "ConnectivityNode::'industrialPark"
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'industrialPark'"
                 }
               ]
             },
             "Factory2": {
+              "Ravens.cimObjectType": "EnergyConsumer",
               "IdentifiedObject.name": "Factory2",
               "IdentifiedObject.mRID": "1f5117a0-2b2c-46fc-86ba-89cba194d74f",
               "EnergyConsumer.p": 1.0,
@@ -98,7 +102,7 @@
                   "Ravens.cimObjectType": "Terminal",
                   "IdentifiedObject.mRID": "f0b6e2c0-9b22-4915-bc13-70efce265fda",
                   "IdentifiedObject.name": "Factory2_T1",
-                  "Terminal.ConnectivityNode": "ConnectivityNode::'industrialPark"
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'industrialPark'"
                 }
               ]
             }
@@ -111,12 +115,12 @@
     "ResidentialLoadForecast": {
       "Ravens.cimObjectType": "EnergyConsumerSchedule",
       "IdentifiedObject.mRID": "4771e5b2-8924-4a76-ac17-47f860e41149",
-      "BasicIntervalSchedule.value1Unit": "W",
-      "BasicIntervalSchedule.value1Multiplier": "k",
-      "BasicIntervalSchedule.value2Unit": "VAr",
-      "BasicIntervalSchedule.value2Multiplier": "k",
+      "BasicIntervalSchedule.value1Unit": "UnitSymbol.W",
+      "BasicIntervalSchedule.value1Multiplier": "UnitMultiplier.k",
+      "BasicIntervalSchedule.value2Unit": "UnitSymbol.VAr",
+      "BasicIntervalSchedule.value2Multiplier": "UnitMultiplier.k",
       "EnergyConsumerSchedule.timeStep": 3600,
-      "EnergyConsumerSchedule.startDay": "Monday",
+      "EnergyConsumerSchedule.startDay": "Day.Monday",
       "EnergyConsumerSchedule.RegularTimePoints": [
         {
           "RegularTimePoint.sequenceNumber": 1,
@@ -43923,10 +43927,10 @@
     "IndustrialLoadForecast": {
       "Ravens.cimObjectType": "EnergyConsumerSchedule",
       "IdentifiedObject.mRID": "4406d3ce-8b10-4c88-8c69-342d2fc5ab7e",
-      "BasicIntervalSchedule.value1Unit": "W",
-      "BasicIntervalSchedule.value1Multiplier": "k",
-      "BasicIntervalSchedule.value2Unit": "VAr",
-      "BasicIntervalSchedule.value2Multiplier": "k",
+      "BasicIntervalSchedule.value1Unit": "UnitSymbol.W",
+      "BasicIntervalSchedule.value1Multiplier": "UnitMultiplier.k",
+      "BasicIntervalSchedule.value2Unit": "UnitSymbol.VAr",
+      "BasicIntervalSchedule.value2Multiplier": "UnitMultiplier.k",
       "EnergyConsumerSchedule.startDate": "2024-01-01",
       "EnergyConsumerSchedule.timeStep": 3600,
       "EnergyConsumerSchedule.RegularTimePoints": [
