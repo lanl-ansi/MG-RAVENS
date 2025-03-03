@@ -15,12 +15,6 @@
       "description": "Pointer to OperationalLimitSet object",
       "pattern": "^OperationalLimitSet::'(.+)'$"
     },
-    "ConnectivityNode.ConnectivityNodeContainer": {
-      "type": "string",
-      "title": "ConnectivityNodeContainerPointer",
-      "description": "Pointer to ConnectivityNodeContainer object",
-      "pattern": "^ConnectivityNodeContainer::'(.+)'$"
-    },
     "ConnectivityNode.SvVoltage": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvVoltageArray.json"
     },
