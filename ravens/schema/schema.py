@@ -30,6 +30,8 @@ class RavensSchema:
 
         self.schema = self.build_schema_from_map(self.schema_template.template)
         self.schema["$defs"] = self.build_definitions(self.uml_data)
+        self.schema["$id"] = f"{base_id_uri}/Root.json"
+        self.schema["$schema"] = _JSON_SCHEMA_URL
 
         self.schemas = {}
         self.base_id_uri = base_id_uri
