@@ -14,11 +14,11 @@
         "DesignAlgorithmProperties.energyAvailabilityObjective": 100.0,
         "DesignAlgorithmProperties.purchaseCostMax": {
           "value": 10000.0,
-          "unit": "USD"
+          "unit": "Currency.USD"
         },
         "DesignAlgorithmProperties.purchaseCostObjective": {
           "value": 9000.0,
-          "unit": "USD"
+          "unit": "Currency.USD"
         },
         "AlgorithmProperties.workingDirectory": "/tmp/a7880c4d-d916-48b3-b45c-85cbc956243e"
       }
