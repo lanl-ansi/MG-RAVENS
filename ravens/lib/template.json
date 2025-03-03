@@ -2969,6 +2969,18 @@
                                 "anyOf": [
                                   {
                                     "$objectType": "reference",
+                                    "$objectId": "WireInfo",
+                                    "type": "string",
+                                    "$referencePath": "AssetInfo/WireInfo"
+                                  },
+                                  {
+                                    "$objectType": "reference",
+                                    "$objectId": "CableInfo",
+                                    "type": "string",
+                                    "$referencePath": "AssetInfo/WireInfo"
+                                  },
+                                  {
+                                    "$objectType": "reference",
                                     "$objectId": "OverheadWireInfo",
                                     "type": "string",
                                     "$referencePath": "AssetInfo/WireInfo"
@@ -2998,15 +3010,33 @@
                                 "$objectId": "WireInfo",
                                 "anyOf": [
                                   {
-                                    "type": "string",
                                     "$objectType": "reference",
-                                    "$objectId": "CableInfo",
+                                    "$objectId": "WireInfo",
+                                    "type": "string",
                                     "$referencePath": "AssetInfo/WireInfo"
                                   },
                                   {
+                                    "$objectType": "reference",
+                                    "$objectId": "CableInfo",
                                     "type": "string",
+                                    "$referencePath": "AssetInfo/WireInfo"
+                                  },
+                                  {
                                     "$objectType": "reference",
                                     "$objectId": "OverheadWireInfo",
+                                    "type": "string",
+                                    "$referencePath": "AssetInfo/WireInfo"
+                                  },
+                                  {
+                                    "$objectType": "reference",
+                                    "$objectId": "TapeShieldCableInfo",
+                                    "type": "string",
+                                    "$referencePath": "AssetInfo/WireInfo"
+                                  },
+                                  {
+                                    "$objectType": "reference",
+                                    "$objectId": "ConcentricNeutralCableInfo",
+                                    "type": "string",
                                     "$referencePath": "AssetInfo/WireInfo"
                                   }
                                 ]
@@ -4518,7 +4548,7 @@
                           },
                           "PowerSystemResource.AssetDatasheet": {
                             "$objectType": "reference",
-                            "$objectId": "PowerTransformerInfo",
+                            "$objectId": "TransformerTankInfo",
                             "$referencePath": "AssetInfo/PowerTransformerInfo/TransformerTankInfo",
                             "type": "string"
                           }
