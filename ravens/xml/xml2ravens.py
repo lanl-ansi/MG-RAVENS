@@ -1,4 +1,5 @@
 import json
+from multiprocessing import Value
 import pathlib
 import re
 import traceback
@@ -519,7 +520,13 @@ class RavensImport:
                             else:
                                 raise KeyError
 
-                            value = self._convert_with_schema(o.value, attr_type)
+                            try:
+                                value = self._convert_with_schema(o.value, attr_type)
+                            except KeyError:
+                                value = self._convert_with_literal_eval(o.value)
+                            except ValueError as msg:
+                                raise ValueError(f"Expected data of type '{attr_type}' for '{pn}' on '{data['Ravens.cimObjectType']}' object: ''{msg}''")
+
                         except KeyError:
                             value = self._convert_with_literal_eval(o.value)
                     else:
