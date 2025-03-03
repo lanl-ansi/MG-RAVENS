@@ -8,11 +8,8 @@ on:
     branches:
       - develop
 
-env:
-  PYTHON_VERSION: '3.13'
-
 jobs:
-  build-docs:
+  unit-tests:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -20,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '$PYTHON_VERSION'
+        python-version: '3.13'
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
