@@ -2217,6 +2217,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -2296,6 +2302,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -2359,6 +2371,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -2446,6 +2464,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -2654,6 +2678,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -2717,6 +2747,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -2849,6 +2885,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -3013,6 +3055,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -3371,6 +3419,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -3467,6 +3521,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -3563,6 +3623,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -3659,6 +3725,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -3755,6 +3827,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -3851,6 +3929,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -3947,6 +4031,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -4043,6 +4133,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -4139,6 +4235,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
@@ -4235,6 +4337,12 @@
                                   "$arrayPosition": null,
                                   "properties": {}
                                 }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
                               }
                             }
                           }
