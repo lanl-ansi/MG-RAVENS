@@ -1383,8 +1383,8 @@ class DssExport(object):
         node = self.build_cim_obj("ShortCircuitTest", name=f"{xfmrcode.Name}_{seq}")
         self.add_triple(node, "ShortCircuitTest.EnergisedEnd", subject_uris[i])
         self.add_triple(node, "ShortCircuitTest.GroundedEnds", subject_uris[j])
-        self.add_triple(node, "ShortCircuitTest.energisedEndStep", xfmrcode.Taps[i])
-        self.add_triple(node, "ShortCircuitTest.groundedEndStep", xfmrcode.Taps[j])
+        self.add_triple(node, "ShortCircuitTest.energisedEndStep", int(xfmrcode.Taps[i]))
+        self.add_triple(node, "ShortCircuitTest.groundedEndStep", int(xfmrcode.Taps[j]))
 
         test_kva = xfmrcode.kVAs[0]
         Zbase = xfmrcode.kVs[i] ** 2 / test_kva * 1000.0
@@ -1467,8 +1467,8 @@ class DssExport(object):
             self.add_triple(rtc_node, "RatioTapChanger.TransformerEnd", self.transformer_end_uris[f"Transformer={reg.Transformer.Name}={reg.TapWinding}"])
             self.add_triple(rtc_node, "TapChanger.TapChangerControl", tcc_node)
             self.add_triple(rtc_node, "RatioTapChanger.stepVoltageIncrement", 100.0 * reg.Transformer.Taps[reg.TapWinding - 1])
-            self.add_triple(rtc_node, "TapChanger.highStep", reg.Transformer.NumTaps / 2)
-            self.add_triple(rtc_node, "TapChanger.lowStep", -reg.Transformer.NumTaps / 2)
+            self.add_triple(rtc_node, "TapChanger.highStep", int(reg.Transformer.NumTaps[reg.TapWinding - 1] / 2))
+            self.add_triple(rtc_node, "TapChanger.lowStep", -int(reg.Transformer.NumTaps[reg.TapWinding - 1] / 2))
             self.add_triple(rtc_node, "TapChanger.neutralStep", 0)
             self.add_triple(rtc_node, "TapChanger.normalStep", 0)
             self.add_triple(rtc_node, "TapChanger.neutralU", v1 * reg.PTRatio)
