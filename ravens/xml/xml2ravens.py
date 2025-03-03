@@ -193,9 +193,15 @@ class MultiResolvedPath:
 
 
 class RavensImport:
-    def __init__(self, cim_profile_path: pathlib.PosixPath, schema_template: SchemaTemplate | None = None, prune_unncessary: bool = False, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, schema: RavensSchema | None = None):
-        g = Graph()
-        self.rdf = g.parse(cim_profile_path, format="application/rdf+xml", publicID="urn:uuid:")
+    def __init__(self, cim_profile_path: pathlib.PosixPath | None = None, schema_template: SchemaTemplate | None = None, prune_unncessary: bool = False, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, schema: RavensSchema | None = None, cim_profile_rdf: Graph | None = None):
+        try:
+            if cim_profile_rdf is not None:
+                self.rdf = cim_profile_rdf
+            else:
+                g = Graph()
+                self.rdf = g.parse(cim_profile_path, format="application/rdf+xml", publicID="urn:uuid:")
+        except Exception as msg:
+            raise Exception(f"At least one of `cim_profile_path` or `cim_profile_rdf` must not be None: {msg}")
 
         self.cim_ns = Namespace(cim_namespace)
         self.rdf_type = URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#type")
