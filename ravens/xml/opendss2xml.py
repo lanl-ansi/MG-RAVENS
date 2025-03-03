@@ -402,6 +402,10 @@ class DssExport(object):
             return URIRef(self.uuid_map[f"ConnectivityNode.{bus}"])
 
     def _add_Terminal(self, connecting_node: URIRef, element: object, bus: str = None, n_terminal: int = 1, phases="ABC"):
+        _phases = list(phases)
+        _phases.sort()
+        phases = "".join(_phases)
+
         node = self.build_cim_obj("Terminal", name=f"{element.Name}_T{n_terminal}")
 
         self.add_triple(node, "ACDCTerminal.sequenceNumber", n_terminal)
@@ -890,10 +894,10 @@ class DssExport(object):
         self.add_triple(node, "LinearShuntCompensator.bPerSection", b[0])
         self.add_triple(node, "LinearShuntCompensator.gPerSection", 0.0)
         if cap.Conn == 0:
-            self.add_triple(node, "ShuntCompensator.phaseConnection", self.cim[f"ShuntConnectionKind.Y"])
+            self.add_triple(node, "ShuntCompensator.phaseConnection", self.cim[f"PhaseShuntConnectionKind.Y"])
             self.add_triple(node, "LinearShuntCompensator.b0PerSection", b[0])
         else:
-            self.add_triple(node, "ShuntCompensator.phaseConnection", self.cim[f"ShuntConnectionKind.D"])
+            self.add_triple(node, "ShuntCompensator.phaseConnection", self.cim[f"PhaseShuntConnectionKind.D"])
             self.add_triple(node, "LinearShuntCompensator.grounded", False)
             self.add_triple(node, "LinearShuntCompensator.b0PerSection", 0.0)
 
