@@ -1,10 +1,18 @@
+import glob
 import pytest
 
-from ravens.schema.validate import RavensValidator
+from ravens.schema import RavensValidator, RavensSchema
 
+validator = RavensValidator(schema=RavensSchema())
 
-def test_examples():
-    validator = RavensValidator()
+@pytest.mark.parametrize("file", glob.glob("examples/schema/*.json"))
+def test_example(file):
+    validator.validate_file(file)
+    # Test JSON data file is not empty
+    assert validator.data
 
-    for file in glob.glob("examples/schema/*.json"):
-        pass
+    # Test that there is a result
+    assert validator.result is not None
+
+    # Test that result is valid
+    assert validator.result.valid
