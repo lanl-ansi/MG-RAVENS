@@ -575,7 +575,7 @@
                   "items": {
                     "type": "string",
                     "$objectType": "reference",
-                    "$objectId": "EnergyConsumer",
+                    "$objectId": "ConformLoad",
                     "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
                   }
                 },
@@ -599,7 +599,7 @@
                   "items": {
                     "type": "string",
                     "$objectType": "reference",
-                    "$objectId": "EnergyConsumer",
+                    "$objectId": "NonConformLoad",
                     "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
                   }
                 },
