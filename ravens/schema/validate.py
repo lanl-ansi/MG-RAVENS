@@ -7,6 +7,7 @@ from ravens.data import _RAVENS_SCHEMA_BASE_URL
 from ravens.schema import RavensSchema
 from ravens.logging import logger
 
+
 class RavensValidator:
     def __init__(self, schema_base_uri: str = _RAVENS_SCHEMA_BASE_URL, schema_url: str | None = None, local_path_to_schema: pathlib.PosixPath | None = None, schema: RavensSchema | None = None) -> None:
         self.catalog = create_catalog("2020-12")
@@ -71,7 +72,7 @@ if __name__ == "__main__":
     validator = RavensValidator(schema_base_uri=f"file://{os.getcwd()}/out/schema/separate/", local_path_to_schema=schema_path)
 
     # geneate schema from scratch
-    validator = RavensValidator(schema = RavensSchema())
+    validator = RavensValidator(schema=RavensSchema())
 
     # Validation example
     data_dir = pathlib.Path(os.getcwd()) / "examples/schema"
