@@ -712,6 +712,8 @@
 
 [GenUnitOpSchedule](../_static/schema/GenUnitOpSchedule.html){.external}
 
+[GeneratingUnit](../_static/schema/GeneratingUnit.html){.external}
+
 [GeneratingUnit_anyOfContainer](../_static/schema/GeneratingUnit_anyOfContainer.html){.external}
 
 [GeneratorControlMode](../_static/schema/GeneratorControlMode.html){.external}
@@ -1571,6 +1573,10 @@
 [SynchronousMachineModelKind](../_static/schema/SynchronousMachineModelKind.html){.external}
 
 [SynchronousMachineOperatingMode](../_static/schema/SynchronousMachineOperatingMode.html){.external}
+
+[SynchronousMachinePhase](../_static/schema/SynchronousMachinePhase.html){.external}
+
+[SynchronousMachinePhaseArray](../_static/schema/SynchronousMachinePhaseArray.html){.external}
 
 [SystemType](../_static/schema/SystemType.html){.external}
 
