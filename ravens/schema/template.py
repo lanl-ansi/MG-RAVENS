@@ -105,7 +105,7 @@ class SchemaTemplate:
 
                     if "anyOf" in v:
                         data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "anyOfPointer"
-                        for (i, item) in enumerate(v["anyOf"]):
+                        for i, item in enumerate(v["anyOf"]):
                             _obj = self.uml_data.objects[(self.uml_data.objects["Name"] == item["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
                             if "title" not in item:
                                 data["properties"][k]["anyOf"][i]["title"] = html.unescape(str(_obj.Name).strip()) + "Pointer"
@@ -126,7 +126,10 @@ class SchemaTemplate:
                             data["properties"][k]["items"]["title"] = html.unescape(str(obj.Name).strip()) + "Pointer"
                             data["properties"][k]["items"]["description"] = f"Pointer to {html.unescape(str(obj.Name).strip())} object"
                         else:
-                            obj = self.uml_data.objects[(self.uml_data.objects["Name"] == v["items"].get("$objectId", k)) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                            try:
+                                obj = self.uml_data.objects[(self.uml_data.objects["Name"] == v["items"].get("$objectId", k)) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                            except Exception as msg:
+                                raise Exception(f"Cannot find object '{v['items'].get('$objectId', k)}' in UML: {msg}")
 
                             data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "Array"
                             data["properties"][k]["description"] = f"Array of {html.unescape(str(obj.Name).strip())} objects"
