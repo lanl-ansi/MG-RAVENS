@@ -1,3 +1,4 @@
+from curses.ascii import alt
 import math
 import pathlib
 
@@ -11,8 +12,10 @@ from rdflib.namespace import Namespace
 from rdflib.term import URIRef, Literal
 from rdflib import Graph, RDF
 
+from ravens.logging import logger
 
-def parse_phase_str(bus: str, n_phases: int, kv_base: float = None, is_delta: bool = False) -> str:
+
+def parse_phase_str(bus: str, n_phases: int, kv_base: float | None = None, is_delta: bool = False) -> str | None:
     phase_str = ""
 
     if is_delta:
@@ -70,7 +73,7 @@ def parse_phase_str(bus: str, n_phases: int, kv_base: float = None, is_delta: bo
         return phase_str
 
 
-def parse_ordered_phase_str(bus: str, n_phases: int, kv_base: float = None) -> str:
+def parse_ordered_phase_str(bus: str, n_phases: int, kv_base: float | None = None) -> str:
     is_secondary = False
     if kv_base is not None:
         if (n_phases == 2 and kv_base < 0.25) or (n_phases == 1 and kv_base < 0.13):
@@ -114,19 +117,20 @@ class TransformerBank(object):
 
         self.pd_unit = None
 
-    def add_Transformer(self, tr: object):
+    def add_Transformer(self, tr: altdss.Transformer):
         self.pd_unit = tr
         if tr.Windings > self.n_windings:
             self.n_windings = tr.Windings
 
         for i in range(tr.Windings):
-            phases = parse_phase_str(tr.Buses[i], n_phases=tr.Phases, kv_base=tr.kVs[i], is_delta=tr.Conns[i] != 0)
-            if "A" in phases:
-                self.phase_a[i] = 1
-            if "B" in phases:
-                self.phase_b[i] = 1
-            if "C" in phases:
-                self.phase_c[i] = 1
+            phases: str | None = parse_phase_str(tr.Buses[i], n_phases=tr.Phases, kv_base=tr.kVs[i], is_delta=tr.Conns[i] != 0)
+            if phases is not None:
+                if "A" in phases:
+                    self.phase_a[i] = 1
+                if "B" in phases:
+                    self.phase_b[i] = 1
+                if "C" in phases:
+                    self.phase_c[i] = 1
 
             self.connections[i] = tr.Conns[i]
 
@@ -137,7 +141,7 @@ class TransformerBank(object):
                 if self.connections[i] < 1:
                     self.ground[i] = 1
 
-    def add_AutoTransformer(self, tr: object):
+    def add_AutoTransformer(self, tr: altdss.AutoTrans):
         self.pd_unit = tr
         self.b_auto = True
 
@@ -183,9 +187,9 @@ class Dummy(object):
 class TransformerInfo:
     def __init__(self, max_wdg: int):
         self.max_wdg = 0
-        self.wdg_list = None
-        self.core_list = None
-        self.mesh_list = None
+        self.wdg_list: list[Dummy] = []
+        self.core_list: list[Dummy] = []
+        self.mesh_list: list[Dummy] = []
 
         self.set_max_wdg(max_wdg)
 
@@ -256,7 +260,7 @@ class DssExport(object):
         self.cap_map = {}
 
         # Transformer specific properties
-        self.transformer_info = None
+        self.transformer_info: TransformerInfo | None = None
         self.transformer_banks = {}
         self.xfmrcodes = {}
         self.xfmrcode_uris = {}
@@ -286,11 +290,11 @@ class DssExport(object):
         self.graph.serialize(path, max_depth=1, format="pretty-xml")
 
     @staticmethod
-    def _to_meters(units: str):
+    def _to_meters(units: str | altdss.LengthUnit):
         return {"mi": 1609.3, "kft": 304.8, "km": 1000.0, "m": 1.0, "ft": 0.3048, "in": 0.0254, "cm": 0.01, "mm": 0.001}.get(units, 1.0)
 
     @staticmethod
-    def _to_per_meter(units: str):
+    def _to_per_meter(units: str | altdss.LengthUnit):
         return 1.0 / {"mi": 1609.3, "kft": 304.8, "km": 1000.0, "m": 1.0, "ft": 0.3048, "in": 0.0254, "cm": 0.01, "mm": 0.001}.get(units, 1.0)
 
     @staticmethod
@@ -308,8 +312,11 @@ class DssExport(object):
         return is_grounded
 
     @staticmethod
-    def _fix_phases(phases: str):
-        if phases.startswith("s"):
+    def _fix_phases(phases: str | None):
+        if phases is None:
+            return phases
+
+        elif phases.startswith("s"):
             if phases == "s12":
                 phases = ["s1", "s2"]
             else:
@@ -317,7 +324,7 @@ class DssExport(object):
 
         return phases
 
-    def build_cim_obj(self, rdf_type: str, mrid: str = None, name: str = None, skip_mrid: bool = False) -> URIRef:
+    def build_cim_obj(self, rdf_type: str, mrid: str | None = None, name: str | None = None, skip_mrid: bool = False) -> URIRef:
         if mrid is None:
             mrid = str(uuid4())
         node = URIRef(mrid)
@@ -353,7 +360,7 @@ class DssExport(object):
         self.add_triple(node, "IEC61970CIMVersion.version", "IEC61970CIM100")
         self.add_triple(node, "IEC61970CIMVersion.date", "2019-04-01")
 
-    def _add_Location(self, obj_name: str, x_coords: list[float], y_coords: list[float], coord_system: str = None):
+    def _add_Location(self, obj_name: str, x_coords: list[float], y_coords: list[float], coord_system: str | None = None):
         # TODO: crsUrn
         if f"Location.{obj_name}_Location" not in self.uuid_map:
             node = self.build_cim_obj("Location", name=f"{obj_name}_Location")
@@ -401,7 +408,7 @@ class DssExport(object):
         else:
             return URIRef(self.uuid_map[f"ConnectivityNode.{bus}"])
 
-    def _add_Terminal(self, connecting_node: URIRef, element: object, bus: str = None, n_terminal: int = 1, phases="ABC"):
+    def _add_Terminal(self, connecting_node: URIRef, element, bus: str | None = None, n_terminal: int = 1, phases="ABC"):
         _phases = list(phases)
         _phases.sort()
         phases = "".join(_phases)
@@ -418,7 +425,7 @@ class DssExport(object):
 
         return node
 
-    def _add_OperationalLimitSet(self, subject_uri: URIRef, limit_type: str, normal_value: float, norm_max: float, norm_min: float = None, emerg_max: float = None, emerg_min: float = None, bus: str = None):
+    def _add_OperationalLimitSet(self, subject_uri: URIRef, limit_type: str, normal_value: float, norm_max: float, norm_min: float | None = None, emerg_max: float | None = None, emerg_min: float | None = None, bus: str | None = None):
         emerg = False
         if limit_type == "Voltage":
             emerg = emerg_min is not None and emerg_max is not None
@@ -433,7 +440,7 @@ class DssExport(object):
                 name += f"_{emerg_max}"
         else:
             # TODO: ActivePower, ApparentPower Limit Types
-            print("OperationalLimitSet with type of '{limit_type}' is not yet supported.")
+            logger.warning("OperationalLimitSet with type of '{limit_type}' is not yet supported.")
 
         if f"OperationalLimitSet.{name}" not in self.uuid_map:
             node = self.build_cim_obj("OperationalLimitSet", name=name)
@@ -504,7 +511,7 @@ class DssExport(object):
         for vsource in self.dss.Vsource:
             self._add_EnergySource(vsource)
 
-    def _add_EnergySource(self, vsource: object):
+    def _add_EnergySource(self, vsource: altdss.Vsource):
         node = self.build_cim_obj("EnergySource", name=vsource.Name)
 
         self.add_triple(node, "EnergySource.nominalVoltage", vsource.BasekV * 1000.0)
@@ -540,7 +547,7 @@ class DssExport(object):
             else:
                 self._add_ACLineSegment(line)
 
-    def _add_ACLineSegment(self, line: object):
+    def _add_ACLineSegment(self, line: altdss.Line):
         node = self.build_cim_obj("ACLineSegment", name=line.Name)
         self.add_triple(node, "Equipment.inService", line.Enabled)
         self._add_BaseVoltage(node, line.Bus1)
@@ -579,7 +586,7 @@ class DssExport(object):
             self.terminal_map[(type(line), line.Name, i + 1)] = terminal_uri
             self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=line.NormAmps, norm_max=line.NormAmps, emerg_max=line.EmergAmps)
 
-    def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: object, phase: str, sequence: int, wire: object = None):
+    def _add_ACLineSegmentPhase(self, aclinesegment_uri: URIRef, line: altdss.Line, phase: str, sequence: int, wire: object = None):
         node = self.build_cim_obj("ACLineSegmentPhase", name=f"{line.Name}_{phase}")
         self.add_triple(node, "ACLineSegmentPhase.phase", self.cim[f"SinglePhaseKind.{phase}"])
         self.add_triple(node, "ACLineSegmentPhase.sequenceNumber", sequence)
@@ -602,7 +609,7 @@ class DssExport(object):
                 self._add_ConcentricNeutralCableInfo(n, wire)
                 self.add_triple(node, "PowerSystemResource.AssetDatasheet", n)
 
-    def _add_WireSpacingInfo(self, subject: URIRef, linespacing: object):
+    def _add_WireSpacingInfo(self, subject: URIRef, linespacing: altdss.LineSpacing):
         node = self.build_cim_obj("WireSpacingInfo", name=linespacing.Name)
         self.add_triple(node, "WireSpacingInfo.usage", self.cim[f"WireUsageKind.distribution"])
         self.add_triple(node, "WireSpacingInfo.phaseWireCount", 1)
@@ -621,7 +628,7 @@ class DssExport(object):
 
         self.add_triple(subject, "ACLineSegment.WireSpacingInfo", node)
 
-    def _add_CableInfo(self, node: URIRef, cable: object):
+    def _add_CableInfo(self, node: URIRef, cable):
         self.add_triple(node, "WireInfo.insulated", True)
         self.add_triple(node, "WireInfo.insulationThickness", cable.InsLayer * self._to_meters(cable.RadUnits))
         self.add_triple(node, "WireInfo.insulationMaterial", self.cim["WireInsulationKind.crosslinkedPolyethylene"])
@@ -634,14 +641,14 @@ class DssExport(object):
         self.add_triple(node, "CableInfo.nominalTemperature", 90.0)
         self.add_triple(node, "CableInfo.relativePermittivity", cable.EpsR)
 
-    def _add_TapeShieldCableInfo(self, node: URIRef, tsdata: object):
+    def _add_TapeShieldCableInfo(self, node: URIRef, tsdata: altdss.TSData):
         self.add_triple(node, "CableInfo.diameterOverScreen", (tsdata.DiaShield - 2.0 * tsdata.TapeLayer) * self._to_meters(tsdata.RadUnits))
         self.add_triple(node, "TapShieldCableInfo.tapeLap", tsdata.TapeLap)
         self.add_triple(node, "TapShieldCableInfo.tapeThickness", tsdata.TapeLayer * self._to_meters(tsdata.RadUnits))
         self.add_triple(node, "CableInfo.shieldMaterial", self.cim["CableShieldMaterialKind.copper"])
         self.add_triple(node, "CableInfo.sheathAsNeutral", True)
 
-    def _add_ConcentricNeutralCableInfo(self, node: URIRef, cndata: object):
+    def _add_ConcentricNeutralCableInfo(self, node: URIRef, cndata: altdss.CNData):
         self.add_triple(node, "CableInfo.diameterOverScreen", (cndata.DiaCable - 2.0 * cndata.DiaStrand) * self._to_meters(cndata.RadUnits))
         self.add_triple(node, "ConcentricNeutralCableInfo.diameterOverNeutral", cndata.DiaCable * self._to_meters(cndata.RadUnits))
         self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRadius", cndata.DiaStrand / 2.0 * self._to_meters(cndata.RadUnits))
@@ -649,7 +656,7 @@ class DssExport(object):
         self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRDC20", cndata.RStrand * self._to_per_meter(cndata.RUnits))
         self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandCount", cndata.k)
 
-    def _add_WireInfo(self, node: URIRef, wire: object):
+    def _add_WireInfo(self, node: URIRef, wire: altdss.WireData):
         self.add_triple(node, "WireInfo.sizeDescription", wire.Name)
         material = "other"
         if "aa" in wire.Name.lower():
@@ -672,7 +679,7 @@ class DssExport(object):
         self.add_triple(node, "WireInfo.coreStrandCount", 0)
         self.add_triple(node, "WireInfo.coreRadius", 0.0)
 
-    def _add_PerLengthPhaseImedance(self, linecode: object, name: str = "", nphases: int = None, units: int = 0) -> URIRef:
+    def _add_PerLengthPhaseImedance(self, linecode: altdss.LineCode, name: str = "", nphases: int | None = None, units: str = "none") -> URIRef:
         if f"PerLengthPhaseImpedance.{name if name else linecode.Name}" not in self.uuid_map:
             node = self.build_cim_obj("PerLengthPhaseImpedance", name=name if name else linecode.Name)
             self.add_triple(node, "PerLengthPhaseImpedance.conductorCount", nphases if nphases is not None else linecode.NPhases)
@@ -685,7 +692,7 @@ class DssExport(object):
         else:
             return URIRef(self.uuid_map[f"PerLengthPhaseImpedance.{name if name else linecode.Name}"])
 
-    def _add_PhaseImpedanceData(self, phase_impedance_uri: URIRef, linecode: object, nphases: int = None, units: int = 0):
+    def _add_PhaseImpedanceData(self, phase_impedance_uri: URIRef, linecode: altdss.LineCode, nphases: int | None = None, units: str = "none"):
         units = linecode.Units_str if linecode.Units_str != "none" else units
         for col in range(1, (nphases if nphases is not None else linecode.NPhases) + 1):  # iterate over rows (upper triangular only)
             for row in range(col, (nphases if nphases is not None else linecode.NPhases) + 1):
@@ -699,7 +706,7 @@ class DssExport(object):
                 self.add_triple(node, "PhaseImpedanceData.b", linecode.CMatrix[i] * 2 * math.pi * linecode.BaseFreq / 1e9 * self._to_per_meter(units))
                 self.add_triple(node, "PhaseImpedanceData.PhaseImpedance", phase_impedance_uri)
 
-    def _add_Switch(self, line: object):
+    def _add_Switch(self, line: altdss.Line):
         # TODO: Type of switch
         node = self.build_cim_obj("Switch", name=line.Name)
         self.add_triple(node, "Equipment.inService", line.Enabled)
@@ -718,7 +725,7 @@ class DssExport(object):
         for i, bus in enumerate([line.Bus1, line.Bus2]):
             self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=parse_ordered_phase_str(bus, line.Phases))
 
-    def _add_SwitchPhase(self, switch_uri: URIRef, line: object, phase: str, sequence: int):
+    def _add_SwitchPhase(self, switch_uri: URIRef, line: altdss.Line, phase: str, sequence: int):
         node = self.build_cim_obj("SwitchPhase", name=f"{line.Name}_{phase}")
         self.add_triple(node, "SwitchPhase.phase", self.cim[f"SinglePhaseKind.{phase}"])
         self.add_triple(node, "SwitchPhase.sequenceNumber", sequence)
@@ -758,7 +765,7 @@ class DssExport(object):
         # EnergyConsumerSchedule
         self._add_EnergyConnectionProfile(node, load)
 
-    def _add_EnergyConsumerPhases(self, energy_consumer_uri: URIRef, load: object, phases: str):
+    def _add_EnergyConsumerPhases(self, energy_consumer_uri: URIRef, load: altdss.Load, phases: str | None):
         if load.Phases == 3:
             return None
         else:
@@ -775,7 +782,7 @@ class DssExport(object):
                 self.add_triple(node, "EnergyConsumerPhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
                 self.add_triple(node, "EnergyConsumerPhase.EnergyConsumer", energy_consumer_uri)
 
-    def _add_LoadResponseCharacteristic(self, model):
+    def _add_LoadResponseCharacteristic(self, model: int):
         if f"LoadResponseCharacteristic.{model}" not in self.uuid_map:
             if model == 1:
                 node = self.build_cim_obj("LoadResponseCharacteristic", name="Constant kVA")
@@ -816,7 +823,7 @@ class DssExport(object):
         else:
             return URIRef(self.uuid_map[f"LoadResponseCharacteristic.{model}"])
 
-    def _add_EnergyConnectionProfile(self, subject_uri, load):
+    def _add_EnergyConnectionProfile(self, subject_uri, load: altdss.Load):
         load_profile_names = ["Daily", "Duty", "Growth", "Yearly", "CVRCurve", "Spectrum"]
         ecp_name = ":".join(["Load"] + [(getattr(load, attr).Name if getattr(load, attr) is not None else "") for attr in load_profile_names])
 
@@ -845,7 +852,7 @@ class DssExport(object):
         for uri in loadshape_uris:
             self.add_triple(subject_uri, "EnergyConsumer.LoadProfile", uri)
 
-    def _add_EnergyConsumerSchedule(self, subject_uri, loadshape):
+    def _add_EnergyConsumerSchedule(self, subject_uri: URIRef, loadshape: altdss.LoadShape):
         # TODO: handle irregular time points
         if f"EnergyConsumerSchedule.{loadshape.Name}" not in self.uuid_map:
             node = self.build_cim_obj("EnergyConsumerSchedule", name=loadshape.Name)
@@ -854,15 +861,15 @@ class DssExport(object):
             qmult = loadshape.QMult
 
             if loadshape.UseActual:
-                self.add_triple(node, "BasicIntervalSchedule.value1Unit", "W")
-                self.add_triple(node, "BasicIntervalSchedule.value2Unit", "var")
+                self.add_triple(node, "BasicIntervalSchedule.value1Unit", "UnitSymbol.W")
+                self.add_triple(node, "BasicIntervalSchedule.value2Unit", "UnitSymbol.VAr")
                 pmult *= 1000
                 qmult *= 1000
             else:
-                self.add_triple(node, "BasicIntervalSchedule.value1Unit", "none")
-                self.add_triple(node, "BasicIntervalSchedule.value2Unit", "none")
+                self.add_triple(node, "BasicIntervalSchedule.value1Unit", "UnitSymbol.none")
+                self.add_triple(node, "BasicIntervalSchedule.value2Unit", "UnitSymbol.none")
 
-            self.add_triple(node, "RegularIntervalSchedule.timeStep", loadshape.SInterval)
+            self.add_triple(node, "EnergyConsumerSchedule.timeStep", loadshape.SInterval)
 
             if qmult.size == 0:
                 qmult = pmult
@@ -885,7 +892,7 @@ class DssExport(object):
         for cap in self.dss.Capacitor:
             self._add_LinearShuntCompensator(cap)
 
-    def _add_LinearShuntCompensator(self, cap: object):
+    def _add_LinearShuntCompensator(self, cap: altdss.Capacitor):
         node = self.build_cim_obj("LinearShuntCompensator", name=cap.Name)
 
         b = 0.001 * cap.kvar / cap.kV**2 / cap.NumSteps
@@ -925,18 +932,11 @@ class DssExport(object):
         # TODO, handle multi-terminal capacitors
         self.terminal_map[(type(cap), cap.Name, 2)] = terminal_uri
 
-    def _add_RegulatingControls(self):
-        for capcontrol in self.dss.CapControl:
-            self._add_RegulatingControl(self, capcontrol)
-
-    def _add_RegulatingControl(self, cap: object):
-        pass
-
     def _add_SynchronousMachines(self):
         for gen in self.dss.Generator:
             self._add_SynchronousMachine(gen)
 
-    def _add_SynchronousMachine(self, gen: object):
+    def _add_SynchronousMachine(self, gen: altdss.Generator):
         node = self.build_cim_obj("SynchronousMachine", name=gen.Name)
         self.add_triple(node, "RotatingMachine.p", gen.kW * 1000)
         self.add_triple(node, "RotatingMachine.q", gen.kvar * 1000)
@@ -960,7 +960,7 @@ class DssExport(object):
         base_kv = self._add_BaseVoltage(node, gen.Bus1)
         self._add_OperationalLimitSet(terminal_uri, "Voltage", normal_value=base_kv * 1000, norm_min=gen.VMinpu * base_kv * 1000, norm_max=gen.VMaxpu * base_kv * 1000, bus=self._parse_busname(gen.Bus1))
 
-    def _add_SynchronousMachinePhases(self, subject_uri: URIRef, gen: object, phases: str):
+    def _add_SynchronousMachinePhases(self, subject_uri: URIRef, gen: altdss.Generator, phases: str | None):
         if gen.Phases == 3:
             return None
         else:
@@ -981,7 +981,7 @@ class DssExport(object):
                 elif pec_type == "Storage":
                     self._add_BatteryUnit(pec_node, pec)
 
-    def _add_BatteryPhases(self, subject_uri: URIRef, storage: object, phases: str):
+    def _add_BatteryPhases(self, subject_uri: URIRef, storage: altdss.Storage, phases: str):
         if storage.Phases == 3:
             return None
         else:
@@ -992,7 +992,7 @@ class DssExport(object):
                 self.add_triple(node, "PowerElectronicsConnectionPhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
                 self.add_triple(node, "PowerElectronicsConnectionPhase.PowerElectronicsConnection", subject_uri)
 
-    def _add_PhotoVoltaicPhases(self, subject_uri: URIRef, solar: object, phases: str):
+    def _add_PhotoVoltaicPhases(self, subject_uri: URIRef, solar: altdss.PVSystem, phases: str):
         if solar.Phases == 3:
             return None
         else:
@@ -1003,7 +1003,7 @@ class DssExport(object):
                 self.add_triple(node, "PowerElectronicsConnectionPhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
                 self.add_triple(node, "PowerElectronicsConnectionPhase.PowerElectronicsConnection", subject_uri)
 
-    def _add_PhotoVoltaicUnit(self, subject_uri: URIRef, solar: object):
+    def _add_PhotoVoltaicUnit(self, subject_uri: URIRef, solar: altdss.PVSystem):
         node = self.build_cim_obj("PhotoVoltaicUnit", name=f"{solar.Name}_PVPanels")
         self.add_triple(node, "PowerElectronicsUnit.minP", min(solar.pctCutIn, solar.pctCutOut) / 100.0 * solar.kVA * 1000.0)
         self.add_triple(node, "PowerElectronicsUnit.maxP", solar.Pmpp * 1000.0)
@@ -1036,7 +1036,7 @@ class DssExport(object):
         base_kv = self._add_BaseVoltage(subject_uri, solar.Bus1)
         self._add_OperationalLimitSet(terminal_uri, "Voltage", normal_value=base_kv * 1000, norm_min=solar.VMinpu * base_kv * 1000, norm_max=solar.VMaxpu * base_kv * 1000)
 
-    def _add_BatteryUnit(self, subject_uri: URIRef, storage: object):
+    def _add_BatteryUnit(self, subject_uri: URIRef, storage: altdss.Storage):
         node = self.build_cim_obj("BatteryUnit", name=f"{storage.Name}_Cells")
 
         self.add_triple(node, "PowerElectronicsUnit.minP", -storage.kWRated * storage.pctCharge / 100.0 * 1000.0)
@@ -1159,7 +1159,7 @@ class DssExport(object):
         node = self.build_cim_obj("PowerTransformer", mrid=bank.uuid, name=bank.local_name)
         self.add_triple(node, "PowerTransformer.vectorGroup", bank.vector_group)
 
-    def _add_PowerTransformerEnd(self, tr: object, bank: TransformerBank):
+    def _add_PowerTransformerEnd(self, tr: altdss.Transformer, bank: TransformerBank):
         for i in range(tr.Windings):
             node = self.build_cim_obj("PowerTransformerEnd", mrid=self.transformer_info.wdg_list[i].uuid, name=self.transformer_info.wdg_list[i].local_name)
 
@@ -1214,7 +1214,7 @@ class DssExport(object):
             self.transformer_terminal_uris[f"Transformer={tr.Name}={i+1}"] = terminal_uri
             self.transformer_end_uris[f"Transformer={tr.Name}={i+1}"] = node
 
-    def _add_AutoPowerTransformerEnd(self, tr: object, bank: TransformerBank):
+    def _add_AutoPowerTransformerEnd(self, tr: altdss.AutoTrans, bank: TransformerBank):
         for i in range(tr.Windings):
             node = self.build_cim_obj("PowerTransformerEnd", self.transformer_info.wdg_list[i].uuid, name=self.transformer_info.wdg_list[i].local_name)
 
@@ -1251,7 +1251,7 @@ class DssExport(object):
             self.transformer_terminal_uris[f"Transformer={tr.Name}={i+1}"] = terminal_uri
             self.transformer_end_uris[f"Transformer={tr.Name}={i+1}"] = node
 
-    def _add_TransformerTank(self, tr: object, bank_id: str):
+    def _add_TransformerTank(self, tr: altdss.Transformer, bank_id: str):
         node = self.build_cim_obj("TransformerTank", name=tr.Name)
         xfmrcode_id = f"CIMXfmrCode_{tr.Name}" if tr.XfmrCode is None else tr.XfmrCode_str
         self.add_triple(node, "TransformerTank.TransformerTankInfo", self.xfmrcode_uris[xfmrcode_id])
@@ -1259,7 +1259,7 @@ class DssExport(object):
 
         return node
 
-    def _add_TransformerTankEnd(self, subject_uri: URIRef, tr: object):
+    def _add_TransformerTankEnd(self, subject_uri: URIRef, tr: altdss.Transformer):
         for i in range(tr.Windings):
             node = self.build_cim_obj("TransformerTankEnd", mrid=self.transformer_info.wdg_list[i].uuid, name=self.transformer_info.wdg_list[i].local_name)
 
@@ -1321,7 +1321,7 @@ class DssExport(object):
             self.transformer_terminal_uris[f"Transformer={tr.Name}={i+1}"] = terminal_uri
             self.transformer_end_uris[f"Transformer={tr.Name}={i+1}"] = node
 
-    def _add_TransformerEndInfo(self, i: int, xfmrcode: object, subject_uri: URIRef, ratShort: float, ratEmerg: float, Zbase: float):
+    def _add_TransformerEndInfo(self, i: int, xfmrcode: altdss.XfmrCode, subject_uri: URIRef, ratShort: float, ratEmerg: float, Zbase: float):
         node = self.build_cim_obj("TransformerEndInfo", name=f"{xfmrcode.Name}_{i+1}")
         self.add_triple(node, "TransformerEndInfo.TransformerTankInfo", subject_uri)
         self.add_triple(node, "TransformerEndInfo.endNumber", i + 1)
@@ -1355,7 +1355,7 @@ class DssExport(object):
 
         return node
 
-    def _add_TransformerTankInfo(self, xfmrcode: object, xfmrcode_name: str = None):
+    def _add_TransformerTankInfo(self, xfmrcode: altdss.XfmrCode, xfmrcode_name: str = None):
         node = self.build_cim_obj("TransformerTankInfo", name=xfmrcode_name if xfmrcode_name is not None else xfmrcode.Name)
         ratShort = xfmrcode.NormHkVA / xfmrcode.kVAs[0]
         ratEmerg = xfmrcode.EmergHkVA / xfmrcode.kVAs[0]
@@ -1374,7 +1374,7 @@ class DssExport(object):
 
         return node
 
-    def _add_NoLoadTest(self, xfmrcode: object, subject_uri: URIRef):
+    def _add_NoLoadTest(self, xfmrcode: altdss.XfmrCode, subject_uri: URIRef):
         node = self.build_cim_obj("NoLoadTest", name=f"{xfmrcode.Name}_{1}")
         self.add_triple(node, "NoLoadTest.EnergisedEnd", subject_uri)
         self.add_triple(node, "NoLoadTest.energisedEndVoltage", xfmrcode.kVs[0] * 1000.0)
@@ -1387,7 +1387,7 @@ class DssExport(object):
         self.add_triple(node, "TransformerTest.basePower", xfmrcode.kVAs[0] * 1000.0)
         self.add_triple(node, "TransformerTest.temperature", 50.0)
 
-    def _add_ShortCircuitTest(self, xfmrcode: object, subject_uris: list, seq: int, i: int, j: int):
+    def _add_ShortCircuitTest(self, xfmrcode: altdss.XfmrCode, subject_uris: list, seq: int, i: int, j: int):
         node = self.build_cim_obj("ShortCircuitTest", name=f"{xfmrcode.Name}_{seq}")
         self.add_triple(node, "ShortCircuitTest.EnergisedEnd", subject_uris[i])
         self.add_triple(node, "ShortCircuitTest.GroundedEnds", subject_uris[j])
@@ -1403,7 +1403,7 @@ class DssExport(object):
         self.add_triple(node, "ShortCircuitTest.basePower", test_kva * 1000.0)
         self.add_triple(node, "ShortCircuitTest.temperature", 50.0)
 
-    def _add_CoreAdmittance(self, tr: object):
+    def _add_CoreAdmittance(self, tr: altdss.Transformer):
         node = self.build_cim_obj("TransformerCoreAdmittance", mrid=self.transformer_info.core_list[0].uuid, name=self.transformer_info.core_list[0].local_name)
 
         zbase = 1000.0 * tr.kVs[0] ** 2 / tr.kVAs[0]
@@ -1417,7 +1417,7 @@ class DssExport(object):
         self.add_triple(node, "TransformerCoreAdmittance.b0", b)
         self.add_triple(node, "TransformerCoreAdmittance.TransformerEnd", URIRef(self.transformer_info.wdg_list[0].uuid))
 
-    def _add_MeshImpedance(self, tr: object):
+    def _add_MeshImpedance(self, tr: altdss.Transformer):
         seq = 0
         for i in range(tr.Windings):
             for k in range(i + 1, tr.Windings):
@@ -1530,7 +1530,8 @@ class DssExport(object):
             self.add_triple(node, "RegulatingControl.Terminal", self.terminal_map[(type(element), element.Name, capc.Terminal)])
 
             self.add_triple(node, "RegulatingControl.monitoredPhase", self.cim[f"PhaseCode.{phase}"])
-            self.add_triple(node, "RegulatingControl.mode", self.cim["RegulatingControlModeKind." + {0: "currentFlow", 1: "voltage", 2: "reactivePower", 3: "timeScheduled", 4: "powerFactor", 5: "userDefined"}.get(capc.Type, 1)])
+            capc_type = {0: "currentFlow", 1: "voltage", 2: "reactivePower", 3: "timeScheduled", 4: "powerFactor", 5: "userDefined"}.get(capc.Type, 1)
+            self.add_triple(node, "RegulatingControl.mode", self.cim[f"RegulatingControlModeKind.{capc_type}"])
             self.add_triple(node, "RegulatingControl.discrete", True)
             self.add_triple(node, "RegulatingControl.enabled", capc.Enabled)
             mult = 1.0
@@ -1549,12 +1550,12 @@ class DssExport(object):
         for react in self.dss.Reactor:
             self._add_SeriesCompensator(react)
 
-    def _add_SeriesCompensator(self, react: object):
+    def _add_SeriesCompensator(self, react: altdss.Reactor):
         node = self.build_cim_obj("SeriesCompensator", name=react.Name)
-        self.add_triple(node, "SeriesCompensator.r", react.R())
-        self.add_triple(node, "SeriesCompensator.x", react.X())
-        self.add_triple(node, "SeriesCompensator.r0", react.R())
-        self.add_triple(node, "SeriesCompensator.x0", react.X())
+        self.add_triple(node, "SeriesCompensator.r", react.R)
+        self.add_triple(node, "SeriesCompensator.x", react.X)
+        self.add_triple(node, "SeriesCompensator.r0", react.R)
+        self.add_triple(node, "SeriesCompensator.x0", react.X)
 
         for i, bus in enumerate([react.Bus1, react.Bus2]):
             terminal_uri = self._add_Terminal(node, react, bus=self._parse_busname(bus), n_terminal=i + 1, phases=parse_ordered_phase_str(bus, react.Phases))
