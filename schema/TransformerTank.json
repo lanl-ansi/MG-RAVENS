@@ -9,9 +9,9 @@
     },
     "PowerSystemResource.AssetDatasheet": {
       "type": "string",
-      "title": "PowerTransformerInfoPointer",
-      "description": "Pointer to PowerTransformerInfo object",
-      "pattern": "^PowerTransformerInfo::'(.+)'$"
+      "title": "TransformerTankInfoPointer",
+      "description": "Pointer to TransformerTankInfo object",
+      "pattern": "^TransformerTankInfo::'(.+)'$"
     },
     "Equipment.aggregate": {
       "title": "aggregate",

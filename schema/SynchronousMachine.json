@@ -1,6 +1,9 @@
 {
   "type": "object",
   "properties": {
+    "SynchronousMachine.SynchronousMachinePhase": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SynchronousMachinePhaseArray.json"
+    },
     "RotatingMachine.RotatingMachineResponse": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RotatingMachineResponseCharacteristic.json"
     },
