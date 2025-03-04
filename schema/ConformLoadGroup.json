@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "ConformLoadGroup.EnergyConsumers": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConformLoadPointerArray.json"
     },
     "ConformLoadGroup.ConformLoadSchedules": {
       "type": "string",
