@@ -302,6 +302,8 @@
 
 [ConformLoadGroup](../_static/schema/ConformLoadGroup.html){.external}
 
+[ConformLoadPointerArray](../_static/schema/ConformLoadPointerArray.html){.external}
+
 [ConformLoadSchedule](../_static/schema/ConformLoadSchedule.html){.external}
 
 [ConnectivityNode](../_static/schema/ConnectivityNode.html){.external}
@@ -993,6 +995,8 @@
 [NonConformLoad](../_static/schema/NonConformLoad.html){.external}
 
 [NonConformLoadGroup](../_static/schema/NonConformLoadGroup.html){.external}
+
+[NonConformLoadPointerArray](../_static/schema/NonConformLoadPointerArray.html){.external}
 
 [NonGridFacility](../_static/schema/NonGridFacility.html){.external}
 
