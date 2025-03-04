@@ -1524,6 +1524,16 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "SynchronousMachine",
                               "properties": {
+                                "SynchronousMachine.SynchronousMachinePhase": {
+                                  "type": "array",
+                                  "items": {
+                                    "$objectId": "SynchronousMachinePhase",
+                                    "$objectType": "object",
+                                    "type": "object",
+                                    "$arrayPosition": null,
+                                    "properties": {}
+                                  }
+                                },
                                 "RotatingMachine.RotatingMachineResponse": {
                                   "$objectType": "object",
                                   "type": "object",
