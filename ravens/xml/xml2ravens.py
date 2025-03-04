@@ -12,7 +12,7 @@ from copy import deepcopy
 from datetime import datetime
 
 from rdflib import Graph
-from rdflib.namespace import Namespace
+from rdflib.namespace import Namespace, RDF
 from rdflib.extras.external_graph_libs import rdflib_to_networkx_multidigraph
 from rdflib.term import URIRef, Literal
 
@@ -195,7 +195,7 @@ class MultiResolvedPath:
 class RavensImport:
     def __init__(
         self,
-        cim_profile_path: pathlib.PosixPath | None = None,
+        cim_profile_path: pathlib.PosixPath | str | None = None,
         schema_template: SchemaTemplate | None = None,
         prune_unncessary: bool = False,
         cim_namespace: str = _DEFAULT_CIM_NAMESPACE,
@@ -211,8 +211,7 @@ class RavensImport:
         except Exception as msg:
             raise Exception(f"At least one of `cim_profile_path` or `cim_profile_rdf` must not be None: {msg}")
 
-        self.cim_ns = Namespace(cim_namespace)
-        self.rdf_type = URIRef("http://www.w3.org/1999/02/22-rdf-syntax-ns#type")
+        self.cim_ns = Namespace(cim_namespace + "#")
         self.prune_unncessary = prune_unncessary
 
         self.untokenized_paths = []
@@ -231,15 +230,15 @@ class RavensImport:
         self.tokenized_paths = {}
         self.tokenize_paths()
 
-        self.unique_subject_types = {s: str(o).split("#")[-1] for s, o in self.rdf.subject_objects(predicate=self.rdf_type)}
+        self.unique_subject_types = {s: str(o).split("#")[-1] for s, o in self.rdf.subject_objects(predicate=RDF.type)}
         self.paths: dict = {s: [] for s, t in self.unique_subject_types.items()}
 
         self.object_ids = {}
         self.build_actual_paths()
 
         self.data: dict = {}
-        self.resolved_path = None
-        self.current_resolved_path = None
+        self.resolved_path: MultiResolvedPath | ResolvedPath | None = None
+        self.current_resolved_path: MultiResolvedPath | ResolvedPath | None = None
         self.current_path_index = 0
         self.current_path_id = 0
 
@@ -422,7 +421,7 @@ class RavensImport:
                 if segment["id"] != self.unique_subject_types[subject]:
                     if not (segment["position"] is None and (segment["type"] != "array")):
                         for _o in [__o for __o in self.rdf.objects(subject=_current_subject)] + [__s for __s in self.rdf.subjects(object=_current_subject)]:
-                            if self.rdf.value(subject=_o, predicate=self.rdf_type) == self.cim_ns[segment["id"]]:
+                            if self.rdf.value(subject=_o, predicate=RDF.type) == self.cim_ns[segment["id"]]:
                                 count += 1
                                 _next_subjects[_o] = _current_subject
 
@@ -460,7 +459,7 @@ class RavensImport:
         return obj_real_path
 
     def _build_positions(self, subject, _current_subject, segment):
-        zero_indexed = self.rdf.value(subject=subject, predicate=self.rdf_type) == self.cim_ns["PositionPoint"]
+        zero_indexed = self.rdf.value(subject=subject, predicate=RDF.type) == self.cim_ns["PositionPoint"]
         positions = []
         if segment["type"] == "container" or (segment["type"] == "object" and segment["position"] is None):
             positions = [PathSegment(segment["path"], "object")]
@@ -513,13 +512,13 @@ class RavensImport:
         return pos_id
 
     def build_data(self, subject):
-        data = {"Ravens.cimObjectType": self.rdf.value(subject=subject, predicate=self.rdf_type).split("#")[-1]}
+        data: dict = {"Ravens.cimObjectType": str(self.rdf.value(subject=subject, predicate=RDF.type)).split("#")[-1]}
         for p, o in self.rdf.predicate_objects(subject=subject):
             pn = str(p).split("#")[-1]
             if self.prune_unncessary and any(bool(re.search(k, pn)) for k in prune_keys):
                 continue
 
-            if p != self.rdf_type:
+            if p != RDF.type:
                 value = o
 
                 if isinstance(o, Literal):
@@ -547,7 +546,7 @@ class RavensImport:
                         value = self._convert_with_literal_eval(o.value)
                 elif pn in self.reference_paths:
                     if o in self.object_ids:
-                        value = f"{str(self.rdf.value(subject=o, predicate=self.rdf_type)).split("#")[-1]}::'{self.object_ids[o]}'"
+                        value = f"{str(self.rdf.value(subject=o, predicate=RDF.type)).split("#")[-1]}::'{self.object_ids[o]}'"
                     elif len(set(r.id for r in self.reference_paths[pn])) == 1:
                         ref = list(self.reference_paths[pn])[0]
                         try:
@@ -557,7 +556,7 @@ class RavensImport:
                     else:
                         ref = None
                         for _ref in self.reference_paths[pn]:
-                            if self.rdf.value(subject=subject, predicate=self.rdf_type) == self.cim_ns[_ref.parent]:
+                            if self.rdf.value(subject=subject, predicate=RDF.type) == self.cim_ns[_ref.parent]:
                                 ref = _ref
                                 break
 
@@ -575,20 +574,20 @@ class RavensImport:
 
         for pn, items in self.reference_paths.items():
             for ref in items:
-                if ref.parent == self.rdf.value(subject=subject, predicate=self.rdf_type).split("#")[-1] and pn not in data:
+                if ref.parent == self.rdf.value(subject=subject, predicate=RDF.type).split("#")[-1] and pn not in data:
                     for o in self.rdf.objects(subject=subject):
-                        _rdf_type = self.rdf.value(subject=o, predicate=self.rdf_type)
-                        if _rdf_type is not None and _rdf_type.split("#")[-1] == ref.id:
+                        _rdf_type = self.rdf.value(subject=o, predicate=RDF.type)
+                        if _rdf_type is not None and str(_rdf_type).split("#")[-1] == ref.id:
                             data[pn] = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
 
         if "IdentifiedObject.mRID" not in data.keys() and not self.prune_unncessary:
-            if "IdentifiedObject.mRID" in self.schema.schemas[f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json"]["properties"]:
+            if f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json" in self.schema.schemas and "IdentifiedObject.mRID" in self.schema.schemas[f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json"]["properties"]:
                 data["IdentifiedObject.mRID"] = str(subject)
 
         return data
 
     def resolve_path(self, subject, path_id=None):
-        zero_indexed = self.rdf.value(subject=subject, predicate=self.rdf_type) == self.cim_ns["PositionPoint"]
+        zero_indexed = self.rdf.value(subject=subject, predicate=RDF.type) == self.cim_ns["PositionPoint"]
         if isinstance(self.paths[subject], MultiPath):
             if self.resolved_path is None:
                 self.resolved_path = MultiResolvedPath()
@@ -612,7 +611,7 @@ class RavensImport:
                 else:
                     self.resolved_path.add(ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
 
-    def add_to_data(self, data, data_to_insert):
+    def add_to_data(self, data: dict, data_to_insert):
         path = self.current_resolved_path[self.current_path_index]
 
         if path.position is not None:
@@ -694,7 +693,7 @@ class RavensImport:
 
         nx.write_graphml(G, file_path, named_key_ids=True, edge_id_from_attribute="id")
 
-    def dump(self, file_path: pathlib.PosixPath, indent=None):
+    def dump(self, file_path: pathlib.PosixPath | str, indent: int | None = None):
         with open(file_path, "w") as f:
             json.dump(self.data, f, indent=indent)
 

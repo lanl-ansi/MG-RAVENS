@@ -12,6 +12,7 @@ from rdflib.namespace import Namespace
 from rdflib.term import URIRef, Literal
 from rdflib import Graph, RDF
 
+from ravens.data import _DEFAULT_CIM_NAMESPACE
 from ravens.logging import logger
 
 
@@ -246,7 +247,7 @@ class DssExport(object):
     None
     """
 
-    def __init__(self, dss_file: str):
+    def __init__(self, dss_file: str, cim_namespace: str = _DEFAULT_CIM_NAMESPACE):
         self.raw_dss = odd
         self.raw_dss(f'redirect "{dss_file}"')
 
@@ -268,7 +269,7 @@ class DssExport(object):
         self.transformer_terminal_uris = {}
 
         self.graph = Graph()
-        self.cim = Namespace("http://iec.ch/TC57/CIM100#")
+        self.cim = Namespace(cim_namespace + "#")
         self.graph.bind("cim", self.cim, override=True)
 
         self._add_IECVersion()
