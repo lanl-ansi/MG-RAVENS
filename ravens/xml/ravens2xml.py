@@ -10,12 +10,13 @@ from rdflib.namespace import Namespace
 from rdflib.term import URIRef, Literal
 from rdflib import Graph, RDF
 
+from ravens.data import _DEFAULT_CIM_NAMESPACE
 from ravens.uml.common import get_names_of_enumeration_classes
 from ravens.uml import UMLData
 
 
 class RavensExport(object):
-    def __init__(self, data, uml_data: UMLData = None):
+    def __init__(self, data, uml_data: UMLData | None = None, cim_namespace: str = _DEFAULT_CIM_NAMESPACE):
         self.data = deepcopy(data)
         self.cim_enums = None
 
@@ -25,7 +26,7 @@ class RavensExport(object):
         self.cim_enums = get_names_of_enumeration_classes(uml_data)
 
         self.graph = Graph()
-        self.cim = Namespace("http://iec.ch/TC57/CIM100#")
+        self.cim = Namespace(cim_namespace + "#")
         self.graph.bind("cim", self.cim, override=True)
 
         self.build_rdf_graph(self.data)
