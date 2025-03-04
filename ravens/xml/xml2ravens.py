@@ -28,10 +28,10 @@ prune_keys = ["IdentifiedObject.name", "IdentifiedObject.mRID", r"(.+)\.sequence
 
 
 class PathSegment:
-    def __init__(self, position, json_type, zero_index: bool = False):
-        self.position = position
-        self.type = json_type
-        self.zero_index = zero_index
+    def __init__(self, position: int | str | None, json_type: str, zero_index: bool = False):
+        self.position: int | str | None = position
+        self.type: str = json_type
+        self.zero_index: bool = zero_index
 
     def __str__(self):
         return "PathSegment(" + ", ".join([str(i) for i in [self.position, self.type, self.zero_index]]) + ")"
@@ -193,7 +193,15 @@ class MultiResolvedPath:
 
 
 class RavensImport:
-    def __init__(self, cim_profile_path: pathlib.PosixPath | None = None, schema_template: SchemaTemplate | None = None, prune_unncessary: bool = False, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, schema: RavensSchema | None = None, cim_profile_rdf: Graph | None = None):
+    def __init__(
+        self,
+        cim_profile_path: pathlib.PosixPath | None = None,
+        schema_template: SchemaTemplate | None = None,
+        prune_unncessary: bool = False,
+        cim_namespace: str = _DEFAULT_CIM_NAMESPACE,
+        schema: RavensSchema | None = None,
+        cim_profile_rdf: Graph | None = None,
+    ):
         try:
             if cim_profile_rdf is not None:
                 self.rdf = cim_profile_rdf
@@ -223,13 +231,13 @@ class RavensImport:
         self.tokenized_paths = {}
         self.tokenize_paths()
 
-        self.unique_subject_types = {s: o.split("#")[-1] for s, o in self.rdf.subject_objects(predicate=self.rdf_type)}
-        self.paths = {s: [] for s, t in self.unique_subject_types.items()}
+        self.unique_subject_types = {s: str(o).split("#")[-1] for s, o in self.rdf.subject_objects(predicate=self.rdf_type)}
+        self.paths: dict = {s: [] for s, t in self.unique_subject_types.items()}
 
         self.object_ids = {}
         self.build_actual_paths()
 
-        self.data = {}
+        self.data: dict = {}
         self.resolved_path = None
         self.current_resolved_path = None
         self.current_path_index = 0
@@ -310,7 +318,7 @@ class RavensImport:
             except Exception as msg:
                 raise Exception(f"error on object '{obj_id}': {msg}")
 
-    def parse_object(self, object_path, object_id, obj, current_path, json_type="object", position_key="$primaryObjectHash", position_value=None):
+    def parse_object(self, object_path, object_id, obj, current_path, json_type: str = "object", position_key: str | None = "$primaryObjectHash", position_value=None):
         _path_info = {
             "path": object_path,
             "id": object_id,
@@ -350,7 +358,7 @@ class RavensImport:
                         position_key="$arrayPosition",
                     )
             elif obj["items"].get("type", None) == "array":
-                self.parse_array(obj["items"], current_path=current_path + [{"path": ""}])
+                self.parse_array(obj["items"]["$objectId"], obj["items"], current_path=current_path + [{"path": ""}])
             else:
                 # Nothing to do
                 pass
@@ -539,7 +547,7 @@ class RavensImport:
                         value = self._convert_with_literal_eval(o.value)
                 elif pn in self.reference_paths:
                     if o in self.object_ids:
-                        value = f"{self.rdf.value(subject=o, predicate=self.rdf_type).split("#")[-1]}::'{self.object_ids[o]}'"
+                        value = f"{str(self.rdf.value(subject=o, predicate=self.rdf_type)).split("#")[-1]}::'{self.object_ids[o]}'"
                     elif len(set(r.id for r in self.reference_paths[pn])) == 1:
                         ref = list(self.reference_paths[pn])[0]
                         try:
