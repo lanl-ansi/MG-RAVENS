@@ -1379,8 +1379,34 @@
                                   "anyOf": [
                                     {
                                       "$objectType": "object",
+                                      "$objectId": "GeneratingUnit",
+                                      "type": "object",
+                                      "$primaryObjectHash": null,
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectType": "object",
                                       "$objectId": "HydroGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1405,6 +1431,7 @@
                                       "$objectType": "object",
                                       "$objectId": "SolarGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1429,6 +1456,7 @@
                                       "$objectType": "object",
                                       "$objectId": "NuclearGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1453,6 +1481,7 @@
                                       "$objectType": "object",
                                       "$objectId": "WindGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1477,6 +1506,7 @@
                                       "$objectType": "object",
                                       "$objectId": "ThermalGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1587,8 +1617,34 @@
                                   "anyOf": [
                                     {
                                       "$objectType": "object",
+                                      "$objectId": "GeneratingUnit",
+                                      "type": "object",
+                                      "$primaryObjectHash": null,
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectType": "object",
                                       "$objectId": "HydroGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1613,6 +1669,7 @@
                                       "$objectType": "object",
                                       "$objectId": "SolarGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1637,6 +1694,7 @@
                                       "$objectType": "object",
                                       "$objectId": "NuclearGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1661,6 +1719,7 @@
                                       "$objectType": "object",
                                       "$objectId": "WindGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1685,6 +1744,7 @@
                                       "$objectType": "object",
                                       "$objectId": "ThermalGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1785,8 +1845,34 @@
                                   "anyOf": [
                                     {
                                       "$objectType": "object",
+                                      "$objectId": "GeneratingUnit",
+                                      "type": "object",
+                                      "$primaryObjectHash": null,
+                                      "properties": {
+                                        "GeneratingUnit.GenUnitOpSchedule": {
+                                          "type": "object",
+                                          "$objectId": "GenUnitOpSchedule",
+                                          "$primaryObjectHash": null,
+                                          "properties": {},
+                                          "$objectType": "object"
+                                        },
+                                        "GeneratingUnit.GenUnitOpCostCurves": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "$arrayPosition": null,
+                                            "$objectType": "object",
+                                            "$objectId": "GenUnitOpCostCurve",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "$objectType": "object",
                                       "$objectId": "HydroGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1811,6 +1897,7 @@
                                       "$objectType": "object",
                                       "$objectId": "SolarGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1835,6 +1922,7 @@
                                       "$objectType": "object",
                                       "$objectId": "NuclearGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1859,6 +1947,7 @@
                                       "$objectType": "object",
                                       "$objectId": "WindGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
@@ -1883,6 +1972,7 @@
                                       "$objectType": "object",
                                       "$objectId": "ThermalGeneratingUnit",
                                       "type": "object",
+                                      "$primaryObjectHash": null,
                                       "properties": {
                                         "GeneratingUnit.GenUnitOpSchedule": {
                                           "type": "object",
