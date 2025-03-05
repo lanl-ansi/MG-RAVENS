@@ -99,7 +99,7 @@ class CymeConverter:
                 neutral_count = literal_eval(self.graph.value(subject=cccn_ref, predicate=self.cyme_ns["CYMECableConcentricNeutrals.numberOfWires"]).value)
                 diameter_over_neutral = literal_eval(self.graph.value(subject=cccn_ref, predicate=self.cyme_ns["CYMECableConcentricNeutrals.outerDiameter"]).value)
 
-                self.add_triple(node, "ConcentricNeutralCableInfo.nuetralStrandRadius", neutral_radius)
+                self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRadius", neutral_radius)
                 self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandGmr", neutral_gmr)
                 self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRDC20", rdc20)
                 self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandCount", neutral_count)
