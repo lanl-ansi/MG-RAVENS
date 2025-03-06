@@ -11,6 +11,30 @@
       "title": "OverheadWireInfoPointer",
       "description": "Pointer to OverheadWireInfo object",
       "pattern": "^OverheadWireInfo::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "WireInfoPointer",
+      "description": "Pointer to WireInfo object",
+      "pattern": "^WireInfo::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "ConcentricNeutralCableInfoPointer",
+      "description": "Pointer to ConcentricNeutralCableInfo object",
+      "pattern": "^ConcentricNeutralCableInfo::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "TapeShieldCableInfoPointer",
+      "description": "Pointer to TapeShieldCableInfo object",
+      "pattern": "^TapeShieldCableInfo::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "WireSpacingInfoPointer",
+      "description": "Pointer to WireSpacingInfo object",
+      "pattern": "^WireSpacingInfo::'(.+)'$"
     }
   ],
   "title": "WireInfoanyOfPointer",

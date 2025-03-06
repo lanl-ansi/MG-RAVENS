@@ -3,12 +3,6 @@
   "description": "A generic equivalent for an energy supplier on a transmission or distribution voltage level.",
   "title": "EnergySource",
   "properties": {
-    "Equipment.EquipmentContainer": {
-      "type": "string",
-      "title": "EquipmentContainerPointer",
-      "description": "Pointer to EquipmentContainer object",
-      "pattern": "^EquipmentContainer::'(.+)'$"
-    },
     "EnergySource.GenerationProfile": {
       "type": "string",
       "title": "CurvePointer",
