@@ -15,11 +15,10 @@ from ravens.uml.exclusions import UMLExclusions
 
 class SchemaTemplate:
     def __init__(self, uml_data: UMLData | None = None, uml_graphs: UMLGraphs | None = None, uml_exclusions: UMLExclusions | None = None) -> None:
-        if uml_data is None:
-            uml_data = UMLData()
+        _uml_data: UMLData = UMLData() if uml_data is None else uml_data
 
-        self.uml_data = uml_data
-        self.uml_graphs = UMLGraphs(self.uml_data, exclusions=uml_exclusions) if uml_graphs is None else uml_graphs
+        self.uml_data: UMLData = _uml_data
+        self.uml_graphs = UMLGraphs(uml_data=_uml_data, exclusions=uml_exclusions) if uml_graphs is None else uml_graphs
 
         self.template = {}
         self.raw_template = {}
