@@ -3171,6 +3171,30 @@
                               "$objectType": "reference",
                               "$objectId": "OverheadWireInfo",
                               "$referencePath": "AssetInfo/WireInfo"
+                            },
+                            {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "WireInfo",
+                              "$referencePath": "AssetInfo/WireInfo"
+                            },
+                            {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "ConcentricNeutralCableInfo",
+                              "$referencePath": "AssetInfo/WireInfo"
+                            },
+                            {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "TapeShieldCableInfo",
+                              "$referencePath": "AssetInfo/WireInfo"
+                            },
+                            {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "WireSpacingInfo",
+                              "$referencePath": "AssetInfo/WireSpacingInfo"
                             }
                           ]
                         },
