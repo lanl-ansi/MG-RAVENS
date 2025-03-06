@@ -9,7 +9,7 @@ from ravens.logging import logger
 
 
 class RavensValidator:
-    def __init__(self, schema_base_uri: str = _RAVENS_SCHEMA_BASE_URL, schema_url: str | None = None, local_path_to_schema: pathlib.PosixPath | None = None, schema: RavensSchema | None = None) -> None:
+    def __init__(self, schema_base_uri: str = _RAVENS_SCHEMA_BASE_URL, schema_url: str | None = None, local_path_to_schema: pathlib.Path | None = None, schema: RavensSchema | None = None) -> None:
         self.catalog = create_catalog("2020-12")
 
         if schema is not None:
@@ -24,7 +24,7 @@ class RavensValidator:
                 self.schema = JSONSchema.loadf(local_path_to_schema)
             else:
                 self.catalog.add_uri_source(None, RemoteSource(URI(schema_base_uri)))
-                self.schema = JSONSchema.loadr(URI(schema_url))
+                self.schema = JSONSchema.loadr(URI(schema_url))  # type: ignore
 
         self.data = None
         self.result = None
@@ -37,7 +37,7 @@ class RavensValidator:
         self._clear_data()
 
         self.data = data
-        self.result = self.schema.evaluate(self.data)
+        self.result = self.schema.evaluate(self.data)  # type: ignore
 
         if print_result:
             self.print_result()
@@ -45,7 +45,7 @@ class RavensValidator:
     def validate_string(self, json_string: str, print_result: bool = True):
         self.validate(data=JSON.loads(json_string), print_result=print_result)
 
-    def validate_file(self, file_path: str, print_result: bool = True):
+    def validate_file(self, file_path: pathlib.Path | str, print_result: bool = True):
         self.validate(data=JSON.loadf(file_path), print_result=print_result)
 
     def validate_dict(self, data_dict: dict, print_result: bool = True):
