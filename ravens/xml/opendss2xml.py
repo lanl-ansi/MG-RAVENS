@@ -735,25 +735,28 @@ class DssExport(object):
         # TODO: Type of switch
         node = self.build_cim_obj("Switch", name=line.Name)
         self.add_triple(node, "Equipment.inService", line.Enabled)
+        self.add_triple(node, "Switch.open", not line.Enabled)
+        self.add_triple(node, "Switch.normalOpen", not line.Enabled)
 
-        phases = parse_ordered_phase_str(line.Bus1, line.Phases)
-        if phases == "s12":
+        phases_side_1 = parse_ordered_phase_str(line.Bus1, line.Phases)
+        phases_side_2 = parse_ordered_phase_str(line.Bus2, line.Phases)
+        if phases_side_1 == "s12" and phases_side_2 == "s12":
             for seq, phase in enumerate(["s1", "s2"]):
-                self._add_SwitchPhase(node, line, phase, seq + 1)
-        elif phases.startswith("s"):
-            for seq, phase in enumerate([phases]):
-                self._add_SwitchPhase(node, line, phase, seq + 1)
+                self._add_SwitchPhase(node, line, phases_side_1, phases_side_2)
+        elif phases_side_1.startswith("s") and phases_side_2.startswith("s"):
+            for seq, (phase_1, phase_2) in enumerate(zip([phases_side_1], [phases_side_2])):
+                self._add_SwitchPhase(node, line, phase_1, phase_2)
         else:
-            for seq, phase in enumerate([ph for ph in phases]):
-                self._add_SwitchPhase(node, line, phase, seq + 1)
+            for seq, (phase_1, phase_2) in enumerate(list(zip(phases_side_1, phases_side_2))):
+                self._add_SwitchPhase(node, line, phase_1, phase_2)
 
         for i, bus in enumerate([line.Bus1, line.Bus2]):
             self._add_Terminal(node, line, bus=self._parse_busname(bus), n_terminal=i + 1, phases=parse_ordered_phase_str(bus, line.Phases))
 
-    def _add_SwitchPhase(self, switch_uri: URIRef, line: altdss.Line, phase: str, sequence: int):
-        node = self.build_cim_obj("SwitchPhase", name=f"{line.Name}_{phase}")
-        self.add_triple(node, "SwitchPhase.phase", self.cim[f"SinglePhaseKind.{phase}"])
-        self.add_triple(node, "SwitchPhase.sequenceNumber", sequence)
+    def _add_SwitchPhase(self, switch_uri: URIRef, line: altdss.Line, phase_side_1: str, phase_side_2: str):
+        node = self.build_cim_obj("SwitchPhase", name=f"{line.Name}_{phase_side_1}{phase_side_2}")
+        self.add_triple(node, "SwitchPhase.phaseSide1", self.cim[f"SinglePhaseKind.{phase_side_1}"])
+        self.add_triple(node, "SwitchPhase.phaseSide2", self.cim[f"SinglePhaseKind.{phase_side_2}"])
         self.add_triple(node, "SwitchPhase.Switch", switch_uri)
 
     def _add_EnergyConsumers(self):
@@ -1597,5 +1600,5 @@ class DssExport(object):
 if __name__ == "__main__":
     pathlib.Path("out").mkdir(parents=True, exist_ok=True)
 
-    d = DssExport("../../ronm/PowerModelsDistribution.jl/test/data/opendss/IEEE13_Assets.dss")
-    d.save("out/test_opendss_convert.xml")
+    d = DssExport("examples/IEEE13_Assets.dss")
+    d.save("out/IEEE13_Assets.xml")
