@@ -1,15 +1,12 @@
 import cffi
 import ctypes
 import math
-import os
 import pathlib
-import sys
 
 from uuid import uuid4
 
 from opendssdirect import dss as odd
 import altdss
-import dss_python_backend
 
 from rdflib.namespace import Namespace
 from rdflib.term import URIRef, Literal
@@ -267,8 +264,6 @@ class DssExport(object):
     """
 
     def __init__(self, dss_file: str, cim_namespace: str = _DEFAULT_CIM_NAMESPACE):
-        self._setup_dss_lib()
-
         self.raw_dss = odd
         self.raw_dss(f'redirect "{dss_file}"')
 
@@ -296,17 +291,6 @@ class DssExport(object):
         self._add_IECVersion()
 
         self._convert_dss_to_rdf()
-
-    def _setup_dss_lib(self) -> None:
-        dss_dir = os.path.dirname(dss_python_backend.__file__)
-        if os.name == "nt":
-            dss_lib_path = os.path.join(dss_dir, "dss_capi.dll")
-        elif "darwin" in sys.platform:
-            dss_lib_path = os.path.join(dss_dir, "libdss_capi.dylib")
-        else:
-            dss_lib_path = os.path.join(dss_dir, "libdss_capi.so")
-
-        self.dss_lib = ctypes.CDLL(dss_lib_path)
 
     def _get_kWRef_kVARref(self, load: altdss.Load) -> tuple[float, float]:
         cffi_ptr = load._ptr
