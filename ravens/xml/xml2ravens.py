@@ -27,6 +27,16 @@ Reference = namedtuple("Reference", ["parent", "id"])
 prune_keys = ["IdentifiedObject.name", "IdentifiedObject.mRID", r"(.+)\.sequenceNumber"]
 
 
+def _str_to_bool(s: str) -> bool:
+    s = s.strip().lower()
+    if s == "true":
+        return True
+    elif s == "false":
+        return False
+    else:
+        raise ValueError(f"Cannot convert {s} to a boolean.")
+
+
 class PathSegment:
     def __init__(self, position: int | str | None, json_type: str, zero_index: bool = False):
         self.position: int | str | None = position
@@ -251,7 +261,7 @@ class RavensImport:
 
     @staticmethod
     def _convert_with_schema(attr, attr_type: str):
-        funcs = {"string": str, "integer": int, "boolean": bool, "number": float}
+        funcs = {"string": str, "integer": int, "boolean": _str_to_bool, "number": float}
         value = str(attr)
         if attr_type in funcs:
             value = funcs[attr_type](value)
@@ -260,16 +270,13 @@ class RavensImport:
 
     @staticmethod
     def _convert_with_literal_eval(attr):
-        value = attr
-        if attr.lower() in ["true", "false"]:
-            value = bool(attr)
-        else:
-            try:
-                value = literal_eval(node_or_string=attr)
-            except:
-                pass
+        value = str(attr.value)
+        try:
+            value = literal_eval(node_or_string=value)
+        except:
+            pass
 
-        return attr
+        return value
 
     def _add_ravens_version(self):
         if "Versions" not in self.data:
@@ -535,13 +542,11 @@ class RavensImport:
 
                             try:
                                 value = self._convert_with_schema(o.value, attr_type)
-                            except KeyError:
-                                value = self._convert_with_literal_eval(o.value)
                             except ValueError as msg:
                                 raise ValueError(f"Expected data of type '{attr_type}' for '{pn}' on '{data['Ravens.cimObjectType']}' object: ''{msg}''")
 
                         except KeyError:
-                            value = self._convert_with_literal_eval(o.value)
+                            value = str(o.value)
                     else:
                         value = self._convert_with_literal_eval(o.value)
                 elif pn in self.reference_paths:
@@ -702,5 +707,4 @@ if __name__ == "__main__":
     pathlib.Path("out").mkdir(parents=True, exist_ok=True)
 
     d = RavensImport("examples/IEEE13_Assets.xml")
-
-    d.dump("out/IEEE13_Assets.json", indent=2)
+    d.dump("examples/IEEE13_Assets.json", indent=2)
