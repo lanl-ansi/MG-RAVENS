@@ -4739,7 +4739,7 @@
                               "$objectType": "object",
                               "$objectId": "TransformerTankEnd",
                               "type": "object",
-                              "$arrayPosition": "TransformerEndInfo.endNumber",
+                              "$arrayPosition": "TransformerEnd.endNumber",
                               "properties": {
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
