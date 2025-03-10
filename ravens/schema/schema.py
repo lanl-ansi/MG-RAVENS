@@ -157,7 +157,7 @@ class RavensSchema:
                 if "anyOf" in _schema:
                     title = f"{title}_anyOfContainer"
             else:
-                logger.warning(f"{debug_key} {_schema.keys()}")
+                logger.warning(f"When decomposing the schema, 'title' was not found on a {debug_key} object, only the following keys: {list(_schema.keys())}")
 
             _schema["$id"] = f"{self.base_id_uri}/{title}.json"
 
