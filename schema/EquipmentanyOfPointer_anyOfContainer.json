@@ -20,12 +20,6 @@
     },
     {
       "type": "string",
-      "title": "EnergySourcePointer",
-      "description": "Pointer to EnergySource object",
-      "pattern": "^EnergySource::'(.+)'$"
-    },
-    {
-      "type": "string",
       "title": "ACLineSegmentPointer",
       "description": "Pointer to ACLineSegment object",
       "pattern": "^ACLineSegment::'(.+)'$"

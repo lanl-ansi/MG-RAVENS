@@ -3,9 +3,7 @@
   "description": "Pointers to Equipment objects",
   "title": "EquipmentPointerArray",
   "items": {
-    "type": "string",
-    "title": "EquipmentPointer",
-    "description": "Pointer to Equipment object"
+    "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentPointer_anyOfContainer.json"
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,

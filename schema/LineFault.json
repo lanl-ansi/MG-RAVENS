@@ -8,7 +8,7 @@
       "pattern": "^Location::'(.+)'$"
     },
     "Fault.FaultyEquipment": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ACLineSegmentPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentanyOfPointer_anyOfContainer.json"
     },
     "Fault.occurredDateTime": {
       "title": "occurredDateTime",

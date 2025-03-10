@@ -1,6 +1,9 @@
 {
   "type": "object",
   "properties": {
+    "Outage.Equipments": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentPointerArray.json"
+    },
     "Document.status": {
       "title": "status",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Status.json",

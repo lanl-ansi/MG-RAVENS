@@ -1,7 +1,10 @@
 {
   "title": "CostPerUnitLength",
   "description": "Cost in Currency per unit length.",
-  "type": "object",
+  "type": [
+    "object",
+    "number"
+  ],
   "properties": {
     "multiplier": {
       "description": "nan",
@@ -15,7 +18,7 @@
     },
     "unit": {
       "description": "nan",
-      "default": null,
+      "default": "USD",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Currency.json"
     }
   },

@@ -1,12 +1,15 @@
 {
   "title": "RealEnergyTransferRate",
   "description": "nan",
-  "type": "object",
+  "type": [
+    "object",
+    "number"
+  ],
   "properties": {
     "unit": {
       "description": "nan",
-      "default": null,
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Hours.json"
+      "default": "h",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitSymbol.json"
     },
     "multiplier": {
       "description": "nan",

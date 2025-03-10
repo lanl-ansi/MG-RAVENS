@@ -1,33 +1,37 @@
 {
   "type": "object",
   "properties": {
-    "ProposedPhotovoltaicUnitOption.GenerationProfile": {
+    "ProposedAsset.Application": {
       "type": "string",
-      "title": "CurvePointer",
-      "description": "Pointer to Curve object",
-      "pattern": "^Curve::'(.+)'$"
+      "title": "ApplicationPointer",
+      "description": "Pointer to Application object",
+      "pattern": "^Application::'(.+)'$"
     },
-    "ProposedAssetOption.ProposedLocations": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocationPointerArray.json"
+    "ProposedAsset.EstimatedCost": {
+      "type": "string",
+      "title": "EstimatedCostPointer",
+      "description": "Pointer to EstimatedCost object",
+      "pattern": "^EstimatedCost::'(.+)'$"
     },
-    "ProposedEnergyProducerOption.powerDiscretization": {
-      "title": "powerDiscretization",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
+    "ProposedEnergyProducerAsset.PowerDispatchCurve": {
+      "type": "string",
+      "title": "DispatchCurvePointer",
+      "description": "Pointer to DispatchCurve object",
+      "pattern": "^DispatchCurve::'(.+)'$"
+    },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
+    "ProposedEnergyProducerAsset.capacity": {
+      "title": "capacity",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
       "description": "nan"
     },
-    "ProposedAssetOption.fixedPrice": {
-      "title": "fixedPrice",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
-      "description": "nan"
-    },
-    "ProposedAssetOption.requiredOption": {
-      "title": "requiredOption",
-      "type": "boolean",
-      "description": "nan"
-    },
-    "ProposedEnergyProducerOption.powerCapacityMax": {
-      "title": "powerCapacityMax",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
+    "ProposedBatteryUnit.energyCapacity": {
+      "title": "energyCapacity",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergy.json",
       "description": "nan"
     },
     "Ravens.cimObjectType": {
@@ -35,43 +39,23 @@
       "type": "string",
       "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
       "enum": [
-        "ProposedPhotovoltaicUnitOption"
+        "ProposedEnergyProducerAsset"
       ]
     },
-    "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
-      "title": "operationsAndMaintenanceRateVariable",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerKiloActivePower.json",
+    "ProposedAsset.energyAvailability": {
+      "title": "energyAvailability",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "nan"
     },
-    "ProposedAssetOption.operationsAndMaintenanceRateFixed": {
-      "title": "operationsAndMaintenanceRateFixed",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
+    "ProposedEnergyProducerAsset.energyProducedPerAnnum": {
+      "title": "energyProducedPerAnnum",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergy.json",
       "description": "nan"
     },
-    "ProposedEnergyProducerOption.variablePrice": {
-      "title": "variablePrice",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerKiloActivePower.json",
-      "description": "$/kW"
-    },
-    "ProposedAssetOption.lifetime": {
-      "title": "lifetime",
-      "type": "string",
+    "ProposedEnergyProducerAsset.energyAvailability": {
+      "title": "energyAvailability",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "nan"
-    },
-    "ProposedEnergyProducerOption.powerCapacityMin": {
-      "title": "powerCapacityMin",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
-      "description": "nan"
-    },
-    "ProposedEnergyProducerOption.powerCapacityFixed": {
-      "title": "powerCapacityFixed",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
-      "description": "nan"
-    },
-    "IdentifiedObject.description": {
-      "title": "description",
-      "type": "string",
-      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
     },
     "IdentifiedObject.aliasName": {
       "title": "aliasName",
@@ -89,9 +73,10 @@
       "description": "The name is any free human readable and possibly non unique text naming the object."
     }
   },
-  "title": "ProposedPhotovoltaicUnitOption",
+  "title": "ProposedEnergyProducerAsset",
+  "description": "An Energy Producer type asset that has been proposed by an algorithm using some ProposedAssetOption.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
-  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedPhotovoltaicUnitOption.json",
+  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedEnergyProducerAsset.json",
   "license": "**Copyright**\nThe entire work provided in the UML project file is dedicated to the public domain and is copyrighted under an Apache 2\\.0 Open Source License. Major portions of this license are owned by the Electric Power Research Institute (EPRI) and the remaining portions are provided by other contributors.\n\nThe Apache 2\\.0 **Grant of Copyright License**: Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non\\-exclusive, no\\-charge, royalty\\-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.\nPer the Apache 2\\.0 Copyright, **Redistribution is provided under the following terms and conditions**. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:\n1\\. You must give any other recipients of the Work or Derivative Works a copy of this License; and\n2\\. You must cause any modified files to carry prominent notices stating that You changed the files; and \n3\\. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and \n4\\. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."
 }

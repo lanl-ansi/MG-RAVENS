@@ -3,6 +3,9 @@
   "title": "Outage",
   "anyOf": [
     {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Outage.json"
+    },
+    {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PlannedOutage.json"
     },
     {
