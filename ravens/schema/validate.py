@@ -74,6 +74,9 @@ if __name__ == "__main__":
     # geneate schema from scratch
     validator = RavensValidator(schema=RavensSchema())
 
-    # Validation example
-    data_dir = pathlib.Path(os.getcwd()) / "examples/schema"
-    validator.validate_file(data_dir / "AlgorithmProperties.json")
+    # Validation examples
+    # IEEE13_Assets
+    validator.validate_file(pathlib.Path(os.getcwd()) / "examples" / "IEEE13_Assets.json")
+
+    # examples/schema
+    validator.validate_file(pathlib.Path(os.getcwd()) / "examples" / "schema" / "Outages.json")
