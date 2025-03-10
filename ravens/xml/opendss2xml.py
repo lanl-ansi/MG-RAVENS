@@ -390,7 +390,7 @@ class DssExport(object):
             node = self.build_cim_obj("Location", name=f"{obj_name}_Location")
 
             for i, (x, y) in enumerate(zip(x_coords, y_coords)):
-                self._add_PositionPoint(node, x, y, i + 1)
+                self._add_PositionPoint(node, x, y, i)
 
             self.uuid_map[f"Location.{obj_name}_Location"] = str(node)
 
@@ -944,8 +944,8 @@ class DssExport(object):
             self.add_triple(node, "LinearShuntCompensator.b0PerSection", 0.0)
 
         self.add_triple(node, "LinearShuntCompensator.g0PerSection", 0.0)
-        self.add_triple(node, "LinearShuntCompensator.normalSections", cap.NumSteps)
-        self.add_triple(node, "LinearShuntCompensator.maximumSections", cap.NumSteps)
+        self.add_triple(node, "ShuntCompensator.normalSections", cap.NumSteps)
+        self.add_triple(node, "ShuntCompensator.maximumSections", cap.NumSteps)
         self.add_triple(node, "Equipment.inService", cap.Enabled)
 
         delay = 0.0
@@ -954,7 +954,7 @@ class DssExport(object):
                 delay = capcontrol.Delay
                 break
 
-        self.add_triple(node, "LinearShuntCompensator.aVRDelay", delay)
+        self.add_triple(node, "ShuntCompensator.aVRDelay", delay)
 
         self.add_triple(node, "ShuntCompensator.sections", sum([1 if cap.States[i] else 0 for i in range(cap.NumSteps)]))
 
@@ -1399,7 +1399,7 @@ class DssExport(object):
         for i in range(xfmrcode.Windings):
             transformer_ends.append(self._add_TransformerEndInfo(i, xfmrcode, node, ratShort, ratEmerg, Zbase))
 
-        self._add_NoLoadTest(xfmrcode, transformer_ends[0])
+        self._add_NoLoadTest(xfmrcode, transformer_ends[0], 1)
 
         seq = 0
         for i in range(xfmrcode.Windings):
@@ -1409,8 +1409,8 @@ class DssExport(object):
 
         return node
 
-    def _add_NoLoadTest(self, xfmrcode: altdss.XfmrCode, subject_uri: URIRef):
-        node = self.build_cim_obj("NoLoadTest", name=f"{xfmrcode.Name}_{1}")
+    def _add_NoLoadTest(self, xfmrcode: altdss.XfmrCode, subject_uri: URIRef, seq: int):
+        node = self.build_cim_obj("NoLoadTest", name=f"{xfmrcode.Name}_{seq}_noload")
         self.add_triple(node, "NoLoadTest.EnergisedEnd", subject_uri)
         self.add_triple(node, "NoLoadTest.energisedEndVoltage", xfmrcode.kVs[0] * 1000.0)
         exciting_current = math.sqrt(xfmrcode.pctIMag**2 + xfmrcode.pctNoLoadLoss**2)
@@ -1423,7 +1423,7 @@ class DssExport(object):
         self.add_triple(node, "TransformerTest.temperature", 50.0)
 
     def _add_ShortCircuitTest(self, xfmrcode: altdss.XfmrCode, subject_uris: list, seq: int, i: int, j: int):
-        node = self.build_cim_obj("ShortCircuitTest", name=f"{xfmrcode.Name}_{seq}")
+        node = self.build_cim_obj("ShortCircuitTest", name=f"{xfmrcode.Name}_{seq}_shortcircuit")
         self.add_triple(node, "ShortCircuitTest.EnergisedEnd", subject_uris[i])
         self.add_triple(node, "ShortCircuitTest.GroundedEnds", subject_uris[j])
         self.add_triple(node, "ShortCircuitTest.energisedEndStep", int(xfmrcode.Taps[i]))
@@ -1435,8 +1435,8 @@ class DssExport(object):
         self.add_triple(node, "ShortCircuitTest.leakageImpedance", leakage_impedance)
         self.add_triple(node, "ShortCircuitTest.leakageImpedanceZero", leakage_impedance)
 
-        self.add_triple(node, "ShortCircuitTest.basePower", test_kva * 1000.0)
-        self.add_triple(node, "ShortCircuitTest.temperature", 50.0)
+        self.add_triple(node, "TransformerTest.basePower", test_kva * 1000.0)
+        self.add_triple(node, "TransformerTest.temperature", 50.0)
 
     def _add_CoreAdmittance(self, tr: altdss.Transformer):
         node = self.build_cim_obj("TransformerCoreAdmittance", mrid=self.transformer_info.core_list[0].uuid, name=self.transformer_info.core_list[0].local_name)  # type: ignore
