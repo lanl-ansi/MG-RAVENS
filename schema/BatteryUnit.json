@@ -10,6 +10,9 @@
       "description": "Pointer to Curve object",
       "pattern": "^Curve::'(.+)'$"
     },
+    "BatteryUnit.BatteryUnitEfficiency": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BatteryUnitEfficiency.json"
+    },
     "BatteryUnit.ratedE": {
       "title": "ratedE",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergy.json",
@@ -43,31 +46,6 @@
         "BatteryUnit"
       ]
     },
-    "InefficientBatteryUnit.efficiencyDischarge": {
-      "title": "efficiencyDischarge",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
-      "description": "nan"
-    },
-    "InefficientBatteryUnit.efficiencyCharge": {
-      "title": "efficiencyCharge",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
-      "description": "nan"
-    },
-    "InefficientBatteryUnit.reserveEnergy": {
-      "title": "reserveEnergy",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergy.json",
-      "description": "nan"
-    },
-    "BatteryUnit.batteryState": {
-      "title": "batteryState",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BatteryStateKind.json",
-      "description": "The current state of the battery (charging, full, etc.)."
-    },
-    "InefficientBatteryUnit.limitEnergy": {
-      "title": "limitEnergy",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergy.json",
-      "description": "nan"
-    },
     "PowerElectronicsUnit.maxP": {
       "title": "maxP",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
@@ -77,6 +55,11 @@
       "title": "minP",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
       "description": "Minimum active power limit. This is the minimum (nameplate) limit for the unit."
+    },
+    "BatteryUnit.batteryState": {
+      "title": "batteryState",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BatteryStateKind.json",
+      "description": "The current state of the battery (charging, full, etc.)."
     },
     "Equipment.inService": {
       "title": "inService",
