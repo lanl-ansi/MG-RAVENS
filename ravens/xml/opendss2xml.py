@@ -1601,7 +1601,5 @@ class DssExport(object):
 
 
 if __name__ == "__main__":
-    pathlib.Path("out").mkdir(parents=True, exist_ok=True)
-
     d = DssExport("examples/IEEE13_Assets.dss")
-    d.save("out/IEEE13_Assets.xml")
+    d.save("examples/IEEE13_Assets.xml")
