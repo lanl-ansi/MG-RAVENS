@@ -225,58 +225,56 @@
                   }
                 },
                 "EquipmentContainer.Equipments": {
-                  "$objectType": "reference",
-                  "$objectId": "Equipment",
-                  "anyOf": [
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "Equipment",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergyConsumer",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergySource",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergySource",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "ACLineSegment",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "SeriesCompensator",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "Switch",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "PowerTransformer",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
-                    }
-                  ]
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "Equipment",
+                    "$arrayPosition": null,
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Equipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      }
+                    ]
+                  }
                 }
               }
             },
@@ -327,58 +325,56 @@
                   }
                 },
                 "EquipmentContainer.Equipments": {
-                  "$objectType": "reference",
-                  "$objectId": "Equipment",
-                  "anyOf": [
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "Equipment",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergyConsumer",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergySource",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergySource",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "ACLineSegment",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "SeriesCompensator",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "Switch",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "PowerTransformer",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
-                    }
-                  ]
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "Equipment",
+                    "$arrayPosition": null,
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Equipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      }
+                    ]
+                  }
                 }
               }
             },
@@ -403,58 +399,56 @@
                   }
                 },
                 "EquipmentContainer.Equipments": {
-                  "$objectType": "reference",
-                  "$objectId": "Equipment",
-                  "anyOf": [
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "Equipment",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergyConsumer",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergySource",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergySource",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "ACLineSegment",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "SeriesCompensator",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "Switch",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "PowerTransformer",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
-                    }
-                  ]
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "Equipment",
+                    "$arrayPosition": null,
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Equipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      }
+                    ]
+                  }
                 }
               }
             },
@@ -481,58 +475,56 @@
                   }
                 },
                 "EquipmentContainer.Equipments": {
-                  "$objectType": "reference",
-                  "$objectId": "Equipment",
-                  "anyOf": [
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "Equipment",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergyConsumer",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergySource",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "EnergySource",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "ACLineSegment",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "SeriesCompensator",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "Switch",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
-                    },
-                    {
-                      "$objectType": "reference",
-                      "$objectId": "PowerTransformer",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
-                    }
-                  ]
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "Equipment",
+                    "$arrayPosition": null,
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Equipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      }
+                    ]
+                  }
                 }
               }
             },
