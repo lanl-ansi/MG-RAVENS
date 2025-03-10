@@ -6752,24 +6752,107 @@
     },
     "ProposedAsset": {
       "$objectType": "object",
-      "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "$objectId": "ProposedAsset",
-      "properties": {
-        "ProposedAsset.Application": {
-          "type": "string",
-          "$objectType": "reference",
-          "$objectId": "Application",
-          "$referencePath": "Application"
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "$objectId": "ProposedAsset",
+          "properties": {
+            "ProposedAsset.Application": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "Application",
+              "$referencePath": "Application"
+            },
+            "ProposedAsset.EstimatedCost": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "EstimatedCost",
+              "$referencePath": "EstimatedCost"
+            }
+          }
         },
-        "ProposedAsset.EstimatedCost": {
-          "type": "string",
-          "$objectType": "reference",
-          "$objectId": "EstimatedCost",
-          "$referencePath": "EstimatedCost"
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "$objectId": "ProposedBranch",
+          "properties": {
+            "ProposedAsset.Application": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "Application",
+              "$referencePath": "Application"
+            },
+            "ProposedAsset.EstimatedCost": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "EstimatedCost",
+              "$referencePath": "EstimatedCost"
+            }
+          }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "$objectId": "ProposedEnergyProducerAsset",
+          "properties": {
+            "ProposedAsset.Application": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "Application",
+              "$referencePath": "Application"
+            },
+            "ProposedAsset.EstimatedCost": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "EstimatedCost",
+              "$referencePath": "EstimatedCost"
+            },
+            "ProposedEnergyProducerAsset.PowerDispatchCurve": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "DispatchCurve",
+              "$referencePath": "Curve"
+            }
+          }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "$objectId": "ProposedBatteryUnit",
+          "properties": {
+            "ProposedAsset.Application": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "Application",
+              "$referencePath": "Application"
+            },
+            "ProposedAsset.EstimatedCost": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "EstimatedCost",
+              "$referencePath": "EstimatedCost"
+            },
+            "ProposedEnergyProducerAsset.PowerDispatchCurve": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "DispatchCurve",
+              "$referencePath": "Curve"
+            }
+          }
         }
-      }
+      ]
     },
     "EstimatedCost": {
       "$objectType": "object",
