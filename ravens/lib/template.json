@@ -6688,10 +6688,10 @@
             },
             {
               "$objectType": "object",
-              "$objectId": "ProposedPhotovoltaicUnitOption",
+              "$objectId": "ProposedPhotoVoltaicUnitOption",
               "type": "object",
               "properties": {
-                "ProposedPhotovoltaicUnitOption.GenerationProfile": {
+                "ProposedPhotoVoltaicUnitOption.GenerationProfile": {
                   "$objectType": "reference",
                   "type": "string",
                   "$objectId": "Curve",
