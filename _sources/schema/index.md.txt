@@ -16,8 +16,6 @@
 
 [ACLineSegmentPhaseArray](../_static/schema/ACLineSegmentPhaseArray.html){.external}
 
-[ACLineSegmentPointerArray](../_static/schema/ACLineSegmentPointerArray.html){.external}
-
 [ADSInstructionTypeCommitment](../_static/schema/ADSInstructionTypeCommitment.html){.external}
 
 [ADSInstructionTypeOOS](../_static/schema/ADSInstructionTypeOOS.html){.external}
@@ -586,6 +584,8 @@
 
 [EquipmentPointerArray](../_static/schema/EquipmentPointerArray.html){.external}
 
+[EquipmentPointer_anyOfContainer](../_static/schema/EquipmentPointer_anyOfContainer.html){.external}
+
 [EquipmentStatusType](../_static/schema/EquipmentStatusType.html){.external}
 
 [EquipmentanyOfPointer_anyOfContainer](../_static/schema/EquipmentanyOfPointer_anyOfContainer.html){.external}
@@ -1086,6 +1086,8 @@
 
 [OrientationKind](../_static/schema/OrientationKind.html){.external}
 
+[Outage](../_static/schema/Outage.html){.external}
+
 [OutageCauseKind](../_static/schema/OutageCauseKind.html){.external}
 
 [OutageContainer_Container](../_static/schema/OutageContainer_Container.html){.external}
@@ -1236,11 +1238,19 @@
 
 [ProposedAssetSetContainer_Container](../_static/schema/ProposedAssetSetContainer_Container.html){.external}
 
+[ProposedAsset_anyOfContainer](../_static/schema/ProposedAsset_anyOfContainer.html){.external}
+
+[ProposedBatteryUnit](../_static/schema/ProposedBatteryUnit.html){.external}
+
 [ProposedBatteryUnitOption](../_static/schema/ProposedBatteryUnitOption.html){.external}
+
+[ProposedBranch](../_static/schema/ProposedBranch.html){.external}
 
 [ProposedConductorOption](../_static/schema/ProposedConductorOption.html){.external}
 
 [ProposedConductorOptionContainer_Container](../_static/schema/ProposedConductorOptionContainer_Container.html){.external}
+
+[ProposedEnergyProducerAsset](../_static/schema/ProposedEnergyProducerAsset.html){.external}
 
 [ProposedEnergyProducerOptionContainer_Container](../_static/schema/ProposedEnergyProducerOptionContainer_Container.html){.external}
 
@@ -1248,7 +1258,7 @@
 
 [ProposedGeneratingUnitOption](../_static/schema/ProposedGeneratingUnitOption.html){.external}
 
-[ProposedPhotovoltaicUnitOption](../_static/schema/ProposedPhotovoltaicUnitOption.html){.external}
+[ProposedPhotoVoltaicUnitOption](../_static/schema/ProposedPhotoVoltaicUnitOption.html){.external}
 
 [ProposedSiteLocation](../_static/schema/ProposedSiteLocation.html){.external}
 

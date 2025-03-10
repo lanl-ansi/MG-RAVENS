@@ -270,15 +270,6 @@
         
           <li class="toctree-l1 ">
             
-              <a href="InefficientBatteryUnit.html" class="reference internal ">InefficientBatteryUnit</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="LoadForecast.html" class="reference internal ">LoadForecast</a>
             
 
@@ -492,15 +483,6 @@
         
           <li class="toctree-l1 ">
             
-              <a href="SiteProperties.html" class="reference internal ">SiteProperties</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="Switch.html" class="reference internal ">Switch</a>
             
 
@@ -577,26 +559,30 @@
             
   <section id="proposedenergyproduceroption">
 <h1>ProposedEnergyProducerOption<a class="headerlink" href="#proposedenergyproduceroption" title="Link to this heading">¶</a></h1>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;9155c152-9440-417b-b722-6e9480374bc6&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedDER1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;ProposedEnergyProducerOption.powerCapacityFixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;ProposedAssetOption.fixedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;USD&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;9155c152-9440-417b-b722-6e9480374bc6&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedDER2&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;ProposedEnergyProducerOption.powerCapacityFixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">250.0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;ProposedAssetOption.fixedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">250000.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;USD&quot;</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ProposedEnergyProducerOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;ProposedDER1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;9155c152-9440-417b-b722-6e9480374bc6&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedDER1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedEnergyProducerOption.powerCapacityFixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetOption.fixedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;ProposedDER2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;9155c152-9440-417b-b722-6e9480374bc6&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedDER2&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedEnergyProducerOption.powerCapacityFixed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">250.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetOption.fixedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">250000.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

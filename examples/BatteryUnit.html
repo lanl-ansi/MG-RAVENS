@@ -276,15 +276,6 @@
         
           <li class="toctree-l1 ">
             
-              <a href="InefficientBatteryUnit.html" class="reference internal ">InefficientBatteryUnit</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="LoadForecast.html" class="reference internal ">LoadForecast</a>
             
 
@@ -492,15 +483,6 @@
         
           <li class="toctree-l1 ">
             
-              <a href="SiteProperties.html" class="reference internal ">SiteProperties</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
               <a href="Switch.html" class="reference internal ">Switch</a>
             
 
@@ -578,10 +560,17 @@
   <section id="batteryunit">
 <h1>BatteryUnit<a class="headerlink" href="#batteryunit" title="Link to this heading">¶</a></h1>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;BaseV_0.4&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BaseVoltage&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eac36c2a-2446-4fab-973e-e4310268fdee&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BaseV_0.4&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;BaseVoltage.nominalVoltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">400.0</span>
+<span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;battery_bus&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery_bus&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cabbb7b1-d3af-4c4f-8112-f33a4298bcb5&quot;</span>
+<span class="w">    </span><span class="nt">&quot;primary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f49503f2-3652-4502-b506-190fb908d69e&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;primary&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;PowerSystemResource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -590,29 +579,92 @@
 <span class="w">        </span><span class="nt">&quot;EnergyConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;RegulatingCondEq&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;PowerElectronicsConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;battery&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8a611147-1eb3-4cc6-9df8-4b49873717b1&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;s1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PowerElectronicsConnection&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.PowerElectronicsUnit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e7dea97b-80be-4f5d-9c3d-f7f6e71b188c&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery_unit1&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BatteryUnit&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;BatteryUnit.ratedE&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span>
-<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d7d73354-efb6-4ff2-afed-160372cd9c97&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s1&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.maxIFault&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.1111111111111112</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.p&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.ratedS&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.ratedU&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">400.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.maxQ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">25000.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.minQ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-25000.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Equipment.inService&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ConductingEquipment.BaseVoltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BaseVoltage::&#39;BaseV_0.4&#39;&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;ConductingEquipment.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                  </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery_terminal&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6e99593f-d8c5-4858-92fc-8608ade4d78c&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;battery_bus&#39;&quot;</span>
+<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1f07457c-3674-4a72-83e9-d95df5531e4c&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s1_T1&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;ACDCTerminal.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Terminal.phases&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PhaseCode.ABC&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;primary&#39;&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;ACDCTerminal.OperationalLimitSet&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitSet::&#39;OpLimV_360.00000000000006-440.00000000000006&#39;&quot;</span>
 <span class="w">                  </span><span class="p">}</span>
-<span class="w">                </span><span class="p">]</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;PowerElectronicsConnection.PowerElectronicsUnit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BatteryUnit&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4fbb68ea-ad13-4e73-83af-5f47c62fcfac&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s1_Cells&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;PowerElectronicsUnit.minP&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-5000.0</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;PowerElectronicsUnit.maxP&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;BatteryUnit.storedE&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;BatteryUnit.ratedE&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;BatteryUnit.BatteryUnitEfficiency&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BatteryUnitEfficiency&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;BatteryUnitEfficiency.reserveEnergy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;BatteryUnitEfficiency.limitEnergy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;BatteryUnitEfficiency.efficiencyDischarge&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;BatteryUnitEfficiency.efficiencyCharge&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;OperationalLimitSet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;OpLimV_360.00000000000006-440.00000000000006&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitSet&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bee0f9ba-368c-4f00-b078-ffde4198f6f5&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OpLimV_360.00000000000006-440.00000000000006&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitSet.OperationalLimitValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VoltageLimit&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f5b7b360-bc38-4385-8745-29c02c20628a&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OpLimV_360.00000000000006-440.00000000000006_RangeAlow&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;VoltageLimit.value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">360.00000000000006</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;VoltageLimit.normalValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">400.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;OperationalLimit.OperationalLimitType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitType::&#39;lowType_5000000000.0s&#39;&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VoltageLimit&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5a4f365a-9456-43de-8c88-63c73c8b3e21&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OpLimV_360.00000000000006-440.00000000000006_RangeAhigh&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;VoltageLimit.value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">440.00000000000006</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;VoltageLimit.normalValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">400.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;OperationalLimit.OperationalLimitType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitType::&#39;highType_5000000000.0s&#39;&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;OperationalLimitType&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lowType_5000000000.0s&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitType&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ccf09a3d-6ac9-4389-9d61-7f3ce008b0da&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lowType_5000000000.0s&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitType.direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitDirectionKind.low&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitType.acceptableDuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000000000.0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;highType_5000000000.0s&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitType&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;441d5bd5-0f64-4fec-bbcf-914abfc228ae&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;highType_5000000000.0s&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitType.direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitDirectionKind.high&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitType.acceptableDuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000000000.0</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
