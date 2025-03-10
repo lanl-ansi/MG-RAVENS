@@ -1080,10 +1080,13 @@ class DssExport(object):
         self.add_triple(node, "BatteryUnit.storedE", storage.kWhStored * 1000.0)
         self.add_triple(node, "BatteryUnit.ratedE", storage.kWhRated * 1000.0)
 
-        self.add_triple(node, "InefficientBatteryUnit.reserveEnery", storage.pctReserve)
-        self.add_triple(node, "InefficientBatteryUnit.limitEnergy", storage.pctkWRated)
-        self.add_triple(node, "InefficientBatteryUnit.efficiencyDischarge", storage.pctEffDischarge)
-        self.add_triple(node, "InefficientBatteryUnit.efficiencyCharge", storage.pctEffCharge)
+        bat_eff = self.build_cim_obj("BatteryUnitEfficiency", skip_mrid=True)
+
+        self.add_triple(bat_eff, "BatteryUnitEfficiency.reserveEnergy", storage.pctReserve)
+        self.add_triple(bat_eff, "BatteryUnitEfficiency.limitEnergy", storage.pctkWRated)
+        self.add_triple(bat_eff, "BatteryUnitEfficiency.efficiencyDischarge", storage.pctEffDischarge)
+        self.add_triple(bat_eff, "BatteryUnitEfficiency.efficiencyCharge", storage.pctEffCharge)
+        self.add_triple(bat_eff, "BatteryUnitEfficiency.BatteryUnit", node)
 
         self.add_triple(subject_uri, "PowerElectronicsConnection.maxIFault", 1 / storage.VMinpu)
         self.add_triple(subject_uri, "PowerElectronicsConnection.p", storage.kW * 1000.0)

@@ -905,6 +905,12 @@
                                       "type": "string",
                                       "$objectId": "Curve",
                                       "$referencePath": "Curve/Curve"
+                                    },
+                                    "BatteryUnit.BatteryUnitEfficiency": {
+                                      "$objectType": "object",
+                                      "$objectId": "BatteryUnitEfficiency",
+                                      "type": "object",
+                                      "properties": {}
                                     }
                                   }
                                 },
