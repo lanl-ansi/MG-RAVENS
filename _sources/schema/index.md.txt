@@ -160,6 +160,8 @@
 
 [BatteryUnit](../_static/schema/BatteryUnit.html){.external}
 
+[BatteryUnitEfficiency](../_static/schema/BatteryUnitEfficiency.html){.external}
+
 [Bay](../_static/schema/Bay.html){.external}
 
 [Bearing](../_static/schema/Bearing.html){.external}
