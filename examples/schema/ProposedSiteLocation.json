@@ -1,15 +1,18 @@
 {
-  "IdentifiedObject.mRID": "A9C5BFEE-FFFB-4CDC-94EC-813291D042A4",
-  "IdentifiedObject.name": "proposedSite1",
-  "Ravens.cimObjectType": "Ravens.ProposedSiteLocation",
-  "ProposedSiteLocation.availableArea": 4000.0,
-  "Location.PositionPoints": [
-    {
-      "PositionPoint.sequenceNumber": 1,
-      "PositionPoint.xPosition": 0,
-      "PositionPoint.yPosition": 0,
-      "Ravens.cimObjectType": "PositionPoint",
-      "IdentifiedObject.mRID": "704184d0-6fc1-4f99-8d14-9e51cef1a206"
+  "ProposedSiteLocation": {
+    "proposedSite1": {
+      "IdentifiedObject.mRID": "3dadce05-a29a-40cd-9593-68e273e87158",
+      "IdentifiedObject.name": "proposedSite1",
+      "Ravens.cimObjectType": "ProposedSiteLocation",
+      "ProposedSiteLocation.availableArea": 4000.0,
+      "Location.PositionPoints": [
+        {
+          "PositionPoint.sequenceNumber": 1,
+          "PositionPoint.xPosition": "0",
+          "PositionPoint.yPosition": "0",
+          "Ravens.cimObjectType": "PositionPoint"
+        }
+      ]
     }
-  ]
+  }
 }
