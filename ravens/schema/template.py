@@ -119,6 +119,13 @@ class SchemaTemplate:
                             # do nothing
                             continue
                         elif v["items"].get("$objectType", "") == "reference":
+                            if "anyOf" in v["items"]:
+                                for i, item in enumerate(v["items"]["anyOf"]):
+                                    object_name = item.get("$objectId", None)
+                                    anyOf_obj = self.uml_data.objects[(self.uml_data.objects["Name"] == item["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                                    data["properties"][k]["items"]["anyOf"][i]["title"] = html.unescape(str(object=anyOf_obj.Name).strip()) + "Pointer"
+                                    data["properties"][k]["items"]["anyOf"][i]["description"] = f"Pointer to {html.unescape(str(anyOf_obj.Name).strip())} object"
+
                             obj = self.uml_data.objects[(self.uml_data.objects["Name"] == v["items"].get("$objectId", k)) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
                             data["properties"][k]["description"] = f"Pointers to {html.unescape(str(obj.Name).strip())} objects"
                             data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "PointerArray"
