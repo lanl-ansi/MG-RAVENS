@@ -1344,7 +1344,7 @@ class DssExport(object):
             elif wye_ungrouned:
                 phase_kind = phases + "N"
 
-            self.add_triple(node, "TransformerTankEnd.orderedPhases", self.cim[f"OrderedPhaseCodeKind.{phase_kind}"])
+            self.add_triple(node, "TransformerTankEnd.phases", self.cim[f"PhaseCode.{phase_kind}"])
 
             self.add_triple(node, "TranformerTankEnd.TransformerTank", subject_uri)
 
