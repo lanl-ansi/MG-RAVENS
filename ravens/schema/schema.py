@@ -10,8 +10,7 @@ import pandas as pd
 from copy import deepcopy
 
 from ravens.data import _RAVENS_SCHEMA_BASE_URL, _JSON_SCHEMA_URL, _CIM_PRIMATIVES
-from ravens.io import UMLData
-from ravens.uml import UMLGraphs, UMLExclusions
+from ravens.uml import UMLData, UMLGraphs, UMLExclusions
 from ravens.schema.template import SchemaTemplate
 from ravens.logging import logger
 
@@ -23,10 +22,7 @@ class RavensSchema:
 
         self.uml_data = uml_data
 
-        if schema_template is None:
-            schema_template = SchemaTemplate(uml_data=uml_data, uml_graphs=uml_graphs, uml_exclusions=uml_exclusions)
-
-        self.schema_template = schema_template
+        self.schema_template = SchemaTemplate(uml_data=uml_data, uml_graphs=uml_graphs, uml_exclusions=uml_exclusions) if schema_template is None else schema_template
 
         self.schema = self.build_schema_from_map(self.schema_template.template)
         self.schema["$defs"] = self.build_definitions(self.uml_data)

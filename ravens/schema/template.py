@@ -8,9 +8,7 @@ import pandas as pd
 from copy import deepcopy
 
 from ravens.data import _TEMPLATE_JSON_PATH, _CIM_PRIMATIVES
-from ravens.io import UMLData
-from ravens.uml.graph import UMLGraphs
-from ravens.uml.exclusions import UMLExclusions
+from ravens.uml import UMLData, UMLGraphs, UMLExclusions
 
 
 class SchemaTemplate:
@@ -51,7 +49,7 @@ class SchemaTemplate:
                     "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
                 }
 
-            schema["Ravens.cimObjectType"]["enum"] = [object_name]
+            schema["Ravens.cimObjectType"]["enum"] = [object_name]  # type: ignore
 
     def add_attributes_to_template(self, data: dict, template: dict):
         if template.get("type", None) == "object" or template.get("$objectType", None) == "object":

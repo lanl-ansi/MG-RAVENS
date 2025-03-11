@@ -6,7 +6,7 @@ import subprocess
 import pandas as pd
 
 from ravens.data import _SVG_RENDERER_PATH, _CIM_RGB_TO_HEX
-from ravens.io import UMLData
+from ravens.uml.data import UMLData
 
 
 class UMLDiagramData:
@@ -15,7 +15,7 @@ class UMLDiagramData:
 
 
 class UMLVisualizer:
-    def __init__(self, uml_data: UMLData = None):
+    def __init__(self, uml_data: UMLData | None = None):
         if uml_data is None:
             uml_data = UMLData()
 
