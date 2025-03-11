@@ -191,13 +191,13 @@ _expected_dtypes = {
 
 class UMLData:
     def __init__(self):
-        self.objects: pd.DataFrame | None = None
-        self.connectors: pd.DataFrame | None = None
-        self.attributes: pd.DataFrame | None = None
-        self.packages: pd.DataFrame | None = None
-        self.diagrams: pd.DataFrame | None = None
-        self.diagramlinks: pd.DataFrame | None = None
-        self.diagramobjects: pd.DataFrame | None = None
+        self.objects: pd.DataFrame = pd.DataFrame()
+        self.connectors: pd.DataFrame = pd.DataFrame()
+        self.attributes: pd.DataFrame = pd.DataFrame()
+        self.packages: pd.DataFrame = pd.DataFrame()
+        self.diagrams: pd.DataFrame = pd.DataFrame()
+        self.diagramlinks: pd.DataFrame = pd.DataFrame()
+        self.diagramobjects: pd.DataFrame = pd.DataFrame()
 
         dataframes: dict = self._create_dataframes()
         for table_name, df in dataframes.items():
