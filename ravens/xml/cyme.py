@@ -216,14 +216,6 @@ class CymeConverter:
                 self.add_triple(URIRef(str(s)), "ACDCTerminal.sequenceNumber", seq)
                 self.to_remove.add((s, self.cim_ns["Terminal.sequenceNumber"], seq))
 
-            cond_equip = self.graph.value(subject=s, predicate=self.cim_ns["Terminal.ConductingEquipment"])
-            if cond_equip is not None:
-                cond_equip_type = self.graph.value(subject=cond_equip, predicate=RDF.type)
-                if cond_equip_type is not None and cond_equip_type == self.cim_ns["PowerTransformer"]:
-                    self.to_remove.add((s, self.cim_ns["Terminal.ConductingEquipment"], cond_equip))
-                    self.graph.remove((s, self.cim_ns["ACDCTerminal.sequenceNumber"], None))
-                    self.add_triple(URIRef(str(s)), "ACDCTerminal.sequenceNumber", 1)
-
     def save(self, path: pathlib.PosixPath | str):
         self.graph.serialize(path, max_depth=1, format="pretty-xml", base="")
 

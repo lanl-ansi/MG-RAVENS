@@ -4739,33 +4739,6 @@
                               "type": "object",
                               "$arrayPosition": "TransformerEnd.endNumber",
                               "properties": {
-                                "ConductingEquipment.Terminals": {
-                                  "type": "array",
-                                  "items": {
-                                    "$objectId": "Terminal",
-                                    "$objectType": "object",
-                                    "type": "object",
-                                    "$arrayPosition": "ACDCTerminal.sequenceNumber",
-                                    "properties": {
-                                      "Terminal.ConnectivityNode": {
-                                        "$objectId": "ConnectivityNode",
-                                        "$objectType": "reference",
-                                        "type": "string",
-                                        "$referencePath": "ConnectivityNode"
-                                      },
-                                      "Terminal.SvPowerFlow": {
-                                        "type": "array",
-                                        "items": {
-                                          "$objectId": "SvPowerFlow",
-                                          "$objectType": "object",
-                                          "type": "object",
-                                          "$arrayPosition": null,
-                                          "properties": {}
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
                                 "ConductingEquipment.BaseVoltage": {
                                   "$objectType": "reference",
                                   "$objectId": "BaseVoltage",
@@ -4898,6 +4871,33 @@
                       "$objectId": "PowerTransformerInfo",
                       "$referencePath": "AssetInfo/PowerTransformerInfo",
                       "type": "string"
+                    },
+                    "ConductingEquipment.Terminals": {
+                      "type": "array",
+                      "items": {
+                        "$objectId": "Terminal",
+                        "$objectType": "object",
+                        "type": "object",
+                        "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                        "properties": {
+                          "Terminal.ConnectivityNode": {
+                            "$objectId": "ConnectivityNode",
+                            "$objectType": "reference",
+                            "type": "string",
+                            "$referencePath": "ConnectivityNode"
+                          },
+                          "Terminal.SvPowerFlow": {
+                            "type": "array",
+                            "items": {
+                              "$objectId": "SvPowerFlow",
+                              "$objectType": "object",
+                              "type": "object",
+                              "$arrayPosition": null,
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
