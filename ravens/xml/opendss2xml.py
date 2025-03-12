@@ -31,6 +31,18 @@ ffi = cffi.FFI()
 unit_conversion: dict[str, float] = {"mi": 1609.3, "kft": 304.8, "km": 1000.0, "m": 1.0, "ft": 0.3048, "in": 0.0254, "cm": 0.01, "mm": 0.001}
 
 
+def interp_phasecode(phasecode: str) -> list[str]:
+    _phases: set[str] = set([])
+    for p in ["A", "B", "C", "N", "s1", "s2", "s12"]:
+        if p in phasecode:
+            _phases.add(p)
+
+    phases = list(_phases)
+    phases.sort()
+
+    return phases
+
+
 def parse_phase_str(bus: str, n_phases: int, kv_base: float | None = None, is_delta: bool = False) -> str:
     phase_str = ""
 
@@ -131,6 +143,7 @@ class TransformerBank(object):
         self.phase_b = [0 for i in range(max_wdg)]
         self.phase_c = [0 for i in range(max_wdg)]
         self.ground = [0 for i in range(max_wdg)]
+        self.terminal_uris: list[URIRef] = []
 
         self.pd_unit = None
 
@@ -1169,6 +1182,10 @@ class DssExport(object):
                 self._add_MeshImpedance(tr)
                 self._add_PowerTransformerEnd(tr, bank)
 
+            for tname, term_uri in self.transformer_terminal_uris.items():
+                if tname.startswith(f"Transformer={tr.Name}="):
+                    bank.terminal_uris.append(term_uri)
+
         for atr in self.dss.AutoTrans:
             bank_id = f"={atr.Name}" if atr.Bank is None else atr.Bank
             if bank_id not in self.transformer_banks:
@@ -1189,6 +1206,10 @@ class DssExport(object):
             self._add_MeshImpedance(atr)
             self._add_AutoPowerTransformerEnd(atr, bank)
 
+            for tname, term_uri in self.transformer_terminal_uris.items():
+                if tname.startswith(f"AutoTransformer={atr.Name}="):
+                    bank.terminal_uris.append(term_uri)
+
         for bank_id, bank in self.transformer_banks.items():
             bank.build_vector_group()
             self._add_PowerTransformer(bank)
@@ -1196,6 +1217,33 @@ class DssExport(object):
     def _add_PowerTransformer(self, bank: TransformerBank):
         node = self.build_cim_obj("PowerTransformer", mrid=bank.uuid, name=bank.local_name)
         self.add_triple(node, "PowerTransformer.vectorGroup", bank.vector_group)
+
+        seq: dict[int, list] = {i + 1: [] for i in range(bank.n_windings)}
+        for term_uri in bank.terminal_uris:
+            seq[int(self.graph.value(term_uri, self.cim["ACDCTerminal.sequenceNumber"]))].append(term_uri)  # type: ignore
+
+        for s, uris in seq.items():
+            if len(uris) == 1:
+                self.add_triple(uris[0], "Terminal.ConductingEquipment", node)
+            else:
+                phasecode: str = "".join([str(self.graph.value(subject=uri, predicate=self.cim["Terminal.phases"])).split(".")[-1] for uri in uris])
+                phases = interp_phasecode(phasecode)
+
+                new_term = self.build_cim_obj("Terminal", name=f"{bank.local_name}_T{s}")
+                self.add_triple(new_term, "ACDCTerminal.sequenceNumber", s)
+                self.add_triple(new_term, "Terminal.phases", self.cim[f"PhaseCode.{''.join(phases)}"])
+                self.add_triple(new_term, "Terminal.ConnectivityNode", self.graph.value(uris[0], self.cim["Terminal.ConnectivityNode"]))
+                oplimsets = [self.graph.value(uri, self.cim["ACDCTerminal.OperationalLimitSet"]) for uri in uris]
+                for oplimset in oplimsets:
+                    if oplimset is not None:
+                        self.add_triple(new_term, "ACDCTerminal.OperationalLimitSet", oplimset)
+                        break
+
+                self.add_triple(new_term, "Terminal.ConductingEquipment", node)
+
+                # remove old uri
+                for uri in uris:
+                    self.graph.remove((uri, None, None))
 
     def _add_PowerTransformerEnd(self, tr: altdss.Transformer, bank: TransformerBank):
         for i in range(tr.Windings):
@@ -1242,7 +1290,7 @@ class DssExport(object):
             self.add_triple(node, "TransformerEnd.endNumber", i + 1)
 
             phases = parse_phase_str(tr.Buses[i], tr.Phases)
-            terminal_uri = self._add_Terminal(node, tr, bus=self._parse_busname(tr.Buses[i]), phases=phases)
+            terminal_uri = self._add_Terminal(node, tr, bus=self._parse_busname(tr.Buses[i]), phases=phases, n_terminal=i + 1)
             base_kv = self._add_BaseVoltage(node, tr.Buses[i])
 
             if i + 1 == 1:
@@ -1280,14 +1328,14 @@ class DssExport(object):
             self.add_triple(node, "TransformerEnd.endNumber", i + 1)
 
             phases = parse_phase_str(tr.Buses[i], tr.Phases)
-            terminal_uri = self._add_Terminal(node, tr, bus=self._parse_busname(tr.Buses[i]), phases=phases)
+            terminal_uri = self._add_Terminal(node, tr, bus=self._parse_busname(tr.Buses[i]), phases=phases, n_terminal=i + 1)
             base_kv = self._add_BaseVoltage(node, tr.Buses[i])
 
             if i + 1 == 1:
                 self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=tr.NormAmps, norm_max=tr.NormAmps, emerg_max=tr.EmergAmps)
 
-            self.transformer_terminal_uris[f"Transformer={tr.Name}={i+1}"] = terminal_uri
-            self.transformer_end_uris[f"Transformer={tr.Name}={i+1}"] = node
+            self.transformer_terminal_uris[f"AutoTransformer={tr.Name}={i+1}"] = terminal_uri
+            self.transformer_end_uris[f"AutoTransformer={tr.Name}={i+1}"] = node
 
     def _add_TransformerTank(self, tr: altdss.Transformer, bank_id: str):
         node = self.build_cim_obj("TransformerTank", name=tr.Name)
@@ -1350,7 +1398,7 @@ class DssExport(object):
 
             self.add_triple(node, "TransformerEnd.endNumber", i + 1)
 
-            terminal_uri = self._add_Terminal(node, tr, bus=self._parse_busname(tr.Buses[i]), phases=phases)
+            terminal_uri = self._add_Terminal(node, tr, bus=self._parse_busname(tr.Buses[i]), phases=phase_kind, n_terminal=i + 1)
             base_kv = self._add_BaseVoltage(node, tr.Buses[i])
 
             if i + 1 == 1:
