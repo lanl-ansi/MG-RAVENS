@@ -18,6 +18,9 @@
       "description": "Pointer to PowerTransformerInfo object",
       "pattern": "^PowerTransformerInfo::'(.+)'$"
     },
+    "ConductingEquipment.Terminals": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
+    },
     "PowerTransformer.beforeShCircuitHighestOperatingCurrent": {
       "title": "beforeShCircuitHighestOperatingCurrent",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
