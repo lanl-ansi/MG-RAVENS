@@ -1,9 +1,6 @@
 {
   "type": "object",
   "properties": {
-    "ConductingEquipment.Terminals": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
-    },
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
       "title": "BaseVoltagePointer",
