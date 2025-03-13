@@ -2,6 +2,7 @@ import html
 import json
 import os
 import pathlib
+from typing import Any
 
 import json_schema_for_humans.generate as Gen
 import markdownify
@@ -28,6 +29,7 @@ class RavensSchema:
         self.schema["$defs"] = self.build_definitions(self.uml_data)
         self.schema["$id"] = f"{base_id_uri}/Root.json"
         self.schema["$schema"] = _JSON_SCHEMA_URL
+        self.schema["additionalProperties"] = False
 
         self.schemas = {}
         self.base_id_uri = base_id_uri
@@ -42,7 +44,7 @@ class RavensSchema:
         self.add_cim_copyright_notice_to_decomposed_schemas(self.uml_data)
 
     def build_schema_from_map(self, schema_map: dict) -> dict:
-        schema = {}
+        schema: dict[str, Any] = {}
         for k, v in schema_map.items():
             if k.startswith("$"):
                 continue
@@ -50,8 +52,10 @@ class RavensSchema:
                 if "type" in v or "$objectType" in v:
                     if v.get("type", None) == "object" or v.get("$objectType", None) == "object":
                         if "properties" in v:
+                            v["additionalProperties"] = False
                             if v.get("$primaryObjectHash", None) is None:
                                 schema[k] = self.build_schema_from_map(v)
+                                schema[k]["additionalProperties"] = False
                             else:
                                 schema[k] = {
                                     "type": "object",
@@ -76,7 +80,7 @@ class RavensSchema:
                                     "patternProperties": {
                                         "^.+$": {
                                             **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "anyOf"},
-                                            **{"anyOf": [self.build_schema_from_map(item) for item in v["anyOf"]]},
+                                            **{"anyOf": [self.build_schema_from_map(item if "properties" not in item else {"additionalProperties": False, **item}) for item in v["anyOf"]]},
                                         }
                                     },
                                 }
@@ -114,6 +118,7 @@ class RavensSchema:
                     "title": str(obj.Name).replace(" ", ""),
                     "description": html.unescape(str(obj.Note)).strip(),
                     "type": "object",
+                    "additionalProperties": False,
                     "properties": {
                         str(attr.Name): {
                             "type": str(attr.Type) if str(attr.Type) not in _CIM_PRIMATIVES else _CIM_PRIMATIVES[str(attr.Type)],
