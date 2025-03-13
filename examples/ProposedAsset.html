@@ -592,7 +592,7 @@
 <span class="w">        </span><span class="nt">&quot;ProposedAssetSet.rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;ProposedAssetSet.ProposedAssets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
 <span class="w">        </span><span class="nt">&quot;ProposedAssetSet.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;ProposedAssetSet.EstimatedCosts&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedEnergyProducerAssetCosts::&#39;BusinessAsUsual&#39;&quot;</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetSet.EstimatedCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost::&#39;BusinessAsUsual&#39;&quot;</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
@@ -601,96 +601,139 @@
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch_a_b&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;07be8846-b0c0-465b-81f6-8bf8eedbdab2&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBranch&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedBranch.Terminal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="nt">&quot;ProposedBranch.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;bus_a&#39;&quot;</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;bus_b&#39;&quot;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedSwitchOption::&#39;switch_type_1&#39;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedAsset.EstimatedCosts&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedAssetCosts::&#39;switch_a_b&#39;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.EstimatedCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost::&#39;switch_a_b&#39;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;bess_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bess_b&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eb1ea7e3-ec99-49d9-be4f-0a3859c1c2be&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBatteryUnit&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedEnergyProducerOption.capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedEnergyProducerAsset.capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;ProposedBatteryUnit.energyCapacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">600000.0</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBatteryUnitOption::&#39;battery_type_1&#39;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedAsset.EstimatedCosts&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedEnergyProducerAssetCosts::&#39;bess_b&#39;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.EstimatedCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost::&#39;bess_b&#39;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;hardened_line_b_c&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hardened_line_b_c&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d5b8b73e-cc04-48f1-9200-398f571e608c&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBranch&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedBranch.Terminal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="nt">&quot;ProposedBranch.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;bus_b&#39;&quot;</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;bus_c&#39;&quot;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedConductorOption::&#39;hardened_line&#39;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedAsset.EstimatedCosts&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedAssetCosts::&#39;hardened_line_b_c&#39;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.EstimatedCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost::&#39;hardened_line_b_c&#39;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;EstimatedAssetCosts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;EstimatedCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;switch_a_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch_a_b&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1c843b24-385b-4722-97a9-cbc370b08107&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedAssetCosts&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;EstimatedAssetCosts.assetCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;EstimatedAssetCosts.lifecycleCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2000000.0</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;EstimatedCost.assetCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;EstimatedCost.lifecycleCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2000000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;bess_b&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bess_b&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ebefdf9f-7018-48f0-8b0a-05b921582322&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedEnergyProducerAssetCosts&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;EstimatedAssetCosts.assetCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10000000.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;EstimatedEnergyProducerAssetCosts.firstYearCapacityCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;EstimatedEnergyProducerAssetCosts.firstYearEnergyCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;EstimatedCost.assetCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10000000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;EstimatedCost.firstYearCapacityCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;EstimatedCost.firstYearEnergyCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;hardened_line_b_c&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hardened_line_b_c&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;92af438c-bf2c-488d-91be-f63492306af1&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedAssetCosts&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;EstimatedAssetCosts.assetCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2000000.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;EstimatedAssetCosts.lifecycleCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10000000.0</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;EstimatedCost.assetCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2000000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;EstimatedCost.lifecycleCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10000000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;BusinessAsUsual&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BusinessAsUsual&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5c7c2c28-bcce-48df-99fd-773730c3e9ca&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedEnergyProducerAssetCosts&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;EstimatedEnergyProducerAssetCosts.lifecycleCapacityCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100000000.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;EstimatedEnergyProducerAssetCosts.lifecycleEnergyCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100000000.0</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;EstimatedCost.lifecycleCapacityCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100000000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;EstimatedCost.lifecycleEnergyCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100000000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;switch_type_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch_type_1&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4fef55f6-3a2d-4951-8734-58ae9373f5e0&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedSwitchOption&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedAssetOption.fixedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span>
+<span class="w">    </span><span class="nt">&quot;ProposedSwitchOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;switch_type_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch_type_1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4fef55f6-3a2d-4951-8734-58ae9373f5e0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedSwitchOption&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedAssetOption.fixedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;hardened_line&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hardened_line&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b3a62369-02b0-44b7-a881-677df65b9284&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedConductorOption&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedConductorOption.variablePrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedConductorOption.conductorType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;undergroundCable&quot;</span>
+<span class="w">    </span><span class="nt">&quot;ProposedConductorOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;hardened_line&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hardened_line&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b3a62369-02b0-44b7-a881-677df65b9284&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedConductorOption&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedConductorOption.variablePrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Currency.USD&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;ProposedConductorOption.conductorType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConductorType.undergroundCable&quot;</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;battery_type_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery_type_1&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;670c1a10-246b-4e8b-8338-ecdf4f008a05&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBatteryUnitOption&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedBatteryUnitOption.energyCapacityMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000000.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedEnergyProducerOption.powerCapacityMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000000.0</span>
+<span class="w">    </span><span class="nt">&quot;ProposedEnergyProducerOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;battery_type_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;battery_type_1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;670c1a10-246b-4e8b-8338-ecdf4f008a05&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBatteryUnitOption&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedBatteryUnitOption.energyCapacityMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ProposedEnergyProducerOption.powerCapacityMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000000.0</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;Application&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>

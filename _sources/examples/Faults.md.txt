@@ -9,7 +9,6 @@
       "IdentifiedObject.mRID": "3c310628-4291-40c9-b20c-c00f5206c3a0",
       "Ravens.cimObjectType": "Fault",
       "Fault.impedance": {
-        "Ravens.cimObjectType": "FaultImpedance",
         "rGround": 10000.0,
         "xGround": 10000.0
       },
@@ -22,7 +21,6 @@
       "IdentifiedObject.mRID": "0beebfbc-66f9-4bcb-943f-7687f00abc59",
       "Ravens.cimObjectType": "Fault",
       "Fault.impedance": {
-        "Ravens.cimObjectType": "FaultImpedance",
         "rLineToLine": 10000.0,
         "xLineToLine": 10000.0
       },
@@ -35,7 +33,6 @@
       "IdentifiedObject.mRID": "",
       "Ravens.cimObjectType": "Fault",
       "Fault.impedance": {
-        "Ravens.cimObjectType": "FaultImpedance",
         "rGround": 10000.0,
         "rLineToLine": 10000.0,
         "xGround": 10000.0,

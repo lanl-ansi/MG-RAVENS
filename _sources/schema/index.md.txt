@@ -734,6 +734,8 @@
 
 [GeographicalRegionPointerArray](../_static/schema/GeographicalRegionPointerArray.html){.external}
 
+[GeographicalRegionanyOfPointer_anyOfContainer](../_static/schema/GeographicalRegionanyOfPointer_anyOfContainer.html){.external}
+
 [GeosphericAnalogKind](../_static/schema/GeosphericAnalogKind.html){.external}
 
 [GeosphericPhenomenon](../_static/schema/GeosphericPhenomenon.html){.external}
@@ -895,6 +897,8 @@
 [LoadGroup](../_static/schema/LoadGroup.html){.external}
 
 [LoadGroupContainer_Container](../_static/schema/LoadGroupContainer_Container.html){.external}
+
+[LoadGroupPointerArray](../_static/schema/LoadGroupPointerArray.html){.external}
 
 [LoadGroup_anyOfContainer](../_static/schema/LoadGroup_anyOfContainer.html){.external}
 
@@ -1232,7 +1236,11 @@
 
 [ProposedAssetOption](../_static/schema/ProposedAssetOption.html){.external}
 
+[ProposedAssetOptionanyOfPointer_anyOfContainer](../_static/schema/ProposedAssetOptionanyOfPointer_anyOfContainer.html){.external}
+
 [ProposedAssetPointerArray](../_static/schema/ProposedAssetPointerArray.html){.external}
+
+[ProposedAssetPointer_anyOfContainer](../_static/schema/ProposedAssetPointer_anyOfContainer.html){.external}
 
 [ProposedAssetSet](../_static/schema/ProposedAssetSet.html){.external}
 

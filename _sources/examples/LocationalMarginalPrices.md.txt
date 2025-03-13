@@ -10,7 +10,7 @@
         "IdentifiedObject.name": "LocationalMarginalPrices_1",
         "Ravens.cimObjectType": "LocationalMarginalPrices",
         "EnergyPrices.Regions": [
-          "Region_1"
+          "SubGeographicalRegion::'Region_1'"
         ],
         "LocationalMarginalPrices.LMPCurve": {
           "Ravens.cimObjectType": "PriceCurve",
@@ -69,7 +69,7 @@
         "IdentifiedObject.name": "LocationalMarginalPrices_2",
         "Ravens.cimObjectType": "LocationalMarginalPrices",
         "LocationalMarginalPrices.ConnectivityNodes": [
-          "Bus1"
+          "ConnectivityNode::'Bus1'"
         ],
         "LocationalMarginalPrices.LMPCurve": {
           "Ravens.cimObjectType": "PriceCurve",
