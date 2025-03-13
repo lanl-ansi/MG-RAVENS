@@ -2,6 +2,7 @@
   "title": "ControlledAppliance",
   "description": "Appliance controlled with a PAN device control.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "isWaterHeater": {
       "type": "boolean",

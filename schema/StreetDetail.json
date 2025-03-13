@@ -2,6 +2,7 @@
   "title": "StreetDetail",
   "description": "Street details, in the context of address.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "addressGeneral3": {
       "type": "string",

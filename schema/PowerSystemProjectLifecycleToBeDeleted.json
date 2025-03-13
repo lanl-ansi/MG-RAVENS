@@ -2,6 +2,7 @@
   "title": "PowerSystemProjectLifecycleToBeDeleted",
   "description": "Represent the base lifecycle of a functional model change that could be a construction of new elements.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "cancelled": {
       "type": "string",

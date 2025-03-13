@@ -2,6 +2,7 @@
   "title": "ElectronicAddress",
   "description": "Electronic address information.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "web": {
       "type": "string",

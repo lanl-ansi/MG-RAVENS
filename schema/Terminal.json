@@ -7,6 +7,9 @@
       "description": "Pointer to ConnectivityNode object",
       "pattern": "^ConnectivityNode::'(.+)'$"
     },
+    "Terminal.SvPowerFlow": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvPowerFlowArray.json"
+    },
     "ACDCTerminal.connected": {
       "title": "connected",
       "type": "boolean",
@@ -51,8 +54,8 @@
       "description": "The name is any free human readable and possibly non unique text naming the object."
     }
   },
-  "description": "An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.",
   "title": "Terminal",
+  "description": "An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal.json",

@@ -2,6 +2,7 @@
   "title": "DateInterval",
   "description": "Interval between two dates.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "end": {
       "type": "string",

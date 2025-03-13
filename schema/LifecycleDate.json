@@ -2,6 +2,7 @@
   "title": "LifecycleDate",
   "description": "Dates for asset lifecycle state changes. May have multiple lifecycle dates for this device and a compound type allows a query to return multiple dates.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "manufacturedDate": {
       "type": "string",

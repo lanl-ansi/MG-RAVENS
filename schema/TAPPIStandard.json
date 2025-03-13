@@ -2,6 +2,7 @@
   "title": "TAPPIStandard",
   "description": "Standard published by TAPPI.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "TAPPI standard number.",

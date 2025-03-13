@@ -2,6 +2,7 @@
   "title": "FaultImpedance",
   "description": "Impedance description for the fault.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "xLineToLine": {
       "description": "The reactance of the fault between phases.",

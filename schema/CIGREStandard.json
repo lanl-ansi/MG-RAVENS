@@ -2,6 +2,7 @@
   "title": "CIGREStandard",
   "description": "Standard published by CIGRE (Council on Large Electric Systems).",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "CIGRE standard number.",

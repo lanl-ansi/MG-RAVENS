@@ -2,6 +2,7 @@
   "title": "Status",
   "description": "Current status information relevant to an entity.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "value": {
       "type": "string",

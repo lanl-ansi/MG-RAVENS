@@ -2,6 +2,7 @@
   "title": "IntegerQuantity",
   "description": "Quantity with integer value and associated unit information.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "multiplier": {
       "description": "Unit multiplier of this quantity.",

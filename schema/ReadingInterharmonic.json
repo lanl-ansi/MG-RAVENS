@@ -2,6 +2,7 @@
   "title": "ReadingInterharmonic",
   "description": "Interharmonics are represented as a rational number 'numerator' / 'denominator', and harmonics are represented using the same mechanism and identified by 'denominator'=1.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "denominator": {
       "type": "integer",

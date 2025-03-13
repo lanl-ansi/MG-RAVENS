@@ -2,6 +2,7 @@
   "title": "IEEEStandard",
   "description": "Standard published by IEEE (Institute of Electrical and Electronics Engineers).",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "IEEE standard number.",

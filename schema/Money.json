@@ -2,6 +2,7 @@
   "title": "Money",
   "description": "Amount of money.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "multiplier": {
       "description": "nan",

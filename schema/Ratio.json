@@ -2,6 +2,7 @@
   "title": "Ratio",
   "description": "Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "numerator": {
       "type": "number",

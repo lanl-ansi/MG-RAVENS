@@ -2,6 +2,7 @@
   "title": "DeploymentDate",
   "description": "Dates for deployment events of an asset.  May have multiple deployment type dates for this device and a compound type allows a query to return multiple dates.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "notYetInstalledDate": {
       "type": "string",

@@ -2,6 +2,7 @@
   "title": "EndDeviceTiming",
   "description": "Timing for the control actions of end devices.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "interval": {
       "description": "Start and end time of an interval during which end device control actions are to be executed.\n",

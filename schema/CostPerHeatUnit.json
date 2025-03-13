@@ -2,6 +2,7 @@
   "title": "CostPerHeatUnit",
   "description": "Cost, in units of currency, per quantity of heat generated.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "multiplier": {
       "description": "nan",

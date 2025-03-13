@@ -2,6 +2,7 @@
   "title": "Decimal",
   "description": "Decimal is the base-10 notational system for representing real numbers.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {},
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Decimal.json",

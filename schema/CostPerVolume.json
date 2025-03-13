@@ -2,6 +2,7 @@
   "title": "CostPerVolume",
   "description": "Cost per unit volume.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "unit": {
       "description": "nan",

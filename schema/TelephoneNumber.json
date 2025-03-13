@@ -2,6 +2,7 @@
   "title": "TelephoneNumber",
   "description": "Telephone number.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "localNumber": {
       "type": "string",

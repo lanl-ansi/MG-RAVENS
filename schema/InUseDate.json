@@ -2,6 +2,7 @@
   "title": "InUseDate",
   "description": "Dates associated with asset 'in use' status. May have multiple in use dates for this device and a compound type allows a query to return multiple dates.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "readyForUseDate": {
       "type": "string",

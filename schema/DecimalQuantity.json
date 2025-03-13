@@ -2,6 +2,7 @@
   "title": "DecimalQuantity",
   "description": "Quantity with decimal value and associated unit or currency information.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "value": {
       "type": "number",

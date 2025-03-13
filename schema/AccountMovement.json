@@ -2,6 +2,7 @@
   "title": "AccountMovement",
   "description": "Credit/debit movements for an account.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "reason": {
       "type": "string",

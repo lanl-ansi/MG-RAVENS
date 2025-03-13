@@ -5,6 +5,7 @@
     "object",
     "integer"
   ],
+  "additionalProperties": false,
   "properties": {
     "unit": {
       "description": "nan",

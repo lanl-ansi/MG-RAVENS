@@ -2,6 +2,7 @@
   "title": "TimeInterval",
   "description": "Interval between two times.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "end": {
       "type": "string",

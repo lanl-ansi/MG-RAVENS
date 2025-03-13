@@ -2,6 +2,7 @@
   "title": "MonthDay",
   "description": "MonthDay format as \"--mm-dd\", which conforms with XSD data type gMonthDay.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {},
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MonthDay.json",

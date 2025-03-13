@@ -2,6 +2,7 @@
   "title": "ServicePointOutageSummary",
   "description": "Summary counts of service points affected by an outage. These counts are sometimes referred to as total and critical customer count.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "criticalCount": {
       "type": "integer",

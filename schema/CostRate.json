@@ -2,6 +2,7 @@
   "title": "CostRate",
   "description": "Cost, in units of currency, per elapsed time.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "multiplier": {
       "description": "nan",

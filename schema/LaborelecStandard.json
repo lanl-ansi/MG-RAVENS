@@ -2,6 +2,7 @@
   "title": "LaborelecStandard",
   "description": "Standard published by Laborelec.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "Laborelec standard number.",

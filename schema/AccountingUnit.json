@@ -2,6 +2,7 @@
   "title": "AccountingUnit",
   "description": "Unit for accounting; use either 'energyUnit' or 'currencyUnit' to specify the unit for 'value'.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "multiplier": {
       "description": "Multiplier for the 'energyUnit' or 'monetaryUnit'.",

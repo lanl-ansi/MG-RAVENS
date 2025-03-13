@@ -2,6 +2,7 @@
   "title": "WEPStandard",
   "description": "Standard published by Westinghouse - a WEP (Westinghouse Engineering Procedure).",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardEdition": {
       "description": "Edition of WEP standard.",

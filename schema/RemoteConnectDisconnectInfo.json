@@ -2,6 +2,7 @@
   "title": "RemoteConnectDisconnectInfo",
   "description": "Details of remote connect and disconnect function.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "isEnergyLimiting": {
       "type": "boolean",

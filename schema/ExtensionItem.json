@@ -2,6 +2,7 @@
   "title": "ExtensionItem",
   "description": "Specifies the extensions list items",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "extName": {
       "type": "string",

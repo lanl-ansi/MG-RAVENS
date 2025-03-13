@@ -2,6 +2,7 @@
   "title": "ExtensionsList",
   "description": "Specifies the enumeration of the extension item",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "extensionsItem": {
       "description": "a compound type that defines the extension name, type and value ",

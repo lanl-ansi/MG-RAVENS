@@ -2,6 +2,7 @@
   "title": "ISOStandard",
   "description": "Standard published by ISO (International Organization for Standardization).",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "ISO standard number.",

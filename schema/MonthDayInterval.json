@@ -2,6 +2,7 @@
   "title": "MonthDayInterval",
   "description": "Interval between two times specified as month and day.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "end": {
       "type": "string",

@@ -2,6 +2,7 @@
   "title": "AcceptanceTest",
   "description": "Acceptance test for assets.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "type": {
       "type": "string",

@@ -2,6 +2,7 @@
   "title": "EPAStandard",
   "description": "Standard published by EPA (United States Environmental Protection Agency).",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardEdition": {
       "description": "Edition of EPA standard.",

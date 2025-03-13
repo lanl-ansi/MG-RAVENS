@@ -2,6 +2,7 @@
   "title": "EndDeviceCapability",
   "description": "Inherent capabilities of an end device (i.e., the functions it supports).",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "onRequestRead": {
       "type": "boolean",

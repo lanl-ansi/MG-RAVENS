@@ -2,6 +2,7 @@
   "title": "UKMinistryOfDefenceStandard",
   "description": "Standard published by United Kingdom Ministry of Defence.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "UK Ministry of Defence standard number.",

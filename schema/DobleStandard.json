@@ -2,6 +2,7 @@
   "title": "DobleStandard",
   "description": "Standard published by Doble.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "Doble standard number.",

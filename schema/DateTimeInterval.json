@@ -2,6 +2,7 @@
   "title": "DateTimeInterval",
   "description": "Interval between two date and time points, where the interval includes the start time but excludes end time.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "end": {
       "type": "string",

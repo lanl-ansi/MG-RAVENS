@@ -2,6 +2,7 @@
   "title": "StringQuantity",
   "description": "Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "unit": {
       "description": "Unit of this quantity.",

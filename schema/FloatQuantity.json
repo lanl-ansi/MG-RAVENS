@@ -2,6 +2,7 @@
   "title": "FloatQuantity",
   "description": "Quantity with float value and associated unit information.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "value": {
       "type": "number",

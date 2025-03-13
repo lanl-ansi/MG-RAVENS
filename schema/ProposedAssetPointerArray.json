@@ -21,9 +21,7 @@
   "description": "Pointers to ProposedAsset objects",
   "title": "ProposedAssetPointerArray",
   "items": {
-    "type": "string",
-    "title": "ProposedAssetPointer",
-    "description": "Pointer to ProposedAsset object"
+    "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetPointer_anyOfContainer.json"
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,

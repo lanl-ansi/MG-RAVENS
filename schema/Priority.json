@@ -2,6 +2,7 @@
   "title": "Priority",
   "description": "Priority definition.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "rank": {
       "type": "integer",

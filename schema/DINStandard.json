@@ -2,6 +2,7 @@
   "title": "DINStandard",
   "description": "Standard published by DIN (German Institute of Standards).",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "DIN standard number.",

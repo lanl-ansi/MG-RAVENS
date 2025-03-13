@@ -2,6 +2,7 @@
   "title": "BankAccountDetail",
   "description": "Details of a bank account.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "bankName": {
       "type": "string",

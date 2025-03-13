@@ -2,6 +2,7 @@
   "title": "ASTMStandard",
   "description": "Standard published by ASTM (ASTM International).",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "ASTM standard number.",

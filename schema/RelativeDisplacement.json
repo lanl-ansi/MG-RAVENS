@@ -2,6 +2,7 @@
   "title": "RelativeDisplacement",
   "description": "Vertical displacement relative to either sealevel, ground or the center of the earth.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "displacement": {
       "description": "nan",

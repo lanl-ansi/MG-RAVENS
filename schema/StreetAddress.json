@@ -2,6 +2,7 @@
   "title": "StreetAddress",
   "description": "General purpose street and postal address information.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "townDetail": {
       "description": "Town detail.",

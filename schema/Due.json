@@ -2,6 +2,7 @@
   "title": "Due",
   "description": "Details on amounts due for an account.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "arrears": {
       "description": "Part of 'current' that constitutes the arrears portion.",

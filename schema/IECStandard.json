@@ -2,6 +2,7 @@
   "title": "IECStandard",
   "description": "Standard published by IEC (International Electrotechnical Commission).",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "standardNumber": {
       "description": "IEC standard number.",

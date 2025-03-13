@@ -2,6 +2,7 @@
   "title": "LineDetail",
   "description": "Details on an amount line, with rounding, date and note.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "note": {
       "type": "string",

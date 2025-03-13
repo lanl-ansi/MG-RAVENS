@@ -2,6 +2,7 @@
   "title": "RationalNumber",
   "description": "Rational number = 'numerator' / 'denominator'.",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "denominator": {
       "type": "integer",
