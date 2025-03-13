@@ -783,9 +783,27 @@
               "type": "array",
               "items": {
                 "$objectType": "reference",
-                "type": "string",
                 "$objectId": "ProposedAsset",
-                "$referencePath": "ProposedAsset"
+                "anyOf": [
+                  {
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$objectId": "ProposedAsset",
+                    "$referencePath": "ProposedBranch"
+                  },
+                  {
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$objectId": "ProposedAsset",
+                    "$referencePath": "ProposedBatteryUnit"
+                  },
+                  {
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$objectId": "ProposedAsset",
+                    "$referencePath": "ProposedEnergyProducerAsset"
+                  }
+                ]
               },
               "ProposedAssetSet.EstimatedCosts": {
                 "type": "array",
@@ -805,6 +823,24 @@
                   "$referencePath": "SolutionMetric"
                 }
               }
+            },
+            "ProposedAssetSet.Algorithm": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
+            },
+            "ProposedAssetSet.Application": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Application",
+              "$referencePath": "Application"
+            },
+            "ProposedAssetSet.EstimatedCost": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "EstimatedCost",
+              "$referencePath": "EstimatedCost"
             }
           }
         }
@@ -6242,6 +6278,33 @@
           "$objectId": "CoordinateSystem",
           "type": "string",
           "$referencePath": "CoordinateSystem"
+        },
+        "ProposedSiteLocation.Region": {
+          "$objectType": "reference",
+          "$objectId": "GeographicalRegion",
+          "anyOf": [
+            {
+              "$objectType": "reference",
+              "$objectId": "GeographicalRegion",
+              "type": "string",
+              "$referencePath": "Group/GeographicalRegion"
+            },
+            {
+              "$objectType": "reference",
+              "$objectId": "SubGeographicalRegion",
+              "type": "string",
+              "$referencePath": "Group/SubGeographicalRegion"
+            }
+          ]
+        },
+        "ProposedSiteLocation.LoadGroups": {
+          "type": "array",
+          "items": {
+            "$objectType": "reference",
+            "$objectId": "LoadGroup",
+            "type": "string",
+            "$referencePath": "Group/LoadProfile"
+          }
         }
       }
     },
@@ -6745,6 +6808,48 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "$objectId": "ProposedAsset",
           "properties": {
+            "ProposedAsset.ProposedAssetOption": {
+              "$objectType": "reference",
+              "$objectId": "ProposedAssetOption",
+              "anyOf": [
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedConductorOption",
+                  "$referencePath": "ProposedAssetOption/ProposedConductorOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedSwitchOption",
+                  "$referencePath": "ProposedAssetOption/ProposedSwitchOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedEnergyProducerOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedBatteryUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedPhotoVoltaicUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedWindUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                }
+              ]
+            },
             "ProposedAsset.Application": {
               "type": "string",
               "$objectType": "reference",
@@ -6756,6 +6861,12 @@
               "$objectType": "reference",
               "$objectId": "EstimatedCost",
               "$referencePath": "EstimatedCost"
+            },
+            "ProposedAsset.Algorithm": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
             }
           }
         },
@@ -6766,6 +6877,48 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "$objectId": "ProposedBranch",
           "properties": {
+            "ProposedAsset.ProposedAssetOption": {
+              "$objectType": "reference",
+              "$objectId": "ProposedAssetOption",
+              "anyOf": [
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedConductorOption",
+                  "$referencePath": "ProposedAssetOption/ProposedConductorOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedSwitchOption",
+                  "$referencePath": "ProposedAssetOption/ProposedSwitchOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedEnergyProducerOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedBatteryUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedPhotoVoltaicUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedWindUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                }
+              ]
+            },
             "ProposedAsset.Application": {
               "type": "string",
               "$objectType": "reference",
@@ -6777,6 +6930,39 @@
               "$objectType": "reference",
               "$objectId": "EstimatedCost",
               "$referencePath": "EstimatedCost"
+            },
+            "ProposedAsset.Algorithm": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
+            },
+            "ProposedBranch.Terminals": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "Terminal",
+                "type": "object",
+                "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                "properties": {
+                  "Terminal.ConnectivityNode": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  },
+                  "Terminal.SvPowerFlow": {
+                    "type": "array",
+                    "items": {
+                      "$objectType": "object",
+                      "$objectId": "SvPowerFlow",
+                      "type": "object",
+                      "$arrayPosition": null,
+                      "properties": {}
+                    }
+                  }
+                }
+              }
             }
           }
         },
@@ -6787,6 +6973,48 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "$objectId": "ProposedEnergyProducerAsset",
           "properties": {
+            "ProposedAsset.ProposedAssetOption": {
+              "$objectType": "reference",
+              "$objectId": "ProposedAssetOption",
+              "anyOf": [
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedConductorOption",
+                  "$referencePath": "ProposedAssetOption/ProposedConductorOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedSwitchOption",
+                  "$referencePath": "ProposedAssetOption/ProposedSwitchOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedEnergyProducerOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedBatteryUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedPhotoVoltaicUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedWindUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                }
+              ]
+            },
             "ProposedAsset.Application": {
               "type": "string",
               "$objectType": "reference",
@@ -6802,8 +7030,14 @@
             "ProposedEnergyProducerAsset.PowerDispatchCurve": {
               "type": "string",
               "$objectType": "reference",
-              "$objectId": "DispatchCurve",
+              "$objectId": "Curve",
               "$referencePath": "Curve"
+            },
+            "ProposedAsset.Algorithm": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
             }
           }
         },
@@ -6814,6 +7048,48 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "$objectId": "ProposedBatteryUnit",
           "properties": {
+            "ProposedAsset.ProposedAssetOption": {
+              "$objectType": "reference",
+              "$objectId": "ProposedAssetOption",
+              "anyOf": [
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedConductorOption",
+                  "$referencePath": "ProposedAssetOption/ProposedConductorOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedSwitchOption",
+                  "$referencePath": "ProposedAssetOption/ProposedSwitchOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedEnergyProducerOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedBatteryUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedPhotoVoltaicUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                },
+                {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "ProposedWindUnitOption",
+                  "$referencePath": "ProposedAssetOption/ProposedEnergyProducerOption"
+                }
+              ]
+            },
             "ProposedAsset.Application": {
               "type": "string",
               "$objectType": "reference",
@@ -6829,8 +7105,14 @@
             "ProposedEnergyProducerAsset.PowerDispatchCurve": {
               "type": "string",
               "$objectType": "reference",
-              "$objectId": "DispatchCurve",
+              "$objectId": "Curve",
               "$referencePath": "Curve"
+            },
+            "ProposedAsset.Algorithm": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
             }
           }
         }

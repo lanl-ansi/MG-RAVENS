@@ -1,9 +1,11 @@
 {
-  "BaseV_0.4": {
-    "Ravens.cimObjectType": "BaseVoltage",
-    "IdentifiedObject.mRID": "eac36c2a-2446-4fab-973e-e4310268fdee",
-    "IdentifiedObject.name": "BaseV_0.4",
-    "BaseVoltage.nominalVoltage": 400.0
+  "BaseVoltage": {
+    "BaseV_0.4": {
+      "Ravens.cimObjectType": "BaseVoltage",
+      "IdentifiedObject.mRID": "eac36c2a-2446-4fab-973e-e4310268fdee",
+      "IdentifiedObject.name": "BaseV_0.4",
+      "BaseVoltage.nominalVoltage": 400.0
+    }
   },
   "ConnectivityNode": {
     "primary": {

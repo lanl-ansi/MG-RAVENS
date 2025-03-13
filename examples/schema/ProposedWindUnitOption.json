@@ -28,7 +28,7 @@
           "unit": "Currency.USD"
         },
         "ProposedEnergyProducerOption.powerCapacityFixed": 500.0,
-        "ProposedEnergyProducerOption.fixedPrice": {
+        "ProposedAssetOption.fixedPrice": {
           "value": 500000.0,
           "unit": "Currency.USD"
         }

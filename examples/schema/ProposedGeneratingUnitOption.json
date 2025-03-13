@@ -27,11 +27,11 @@
         "IdentifiedObject.name": "Genset2",
         "Ravens.cimObjectType": "ProposedGeneratingUnitOption",
         "ProposedAssetOption.lifetime": "P15Y",
-        "ProposedAssetOption.variablePrice": {
+        "ProposedEnergyProducerOption.variablePrice": {
           "value": 250,
           "unit": "Currency.USD"
         },
-        "ProposedAssetOption.operationsAndMaintenanceRateVariable": {
+        "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
           "value": 100,
           "unit": "Currency.USD"
         },
