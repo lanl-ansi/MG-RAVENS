@@ -28,11 +28,11 @@
         "IdentifiedObject.mRID": "bfca850e-dd2e-41db-9613-8ac581abbca8",
         "IdentifiedObject.name": "BESS2",
         "Ravens.cimObjectType": "ProposedBatteryUnitOption",
-        "ProposedAssetOption.variablePrice": {
+        "ProposedEnergyProducerOption.variablePrice": {
           "value": 10000,
           "unit": "Currency.USD"
         },
-        "ProposedAssetOption.operationsAndMaintenanceRateVariable": {
+        "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
           "value": 500,
           "unit": "Currency.USD"
         },
