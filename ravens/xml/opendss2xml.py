@@ -1565,7 +1565,7 @@ class DssExport(object):
             self.add_triple(rtc_node, "TapChanger.lowStep", -int(reg.Transformer.NumTaps[reg.TapWinding - 1] / 2))
             self.add_triple(rtc_node, "TapChanger.neutralStep", 0)
             self.add_triple(rtc_node, "TapChanger.normalStep", 0)
-            self.add_triple(rtc_node, "TapChanger.neutralU", v1 * reg.PTRatio)
+            self.add_triple(rtc_node, "TapChanger.neutralU", v1 * reg.PTRatio * 1000.0)
             self.add_triple(rtc_node, "TapChanger.initialDelay", reg.Delay)
             self.add_triple(rtc_node, "TapChanger.subsequentDelay", reg.TapDelay)
             self.add_triple(rtc_node, "TapChanger.ltcFlag", True)
