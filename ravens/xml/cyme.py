@@ -48,11 +48,36 @@ class CymeConverter:
         self.fix_EnergyConsumerPhase()
         self.fix_WireInfo()
         self.fix_Terminal()
+        self.fix_Transformer_Terminal_phases()
 
         if prune_remaining_cyme:
             self.remove_cyme_objects()
 
         self.prune_triples()
+
+    def _combine_phasecodes(self, phase_codes: set[str] | list[str]):
+        phase_str = ""
+        if any(self.cim_ns[f"PhaseCode.{pc}"] in phase_codes for pc in ["A", "AB", "ABC", "AC", "AN", "ABN", "ACN", "ABCN"]):
+            phase_str += "A"
+        if any(self.cim_ns[f"PhaseCode.{pc}"] in phase_codes for pc in ["B", "AB", "ABC", "BC", "BN", "ABN", "BCN", "ABCN"]):
+            phase_str += "B"
+        if any(self.cim_ns[f"PhaseCode.{pc}"] in phase_codes for pc in ["C", "AC", "ABC", "BC", "CN", "ACN", "BCN", "ABCN"]):
+            phase_str += "C"
+
+        if (self.cim_ns["PhaseCode.s1"] in phase_codes and self.cim_ns["PhaseCode.s2"]) or (self.cim_ns["PhaseCode.s1N"] in phase_codes and self.cim_ns["PhaseCode.s2N"]) in phase_codes:
+            phase_str = "s12"
+        elif self.cim_ns["PhaseCode.s1"] in phase_codes or self.cim_ns["PhaseCode.s1N"] in phase_codes:
+            phase_str = "s1"
+        elif self.cim_ns["PhaseCode.s2"] in phase_codes or self.cim_ns["PhaseCode.s2N"] in phase_codes:
+            phase_str = "s2"
+
+        if any(self.cim_ns[f"PhaseCode.{pc}"] in phase_codes for pc in ["AN", "BN", "CN", "ABN", "BCN", "ACN", "ABCN", "s12N", "s1N", "s2N"]):
+            phase_str += "N"
+
+        if not phase_str:
+            phase_str = "ABC"
+
+        return self.cim_ns[f"PhaseCode.{phase_str}"]
 
     def prune_triples(self):
         for triple in self.to_remove:
@@ -215,6 +240,24 @@ class CymeConverter:
             if seq is not None:
                 self.add_triple(URIRef(str(s)), "ACDCTerminal.sequenceNumber", seq)
                 self.to_remove.add((s, self.cim_ns["Terminal.sequenceNumber"], seq))
+
+    def fix_Transformer_Terminal_phases(self):
+        for s in self.graph.subjects(predicate=RDF.type, object=self.cim_ns["PowerTransformer"]):
+            phases_lists = {}
+            for tank in self.graph.subjects(object=s, predicate=self.cim_ns["TransformerTank.PowerTransformer"]):
+                for tank_end in self.graph.subjects(object=tank, predicate=self.cim_ns["TransformerTankEnd.TransformerTank"]):
+                    end_number = int(self.graph.value(subject=tank_end, predicate=self.cim_ns["TransformerEnd.endNumber"]).value)  # type: ignore
+                    if end_number not in phases_lists:
+                        phases_lists[end_number] = set()
+
+                    phases_lists[end_number].add(self.graph.value(subject=tank_end, predicate=self.cim_ns["TransformerTankEnd.phases"]))
+
+            combined_phases = {en: self._combine_phasecodes(pl) for en, pl in phases_lists.items()}
+            if combined_phases:
+                for term in self.graph.subjects(object=s, predicate=self.cim_ns["Terminal.ConductingEquipment"]):
+                    seq_num = int(self.graph.value(subject=term, predicate=self.cim_ns["ACDCTerminal.sequenceNumber"]).value)  # type: ignore
+                    self.graph.remove((term, self.cim_ns["Terminal.phases"], None))
+                    self.graph.add((term, self.cim_ns["Terminal.phases"], combined_phases[seq_num]))
 
     def save(self, path: pathlib.PosixPath | str):
         self.graph.serialize(path, max_depth=1, format="pretty-xml", base="")
