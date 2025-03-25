@@ -51,14 +51,21 @@ class RavensValidator:
     def validate_dict(self, data_dict: dict, print_result: bool = True):
         self.validate(data=JSON.loads(json.dumps(data_dict)), print_result=print_result)
 
-    def print_result(self):
+    def print_result(self, output_level: str = "basic"):
         if self.result is not None:
             if self.result.valid:
                 print(self.result.output("flag"))
             else:
-                print(json.dumps(self.result.output("basic"), indent=2))
+                print(json.dumps(self.result.output(output_level), indent=2))
         else:
             logger.info("No validator results available")
+
+    def save_result(self, file_path: pathlib.Path | str, output_level: str = "basic"):
+        if self.result is not None:
+            with open(file_path, "w") as f:
+                json.dump(self.result.output(output_level), f, indent=2)
+        else:
+            logger.info(f"There is no active result, nothing written to '{file_path}'")
 
 
 if __name__ == "__main__":
