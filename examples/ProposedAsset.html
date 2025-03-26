@@ -623,7 +623,8 @@
 <span class="w">      </span><span class="nt">&quot;ProposedBatteryUnit.energyCapacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">600000.0</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedBatteryUnitOption::&#39;battery_type_1&#39;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.EstimatedCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost::&#39;bess_b&#39;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ProposedAsset.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">      </span><span class="nt">&quot;ProposedAsset.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProposedEnergyProducerAsset.PowerDispatchCurve&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Curve::&#39;bess_b_dispatch&#39;&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;hardened_line_b_c&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hardened_line_b_c&quot;</span><span class="p">,</span>
@@ -642,6 +643,32 @@
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.ProposedAssetOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProposedConductorOption::&#39;hardened_line&#39;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.EstimatedCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EstimatedCost::&#39;hardened_line_b_c&#39;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;ProposedAsset.Algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Algorithm::&#39;solve_rdt&#39;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;Curve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;bess_b_dispatch&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Curve&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bess_b_dispatch&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;70139e93-d8e1-40e1-a6e9-e818fe7b0e1a&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Curve.xUnit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UnitSymbol.h&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Curve.CurveDatas&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;CurveData.y1value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;CurveData.xvalue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;CurveData.y1value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;CurveData.xvalue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;CurveData.y1value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;CurveData.xvalue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;CurveData.y1value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;CurveData.xvalue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;EstimatedCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>

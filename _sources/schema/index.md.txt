@@ -322,6 +322,8 @@
 
 [ConnectorContainer_Container](../_static/schema/ConnectorContainer_Container.html){.external}
 
+[ConstantPFControlMode](../_static/schema/ConstantPFControlMode.html){.external}
+
 [ConstraintLimitType](../_static/schema/ConstraintLimitType.html){.external}
 
 [ConstraintRampType](../_static/schema/ConstraintRampType.html){.external}
@@ -452,6 +454,8 @@
 
 [DispatchAcceptStatus](../_static/schema/DispatchAcceptStatus.html){.external}
 
+[DispatchCurve](../_static/schema/DispatchCurve.html){.external}
+
 [DispatchResponseType](../_static/schema/DispatchResponseType.html){.external}
 
 [DispatchTransactionType](../_static/schema/DispatchTransactionType.html){.external}
@@ -465,6 +469,8 @@
 [DobleStandardKind](../_static/schema/DobleStandardKind.html){.external}
 
 [Document](../_static/schema/Document.html){.external}
+
+[DroopControlMode](../_static/schema/DroopControlMode.html){.external}
 
 [DroopSignalFeedbackKind](../_static/schema/DroopSignalFeedbackKind.html){.external}
 
@@ -840,7 +846,7 @@
 
 [InverterController](../_static/schema/InverterController.html){.external}
 
-[InverterControllerContainer_Container](../_static/schema/InverterControllerContainer_Container.html){.external}
+[InverterController_anyOfContainer](../_static/schema/InverterController_anyOfContainer.html){.external}
 
 [IrregularTimePoint](../_static/schema/IrregularTimePoint.html){.external}
 
@@ -1766,6 +1772,8 @@
 
 [Validity](../_static/schema/Validity.html){.external}
 
+[VarWattControlMode](../_static/schema/VarWattControlMode.html){.external}
+
 [VehicleUsageKind](../_static/schema/VehicleUsageKind.html){.external}
 
 [VerificationAction](../_static/schema/VerificationAction.html){.external}
@@ -1773,6 +1781,12 @@
 [Version](../_static/schema/Version.html){.external}
 
 [Versions](../_static/schema/Versions.html){.external}
+
+[VoltVarControlMode](../_static/schema/VoltVarControlMode.html){.external}
+
+[VoltVarWattControlMode](../_static/schema/VoltVarWattControlMode.html){.external}
+
+[VoltWattControlMode](../_static/schema/VoltWattControlMode.html){.external}
 
 [Voltage](../_static/schema/Voltage.html){.external}
 

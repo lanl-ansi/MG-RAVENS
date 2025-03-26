@@ -66,7 +66,8 @@
       "ProposedBatteryUnit.energyCapacity": 600000.0,
       "ProposedAsset.ProposedAssetOption": "ProposedBatteryUnitOption::'battery_type_1'",
       "ProposedAsset.EstimatedCost": "EstimatedCost::'bess_b'",
-      "ProposedAsset.Algorithm": "Algorithm::'solve_rdt'"
+      "ProposedAsset.Algorithm": "Algorithm::'solve_rdt'",
+      "ProposedEnergyProducerAsset.PowerDispatchCurve": "Curve::'bess_b_dispatch'"
     },
     "hardened_line_b_c": {
       "IdentifiedObject.name": "hardened_line_b_c",
@@ -85,6 +86,32 @@
       "ProposedAsset.ProposedAssetOption": "ProposedConductorOption::'hardened_line'",
       "ProposedAsset.EstimatedCost": "EstimatedCost::'hardened_line_b_c'",
       "ProposedAsset.Algorithm": "Algorithm::'solve_rdt'"
+    }
+  },
+  "Curve": {
+    "bess_b_dispatch": {
+      "Ravens.cimObjectType": "Curve",
+      "IdentifiedObject.name": "bess_b_dispatch",
+      "IdentifiedObject.mRID": "70139e93-d8e1-40e1-a6e9-e818fe7b0e1a",
+      "Curve.xUnit": "UnitSymbol.h",
+      "Curve.CurveDatas": [
+        {
+          "CurveData.y1value": 0.0,
+          "CurveData.xvalue": 0
+        },
+        {
+          "CurveData.y1value": 0.0,
+          "CurveData.xvalue": 1
+        },
+        {
+          "CurveData.y1value": 0.0,
+          "CurveData.xvalue": 2
+        },
+        {
+          "CurveData.y1value": 0.0,
+          "CurveData.xvalue": 3
+        }
+      ]
     }
   },
   "EstimatedCost": {
