@@ -149,11 +149,17 @@
               "$objectId": "EconomicProperty",
               "$referencePath": "EconomicProperties/EconomicProperty"
             },
-            "SubGeographicalRegion.EnergyPrices": {
+            "SubGeographicalRegion.CapacityPrices": {
               "$objectType": "reference",
               "type": "string",
-              "$objectId": "EnergyPrices",
-              "$referencePath": "EnergyPrices"
+              "$objectId": "CapacityPrices",
+              "$referencePath": "EnergyPrices/CapacityPrices"
+            },
+            "SubGeographicalRegion.LocationalMarginalPrices": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "LocationalMarginalPrices",
+              "$referencePath": "EnergyPrices/LocationalMarginalPrices"
             }
           }
         },
