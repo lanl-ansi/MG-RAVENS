@@ -2,8 +2,11 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "ProposedAssetOption.ProposedConnectivityNodes": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+    },
     "ProposedBatteryUnitOption.InverterController": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InverterControllerContainer_Container.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InverterController_anyOfContainer.json"
     },
     "ProposedAssetOption.ProposedLocations": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocationPointerArray.json"

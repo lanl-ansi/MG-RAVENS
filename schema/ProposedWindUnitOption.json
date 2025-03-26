@@ -2,6 +2,9 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "ProposedAssetOption.ProposedConnectivityNodes": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+    },
     "ProposedWindUnitOption.GenerationProfile": {
       "type": "string",
       "title": "CurvePointer",

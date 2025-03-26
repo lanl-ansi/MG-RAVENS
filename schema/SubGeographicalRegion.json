@@ -16,11 +16,17 @@
       "description": "Pointer to EconomicProperty object",
       "pattern": "^EconomicProperty::'(.+)'$"
     },
-    "SubGeographicalRegion.EnergyPrices": {
+    "SubGeographicalRegion.CapacityPrices": {
       "type": "string",
-      "title": "EnergyPricesPointer",
-      "description": "Pointer to EnergyPrices object",
-      "pattern": "^EnergyPrices::'(.+)'$"
+      "title": "CapacityPricesPointer",
+      "description": "Pointer to CapacityPrices object",
+      "pattern": "^CapacityPrices::'(.+)'$"
+    },
+    "SubGeographicalRegion.LocationalMarginalPrices": {
+      "type": "string",
+      "title": "LocationalMarginalPricesPointer",
+      "description": "Pointer to LocationalMarginalPrices object",
+      "pattern": "^LocationalMarginalPrices::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

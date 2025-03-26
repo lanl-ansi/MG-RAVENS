@@ -28,6 +28,11 @@
       "type": "string",
       "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
     },
+    "ProposedBatteryUnit.energyDuration": {
+      "title": "energyDuration",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Hours.json",
+      "description": "nan"
+    },
     "ProposedEnergyProducerAsset.capacity": {
       "title": "capacity",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
