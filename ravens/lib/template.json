@@ -938,7 +938,7 @@
                                       "$objectType": "reference",
                                       "type": "string",
                                       "$objectId": "Curve",
-                                      "$referencePath": "Curve/Curve"
+                                      "$referencePath": "Curve"
                                     },
                                     "BatteryUnit.BatteryUnitEfficiency": {
                                       "$objectType": "object",
@@ -957,7 +957,7 @@
                                       "$objectType": "reference",
                                       "$objectId": "Curve",
                                       "type": "string",
-                                      "$referencePath": "Curve/Curve"
+                                      "$referencePath": "Curve"
                                     }
                                   }
                                 },
@@ -970,7 +970,7 @@
                                       "$objectType": "reference",
                                       "$objectId": "Curve",
                                       "type": "string",
-                                      "$referencePath": "Curve/Curve"
+                                      "$referencePath": "Curve"
                                     }
                                   }
                                 }
@@ -2485,7 +2485,7 @@
                           "$objectType": "reference",
                           "type": "string",
                           "$objectId": "Curve",
-                          "$referencePath": "Curve/Curve"
+                          "$referencePath": "Curve"
                         },
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
@@ -5208,6 +5208,22 @@
         },
         {
           "$objectType": "object",
+          "$objectId": "DispatchCurve",
+          "type": "object",
+          "properties": {
+            "Curve.CurveDatas": {
+              "type": "array",
+              "items": {
+                "$objectId": "CurveData",
+                "$objectType": "object",
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        {
+          "$objectType": "object",
           "$objectId": "StartUpTimeCurve",
           "type": "object",
           "properties": {
@@ -6653,6 +6669,15 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
+            "ProposedAssetOption.ProposedConnectivityNodes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "$objectType": "reference",
+                "$objectId": "ConnectivityNode",
+                "$referencePath": "ConnectivityNode"
+              }
+            },
             "ProposedAssetOption.ProposedLocations": {
               "type": "array",
               "items": {
@@ -6671,6 +6696,15 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
+            "ProposedAssetOption.ProposedConnectivityNodes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "$objectType": "reference",
+                "$objectId": "ConnectivityNode",
+                "$referencePath": "ConnectivityNode"
+              }
+            },
             "ProposedAssetOption.ProposedLocations": {
               "type": "array",
               "items": {
@@ -6693,38 +6727,90 @@
               "$objectId": "ProposedBatteryUnitOption",
               "type": "object",
               "properties": {
+                "ProposedAssetOption.ProposedConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
                 "ProposedBatteryUnitOption.InverterController": {
                   "$objectType": "object",
-                  "type": "object",
                   "$objectId": "InverterController",
-                  "$primaryObjectHash": "IdentifiedObject.name",
-                  "$secondaryObjectHash": "IdentifiedObject.mRID",
-                  "properties": {
-                    "VarWattControlMode.VarWattControlCurve": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "Curve",
-                      "$referencePath": "Curve/Curve"
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "$objectType": "object",
+                      "$objectId": "InverterController",
+                      "properties": {}
                     },
-                    "VoltVarWattControlMode.VoltVarWattControlCurve": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "Curve",
-                      "$referencePath": "Curve/Curve"
+                    {
+                      "type": "object",
+                      "$objectType": "object",
+                      "$objectId": "VarWattControlMode",
+                      "properties": {
+                        "VarWattControlMode.VarWattControlCurve": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "Curve",
+                          "$referencePath": "Curve"
+                        }
+                      }
                     },
-                    "VoltWattControlMode.VoltWattControlCurve": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "Curve",
-                      "$referencePath": "Curve/Curve"
+                    {
+                      "type": "object",
+                      "$objectType": "object",
+                      "$objectId": "VoltVarWattControlMode",
+                      "properties": {
+                        "VoltVarWattControlMode.VoltVarWattControlCurve": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "Curve",
+                          "$referencePath": "Curve"
+                        }
+                      }
                     },
-                    "VoltVarControlMode.VoltVarControlCurve": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "Curve",
-                      "$referencePath": "Curve/Curve"
+                    {
+                      "type": "object",
+                      "$objectType": "object",
+                      "$objectId": "VoltWattControlMode",
+                      "properties": {
+                        "VoltWattControlMode.VoltWattControlCurve": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "Curve",
+                          "$referencePath": "Curve"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "$objectType": "object",
+                      "$objectId": "VoltVarControlMode",
+                      "properties": {
+                        "VoltVarControlMode.VoltVarControlCurve": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "Curve",
+                          "$referencePath": "Curve"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "$objectType": "object",
+                      "$objectId": "DroopControlMode",
+                      "properties": {}
+                    },
+                    {
+                      "type": "object",
+                      "$objectType": "object",
+                      "$objectId": "ConstantPFControlMode",
+                      "properties": {}
                     }
-                  }
+                  ]
                 },
                 "ProposedAssetOption.ProposedLocations": {
                   "type": "array",
@@ -6742,11 +6828,20 @@
               "$objectId": "ProposedPhotoVoltaicUnitOption",
               "type": "object",
               "properties": {
+                "ProposedAssetOption.ProposedConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
                 "ProposedPhotoVoltaicUnitOption.GenerationProfile": {
                   "$objectType": "reference",
                   "type": "string",
                   "$objectId": "Curve",
-                  "$referencePath": "Curve/Curve"
+                  "$referencePath": "Curve"
                 },
                 "ProposedAssetOption.ProposedLocations": {
                   "type": "array",
@@ -6764,11 +6859,20 @@
               "$objectId": "ProposedWindUnitOption",
               "type": "object",
               "properties": {
+                "ProposedAssetOption.ProposedConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
                 "ProposedWindUnitOption.GenerationProfile": {
                   "$objectType": "reference",
                   "type": "string",
                   "$objectId": "Curve",
-                  "$referencePath": "Curve/Curve"
+                  "$referencePath": "Curve"
                 },
                 "ProposedAssetOption.ProposedLocations": {
                   "type": "array",
@@ -6786,6 +6890,15 @@
               "$objectId": "ProposedGeneratingUnitOption",
               "type": "object",
               "properties": {
+                "ProposedAssetOption.ProposedConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
                 "ProposedAssetOption.ProposedLocations": {
                   "type": "array",
                   "items": {
@@ -7044,6 +7157,29 @@
               "$objectType": "reference",
               "$objectId": "Algorithm",
               "$referencePath": "Algorithm"
+            },
+            "ProposedEnergyProducerAsset.Terminal": {
+              "$objectType": "object",
+              "$objectId": "Terminal",
+              "type": "object",
+              "properties": {
+                "Terminal.ConnectivityNode": {
+                  "$objectType": "reference",
+                  "$objectId": "ConnectivityNode",
+                  "type": "string",
+                  "$referencePath": "ConnectivityNode"
+                },
+                "Terminal.SvPowerFlow": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "object",
+                    "$objectId": "SvPowerFlow",
+                    "type": "object",
+                    "$arrayPosition": null,
+                    "properties": {}
+                  }
+                }
+              }
             }
           }
         },
@@ -7119,6 +7255,29 @@
               "$objectType": "reference",
               "$objectId": "Algorithm",
               "$referencePath": "Algorithm"
+            },
+            "ProposedEnergyProducerAsset.Terminal": {
+              "$objectType": "object",
+              "$objectId": "Terminal",
+              "type": "object",
+              "properties": {
+                "Terminal.ConnectivityNode": {
+                  "$objectType": "reference",
+                  "$objectId": "ConnectivityNode",
+                  "type": "string",
+                  "$referencePath": "ConnectivityNode"
+                },
+                "Terminal.SvPowerFlow": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "object",
+                    "$objectId": "SvPowerFlow",
+                    "type": "object",
+                    "$arrayPosition": null,
+                    "properties": {}
+                  }
+                }
+              }
             }
           }
         }
