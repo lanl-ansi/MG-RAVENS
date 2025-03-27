@@ -1632,6 +1632,9 @@ class DssExport(object):
             self.add_triple(node, "RegulatingControl.targetValue", mult * 0.5 * (on + off))
             self.add_triple(node, "RegulatingControl.targetDeadband", mult * (off - on))
 
+            # Add Capacitor reference to specific RegulatingControl
+            self.add_triple(self.cap_map[capc.Capacitor.Name]["uri"], "RegulatingCondEq.RegulatingControl", node)
+
     def _add_SeriesCompensators(self):
         for react in self.dss.Reactor:
             self._add_SeriesCompensator(react)

@@ -1292,6 +1292,12 @@
                                   "$objectType": "reference",
                                   "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
+                                },
+                                "RegulatingCondEq.RegulatingControl": {
+                                  "$objectType": "reference",
+                                  "type": "string",
+                                  "$objectId": "RegulatingControl",
+                                  "$referencePath": "PowerSystemResource/Equipment/RegulatingControl"
                                 }
                               }
                             },
@@ -1388,6 +1394,12 @@
                                   "$objectType": "reference",
                                   "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
+                                },
+                                "RegulatingCondEq.RegulatingControl": {
+                                  "$objectType": "reference",
+                                  "type": "string",
+                                  "$objectId": "RegulatingControl",
+                                  "$referencePath": "PowerSystemResource/Equipment/RegulatingControl"
                                 }
                               }
                             },
@@ -1484,6 +1496,12 @@
                                   "$objectType": "reference",
                                   "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
+                                },
+                                "RegulatingCondEq.RegulatingControl": {
+                                  "$objectType": "reference",
+                                  "type": "string",
+                                  "$objectId": "RegulatingControl",
+                                  "$referencePath": "PowerSystemResource/Equipment/RegulatingControl"
                                 }
                               }
                             }
