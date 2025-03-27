@@ -44,6 +44,12 @@
       "description": "Pointer to SwitchingAction object",
       "pattern": "^SwitchingAction::'(.+)'$"
     },
+    "RegulatingCondEq.RegulatingControl": {
+      "type": "string",
+      "title": "RegulatingControlPointer",
+      "description": "Pointer to RegulatingControl object",
+      "pattern": "^RegulatingControl::'(.+)'$"
+    },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",
