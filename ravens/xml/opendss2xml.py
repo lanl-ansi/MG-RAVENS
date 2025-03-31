@@ -986,8 +986,8 @@ class DssExport(object):
 
     def _add_SynchronousMachine(self, gen: altdss.Generator):
         node = self.build_cim_obj("SynchronousMachine", name=gen.Name)
-        self.add_triple(node, "RotatingMachine.p", gen.kW * 1000)
-        self.add_triple(node, "RotatingMachine.q", gen.kvar * 1000)
+        self.add_triple(node, "RotatingMachine.p", -gen.kW * 1000)
+        self.add_triple(node, "RotatingMachine.q", -gen.kvar * 1000)
         self.add_triple(node, "RotatingMachine.ratedS", gen.kVA * 1000)
         self.add_triple(node, "RotatingMachine.ratedU", gen.kV * 1000)
         self.add_triple(node, "Equipment.inService", gen.Enabled)
@@ -1014,8 +1014,8 @@ class DssExport(object):
         else:
             for ph in self._fix_phases(phases):
                 node = self.build_cim_obj("SynchronousMachinePhase", name=f"{gen.Name}_{ph}")
-                self.add_triple(node, "SynchronousMachinePhase.p", gen.kW * 1000.0 / gen.Phases)
-                self.add_triple(node, "SynchronousMachinePhase.q", gen.kvar * 1000.0 / gen.Phases)
+                self.add_triple(node, "SynchronousMachinePhase.p", -gen.kW * 1000.0 / gen.Phases)
+                self.add_triple(node, "SynchronousMachinePhase.q", -gen.kvar * 1000.0 / gen.Phases)
                 self.add_triple(node, "SynchronousMachinePhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
                 self.add_triple(node, "SynchronousMachinePhase.SynchronousMachine", subject_uri)
 
@@ -1035,8 +1035,8 @@ class DssExport(object):
         else:
             for ph in self._fix_phases(phases):
                 node = self.build_cim_obj("PowerElectronicsConnectionPhase", name=f"{storage.Name}_{ph}")
-                self.add_triple(node, "PowerElectronicsConnectionPhase.p", storage.kW * 1000.0 / storage.Phases)
-                self.add_triple(node, "PowerElectronicsConnectionPhase.q", storage.kvar * 1000.0 / storage.Phases)
+                self.add_triple(node, "PowerElectronicsConnectionPhase.p", -storage.kW * 1000.0 / storage.Phases)
+                self.add_triple(node, "PowerElectronicsConnectionPhase.q", -storage.kvar * 1000.0 / storage.Phases)
                 self.add_triple(node, "PowerElectronicsConnectionPhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
                 self.add_triple(node, "PowerElectronicsConnectionPhase.PowerElectronicsConnection", subject_uri)
 
@@ -1046,8 +1046,8 @@ class DssExport(object):
         else:
             for i, ph in enumerate(self._fix_phases(phases)):
                 node = self.build_cim_obj("PowerElectronicsConnectionPhase", name=f"{solar.Name}_{ph}")
-                self.add_triple(node, "PowerElectronicsConnectionPhase.p", -solar.Powers()[i].real * 1000.0)
-                self.add_triple(node, "PowerElectronicsConnectionPhase.q", -solar.Powers()[i].imag * 1000.0)
+                self.add_triple(node, "PowerElectronicsConnectionPhase.p", solar.Powers()[i].real * 1000.0)
+                self.add_triple(node, "PowerElectronicsConnectionPhase.q", solar.Powers()[i].imag * 1000.0)
                 self.add_triple(node, "PowerElectronicsConnectionPhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
                 self.add_triple(node, "PowerElectronicsConnectionPhase.PowerElectronicsConnection", subject_uri)
 
@@ -1059,8 +1059,8 @@ class DssExport(object):
         self.add_triple(subject_uri, "PowerElectronicsConnection.PowerElectronicsUnit", node)
 
         self.add_triple(subject_uri, "PowerElectronicsConnection.maxIFault", 1 / solar.VMinpu)
-        self.add_triple(subject_uri, "PowerElectronicsConnection.p", -sum(solar.Powers()).real * 1000.0)
-        self.add_triple(subject_uri, "PowerElectronicsConnection.q", -sum(solar.Powers()).imag * 1000.0)
+        self.add_triple(subject_uri, "PowerElectronicsConnection.p", sum(solar.Powers()).real * 1000.0)
+        self.add_triple(subject_uri, "PowerElectronicsConnection.q", sum(solar.Powers()).imag * 1000.0)
         self.add_triple(subject_uri, "PowerElectronicsConnection.ratedS", solar.kVA * 1000.0)
         if solar.Phases == 1:
             self.add_triple(subject_uri, "PowerElectronicsConnection.ratedU", solar.kV * 1000.0 * math.sqrt(3))
