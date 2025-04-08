@@ -1445,9 +1445,9 @@ class DssExport(object):
         node = self.build_cim_obj("TransformerTankInfo", name=xfmrcode_name if xfmrcode_name is not None else xfmrcode.Name)
         ratShort = xfmrcode.NormHkVA / xfmrcode.kVAs[0]
         ratEmerg = xfmrcode.EmergHkVA / xfmrcode.kVAs[0]
-        Zbase = xfmrcode.kVs[0] ** 2 * 1000 / xfmrcode.kVAs[0]
         transformer_ends = []
         for i in range(xfmrcode.Windings):
+            Zbase = xfmrcode.kVs[i] ** 2 * 1000 / xfmrcode.kVAs[0]
             transformer_ends.append(self._add_TransformerEndInfo(i, xfmrcode, node, ratShort, ratEmerg, Zbase))
 
         self._add_NoLoadTest(xfmrcode, transformer_ends[0], 1)
