@@ -681,8 +681,8 @@ class DssExport(object):
 
     def _add_TapeShieldCableInfo(self, node: URIRef, tsdata: altdss.TSData):
         self.add_triple(node, "CableInfo.diameterOverScreen", (tsdata.DiaShield - 2.0 * tsdata.TapeLayer) * self._to_meters(tsdata.RadUnits_str))
-        self.add_triple(node, "TapShieldCableInfo.tapeLap", tsdata.TapeLap)
-        self.add_triple(node, "TapShieldCableInfo.tapeThickness", tsdata.TapeLayer * self._to_meters(tsdata.RadUnits_str))
+        self.add_triple(node, "TapeShieldCableInfo.tapeLap", tsdata.TapeLap)
+        self.add_triple(node, "TapeShieldCableInfo.tapeThickness", tsdata.TapeLayer * self._to_meters(tsdata.RadUnits_str))
         self.add_triple(node, "CableInfo.shieldMaterial", self.cim["CableShieldMaterialKind.copper"])
         self.add_triple(node, "CableInfo.sheathAsNeutral", True)
 
