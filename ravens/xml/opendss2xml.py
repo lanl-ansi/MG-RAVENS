@@ -668,30 +668,30 @@ class DssExport(object):
 
     def _add_CableInfo(self, node: URIRef, cable):
         self.add_triple(node, "WireInfo.insulated", True)
-        self.add_triple(node, "WireInfo.insulationThickness", cable.InsLayer * self._to_meters(cable.RadUnits))
+        self.add_triple(node, "WireInfo.insulationThickness", cable.InsLayer * self._to_meters(cable.RadUnits_str))
         self.add_triple(node, "WireInfo.insulationMaterial", self.cim["WireInsulationKind.crosslinkedPolyethylene"])
         self.add_triple(node, "CableInfo.outerJacketKind", self.cim["CableOuterJacketKind.none"])
         self.add_triple(node, "CableInfo.constructionKind", self.cim["CableConstructionKind.stranded"])
         self.add_triple(node, "CableInfo.isStrandFill", False)
-        self.add_triple(node, "CableInfo.diameterOverCore", (cable.DiaIns - 2.0 * cable.InsLayer) * self._to_meters(cable.RadUnits))
-        self.add_triple(node, "CableInfo.diameterOverInsulation", cable.DiaIns * self._to_meters(cable.RadUnits))
-        self.add_triple(node, "CableInfo.diameterOverJacket", cable.DiaCable * self._to_meters(cable.RadUnits))
+        self.add_triple(node, "CableInfo.diameterOverCore", (cable.DiaIns - 2.0 * cable.InsLayer) * self._to_meters(cable.RadUnits_str))
+        self.add_triple(node, "CableInfo.diameterOverInsulation", cable.DiaIns * self._to_meters(cable.RadUnits_str))
+        self.add_triple(node, "CableInfo.diameterOverJacket", cable.DiaCable * self._to_meters(cable.RadUnits_str))
         self.add_triple(node, "CableInfo.nominalTemperature", 90.0)
         self.add_triple(node, "CableInfo.relativePermittivity", cable.EpsR)
 
     def _add_TapeShieldCableInfo(self, node: URIRef, tsdata: altdss.TSData):
-        self.add_triple(node, "CableInfo.diameterOverScreen", (tsdata.DiaShield - 2.0 * tsdata.TapeLayer) * self._to_meters(tsdata.RadUnits))
+        self.add_triple(node, "CableInfo.diameterOverScreen", (tsdata.DiaShield - 2.0 * tsdata.TapeLayer) * self._to_meters(tsdata.RadUnits_str))
         self.add_triple(node, "TapShieldCableInfo.tapeLap", tsdata.TapeLap)
-        self.add_triple(node, "TapShieldCableInfo.tapeThickness", tsdata.TapeLayer * self._to_meters(tsdata.RadUnits))
+        self.add_triple(node, "TapShieldCableInfo.tapeThickness", tsdata.TapeLayer * self._to_meters(tsdata.RadUnits_str))
         self.add_triple(node, "CableInfo.shieldMaterial", self.cim["CableShieldMaterialKind.copper"])
         self.add_triple(node, "CableInfo.sheathAsNeutral", True)
 
     def _add_ConcentricNeutralCableInfo(self, node: URIRef, cndata: altdss.CNData):
-        self.add_triple(node, "CableInfo.diameterOverScreen", (cndata.DiaCable - 2.0 * cndata.DiaStrand) * self._to_meters(cndata.RadUnits))
-        self.add_triple(node, "ConcentricNeutralCableInfo.diameterOverNeutral", cndata.DiaCable * self._to_meters(cndata.RadUnits))
-        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRadius", cndata.DiaStrand / 2.0 * self._to_meters(cndata.RadUnits))
-        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandGmr", cndata.GMRStrand * self._to_meters(cndata.GMRUnits))
-        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRDC20", cndata.RStrand * self._to_per_meter(cndata.RUnits))
+        self.add_triple(node, "CableInfo.diameterOverScreen", (cndata.DiaCable - 2.0 * cndata.DiaStrand) * self._to_meters(cndata.RadUnits_str))
+        self.add_triple(node, "ConcentricNeutralCableInfo.diameterOverNeutral", cndata.DiaCable * self._to_meters(cndata.RadUnits_str))
+        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRadius", cndata.DiaStrand / 2.0 * self._to_meters(cndata.RadUnits_str))
+        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandGmr", cndata.GMRStrand * self._to_meters(cndata.GMRUnits_str))
+        self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandRDC20", cndata.RStrand * self._to_per_meter(cndata.RUnits_str))
         self.add_triple(node, "ConcentricNeutralCableInfo.neutralStrandCount", cndata.k)
 
     def _add_WireInfo(self, node: URIRef, wire: altdss.WireData | altdss.TSData | altdss.CNData):
@@ -706,12 +706,12 @@ class DssExport(object):
         elif "ehs" in wire.Name.lower():
             material = "steel"
         self.add_triple(node, "WireInfo.material", self.cim[f"WireMaterialKind.{material}"])
-        self.add_triple(node, "WireInfo.gmr", wire.GMRAC * self._to_meters(wire.GMRUnits))
-        self.add_triple(node, "WireInfo.radius", wire.Radius * self._to_meters(wire.RadUnits))
-        self.add_triple(node, "WireInfo.rDC20", wire.RDC * self._to_per_meter(wire.RUnits))
-        self.add_triple(node, "WireInfo.rAC25", wire.RAC * self._to_per_meter(wire.RUnits))
-        self.add_triple(node, "WireInfo.rAC50", wire.RAC * self._to_per_meter(wire.RUnits))
-        self.add_triple(node, "WireInfo.rAC75", wire.RAC * self._to_per_meter(wire.RUnits))
+        self.add_triple(node, "WireInfo.gmr", wire.GMRAC * self._to_meters(wire.GMRUnits_str))
+        self.add_triple(node, "WireInfo.radius", wire.Radius * self._to_meters(wire.RadUnits_str))
+        self.add_triple(node, "WireInfo.rDC20", wire.RDC * self._to_per_meter(wire.RUnits_str))
+        self.add_triple(node, "WireInfo.rAC25", wire.RAC * self._to_per_meter(wire.RUnits_str))
+        self.add_triple(node, "WireInfo.rAC50", wire.RAC * self._to_per_meter(wire.RUnits_str))
+        self.add_triple(node, "WireInfo.rAC75", wire.RAC * self._to_per_meter(wire.RUnits_str))
         self.add_triple(node, "WireInfo.ratedCurrent", wire.NormAmps)
         self.add_triple(node, "WireInfo.strandCount", 0)
         self.add_triple(node, "WireInfo.coreStrandCount", 0)
