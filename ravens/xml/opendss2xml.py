@@ -717,6 +717,10 @@ class DssExport(object):
         self.add_triple(node, "WireInfo.coreStrandCount", 0)
         self.add_triple(node, "WireInfo.coreRadius", 0.0)
 
+    def _add_SwitchInfo(self, node: URIRef, line: altdss.Line):
+        self.add_triple(node, "SwitchInfo.ratedCurrent", line.NormAmps)
+        self.add_triple(node, "SwitchInfo.breakingCapacity", line.EmergAmps)
+
     def _add_PerLengthPhaseImedance(self, linecode: altdss.LineCode, name: str = "", nphases: int | None = None, units: str = "none") -> URIRef:
         if f"PerLengthPhaseImpedance.{name if name else linecode.Name}" not in self.uuid_map:
             node = self.build_cim_obj("PerLengthPhaseImpedance", name=name if name else linecode.Name)
@@ -750,6 +754,11 @@ class DssExport(object):
         self.add_triple(node, "Equipment.inService", line.Enabled)
         self.add_triple(node, "Switch.open", not line.Enabled)
         self.add_triple(node, "Switch.normalOpen", not line.Enabled)
+
+        # Add SwitchInfo to Switch
+        sw_info = self.build_cim_obj("SwitchInfo", name=f"SwInfo_{line.Name}")
+        self._add_SwitchInfo(sw_info, line)
+        self.add_triple(node, "PowerSystemResource.AssetDatasheet", sw_info)
 
         phases_side_1 = parse_ordered_phase_str(line.Bus1, line.Phases)
         phases_side_2 = parse_ordered_phase_str(line.Bus2, line.Phases)
