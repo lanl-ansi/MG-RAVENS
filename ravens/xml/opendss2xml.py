@@ -605,7 +605,10 @@ class DssExport(object):
             self._add_WireSpacingInfo(node, line.Spacing)
             wires = line.Conductors
         else:
-            uri = self._add_PerLengthPhaseImedance(line, name=f"{line.Name}_PUZ", nphases=line.NumPhases())
+            print(f"Line '{line.Name}' does not have a LineCode, Geometry, or Spacing. Units, if not in meters, might produce incorrect results.")
+            units = line.Units_str
+            self.add_triple(node, "Conductor.length", line.Length * self._to_meters(units))
+            uri = self._add_PerLengthPhaseImedance(line, name=f"{line.Name}_PUZ", nphases=line.NumPhases(), units=units)
             self.add_triple(node, "ACLineSegment.PerLengthImpedance", uri)
 
         phases = parse_ordered_phase_str(line.Bus1, line.Phases)
