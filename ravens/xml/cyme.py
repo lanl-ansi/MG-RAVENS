@@ -171,6 +171,13 @@ class CymeConverter:
 
             for k in ["p", "q"]:
                 v = self.graph.value(subject=s, predicate=self.cyme_ns[f"CYMECustomerLoadValue.{k}"])
+
+                # obtain previous ec value and modify
+                k_old = self.graph.value(subject=ec_uri, predicate=self.cim_ns[f"EnergyConsumer.{k}"])
+                if k_old is not None:
+                    self.graph.remove((URIRef(str(ec_uri)), self.cim_ns[f"EnergyConsumer.{k}"], None))  # remove the triple to update it with new val
+                    v = float(v)+float(k_old)
+
                 if v is not None:
                     self.add_triple(URIRef(str(ec_uri)), f"EnergyConsumer.{k}", v)
 
