@@ -1551,7 +1551,6 @@ class DssExport(object):
             self.add_triple(tcc_node, "TapChangerControl.lineDropR", reg.R)
             self.add_triple(tcc_node, "TapChangerControl.lineDropX", reg.X)
             if reg.Reversible:
-                self.add_triple(tcc_node, "TapChangerControl.reversible", True)
                 self.add_triple(tcc_node, "TapChangerControl.reverseToNeutral", reg.RevNeutral)
                 self.add_triple(tcc_node, "TapChangerControl.reversingDelay", reg.RevDelay)
                 self.add_triple(tcc_node, "TapChangerControl.reversingPowerThreshold", reg.RevThreshold)
@@ -1559,19 +1558,26 @@ class DssExport(object):
                 self.add_triple(tcc_node, "TapChangerControl.reverseLineDropX", reg.RevX)
                 self.add_triple(tcc_node, "TapChangerControl.reverseTargetValue", reg.RevVReg)
                 self.add_triple(tcc_node, "TapChangerControl.reverseTargetDeadband", reg.RevBand)
-            else:
-                self.add_triple(tcc_node, "TapChangerControl.reversible", False)
+                # self.add_triple(tcc_node, "TapChangerControl.reversible", True)   # TODO: missing from UML
+            # else:
+                # self.add_triple(tcc_node, "TapChangerControl.reversible", False)  # TODO: missing from UML
 
             if reg.VLimit > 0.0:
-                self.add_triple(tcc_node, "TapChangerControl.maxLimitVoltage", reg.VLimit)
+                self.add_triple(tcc_node, "TapChangerControl.limitVoltage", reg.VLimit)
             else:
-                self.add_triple(tcc_node, "TapChangerControl.maxLimitVoltage", reg.Transformer.MaxTap[reg.TapWinding - 1] * v1)
+                self.add_triple(tcc_node, "TapChangerControl.limitVoltage", reg.Transformer.MaxTap[reg.TapWinding - 1] * v1)
 
-            self.add_triple(tcc_node, "TapChangerControl.minLimitVoltage", reg.Transformer.MinTap[reg.TapWinding - 1] * v1)
+            # self.add_triple(tcc_node, "TapChangerControl.minLimitVoltage", reg.Transformer.MinTap[reg.TapWinding - 1] * v1)   # TODO: missing from UML
+
+            tcr_node = self.build_cim_obj("TapChangerRatio", name=f"{reg.Name}_Ratios")
+            self.add_triple(tcr_node, "TapChangerRatio.ptRatio", reg.PTRatio)
+            self.add_triple(tcr_node, "TapChangerRatio.ctRatio", reg.CTPrim / 0.2)
+            self.add_triple(tcr_node, "TapChangerRatio.ctRating", reg.CTPrim)
 
             rtc_node = self.build_cim_obj("RatioTapChanger", name=f"{reg.Name}")
             self.add_triple(rtc_node, "RatioTapChanger.TransformerEnd", self.transformer_end_uris[f"Transformer={reg.Transformer.Name}={reg.TapWinding}"])
             self.add_triple(rtc_node, "TapChanger.TapChangerControl", tcc_node)
+            self.add_triple(rtc_node, "TapChanger.TapChangerRatio", tcr_node)
             self.add_triple(rtc_node, "RatioTapChanger.stepVoltageIncrement", 100.0 * reg.Transformer.Taps[reg.TapWinding - 1])
             self.add_triple(rtc_node, "TapChanger.highStep", int(reg.Transformer.NumTaps[reg.TapWinding - 1] / 2))
             self.add_triple(rtc_node, "TapChanger.lowStep", -int(reg.Transformer.NumTaps[reg.TapWinding - 1] / 2))
@@ -1583,9 +1589,6 @@ class DssExport(object):
             self.add_triple(rtc_node, "TapChanger.ltcFlag", True)
             self.add_triple(rtc_node, "TapChanger.controlEnabled", reg.Enabled)
             self.add_triple(rtc_node, "TapChanger.step", reg.Transformer.Taps[reg.TapWinding - 1])
-            self.add_triple(rtc_node, "TapChanger.ptRatio", reg.PTRatio)
-            self.add_triple(rtc_node, "TapChanger.ctRatio", reg.CTPrim / 0.2)
-            self.add_triple(rtc_node, "TapChanger.ctRating", reg.CTPrim)
 
             # Add RatioTapChanger reference to specific transformer winding
             self.add_triple(self.transformer_end_uris[f"Transformer={reg.Transformer.Name}={reg.TapWinding}"], "TransformerEnd.RatioTapChanger", rtc_node)
