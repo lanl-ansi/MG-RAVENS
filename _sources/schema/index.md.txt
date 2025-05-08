@@ -1630,6 +1630,8 @@
 
 [TapChangerInfoContainer_Container](../_static/schema/TapChangerInfoContainer_Container.html){.external}
 
+[TapChangerRatio](../_static/schema/TapChangerRatio.html){.external}
+
 [TapeShieldCableInfo](../_static/schema/TapeShieldCableInfo.html){.external}
 
 [TelephoneNumber](../_static/schema/TelephoneNumber.html){.external}

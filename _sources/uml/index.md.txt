@@ -68,9 +68,9 @@
 
 ## SimplifiedDiagrams
 
-### OptimizationSettings
+### InfOptimizationSettings
 
-<img src="../_static/uml/SimplifiedDiagrams.OptimizationSettings.svg" style="max-width: 100%; height: auto;" alt="OptimizationSettings diagram">
+<img src="../_static/uml/SimplifiedDiagrams.InfOptimizationSettings.svg" style="max-width: 100%; height: auto;" alt="InfOptimizationSettings diagram">
 
 
 ### Root
@@ -138,9 +138,9 @@
 <img src="../_static/uml/SimplifiedDiagrams.Shunts.svg" style="max-width: 100%; height: auto;" alt="Shunts diagram">
 
 
-### CommunityFacilities
+### InfCommunityFacilities
 
-<img src="../_static/uml/SimplifiedDiagrams.CommunityFacilities.svg" style="max-width: 100%; height: auto;" alt="CommunityFacilities diagram">
+<img src="../_static/uml/SimplifiedDiagrams.InfCommunityFacilities.svg" style="max-width: 100%; height: auto;" alt="InfCommunityFacilities diagram">
 
 
 ### Switches
@@ -174,6 +174,16 @@
 
 ## EquipmentExtensions
 
+### InfTapChangerRatio
+
+<img src="../_static/uml/EquipmentExtensions.InfTapChangerRatio.svg" style="max-width: 100%; height: auto;" alt="InfTapChangerRatio diagram">
+
+
+### TapControls
+
+<img src="../_static/uml/EquipmentExtensions.TapControls.svg" style="max-width: 100%; height: auto;" alt="TapControls diagram">
+
+
 ### ResponseCharacteristics
 
 <img src="../_static/uml/EquipmentExtensions.ResponseCharacteristics.svg" style="max-width: 100%; height: auto;" alt="ResponseCharacteristics diagram">
@@ -188,3 +198,8 @@
 ### Software
 
 <img src="../_static/uml/Software.Software.svg" style="max-width: 100%; height: auto;" alt="Software diagram">
+
+
+### InfAnalysisVariables
+
+<img src="../_static/uml/Software.InfAnalysisVariables.svg" style="max-width: 100%; height: auto;" alt="InfAnalysisVariables diagram">
