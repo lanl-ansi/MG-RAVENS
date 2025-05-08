@@ -4982,6 +4982,13 @@
                   "$primaryObjectHash": null,
                   "type": "object",
                   "properties": {}
+                },
+                "TapChanger.TapChangerRatio": {
+                  "$objectType": "object",
+                  "$objectId": "TapChangerRatio",
+                  "$primaryObjectHash": null,
+                  "type": "object",
+                  "properties": {}
                 }
               }
             },
@@ -5022,6 +5029,13 @@
                 "TapChanger.TapChangerControl": {
                   "$objectType": "object",
                   "$objectId": "TapChangerControl",
+                  "$primaryObjectHash": null,
+                  "type": "object",
+                  "properties": {}
+                },
+                "TapChanger.TapChangerRatio": {
+                  "$objectType": "object",
+                  "$objectId": "TapChangerRatio",
                   "$primaryObjectHash": null,
                   "type": "object",
                   "properties": {}
