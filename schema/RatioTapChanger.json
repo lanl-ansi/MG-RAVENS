@@ -28,6 +28,9 @@
     "TapChanger.TapChangerControl": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TapChangerControl.json"
     },
+    "TapChanger.TapChangerRatio": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TapChangerRatio.json"
+    },
     "RatioTapChanger.tculControlMode": {
       "title": "tculControlMode",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerControlMode.json",
