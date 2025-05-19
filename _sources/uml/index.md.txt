@@ -193,6 +193,11 @@
 
 <img src="../_static/uml/EquipmentExtensions.InefficientBatteryUnit.svg" style="max-width: 100%; height: auto;" alt="InefficientBatteryUnit diagram">
 
+
+### InfPowerElectronicsProtection
+
+<img src="../_static/uml/EquipmentExtensions.InfPowerElectronicsProtection.svg" style="max-width: 100%; height: auto;" alt="InfPowerElectronicsProtection diagram">
+
 ## Software
 
 ### Software

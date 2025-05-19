@@ -750,6 +750,10 @@
 
 [GridFacility](../_static/schema/GridFacility.html){.external}
 
+[GridFollowingProtection](../_static/schema/GridFollowingProtection.html){.external}
+
+[GridFormingProtection](../_static/schema/GridFormingProtection.html){.external}
+
 [Ground](../_static/schema/Ground.html){.external}
 
 [GroundAction](../_static/schema/GroundAction.html){.external}
@@ -1076,6 +1080,8 @@
 
 [OperatingMechanismKind](../_static/schema/OperatingMechanismKind.html){.external}
 
+[OperatingModeKind](../_static/schema/OperatingModeKind.html){.external}
+
 [OperationalLimitArray](../_static/schema/OperationalLimitArray.html){.external}
 
 [OperationalLimitDirectionKind](../_static/schema/OperationalLimitDirectionKind.html){.external}
@@ -1194,6 +1200,10 @@
 
 [PowerElectronicsConnectionPhaseArray](../_static/schema/PowerElectronicsConnectionPhaseArray.html){.external}
 
+[PowerElectronicsOperatingMode](../_static/schema/PowerElectronicsOperatingMode.html){.external}
+
+[PowerElectronicsProtection_anyOfContainer](../_static/schema/PowerElectronicsProtection_anyOfContainer.html){.external}
+
 [PowerElectronicsUnit_anyOfContainer](../_static/schema/PowerElectronicsUnit_anyOfContainer.html){.external}
 
 [PowerElectronicsWindUnit](../_static/schema/PowerElectronicsWindUnit.html){.external}
@@ -1287,6 +1297,8 @@
 [ProposedWindUnitOption](../_static/schema/ProposedWindUnitOption.html){.external}
 
 [ProtectedSwitch](../_static/schema/ProtectedSwitch.html){.external}
+
+[ProtectionStandardKind](../_static/schema/ProtectionStandardKind.html){.external}
 
 [ProtectiveActionAdjustmentKind](../_static/schema/ProtectiveActionAdjustmentKind.html){.external}
 
