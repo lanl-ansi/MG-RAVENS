@@ -1479,7 +1479,7 @@ class DssExport(object):
         exciting_current = math.sqrt(xfmrcode.pctIMag**2 + xfmrcode.pctNoLoadLoss**2)
         self.add_triple(node, "NoLoadTest.excitingCurrent", exciting_current)
         self.add_triple(node, "NoLoadTest.excitingCurrentZero", exciting_current)
-        loss = 0.01 * xfmrcode.pctNoLoadLoss / 100.0 * xfmrcode.kVAs[0]
+        loss = (xfmrcode.pctNoLoadLoss / 100.0) * xfmrcode.kVAs[0]
         self.add_triple(node, "NoLoadTest.loss", loss)
         self.add_triple(node, "NoLoadTest.lossZero", loss)
         self.add_triple(node, "TransformerTest.basePower", xfmrcode.kVAs[0] * 1000.0)
