@@ -22,6 +22,12 @@
     "PowerElectronicsConnection.PowerElectronicsUnit": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsUnit_anyOfContainer.json"
     },
+    "PowerElectronicsConnection.PowerElectronicsProtection": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsProtection_anyOfContainer.json"
+    },
+    "PowerElectronicsConnection.PowerElectronicsOperatingMode": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsOperatingMode.json"
+    },
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
       "title": "BaseVoltagePointer",
