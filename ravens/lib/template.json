@@ -976,6 +976,33 @@
                                 }
                               ]
                             },
+                            "PowerElectronicsConnection.PowerElectronicsProtection": {
+                              "$objectType": "object",
+                              "$objectId": "PowerElectronicsProtection",
+                              "$primaryObjectHash": null,
+                              "anyOf": [
+                                {
+                                  "$objectType": "object",
+                                  "$objectId": "GridFollowingProtection",
+                                  "type": "object",
+                                  "$primaryObjectHash": null,
+                                  "properties": {}
+                                },
+                                {
+                                  "$objectType": "object",
+                                  "$objectId": "GridFormingProtection",
+                                  "type": "object",
+                                  "properties": {}
+                                }
+                              ]
+                            },
+                            "PowerElectronicsConnection.PowerElectronicsOperatingMode": {
+                              "$objectType": "object",
+                              "$objectId": "PowerElectronicsOperatingMode",
+                              "$primaryObjectHash": null,
+                              "type": "object",
+                              "properties": {}
+                            },
                             "ConductingEquipment.BaseVoltage": {
                               "$objectType": "reference",
                               "$objectId": "BaseVoltage",
