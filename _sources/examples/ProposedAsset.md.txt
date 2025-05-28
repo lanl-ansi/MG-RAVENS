@@ -96,19 +96,19 @@
       "Curve.xUnit": "UnitSymbol.h",
       "Curve.CurveDatas": [
         {
-          "CurveData.y1value": 0.0,
+          "CurveData.y1value": 1.0,
           "CurveData.xvalue": 0
         },
         {
-          "CurveData.y1value": 0.0,
+          "CurveData.y1value": 2.0,
           "CurveData.xvalue": 1
         },
         {
-          "CurveData.y1value": 0.0,
+          "CurveData.y1value": -3.0,
           "CurveData.xvalue": 2
         },
         {
-          "CurveData.y1value": 0.0,
+          "CurveData.y1value": 4.0,
           "CurveData.xvalue": 3
         }
       ]
