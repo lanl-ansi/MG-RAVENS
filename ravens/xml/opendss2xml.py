@@ -634,17 +634,17 @@ class DssExport(object):
         self.add_triple(node, "ACLineSegmentPhase.ACLineSegment", aclinesegment_uri)
         if wire is not None:
             if isinstance(wire, altdss.WireData):
-                n = self.build_cim_obj("OverheadWireInfo")
+                n = self.build_cim_obj("OverheadWireInfo", name=wire.Name)
                 self._add_WireInfo(n, wire)
                 self.add_triple(node, "PowerSystemResource.AssetDatasheet", n)
             elif isinstance(wire, altdss.TSData):
-                n = self.build_cim_obj("TapeShieldCableInfo")
+                n = self.build_cim_obj("TapeShieldCableInfo", name=wire.Name)
                 self._add_WireInfo(n, wire)
                 self._add_CableInfo(n, wire)
                 self._add_TapeShieldCableInfo(n, wire)
                 self.add_triple(node, "PowerSystemResource.AssetDatasheet", n)
             elif isinstance(wire, altdss.CNData):
-                n = self.build_cim_obj("ConcentricNeutralCableInfo")
+                n = self.build_cim_obj("ConcentricNeutralCableInfo", name=wire.Name)
                 self._add_WireInfo(n, wire)
                 self._add_CableInfo(n, wire)
                 self._add_ConcentricNeutralCableInfo(n, wire)
@@ -1105,7 +1105,7 @@ class DssExport(object):
         self.add_triple(node, "BatteryUnit.storedE", storage.kWhStored * 1000.0)
         self.add_triple(node, "BatteryUnit.ratedE", storage.kWhRated * 1000.0)
 
-        bat_eff = self.build_cim_obj("BatteryUnitEfficiency", skip_mrid=True)
+        bat_eff = self.build_cim_obj("BatteryUnitEfficiency", skip_mrid=True, name=f"{storage.Name}_Cells_Efficiency")
 
         self.add_triple(bat_eff, "BatteryUnitEfficiency.reserveEnergy", storage.pctReserve)
         self.add_triple(bat_eff, "BatteryUnitEfficiency.limitEnergy", storage.pctkWRated)
@@ -1560,7 +1560,7 @@ class DssExport(object):
                 self.add_triple(tcc_node, "TapChangerControl.reverseTargetDeadband", reg.RevBand)
                 # self.add_triple(tcc_node, "TapChangerControl.reversible", True)   # TODO: missing from UML
             # else:
-                # self.add_triple(tcc_node, "TapChangerControl.reversible", False)  # TODO: missing from UML
+            # self.add_triple(tcc_node, "TapChangerControl.reversible", False)  # TODO: missing from UML
 
             if reg.VLimit > 0.0:
                 self.add_triple(tcc_node, "TapChangerControl.limitVoltage", reg.VLimit)
