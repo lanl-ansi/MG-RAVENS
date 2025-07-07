@@ -659,6 +659,30 @@
                   }
                 }
               }
+            },
+            {
+              "$objectType": "object",
+              "$objectId": "Microgrid",
+              "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                }
+              }
             }
           ]
         },
@@ -763,20 +787,6 @@
               }
             }
           ]
-        },
-        "PopulationGroup": {
-          "$objectType": "object",
-          "type": "object",
-          "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "properties": {
-            "PopulationGroup.Location": {
-              "$objectType": "reference",
-              "$objectId": "Location",
-              "$referencePath": "Location",
-              "type": "string"
-            }
-          }
         },
         "ProposedAssetSet": {
           "$objectType": "object",
@@ -6032,6 +6042,21 @@
                   }
                 }
               }
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "OutageScenario",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {
+                "Outage.OutageIsolationEquipment": {
+                  "$objectType": "reference",
+                  "$objectId": "ConductingEquipment",
+                  "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment",
+                  "type": "string"
+                }
+              }
             }
           ]
         }
@@ -6396,21 +6421,6 @@
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {}
-    },
-    "OutageScenario": {
-      "$objectType": "object",
-      "type": "object",
-      "$objectId": "OutageScenario",
-      "$primaryObjectHash": "IdentifiedObject.name",
-      "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "properties": {
-        "Outage.OutageIsolationEquipment": {
-          "$objectType": "reference",
-          "$objectId": "ConductingEquipment",
-          "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment",
-          "type": "string"
-        }
-      }
     },
     "CommunityFacility": {
       "$objectType": "object",
