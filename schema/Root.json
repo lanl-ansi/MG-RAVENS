@@ -71,9 +71,6 @@
     "FossilFuelCosts": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FossilFuelContainer_Container.json"
     },
-    "OutageScenario": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OutageScenarioContainer_Container.json"
-    },
     "CommunityFacility": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CommunityFacilityContainer_Container.json"
     },

@@ -20,11 +20,6 @@
       "type": "boolean",
       "description": "Behaviour is based on a proprietary model as opposed to a detailed model.\ntrue = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes\nfalse = user-defined model is explicitly defined in terms of control blocks and their input and output signals."
     },
-    "DynamicsFunctionBlock.enabled": {
-      "title": "enabled",
-      "type": "boolean",
-      "description": "Function block used indicator.\ntrue = use of function block is enabled\nfalse = use of function block is disabled."
-    },
     "IdentifiedObject.description": {
       "title": "description",
       "type": "string",

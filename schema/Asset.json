@@ -4,85 +4,93 @@
   "title": "Asset",
   "additionalProperties": false,
   "properties": {
+    "Structure.removeWeed": {
+      "title": "removeWeed",
+      "type": "boolean",
+      "description": "True if weeds are to be removed around asset."
+    },
     "EndDevice.isVirtual": {
       "title": "isVirtual",
       "type": "boolean",
       "description": "If true, there is no physical device. As an example, a virtual meter can be defined to aggregate the consumption for two or more physical meters. Otherwise, this is a physical hardware device."
+    },
+    "Structure.height": {
+      "title": "height",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
+      "description": "Visible height of structure above ground level for overhead construction (e.g., Pole or Tower) or below ground level for an underground vault, manhole, etc. Refer to associated DimensionPropertiesInfo for other types of dimensions."
+    },
+    "Pole.breastBlock": {
+      "title": "breastBlock",
+      "type": "boolean",
+      "description": "True if a block of material has been attached to base of pole in ground for stability. This technique is used primarily when anchors can not be used."
     },
     "ComModule.amrSystem": {
       "title": "amrSystem",
       "type": "string",
       "description": "Automated meter reading (AMR) system communicating with this com module."
     },
-    "Asset.lifecycleState": {
-      "title": "lifecycleState",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetLifecycleStateKind.json",
-      "description": "Current lifecycle state of asset."
+    "StructureSupport.direction": {
+      "title": "direction",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AngleDegrees.json",
+      "description": "Direction of this support structure."
     },
-    "EndDevice.isPan": {
-      "title": "isPan",
-      "type": "boolean",
-      "description": "If true, this is a premises area network (PAN) device."
-    },
-    "Joint.fillKind": {
-      "title": "fillKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/JointFillKind.json",
-      "description": "Material used to fill the joint."
-    },
-    "UndergroundStructure.sealingWarrantyExpiresDate": {
-      "title": "sealingWarrantyExpiresDate",
-      "type": "string",
-      "description": "Date sealing warranty expires."
-    },
-    "Asset.inUseState": {
-      "title": "inUseState",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InUseStateKind.json",
-      "description": "Indication of whether asset is currently deployed (in use), ready to be put into use or not available for use."
-    },
-    "Facility.kind": {
-      "title": "kind",
-      "type": "string",
-      "description": "Kind of this facility."
-    },
-    "Pole.speciesType": {
-      "title": "speciesType",
-      "type": "string",
-      "description": "Pole species. Aluminum, Aluminum Davit, Concrete, Fiberglass, Galvanized Davit, Galvanized, Steel Davit Primed, Steel Davit, Steel Standard Primed, Steel, Truncated, Wood-Treated, Wood-Hard, Wood-Salt Treated, Wood-Soft, Wood, Other, Unknown."
-    },
-    "EndDevice.isSmartInverter": {
-      "title": "isSmartInverter",
-      "type": "boolean",
-      "description": "If true, there is a communicating inverter present."
-    },
-    "Tool.lastCalibrationDate": {
-      "title": "lastCalibrationDate",
-      "type": "string",
-      "description": "(if applicable) Date the tool was last calibrated."
-    },
-    "Asset.initialCondition": {
-      "title": "initialCondition",
-      "type": "string",
-      "description": "Condition of asset at last baseline. Examples include new, rebuilt, overhaul required, other. Refer to inspection data for information on the most current condition of the asset."
-    },
-    "Asset.inUseDate": {
-      "title": "inUseDate",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InUseDate.json",
-      "description": "In use dates for this asset."
+    "StructureSupport.anchorRodCount": {
+      "title": "anchorRodCount",
+      "type": "integer",
+      "description": "(if anchor) Number of rods used."
     },
     "Structure.fumigantAppliedDate": {
       "title": "fumigantAppliedDate",
       "type": "string",
       "description": "Date fumigant was last applied."
     },
+    "DuctBank.circuitCount": {
+      "title": "circuitCount",
+      "type": "integer",
+      "description": "Number of circuits in duct bank. Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts."
+    },
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "Asset"
+      ]
+    },
+    "Structure.fumigantName": {
+      "title": "fumigantName",
+      "type": "string",
+      "description": "Name of fumigant."
+    },
+    "StructureSupport.kind": {
+      "title": "kind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StructureSupportKind.json",
+      "description": "Kind of structure support."
+    },
+    "ComModule.timeZoneOffset": {
+      "title": "timeZoneOffset",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Minutes.json",
+      "description": "Time zone offset relative to GMT for the location of this com module."
+    },
     "EndDevice.timeZoneOffset": {
       "title": "timeZoneOffset",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Minutes.json",
       "description": "Time zone offset relative to GMT for the location of this end device."
     },
+    "IdentifiedObject.description": {
+      "title": "description",
+      "type": "string",
+      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
+    },
     "Tower.constructionKind": {
       "title": "constructionKind",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TowerConstructionKind.json",
       "description": "Construction structure on the tower."
+    },
+    "EndDevice.isPan": {
+      "title": "isPan",
+      "type": "boolean",
+      "description": "If true, this is a premises area network (PAN) device."
     },
     "Joint.configurationKind": {
       "title": "configurationKind",
@@ -109,198 +117,10 @@
       "type": "string",
       "description": "Meter form designation per ANSI C12.10 or other applicable standard. An alphanumeric designation denoting the circuit arrangement for which the meter is applicable and its specific terminal arrangement."
     },
-    "Structure.weedRemovedDate": {
-      "title": "weedRemovedDate",
-      "type": "string",
-      "description": "Date weed were last removed."
-    },
-    "Streetlight.lampKind": {
-      "title": "lampKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StreetlightLampKind.json",
-      "description": "Lamp kind."
-    },
-    "Asset.status": {
-      "title": "status",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Status.json",
-      "description": "Status of this asset."
-    },
-    "Asset.lotNumber": {
-      "title": "lotNumber",
-      "type": "string",
-      "description": "Lot number for this asset. Even for the same model and version number, many assets are manufactured in lots."
-    },
-    "Asset.retiredReason": {
-      "title": "retiredReason",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RetiredReasonKind.json",
-      "description": "Reason asset retired."
-    },
-    "Asset.kind": {
-      "title": "kind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetKind.json",
-      "description": "Kind of asset. Used in description of asset components in asset instance templates."
-    },
-    "Streetlight.armLength": {
-      "title": "armLength",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
-      "description": "Length of arm. Note that a new light may be placed on an existing arm."
-    },
-    "StructureSupport.length": {
-      "title": "length",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
-      "description": "Length of this support structure."
-    },
-    "UndergroundStructure.kind": {
-      "title": "kind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UndergroundStructureKind.json",
-      "description": "True if vault is ventilating."
-    },
-    "Structure.height": {
-      "title": "height",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
-      "description": "Visible height of structure above ground level for overhead construction (e.g., Pole or Tower) or below ground level for an underground vault, manhole, etc. Refer to associated DimensionPropertiesInfo for other types of dimensions."
-    },
-    "Pole.breastBlock": {
-      "title": "breastBlock",
-      "type": "boolean",
-      "description": "True if a block of material has been attached to base of pole in ground for stability. This technique is used primarily when anchors can not be used."
-    },
-    "StructureSupport.direction": {
-      "title": "direction",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AngleDegrees.json",
-      "description": "Direction of this support structure."
-    },
-    "StructureSupport.anchorRodCount": {
-      "title": "anchorRodCount",
-      "type": "integer",
-      "description": "(if anchor) Number of rods used."
-    },
-    "DuctBank.circuitCount": {
-      "title": "circuitCount",
-      "type": "integer",
-      "description": "Number of circuits in duct bank. Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts."
-    },
-    "Structure.fumigantName": {
-      "title": "fumigantName",
-      "type": "string",
-      "description": "Name of fumigant."
-    },
-    "IdentifiedObject.description": {
-      "title": "description",
-      "type": "string",
-      "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy."
-    },
-    "Pole.classification": {
-      "title": "classification",
-      "type": "string",
-      "description": "Pole class: 1, 2, 3, 4, 5, 6, 7, H1, H2, Other, Unknown."
-    },
-    "Vehicle.usageKind": {
-      "title": "usageKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VehicleUsageKind.json",
-      "description": "Kind of usage of the vehicle."
-    },
-    "Pole.jpaReference": {
-      "title": "jpaReference",
-      "type": "string",
-      "description": "Joint pole agreement reference number."
-    },
-    "Pole.length": {
-      "title": "length",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
-      "description": "Length of the pole (inclusive of any section of the pole that may be underground post-installation)."
-    },
-    "Streetlight.lightRating": {
-      "title": "lightRating",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
-      "description": "Power rating of light."
-    },
-    "Meter.connectionCategory": {
-      "title": "connectionCategory",
-      "type": "string",
-      "description": "A code used to specify the connection category, e.g. low voltage, where the meter operates."
-    },
-    "ComModule.supportsAutonomousDst": {
-      "title": "supportsAutonomousDst",
-      "type": "boolean",
-      "description": "If true, autonomous daylight saving time (DST) function is supported."
-    },
-    "Pole.baseKind": {
-      "title": "baseKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PoleBaseKind.json",
-      "description": "Kind of base for this pole."
-    },
-    "UndergroundStructure.hasVentilation": {
-      "title": "hasVentilation",
-      "type": "boolean",
-      "description": "True if vault is ventilating."
-    },
-    "Asset.serialNumber": {
-      "title": "serialNumber",
-      "type": "string",
-      "description": "Serial number of this asset."
-    },
-    "Joint.insulation": {
-      "title": "insulation",
-      "type": "string",
-      "description": "The type of insulation around the joint, classified according to the utility's asset management standards and practices."
-    },
-    "Pole.preservativeKind": {
-      "title": "preservativeKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PolePreservativeKind.json",
-      "description": "Kind of preservative for this pole."
-    },
-    "IdentifiedObject.aliasName": {
-      "title": "aliasName",
-      "type": "string",
-      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
-    },
-    "IdentifiedObject.mRID": {
-      "title": "mRID",
-      "type": "string",
-      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
-    },
     "EndDevice.amrSystem": {
       "title": "amrSystem",
       "type": "string",
       "description": "Automated meter reading (AMR) or other communication system responsible for communications to this end device."
-    },
-    "Structure.removeWeed": {
-      "title": "removeWeed",
-      "type": "boolean",
-      "description": "True if weeds are to be removed around asset."
-    },
-    "IdentifiedObject.name": {
-      "title": "name",
-      "type": "string",
-      "description": "The name is any free human readable and possibly non unique text naming the object."
-    },
-    "Asset.utcNumber": {
-      "title": "utcNumber",
-      "type": "string",
-      "description": "Uniquely tracked commodity (UTC) number."
-    },
-    "Ravens.cimObjectType": {
-      "title": "cimObjectType",
-      "type": "string",
-      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
-      "enum": [
-        "Asset"
-      ]
-    },
-    "StructureSupport.kind": {
-      "title": "kind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StructureSupportKind.json",
-      "description": "Kind of structure support."
-    },
-    "ComModule.timeZoneOffset": {
-      "title": "timeZoneOffset",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Minutes.json",
-      "description": "Time zone offset relative to GMT for the location of this com module."
-    },
-    "Asset.critical": {
-      "title": "critical",
-      "type": "boolean",
-      "description": "True if asset is considered critical for some reason (for example, a pole with critical attachments)."
     },
     "Structure.ratedVoltage": {
       "title": "ratedVoltage",
@@ -312,16 +132,6 @@
       "type": "string",
       "description": "The framing structure mounted on the pole."
     },
-    "Asset.acceptanceTest": {
-      "title": "acceptanceTest",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AcceptanceTest.json",
-      "description": "Information on acceptance test."
-    },
-    "Asset.lifecycleDate": {
-      "title": "lifecycleDate",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LifecycleDate.json",
-      "description": "<was lifecycle>\nLifecycle dates for this asset."
-    },
     "StructureSupport.anchorKind": {
       "title": "anchorKind",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnchorKind.json",
@@ -332,50 +142,145 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PoleTreatmentKind.json",
       "description": "Kind of treatment for this pole."
     },
-    "Asset.electronicAddress": {
-      "title": "electronicAddress",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ElectronicAddress.json",
-      "description": "Electronic address."
+    "Pole.classification": {
+      "title": "classification",
+      "type": "string",
+      "description": "Pole class: 1, 2, 3, 4, 5, 6, 7, H1, H2, Other, Unknown."
+    },
+    "Vehicle.usageKind": {
+      "title": "usageKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VehicleUsageKind.json",
+      "description": "Kind of usage of the vehicle."
     },
     "StructureSupport.anchorRodLength": {
       "title": "anchorRodLength",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
       "description": "(if anchor) Length of rod used."
     },
+    "Pole.jpaReference": {
+      "title": "jpaReference",
+      "type": "string",
+      "description": "Joint pole agreement reference number."
+    },
+    "Pole.length": {
+      "title": "length",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
+      "description": "Length of the pole (inclusive of any section of the pole that may be underground post-installation)."
+    },
     "EndDevice.installCode": {
       "title": "installCode",
       "type": "string",
       "description": "Installation code."
     },
-    "Asset.purchasePrice": {
-      "title": "purchasePrice",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
-      "description": "Purchase price of asset."
+    "IdentifiedObject.aliasName": {
+      "title": "aliasName",
+      "type": "string",
+      "description": "The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.\nThe attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time."
+    },
+    "Joint.fillKind": {
+      "title": "fillKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/JointFillKind.json",
+      "description": "Material used to fill the joint."
+    },
+    "Structure.weedRemovedDate": {
+      "title": "weedRemovedDate",
+      "type": "string",
+      "description": "Date weed were last removed."
     },
     "FACTSDevice.kind": {
       "title": "kind",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FACTSDeviceKind.json",
       "description": "Kind of FACTS device."
     },
+    "Streetlight.lightRating": {
+      "title": "lightRating",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "description": "Power rating of light."
+    },
+    "Streetlight.lampKind": {
+      "title": "lampKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/StreetlightLampKind.json",
+      "description": "Lamp kind."
+    },
+    "UndergroundStructure.sealingWarrantyExpiresDate": {
+      "title": "sealingWarrantyExpiresDate",
+      "type": "string",
+      "description": "Date sealing warranty expires."
+    },
     "Pole.treatedDateTime": {
       "title": "treatedDateTime",
       "type": "string",
       "description": "Date and time pole was last treated with preservative."
     },
-    "Asset.type": {
-      "title": "type",
+    "IdentifiedObject.name": {
+      "title": "name",
       "type": "string",
-      "description": "Utility-specific classification of Asset and its subtypes, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.)."
+      "description": "The name is any free human readable and possibly non unique text naming the object."
     },
-    "Asset.initialLossOfLife": {
-      "title": "initialLossOfLife",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
-      "description": "Percentage of initial life expectancy that has been lost as of the last life expectancy baseline. Represents \n(initial life expectancy - current life expectancy) / initial life expectancy."
-    },
-    "Asset.position": {
-      "title": "position",
+    "Facility.kind": {
+      "title": "kind",
       "type": "string",
-      "description": "Position of asset or asset component. May often be in relation to other assets or components."
+      "description": "Kind of this facility."
+    },
+    "Pole.speciesType": {
+      "title": "speciesType",
+      "type": "string",
+      "description": "Pole species. Aluminum, Aluminum Davit, Concrete, Fiberglass, Galvanized Davit, Galvanized, Steel Davit Primed, Steel Davit, Steel Standard Primed, Steel, Truncated, Wood-Treated, Wood-Hard, Wood-Salt Treated, Wood-Soft, Wood, Other, Unknown."
+    },
+    "EndDevice.isSmartInverter": {
+      "title": "isSmartInverter",
+      "type": "boolean",
+      "description": "If true, there is a communicating inverter present."
+    },
+    "Meter.connectionCategory": {
+      "title": "connectionCategory",
+      "type": "string",
+      "description": "A code used to specify the connection category, e.g. low voltage, where the meter operates."
+    },
+    "ComModule.supportsAutonomousDst": {
+      "title": "supportsAutonomousDst",
+      "type": "boolean",
+      "description": "If true, autonomous daylight saving time (DST) function is supported."
+    },
+    "Tool.lastCalibrationDate": {
+      "title": "lastCalibrationDate",
+      "type": "string",
+      "description": "(if applicable) Date the tool was last calibrated."
+    },
+    "Streetlight.armLength": {
+      "title": "armLength",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
+      "description": "Length of arm. Note that a new light may be placed on an existing arm."
+    },
+    "Pole.baseKind": {
+      "title": "baseKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PoleBaseKind.json",
+      "description": "Kind of base for this pole."
+    },
+    "StructureSupport.length": {
+      "title": "length",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
+      "description": "Length of this support structure."
+    },
+    "UndergroundStructure.hasVentilation": {
+      "title": "hasVentilation",
+      "type": "boolean",
+      "description": "True if vault is ventilating."
+    },
+    "UndergroundStructure.kind": {
+      "title": "kind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UndergroundStructureKind.json",
+      "description": "True if vault is ventilating."
+    },
+    "Joint.insulation": {
+      "title": "insulation",
+      "type": "string",
+      "description": "The type of insulation around the joint, classified according to the utility's asset management standards and practices."
+    },
+    "Pole.preservativeKind": {
+      "title": "preservativeKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PolePreservativeKind.json",
+      "description": "Kind of preservative for this pole."
     },
     "Vehicle.odometerReadDateTime": {
       "title": "odometerReadDateTime",
@@ -386,6 +291,11 @@
       "title": "odometerReading",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Length.json",
       "description": "Odometer reading of this vehicle as of the 'odometerReadingDateTime'. Refer to associated ActivityRecords for earlier readings."
+    },
+    "IdentifiedObject.mRID": {
+      "title": "mRID",
+      "type": "string",
+      "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements."
     },
     "UndergroundStructure.material": {
       "title": "material",

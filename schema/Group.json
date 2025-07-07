@@ -19,9 +19,6 @@
     "LoadGroup": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadGroupContainer_Container.json"
     },
-    "PopulationGroup": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PopulationGroupContainer_Container.json"
-    },
     "ProposedAssetSet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetSetContainer_Container.json"
     }

@@ -11,15 +11,25 @@
     "Fault.FaultyEquipment": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentanyOfPointer_anyOfContainer.json"
     },
-    "Fault.occurredDateTime": {
-      "title": "occurredDateTime",
-      "type": "string",
-      "description": "The date and time at which the fault occurred."
+    "Fault.phases": {
+      "title": "phases",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseCode.json",
+      "description": "The phases participating in the fault. The fault connections into these phases are further specified by the type of fault."
     },
     "Fault.impedance": {
       "title": "impedance",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FaultImpedance.json",
       "description": "Fault impedance. Its usage is described by 'kind'."
+    },
+    "Fault.occurredDateTime": {
+      "title": "occurredDateTime",
+      "type": "string",
+      "description": "The date and time at which the fault occurred."
+    },
+    "Fault.kind": {
+      "title": "kind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectedFaultKind.json",
+      "description": "\"The kind of phase fault."
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
@@ -28,16 +38,6 @@
       "enum": [
         "EquipmentFault"
       ]
-    },
-    "Fault.kind": {
-      "title": "kind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectedFaultKind.json",
-      "description": "The kind of phase fault."
-    },
-    "Fault.phases": {
-      "title": "phases",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseCode.json",
-      "description": "The phases participating in the fault. The fault connections into these phases are further specified by the type of fault."
     },
     "IdentifiedObject.description": {
       "title": "description",

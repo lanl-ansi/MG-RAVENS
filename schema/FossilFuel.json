@@ -9,25 +9,13 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerVolume.json",
       "description": "The cost of the diesel fuel in Currency per unit of volume."
     },
-    "FossilFuel.fossilFuelType": {
-      "title": "fossilFuelType",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FuelType.json",
-      "description": "The type of fossil fuel, such as coal, oil, or gas."
-    },
-    "FossilFuel.fuelCost": {
-      "title": "fuelCost",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerHeatUnit.json",
-      "description": "The cost in terms of heat value for the given type of fuel."
-    },
-    "FossilFuel.fuelDispatchCost": {
-      "title": "fuelDispatchCost",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerHeatUnit.json",
-      "description": "The cost of fuel used for economic dispatching which includes: fuel cost, transportation cost,  and incremental maintenance cost."
-    },
-    "FossilFuel.fuelEffFactor": {
-      "title": "fuelEffFactor",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
-      "description": "The efficiency factor for the fuel (per unit) in terms of the effective energy absorbed."
+    "Ravens.cimObjectType": {
+      "title": "cimObjectType",
+      "type": "string",
+      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
+      "enum": [
+        "FossilFuel"
+      ]
     },
     "FossilFuel.fuelHandlingCost": {
       "title": "fuelHandlingCost",
@@ -39,33 +27,45 @@
       "type": "number",
       "description": "The amount of heat per weight (or volume) of the given type of fuel."
     },
-    "FossilFuel.fuelMixture": {
-      "title": "fuelMixture",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
-      "description": "Relative amount of the given type of fuel, when multiple fuels are being consumed."
+    "FossilFuel.fuelEffFactor": {
+      "title": "fuelEffFactor",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
+      "description": "The efficiency factor for the fuel (per unit) in terms of the effective energy absorbed."
     },
     "FossilFuel.fuelSulfur": {
       "title": "fuelSulfur",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
       "description": "The fuel's fraction of pollution credit per unit of heat content."
     },
-    "FossilFuel.highBreakpointP": {
-      "title": "highBreakpointP",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
-      "description": "The active power output level of the unit at which the given type of fuel is switched on. This fuel (e.g., oil) is sometimes used to supplement the base fuel (e.g., coal) at high active power output levels."
+    "FossilFuel.fuelDispatchCost": {
+      "title": "fuelDispatchCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerHeatUnit.json",
+      "description": "The cost of fuel used for economic dispatching which includes: fuel cost, transportation cost,  and incremental maintenance cost."
     },
     "FossilFuel.lowBreakpointP": {
       "title": "lowBreakpointP",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
       "description": "The active power output level of the unit at which the given type of fuel is switched off. This fuel (e.g., oil) is sometimes used to stabilize the base fuel (e.g., coal) at low active power output levels."
     },
-    "Ravens.cimObjectType": {
-      "title": "cimObjectType",
-      "type": "string",
-      "description": "Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.",
-      "enum": [
-        "FossilFuel"
-      ]
+    "FossilFuel.fuelCost": {
+      "title": "fuelCost",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerHeatUnit.json",
+      "description": "The cost in terms of heat value for the given type of fuel."
+    },
+    "FossilFuel.highBreakpointP": {
+      "title": "highBreakpointP",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "description": "The active power output level of the unit at which the given type of fuel is switched on. This fuel (e.g., oil) is sometimes used to supplement the base fuel (e.g., coal) at high active power output levels."
+    },
+    "FossilFuel.fuelMixture": {
+      "title": "fuelMixture",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "description": "Relative amount of the given type of fuel, when multiple fuels are being consumed."
+    },
+    "FossilFuel.fossilFuelType": {
+      "title": "fossilFuelType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FuelType.json",
+      "description": "The type of fossil fuel, such as coal, oil, or gas."
     },
     "IdentifiedObject.description": {
       "title": "description",
