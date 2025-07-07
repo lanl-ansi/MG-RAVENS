@@ -163,6 +163,11 @@
 <img src="../_static/uml/SimplifiedDiagrams.EnergyProducers.svg" style="max-width: 100%; height: auto;" alt="EnergyProducers diagram">
 
 
+### InfAlgorithmProperties
+
+<img src="../_static/uml/SimplifiedDiagrams.InfAlgorithmProperties.svg" style="max-width: 100%; height: auto;" alt="InfAlgorithmProperties diagram">
+
+
 ### MeterPoints
 
 <img src="../_static/uml/SimplifiedDiagrams.MeterPoints.svg" style="max-width: 100%; height: auto;" alt="MeterPoints diagram">

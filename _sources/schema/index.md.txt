@@ -988,6 +988,8 @@
 
 [MeterMultiplierKind](../_static/schema/MeterMultiplierKind.html){.external}
 
+[Microgrid](../_static/schema/Microgrid.html){.external}
+
 [Minutes](../_static/schema/Minutes.html){.external}
 
 [MktAccountKind](../_static/schema/MktAccountKind.html){.external}
@@ -1110,8 +1112,6 @@
 
 [OutageScenario](../_static/schema/OutageScenario.html){.external}
 
-[OutageScenarioContainer_Container](../_static/schema/OutageScenarioContainer_Container.html){.external}
-
 [OutageStatusKind](../_static/schema/OutageStatusKind.html){.external}
 
 [Outage_anyOfContainer](../_static/schema/Outage_anyOfContainer.html){.external}
@@ -1182,10 +1182,6 @@
 
 [PoleTreatmentKind](../_static/schema/PoleTreatmentKind.html){.external}
 
-[PopulationGroup](../_static/schema/PopulationGroup.html){.external}
-
-[PopulationGroupContainer_Container](../_static/schema/PopulationGroupContainer_Container.html){.external}
-
 [PositionPoint](../_static/schema/PositionPoint.html){.external}
 
 [PositionPointArray](../_static/schema/PositionPointArray.html){.external}
@@ -1239,6 +1235,8 @@
 [PriceSetFlag](../_static/schema/PriceSetFlag.html){.external}
 
 [PriceTypeKind](../_static/schema/PriceTypeKind.html){.external}
+
+[PrimitiveTypes](../_static/schema/PrimitiveTypes.html){.external}
 
 [Priority](../_static/schema/Priority.html){.external}
 

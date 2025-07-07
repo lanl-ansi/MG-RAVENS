@@ -372,18 +372,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionFaultoccurredDateTime">
+<div class="accordion" id="accordionFaultphases">
     <div class="card">
-        <div class="card-header" id="headingFaultoccurredDateTime">
+        <div class="card-header" id="headingFaultphases">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#FaultoccurredDateTime"
-                        aria-expanded="" aria-controls="FaultoccurredDateTime" onclick="setAnchor('#FaultoccurredDateTime')"><span class="property-name">Fault.occurredDateTime</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#Faultphases"
+                        aria-expanded="" aria-controls="Faultphases" onclick="setAnchor('#Faultphases')"><span class="property-name">Fault.phases</span></button>
             </h2>
         </div>
 
-        <div id="FaultoccurredDateTime"
-             class="collapse property-definition-div" aria-labelledby="headingFaultoccurredDateTime"
-             data-parent="#accordionFaultoccurredDateTime">
+        <div id="Faultphases"
+             class="collapse property-definition-div" aria-labelledby="headingFaultphases"
+             data-parent="#accordionFaultphases">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -393,9 +393,14 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#FaultoccurredDateTime" onclick="anchorLink('FaultoccurredDateTime')">Fault.occurredDateTime</a></div><h4>occurredDateTime</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The date and time at which the fault occurred.</p>
+    <a href="#Faultphases" onclick="anchorLink('Faultphases')">Fault.phases</a></div><h4>phases</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>The phases participating in the fault. The fault connections into these phases are further specified by the type of fault.</p>
 </span>
+
+    <div class="enum-value" id="Faultphases_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"PhaseCode.ACN"</li><li class="list-group-item enum-item">"PhaseCode.s2N"</li><li class="list-group-item enum-item">"PhaseCode.N"</li><li class="list-group-item enum-item">"PhaseCode.X"</li><li class="list-group-item enum-item">"PhaseCode.BN"</li><li class="list-group-item enum-item">"PhaseCode.s12N"</li><li class="list-group-item enum-item">"PhaseCode.none"</li><li class="list-group-item enum-item">"PhaseCode.s1"</li><li class="list-group-item enum-item">"PhaseCode.AC"</li><li class="list-group-item enum-item">"PhaseCode.ABC"</li><li class="list-group-item enum-item">"PhaseCode.AB"</li><li class="list-group-item enum-item">"PhaseCode.s1N"</li><li class="list-group-item enum-item">"PhaseCode.BC"</li><li class="list-group-item enum-item">"PhaseCode.XY"</li><li class="list-group-item enum-item">"PhaseCode.ABCN"</li><li class="list-group-item enum-item">"PhaseCode.C"</li><li class="list-group-item enum-item">"PhaseCode.s12"</li><li class="list-group-item enum-item">"PhaseCode.AN"</li><li class="list-group-item enum-item">"PhaseCode.XYN"</li><li class="list-group-item enum-item">"PhaseCode.ABN"</li><li class="list-group-item enum-item">"PhaseCode.XN"</li><li class="list-group-item enum-item">"PhaseCode.s2"</li><li class="list-group-item enum-item">"PhaseCode.CN"</li><li class="list-group-item enum-item">"PhaseCode.B"</li><li class="list-group-item enum-item">"PhaseCode.A"</li><li class="list-group-item enum-item">"PhaseCode.BCN"</li></ul>
+            </div>
         
 
         
@@ -1230,18 +1235,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionRavenscimObjectType">
+<div class="accordion" id="accordionFaultoccurredDateTime">
     <div class="card">
-        <div class="card-header" id="headingRavenscimObjectType">
+        <div class="card-header" id="headingFaultoccurredDateTime">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#RavenscimObjectType"
-                        aria-expanded="" aria-controls="RavenscimObjectType" onclick="setAnchor('#RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#FaultoccurredDateTime"
+                        aria-expanded="" aria-controls="FaultoccurredDateTime" onclick="setAnchor('#FaultoccurredDateTime')"><span class="property-name">Fault.occurredDateTime</span></button>
             </h2>
         </div>
 
-        <div id="RavenscimObjectType"
-             class="collapse property-definition-div" aria-labelledby="headingRavenscimObjectType"
-             data-parent="#accordionRavenscimObjectType">
+        <div id="FaultoccurredDateTime"
+             class="collapse property-definition-div" aria-labelledby="headingFaultoccurredDateTime"
+             data-parent="#accordionFaultoccurredDateTime">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -1251,12 +1256,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#RavenscimObjectType" onclick="anchorLink('RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-</span><div class="enum-value" id="RavenscimObjectType_enum">
-            <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"EquipmentFault"</li></ul>
-            </div>
+    <a href="#FaultoccurredDateTime" onclick="anchorLink('FaultoccurredDateTime')">Fault.occurredDateTime</a></div><h4>occurredDateTime</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The date and time at which the fault occurred.</p>
+</span>
         
 
         
@@ -1289,7 +1291,7 @@
             />
         </svg>
     <a href="#Faultkind" onclick="anchorLink('Faultkind')">Fault.kind</a></div><h4>kind</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-<span class="description"><p>The kind of phase fault.</p>
+<span class="description"><p>"The kind of phase fault.</p>
 </span>
 
     <div class="enum-value" id="Faultkind_enum">
@@ -1306,18 +1308,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionFaultphases">
+<div class="accordion" id="accordionRavenscimObjectType">
     <div class="card">
-        <div class="card-header" id="headingFaultphases">
+        <div class="card-header" id="headingRavenscimObjectType">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#Faultphases"
-                        aria-expanded="" aria-controls="Faultphases" onclick="setAnchor('#Faultphases')"><span class="property-name">Fault.phases</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#RavenscimObjectType"
+                        aria-expanded="" aria-controls="RavenscimObjectType" onclick="setAnchor('#RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
             </h2>
         </div>
 
-        <div id="Faultphases"
-             class="collapse property-definition-div" aria-labelledby="headingFaultphases"
-             data-parent="#accordionFaultphases">
+        <div id="RavenscimObjectType"
+             class="collapse property-definition-div" aria-labelledby="headingRavenscimObjectType"
+             data-parent="#accordionRavenscimObjectType">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -1327,13 +1329,11 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#Faultphases" onclick="anchorLink('Faultphases')">Fault.phases</a></div><h4>phases</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-<span class="description"><p>The phases participating in the fault. The fault connections into these phases are further specified by the type of fault.</p>
-</span>
-
-    <div class="enum-value" id="Faultphases_enum">
+    <a href="#RavenscimObjectType" onclick="anchorLink('RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+</span><div class="enum-value" id="RavenscimObjectType_enum">
             <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"PhaseCode.ACN"</li><li class="list-group-item enum-item">"PhaseCode.s2N"</li><li class="list-group-item enum-item">"PhaseCode.N"</li><li class="list-group-item enum-item">"PhaseCode.X"</li><li class="list-group-item enum-item">"PhaseCode.BN"</li><li class="list-group-item enum-item">"PhaseCode.s12N"</li><li class="list-group-item enum-item">"PhaseCode.none"</li><li class="list-group-item enum-item">"PhaseCode.s1"</li><li class="list-group-item enum-item">"PhaseCode.AC"</li><li class="list-group-item enum-item">"PhaseCode.ABC"</li><li class="list-group-item enum-item">"PhaseCode.AB"</li><li class="list-group-item enum-item">"PhaseCode.s1N"</li><li class="list-group-item enum-item">"PhaseCode.BC"</li><li class="list-group-item enum-item">"PhaseCode.XY"</li><li class="list-group-item enum-item">"PhaseCode.ABCN"</li><li class="list-group-item enum-item">"PhaseCode.C"</li><li class="list-group-item enum-item">"PhaseCode.s12"</li><li class="list-group-item enum-item">"PhaseCode.AN"</li><li class="list-group-item enum-item">"PhaseCode.XYN"</li><li class="list-group-item enum-item">"PhaseCode.ABN"</li><li class="list-group-item enum-item">"PhaseCode.XN"</li><li class="list-group-item enum-item">"PhaseCode.s2"</li><li class="list-group-item enum-item">"PhaseCode.CN"</li><li class="list-group-item enum-item">"PhaseCode.B"</li><li class="list-group-item enum-item">"PhaseCode.A"</li><li class="list-group-item enum-item">"PhaseCode.BCN"</li></ul>
+            <ul class="list-group"><li class="list-group-item enum-item">"EquipmentFault"</li></ul>
             </div>
         
 
@@ -1485,6 +1485,6 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 </div>
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-05-28 at 14:05:42 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-07-07 at 18:29:05 +0000</p>
     </footer></body>
 </html>
