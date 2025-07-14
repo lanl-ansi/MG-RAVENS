@@ -9,11 +9,12 @@ from opendssdirect import dss as odd
 import altdss
 
 from rdflib.namespace import Namespace
-from rdflib.term import URIRef, Literal
-from rdflib import Graph, RDF
+from rdflib.term import URIRef
+from rdflib import RDF
 
-from ravens.data import _DEFAULT_CIM_NAMESPACE
+from ravens.data import _DEFAULT_CIM_NAMESPACE, _DEFAULT_CYME_CIM_NAMESPACE, _DEFAULT_CYME_NAMESPACE
 from ravens.logging import logger
+from ravens.xml.graph import RDFGraph
 
 
 class TestLoadObj(ctypes.Structure):
@@ -37,10 +38,7 @@ def interp_phasecode(phasecode: str) -> list[str]:
         if p in phasecode:
             _phases.add(p)
 
-    phases = list(_phases)
-    phases.sort()
-
-    return phases
+    return sorted(list(_phases), key=lambda x: (x == "N", x))
 
 
 def parse_phase_str(bus: str, n_phases: int, kv_base: float | None = None, is_delta: bool = False) -> str:
@@ -231,7 +229,7 @@ class TransformerInfo:
             self.mesh_list = [Dummy() for i in range(int((max_wdg - 1) * max_wdg / 2))]
 
 
-class DssExport(object):
+class DssExport(RDFGraph):
     """
     Class for converting a DSS file into CIM XML
 
@@ -276,7 +274,9 @@ class DssExport(object):
     None
     """
 
-    def __init__(self, dss_file: str, cim_namespace: str = _DEFAULT_CIM_NAMESPACE):
+    def __init__(self, dss_file: str | pathlib.Path, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, public_id: str = "", uuid_format=None):
+        super().__init__(cim_namespace=cim_namespace, public_id=public_id, uuid_format=uuid_format)
+
         self.raw_dss = odd
         self.raw_dss(f'redirect "{dss_file}"')
 
@@ -297,9 +297,7 @@ class DssExport(object):
         self.transformer_end_uris = {}
         self.transformer_terminal_uris = {}
 
-        self.graph = Graph()
-        self.cim = Namespace(cim_namespace + "#")
-        self.graph.bind("cim", self.cim, override=True)
+        self.equipment_container = None
 
         self._add_IECVersion()
 
@@ -315,6 +313,8 @@ class DssExport(object):
         return load_obj.contents.kWRef, load_obj.contents.kVARref
 
     def _convert_dss_to_rdf(self):
+        self.equipment_container = self.build_cim_obj("Line", name=f"{self.dss.Name}")
+
         self._add_ConnectivityNodes()
         self._add_EnergyConsumers()
         self._add_EnergySources()
@@ -324,9 +324,6 @@ class DssExport(object):
         self._add_LinearShuntCompensators()
         self._add_Transformers()
         self._add_RegulatingControls()
-
-    def save(self, path: pathlib.PosixPath | str) -> None:
-        self.graph.serialize(path, max_depth=1, format="pretty-xml")
 
     @staticmethod
     def _to_meters(units: str | altdss.LengthUnit) -> float:
@@ -360,27 +357,6 @@ class DssExport(object):
                 _phases = [phases]
 
         return _phases
-
-    def build_cim_obj(self, rdf_type: str, mrid: str | None = None, name: str | None = None, skip_mrid: bool = False) -> URIRef:
-        if mrid is None:
-            mrid = str(uuid4())
-        node = URIRef(mrid)
-
-        self.graph.add((node, RDF.type, self.cim[rdf_type]))
-        if not skip_mrid:
-            self.graph.add((node, self.cim["IdentifiedObject.mRID"], Literal(mrid)))
-        if name is not None:
-            self.graph.add((node, self.cim["IdentifiedObject.name"], Literal(name)))
-
-        return node
-
-    def add_triple(self, subject: URIRef, predicate: str, obj):
-        if isinstance(obj, bool):
-            self.graph.add((subject, self.cim[predicate], Literal(str(obj).lower())))
-        elif isinstance(obj, URIRef):
-            self.graph.add((subject, self.cim[predicate], obj))
-        else:
-            self.graph.add((subject, self.cim[predicate], Literal(str(obj))))
 
     def _add_SvStatus(self, source_node_uri: URIRef, in_service: bool):
         if f"SvStatus.{in_service}" not in self.uuid_map:
@@ -432,12 +408,14 @@ class DssExport(object):
 
     def _add_ConnectivityNodes(self):
         for bus in self.dss.Bus:
-            self._add_ConnectivityNode(bus.Name)
-            self._add_Location(bus.Name, [bus.X], [bus.Y])
+            bus_node = self._add_ConnectivityNode(bus.Name)
+            container_node = self.build_cim_obj("ConnectivityNodeContainer")
+            self.add_triple(bus_node, "ConnectivityNode.ConnectivityNodeContainer", container_node)
+            location_node = self._add_Location(bus.Name, [bus.X], [bus.Y])
+            self.add_triple(container_node, "PowerSystemResource.Location", location_node)
 
     def _add_ConnectivityNode(self, bus: str):
         if f"ConnectivityNode.{bus}" not in self.uuid_map:
-            obj_uuid = str(uuid4())
             node = self.build_cim_obj("ConnectivityNode", name=bus)
             self.uuid_map[f"ConnectivityNode.{bus}"] = str(node)
 
@@ -446,9 +424,7 @@ class DssExport(object):
             return URIRef(self.uuid_map[f"ConnectivityNode.{bus}"])
 
     def _add_Terminal(self, connecting_node: URIRef, element, bus: str | None = None, n_terminal: int = 1, phases="ABC"):
-        _phases = list(phases)
-        _phases.sort()
-        phases = "".join(_phases)
+        phases = "".join(interp_phasecode(phases))
 
         node = self.build_cim_obj("Terminal", name=f"{element.Name}_T{n_terminal}")
 
@@ -560,7 +536,8 @@ class DssExport(object):
         self.add_triple(node, "EnergySource.r0", vsource.R0)
         self.add_triple(node, "EnergySource.x0", vsource.X0)
         self.add_triple(node, "Equipment.inService", vsource.Enabled)
-
+        self.add_triple(node, "Equipment.EquipmentContainer", self.equipment_container)
+        self.add_triple(node, "PowerSystemResource.Location", self._add_Location(f"Energysource.{vsource.Name}_Location", [self.dss.Bus[self._parse_busname(vsource.Bus1)].X], [self.dss.Bus[self._parse_busname(vsource.Bus1)].Y]))
         self._add_BaseVoltage(node, vsource.Bus1)
 
         for t, bus in enumerate([vsource.Bus1, vsource.Bus2]):
@@ -588,6 +565,9 @@ class DssExport(object):
     def _add_ACLineSegment(self, line: altdss.Line):
         node = self.build_cim_obj("ACLineSegment", name=line.Name)
         self.add_triple(node, "Equipment.inService", line.Enabled)
+        location_node = self._add_Location(line.Name, [self.dss.Bus[self._parse_busname(line.Bus1)].X, self.dss.Bus[self._parse_busname(line.Bus2)].X], [self.dss.Bus[self._parse_busname(line.Bus1)].Y, self.dss.Bus[self._parse_busname(line.Bus2)].Y])
+        self.add_triple(node, "PowerSystemResource.Location", location_node)
+        self.add_triple(node, "Equipment.EquipmentContainer", self.equipment_container)
         self._add_BaseVoltage(node, line.Bus1)
 
         wires = [None for i in range(line.NumConductors())]
@@ -757,6 +737,7 @@ class DssExport(object):
         self.add_triple(node, "Equipment.inService", line.Enabled)
         self.add_triple(node, "Switch.open", not line.Enabled)
         self.add_triple(node, "Switch.normalOpen", not line.Enabled)
+        self.add_triple(node, "Equipment.EquipmentContainer", self.equipment_container)
 
         # Add SwitchInfo to Switch
         sw_info = self.build_cim_obj("SwitchInfo", name=f"SwInfo_{line.Name}")
@@ -798,6 +779,9 @@ class DssExport(object):
         self.add_triple(node, "EnergyConsumer.customerCount", load.NumCust)
         self.add_triple(node, "EnergyConsumer.grounded", self._is_grounded([load.Bus1], load.Conn != 0))
         self.add_triple(node, "Equipment.inService", load.Enabled)
+        self.add_triple(node, "PowerSystemResource.Location", self._add_Location(f"Energysource.{load.Name}_Location", [self.dss.Bus[self._parse_busname(load.Bus1)].X], [self.dss.Bus[self._parse_busname(load.Bus1)].Y]))
+        self.add_triple(node, "Equipment.EquipmentContainer", self.equipment_container)
+
         base_kv = self._add_BaseVoltage(node, load.Bus1)
 
         if load.Conn_str == "delta":
@@ -954,6 +938,7 @@ class DssExport(object):
 
     def _add_LinearShuntCompensator(self, cap: altdss.Capacitor):
         node = self.build_cim_obj("LinearShuntCompensator", name=cap.Name)
+        self.add_triple(node, "Equipment.EquipmentContainer", self.equipment_container)
 
         b = 0.001 * cap.kvar / cap.kV**2 / cap.NumSteps
 
@@ -1006,6 +991,8 @@ class DssExport(object):
         self.add_triple(node, "RotatingMachine.ratedPowerFactor", gen.PF)
         self.add_triple(node, "SynchronousMachine.maxQ", ((gen.kVA) ** 2 - (gen.kVA * gen.PF) ** 2) ** (1 / 2) * 1000)
         self.add_triple(node, "SynchronousMachine.minQ", -(((gen.kVA) ** 2 - (gen.kVA * gen.PF) ** 2) ** (1 / 2)) * 1000)
+        self.add_triple(node, "PowerSystemResource.Location", self._add_Location(f"Energysource.{gen.Name}_Location", [self.dss.Bus[self._parse_busname(gen.Bus1)].X], [self.dss.Bus[self._parse_busname(gen.Bus1)].Y]))
+        self.add_triple(node, "Equipment.EquipmentContainer", self.equipment_container)
 
         gu_node = self.build_cim_obj("GeneratingUnit", name=f"{gen.Name}_GenUnit")
         self.add_triple(gu_node, "GeneratingUnit.minOperatingP", 0.0)
@@ -1035,6 +1022,8 @@ class DssExport(object):
         for pec_type in ["PVSystem", "Storage"]:
             for pec in getattr(self.dss, pec_type):
                 pec_node = self.build_cim_obj("PowerElectronicsConnection", name=pec.Name)
+                self.add_triple(pec_node, "PowerSystemResource.Location", self._add_Location(f"Energysource.{pec.Name}_Location", [self.dss.Bus[self._parse_busname(pec.Bus1)].X], [self.dss.Bus[self._parse_busname(pec.Bus1)].Y]))
+                self.add_triple(pec_node, "Equipment.EquipmentContainer", self.equipment_container)
 
                 if pec_type == "PVSystem":
                     self._add_PhotoVoltaicUnit(pec_node, pec)
@@ -1172,18 +1161,18 @@ class DssExport(object):
                 has_tank = False
 
             if bank_id not in self.transformer_banks:
-                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id, str(uuid4()))
+                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id, self.mRID())
 
             bank = self.transformer_banks[bank_id]
             bank.add_Transformer(tr)
             for i in range(tr.Windings):
                 self.transformer_info.wdg_list[i].local_name = f"{tr.Name}_End_{i+1}"  # type: ignore
-                self.transformer_info.wdg_list[i].uuid = str(uuid4())  # type: ignore
+                self.transformer_info.wdg_list[i].uuid = self.mRID()  # type: ignore
             self.transformer_info.core_list[0].local_name = f"{tr.Name}_Yc"  # type: ignore
-            self.transformer_info.core_list[0].uuid = str(uuid4())  # type: ignore
+            self.transformer_info.core_list[0].uuid = self.mRID()  # type: ignore
             for i in range(int((max_wdg - 1) * max_wdg / 2)):
                 self.transformer_info.mesh_list[i].local_name = f"{tr.Name}_Zsc_{i+1}"  # type: ignore
-                self.transformer_info.mesh_list[i].uuid = str(uuid4())  # type: ignore
+                self.transformer_info.mesh_list[i].uuid = self.mRID()  # type: ignore
 
             if has_tank:
                 tank_uri = self._add_TransformerTank(tr, bank_id)
@@ -1201,18 +1190,18 @@ class DssExport(object):
         for atr in self.dss.AutoTrans:
             bank_id = f"={atr.Name}" if atr.Bank is None else atr.Bank
             if bank_id not in self.transformer_banks:
-                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id, str(uuid4()))
+                self.transformer_banks[bank_id] = TransformerBank(max_wdg, bank_id, self.mRID())
 
             bank = self.transformer_banks[bank_id]
             bank.add_AutoTransformer(atr)
             for i in range(atr.Windings):
                 self.transformer_info.wdg_list[i].local_name = f"{atr.Name}_End_{i+1}"  # type: ignore
-                self.transformer_info.wdg_list[i].uuid = str(uuid4())  # type: ignore
+                self.transformer_info.wdg_list[i].uuid = self.mRID()  # type: ignore
             self.transformer_info.core_list[0].local_name = f"{atr.Name}_Yc"  # type: ignore
-            self.transformer_info.core_list[0].uuid = str(uuid4())  # type: ignore
+            self.transformer_info.core_list[0].uuid = self.mRID()  # type: ignore
             for i in range(int((max_wdg - 1) * max_wdg / 2)):
                 self.transformer_info.mesh_list[i].local_name = f"{atr.Name}_Zsc_{i+1}"  # type: ignore
-                self.transformer_info.mesh_list[i].uuid = str(uuid4())  # type: ignore
+                self.transformer_info.mesh_list[i].uuid = self.mRID()  # type: ignore
 
             self._add_CoreAdmittance(atr)
             self._add_MeshImpedance(atr)
@@ -1229,6 +1218,7 @@ class DssExport(object):
     def _add_PowerTransformer(self, bank: TransformerBank):
         node = self.build_cim_obj("PowerTransformer", mrid=bank.uuid, name=bank.local_name)
         self.add_triple(node, "PowerTransformer.vectorGroup", bank.vector_group)
+        self.add_triple(node, "Equipment.EquipmentContainer", self.equipment_container)
 
         seq: dict[int, list] = {i + 1: [] for i in range(bank.n_windings)}
         for term_uri in bank.terminal_uris:
@@ -1660,10 +1650,109 @@ class DssExport(object):
         self.add_triple(node, "SeriesCompensator.x", react.X)
         self.add_triple(node, "SeriesCompensator.r0", react.R)
         self.add_triple(node, "SeriesCompensator.x0", react.X)
+        self.add_triple(node, "Equipment.EquipmentContainer", self.equipment_container)
 
         for i, bus in enumerate([react.Bus1, react.Bus2]):
             terminal_uri = self._add_Terminal(node, react, bus=self._parse_busname(bus), n_terminal=i + 1, phases=parse_ordered_phase_str(bus, react.Phases))
             self._add_OperationalLimitSet(terminal_uri, "Current", normal_value=react.NormAmps, norm_max=react.NormAmps, emerg_max=react.EmergAmps)
+
+
+class CymeExport(DssExport):
+    """CYME expects some specific formatting and custom fields that are not included by default in DssExport."""
+
+    def __init__(self, dss_file: str | pathlib.Path, cim_namespace: str = _DEFAULT_CYME_CIM_NAMESPACE, public_id: str = "#", uuid_format=lambda x: "_" + x.upper(), cyme_namespace: str = _DEFAULT_CYME_NAMESPACE):
+        super().__init__(dss_file=dss_file, cim_namespace=cim_namespace, public_id=public_id, uuid_format=uuid_format)
+
+        self.cyme = Namespace(cyme_namespace + "#")
+        self.graph.bind("cyme", self.cyme, override=True)
+
+        self.to_remove = list()
+
+        self.fix_EnergyConsumerPhase()
+        self.fix_Equipment_inService()
+        self.fix_ACDCTerminal_sequenceNumber()
+        self.fix_CIM_Versions()
+
+        self.add_CYMECustomerClass()
+
+        self.remove_ACLineSegmentPhase_sequenceNumber()
+        self.remove_OperationalLimitSet()
+        self.remove_ACLineSegmentPhase_sequenceNumber()
+        self.remove_BaseVoltage()
+        self.remove_EnergyConnectionProfile()
+        self.remove_IdentifiedObject_mRID()
+
+        self._prune_graph()
+
+    def fix_EnergyConsumerPhase(self):
+        for x in ["p", "q"]:
+            for s, p, o in self.graph.triples((None, self.cim[f"EnergyConsumerPhase.{x}"], None)):
+                self.graph.add((s, self.cim[f"EnergyConsumerPhase.{x}fixed"], o))
+                self.to_remove.append((s, p, o))
+
+    def fix_Equipment_inService(self):
+        for s, p, o in self.graph.triples((None, self.cim["Equipment.inService"], None)):
+            if bool(o.value):
+                self.graph.add((s, self.cyme["CYMEConnectionStatus.connectionStatusType"], self.cyme["CYMEConnectionStatusType.Connected"]))
+            self.to_remove.append((s, p, o))
+
+    def fix_ACDCTerminal_sequenceNumber(self):
+        for s, p, o in self.graph.triples((None, self.cim["ACDCTerminal.sequenceNumber"], None)):
+            self.graph.add((s, self.cim["Terminal.sequenceNumber"], o))
+            self.to_remove.append((s, p, o))
+
+    def fix_CIM_Versions(self):
+        for s in self.graph.subjects(RDF.type, self.cim["IEC61970CIMVersion"]):
+            self.to_remove.append((s, None, None))
+
+        for s in self.graph.subjects(RDF.type, self.cim["IEC61968CIMVersion"]):
+            self.to_remove.append((s, None, None))
+
+        node = self.build_cim_obj("IEC61970CIMVersion")
+        self.add_triple(node, "IEC61970CIMVersion.date", "2014-01-31")
+        self.add_triple(node, "IEC61970CIMVersion.version", "IEC61970CIM16v26a")
+
+        node = self.build_cim_obj("IEC61968CIMVersion")
+        self.add_triple(node, "IEC61968CIMVersion.date", "2014-02-01")
+        self.add_triple(node, "IEC61968CIMVersion.version", "IEC61968CIM12v08")
+
+    def add_CYMECustomerClass(self):
+        node = URIRef(self.mRID())
+        self.graph.add((node, RDF.type, self.cyme["CYMECustomerClass"]))
+        self.add_triple(node, "IdentifiedObject.name", "NONE")
+
+    def remove_OperationalLimitSet(self):
+        for triple in self.graph.triples((None, self.cim["ACDCTerminal.OperationalLimitSet"], None)):
+            self.to_remove.append(triple)
+
+        for triple in self.graph.triples((None, self.cim["ConnectivityNode.OperationalLimitSet"], None)):
+            self.to_remove.append(triple)
+
+        for s in self.graph.subjects(RDF.type, self.cim["OperationalLimitSet"]):
+            self.to_remove.append((s, None, None))
+
+    def remove_ACLineSegmentPhase_sequenceNumber(self):
+        for triple in self.graph.triples((None, self.cim["ACLineSegmentPhase.sequenceNumber"], None)):
+            self.to_remove.append(triple)
+
+    def remove_BaseVoltage(self):
+        for triple in self.graph.triples((None, self.cim["ConductingEquipment.BaseVoltage"], None)):
+            self.to_remove.append(triple)
+
+        for s in self.graph.subjects(RDF.type, self.cim["BaseVoltage"]):
+            self.to_remove.append((s, None, None))
+
+    def remove_EnergyConnectionProfile(self):
+        for s in self.graph.subjects(RDF.type, self.cim["EnergyConnectionProfile"]):
+            self.to_remove.append((s, None, None))
+
+    def remove_IdentifiedObject_mRID(self):
+        for triple in self.graph.triples((None, self.cim["IdentifiedObject.mRID"], None)):
+            self.to_remove.append(triple)
+
+    def _prune_graph(self):
+        for triple in self.to_remove:
+            self.graph.remove(triple)
 
 
 if __name__ == "__main__":
