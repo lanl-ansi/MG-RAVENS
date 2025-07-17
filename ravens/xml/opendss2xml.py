@@ -9,7 +9,7 @@ from opendssdirect import dss as odd
 import altdss
 
 from rdflib.namespace import Namespace
-from rdflib.term import URIRef
+from rdflib.term import URIRef, Literal
 from rdflib import RDF
 
 from ravens.data import _DEFAULT_CIM_NAMESPACE, _DEFAULT_CYME_CIM_NAMESPACE, _DEFAULT_CYME_NAMESPACE
@@ -719,11 +719,14 @@ class DssExport(RDFGraph):
 
     def _add_PhaseImpedanceData(self, phase_impedance_uri: URIRef, linecode: altdss.LineCode, nphases: int | None = None, units: str = "none"):
         units = linecode.Units_str if linecode.Units_str != "none" else units
-        for col in range(1, (nphases if nphases is not None else linecode.NPhases) + 1):  # iterate over rows (upper triangular only)
-            for row in range(col, (nphases if nphases is not None else linecode.NPhases) + 1):
+        num_phases = nphases if nphases is not None else linecode.NPhases
+        for col in range(1, num_phases + 1):  # iterate over rows (upper triangular only)
+            for row in range(col, num_phases + 1):
                 node = self.build_cim_obj("PhaseImpedanceData", skip_mrid=True)
                 self.add_triple(node, "PhaseImpedanceData.row", row)
                 self.add_triple(node, "PhaseImpedanceData.column", col)
+                # TODO: this isn't strictly allowed in CIM100, only CIM16...
+                self.add_triple(node, "PhaseImpedanceData.sequenceNumber", col + num_phases * row)
                 # calculate the correct index in RMatrix, XMatrix, CMatrix
                 i = (row - 1) * (nphases if nphases is not None else linecode.NPhases) + (col - 1)
                 self.add_triple(node, "PhaseImpedanceData.r", linecode.RMatrix[i] * self._to_per_meter(units))
@@ -1672,11 +1675,14 @@ class CymeExport(DssExport):
         self.fix_Equipment_inService()
         self.fix_ACDCTerminal_sequenceNumber()
         self.fix_CIM_Versions()
+        self.fix_PhaseImpedanceData()
+        self.fix_TransformerTank()
+        self.fix_GroundedEnds()
 
         self.add_CYMECustomerClass()
 
         self.remove_ACLineSegmentPhase_sequenceNumber()
-        self.remove_OperationalLimitSet()
+        self.remove_OperationalLimits()
         self.remove_ACLineSegmentPhase_sequenceNumber()
         self.remove_BaseVoltage()
         self.remove_EnergyConnectionProfile()
@@ -1716,20 +1722,49 @@ class CymeExport(DssExport):
         self.add_triple(node, "IEC61968CIMVersion.date", "2014-02-01")
         self.add_triple(node, "IEC61968CIMVersion.version", "IEC61968CIM12v08")
 
+    def fix_PhaseImpedanceData(self):
+        for s in self.graph.subjects(RDF.type, self.cim["PhaseImpedanceData"]):
+            col_obj = self.graph.value(s, self.cim["PhaseImpedanceData.column"])
+            self.to_remove.append((s, self.cim["PhaseImpedanceData.column"], col_obj))
+
+            row_obj = self.graph.value(s, self.cim["PhaseImpedanceData.row"])
+            self.to_remove.append((s, self.cim["PhaseImpedanceData.row"], row_obj))
+
+    def fix_TransformerTank(self):
+        for s in self.graph.subjects(RDF.type, self.cim["TransformerTank"]):
+            p = self.cim["TransformerTank.TransformerTankInfo"]
+            for o in self.graph.objects(s, p):
+                if o is not None:
+                    self.graph.add((s, self.cim["PowerSystemResource.AssetDatasheet"], o))
+                    self.to_remove.append((s, p, o))
+
+    def fix_GroundedEnds(self):
+        for o in self.graph.objects(None, self.cim["ShortCircuitTest.GroundedEnds"], True):
+            end_number = self.graph.value(o, self.cim["TransformerEndInfo.endNumber"])
+            for tank_info in self.graph.objects(o, self.cim["TransformerEndInfo.TransformerTankInfo"]):
+                for tank in self.graph.subjects(self.cim["TransformerTank.TransformerTankInfo"], tank_info):
+                    for tank_end in self.graph.subjects(self.cim["TransformerTankEnd.TransformerTank"], tank):
+                        if self.graph.value(tank_end, self.cim["TransformerEnd.endNumber"]) == tank_end:
+                            self.graph.remove((tank_end, self.cim["TransformerEnd.grounded"], self.graph.value(tank_end, self.cim["TransformerEnd.grounded"])))
+                            self.graph.add((tank_end, self.cim["TransformerEnd.grounded"], Literal(True)))
+
+            self.to_remove.append((None, self.cim["ShortCircuitTest.GroundedEnds"], o))
+
     def add_CYMECustomerClass(self):
         node = URIRef(self.mRID())
         self.graph.add((node, RDF.type, self.cyme["CYMECustomerClass"]))
         self.add_triple(node, "IdentifiedObject.name", "NONE")
 
-    def remove_OperationalLimitSet(self):
+    def remove_OperationalLimits(self):
         for triple in self.graph.triples((None, self.cim["ACDCTerminal.OperationalLimitSet"], None)):
             self.to_remove.append(triple)
 
         for triple in self.graph.triples((None, self.cim["ConnectivityNode.OperationalLimitSet"], None)):
             self.to_remove.append(triple)
 
-        for s in self.graph.subjects(RDF.type, self.cim["OperationalLimitSet"]):
-            self.to_remove.append((s, None, None))
+        for k in ["OperationalLimitSet", "OperationalLimitType", "VoltageLimit", "CurrentLimit"]:
+            for s in self.graph.subjects(RDF.type, self.cim[k]):
+                self.to_remove.append((s, None, None))
 
     def remove_ACLineSegmentPhase_sequenceNumber(self):
         for triple in self.graph.triples((None, self.cim["ACLineSegmentPhase.sequenceNumber"], None)):
