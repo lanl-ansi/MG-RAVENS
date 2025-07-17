@@ -1396,7 +1396,7 @@ class DssExport(RDFGraph):
 
             self.add_triple(node, "TransformerTankEnd.phases", self.cim[f"PhaseCode.{phase_kind}"])
 
-            self.add_triple(node, "TranformerTankEnd.TransformerTank", subject_uri)
+            self.add_triple(node, "TransformerTankEnd.TransformerTank", subject_uri)
 
             self.add_triple(node, "TransformerEnd.endNumber", i + 1)
 
