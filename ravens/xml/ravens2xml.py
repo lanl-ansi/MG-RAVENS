@@ -6,17 +6,18 @@ from copy import deepcopy
 from uuid import uuid4
 
 from rdflib.exceptions import UniquenessError
-from rdflib.namespace import Namespace
 from rdflib.term import URIRef, Literal
-from rdflib import Graph, RDF
+from rdflib import RDF
 
 from ravens.data import _DEFAULT_CIM_NAMESPACE
 from ravens.uml.common import get_names_of_enumeration_classes
 from ravens.uml import UMLData
+from ravens.xml.graph import RDFGraph
 
 
-class RavensExport(object):
+class RavensExport(RDFGraph):
     def __init__(self, data, uml_data: UMLData | None = None, cim_namespace: str = _DEFAULT_CIM_NAMESPACE):
+        super().__init__(cim_namespace=cim_namespace)
         self.data = deepcopy(data)
         self.cim_enums = None
 
@@ -24,10 +25,6 @@ class RavensExport(object):
             uml_data = UMLData()
 
         self.cim_enums = get_names_of_enumeration_classes(uml_data)
-
-        self.graph = Graph()
-        self.cim = Namespace(cim_namespace + "#")
-        self.graph.bind("cim", self.cim, override=True)
 
         self.build_rdf_graph(self.data)
         self.update_uri_refs()
@@ -114,9 +111,6 @@ class RavensExport(object):
         for triple in triple_to_delete:
             self.graph.remove(triple)
 
-    def save_cim_profile(self, file_path: pathlib.PosixPath):
-        self.graph.serialize(file_path, max_depth=1, format="pretty-xml")
-
 
 if __name__ == "__main__":
     pathlib.Path("out").mkdir(parents=True, exist_ok=True)
@@ -125,4 +119,4 @@ if __name__ == "__main__":
         d = json.load(f)
 
     r = RavensExport(d)
-    r.save_cim_profile("out/test_output.xml")
+    r.save("out/test_output.xml")
