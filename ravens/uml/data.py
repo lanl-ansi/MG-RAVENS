@@ -204,7 +204,7 @@ class UMLData:
             setattr(self, _attr_names[table_name], df)
 
     @classmethod
-    def loadf(cls, file: pathlib.PosixPath = _UML_XML_PATH, set_index: bool = True) -> object:
+    def loadf(cls, file: str | pathlib.Path = _UML_XML_PATH, set_index: bool = True) -> object:
         dataframes: dict = cls._create_dataframes(file, set_index=set_index)
         obj = cls()
         for table_name, df in dataframes.items():
@@ -213,7 +213,7 @@ class UMLData:
         return obj
 
     @staticmethod
-    def _create_dataframes(file: pathlib.PosixPath = _UML_XML_PATH, set_index: bool = True) -> dict:
+    def _create_dataframes(file: str | pathlib.Path = _UML_XML_PATH, set_index: bool = True) -> dict:
         tree = ET.parse(file)
         root = tree.getroot()
 
@@ -255,6 +255,23 @@ class UMLData:
             dataframes[table_name] = df
 
         return dataframes
+
+    def compare(self, data, compare_attributes: list[str] | None = None):
+        if compare_attributes is None:
+            compare_attributes = ["objects", "connectors", "attributes"]
+
+        results = {}
+        for attr in compare_attributes:
+            a = getattr(self, attr)
+            b = getattr(data, attr)
+            results[attr] = b[~b.isin(a.to_dict(orient="list")).all(axis=1)]
+
+        return results
+
+    def export_comparison(self, path: str | pathlib.Path, results: dict[str, pd.DataFrame]):
+        with pd.ExcelWriter(path, engine="openpyxl") as writer:
+            for t, df in results.items():
+                df.to_excel(writer, sheet_name=t, index=False)
 
 
 if __name__ == "__main__":
