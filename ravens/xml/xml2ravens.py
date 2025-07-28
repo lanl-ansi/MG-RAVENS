@@ -704,6 +704,71 @@ class RavensImport:
             json.dump(self.data, f, indent=indent)
 
 
+class CrowsImport(RavensImport):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self._remove_superflorous_objects()
+        self._convert_all_to_puz()
+        self._simplify_ACLineSegment()
+        self._simplify_Switch()
+        # etc
+
+    def _remove_superflorous_objects(self):
+        'removes objects that are unnecessary for OPF'
+        pass
+
+    def _convert_all_to_puz(self):
+        'converts all WireInfo type objects into PerLengthImpedance objects'
+        pass
+
+    def _simplify_ACLineSegment(self):
+        'simplifies ACLineSegment objects'
+        pass
+
+    def _simplify_Switch(self):
+        'simplifies Switch objects'
+        pass
+
+    def _simplify_EnergyConsumer(self):
+        'simplifies EnergyConsumer objects'
+        pass
+
+    def _simplify_EnergySource(self):
+        'simplifies EnergySource objects'
+        pass
+
+    def _simplify_PowerTransformer(self):
+        'simplifies PowerTransformer objects'
+        pass
+
+    def _simplify_RotatingMachine(self):
+        'simplifies RotatingMachine objects'
+        pass
+
+    def _simplify_PowerElectronicsConnection(self):
+        'simplifies PowerElectronicConnection objects'
+        pass
+
+    def __simplify_Terminal(self):
+        'simplifies Terminal objects'
+        pass
+
+    def __simplify_generic(self):
+        'Removes unnecessary IdentifiedObject attributes, sequenceNumber attributes, and IdentifiedObject.name in cases where it is unneeded.'
+        pass
+
+    def _cleanup(self):
+        'ensures that empty objects are removed'
+        pass
+
+    def restore_ravens(self):
+        'method to re-convert to ravens from the base XML'
+        pass
+
 if __name__ == "__main__":
     d = RavensImport("examples/IEEE13_Assets.xml")
     d.dump("examples/IEEE13_Assets.json", indent=2)
+
+    d2 = CrowsImport("examples/IEEE13_Assets.xml")
+    d2.dump("examples/IEEE13_Assets_simplified.json")
