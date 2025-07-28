@@ -30,6 +30,13 @@ Feedback on the current version of the Schema can be provided through a `Google 
 
 .. toctree::
    :maxdepth: 1
+   :caption: Guides:
+   :glob:
+
+   misc/*
+
+.. toctree::
+   :maxdepth: 1
    :caption: Governance:
 
    governance/charter
