@@ -3,9 +3,6 @@
   "title": "DynamicsFunctionBlock",
   "anyOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DynamicsFunctionBlock.json"
-    },
-    {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RotatingMachineDynamics.json"
     },
     {
