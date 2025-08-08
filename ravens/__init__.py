@@ -12,3 +12,5 @@ def extract_version() -> str:
 
 
 __version__ = extract_version()
+
+from .base import RavensData
