@@ -3,10 +3,10 @@
   "type": "object",
   "properties": {
     "EnergyConsumerSchedule.RegularTimePoints": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegularTimePointArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegularTimePoint_Array.json"
     },
     "EnergyConsumerSchedule.IrregularTimePoints": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/IrregularTimePointArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/IrregularTimePoint_Array.json"
     },
     "EnergyConsumerSchedule.startDay": {
       "title": "startDay",

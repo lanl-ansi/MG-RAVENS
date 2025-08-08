@@ -2,25 +2,25 @@
   "type": "object",
   "properties": {
     "TransformerEndInfo.EnergisedEndNoLoadTests": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NoLoadTestArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NoLoadTest_Array.json"
     },
     "TransformerEndInfo.EnergisedEndShortCircuitTests": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShortCircuitTestArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShortCircuitTest_Array.json"
     },
     "TransformerEndInfo.CoreAdmittance": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerCoreAdmittance.json"
     },
     "TransformerEndInfo.ToMeshImpedance": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerMeshImpedanceArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerMeshImpedance_Array.json"
     },
     "TransformerEndInfo.FromMeshImpedance": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerMeshImpedanceArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerMeshImpedance_Array.json"
     },
     "TransformerEndInfo.TransformerStarImpedance": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerStarImpedance.json"
     },
     "TransformerEndInfo.OpenEndOpenCircuitTest": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OpenCircuitTestArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OpenCircuitTest_Array.json"
     },
     "TransformerEndInfo.emergencyS": {
       "title": "emergencyS",

@@ -6,25 +6,25 @@
   "properties": {
     "SubGeographicalRegion.Region": {
       "type": "string",
-      "title": "GeographicalRegionPointer",
+      "title": "GeographicalRegion_Pointer",
       "description": "Pointer to GeographicalRegion object",
       "pattern": "^GeographicalRegion::'(.+)'$"
     },
     "SubGeographicalRegion.EconomicProperty": {
       "type": "string",
-      "title": "EconomicPropertyPointer",
+      "title": "EconomicProperty_Pointer",
       "description": "Pointer to EconomicProperty object",
       "pattern": "^EconomicProperty::'(.+)'$"
     },
     "SubGeographicalRegion.CapacityPrices": {
       "type": "string",
-      "title": "CapacityPricesPointer",
+      "title": "CapacityPrices_Pointer",
       "description": "Pointer to CapacityPrices object",
       "pattern": "^CapacityPrices::'(.+)'$"
     },
     "SubGeographicalRegion.LocationalMarginalPrices": {
       "type": "string",
-      "title": "LocationalMarginalPricesPointer",
+      "title": "LocationalMarginalPrices_Pointer",
       "description": "Pointer to LocationalMarginalPrices object",
       "pattern": "^LocationalMarginalPrices::'(.+)'$"
     },

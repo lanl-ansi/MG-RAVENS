@@ -6,7 +6,7 @@
   "properties": {
     "PowerSystemResource.GenericAction": {
       "type": "string",
-      "title": "SwitchingActionPointer",
+      "title": "SwitchingAction_Pointer",
       "description": "Pointer to SwitchingAction object",
       "pattern": "^SwitchingAction::'(.+)'$"
     },

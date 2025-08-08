@@ -4,12 +4,12 @@
   "properties": {
     "Fault.Location": {
       "type": "string",
-      "title": "LocationPointer",
+      "title": "Location_Pointer",
       "description": "Pointer to Location object",
       "pattern": "^Location::'(.+)'$"
     },
     "Fault.FaultyEquipment": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentanyOfPointer_anyOfContainer.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Equipment_anyOfPointer_anyOfContainer.json"
     },
     "Fault.phases": {
       "title": "phases",

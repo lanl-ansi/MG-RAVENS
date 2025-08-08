@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "properties": {
     "EnergyPrices.Regions": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeographicalRegionPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeographicalRegion_PointerArray.json"
     },
     "CapacityPrices.CapacityPriceCurve": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PriceCurve.json"

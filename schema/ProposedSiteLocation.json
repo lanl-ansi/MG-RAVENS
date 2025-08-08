@@ -5,19 +5,19 @@
   "additionalProperties": false,
   "properties": {
     "Location.PositionPoints": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PositionPointArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PositionPoint_Array.json"
     },
     "Location.CoordinateSystem": {
       "type": "string",
-      "title": "CoordinateSystemPointer",
+      "title": "CoordinateSystem_Pointer",
       "description": "Pointer to CoordinateSystem object",
       "pattern": "^CoordinateSystem::'(.+)'$"
     },
     "ProposedSiteLocation.Region": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeographicalRegionanyOfPointer_anyOfContainer.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeographicalRegion_anyOfPointer_anyOfContainer.json"
     },
     "ProposedSiteLocation.LoadGroups": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadGroupPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadGroup_PointerArray.json"
     },
     "Location.mainAddress": {
       "title": "mainAddress",

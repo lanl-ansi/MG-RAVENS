@@ -3,28 +3,28 @@
   "type": "object",
   "properties": {
     "ProposedAsset.ProposedAssetOption": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetOptionanyOfPointer_anyOfContainer.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetOption_anyOfPointer_anyOfContainer.json"
     },
     "ProposedAsset.Application": {
       "type": "string",
-      "title": "ApplicationPointer",
+      "title": "Application_Pointer",
       "description": "Pointer to Application object",
       "pattern": "^Application::'(.+)'$"
     },
     "ProposedAsset.EstimatedCost": {
       "type": "string",
-      "title": "EstimatedCostPointer",
+      "title": "EstimatedCost_Pointer",
       "description": "Pointer to EstimatedCost object",
       "pattern": "^EstimatedCost::'(.+)'$"
     },
     "ProposedAsset.Algorithm": {
       "type": "string",
-      "title": "AlgorithmPointer",
+      "title": "Algorithm_Pointer",
       "description": "Pointer to Algorithm object",
       "pattern": "^Algorithm::'(.+)'$"
     },
     "ProposedBranch.Terminals": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

@@ -3,11 +3,11 @@
   "type": "object",
   "properties": {
     "NonConformLoadGroup.EnergyConsumers": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NonConformLoadPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NonConformLoad_PointerArray.json"
     },
     "NonConformLoadGroup.NonConformLoadSchedules": {
       "type": "string",
-      "title": "NonConformLoadSchedulePointer",
+      "title": "NonConformLoadSchedule_Pointer",
       "description": "Pointer to NonConformLoadSchedule object",
       "pattern": "^NonConformLoadSchedule::'(.+)'$"
     },

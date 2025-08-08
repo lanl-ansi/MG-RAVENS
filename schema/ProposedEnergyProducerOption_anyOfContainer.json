@@ -2,6 +2,9 @@
   "title": "ProposedEnergyProducerOption",
   "anyOf": [
     {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedEnergyProducerOption.json"
+    },
+    {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedBatteryUnitOption.json"
     },
     {

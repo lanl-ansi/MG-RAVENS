@@ -4,13 +4,13 @@
   "properties": {
     "CommunityFacility.Location": {
       "type": "string",
-      "title": "LocationPointer",
+      "title": "Location_Pointer",
       "description": "Pointer to Location object",
       "pattern": "^Location::'(.+)'$"
     },
     "CommunityFacility.OutageScenario": {
       "type": "string",
-      "title": "OutageScenarioPointer",
+      "title": "OutageScenario_Pointer",
       "description": "Pointer to OutageScenario object",
       "pattern": "^OutageScenario::'(.+)'$"
     },
@@ -19,7 +19,7 @@
     },
     "GridFacility.FacilityPowerLine": {
       "type": "string",
-      "title": "EquivalentBranchPointer",
+      "title": "EquivalentBranch_Pointer",
       "description": "Pointer to EquivalentBranch object",
       "pattern": "^EquivalentBranch::'(.+)'$"
     },

@@ -6,24 +6,24 @@
   "properties": {
     "RegulatingControl": {
       "type": "string",
-      "title": "RegulatingControlPointer",
+      "title": "RegulatingControl_Pointer",
       "description": "Pointer to RegulatingControl object",
       "pattern": "^RegulatingControl::'(.+)'$"
     },
     "PowerSystemResource.GenericAction": {
       "type": "string",
-      "title": "SwitchingActionPointer",
+      "title": "SwitchingAction_Pointer",
       "description": "Pointer to SwitchingAction object",
       "pattern": "^SwitchingAction::'(.+)'$"
     },
     "PowerSystemResource.AssetDatasheet": {
       "type": "string",
-      "title": "TapChangerInfoPointer",
+      "title": "TapChangerInfo_Pointer",
       "description": "Pointer to TapChangerInfo object",
       "pattern": "^TapChangerInfo::'(.+)'$"
     },
     "TapChanger.SvTapStep": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvTapStepArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvTapStep_Array.json"
     },
     "TapChanger.TapChangerControl": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TapChangerControl.json"

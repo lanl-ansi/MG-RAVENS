@@ -3,10 +3,10 @@
   "description": "The list of items that define the tree problem.",
   "type": "string",
   "enum": [
-    "TroubleSymptomsTree Kind.ok",
-    "TroubleSymptomsTree Kind.other",
-    "TroubleSymptomsTree Kind.limbOnWire",
-    "TroubleSymptomsTree Kind.limbOnService"
+    "TroubleSymptomsTreeKind.ok",
+    "TroubleSymptomsTreeKind.other",
+    "TroubleSymptomsTreeKind.limbOnWire",
+    "TroubleSymptomsTreeKind.limbOnService"
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TroubleSymptomsTreeKind.json",

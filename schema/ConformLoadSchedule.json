@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "RegularIntervalSchedule.TimePoints": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegularTimePointArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegularTimePoint_Array.json"
     },
     "IdentifiedObject.aliasName": {
       "title": "aliasName",

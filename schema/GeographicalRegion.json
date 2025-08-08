@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "properties": {
     "GeographicalRegion.Regions": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SubGeographicalRegionPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SubGeographicalRegion_PointerArray.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

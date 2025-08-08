@@ -3,7 +3,7 @@
   "properties": {
     "EnvironmentalInformation.EnvironmentalPhenomenon": {
       "type": "string",
-      "title": "EnvironmentalPhenomenonPointer",
+      "title": "EnvironmentalPhenomenon_Pointer",
       "description": "Pointer to EnvironmentalPhenomenon object",
       "pattern": "^EnvironmentalPhenomenon::'(.+)'$"
     },

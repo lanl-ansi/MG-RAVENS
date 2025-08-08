@@ -7,30 +7,30 @@
     },
     "PowerSystemResource.Location": {
       "type": "string",
-      "title": "LocationPointer",
+      "title": "Location_Pointer",
       "description": "Pointer to Location object",
       "pattern": "^Location::'(.+)'$"
     },
     "PowerSystemResource.GenericAction": {
       "type": "string",
-      "title": "SwitchingActionPointer",
+      "title": "SwitchingAction_Pointer",
       "description": "Pointer to SwitchingAction object",
       "pattern": "^SwitchingAction::'(.+)'$"
     },
     "ConductingEquipment.Terminals": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TerminalArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
     },
     "RotatingMachine.GeneratingUnit": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeneratingUnit_anyOfContainer.json"
     },
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
-      "title": "BaseVoltagePointer",
+      "title": "BaseVoltage_Pointer",
       "description": "Pointer to BaseVoltage object",
       "pattern": "^BaseVoltage::'(.+)'$"
     },
     "ConductingEquipment.SvStatus": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatusArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatus_Array.json"
     },
     "AsynchronousMachine.converterFedDrive": {
       "title": "converterFedDrive",
@@ -165,7 +165,7 @@
     "Equipment.aggregate": {
       "title": "aggregate",
       "type": "boolean",
-      "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection."
+      "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u00ef\u00bf\u00bdtrue\u00ef\u00bf\u00bd the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection."
     },
     "Equipment.networkAnalysisEnabled": {
       "title": "networkAnalysisEnabled",

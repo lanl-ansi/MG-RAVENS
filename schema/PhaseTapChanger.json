@@ -6,24 +6,24 @@
   "properties": {
     "RegulatingControl": {
       "type": "string",
-      "title": "RegulatingControlPointer",
+      "title": "RegulatingControl_Pointer",
       "description": "Pointer to RegulatingControl object",
       "pattern": "^RegulatingControl::'(.+)'$"
     },
     "PowerSystemResource.GenericAction": {
       "type": "string",
-      "title": "SwitchingActionPointer",
+      "title": "SwitchingAction_Pointer",
       "description": "Pointer to SwitchingAction object",
       "pattern": "^SwitchingAction::'(.+)'$"
     },
     "PowerSystemResource.AssetDatasheet": {
       "type": "string",
-      "title": "TapChangerInfoPointer",
+      "title": "TapChangerInfo_Pointer",
       "description": "Pointer to TapChangerInfo object",
       "pattern": "^TapChangerInfo::'(.+)'$"
     },
     "TapChanger.SvTapStep": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvTapStepArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvTapStep_Array.json"
     },
     "TapChanger.TapChangerControl": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TapChangerControl.json"
@@ -97,7 +97,7 @@
     "PhaseTapChangerLinear.xMax": {
       "title": "xMax",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
-      "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The maximum reactance (xMax) appears at the low and high tap positions. Depending on the \u201cu\u201d curve the attribute can be either higher or lower than PowerTransformerEnd.x."
+      "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The maximum reactance (xMax) appears at the low and high tap positions. Depending on the \u00ef\u00bf\u00bdu\u00ef\u00bf\u00bd curve the attribute can be either higher or lower than PowerTransformerEnd.x."
     },
     "PhaseTapChangerNonLinear.voltageStepIncrement": {
       "title": "voltageStepIncrement",
@@ -107,7 +107,7 @@
     "PhaseTapChangerNonLinear.xMax": {
       "title": "xMax",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
-      "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The maximum reactance (xMax) appears at the low and high tap positions. Depending on the \u201cu\u201d curve the attribute can be either higher or lower than PowerTransformerEnd.x."
+      "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The maximum reactance (xMax) appears at the low and high tap positions. Depending on the \u00ef\u00bf\u00bdu\u00ef\u00bf\u00bd curve the attribute can be either higher or lower than PowerTransformerEnd.x."
     },
     "PhaseTapChangerNonLinear.xMin": {
       "title": "xMin",

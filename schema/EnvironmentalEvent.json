@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "EnvironmentalEvent.EnvironmentalInformation": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnvironmentalInformationArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnvironmentalInformation_Array.json"
     },
     "ActivityRecord.type": {
       "title": "type",

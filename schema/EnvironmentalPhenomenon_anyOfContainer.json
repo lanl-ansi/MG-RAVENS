@@ -3,6 +3,9 @@
   "title": "EnvironmentalPhenomenon",
   "anyOf": [
     {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnvironmentalPhenomenon.json"
+    },
+    {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HydrosphericPhenomenon.json"
     },
     {

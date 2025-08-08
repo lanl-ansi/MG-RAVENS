@@ -78,7 +78,7 @@
     "SynchronousMachineTimeConstantReactance.tc": {
       "title": "tc",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
-      "description": "Damping time constant for \u201cCanay\u201d reactance (>= 0).  Typical value = 0."
+      "description": "Damping time constant for \u00ef\u00bf\u00bdCanay\u00ef\u00bf\u00bd reactance (>= 0).  Typical value = 0."
     },
     "SynchronousMachineTimeConstantReactance.tpdo": {
       "title": "tpdo",
@@ -178,7 +178,7 @@
     "SynchronousMachineEquivalentCircuit.xf1d": {
       "title": "xf1d",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
-      "description": "Differential mutual (\u201cCanay\u201d) reactance."
+      "description": "Differential mutual (\u00ef\u00bf\u00bdCanay\u00ef\u00bf\u00bd) reactance."
     },
     "SynchronousMachineEquivalentCircuit.xfd": {
       "title": "xfd",

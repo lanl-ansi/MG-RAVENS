@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "WireAssemblyInfo.WirePhaseInfo": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WirePhaseInfoArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WirePhaseInfo_Array.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

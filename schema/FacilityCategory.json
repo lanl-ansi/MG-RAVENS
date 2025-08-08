@@ -4,7 +4,7 @@
   "additionalProperties": false,
   "properties": {
     "FacilityCategory.Services": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FacilityServiceArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FacilityService_Array.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

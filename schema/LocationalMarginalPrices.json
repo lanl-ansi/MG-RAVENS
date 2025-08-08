@@ -5,13 +5,13 @@
   "additionalProperties": false,
   "properties": {
     "EnergyPrices.Regions": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeographicalRegionPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeographicalRegion_PointerArray.json"
     },
     "LocationalMarginalPrices.LMPCurve": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PriceCurve.json"
     },
     "LocationalMarginalPrices.ConnectivityNodes": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNode_PointerArray.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

@@ -4,7 +4,7 @@
   "properties": {
     "Outage.OutageIsolationEquipment": {
       "type": "string",
-      "title": "ConductingEquipmentPointer",
+      "title": "ConductingEquipment_Pointer",
       "description": "Pointer to ConductingEquipment object",
       "pattern": "^ConductingEquipment::'(.+)'$"
     },

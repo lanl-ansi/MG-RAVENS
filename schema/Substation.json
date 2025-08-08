@@ -4,16 +4,16 @@
   "properties": {
     "PowerSystemResource.Location": {
       "type": "string",
-      "title": "LocationPointer",
+      "title": "Location_Pointer",
       "description": "Pointer to Location object",
       "pattern": "^Location::'(.+)'$"
     },
     "ConnectivityNodeContainer.ConnectivityNodes": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNode_PointerArray.json"
     },
     "Substation.Region": {
       "type": "string",
-      "title": "SubGeographicalRegionPointer",
+      "title": "SubGeographicalRegion_Pointer",
       "description": "Pointer to SubGeographicalRegion object",
       "pattern": "^SubGeographicalRegion::'(.+)'$"
     },

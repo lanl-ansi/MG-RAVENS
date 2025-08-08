@@ -3,7 +3,7 @@
   "properties": {
     "OperationalLimit.OperationalLimitType": {
       "type": "string",
-      "title": "OperationalLimitTypePointer",
+      "title": "OperationalLimitType_Pointer",
       "description": "Pointer to OperationalLimitType object",
       "pattern": "^OperationalLimitType::'(.+)'$"
     },

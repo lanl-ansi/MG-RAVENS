@@ -6,7 +6,7 @@
   "properties": {
     "TopologicalNode.TopologicalIsland": {
       "type": "string",
-      "title": "TopologicalIslandPointer",
+      "title": "TopologicalIsland_Pointer",
       "description": "Pointer to TopologicalIsland object",
       "pattern": "^TopologicalIsland::'(.+)'$"
     },

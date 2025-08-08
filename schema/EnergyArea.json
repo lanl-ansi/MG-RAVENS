@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "properties": {
     "EnergyArea.Equipments": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Equipment_PointerArray.json"
     },
     "SubLoadArea": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SubLoadArea.json"

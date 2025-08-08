@@ -6,25 +6,25 @@
   "properties": {
     "ConnectivityNode.TopologicalNode": {
       "type": "string",
-      "title": "TopologicalNodePointer",
+      "title": "TopologicalNode_Pointer",
       "description": "Pointer to TopologicalNode object",
       "pattern": "^TopologicalNode::'(.+)'$"
     },
     "ConnectivityNode.OperationalLimitSet": {
       "type": "string",
-      "title": "OperationalLimitSetPointer",
+      "title": "OperationalLimitSet_Pointer",
       "description": "Pointer to OperationalLimitSet object",
       "pattern": "^OperationalLimitSet::'(.+)'$"
     },
     "ConnectivityNode.SvVoltage": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvVoltageArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvVoltage_Array.json"
     },
     "ConnectivityNode.SvInjection": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvInjectionArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvInjection_Array.json"
     },
     "ConnectivityNode.BusVoltageObjective": {
       "type": "string",
-      "title": "BusVoltageObjectivePointer",
+      "title": "BusVoltageObjective_Pointer",
       "description": "Pointer to BusVoltageObjective object",
       "pattern": "^BusVoltageObjective::'(.+)'$"
     },

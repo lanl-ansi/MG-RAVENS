@@ -4,15 +4,15 @@
   "properties": {
     "PowerSystemResource.Location": {
       "type": "string",
-      "title": "LocationPointer",
+      "title": "Location_Pointer",
       "description": "Pointer to Location object",
       "pattern": "^Location::'(.+)'$"
     },
     "ConnectivityNodeContainer.ConnectivityNodes": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNode_PointerArray.json"
     },
     "EquipmentContainer.Equipments": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Equipment_PointerArray.json"
     },
     "VoltageLevel.lowVoltageLimit": {
       "title": "lowVoltageLimit",

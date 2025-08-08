@@ -4,10 +4,10 @@
   "additionalProperties": false,
   "properties": {
     "ProposedAssetOption.ProposedConnectivityNodes": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNode_PointerArray.json"
     },
     "ProposedAssetOption.ProposedLocations": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocationPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocation_PointerArray.json"
     },
     "ProposedAssetOption.fixedPrice": {
       "title": "fixedPrice",

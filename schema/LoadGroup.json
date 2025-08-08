@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "LoadGroup.EnergyConsumers": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumer_PointerArray.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

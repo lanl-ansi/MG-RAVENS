@@ -4,7 +4,7 @@
   "additionalProperties": false,
   "properties": {
     "EconomicProperty.Regions": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeographicalRegionPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeographicalRegion_PointerArray.json"
     },
     "EconomicProperty.taxRate": {
       "title": "taxRate",

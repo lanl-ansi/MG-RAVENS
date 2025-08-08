@@ -1,6 +1,6 @@
 {
   "title": "Time",
-  "description": "Time as \"hh:mm:ss.sss\", which conforms with ISO 8601. UTC time zone is specified as \"hh:mm:ss.sssZ\". A local timezone relative UTC is specified as \"hh:mm:ss.sss\u00b1hh:mm\". The second component (shown here as \"ss.sss\") could have any number of digits in its fractional part to allow any kind of precision beyond seconds.",
+  "description": "Time as \"hh:mm:ss.sss\", which conforms with ISO 8601. UTC time zone is specified as \"hh:mm:ss.sssZ\". A local timezone relative UTC is specified as \"hh:mm:ss.sss\u00ef\u00bf\u00bdhh:mm\". The second component (shown here as \"ss.sss\") could have any number of digits in its fractional part to allow any kind of precision beyond seconds.",
   "type": "object",
   "additionalProperties": false,
   "properties": {},

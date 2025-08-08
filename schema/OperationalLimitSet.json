@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "properties": {
     "OperationalLimitSet.OperationalLimitValue": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimit_Array.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

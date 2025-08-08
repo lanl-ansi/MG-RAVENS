@@ -78,7 +78,7 @@
     "WireInfo.rDC20": {
       "title": "rDC20",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResistancePerLength.json",
-      "description": "DC resistance per unit length of the conductor at 20 \u00b0C."
+      "description": "DC resistance per unit length of the conductor at 20 \u00ef\u00bf\u00bdC."
     },
     "CableInfo.diameterOverCore": {
       "title": "diameterOverCore",
@@ -88,7 +88,7 @@
     "WireInfo.rAC50": {
       "title": "rAC50",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResistancePerLength.json",
-      "description": "AC resistance per unit length of the conductor at 50 \u00b0C."
+      "description": "AC resistance per unit length of the conductor at 50 \u00ef\u00bf\u00bdC."
     },
     "WireInfo.coreRadius": {
       "title": "coreRadius",
@@ -128,7 +128,7 @@
     "WireInfo.rAC75": {
       "title": "rAC75",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResistancePerLength.json",
-      "description": "AC resistance per unit length of the conductor at 75 \u00b0C."
+      "description": "AC resistance per unit length of the conductor at 75 \u00ef\u00bf\u00bdC."
     },
     "WireInfo.strandCount": {
       "title": "strandCount",
@@ -138,7 +138,7 @@
     "ConcentricNeutralCableInfo.neutralStrandRDC20": {
       "title": "neutralStrandRDC20",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResistancePerLength.json",
-      "description": "DC resistance per unit length of the neutral strand at 20 \u00b0C."
+      "description": "DC resistance per unit length of the neutral strand at 20 \u00ef\u00bf\u00bdC."
     },
     "CableInfo.diameterOverInsulation": {
       "title": "diameterOverInsulation",
@@ -153,7 +153,7 @@
     "WireInfo.rAC25": {
       "title": "rAC25",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ResistancePerLength.json",
-      "description": "AC resistance per unit length of the conductor at 25 \u00b0C."
+      "description": "AC resistance per unit length of the conductor at 25 \u00ef\u00bf\u00bdC."
     },
     "CableInfo.diameterOverScreen": {
       "title": "diameterOverScreen",

@@ -19,7 +19,7 @@
     "PhaseImpedanceData.row": {
       "title": "row",
       "type": "integer",
-      "description": "The matrix element\u2019s row number, in the range 1 to PerLengthPhaseImpedance.conductorCount. Only the lower triangle needs to be stored. This row number matches ACLineSegmentPhase.sequenceNumber."
+      "description": "The matrix element\u00ef\u00bf\u00bds row number, in the range 1 to PerLengthPhaseImpedance.conductorCount. Only the lower triangle needs to be stored. This row number matches ACLineSegmentPhase.sequenceNumber."
     },
     "PhaseImpedanceData.column": {
       "title": "column",

@@ -6,7 +6,7 @@
   "properties": {
     "TopologicalIsland.AngleRefTopologicalNode": {
       "type": "string",
-      "title": "TopologicalNodePointer",
+      "title": "TopologicalNode_Pointer",
       "description": "Pointer to TopologicalNode object",
       "pattern": "^TopologicalNode::'(.+)'$"
     },

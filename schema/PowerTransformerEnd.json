@@ -3,19 +3,19 @@
   "properties": {
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
-      "title": "BaseVoltagePointer",
+      "title": "BaseVoltage_Pointer",
       "description": "Pointer to BaseVoltage object",
       "pattern": "^BaseVoltage::'(.+)'$"
     },
     "TransformerEnd.RatioTapChanger": {
       "type": "string",
-      "title": "RatioTapChangerPointer",
+      "title": "RatioTapChanger_Pointer",
       "description": "Pointer to RatioTapChanger object",
       "pattern": "^RatioTapChanger::'(.+)'$"
     },
     "TransformerEnd.PhaseTapChanger": {
       "type": "string",
-      "title": "PhaseTapChangerPointer",
+      "title": "PhaseTapChanger_Pointer",
       "description": "Pointer to PhaseTapChanger object",
       "pattern": "^PhaseTapChanger::'(.+)'$"
     },

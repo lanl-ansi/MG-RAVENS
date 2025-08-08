@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "properties": {
     "TransformerTankInfo.TransformerEndInfos": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerEndInfoArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerEndInfo_Array.json"
     },
     "OldTransformerTankInfo.oilPreservationKind": {
       "title": "oilPreservationKind",

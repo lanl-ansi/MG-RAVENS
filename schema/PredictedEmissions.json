@@ -4,11 +4,11 @@
   "additionalProperties": false,
   "properties": {
     "PredictedEmissions.Location": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LocationanyOfPointer_anyOfContainer.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
     },
     "PredictedEmissions.DesignAlgorithmProperties": {
       "type": "string",
-      "title": "DesignAlgorithmPropertiesPointer",
+      "title": "DesignAlgorithmProperties_Pointer",
       "description": "Pointer to DesignAlgorithmProperties object",
       "pattern": "^DesignAlgorithmProperties::'(.+)'$"
     },

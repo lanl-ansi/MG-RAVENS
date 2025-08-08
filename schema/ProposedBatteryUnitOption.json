@@ -3,13 +3,13 @@
   "type": "object",
   "properties": {
     "ProposedAssetOption.ProposedConnectivityNodes": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodePointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNode_PointerArray.json"
     },
     "ProposedBatteryUnitOption.InverterController": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InverterController_anyOfContainer.json"
     },
     "ProposedAssetOption.ProposedLocations": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocationPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocation_PointerArray.json"
     },
     "ProposedEnergyProducerOption.powerDiscretization": {
       "title": "powerDiscretization",

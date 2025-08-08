@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "EnvironmentalEvent": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnvironmentalEventArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnvironmentalEvent_Array.json"
     }
   },
   "description": "Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.",

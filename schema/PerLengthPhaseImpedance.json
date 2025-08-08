@@ -6,12 +6,12 @@
   "properties": {
     "PerLengthLineParameter.WireAssemblyInfo": {
       "type": "string",
-      "title": "WireAssemblyInfoPointer",
+      "title": "WireAssemblyInfo_Pointer",
       "description": "Pointer to WireAssemblyInfo object",
       "pattern": "^WireAssemblyInfo::'(.+)'$"
     },
     "PerLengthPhaseImpedance.PhaseImpedanceData": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseImpedanceDataArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseImpedanceData_Array.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

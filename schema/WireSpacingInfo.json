@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "properties": {
     "WireSpacingInfo.WirePositions": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WirePositionArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WirePosition_Array.json"
     },
     "WireSpacingInfo.phaseWireCount": {
       "title": "phaseWireCount",

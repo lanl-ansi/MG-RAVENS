@@ -3,10 +3,10 @@
   "type": "object",
   "properties": {
     "Outage.Equipments": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquipmentPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Equipment_PointerArray.json"
     },
     "Document.ActivityRecord": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivityRecordPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivityRecord_PointerArray.json"
     },
     "Document.status": {
       "title": "status",

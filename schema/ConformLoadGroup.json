@@ -3,11 +3,11 @@
   "type": "object",
   "properties": {
     "ConformLoadGroup.EnergyConsumers": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConformLoadPointerArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConformLoad_PointerArray.json"
     },
     "ConformLoadGroup.ConformLoadSchedules": {
       "type": "string",
-      "title": "ConformLoadSchedulePointer",
+      "title": "ConformLoadSchedule_Pointer",
       "description": "Pointer to ConformLoadSchedule object",
       "pattern": "^ConformLoadSchedule::'(.+)'$"
     },

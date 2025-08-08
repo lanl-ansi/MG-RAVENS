@@ -3,7 +3,7 @@
   "properties": {
     "VoltVarControlMode.VoltVarControlCurve": {
       "type": "string",
-      "title": "CurvePointer",
+      "title": "Curve_Pointer",
       "description": "Pointer to Curve object",
       "pattern": "^Curve::'(.+)'$"
     },

@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "Curve.CurveDatas": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurveDataArray.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurveData_Array.json"
     },
     "StartRampCurve.hotStandbyRamp": {
       "title": "hotStandbyRamp",

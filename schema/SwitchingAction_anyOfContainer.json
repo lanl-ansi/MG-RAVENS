@@ -3,6 +3,9 @@
   "title": "SwitchingAction",
   "anyOf": [
     {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SwitchingAction.json"
+    },
+    {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergySourceAction.json"
     },
     {
