@@ -60,7 +60,7 @@ class RDFGraph(object):
         else:
             self.graph.add((subject, self.cim[predicate], Literal(str(obj))))
 
-    def export_rdf_graphml(self, file_path: str | pathlib.PosixPath):
+    def export_rdf_graphml(self, file_path: str | pathlib.Path):
         G = rdflib_to_networkx_multidigraph(self.graph)
 
         for i, e in enumerate(G.edges(keys=True)):
@@ -70,7 +70,7 @@ class RDFGraph(object):
 
         nx.write_graphml(G, file_path, named_key_ids=True, edge_id_from_attribute="id")
 
-    def save(self, path: pathlib.PosixPath | str) -> None:
+    def save(self, path: pathlib.Path | str) -> None:
         rdfxml = self.graph.serialize(max_depth=1, format="pretty-xml")
         rdfxml = rdfxml.replace("rdf:about", "rdf:ID")
         with open(path, "w") as f:
