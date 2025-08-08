@@ -25,5 +25,3 @@ Set tolerance=0.000001
 Calcvoltagebases
 
 Solve
-
-export cim100
