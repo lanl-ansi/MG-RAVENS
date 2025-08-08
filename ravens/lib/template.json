@@ -5482,6 +5482,12 @@
       "anyOf": [
         {
           "$objectType": "object",
+          "$objectId": "SwitchingAction",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
           "$objectId": "EnergySourceAction",
           "type": "object",
           "properties": {}
@@ -5805,6 +5811,12 @@
       "anyOf": [
         {
           "$objectType": "object",
+          "$objectId": "DynamicsFunctionBlock",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
           "$objectId": "RotatingMachineDynamics",
           "type": "object",
           "properties": {}
@@ -6101,6 +6113,13 @@
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "anyOf": [
+        {
+          "$objectType": "object",
+          "$objectId": "EnvironmentalPhenomenon",
+          "$primaryObjectHash": null,
+          "type": "object",
+          "properties": {}
+        },
         {
           "$objectType": "object",
           "$objectId": "HydrosphericPhenomenon",
@@ -6791,6 +6810,31 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "anyOf": [
+            {
+              "$objectType": "object",
+              "$objectId": "ProposedEnergyProducerOption",
+              "type": "object",
+              "properties": {
+                "ProposedAssetOption.ProposedConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
+                "ProposedAssetOption.ProposedLocations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ProposedSiteLocation",
+                    "$referencePath": "ProposedSiteLocation"
+                  }
+                }
+              }
+            },
             {
               "$objectType": "object",
               "$objectId": "ProposedBatteryUnitOption",
