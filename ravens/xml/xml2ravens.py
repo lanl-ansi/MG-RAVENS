@@ -20,6 +20,7 @@ from ravens import __version__
 from ravens.logging import logger
 from ravens.data import _DEFAULT_CIM_NAMESPACE
 from ravens.schema import SchemaTemplate, RavensSchema
+from ravens.xml.graph import RDFGraph
 
 Reference = namedtuple("Reference", ["parent", "id"])
 
@@ -205,40 +206,33 @@ class MultiResolvedPath:
         return iter(self.paths)
 
 
-class RavensImport:
-    def __init__(
-        self,
-        cim_profile_path: pathlib.PosixPath | str | None = None,
-        schema_template: SchemaTemplate | None = None,
-        prune_unncessary: bool = False,
-        cim_namespace: str = _DEFAULT_CIM_NAMESPACE,
-        schema: RavensSchema | None = None,
-        cim_profile_rdf: Graph | None = None,
-    ):
-        try:
-            if cim_profile_rdf is not None:
-                self.graph = cim_profile_rdf
-            else:
-                g = Graph()
-                self.graph = g.parse(cim_profile_path, format="application/rdf+xml", publicID="urn:uuid:")
-        except Exception as msg:
-            raise Exception(f"At least one of `cim_profile_path` or `cim_profile_rdf` must not be None: {msg}")
+class PathState:
+    def __init__(self):
+        self.resolved_path: MultiResolvedPath | ResolvedPath = None
+        self.current_resolved_path: MultiResolvedPath | ResolvedPath = None
+        self.current_path_index = 0
+        self.current_path_id = 0
 
-        self.cim_ns = Namespace(cim_namespace + "#")
-        self.prune_unncessary = prune_unncessary
+
+class RavensImport(RDFGraph):
+    def __init__(self, network_profile: pathlib.Path | str | RDFGraph, schema_template: SchemaTemplate | None = None, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, schema: RavensSchema | None = None):
+        if isinstance(network_profile, RDFGraph):
+            self.__dict__ = network_profile.__dict__.copy()
+        else:
+            super().__init__(network_profile, cim_namespace=cim_namespace)
 
         self.untokenized_paths = []
         self.reference_paths = {}
 
         if schema_template is None:
             schema_template = SchemaTemplate()
+        self.schema_template = schema_template
 
         if schema is None:
             schema = RavensSchema(schema_template=schema_template)
-
-        self.build_paths_from_template(schema_template.template)
-
         self.schema = schema
+
+        self.build_paths_from_template(self.schema_template.template)
 
         self.tokenized_paths = {}
         self.tokenize_paths()
@@ -250,10 +244,7 @@ class RavensImport:
         self.build_actual_paths()
 
         self.data: dict = {}
-        self.resolved_path: MultiResolvedPath | ResolvedPath | None = None
-        self.current_resolved_path: MultiResolvedPath | ResolvedPath | None = None
-        self.current_path_index = 0
-        self.current_path_id = 0
+        self.path_state = PathState()
 
         try:
             self.convert_rdf()
@@ -433,12 +424,12 @@ class RavensImport:
 
                 _current_subject = subjects[-1]
 
-                if self.graph.value(_current_subject, RDF.type) == self.cim_ns[segment["id"]]:
+                if self.graph.value(_current_subject, RDF.type) == self.cim[segment["id"]]:
                     _next_subjects[_current_subject] = _current_subject
                 else:
                     count = 0
                     for _next_subject in list(self.graph.objects(subject=_current_subject)) + list(self.graph.subjects(object=_current_subject)):
-                        if self.graph.value(_next_subject, RDF.type) == self.cim_ns[segment["id"]]:
+                        if self.graph.value(_next_subject, RDF.type) == self.cim[segment["id"]]:
                             _next_subjects[_next_subject] = _current_subject
                             count += 1
 
@@ -467,7 +458,7 @@ class RavensImport:
         return obj_real_path
 
     def _build_positions(self, subject, _current_subject, segment):
-        zero_indexed = self.graph.value(subject=subject, predicate=RDF.type) == self.cim_ns["PositionPoint"]
+        zero_indexed = self.graph.value(subject=subject, predicate=RDF.type) == self.cim["PositionPoint"]
         positions = []
         if segment["type"] == "container" or (segment["type"] == "object" and segment["position"] is None):
             positions = [PathSegment(segment["path"], "object")]
@@ -490,27 +481,27 @@ class RavensImport:
             if self.paths.get(subject, Path()):
                 self.resolve_path(subject)
 
-                if isinstance(self.resolved_path, MultiResolvedPath):
-                    for path_id in self.resolved_path.keys():
-                        self.current_path_id = path_id
-                        self.current_resolved_path = self.resolved_path[path_id]
+                if isinstance(self.path_state.resolved_path, MultiResolvedPath):
+                    for path_id in self.path_state.resolved_path.keys():
+                        self.path_state.current_path_id = path_id
+                        self.path_state.current_resolved_path = self.path_state.resolved_path[path_id]
                         self.add_to_data(self.data, data)
-                        self.current_path_index = 0
+                        self.path_state.current_path_index = 0
                 else:
-                    self.current_resolved_path = self.resolved_path
+                    self.path_state.current_resolved_path = self.path_state.resolved_path
                     self.add_to_data(self.data, data)
-                    self.current_path_index = 0  # reset index
+                    self.path_state.current_path_index = 0  # reset index
 
-                self.resolved_path = None  # reset resolved path
-                self.current_resolved_path = None
+                self.path_state.resolved_path = None  # reset resolved path
+                self.path_state.current_resolved_path = None
             else:
                 logger.warning(f"Path for subject not found: {str(subject)}::{self.unique_subject_types[subject]}")
                 continue
 
     def find_position_id(self, subject, position_primary, position_secondary):
-        pos_id = self.graph.value(subject=subject, predicate=self.cim_ns[position_primary])
+        pos_id = self.graph.value(subject=subject, predicate=self.cim[position_primary])
         if position_primary is not None and pos_id is None:
-            pos_id = self.graph.value(subject=subject, predicate=self.cim_ns[position_primary])
+            pos_id = self.graph.value(subject=subject, predicate=self.cim[position_primary])
             if position_secondary is not None and pos_id is None:
                 pos_id = str(subject)
 
@@ -523,8 +514,6 @@ class RavensImport:
         data: dict = {"Ravens.cimObjectType": str(self.graph.value(subject=subject, predicate=RDF.type)).split("#")[-1]}
         for p, o in self.graph.predicate_objects(subject=subject):
             pn = str(p).split("#")[-1]
-            if self.prune_unncessary and any(bool(re.search(k, pn)) for k in prune_keys):
-                continue
 
             if p != RDF.type:
                 value = o
@@ -562,7 +551,7 @@ class RavensImport:
                     else:
                         ref = None
                         for _ref in self.reference_paths[pn]:
-                            if self.graph.value(subject=subject, predicate=RDF.type) == self.cim_ns[_ref.parent]:
+                            if self.graph.value(subject=subject, predicate=RDF.type) == self.cim[_ref.parent]:
                                 ref = _ref
                                 break
 
@@ -571,10 +560,8 @@ class RavensImport:
                         else:
                             logger.warning(f"Can't find reference for {o}::{self.unique_subject_types[o]} from {subject}::{self.unique_subject_types[subject]}")
                             continue
-                elif isinstance(o, URIRef) and o.startswith(self.cim_ns):
+                elif isinstance(o, URIRef) and o.startswith(self.cim):
                     value = o.split("#")[-1]
-                elif self.prune_unncessary or isinstance(o, URIRef):
-                    continue
 
                 data[pn] = value
 
@@ -586,39 +573,39 @@ class RavensImport:
                         if _rdf_type is not None and str(_rdf_type).split("#")[-1] == ref.id:
                             data[pn] = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
 
-        if "IdentifiedObject.mRID" not in data.keys() and not self.prune_unncessary:
+        if "IdentifiedObject.mRID" not in data.keys():
             if f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json" in self.schema.schemas and "IdentifiedObject.mRID" in self.schema.schemas[f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json"]["properties"]:
                 data["IdentifiedObject.mRID"] = str(subject)
 
         return data
 
     def resolve_path(self, subject, path_id=None):
-        zero_indexed = self.graph.value(subject=subject, predicate=RDF.type) == self.cim_ns["PositionPoint"]
+        zero_indexed = self.graph.value(subject=subject, predicate=RDF.type) == self.cim["PositionPoint"]
         if isinstance(self.paths[subject], MultiPath):
-            if self.resolved_path is None:
-                self.resolved_path = MultiResolvedPath()
+            if self.path_state.resolved_path is None:
+                self.path_state.resolved_path = MultiResolvedPath()
 
             for unresolved_path in self.paths[subject].paths:
-                path_id = self.resolved_path.create()
+                path_id = self.path_state.resolved_path.create()
                 for i, item in enumerate(unresolved_path):
                     if isinstance(item, URIRef):
                         self.resolve_path(item, path_id=path_id)
                     else:
-                        self.resolved_path.update(path_id, ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
+                        self.path_state.resolved_path.update(path_id, ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
         else:
-            if self.resolved_path is None:
-                self.resolved_path = ResolvedPath()
+            if self.path_state.resolved_path is None:
+                self.path_state.resolved_path = ResolvedPath()
 
             for i, item in enumerate(self.paths[subject]):
                 if isinstance(item, URIRef):
                     self.resolve_path(item, path_id=path_id)
                 elif path_id is not None:
-                    self.resolved_path.update(path_id, ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
+                    self.path_state.resolved_path.update(path_id, ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
                 else:
-                    self.resolved_path.add(ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
+                    self.path_state.resolved_path.add(ResolvedPathSegment(item.position, item.type, subject, i, zero_index=zero_indexed))
 
     def add_to_data(self, data: dict, data_to_insert):
-        path = self.current_resolved_path[self.current_path_index]
+        path = self.path_state.current_resolved_path[self.path_state.current_path_index]
 
         if path.position is not None:
             if isinstance(path.position, str) and isinstance(data, dict):
@@ -630,8 +617,8 @@ class RavensImport:
             else:
                 raise Exception(f"This shouldn't happen: {path}")
 
-            if path.type == "array" and path == self.current_resolved_path[-2]:
-                _path = self.current_resolved_path[self.current_path_index + 1]
+            if path.type == "array" and path == self.path_state.current_resolved_path[-2]:
+                _path = self.path_state.current_resolved_path[self.path_state.current_path_index + 1]
                 if _path.position is None and _path.type == "array":
                     data[path.position].append({})
                     _position = len(data[path.position])
@@ -639,11 +626,11 @@ class RavensImport:
                         _position -= 1
 
                     if isinstance(self.paths[_path.uri], MultiPath):
-                        self.paths[_path.uri][self.current_path_id][_path.index].position = _position
+                        self.paths[_path.uri][self.path_state.current_path_id][_path.index].position = _position
                     else:
                         self.paths[_path.uri][_path.index].position = _position
 
-                    self.current_resolved_path[-1].position = _position
+                    self.path_state.current_resolved_path[-1].position = _position
 
                 if (isinstance(path.position, int) and path.type == "array") and (isinstance(_path.position, str) and _path.type == "object"):
                     data[path.idx][_path.position] = {**data_to_insert, **data[path.idx].get(_path.position, {})}
@@ -656,119 +643,44 @@ class RavensImport:
                     except IndexError as e:
                         print(_path, path, data_to_insert, _path.idx, data[path.position])
                         raise e
-            elif path.type == "array" and self.current_resolved_path[self.current_path_index + 1].position is None and self.current_resolved_path[self.current_path_index + 1].type == "array":
-                _path = self.current_resolved_path[self.current_path_index + 1]
+            elif path.type == "array" and self.path_state.current_resolved_path[self.path_state.current_path_index + 1].position is None and self.path_state.current_resolved_path[self.path_state.current_path_index + 1].type == "array":
+                _path = self.path_state.current_resolved_path[self.path_state.current_path_index + 1]
                 if _path.position is None and _path.type == "array":
                     data[path.position].append({})
                     _position = len(data[path.position])
 
                     if isinstance(self.paths[_path.uri], MultiPath):
-                        self.paths[_path.uri][self.current_path_id][_path.index].position = _position
+                        self.paths[_path.uri][self.path_state.current_path_id][_path.index].position = _position
                     else:
                         self.paths[_path.uri][_path.index].position = _position
 
-                    self.current_resolved_path[self.current_path_index + 1].position = _position
-                self.current_path_index += 1
+                    self.path_state.current_resolved_path[self.path_state.current_path_index + 1].position = _position
+                self.path_state.current_path_index += 1
                 self.add_to_data(data[path.position], data_to_insert)
-            elif path.type == "object" and path == self.current_resolved_path[-1]:
+            elif path.type == "object" and path == self.path_state.current_resolved_path[-1]:
                 if isinstance(data[path.position], dict):
                     data[path.position] = {**data_to_insert, **data[path.position]}
                 else:
                     data[path.position] = {**data_to_insert}
             else:
-                self.current_path_index += 1
+                self.path_state.current_path_index += 1
                 if isinstance(path.position, int):
                     self.add_to_data(data[path.idx], data_to_insert)
                 else:
                     self.add_to_data(data[path.idx], data_to_insert)
         elif path.type == "object":
-            if path == self.current_resolved_path[-1]:
+            if path == self.path_state.current_resolved_path[-1]:
                 data = {**data_to_insert, **data}
             else:
                 raise Exception(f"This shouldn't happen: {path}")
         else:
-            raise Exception(f"This shouldn't happen: {path}, {self.current_resolved_path}")
-
-    def export_rdf_graphml(self, file_path: pathlib.PosixPath):
-        G = rdflib_to_networkx_multidigraph(self.graph)
-
-        for i, e in enumerate(G.edges(keys=True)):
-            G.edges[e].update({"label": str(e[-1]), "id": str(i)})
-        for n in G.nodes:
-            G.nodes[n].update({"label": str(n)})
-
-        nx.write_graphml(G, file_path, named_key_ids=True, edge_id_from_attribute="id")
+            raise Exception(f"This shouldn't happen: {path}, {self.path_state.current_resolved_path}")
 
     def dump(self, file_path: pathlib.PosixPath | str, indent: int | None = None):
         with open(file_path, "w") as f:
             json.dump(self.data, f, indent=indent)
 
 
-class CrowsImport(RavensImport):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self._remove_superflorous_objects()
-        self._convert_all_to_puz()
-        self._simplify_ACLineSegment()
-        self._simplify_Switch()
-        # etc
-
-    def _remove_superflorous_objects(self):
-        'removes objects that are unnecessary for OPF'
-        pass
-
-    def _convert_all_to_puz(self):
-        'converts all WireInfo type objects into PerLengthImpedance objects'
-        pass
-
-    def _simplify_ACLineSegment(self):
-        'simplifies ACLineSegment objects'
-        pass
-
-    def _simplify_Switch(self):
-        'simplifies Switch objects'
-        pass
-
-    def _simplify_EnergyConsumer(self):
-        'simplifies EnergyConsumer objects'
-        pass
-
-    def _simplify_EnergySource(self):
-        'simplifies EnergySource objects'
-        pass
-
-    def _simplify_PowerTransformer(self):
-        'simplifies PowerTransformer objects'
-        pass
-
-    def _simplify_RotatingMachine(self):
-        'simplifies RotatingMachine objects'
-        pass
-
-    def _simplify_PowerElectronicsConnection(self):
-        'simplifies PowerElectronicConnection objects'
-        pass
-
-    def __simplify_Terminal(self):
-        'simplifies Terminal objects'
-        pass
-
-    def __simplify_generic(self):
-        'Removes unnecessary IdentifiedObject attributes, sequenceNumber attributes, and IdentifiedObject.name in cases where it is unneeded.'
-        pass
-
-    def _cleanup(self):
-        'ensures that empty objects are removed'
-        pass
-
-    def restore_ravens(self):
-        'method to re-convert to ravens from the base XML'
-        pass
-
 if __name__ == "__main__":
     d = RavensImport("examples/IEEE13_Assets.xml")
     d.dump("examples/IEEE13_Assets.json", indent=2)
-
-    d2 = CrowsImport("examples/IEEE13_Assets.xml")
-    d2.dump("examples/IEEE13_Assets_simplified.json")
