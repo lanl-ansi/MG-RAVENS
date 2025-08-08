@@ -14,7 +14,7 @@
 
 [ACLineSegmentPhase](../_static/schema/ACLineSegmentPhase.html){.external}
 
-[ACLineSegmentPhaseArray](../_static/schema/ACLineSegmentPhaseArray.html){.external}
+[ACLineSegmentPhase_Array](../_static/schema/ACLineSegmentPhase_Array.html){.external}
 
 [ADSInstructionTypeCommitment](../_static/schema/ADSInstructionTypeCommitment.html){.external}
 
@@ -48,7 +48,7 @@
 
 [ActivityRecord](../_static/schema/ActivityRecord.html){.external}
 
-[ActivityRecordPointerArray](../_static/schema/ActivityRecordPointerArray.html){.external}
+[ActivityRecord_PointerArray](../_static/schema/ActivityRecord_PointerArray.html){.external}
 
 [AdderType](../_static/schema/AdderType.html){.external}
 
@@ -302,9 +302,9 @@
 
 [ConformLoadGroup](../_static/schema/ConformLoadGroup.html){.external}
 
-[ConformLoadPointerArray](../_static/schema/ConformLoadPointerArray.html){.external}
-
 [ConformLoadSchedule](../_static/schema/ConformLoadSchedule.html){.external}
+
+[ConformLoad_PointerArray](../_static/schema/ConformLoad_PointerArray.html){.external}
 
 [ConnectivityNode](../_static/schema/ConnectivityNode.html){.external}
 
@@ -316,7 +316,7 @@
 
 [ConnectivityNodeContainer_anyOfContainer](../_static/schema/ConnectivityNodeContainer_anyOfContainer.html){.external}
 
-[ConnectivityNodePointerArray](../_static/schema/ConnectivityNodePointerArray.html){.external}
+[ConnectivityNode_PointerArray](../_static/schema/ConnectivityNode_PointerArray.html){.external}
 
 [Connector](../_static/schema/Connector.html){.external}
 
@@ -388,7 +388,7 @@
 
 [CurveData](../_static/schema/CurveData.html){.external}
 
-[CurveDataArray](../_static/schema/CurveDataArray.html){.external}
+[CurveData_Array](../_static/schema/CurveData_Array.html){.external}
 
 [CurveStyle](../_static/schema/CurveStyle.html){.external}
 
@@ -522,7 +522,7 @@
 
 [EnergyAreaContainer_Container](../_static/schema/EnergyAreaContainer_Container.html){.external}
 
-[EnergyAreaPointerArray](../_static/schema/EnergyAreaPointerArray.html){.external}
+[EnergyArea_PointerArray](../_static/schema/EnergyArea_PointerArray.html){.external}
 
 [EnergyConnection](../_static/schema/EnergyConnection.html){.external}
 
@@ -538,11 +538,11 @@
 
 [EnergyConsumerPhase](../_static/schema/EnergyConsumerPhase.html){.external}
 
-[EnergyConsumerPhaseArray](../_static/schema/EnergyConsumerPhaseArray.html){.external}
-
-[EnergyConsumerPointerArray](../_static/schema/EnergyConsumerPointerArray.html){.external}
+[EnergyConsumerPhase_Array](../_static/schema/EnergyConsumerPhase_Array.html){.external}
 
 [EnergyConsumerSchedule](../_static/schema/EnergyConsumerSchedule.html){.external}
+
+[EnergyConsumer_PointerArray](../_static/schema/EnergyConsumer_PointerArray.html){.external}
 
 [EnergyConsumer_anyOfContainer](../_static/schema/EnergyConsumer_anyOfContainer.html){.external}
 
@@ -560,7 +560,7 @@
 
 [EnergySourcePhase](../_static/schema/EnergySourcePhase.html){.external}
 
-[EnergySourcePhaseArray](../_static/schema/EnergySourcePhaseArray.html){.external}
+[EnergySourcePhase_Array](../_static/schema/EnergySourcePhase_Array.html){.external}
 
 [EnergyTransactionType](../_static/schema/EnergyTransactionType.html){.external}
 
@@ -572,11 +572,13 @@
 
 [EnvironmentalEvent](../_static/schema/EnvironmentalEvent.html){.external}
 
-[EnvironmentalEventArray](../_static/schema/EnvironmentalEventArray.html){.external}
+[EnvironmentalEvent_Array](../_static/schema/EnvironmentalEvent_Array.html){.external}
 
 [EnvironmentalInformation](../_static/schema/EnvironmentalInformation.html){.external}
 
-[EnvironmentalInformationArray](../_static/schema/EnvironmentalInformationArray.html){.external}
+[EnvironmentalInformation_Array](../_static/schema/EnvironmentalInformation_Array.html){.external}
+
+[EnvironmentalPhenomenon](../_static/schema/EnvironmentalPhenomenon.html){.external}
 
 [EnvironmentalPhenomenonContainer_Container](../_static/schema/EnvironmentalPhenomenonContainer_Container.html){.external}
 
@@ -588,13 +590,13 @@
 
 [EquipmentFault](../_static/schema/EquipmentFault.html){.external}
 
-[EquipmentPointerArray](../_static/schema/EquipmentPointerArray.html){.external}
-
-[EquipmentPointer_anyOfContainer](../_static/schema/EquipmentPointer_anyOfContainer.html){.external}
-
 [EquipmentStatusType](../_static/schema/EquipmentStatusType.html){.external}
 
-[EquipmentanyOfPointer_anyOfContainer](../_static/schema/EquipmentanyOfPointer_anyOfContainer.html){.external}
+[Equipment_PointerArray](../_static/schema/Equipment_PointerArray.html){.external}
+
+[Equipment_Pointer_anyOfContainer](../_static/schema/Equipment_Pointer_anyOfContainer.html){.external}
+
+[Equipment_anyOfPointer_anyOfContainer](../_static/schema/Equipment_anyOfPointer_anyOfContainer.html){.external}
 
 [EquivalentBranch](../_static/schema/EquivalentBranch.html){.external}
 
@@ -618,7 +620,7 @@
 
 [EquivalentSwitchContainer_Container](../_static/schema/EquivalentSwitchContainer_Container.html){.external}
 
-[EquivalentSwitchPointerArray](../_static/schema/EquivalentSwitchPointerArray.html){.external}
+[EquivalentSwitch_PointerArray](../_static/schema/EquivalentSwitch_PointerArray.html){.external}
 
 [ErpAccountKind](../_static/schema/ErpAccountKind.html){.external}
 
@@ -664,11 +666,11 @@
 
 [FacilityService](../_static/schema/FacilityService.html){.external}
 
-[FacilityServiceArray](../_static/schema/FacilityServiceArray.html){.external}
-
 [FacilityServiceLevel](../_static/schema/FacilityServiceLevel.html){.external}
 
 [FacilityServiceType](../_static/schema/FacilityServiceType.html){.external}
+
+[FacilityService_Array](../_static/schema/FacilityService_Array.html){.external}
 
 [FailureIsolationMethodKind](../_static/schema/FailureIsolationMethodKind.html){.external}
 
@@ -718,7 +720,7 @@
 
 [GenUnitOpCostCurve](../_static/schema/GenUnitOpCostCurve.html){.external}
 
-[GenUnitOpCostCurveArray](../_static/schema/GenUnitOpCostCurveArray.html){.external}
+[GenUnitOpCostCurve_Array](../_static/schema/GenUnitOpCostCurve_Array.html){.external}
 
 [GenUnitOpSchedule](../_static/schema/GenUnitOpSchedule.html){.external}
 
@@ -738,9 +740,9 @@
 
 [GeographicalRegionContainer_Container](../_static/schema/GeographicalRegionContainer_Container.html){.external}
 
-[GeographicalRegionPointerArray](../_static/schema/GeographicalRegionPointerArray.html){.external}
+[GeographicalRegion_PointerArray](../_static/schema/GeographicalRegion_PointerArray.html){.external}
 
-[GeographicalRegionanyOfPointer_anyOfContainer](../_static/schema/GeographicalRegionanyOfPointer_anyOfContainer.html){.external}
+[GeographicalRegion_anyOfPointer_anyOfContainer](../_static/schema/GeographicalRegion_anyOfPointer_anyOfContainer.html){.external}
 
 [GeosphericAnalogKind](../_static/schema/GeosphericAnalogKind.html){.external}
 
@@ -854,7 +856,7 @@
 
 [IrregularTimePoint](../_static/schema/IrregularTimePoint.html){.external}
 
-[IrregularTimePointArray](../_static/schema/IrregularTimePointArray.html){.external}
+[IrregularTimePoint_Array](../_static/schema/IrregularTimePoint_Array.html){.external}
 
 [JobFlagType](../_static/schema/JobFlagType.html){.external}
 
@@ -896,7 +898,7 @@
 
 [LinearShuntCompensatorPhase](../_static/schema/LinearShuntCompensatorPhase.html){.external}
 
-[LinearShuntCompensatorPhaseArray](../_static/schema/LinearShuntCompensatorPhaseArray.html){.external}
+[LinearShuntCompensatorPhase_Array](../_static/schema/LinearShuntCompensatorPhase_Array.html){.external}
 
 [LoadBreakSwitch](../_static/schema/LoadBreakSwitch.html){.external}
 
@@ -908,7 +910,7 @@
 
 [LoadGroupContainer_Container](../_static/schema/LoadGroupContainer_Container.html){.external}
 
-[LoadGroupPointerArray](../_static/schema/LoadGroupPointerArray.html){.external}
+[LoadGroup_PointerArray](../_static/schema/LoadGroup_PointerArray.html){.external}
 
 [LoadGroup_anyOfContainer](../_static/schema/LoadGroup_anyOfContainer.html){.external}
 
@@ -922,11 +924,11 @@
 
 [LocationKind](../_static/schema/LocationKind.html){.external}
 
+[Location_anyOfPointer_anyOfContainer](../_static/schema/Location_anyOfPointer_anyOfContainer.html){.external}
+
 [LocationalMarginalPrices](../_static/schema/LocationalMarginalPrices.html){.external}
 
 [LocationalMarginalPricesContainer_Container](../_static/schema/LocationalMarginalPricesContainer_Container.html){.external}
-
-[LocationanyOfPointer_anyOfContainer](../_static/schema/LocationanyOfPointer_anyOfContainer.html){.external}
 
 [LookUpTableFunctionKind](../_static/schema/LookUpTableFunctionKind.html){.external}
 
@@ -982,7 +984,7 @@
 
 [MediumKind](../_static/schema/MediumKind.html){.external}
 
-[MessageArray](../_static/schema/MessageArray.html){.external}
+[Message_Array](../_static/schema/Message_Array.html){.external}
 
 [Message_anyOfContainer](../_static/schema/Message_anyOfContainer.html){.external}
 
@@ -1008,13 +1010,13 @@
 
 [NoLoadTest](../_static/schema/NoLoadTest.html){.external}
 
-[NoLoadTestArray](../_static/schema/NoLoadTestArray.html){.external}
+[NoLoadTest_Array](../_static/schema/NoLoadTest_Array.html){.external}
 
 [NonConformLoad](../_static/schema/NonConformLoad.html){.external}
 
 [NonConformLoadGroup](../_static/schema/NonConformLoadGroup.html){.external}
 
-[NonConformLoadPointerArray](../_static/schema/NonConformLoadPointerArray.html){.external}
+[NonConformLoad_PointerArray](../_static/schema/NonConformLoad_PointerArray.html){.external}
 
 [NonGridFacility](../_static/schema/NonGridFacility.html){.external}
 
@@ -1022,7 +1024,7 @@
 
 [NonlinearShuntCompensatorPhase](../_static/schema/NonlinearShuntCompensatorPhase.html){.external}
 
-[NonlinearShuntCompensatorPhaseArray](../_static/schema/NonlinearShuntCompensatorPhaseArray.html){.external}
+[NonlinearShuntCompensatorPhase_Array](../_static/schema/NonlinearShuntCompensatorPhase_Array.html){.external}
 
 [NotificationTriggerKind](../_static/schema/NotificationTriggerKind.html){.external}
 
@@ -1078,13 +1080,11 @@
 
 [OpenCircuitTest](../_static/schema/OpenCircuitTest.html){.external}
 
-[OpenCircuitTestArray](../_static/schema/OpenCircuitTestArray.html){.external}
+[OpenCircuitTest_Array](../_static/schema/OpenCircuitTest_Array.html){.external}
 
 [OperatingMechanismKind](../_static/schema/OperatingMechanismKind.html){.external}
 
 [OperatingModeKind](../_static/schema/OperatingModeKind.html){.external}
-
-[OperationalLimitArray](../_static/schema/OperationalLimitArray.html){.external}
 
 [OperationalLimitDirectionKind](../_static/schema/OperationalLimitDirectionKind.html){.external}
 
@@ -1095,6 +1095,8 @@
 [OperationalLimitType](../_static/schema/OperationalLimitType.html){.external}
 
 [OperationalLimitTypeContainer_Container](../_static/schema/OperationalLimitTypeContainer_Container.html){.external}
+
+[OperationalLimit_Array](../_static/schema/OperationalLimit_Array.html){.external}
 
 [OperationalLimit_anyOfContainer](../_static/schema/OperationalLimit_anyOfContainer.html){.external}
 
@@ -1136,7 +1138,7 @@
 
 [PerLengthImpedance](../_static/schema/PerLengthImpedance.html){.external}
 
-[PerLengthImpedanceanyOfPointer_anyOfContainer](../_static/schema/PerLengthImpedanceanyOfPointer_anyOfContainer.html){.external}
+[PerLengthImpedance_anyOfPointer_anyOfContainer](../_static/schema/PerLengthImpedance_anyOfPointer_anyOfContainer.html){.external}
 
 [PerLengthLineParameter](../_static/schema/PerLengthLineParameter.html){.external}
 
@@ -1156,7 +1158,7 @@
 
 [PhaseImpedanceData](../_static/schema/PhaseImpedanceData.html){.external}
 
-[PhaseImpedanceDataArray](../_static/schema/PhaseImpedanceDataArray.html){.external}
+[PhaseImpedanceData_Array](../_static/schema/PhaseImpedanceData_Array.html){.external}
 
 [PhaseShuntConnectionKind](../_static/schema/PhaseShuntConnectionKind.html){.external}
 
@@ -1184,7 +1186,7 @@
 
 [PositionPoint](../_static/schema/PositionPoint.html){.external}
 
-[PositionPointArray](../_static/schema/PositionPointArray.html){.external}
+[PositionPoint_Array](../_static/schema/PositionPoint_Array.html){.external}
 
 [PotentialTransformerKind](../_static/schema/PotentialTransformerKind.html){.external}
 
@@ -1194,7 +1196,7 @@
 
 [PowerElectronicsConnectionPhase](../_static/schema/PowerElectronicsConnectionPhase.html){.external}
 
-[PowerElectronicsConnectionPhaseArray](../_static/schema/PowerElectronicsConnectionPhaseArray.html){.external}
+[PowerElectronicsConnectionPhase_Array](../_static/schema/PowerElectronicsConnectionPhase_Array.html){.external}
 
 [PowerElectronicsOperatingMode](../_static/schema/PowerElectronicsOperatingMode.html){.external}
 
@@ -1218,7 +1220,7 @@
 
 [PowerTransformerEnd](../_static/schema/PowerTransformerEnd.html){.external}
 
-[PowerTransformerEndArray](../_static/schema/PowerTransformerEndArray.html){.external}
+[PowerTransformerEnd_Array](../_static/schema/PowerTransformerEnd_Array.html){.external}
 
 [PowerTransformerInfo](../_static/schema/PowerTransformerInfo.html){.external}
 
@@ -1250,15 +1252,15 @@
 
 [ProposedAssetOption](../_static/schema/ProposedAssetOption.html){.external}
 
-[ProposedAssetOptionanyOfPointer_anyOfContainer](../_static/schema/ProposedAssetOptionanyOfPointer_anyOfContainer.html){.external}
-
-[ProposedAssetPointerArray](../_static/schema/ProposedAssetPointerArray.html){.external}
-
-[ProposedAssetPointer_anyOfContainer](../_static/schema/ProposedAssetPointer_anyOfContainer.html){.external}
+[ProposedAssetOption_anyOfPointer_anyOfContainer](../_static/schema/ProposedAssetOption_anyOfPointer_anyOfContainer.html){.external}
 
 [ProposedAssetSet](../_static/schema/ProposedAssetSet.html){.external}
 
 [ProposedAssetSetContainer_Container](../_static/schema/ProposedAssetSetContainer_Container.html){.external}
+
+[ProposedAsset_PointerArray](../_static/schema/ProposedAsset_PointerArray.html){.external}
+
+[ProposedAsset_Pointer_anyOfContainer](../_static/schema/ProposedAsset_Pointer_anyOfContainer.html){.external}
 
 [ProposedAsset_anyOfContainer](../_static/schema/ProposedAsset_anyOfContainer.html){.external}
 
@@ -1274,6 +1276,8 @@
 
 [ProposedEnergyProducerAsset](../_static/schema/ProposedEnergyProducerAsset.html){.external}
 
+[ProposedEnergyProducerOption](../_static/schema/ProposedEnergyProducerOption.html){.external}
+
 [ProposedEnergyProducerOptionContainer_Container](../_static/schema/ProposedEnergyProducerOptionContainer_Container.html){.external}
 
 [ProposedEnergyProducerOption_anyOfContainer](../_static/schema/ProposedEnergyProducerOption_anyOfContainer.html){.external}
@@ -1286,7 +1290,7 @@
 
 [ProposedSiteLocationContainer_Container](../_static/schema/ProposedSiteLocationContainer_Container.html){.external}
 
-[ProposedSiteLocationPointerArray](../_static/schema/ProposedSiteLocationPointerArray.html){.external}
+[ProposedSiteLocation_PointerArray](../_static/schema/ProposedSiteLocation_PointerArray.html){.external}
 
 [ProposedSwitchOption](../_static/schema/ProposedSwitchOption.html){.external}
 
@@ -1342,7 +1346,7 @@
 
 [RegularTimePoint](../_static/schema/RegularTimePoint.html){.external}
 
-[RegularTimePointArray](../_static/schema/RegularTimePointArray.html){.external}
+[RegularTimePoint_Array](../_static/schema/RegularTimePoint_Array.html){.external}
 
 [RegulatingCondEq](../_static/schema/RegulatingCondEq.html){.external}
 
@@ -1462,7 +1466,7 @@
 
 [ShortCircuitTest](../_static/schema/ShortCircuitTest.html){.external}
 
-[ShortCircuitTestArray](../_static/schema/ShortCircuitTestArray.html){.external}
+[ShortCircuitTest_Array](../_static/schema/ShortCircuitTest_Array.html){.external}
 
 [ShuntCompensator](../_static/schema/ShuntCompensator.html){.external}
 
@@ -1476,7 +1480,7 @@
 
 [ShuntCompensatorPhase](../_static/schema/ShuntCompensatorPhase.html){.external}
 
-[ShuntCompensatorPhaseArray](../_static/schema/ShuntCompensatorPhaseArray.html){.external}
+[ShuntCompensatorPhase_Array](../_static/schema/ShuntCompensatorPhase_Array.html){.external}
 
 [ShuntCompensator_anyOfContainer](../_static/schema/ShuntCompensator_anyOfContainer.html){.external}
 
@@ -1542,7 +1546,7 @@
 
 [SubGeographicalRegionContainer_Container](../_static/schema/SubGeographicalRegionContainer_Container.html){.external}
 
-[SubGeographicalRegionPointerArray](../_static/schema/SubGeographicalRegionPointerArray.html){.external}
+[SubGeographicalRegion_PointerArray](../_static/schema/SubGeographicalRegion_PointerArray.html){.external}
 
 [SubLoadArea](../_static/schema/SubLoadArea.html){.external}
 
@@ -1556,31 +1560,31 @@
 
 [SvInjection](../_static/schema/SvInjection.html){.external}
 
-[SvInjectionArray](../_static/schema/SvInjectionArray.html){.external}
+[SvInjection_Array](../_static/schema/SvInjection_Array.html){.external}
 
 [SvPowerFlow](../_static/schema/SvPowerFlow.html){.external}
 
-[SvPowerFlowArray](../_static/schema/SvPowerFlowArray.html){.external}
+[SvPowerFlow_Array](../_static/schema/SvPowerFlow_Array.html){.external}
 
 [SvShuntCompensatorSections](../_static/schema/SvShuntCompensatorSections.html){.external}
 
-[SvShuntCompensatorSectionsArray](../_static/schema/SvShuntCompensatorSectionsArray.html){.external}
+[SvShuntCompensatorSections_Array](../_static/schema/SvShuntCompensatorSections_Array.html){.external}
 
 [SvStatus](../_static/schema/SvStatus.html){.external}
 
-[SvStatusArray](../_static/schema/SvStatusArray.html){.external}
+[SvStatus_Array](../_static/schema/SvStatus_Array.html){.external}
 
 [SvSwitch](../_static/schema/SvSwitch.html){.external}
 
-[SvSwitchArray](../_static/schema/SvSwitchArray.html){.external}
+[SvSwitch_Array](../_static/schema/SvSwitch_Array.html){.external}
 
 [SvTapStep](../_static/schema/SvTapStep.html){.external}
 
-[SvTapStepArray](../_static/schema/SvTapStepArray.html){.external}
+[SvTapStep_Array](../_static/schema/SvTapStep_Array.html){.external}
 
 [SvVoltage](../_static/schema/SvVoltage.html){.external}
 
-[SvVoltageArray](../_static/schema/SvVoltageArray.html){.external}
+[SvVoltage_Array](../_static/schema/SvVoltage_Array.html){.external}
 
 [Switch](../_static/schema/Switch.html){.external}
 
@@ -1596,11 +1600,13 @@
 
 [SwitchPhase](../_static/schema/SwitchPhase.html){.external}
 
-[SwitchPhaseArray](../_static/schema/SwitchPhaseArray.html){.external}
+[SwitchPhase_Array](../_static/schema/SwitchPhase_Array.html){.external}
 
 [SwitchStatusType](../_static/schema/SwitchStatusType.html){.external}
 
 [Switch_anyOfContainer](../_static/schema/Switch_anyOfContainer.html){.external}
+
+[SwitchingAction](../_static/schema/SwitchingAction.html){.external}
 
 [SwitchingActionContainer_Container](../_static/schema/SwitchingActionContainer_Container.html){.external}
 
@@ -1616,7 +1622,7 @@
 
 [SynchronousMachinePhase](../_static/schema/SynchronousMachinePhase.html){.external}
 
-[SynchronousMachinePhaseArray](../_static/schema/SynchronousMachinePhaseArray.html){.external}
+[SynchronousMachinePhase_Array](../_static/schema/SynchronousMachinePhase_Array.html){.external}
 
 [SystemType](../_static/schema/SystemType.html){.external}
 
@@ -1654,7 +1660,7 @@
 
 [Terminal](../_static/schema/Terminal.html){.external}
 
-[TerminalArray](../_static/schema/TerminalArray.html){.external}
+[Terminal_Array](../_static/schema/Terminal_Array.html){.external}
 
 [TestKind](../_static/schema/TestKind.html){.external}
 
@@ -1710,7 +1716,7 @@
 
 [TransformerEndInfo](../_static/schema/TransformerEndInfo.html){.external}
 
-[TransformerEndInfoArray](../_static/schema/TransformerEndInfoArray.html){.external}
+[TransformerEndInfo_Array](../_static/schema/TransformerEndInfo_Array.html){.external}
 
 [TransformerFailureReasonKind](../_static/schema/TransformerFailureReasonKind.html){.external}
 
@@ -1720,7 +1726,7 @@
 
 [TransformerMeshImpedance](../_static/schema/TransformerMeshImpedance.html){.external}
 
-[TransformerMeshImpedanceArray](../_static/schema/TransformerMeshImpedanceArray.html){.external}
+[TransformerMeshImpedance_Array](../_static/schema/TransformerMeshImpedance_Array.html){.external}
 
 [TransformerRepairItemKind](../_static/schema/TransformerRepairItemKind.html){.external}
 
@@ -1728,15 +1734,15 @@
 
 [TransformerTank](../_static/schema/TransformerTank.html){.external}
 
-[TransformerTankArray](../_static/schema/TransformerTankArray.html){.external}
-
 [TransformerTankEnd](../_static/schema/TransformerTankEnd.html){.external}
 
-[TransformerTankEndArray](../_static/schema/TransformerTankEndArray.html){.external}
+[TransformerTankEnd_Array](../_static/schema/TransformerTankEnd_Array.html){.external}
 
 [TransformerTankInfo](../_static/schema/TransformerTankInfo.html){.external}
 
 [TransformerTankInfoContainer_Container](../_static/schema/TransformerTankInfoContainer_Container.html){.external}
+
+[TransformerTank_Array](../_static/schema/TransformerTank_Array.html){.external}
 
 [TransmissionModeKind](../_static/schema/TransmissionModeKind.html){.external}
 
@@ -1860,7 +1866,7 @@
 
 [WireInfo_anyOfContainer](../_static/schema/WireInfo_anyOfContainer.html){.external}
 
-[WireInfoanyOfPointer_anyOfContainer](../_static/schema/WireInfoanyOfPointer_anyOfContainer.html){.external}
+[WireInfo_anyOfPointer_anyOfContainer](../_static/schema/WireInfo_anyOfPointer_anyOfContainer.html){.external}
 
 [WireInsulationKind](../_static/schema/WireInsulationKind.html){.external}
 
@@ -1868,11 +1874,11 @@
 
 [WirePhaseInfo](../_static/schema/WirePhaseInfo.html){.external}
 
-[WirePhaseInfoArray](../_static/schema/WirePhaseInfoArray.html){.external}
+[WirePhaseInfo_Array](../_static/schema/WirePhaseInfo_Array.html){.external}
 
 [WirePosition](../_static/schema/WirePosition.html){.external}
 
-[WirePositionArray](../_static/schema/WirePositionArray.html){.external}
+[WirePosition_Array](../_static/schema/WirePosition_Array.html){.external}
 
 [WireSegment](../_static/schema/WireSegment.html){.external}
 
@@ -1880,7 +1886,7 @@
 
 [WireSegmentPhase](../_static/schema/WireSegmentPhase.html){.external}
 
-[WireSegmentPhaseArray](../_static/schema/WireSegmentPhaseArray.html){.external}
+[WireSegmentPhase_Array](../_static/schema/WireSegmentPhase_Array.html){.external}
 
 [WireSpacingInfo](../_static/schema/WireSpacingInfo.html){.external}
 
