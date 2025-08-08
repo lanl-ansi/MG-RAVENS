@@ -17,13 +17,25 @@ from ravens.logging import logger
 
 
 class RavensSchema:
-    def __init__(self, schema_template: SchemaTemplate | None = None, base_id_uri=_RAVENS_SCHEMA_BASE_URL, uml_data: UMLData | None = None, uml_graphs: UMLGraphs | None = None, uml_exclusions: UMLExclusions | None = None):
+    def __init__(
+        self,
+        schema_template: SchemaTemplate | None = None,
+        base_id_uri: str = _RAVENS_SCHEMA_BASE_URL,
+        uml_data: UMLData | None = None,
+        uml_graphs: UMLGraphs | None = None,
+        uml_exclusions: UMLExclusions | None = None,
+        omit_file_extension: bool = False,
+        omit_license: bool = False,
+        omit_descriptions: bool = False,
+    ):
         if uml_data is None:
             uml_data = UMLData()
 
         self.uml_data = uml_data
 
-        self.schema_template = SchemaTemplate(uml_data=uml_data, uml_graphs=uml_graphs, uml_exclusions=uml_exclusions) if schema_template is None else schema_template
+        self.schema_template = SchemaTemplate(uml_data=uml_data, uml_graphs=uml_graphs, uml_exclusions=uml_exclusions, omit_descriptions=omit_descriptions) if schema_template is None else schema_template
+
+        self.omit_descr = omit_descriptions
 
         self.schema = self.build_schema_from_map(self.schema_template.template)
         self.schema["$defs"] = self.build_definitions(self.uml_data)
@@ -33,15 +45,20 @@ class RavensSchema:
 
         self.schemas = {}
         self.base_id_uri = base_id_uri
+        self.omit_file_extension = omit_file_extension
 
         self.decompose_schema(deepcopy(self.schema))
         self.decompose_defs(deepcopy(self.schema).get("$defs", {}))
 
-        self.schemas[f"{self.base_id_uri}/Root.json"].pop("$defs")
+        self.schemas[self.schema_path("Root")].pop("$defs")
 
         self.insert_refs()
 
-        self.add_cim_copyright_notice_to_decomposed_schemas(self.uml_data)
+        if not omit_license:
+            self.add_cim_copyright_notice_to_decomposed_schemas(self.uml_data)
+
+    def schema_path(self, schema_id):
+        return "/".join(a for a in [self.base_id_uri, schema_id + (".json" if not self.omit_file_extension else "")] if a)
 
     def build_schema_from_map(self, schema_map: dict) -> dict:
         schema: dict[str, Any] = {}
@@ -69,6 +86,9 @@ class RavensSchema:
                                     },
                                 }
 
+                                if self.omit_descr:
+                                    schema[k].pop("description")
+
                         elif "anyOf" in v:
                             if v.get("$primaryObjectHash", None) is None:
                                 schema[k] = self.build_schema_from_map(v)
@@ -84,6 +104,9 @@ class RavensSchema:
                                         }
                                     },
                                 }
+
+                                if self.omit_descr:
+                                    schema[k].pop("description")
 
                     elif v.get("type", None) == "array":
                         schema[k] = {
@@ -113,6 +136,8 @@ class RavensSchema:
                     "type": "string",
                     "enum": [f"{str(obj.Name)}.{str(attr.Name)}" for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == obj.Index].itertuples()],
                 }
+                if self.omit_descr:
+                    defs[str(obj.Name).replace(" ", "")].pop("description")
             elif not pd.isnull(obj.Stereotype):
                 defs[str(obj.Name).replace(" ", "")] = {
                     "title": str(obj.Name).replace(" ", ""),
@@ -128,6 +153,10 @@ class RavensSchema:
                         for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == obj.Index].itertuples()
                     },
                 }
+                if self.omit_descr:
+                    defs[str(obj.Name).replace(" ", "")].pop("description")
+                    for v in defs[str(obj.Name).replace(" ", "")]["properties"].values():
+                        v.pop("description")
 
                 if all(v["default"] is not None for k, v in defs[str(obj.Name).replace(" ", "")]["properties"].items() if k != "value") and "value" in defs[str(obj.Name).replace(" ", "")]["properties"]:
                     defs[str(obj.Name).replace(" ", "")]["type"] = [
@@ -160,7 +189,7 @@ class RavensSchema:
             else:
                 logger.warning(f"When decomposing the schema, 'title' was not found on a {debug_key} object, only the following keys: {list(_schema.keys())}")
 
-            _schema["$id"] = f"{self.base_id_uri}/{title}.json"
+            _schema["$id"] = self.schema_path(title)
 
             if _schema.get("type", None) == "object":
                 for n in ["properties", "patternProperties"]:
@@ -187,7 +216,7 @@ class RavensSchema:
             else:
                 return None
 
-            self.schemas[_schema["$id"]] = _schema
+            self.schemas[_schema["$id"]] = {**self.schemas.get(_schema["$id"], {}), **_schema}
 
             return _schema["$id"]
 
@@ -197,8 +226,8 @@ class RavensSchema:
         for k, v in defs.items():
             _schema = deepcopy(v)
             _schema["$schema"] = _JSON_SCHEMA_URL
-            _schema["$id"] = f"{self.base_id_uri}/{_schema["title"]}.json"
-            self.schemas[_schema["$id"]] = _schema
+            _schema["$id"] = self.schema_path(_schema["title"])
+            self.schemas[_schema["$id"]] = {**self.schemas.get(_schema["$id"], {}), **_schema}
 
     def insert_refs(self):
         for schema_key, schema in self.schemas.items():
@@ -220,14 +249,14 @@ class RavensSchema:
                             self.schemas[schema_key]["properties"][k]["items"] = {"$ref": key}
                     elif v.get("$ref", "").startswith("#/$defs/"):
                         ref = v["$ref"].split("#/$defs/")[1]
-                        if f"{self.base_id_uri}/{ref}.json" in self.schemas:
-                            self.schemas[schema_key]["properties"][k]["$ref"] = f"{self.base_id_uri}/{ref}.json"
+                        if self.schema_path(ref) in self.schemas:
+                            self.schemas[schema_key]["properties"][k]["$ref"] = self.schema_path(ref)
             elif "anyOf" in schema:
                 for i, item in enumerate(schema["anyOf"]):
                     if item.get("$ref", "").startswith("#/$defs/"):
                         ref = v["$ref"].split("#/$defs/")[1]
-                        if f"{self.base_id_uri}/{ref}.json" in self.schemas:
-                            self.schemas[schema_key]["anyOf"][i]["$ref"] = f"{self.base_id_uri}/{ref}.json"
+                        if self.schema_path(ref) in self.schemas:
+                            self.schemas[schema_key]["anyOf"][i]["$ref"] = self.schema_path(ref)
                     else:
                         key = item.get("title", "")
                         if key in self.schemas:
@@ -237,8 +266,8 @@ class RavensSchema:
                     for i, item in enumerate(schema["items"]["anyOf"]):
                         if item.get("$ref", "").startswith("#/$defs/"):
                             ref = v["$ref"].split("#/$defs/")[1]
-                            if f"{self.base_id_uri}/{ref}.json" in self.schemas:
-                                self.schemas[schema_key]["items"]["anyOf"][i]["$ref"] = f"{self.base_id_uri}/{ref}.json"
+                            if self.schema_path(ref) in self.schemas:
+                                self.schemas[schema_key]["items"]["anyOf"][i]["$ref"] = self.schema_path(ref)
                         else:
                             key = item.get("$id", "")
                             if key in self.schemas:
@@ -257,18 +286,18 @@ class RavensSchema:
         for k in self.schemas.keys():
             self.schemas[k]["license"] = copyright_notice
 
-    def export_schema(self, file_out: pathlib.PosixPath):
+    def export_schema(self, file_out: pathlib.Path | str):
         with open(file_out, "w") as f:
             json.dump(self.schema, f)
 
-    def export_schemas(self, out_dir: pathlib.PosixPath):
+    def export_schemas(self, out_dir: pathlib.Path | str):
         for k, v in self.schemas.items():
             filename = k.split("/")[-1].replace(".json", "")
             with open(os.path.join(out_dir, f"{filename}.json"), "w") as f:
                 json.dump(v, f, indent=2)
 
 
-def generate_schema_docs(schema_dir: pathlib.PosixPath | str, out_dir: pathlib.PosixPath | str) -> None:
+def generate_schema_docs(schema_dir: pathlib.Path | str, out_dir: pathlib.Path | str) -> None:
     Gen.generate_from_filename(schema_dir, out_dir, config=Gen.GenerationConfiguration(template_name="js"))
 
 

@@ -12,11 +12,13 @@ from ravens.uml import UMLData, UMLGraphs, UMLExclusions
 
 
 class SchemaTemplate:
-    def __init__(self, uml_data: UMLData | None = None, uml_graphs: UMLGraphs | None = None, uml_exclusions: UMLExclusions | None = None) -> None:
+    def __init__(self, uml_data: UMLData | None = None, uml_graphs: UMLGraphs | None = None, uml_exclusions: UMLExclusions | None = None, omit_descriptions: bool = False) -> None:
         _uml_data: UMLData = UMLData() if uml_data is None else uml_data
 
         self.uml_data: UMLData = _uml_data
         self.uml_graphs = UMLGraphs(uml_data=_uml_data, exclusions=uml_exclusions) if uml_graphs is None else uml_graphs
+
+        self.omit_descr = omit_descriptions
 
         self.template = {}
         self.raw_template = {}
@@ -59,7 +61,7 @@ class SchemaTemplate:
                     try:
                         obj = self.uml_data.objects[(self.uml_data.objects["Name"] == object_name) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
 
-                        if "description" not in v and not pd.isnull(obj.Note):
+                        if "description" not in v and not pd.isnull(obj.Note) and not self.omit_descr:
                             data["properties"][k]["description"] = html.unescape(str(obj.Note).strip())
                         if "title" not in v:
                             data["properties"][k]["title"] = html.unescape(str(obj.Name).strip())
@@ -77,7 +79,7 @@ class SchemaTemplate:
                                 obj = self.uml_data.objects[(self.uml_data.objects["Name"] == object_name) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
                                 if "title" not in item:
                                     data["properties"][k]["anyOf"][i]["title"] = str(obj.Name)
-                                if "description" not in item and not pd.isnull(obj.Note):
+                                if "description" not in item and not pd.isnull(obj.Note) and not self.omit_descr:
                                     data["properties"][k]["anyOf"][i]["description"] = html.unescape(str(obj.Note).strip())
 
                                 data["properties"][k]["anyOf"][i]["properties"] = self.add_cim_attributes_to_properties(data["properties"][k]["anyOf"][i]["properties"], item["$objectId"], item)
@@ -94,19 +96,19 @@ class SchemaTemplate:
                 elif v.get("$objectType", "") == "reference":
                     obj = self.uml_data.objects[(self.uml_data.objects["Name"] == v["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
                     if "title" not in v:
-                        data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "Pointer"
-                    if "description" not in v:
+                        data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "_Pointer"
+                    if "description" not in v and not self.omit_descr:
                         data["properties"][k]["description"] = f"Pointer to {html.unescape(str(obj.Name).strip())} object"
                     if not "anyOf" in v:
                         data["properties"][k]["pattern"] = f"^{obj.Name}::'(.+)'$"
 
                     if "anyOf" in v:
-                        data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "anyOfPointer"
+                        data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "_anyOfPointer"
                         for i, item in enumerate(v["anyOf"]):
                             _obj = self.uml_data.objects[(self.uml_data.objects["Name"] == item["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
                             if "title" not in item:
-                                data["properties"][k]["anyOf"][i]["title"] = html.unescape(str(_obj.Name).strip()) + "Pointer"
-                            if "description" not in v:
+                                data["properties"][k]["anyOf"][i]["title"] = html.unescape(str(_obj.Name).strip()) + "_Pointer"
+                            if "description" not in v and not self.omit_descr:
                                 data["properties"][k]["anyOf"][i]["description"] = f"Pointer to {html.unescape(str(_obj.Name).strip())} object"
 
                             data["properties"][k]["anyOf"][i]["pattern"] = f"^{_obj.Name}::'(.+)'$"
@@ -122,24 +124,28 @@ class SchemaTemplate:
                                     object_name = item.get("$objectId", None)
                                     anyOf_obj = self.uml_data.objects[(self.uml_data.objects["Name"] == item["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
                                     data["properties"][k]["items"]["anyOf"][i]["title"] = html.unescape(str(object=anyOf_obj.Name).strip()) + "Pointer"
-                                    data["properties"][k]["items"]["anyOf"][i]["description"] = f"Pointer to {html.unescape(str(anyOf_obj.Name).strip())} object"
+                                    if not self.omit_descr:
+                                        data["properties"][k]["items"]["anyOf"][i]["description"] = f"Pointer to {html.unescape(str(anyOf_obj.Name).strip())} object"
 
                             obj = self.uml_data.objects[(self.uml_data.objects["Name"] == v["items"].get("$objectId", k)) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
-                            data["properties"][k]["description"] = f"Pointers to {html.unescape(str(obj.Name).strip())} objects"
-                            data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "PointerArray"
-                            data["properties"][k]["items"]["title"] = html.unescape(str(obj.Name).strip()) + "Pointer"
-                            data["properties"][k]["items"]["description"] = f"Pointer to {html.unescape(str(obj.Name).strip())} object"
+                            if not self.omit_descr:
+                                data["properties"][k]["description"] = f"Pointers to {html.unescape(str(obj.Name).strip())} objects"
+                            data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "_PointerArray"
+                            data["properties"][k]["items"]["title"] = html.unescape(str(obj.Name).strip()) + "_Pointer"
+                            if not self.omit_descr:
+                                data["properties"][k]["items"]["description"] = f"Pointer to {html.unescape(str(obj.Name).strip())} object"
                         else:
                             try:
                                 obj = self.uml_data.objects[(self.uml_data.objects["Name"] == v["items"].get("$objectId", k)) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
                             except Exception as msg:
                                 raise Exception(f"Cannot find object '{v['items'].get('$objectId', k)}' in UML: {msg}")
 
-                            data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "Array"
-                            data["properties"][k]["description"] = f"Array of {html.unescape(str(obj.Name).strip())} objects"
+                            data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "_Array"
+                            if not self.omit_descr:
+                                data["properties"][k]["description"] = f"Array of {html.unescape(str(obj.Name).strip())} objects"
                             data["properties"][k]["items"]["title"] = html.unescape(str(obj.Name).strip())
 
-                            if not pd.isnull(obj.Note):
+                            if not pd.isnull(obj.Note) and not self.omit_descr:
                                 data["properties"][k]["items"]["description"] = html.unescape(str(obj.Note).strip())
 
                             if "anyOf" in v["items"]:
@@ -147,7 +153,7 @@ class SchemaTemplate:
                                     object_name = item.get("$objectId", None)
                                     anyOf_obj = self.uml_data.objects[(self.uml_data.objects["Name"] == item["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
                                     data["properties"][k]["items"]["anyOf"][i]["title"] = html.unescape(str(anyOf_obj.Name).strip())
-                                    if not pd.isnull(anyOf_obj.Note):
+                                    if not pd.isnull(anyOf_obj.Note) and not self.omit_descr:
                                         data["properties"][k]["items"]["anyOf"][i]["description"] = html.unescape(str(anyOf_obj.Note).strip())
 
                                     data["properties"][k]["items"]["anyOf"][i]["properties"] = self.add_cim_attributes_to_properties(data["properties"][k]["items"]["anyOf"][i]["properties"], k, item)
@@ -186,7 +192,7 @@ class SchemaTemplate:
                     "title": str(attribute.Name),
                     "type": self.convert_cim_type(str(attribute.Type)),
                 }
-                if not pd.isnull(attribute.Notes):
+                if not pd.isnull(attribute.Notes) and not self.omit_descr:
                     attribute_data["description"] = html.unescape(str(attribute.Notes).strip())
                 if attribute_name in properties.keys():
                     attribute_data.update(properties[attribute_name])
