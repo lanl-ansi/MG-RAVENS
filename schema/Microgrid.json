@@ -11,6 +11,9 @@
     "ConnectivityNodeContainer.ConnectivityNodes": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNode_PointerArray.json"
     },
+    "EquipmentContainer.Equipments": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Equipment_PointerArray.json"
+    },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",
