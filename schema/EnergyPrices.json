@@ -6,6 +6,9 @@
     },
     "CapacityPrices": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CapacityPricesContainer_Container.json"
+    },
+    "CoincidentPeakPrices": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CoincidentPeakPricesContainer_Container.json"
     }
   },
   "title": "EnergyPrices",

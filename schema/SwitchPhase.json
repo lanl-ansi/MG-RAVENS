@@ -9,12 +9,12 @@
     "SwitchPhase.phaseSide1": {
       "title": "phaseSide1",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
-      "description": "Phase of this SwitchPhase on the side with terminal sequence number equal to 1. Should be a phase contained in that terminal\u00ef\u00bf\u00bds phases attribute."
+      "description": "Phase of this SwitchPhase on the side with terminal sequence number equal to 1. Should be a phase contained in that terminal\u2019s phases attribute."
     },
     "SwitchPhase.phaseSide2": {
       "title": "phaseSide2",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
-      "description": "Phase of this SwitchPhase on the side with terminal sequence number equal to 2.  Should be a phase contained in that terminal\u00ef\u00bf\u00bds Terminal.phases attribute."
+      "description": "Phase of this SwitchPhase on the side with terminal sequence number equal to 2.  Should be a phase contained in that terminal\u2019s Terminal.phases attribute."
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

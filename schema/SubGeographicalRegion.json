@@ -22,6 +22,12 @@
       "description": "Pointer to CapacityPrices object",
       "pattern": "^CapacityPrices::'(.+)'$"
     },
+    "SubGeographicalRegion.CoincidentPeakPrices": {
+      "type": "string",
+      "title": "CoincidentPeakPrices_Pointer",
+      "description": "Pointer to CoincidentPeakPrices object",
+      "pattern": "^CoincidentPeakPrices::'(.+)'$"
+    },
     "SubGeographicalRegion.LocationalMarginalPrices": {
       "type": "string",
       "title": "LocationalMarginalPrices_Pointer",

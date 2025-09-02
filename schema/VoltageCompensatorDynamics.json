@@ -35,6 +35,11 @@
       "type": "string",
       "description": "The name is any free human readable and possibly non unique text naming the object."
     },
+    "DynamicsFunctionBlock.enabled": {
+      "title": "enabled",
+      "type": "boolean",
+      "description": "Function block used indicator.\ntrue = use of function block is enabled\nfalse = use of function block is disabled."
+    },
     "VCompIEEEType1.rc": {
       "title": "rc",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",

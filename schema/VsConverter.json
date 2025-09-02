@@ -31,7 +31,7 @@
     "VsConverter.maxValveCurrent": {
       "title": "maxValveCurrent",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
-      "description": "The maximum current through a valve. It is converter\u00ef\u00bf\u00bds configuration data."
+      "description": "The maximum current through a valve. It is converter\u2019s configuration data."
     },
     "ACDCConverter.p": {
       "title": "p",
@@ -59,12 +59,12 @@
     "ACDCConverter.minUdc": {
       "title": "minUdc",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
-      "description": "The minimum voltage on the DC side at which the converter should operate. It is converter\u00ef\u00bf\u00bds configuration data used in power flow. The attribute shall be a positive value."
+      "description": "The minimum voltage on the DC side at which the converter should operate. It is converter\u2019s configuration data used in power flow. The attribute shall be a positive value."
     },
     "Equipment.aggregate": {
       "title": "aggregate",
       "type": "boolean",
-      "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u00ef\u00bf\u00bdtrue\u00ef\u00bf\u00bd the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection."
+      "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection."
     },
     "Equipment.networkAnalysisEnabled": {
       "title": "networkAnalysisEnabled",
@@ -74,7 +74,7 @@
     "ACDCConverter.ratedUdc": {
       "title": "ratedUdc",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
-      "description": "Rated converter DC voltage, also called UdN. The attribute shall be a positive value. It is converter\u00ef\u00bf\u00bds configuration data used in power flow. For instance a bipolar HVDC link with value  200 kV has a 400kV difference between the dc lines."
+      "description": "Rated converter DC voltage, also called UdN. The attribute shall be a positive value. It is converter\u2019s configuration data used in power flow. For instance a bipolar HVDC link with value  200 kV has a 400kV difference between the dc lines."
     },
     "Equipment.normallyInService": {
       "title": "normallyInService",
@@ -144,7 +144,7 @@
     "VsConverter.maxModulationIndex": {
       "title": "maxModulationIndex",
       "type": "number",
-      "description": "The maximum quotient between the AC converter voltage (Uc) and DC voltage (Ud). A factor typically less than 1. It is converter\u00ef\u00bf\u00bds configuration data used in power flow."
+      "description": "The maximum quotient between the AC converter voltage (Uc) and DC voltage (Ud). A factor typically less than 1. It is converter\u2019s configuration data used in power flow."
     },
     "ACDCConverter.numberOfValves": {
       "title": "numberOfValves",
@@ -154,12 +154,12 @@
     "VsConverter.delta": {
       "title": "delta",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AngleDegrees.json",
-      "description": "Angle between VsConverter.uv and ACDCConverter.uc. It is converter\u00ef\u00bf\u00bds state variable used in power flow. The attribute shall be a positive value or zero."
+      "description": "Angle between VsConverter.uv and ACDCConverter.uc. It is converter\u2019s state variable used in power flow. The attribute shall be a positive value or zero."
     },
     "ACDCConverter.idc": {
       "title": "idc",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
-      "description": "Converter DC current, also called Id. It is converter\u00ef\u00bf\u00bds state variable, result from power flow."
+      "description": "Converter DC current, also called Id. It is converter\u2019s state variable, result from power flow."
     },
     "ACDCConverter.valveU0": {
       "title": "valveU0",
@@ -169,12 +169,12 @@
     "ACDCConverter.idleLoss": {
       "title": "idleLoss",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
-      "description": "Active power loss in pole at no power transfer. It is converter\u00ef\u00bf\u00bds configuration data used in power flow. The attribute shall be a positive value."
+      "description": "Active power loss in pole at no power transfer. It is converter\u2019s configuration data used in power flow. The attribute shall be a positive value."
     },
     "ACDCConverter.maxUdc": {
       "title": "maxUdc",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
-      "description": "The maximum voltage on the DC side at which the converter should operate. It is converter\u00ef\u00bf\u00bds configuration data used in power flow. The attribute shall be a positive value."
+      "description": "The maximum voltage on the DC side at which the converter should operate. It is converter\u2019s configuration data used in power flow. The attribute shall be a positive value."
     },
     "VsConverter.targetPowerFactorPcc": {
       "title": "targetPowerFactorPcc",
@@ -204,27 +204,27 @@
     "ACDCConverter.resistiveLoss": {
       "title": "resistiveLoss",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
-      "description": "It is converter\u00ef\u00bf\u00bds configuration data used in power flow. Refer to poleLossP. The attribute shall be a positive value."
+      "description": "It is converter\u2019s configuration data used in power flow. Refer to poleLossP. The attribute shall be a positive value."
     },
     "ACDCConverter.poleLossP": {
       "title": "poleLossP",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
-      "description": "The active power loss at a DC Pole \n= idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc^2.\nFor lossless operation Pdc=Pac.\nFor rectifier operation with losses Pdc=Pac-lossP.\nFor inverter operation with losses Pdc=Pac+lossP.\nIt is converter\u00ef\u00bf\u00bds state variable used in power flow. The attribute shall be a positive value."
+      "description": "The active power loss at a DC Pole \n= idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc^2.\nFor lossless operation Pdc=Pac.\nFor rectifier operation with losses Pdc=Pac-lossP.\nFor inverter operation with losses Pdc=Pac+lossP.\nIt is converter\u2019s state variable used in power flow. The attribute shall be a positive value."
     },
     "ACDCConverter.uc": {
       "title": "uc",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
-      "description": "Line-to-line converter voltage, the voltage at the AC side of the valve. It is converter\u00ef\u00bf\u00bds state variable, result from power flow. The attribute shall be a positive value."
+      "description": "Line-to-line converter voltage, the voltage at the AC side of the valve. It is converter\u2019s state variable, result from power flow. The attribute shall be a positive value."
     },
     "ACDCConverter.udc": {
       "title": "udc",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
-      "description": "Converter voltage at the DC side, also called Ud. It is converter\u00ef\u00bf\u00bds state variable, result from power flow. The attribute shall be a positive value."
+      "description": "Converter voltage at the DC side, also called Ud. It is converter\u2019s state variable, result from power flow. The attribute shall be a positive value."
     },
     "VsConverter.uv": {
       "title": "uv",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
-      "description": "Line-to-line voltage on the valve side of the converter transformer. It is converter\u00ef\u00bf\u00bds state variable, result from power flow. The attribute shall be a positive value."
+      "description": "Line-to-line voltage on the valve side of the converter transformer. It is converter\u2019s state variable, result from power flow. The attribute shall be a positive value."
     },
     "IdentifiedObject.aliasName": {
       "title": "aliasName",
