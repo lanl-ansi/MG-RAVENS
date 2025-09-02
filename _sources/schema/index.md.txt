@@ -270,6 +270,10 @@
 
 [CloudKind](../_static/schema/CloudKind.html){.external}
 
+[CoincidentPeakPrices](../_static/schema/CoincidentPeakPrices.html){.external}
+
+[CoincidentPeakPricesContainer_Container](../_static/schema/CoincidentPeakPricesContainer_Container.html){.external}
+
 [ComDirectionKind](../_static/schema/ComDirectionKind.html){.external}
 
 [ComTechnologyKind](../_static/schema/ComTechnologyKind.html){.external}
@@ -1237,8 +1241,6 @@
 [PriceSetFlag](../_static/schema/PriceSetFlag.html){.external}
 
 [PriceTypeKind](../_static/schema/PriceTypeKind.html){.external}
-
-[PrimitiveTypes](../_static/schema/PrimitiveTypes.html){.external}
 
 [Priority](../_static/schema/Priority.html){.external}
 
