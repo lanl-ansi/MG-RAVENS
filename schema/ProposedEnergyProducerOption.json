@@ -191,6 +191,11 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergyTransferRate.json",
       "description": "nan"
     },
+    "ProposedPhotoVoltaicUnitOption.ratioDCtoAC": {
+      "title": "ratioDCtoAC",
+      "type": "number",
+      "description": "nan"
+    },
     "IdentifiedObject.aliasName": {
       "title": "aliasName",
       "type": "string",

@@ -42,6 +42,11 @@
         "ProposedPhotoVoltaicUnitOption"
       ]
     },
+    "ProposedPhotoVoltaicUnitOption.ratioDCtoAC": {
+      "title": "ratioDCtoAC",
+      "type": "number",
+      "description": "nan"
+    },
     "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
       "title": "operationsAndMaintenanceRateVariable",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerKiloActivePower.json",
