@@ -155,6 +155,12 @@
               "$objectId": "CapacityPrices",
               "$referencePath": "EnergyPrices/CapacityPrices"
             },
+            "SubGeographicalRegion.CoincidentPeakPrices": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "CoincidentPeakPrices",
+              "$referencePath": "EnergyPrices/CoincidentPeakPrices"
+            },
             "SubGeographicalRegion.LocationalMarginalPrices": {
               "$objectType": "reference",
               "type": "string",
@@ -6692,6 +6698,42 @@
               }
             },
             "CapacityPrices.CapacityPriceCurve": {
+              "$objectType": "object",
+              "$objectId": "PriceCurve",
+              "type": "object",
+              "$primaryObjectHash": null,
+              "properties": {
+                "PriceCurve.CurveDatas": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$objectId": "CurveData",
+                    "$objectType": "object",
+                    "$arrayPosition": null,
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "CoincidentPeakPrices": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "CoincidentPeakPrices",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {
+            "EnergyPrices.Regions": {
+              "type": "array",
+              "items": {
+                "$objectType": "reference",
+                "$objectId": "GeographicalRegion",
+                "$referencePath": "Group/GeographicalRegion",
+                "type": "string"
+              }
+            },
+            "CoincidentPeakPrices.CoincidentPeakPriceCurve": {
               "$objectType": "object",
               "$objectId": "PriceCurve",
               "type": "object",
