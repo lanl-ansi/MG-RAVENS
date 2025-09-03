@@ -7,6 +7,6 @@ from jschon import JSONSchema
 def test_build_schema():
     schema = RavensSchema()
     assert schema
-    assert len(schema.schemas) == 994
+    assert len(schema.schemas) == 995
 
     assert JSONSchema(schema.schema)

@@ -6784,16 +6784,37 @@
           "type": "string",
           "$objectType": "reference",
           "$objectId": "DesignAlgorithmProperties",
-          "$referencePath": "AlgorithmProperties/DesignAlgorithmProperties"
+          "$referencePath": "ApplicationSettings"
         }
       }
     },
-    "AlgorithmProperties": {
-      "$objectType": "container",
-      "type": "object",
-      "$objectId": "AlgorithmProperties",
-      "properties": {
-        "DesignAlgorithmProperties": {
+    "ApplicationSettings": {
+      "$objectType": "object",
+      "$objectId": "ApplicationSettings",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "ApplicationSettings",
+          "properties": {
+            "ApplicationSettings.Settings": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "GenericApplicationSetting",
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "AlgorithmProperties",
+          "properties": {}
+        },
+        {
           "$objectType": "object",
           "type": "object",
           "$objectId": "DesignAlgorithmProperties",
@@ -6808,7 +6829,7 @@
             }
           }
         },
-        "PowerFlowSolutionProperties": {
+        {
           "$objectType": "object",
           "type": "object",
           "$objectId": "PowerFlowSolutionProperties",
@@ -6816,22 +6837,23 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {}
         },
-        "AlgorithmObjectives": {
-          "$objectType": "container",
+        {
+          "$objectType": "object",
           "type": "object",
-          "$objectId": "AlgorithmObjectives",
-          "properties": {
-            "BusVoltageObjective": {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "BusVoltageObjective",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
-            }
-          }
+          "$objectId": "BusVoltageObjective",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "OptimizationAlgorithmProperties",
+          "type": "object",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
         }
-      }
+      ]
     },
     "ProposedAssetOption": {
       "$objectType": "container",
