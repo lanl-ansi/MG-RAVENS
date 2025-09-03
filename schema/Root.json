@@ -109,6 +109,9 @@
     },
     "EnergyConnectionProfile": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConnectionProfileContainer_Container.json"
+    },
+    "AnalysisResult": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultContainer_Container.json"
     }
   },
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Root.json",

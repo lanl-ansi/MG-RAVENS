@@ -173,30 +173,10 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "Percentage of Solid Fuel for operating above Low Sustained Limit (LSL)"
     },
-    "AvGenericCurve.y1VariableName": {
-      "title": "y1VariableName",
-      "type": "string",
-      "description": "nan"
-    },
-    "AvGenericCurve.y2VariableName": {
-      "title": "y2VariableName",
-      "type": "string",
-      "description": "nan"
-    },
     "StartIgnFuelCurve.ignitionFuelType": {
       "title": "ignitionFuelType",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FuelType.json",
       "description": "Type of ignition fuel."
-    },
-    "AvGenericCurve.y3VariableName": {
-      "title": "y3VariableName",
-      "type": "string",
-      "description": "nan"
-    },
-    "AvGenericCurve.xVariableName": {
-      "title": "xVariableName",
-      "type": "string",
-      "description": "nan"
     },
     "ResourceOperationMaintenanceCost.omCostLowSustainedLimit": {
       "title": "omCostLowSustainedLimit",
