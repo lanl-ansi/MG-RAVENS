@@ -1,0 +1,243 @@
+# OPFOutputs
+
+
+```json
+{
+  "AnalysisResult": {
+    "OptimalPowerFlow": {
+      "Ravens.cimObjectType": "OperationsResult",
+      "IdentifiedObject.name": "OptimalPowerFlow",
+      "IdentifiedObject.mRID": "2b38cbd7-b487-40ad-9866-1336b30e3124",
+      "OperationsResult.Voltages": [
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.A",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'sourcebus'",
+          "AnalysisResult.DataValues": {
+            "AvVoltage.angle": 0.0,
+            "AvVoltage.v": 240.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.B",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'sourcebus'",
+          "AnalysisResult.DataValues": {
+            "AvVoltage.angle": -120.0,
+            "AvVoltage.v": 240.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.C",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'sourcebus'",
+          "AnalysisResult.DataValues": {
+            "AvVoltage.angle": 120.0,
+            "AvVoltage.v": 240.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.A",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'primary'",
+          "AnalysisResult.DataValues": {
+            "AvVoltage.angle": 0.0,
+            "AvVoltage.v": 240.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.B",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'primary'",
+          "AnalysisResult.DataValues": {
+            "AvVoltage.angle": -120.0,
+            "AvVoltage.v": 240.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.C",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'primary'",
+          "AnalysisResult.DataValues": {
+            "AvVoltage.angle": 120.0,
+            "AvVoltage.v": 240.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.A",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'loadbus'",
+          "AnalysisResult.DataValues": {
+            "AvVoltage.angle": 0.0,
+            "AvVoltage.v": 240.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.B",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'loadbus'",
+          "AnalysisResult.DataValues": {
+            "AvVoltage.angle": -120.0,
+            "AvVoltage.v": 240.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.C",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'loadbus'",
+          "AnalysisResult.DataValues": {
+            "AvVoltage.angle": 120.0,
+            "AvVoltage.v": 240.0
+          }
+        }
+      ],
+      "OperationsResult.CurrentFlows": [
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.A",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResult.DataValues": {
+            "AvCurrentFlow.currentImaginary": 0.0,
+            "AvCurrentFlow.currentReal": 10.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.B",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResult.DataValues": {
+            "AvCurrentFlow.currentImaginary": 0.0,
+            "AvCurrentFlow.currentReal": 10.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.C",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResult.DataValues": {
+            "AvCurrentFlow.currentImaginary": 0.0,
+            "AvCurrentFlow.currentReal": 10.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.A",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'556mcm'",
+          "AnalysisResult.DataValues": {
+            "AvCurrentFlow.currentImaginary": 0.0,
+            "AvCurrentFlow.currentReal": 10.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.B",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'556mcm'",
+          "AnalysisResult.DataValues": {
+            "AvCurrentFlow.currentImaginary": 0.0,
+            "AvCurrentFlow.currentReal": 10.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.C",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'556mcm'",
+          "AnalysisResult.DataValues": {
+            "AvCurrentFlow.currentImaginary": 0.0,
+            "AvCurrentFlow.currentReal": 10.0
+          }
+        }
+      ],
+      "OperationsResult.PowerFlows": [
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.A",
+          "ArPowerFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResult.DataValues": {
+            "AvPowerFlow.p": 2400.0,
+            "AvPowerFlow.q": 0.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.B",
+          "ArPowerFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResult.DataValues": {
+            "AvPowerFlow.p": 2400.0,
+            "AvPowerFlow.q": 0.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.C",
+          "ArPowerFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResult.DataValues": {
+            "AvPowerFlow.p": 2400.0,
+            "AvPowerFlow.q": 0.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.A",
+          "ArPowerFlow.ConductingEquipment": "ACLineSegment::'556mcm'",
+          "AnalysisResult.DataValues": {
+            "AvPowerFlow.p": 2400.0,
+            "AvPowerFlow.q": 0.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.B",
+          "ArPowerFlow.ConductingEquipment": "ACLineSegment::'556mcm'",
+          "AnalysisResult.DataValues": {
+            "AvPowerFlow.p": 2400.0,
+            "AvPowerFlow.q": 0.0
+          }
+        },
+        {
+          "AnalysisResult.phase": "SinglePhaseKind.C",
+          "ArPowerFlow.ConductingEquipment": "ACLineSegment::'556mcm'",
+          "AnalysisResult.DataValues": {
+            "AvPowerFlow.p": 2400.0,
+            "AvPowerFlow.q": 0.0
+          }
+        }
+      ],
+      "OperationsResult.Switches": [
+        {
+          "ArSwitch.Switch": "Switch::'cb'",
+          "AnalysisResultData.DataValues": {
+            "AvSwitch.open": false
+          }
+        }
+      ],
+      "OperationsResult.TransformerTaps": [
+        {
+          "ArTapStep.TapChanger": "RatioTapChanger::'sub'",
+          "AnalysisResultData.DataValues": {
+            "AvTapStep.step": 6.0
+          }
+        }
+      ],
+      "OperationsResult.Statuses": [
+        {
+          "ArStatus.ConductingEquipment": "EnergyConsumer::'l1_a'",
+          "AnalysisResultData.DataValues": {
+            "AvStatus.inService": true
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "EnergyConsumer::'l1_b'",
+          "AnalysisResultData.DataValues": {
+            "AvStatus.inService": true
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "EnergyConsumer::'l1_c'",
+          "AnalysisResultData.DataValues": {
+            "AvStatus.inService": true
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResultData.DataValues": {
+            "AvStatus.inService": true
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "ACLineSegment::'556mcm'",
+          "AnalysisResultData.DataValues": {
+            "AvStatus.inService": true
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "EnergySource::'source'",
+          "AnalysisResultData.DataValues": {
+            "AvStatus.inService": true
+          }
+        }
+      ]
+    }
+  }
+}
+```
+

@@ -210,6 +210,6 @@
 <img src="../_static/uml/Software.Software.svg" style="max-width: 100%; height: auto;" alt="Software diagram">
 
 
-### InfAnalysisVariables
+### AnalysisResults
 
-<img src="../_static/uml/Software.InfAnalysisVariables.svg" style="max-width: 100%; height: auto;" alt="InfAnalysisVariables diagram">
+<img src="../_static/uml/Software.AnalysisResults.svg" style="max-width: 100%; height: auto;" alt="AnalysisResults diagram">

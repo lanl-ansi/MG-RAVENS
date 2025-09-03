@@ -74,6 +74,14 @@
 
 [AnalogToDigitalLogicKind](../_static/schema/AnalogToDigitalLogicKind.html){.external}
 
+[AnalysisResult](../_static/schema/AnalysisResult.html){.external}
+
+[AnalysisResultContainer_Container](../_static/schema/AnalysisResultContainer_Container.html){.external}
+
+[AnalysisResultCurve](../_static/schema/AnalysisResultCurve.html){.external}
+
+[AnalysisResult_anyOfContainer](../_static/schema/AnalysisResult_anyOfContainer.html){.external}
+
 [AnalyticKind](../_static/schema/AnalyticKind.html){.external}
 
 [AnchorKind](../_static/schema/AnchorKind.html){.external}
@@ -97,6 +105,46 @@
 [ApplicationContainer_Container](../_static/schema/ApplicationContainer_Container.html){.external}
 
 [ApplicationSecurityKind](../_static/schema/ApplicationSecurityKind.html){.external}
+
+[ArCurrentFlow](../_static/schema/ArCurrentFlow.html){.external}
+
+[ArCurrentFlow_Array](../_static/schema/ArCurrentFlow_Array.html){.external}
+
+[ArCurveData](../_static/schema/ArCurveData.html){.external}
+
+[ArCurveData_Array](../_static/schema/ArCurveData_Array.html){.external}
+
+[ArGeneric](../_static/schema/ArGeneric.html){.external}
+
+[ArGeneric_Array](../_static/schema/ArGeneric_Array.html){.external}
+
+[ArInjection](../_static/schema/ArInjection.html){.external}
+
+[ArInjection_Array](../_static/schema/ArInjection_Array.html){.external}
+
+[ArPowerFlow](../_static/schema/ArPowerFlow.html){.external}
+
+[ArPowerFlow_Array](../_static/schema/ArPowerFlow_Array.html){.external}
+
+[ArShuntCompensatorSections](../_static/schema/ArShuntCompensatorSections.html){.external}
+
+[ArShuntCompensatorSections_Array](../_static/schema/ArShuntCompensatorSections_Array.html){.external}
+
+[ArStatus](../_static/schema/ArStatus.html){.external}
+
+[ArStatus_Array](../_static/schema/ArStatus_Array.html){.external}
+
+[ArSwitch](../_static/schema/ArSwitch.html){.external}
+
+[ArSwitch_Array](../_static/schema/ArSwitch_Array.html){.external}
+
+[ArTapStep](../_static/schema/ArTapStep.html){.external}
+
+[ArTapStep_Array](../_static/schema/ArTapStep_Array.html){.external}
+
+[ArVoltage](../_static/schema/ArVoltage.html){.external}
+
+[ArVoltage_Array](../_static/schema/ArVoltage_Array.html){.external}
 
 [Area](../_static/schema/Area.html){.external}
 
@@ -139,6 +187,24 @@
 [AutomaticDispInstTypeCommitment](../_static/schema/AutomaticDispInstTypeCommitment.html){.external}
 
 [AutomaticDispatchMode](../_static/schema/AutomaticDispatchMode.html){.external}
+
+[AvCurrentFlow](../_static/schema/AvCurrentFlow.html){.external}
+
+[AvGeneric](../_static/schema/AvGeneric.html){.external}
+
+[AvInjection](../_static/schema/AvInjection.html){.external}
+
+[AvPowerFlow](../_static/schema/AvPowerFlow.html){.external}
+
+[AvShuntCompensatorSections](../_static/schema/AvShuntCompensatorSections.html){.external}
+
+[AvStatus](../_static/schema/AvStatus.html){.external}
+
+[AvSwitch](../_static/schema/AvSwitch.html){.external}
+
+[AvTapStep](../_static/schema/AvTapStep.html){.external}
+
+[AvVoltage](../_static/schema/AvVoltage.html){.external}
 
 [BTMEquipmentContainer](../_static/schema/BTMEquipmentContainer.html){.external}
 
@@ -297,6 +363,8 @@
 [ConductancePerLength](../_static/schema/ConductancePerLength.html){.external}
 
 [ConductingEquipment](../_static/schema/ConductingEquipment.html){.external}
+
+[ConductingEquipment_anyOfPointer_anyOfContainer](../_static/schema/ConductingEquipment_anyOfPointer_anyOfContainer.html){.external}
 
 [Conductor](../_static/schema/Conductor.html){.external}
 
@@ -685,6 +753,8 @@
 [FaultImpedance](../_static/schema/FaultImpedance.html){.external}
 
 [FaultIndicatorResetKind](../_static/schema/FaultIndicatorResetKind.html){.external}
+
+[FaultStudyResult](../_static/schema/FaultStudyResult.html){.external}
 
 [Fault_anyOfContainer](../_static/schema/Fault_anyOfContainer.html){.external}
 
@@ -1104,6 +1174,8 @@
 
 [OperationalLimit_anyOfContainer](../_static/schema/OperationalLimit_anyOfContainer.html){.external}
 
+[OperationsResult](../_static/schema/OperationsResult.html){.external}
+
 [OrganisationCode](../_static/schema/OrganisationCode.html){.external}
 
 [OrganisationType](../_static/schema/OrganisationType.html){.external}
@@ -1241,6 +1313,8 @@
 [PriceSetFlag](../_static/schema/PriceSetFlag.html){.external}
 
 [PriceTypeKind](../_static/schema/PriceTypeKind.html){.external}
+
+[PrimitiveType](../_static/schema/PrimitiveType.html){.external}
 
 [Priority](../_static/schema/Priority.html){.external}
 
@@ -1486,6 +1560,8 @@
 
 [ShuntCompensator_anyOfContainer](../_static/schema/ShuntCompensator_anyOfContainer.html){.external}
 
+[ShuntCompensator_anyOfPointer_anyOfContainer](../_static/schema/ShuntCompensator_anyOfPointer_anyOfContainer.html){.external}
+
 [ShuntImpedanceControlKind](../_static/schema/ShuntImpedanceControlKind.html){.external}
 
 [ShuntImpedanceLocalControlKind](../_static/schema/ShuntImpedanceLocalControlKind.html){.external}
@@ -1608,6 +1684,8 @@
 
 [Switch_anyOfContainer](../_static/schema/Switch_anyOfContainer.html){.external}
 
+[Switch_anyOfPointer_anyOfContainer](../_static/schema/Switch_anyOfPointer_anyOfContainer.html){.external}
+
 [SwitchingAction](../_static/schema/SwitchingAction.html){.external}
 
 [SwitchingActionContainer_Container](../_static/schema/SwitchingActionContainer_Container.html){.external}
@@ -1649,6 +1727,8 @@
 [TapChangerInfoContainer_Container](../_static/schema/TapChangerInfoContainer_Container.html){.external}
 
 [TapChangerRatio](../_static/schema/TapChangerRatio.html){.external}
+
+[TapChanger_anyOfPointer_anyOfContainer](../_static/schema/TapChanger_anyOfPointer_anyOfContainer.html){.external}
 
 [TapeShieldCableInfo](../_static/schema/TapeShieldCableInfo.html){.external}
 
