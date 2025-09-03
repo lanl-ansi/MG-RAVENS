@@ -62,8 +62,6 @@
 
 [AlgorithmContainer_Container](../_static/schema/AlgorithmContainer_Container.html){.external}
 
-[AlgorithmObjectives](../_static/schema/AlgorithmObjectives.html){.external}
-
 [AlgorithmProperties](../_static/schema/AlgorithmProperties.html){.external}
 
 [AllocationEnergyTypeCode](../_static/schema/AllocationEnergyTypeCode.html){.external}
@@ -105,6 +103,10 @@
 [ApplicationContainer_Container](../_static/schema/ApplicationContainer_Container.html){.external}
 
 [ApplicationSecurityKind](../_static/schema/ApplicationSecurityKind.html){.external}
+
+[ApplicationSettings](../_static/schema/ApplicationSettings.html){.external}
+
+[ApplicationSettings_anyOfContainer](../_static/schema/ApplicationSettings_anyOfContainer.html){.external}
 
 [ArCurrentFlow](../_static/schema/ArCurrentFlow.html){.external}
 
@@ -263,8 +265,6 @@
 [BreakerRepairItemKind](../_static/schema/BreakerRepairItemKind.html){.external}
 
 [BusVoltageObjective](../_static/schema/BusVoltageObjective.html){.external}
-
-[BusVoltageObjectiveContainer_Container](../_static/schema/BusVoltageObjectiveContainer_Container.html){.external}
 
 [BusVoltageObjectiveSense](../_static/schema/BusVoltageObjectiveSense.html){.external}
 
@@ -519,8 +519,6 @@
 [DeploymentStateKind](../_static/schema/DeploymentStateKind.html){.external}
 
 [DesignAlgorithmProperties](../_static/schema/DesignAlgorithmProperties.html){.external}
-
-[DesignAlgorithmPropertiesContainer_Container](../_static/schema/DesignAlgorithmPropertiesContainer_Container.html){.external}
 
 [DesignKind](../_static/schema/DesignKind.html){.external}
 
@@ -807,6 +805,10 @@
 [GeneratorControlSource](../_static/schema/GeneratorControlSource.html){.external}
 
 [GenericAction](../_static/schema/GenericAction.html){.external}
+
+[GenericApplicationSetting](../_static/schema/GenericApplicationSetting.html){.external}
+
+[GenericApplicationSetting_Array](../_static/schema/GenericApplicationSetting_Array.html){.external}
 
 [GenericNonLinearLoadModelKind](../_static/schema/GenericNonLinearLoadModelKind.html){.external}
 
@@ -1176,6 +1178,8 @@
 
 [OperationsResult](../_static/schema/OperationsResult.html){.external}
 
+[OptimizationAlgorithmProperties](../_static/schema/OptimizationAlgorithmProperties.html){.external}
+
 [OrganisationCode](../_static/schema/OrganisationCode.html){.external}
 
 [OrganisationType](../_static/schema/OrganisationType.html){.external}
@@ -1283,8 +1287,6 @@
 [PowerElectronicsWindUnit](../_static/schema/PowerElectronicsWindUnit.html){.external}
 
 [PowerFlowSolutionProperties](../_static/schema/PowerFlowSolutionProperties.html){.external}
-
-[PowerFlowSolutionPropertiesContainer_Container](../_static/schema/PowerFlowSolutionPropertiesContainer_Container.html){.external}
 
 [PowerSystemProjectLifecycleToBeDeleted](../_static/schema/PowerSystemProjectLifecycleToBeDeleted.html){.external}
 
