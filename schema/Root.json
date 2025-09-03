@@ -83,8 +83,8 @@
     "PredictedEmissions": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PredictedEmissionsContainer_Container.json"
     },
-    "AlgorithmProperties": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AlgorithmProperties.json"
+    "ApplicationSettings": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApplicationSettings_anyOfContainer.json"
     },
     "ProposedAssetOption": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetOption.json"
