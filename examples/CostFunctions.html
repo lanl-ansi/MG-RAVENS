@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>CostFunctions</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="EconomicProperties" href="EconomicProperties.html" />
+  <link rel="prev" title="ConnectivityNodes" href="ConnectivityNodes.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../index.html" class="home-link">
+    
+      <span class="site-name">MG-RAVENS</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Guides:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         UML Diagrams:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Schemas:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link  router-link-active">
+         Examples:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Guides:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#mg-ravens-schema-documentation"
+         class="nav-link ">
+         Governance:
+      </a>
+    </div>
+  
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">UML Diagrams:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../uml/index.html" class="reference internal ">UML Diagrams for MG-RAVENS Schema</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Schemas:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../schema/index.html" class="reference internal ">Schema Documentation</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Examples:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ApplicationSettings.html" class="reference internal ">ApplicationSettings</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="BTMEquipmentContainer.html" class="reference internal ">BTMEquipmentContainer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="BatteryUnit.html" class="reference internal ">BatteryUnit</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="CapacityPrices.html" class="reference internal ">CapacityPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Conductor.html" class="reference internal ">Conductor</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ConnectivityNodes.html" class="reference internal ">ConnectivityNodes</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">CostFunctions</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#costfunctions" class="reference internal">CostFunctions</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EconomicProperties.html" class="reference internal ">EconomicProperties</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EnergyConsumer.html" class="reference internal ">EnergyConsumer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="EnergySource.html" class="reference internal ">EnergySource</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Faults.html" class="reference internal ">Faults</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="FossilFuelPrices.html" class="reference internal ">FossilFuelPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="GeneratorPhaseConnections.html" class="reference internal ">GeneratorPhaseConnections</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="LoadForecast.html" class="reference internal ">LoadForecast</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="LocationalMarginalPrices.html" class="reference internal ">LocationalMarginalPrices</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Messages.html" class="reference internal ">Messages</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="OPFOutputs.html" class="reference internal ">OPFOutputs</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="OPFOutputs_MultiPeriod.html" class="reference internal ">OPFOutputs_MultiPeriod</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="OperationalLimitSets.html" class="reference internal ">OperationalLimitSets</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="OutageScenario.html" class="reference internal ">OutageScenario</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Outages.html" class="reference internal ">Outages</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PhotoVoltaicUnit.html" class="reference internal ">PhotoVoltaicUnit</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PowerElectronicsProtection.html" class="reference internal ">PowerElectronicsProtection</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PowerTransformer.html" class="reference internal ">PowerTransformer</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="PredictedEmissions.html" class="reference internal ">PredictedEmissions</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedAsset.html" class="reference internal ">ProposedAsset</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedBatteryUnitOption.html" class="reference internal ">ProposedBatteryUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedConductorOption.html" class="reference internal ">ProposedConductorOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedEnergyProducerAsset.html" class="reference internal ">ProposedEnergyProducerAsset</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedEnergyProducerOption.html" class="reference internal ">ProposedEnergyProducerOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedGeneratingUnitOption.html" class="reference internal ">ProposedGeneratingUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedPhotovoltaicUnitOption.html" class="reference internal ">ProposedPhotovoltaicUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSiteLocation.html" class="reference internal ">ProposedSiteLocation</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSiteLocation_LoadGroups.html" class="reference internal ">ProposedSiteLocation_LoadGroups</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSiteLocation_Region.html" class="reference internal ">ProposedSiteLocation_Region</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedSwitchOption.html" class="reference internal ">ProposedSwitchOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ProposedWindUnitOption.html" class="reference internal ">ProposedWindUnitOption</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="RotatingMachine.html" class="reference internal ">RotatingMachine</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="ShuntCompensator.html" class="reference internal ">ShuntCompensator</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="Switch.html" class="reference internal ">Switch</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Guides:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../misc/simplification_examples.html" class="reference internal ">Simplification Examples (DRAFT)</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#mg-ravens-schema-documentation">Governance:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/charter.html" class="reference internal ">MG-RAVENS API Governance Charter</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/steering_committee.html" class="reference internal ">Steering Committee Members</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../governance/working_group.html" class="reference internal ">Working Group Members</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+    <li>CostFunctions</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="ConnectivityNodes.html"
+       title="previous chapter">← ConnectivityNodes</a>
+  </li>
+  <li class="next">
+    <a href="EconomicProperties.html"
+       title="next chapter">EconomicProperties →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="costfunctions">
+<h1>CostFunctions<a class="headerlink" href="#costfunctions" title="Link to this heading">¶</a></h1>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;BaseVoltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;BaseV_115.00000000000001&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BaseVoltage&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2765def0-0fb6-4da2-833e-a7faa659ba4f&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BaseV_115.00000000000001&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;BaseVoltage.nominalVoltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">115000.00000000001</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;regbus&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f4ad543d-0bb8-4fc3-9e58-54022c4904d4&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;regbus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ConnectivityNode.OperationalLimitSet&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitSet::&#39;OpLimV_103500.00000000001-126500.00000000003&#39;&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;PowerSystemResource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Equipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;ConductingEquipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;EnergyConnection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;RegulatingCondEq&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;RotatingMachine&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;gen1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SynchronousMachine&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d0c53bdb-4ba4-49cf-8e7f-2f7d6d64fb03&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gen1&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.CostFunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProducerCostFunction::&#39;Piecewise&#39;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.p&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">8000000.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.ratedS&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">9600000.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.ratedU&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">12470.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Equipment.inService&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.ratedPowerFactor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SynchronousMachine.maxQ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SynchronousMachine.minQ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ConductingEquipment.BaseVoltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BaseVoltage::&#39;BaseV_115.00000000000001&#39;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ConductingEquipment.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d9353b5e-f062-45a5-bb59-ba02049b6e44&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gen1_T1&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;ACDCTerminal.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Terminal.phases&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PhaseCode.ABC&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;regbus&#39;&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;ACDCTerminal.OperationalLimitSet&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitSet::&#39;OpLimV_103500.00000000001-126500.00000000003&#39;&quot;</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.GeneratingUnit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GeneratingUnit&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5a4c1d31-1dc5-4a43-9223-5deb6418df8f&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gen1_GenUnit&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;GeneratingUnit.minOperatingP&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;GeneratingUnit.maxOperatingP&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">9600000.0</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;gen2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SynchronousMachine&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;666e0907-e1cd-4db6-8010-00c37a7509cc&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gen2&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.CostFunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProducerCostFunction::&#39;Polynomial&#39;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.p&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">8000000.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.q&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.ratedS&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">9600000.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.ratedU&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">12470.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Equipment.inService&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.ratedPowerFactor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SynchronousMachine.maxQ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;SynchronousMachine.minQ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ConductingEquipment.BaseVoltage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BaseVoltage::&#39;BaseV_115.00000000000001&#39;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ConductingEquipment.Terminals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d9353b5e-f062-45a5-bb59-ba02049b6e44&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gen2_T1&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;ACDCTerminal.sequenceNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Terminal.phases&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PhaseCode.ABC&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;Terminal.ConnectivityNode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConnectivityNode::&#39;regbus&#39;&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;ACDCTerminal.OperationalLimitSet&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitSet::&#39;OpLimV_103500.00000000001-126500.00000000003&#39;&quot;</span>
+<span class="w">                  </span><span class="p">}</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;RotatingMachine.GeneratingUnit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GeneratingUnit&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5a4c1d31-1dc5-4a43-9223-5deb6418df8f&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gen2_GenUnit&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;GeneratingUnit.minOperatingP&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;GeneratingUnit.maxOperatingP&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">9600000.0</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;OperationalLimitSet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;OpLimV_103500.00000000001-126500.00000000003&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitSet&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;c822db31-2e3a-4e95-b1eb-20d13f92d002&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OpLimV_103500.00000000001-126500.00000000003&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitSet.OperationalLimitValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VoltageLimit&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85749b53-4972-4255-a10b-ddfc62e5d57e&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OpLimV_103500.00000000001-126500.00000000003_RangeAlow&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;VoltageLimit.value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">103500.00000000001</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;VoltageLimit.normalValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">115000.00000000001</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;OperationalLimit.OperationalLimitType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitType::&#39;lowType_5000000000.0s&#39;&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VoltageLimit&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6e054ccc-9977-454e-afb5-25ed11131d76&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OpLimV_103500.00000000001-126500.00000000003_RangeAhigh&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;VoltageLimit.value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">126500.00000000003</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;VoltageLimit.normalValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">115000.00000000001</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;OperationalLimit.OperationalLimitType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitType::&#39;highType_5000000000.0s&#39;&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;OperationalLimitType&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lowType_5000000000.0s&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitType&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;d136a61f-cf30-40be-acbe-83640d8c1ae5&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lowType_5000000000.0s&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitType.direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitDirectionKind.low&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitType.acceptableDuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000000000.0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;highType_5000000000.0s&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitType&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;387c871b-b387-4fee-8173-b20a34183ee9&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;highType_5000000000.0s&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitType.direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OperationalLimitDirectionKind.high&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;OperationalLimitType.acceptableDuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5000000000.0</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ProducerCostFunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Piecewise&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProducerCostFunction&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Piecewise&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5c2d943a-8b32-4e68-afbb-0d13d60946b6&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProducerCostFunction.CostParameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;PiecewiseLinearCostParameter.segmentNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PiecewiseLinearCostParameter.segmentCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PiecewiseLinearCostParameter.segmentBreakpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;PiecewiseLinearCostParameter.segmentNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PiecewiseLinearCostParameter.segmentCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PiecewiseLinearCostParameter.segmentBreakpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;PiecewiseLinearCostParameter.segmentNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PiecewiseLinearCostParameter.segmentCost&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PiecewiseLinearCostParameter.segmentBreakpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;Polynomial&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Ravens.cimObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProducerCostFunction&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Polynomial&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;IdentifiedObject.mRID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;e97284a4-f335-433b-83a5-247ecc7b2501&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ProducerCostFunction.CostParameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;PolynomialCostParameter.power&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PolynomialCostParameter.costCoefficient&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;PolynomialCostParameter.power&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PolynomialCostParameter.costCoefficient&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;PolynomialCostParameter.power&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;PolynomialCostParameter.costCoefficient&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="ConnectivityNodes.html"
+       title="previous chapter">← ConnectivityNodes</a>
+  </li>
+  <li class="next">
+    <a href="EconomicProperties.html"
+       title="next chapter">EconomicProperties →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright Triad National Security, LLC. All Rights Reserved.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

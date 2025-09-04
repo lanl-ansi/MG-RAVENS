@@ -1,4 +1,4 @@
-# AlgorithmProperties
+# ApplicationSettings
 
 
 ```json

@@ -47,11 +47,6 @@
 <img src="../_static/uml/EconomicDesign.ProposedAssets.svg" style="max-width: 100%; height: auto;" alt="ProposedAssets diagram">
 
 
-### AlgorithmProperties
-
-<img src="../_static/uml/EconomicDesign.AlgorithmProperties.svg" style="max-width: 100%; height: auto;" alt="AlgorithmProperties diagram">
-
-
 ### FossilFuelCosts
 
 <img src="../_static/uml/EconomicDesign.FossilFuelCosts.svg" style="max-width: 100%; height: auto;" alt="FossilFuelCosts diagram">
@@ -67,11 +62,6 @@
 <img src="../_static/uml/EconomicDesign.Facilities.svg" style="max-width: 100%; height: auto;" alt="Facilities diagram">
 
 ## SimplifiedDiagrams
-
-### InfOptimizationSettings
-
-<img src="../_static/uml/SimplifiedDiagrams.InfOptimizationSettings.svg" style="max-width: 100%; height: auto;" alt="InfOptimizationSettings diagram">
-
 
 ### Root
 
@@ -163,11 +153,6 @@
 <img src="../_static/uml/SimplifiedDiagrams.EnergyProducers.svg" style="max-width: 100%; height: auto;" alt="EnergyProducers diagram">
 
 
-### InfAlgorithmProperties
-
-<img src="../_static/uml/SimplifiedDiagrams.InfAlgorithmProperties.svg" style="max-width: 100%; height: auto;" alt="InfAlgorithmProperties diagram">
-
-
 ### MeterPoints
 
 <img src="../_static/uml/SimplifiedDiagrams.MeterPoints.svg" style="max-width: 100%; height: auto;" alt="MeterPoints diagram">
@@ -179,14 +164,14 @@
 
 ## EquipmentExtensions
 
-### InfTapChangerRatio
+### TapChangerRatio
 
-<img src="../_static/uml/EquipmentExtensions.InfTapChangerRatio.svg" style="max-width: 100%; height: auto;" alt="InfTapChangerRatio diagram">
+<img src="../_static/uml/EquipmentExtensions.TapChangerRatio.svg" style="max-width: 100%; height: auto;" alt="TapChangerRatio diagram">
 
 
-### TapControls
+### PhaseConnectionDetails
 
-<img src="../_static/uml/EquipmentExtensions.TapControls.svg" style="max-width: 100%; height: auto;" alt="TapControls diagram">
+<img src="../_static/uml/EquipmentExtensions.PhaseConnectionDetails.svg" style="max-width: 100%; height: auto;" alt="PhaseConnectionDetails diagram">
 
 
 ### ResponseCharacteristics
@@ -199,17 +184,12 @@
 <img src="../_static/uml/EquipmentExtensions.InefficientBatteryUnit.svg" style="max-width: 100%; height: auto;" alt="InefficientBatteryUnit diagram">
 
 
-### InfPowerElectronicsProtection
+### PowerElectronicsProtection
 
-<img src="../_static/uml/EquipmentExtensions.InfPowerElectronicsProtection.svg" style="max-width: 100%; height: auto;" alt="InfPowerElectronicsProtection diagram">
+<img src="../_static/uml/EquipmentExtensions.PowerElectronicsProtection.svg" style="max-width: 100%; height: auto;" alt="PowerElectronicsProtection diagram">
 
 ## Software
 
 ### Software
 
 <img src="../_static/uml/Software.Software.svg" style="max-width: 100%; height: auto;" alt="Software diagram">
-
-
-### AnalysisResults
-
-<img src="../_static/uml/Software.AnalysisResults.svg" style="max-width: 100%; height: auto;" alt="AnalysisResults diagram">

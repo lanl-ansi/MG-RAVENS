@@ -1236,6 +1236,8 @@
 
 [PhaseConnectedFaultKind](../_static/schema/PhaseConnectedFaultKind.html){.external}
 
+[PhaseConnectionDetail](../_static/schema/PhaseConnectionDetail.html){.external}
+
 [PhaseImpedanceData](../_static/schema/PhaseImpedanceData.html){.external}
 
 [PhaseImpedanceData_Array](../_static/schema/PhaseImpedanceData_Array.html){.external}
@@ -1247,6 +1249,8 @@
 [PhaseTapChangerContainer_Container](../_static/schema/PhaseTapChangerContainer_Container.html){.external}
 
 [PhotoVoltaicUnit](../_static/schema/PhotoVoltaicUnit.html){.external}
+
+[PiecewiseLinearCostParameter](../_static/schema/PiecewiseLinearCostParameter.html){.external}
 
 [PinBranchGroupKind](../_static/schema/PinBranchGroupKind.html){.external}
 
@@ -1263,6 +1267,8 @@
 [PolePreservativeKind](../_static/schema/PolePreservativeKind.html){.external}
 
 [PoleTreatmentKind](../_static/schema/PoleTreatmentKind.html){.external}
+
+[PolynomialCostParameter](../_static/schema/PolynomialCostParameter.html){.external}
 
 [PositionPoint](../_static/schema/PositionPoint.html){.external}
 
@@ -1321,6 +1327,14 @@
 [Priority](../_static/schema/Priority.html){.external}
 
 [ProcedureKind](../_static/schema/ProcedureKind.html){.external}
+
+[ProducerCostFunction](../_static/schema/ProducerCostFunction.html){.external}
+
+[ProducerCostFunctionContainer_Container](../_static/schema/ProducerCostFunctionContainer_Container.html){.external}
+
+[ProducerCostParameter_Array](../_static/schema/ProducerCostParameter_Array.html){.external}
+
+[ProducerCostParameter_anyOfContainer](../_static/schema/ProducerCostParameter_anyOfContainer.html){.external}
 
 [ProjectStatusKind](../_static/schema/ProjectStatusKind.html){.external}
 
