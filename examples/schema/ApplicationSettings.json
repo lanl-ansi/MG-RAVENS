@@ -1,0 +1,27 @@
+{
+  "ApplicationSettings": {
+    "DesignAlgorithmProperties_1": {
+      "IdentifiedObject.mRID": "c23252a0-cd95-4f64-88e8-4553aa9e1cf6",
+      "IdentifiedObject.name": "DesignAlgorithmProperties_1",
+      "Ravens.cimObjectType": "DesignAlgorithmProperties",
+      "DesignAlgorithmProperties.analysisPeriod": "P25Y",
+      "DesignAlgorithmProperties.energyAvailabilityLimit": 95.0,
+      "DesignAlgorithmProperties.energyAvailabilityObjective": 100.0,
+      "DesignAlgorithmProperties.purchaseCostMax": {
+        "value": 10000.0,
+        "unit": "Currency.USD"
+      },
+      "DesignAlgorithmProperties.purchaseCostObjective": {
+        "value": 9000.0,
+        "unit": "Currency.USD"
+      },
+      "AlgorithmProperties.workingDirectory": "/tmp/a7880c4d-d916-48b3-b45c-85cbc956243e"
+    },
+    "ONM_block_settings": {
+      "Ravens.cimObjectType": "OptimizationAlgorithmProperties",
+      "IdentifiedObject.name": "ONM_block_settings",
+      "IdentifiedObject.mRID": "6f85c1b4-1fb3-4e65-affd-1c654739cdd1",
+      "OptimizationAlgorithmProperties.switchCloseMaximum": 1
+    }
+  }
+}
