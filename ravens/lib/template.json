@@ -946,6 +946,12 @@
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "properties": {
+                            "EnergyConnection.PhaseConnectionDetail": {
+                              "$objectType": "object",
+                              "$objectId": "PhaseConnectionDetail",
+                              "type": "object",
+                              "properties": {}
+                            },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
@@ -1123,6 +1129,12 @@
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "properties": {
+                            "EnergyConnection.PhaseConnectionDetail": {
+                              "$objectType": "object",
+                              "$objectId": "PhaseConnectionDetail",
+                              "type": "object",
+                              "properties": {}
+                            },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
@@ -1632,6 +1644,12 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "RotatingMachine",
                               "properties": {
+                                "EnergyConnection.PhaseConnectionDetail": {
+                                  "$objectType": "object",
+                                  "$objectId": "PhaseConnectionDetail",
+                                  "type": "object",
+                                  "properties": {}
+                                },
                                 "RotatingMachine.CostFunction": {
                                   "type": "string",
                                   "$objectType": "reference",
@@ -1866,6 +1884,12 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "SynchronousMachine",
                               "properties": {
+                                "EnergyConnection.PhaseConnectionDetail": {
+                                  "$objectType": "object",
+                                  "$objectId": "PhaseConnectionDetail",
+                                  "type": "object",
+                                  "properties": {}
+                                },
                                 "RotatingMachine.CostFunction": {
                                   "type": "string",
                                   "$objectType": "reference",
@@ -2110,6 +2134,12 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "AsynchronousMachine",
                               "properties": {
+                                "EnergyConnection.PhaseConnectionDetail": {
+                                  "$objectType": "object",
+                                  "$objectId": "PhaseConnectionDetail",
+                                  "type": "object",
+                                  "properties": {}
+                                },
                                 "RotatingMachine.CostFunction": {
                                   "type": "string",
                                   "$objectType": "reference",
@@ -2630,6 +2660,12 @@
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "properties": {
+                        "EnergyConnection.PhaseConnectionDetail": {
+                          "$objectType": "object",
+                          "$objectId": "PhaseConnectionDetail",
+                          "type": "object",
+                          "properties": {}
+                        },
                         "EnergySource.CostFunction": {
                           "type": "string",
                           "$objectType": "reference",
