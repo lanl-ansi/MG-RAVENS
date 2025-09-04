@@ -997,6 +997,13 @@ class DssExport(RDFGraph):
         self.add_triple(node, "PowerSystemResource.Location", self._add_Location(f"Energysource.{gen.Name}_Location", [self.dss.Bus[self._parse_busname(gen.Bus1)].X], [self.dss.Bus[self._parse_busname(gen.Bus1)].Y]))
         self.add_triple(node, "Equipment.EquipmentContainer", self.equipment_container)
 
+        pcd_node = self.build_cim_obj("PhaseConnectionDetail", skip_mrid=True)
+        self.add_triple(node, "EnergyConnection.PhaseConnectionDetail", pcd_node)
+        if gen.Conn == 0:
+            self.add_triple(pcd_node, "PhaseConnectionDetail.phaseConnection", self.cim["PhaseShuntConnectionKind.Y"])
+        else:
+            self.add_triple(pcd_node, "PhaseConnectionDetail.phaseConnection", self.cim["PhaseShuntConnectionKind.D"])
+
         gu_node = self.build_cim_obj("GeneratingUnit", name=f"{gen.Name}_GenUnit")
         self.add_triple(gu_node, "GeneratingUnit.minOperatingP", 0.0)
         self.add_triple(gu_node, "GeneratingUnit.maxOperatingP", gen.kVA * gen.PF * 1000)
@@ -1027,6 +1034,13 @@ class DssExport(RDFGraph):
                 pec_node = self.build_cim_obj("PowerElectronicsConnection", name=pec.Name)
                 self.add_triple(pec_node, "PowerSystemResource.Location", self._add_Location(f"Energysource.{pec.Name}_Location", [self.dss.Bus[self._parse_busname(pec.Bus1)].X], [self.dss.Bus[self._parse_busname(pec.Bus1)].Y]))
                 self.add_triple(pec_node, "Equipment.EquipmentContainer", self.equipment_container)
+
+                pcd_node = self.build_cim_obj("PhaseConnectionDetail", skip_mrid=True)
+                self.add_triple(pec_node, "EnergyConnection.PhaseConnectionDetail", pcd_node)
+                if pec.Conn == 0:
+                    self.add_triple(pcd_node, "PhaseConnectionDetail.phaseConnection", self.cim["PhaseShuntConnectionKind.Y"])
+                else:
+                    self.add_triple(pcd_node, "PhaseConnectionDetail.phaseConnection", self.cim["PhaseShuntConnectionKind.D"])
 
                 if pec_type == "PVSystem":
                     self._add_PhotoVoltaicUnit(pec_node, pec)
