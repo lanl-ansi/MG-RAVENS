@@ -2660,12 +2660,6 @@
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "properties": {
-                        "EnergyConnection.PhaseConnectionDetail": {
-                          "$objectType": "object",
-                          "$objectId": "PhaseConnectionDetail",
-                          "type": "object",
-                          "properties": {}
-                        },
                         "EnergySource.CostFunction": {
                           "type": "string",
                           "$objectType": "reference",
