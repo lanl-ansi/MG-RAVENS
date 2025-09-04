@@ -4,6 +4,15 @@
   "title": "EnergySource",
   "additionalProperties": false,
   "properties": {
+    "EnergyConnection.PhaseConnectionDetail": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectionDetail.json"
+    },
+    "EnergySource.CostFunction": {
+      "type": "string",
+      "title": "ProducerCostFunction_Pointer",
+      "description": "Pointer to ProducerCostFunction object",
+      "pattern": "^ProducerCostFunction::'(.+)'$"
+    },
     "EnergySource.GenerationProfile": {
       "type": "string",
       "title": "Curve_Pointer",

@@ -1,6 +1,12 @@
 {
   "type": "object",
   "properties": {
+    "PowerElectronicsUnit.CostFunction": {
+      "type": "string",
+      "title": "ProducerCostFunction_Pointer",
+      "description": "Pointer to ProducerCostFunction object",
+      "pattern": "^ProducerCostFunction::'(.+)'$"
+    },
     "PowerElectronicsWindUnit.GenerationProfile": {
       "type": "string",
       "title": "Curve_Pointer",

@@ -112,6 +112,9 @@
     },
     "AnalysisResult": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultContainer_Container.json"
+    },
+    "ProducerCostFunction": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProducerCostFunctionContainer_Container.json"
     }
   },
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Root.json",

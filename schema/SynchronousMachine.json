@@ -2,6 +2,15 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "EnergyConnection.PhaseConnectionDetail": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectionDetail.json"
+    },
+    "RotatingMachine.CostFunction": {
+      "type": "string",
+      "title": "ProducerCostFunction_Pointer",
+      "description": "Pointer to ProducerCostFunction object",
+      "pattern": "^ProducerCostFunction::'(.+)'$"
+    },
     "SynchronousMachine.SynchronousMachinePhase": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SynchronousMachinePhase_Array.json"
     },

@@ -1,6 +1,12 @@
 {
   "type": "object",
   "properties": {
+    "PowerElectronicsUnit.CostFunction": {
+      "type": "string",
+      "title": "ProducerCostFunction_Pointer",
+      "description": "Pointer to ProducerCostFunction object",
+      "pattern": "^ProducerCostFunction::'(.+)'$"
+    },
     "BatteryUnit.BatteryResponse": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BatteryResponseCharacteristic.json"
     },

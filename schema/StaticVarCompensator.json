@@ -4,6 +4,9 @@
   "title": "StaticVarCompensator",
   "additionalProperties": false,
   "properties": {
+    "EnergyConnection.PhaseConnectionDetail": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectionDetail.json"
+    },
     "PowerSystemResource.Location": {
       "type": "string",
       "title": "Location_Pointer",
