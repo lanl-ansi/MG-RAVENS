@@ -996,6 +996,12 @@
                                   "type": "object",
                                   "$primaryObjectHash": null,
                                   "properties": {
+                                    "PowerElectronicsUnit.CostFunction": {
+                                      "type": "string",
+                                      "$objectType": "reference",
+                                      "$objectId": "ProducerCostFunction",
+                                      "$referencePath": "/ProducerCostFunction"
+                                    },
                                     "BatteryUnit.BatteryResponse": {
                                       "$objectType": "object",
                                       "type": "object",
@@ -1021,6 +1027,12 @@
                                   "$objectId": "PhotoVoltaicUnit",
                                   "type": "object",
                                   "properties": {
+                                    "PowerElectronicsUnit.CostFunction": {
+                                      "type": "string",
+                                      "$objectType": "reference",
+                                      "$objectId": "ProducerCostFunction",
+                                      "$referencePath": "/ProducerCostFunction"
+                                    },
                                     "PhotoVoltaicUnit.GenerationProfile": {
                                       "$objectType": "reference",
                                       "$objectId": "Curve",
@@ -1034,6 +1046,12 @@
                                   "$objectId": "PowerElectronicsWindUnit",
                                   "type": "object",
                                   "properties": {
+                                    "PowerElectronicsUnit.CostFunction": {
+                                      "type": "string",
+                                      "$objectType": "reference",
+                                      "$objectId": "ProducerCostFunction",
+                                      "$referencePath": "/ProducerCostFunction"
+                                    },
                                     "PowerElectronicsWindUnit.GenerationProfile": {
                                       "$objectType": "reference",
                                       "$objectId": "Curve",
@@ -1614,6 +1632,12 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "RotatingMachine",
                               "properties": {
+                                "RotatingMachine.CostFunction": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "ProducerCostFunction",
+                                  "$referencePath": "/ProducerCostFunction"
+                                },
                                 "RotatingMachine.RotatingMachineResponse": {
                                   "$objectType": "object",
                                   "type": "object",
@@ -1842,6 +1866,12 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "SynchronousMachine",
                               "properties": {
+                                "RotatingMachine.CostFunction": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "ProducerCostFunction",
+                                  "$referencePath": "/ProducerCostFunction"
+                                },
                                 "SynchronousMachine.SynchronousMachinePhase": {
                                   "type": "array",
                                   "items": {
@@ -2080,6 +2110,12 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "AsynchronousMachine",
                               "properties": {
+                                "RotatingMachine.CostFunction": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "ProducerCostFunction",
+                                  "$referencePath": "/ProducerCostFunction"
+                                },
                                 "RotatingMachine.RotatingMachineResponse": {
                                   "$objectType": "object",
                                   "type": "object",
@@ -2594,6 +2630,12 @@
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "properties": {
+                        "EnergySource.CostFunction": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "ProducerCostFunction",
+                          "$referencePath": "/ProducerCostFunction"
+                        },
                         "EnergySource.GenerationProfile": {
                           "$objectType": "reference",
                           "type": "string",
@@ -8695,6 +8737,36 @@
           }
         }
       ]
+    },
+    "ProducerCostFunction": {
+      "$objectType": "object",
+      "type": "object",
+      "$objectId": "ProducerCostFunction",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {
+        "ProducerCostFunction.CostParameters": {
+          "type": "array",
+          "items": {
+            "$objectId": "ProducerCostParameter",
+            "$objectType": "object",
+            "anyOf": [
+              {
+                "$objectId": "PiecewiseLinearCostParameter",
+                "$objectType": "object",
+                "type": "object",
+                "properties": {}
+              },
+              {
+                "$objectId": "PolynomialCostParameter",
+                "$objectType": "object",
+                "type": "object",
+                "properties": {}
+              }
+            ]
+          }
+        }
+      }
     }
   }
 }
