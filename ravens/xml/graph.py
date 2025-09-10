@@ -72,6 +72,6 @@ class RDFGraph(object):
 
     def save(self, path: pathlib.Path | str) -> None:
         rdfxml = self.graph.serialize(max_depth=1, format="pretty-xml")
-        rdfxml = rdfxml.replace("rdf:about", "rdf:ID")
+        # rdfxml = rdfxml.replace("rdf:about", "rdf:ID") #TODO: REVERT
         with open(path, "w") as f:
             f.write(rdfxml)
