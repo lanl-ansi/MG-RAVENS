@@ -13,6 +13,9 @@ _index_columns = {
     "t_diagram": "Diagram_ID",
     "t_diagramlinks": "Instance_ID",
     "t_diagramobjects": "Instance_ID",
+    "t_xref" : 'XrefID',
+    "t_connectortag": "PropertyID",
+    "t_objectproperties" : "PropertyID",
 }
 
 
@@ -24,6 +27,9 @@ _attr_names = {
     "t_diagram": "diagrams",
     "t_diagramlinks": "diagramlinks",
     "t_diagramobjects": "diagramobjects",
+    "t_xref": "xrefs",
+    "t_connectortag": "connectortags",
+    "t_objectproperties" : "objectproperties"
 }
 
 _expected_dtypes = {
@@ -186,6 +192,32 @@ _expected_dtypes = {
         "Hidden": bool,
         "Instance_ID": int,
     },
+    "t_xref": {
+        "XrefID": int,
+        "Name": str,
+        "Type": str,           # some exports use this
+        "Visibility": str,
+        "Description": str,  
+        "Client": str,         # ea_guid of the owning item (object, connector, legend, etc.)
+        "Supplier": str,       # optional second GUID
+    },
+    "t_connectortag": {
+        "PropertyID": int,
+        "ElementID": int,
+        "Property": str,      # tag name (e.g., "color")
+        "VALUE": str,         # tag value
+        # "Notes": str,
+        "ea_guid": str,
+    },
+    "t_objectproperties": {
+        "PropertyID": int,
+        "Object_ID": int,
+        "Property": str,   # tag name
+        "Value": str,      # tag value
+        # "Notes": str,
+        "ea_guid": str,
+    },
+
 }
 
 
@@ -198,6 +230,7 @@ class UMLData:
         self.diagrams: pd.DataFrame = pd.DataFrame()
         self.diagramlinks: pd.DataFrame = pd.DataFrame()
         self.diagramobjects: pd.DataFrame = pd.DataFrame()
+        self.xrefs: pd.DataFrame = pd.DataFrame() 
 
         dataframes: dict = self._create_dataframes()
         for table_name, df in dataframes.items():
