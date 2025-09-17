@@ -3,90 +3,103 @@ import os
 import pathlib
 import subprocess
 import pandas as pd
+import tempfile
+import importlib
 
-from ravens.data import _SVG_RENDERER_PATH
 from ravens.uml.data import UMLData
 
 
 ROLE_TO_HEX_NODE = {
     "rootClass":          "#DDA0DD",
-    "compoundClass":      "#87CEEB",
+    # "compoundClass":      "#87CEEB", # reading these from Stereotype so we don't have to tag them
+    "embeddedClass":      "#7EF97E",
     "inheritonlyClass":   "#6495ED",
     "substitutableClass": "#FFB6C1",
     "containerClass":     "#FFE4C4",
 }
+STEREO_TO_HEX_NODE = {
+    "compound":    "#F6EADE",  
+    "enumeration": "#D1FAC7",                       
+}
+
 ROLE_TO_HEX_EDGE = {
     "referenceconnector": "#DB0B35",
     "embeddedconnector":  "#20C920",
 }
-DEFAULT_NODE_HEX = "#EAE505"
+DEFAULT_NODE_HEX = "#FFFFFF"
 DEFAULT_EDGE_HEX = "#000000"
 
 # Case-insensitive views
 NODE_MAP_CI = {k.casefold(): v for k, v in ROLE_TO_HEX_NODE.items()}
 EDGE_MAP_CI = {k.casefold(): v for k, v in ROLE_TO_HEX_EDGE.items()}
+STEREO_MAP_CI = {k.casefold(): v for k, v in STEREO_TO_HEX_NODE.items()}
 
+
+def _get_table(uml_data, candidates):
+    for name in candidates:
+        df = getattr(uml_data, name, None)
+        if isinstance(df, pd.DataFrame) and not df.empty:
+            return df
+    return pd.DataFrame()
 
 def object_role_lookup(uml_data, tag_name: str = "ravensRole") -> pd.Series:
     """
-    Returns a Series indexed by Object_ID with the latest ravensRole value (string),
-    reading uml_data.t_objectproperties.
+    Object_ID -> role (string), from element tagged values.
+    Uses: objectproperties / t_objectproperties; Property|Name; Value|VALUE; Object_ID|ObjectID
     """
-    df = getattr(uml_data, "t_objectproperties", pd.DataFrame())
-    if df is None or df.empty:
+    df = _get_table(uml_data, ("t_objectproperties", "objectproperties"))
+    if df.empty:
         return pd.Series(dtype=object)
 
-    t = df.loc[
-        df["Property"].astype(str).str.casefold() == tag_name.casefold(),
-        ["Object_ID", "Value"]
-    ].copy()
+    # columns we accept
+    id_col  = "Object_ID" if "Object_ID" in df.columns else ("ObjectID" if "ObjectID" in df.columns else None)
+    propcol = "Property"  if "Property"  in df.columns else ("Name"     if "Name"     in df.columns else None)
+    valcol  = "Value"     if "Value"     in df.columns else ("VALUE"    if "VALUE"    in df.columns else None)
+    if not all([id_col, propcol, valcol]):
+        return pd.Series(dtype=object)
+
+    t = df.loc[df[propcol].astype(str).str.casefold() == tag_name.casefold(), [id_col, valcol]].copy()
     if t.empty:
         return pd.Series(dtype=object)
 
-    t["Object_ID"] = pd.to_numeric(t["Object_ID"], errors="coerce").astype("Int64")
-    t["Value"] = t["Value"].astype(str).str.strip()
-    t = t.dropna(subset=["Object_ID"]).astype({"Object_ID": int})
+    t[id_col] = pd.to_numeric(t[id_col], errors="coerce")
+    t = t.dropna(subset=[id_col]).astype({id_col: int})
+    t[valcol] = t[valcol].astype(str).str.strip()
 
-    s = t.groupby("Object_ID")["Value"].last()
+    s = t.groupby(id_col, sort=False)[valcol].last()
     s.index.name = "Object_ID"
     s.name = tag_name
     return s
 
-
 def connector_role_lookup(uml_data, tag_name: str = "ravensRole") -> pd.Series:
     """
-    Returns a Series indexed by Connector_ID with the latest ravensRole value (string),
-    reading uml_data.t_connectortag (normalizes owner ID column).
+    Connector_ID -> role (string), from connector tagged values.
+    Uses: connectortags / t_connectortag; Property|Name; Value|VALUE; Connector_ID|ElementID|ConnectorID
     """
-    df = getattr(uml_data, "t_connectortag", pd.DataFrame())
-    if df is None or df.empty:
+    df = _get_table(uml_data, ("t_connectortag", "connectortags", "connector_tags"))
+    if df.empty:
         return pd.Series(dtype=object)
 
-    if "Connector_ID" in df.columns:
-        id_col = "Connector_ID"
-    elif "ElementID" in df.columns:
-        id_col = "ElementID"
-    else:
-        id_col = "ConnectorID" if "ConnectorID" in df.columns else None
-    if id_col is None:
+    # owner id column variants seen in exports
+    if   "Connector_ID" in df.columns: id_col = "Connector_ID"
+    elif "ElementID"    in df.columns: id_col = "ElementID"
+    elif "ConnectorID"  in df.columns: id_col = "ConnectorID"
+    else: return pd.Series(dtype=object)
+
+    propcol = "Property" if "Property" in df.columns else ("Name" if "Name" in df.columns else None)
+    valcol  = "Value"    if "Value"    in df.columns else ("VALUE" if "VALUE" in df.columns else None)
+    if not all([propcol, valcol]):
         return pd.Series(dtype=object)
 
-    val_col = "Value" if "Value" in df.columns else ("VALUE" if "VALUE" in df.columns else None)
-    if val_col is None:
-        return pd.Series(dtype=object)
-
-    t = df.loc[
-        df["Property"].astype(str).str.casefold() == tag_name.casefold(),
-        [id_col, val_col]
-    ].copy()
+    t = df.loc[df[propcol].astype(str).str.casefold() == tag_name.casefold(), [id_col, valcol]].copy()
     if t.empty:
         return pd.Series(dtype=object)
 
-    t[id_col] = pd.to_numeric(t[id_col], errors="coerce").astype("Int64")
-    t[val_col] = t[val_col].astype(str).str.strip()
+    t[id_col] = pd.to_numeric(t[id_col], errors="coerce")
     t = t.dropna(subset=[id_col]).astype({id_col: int})
+    t[valcol] = t[valcol].astype(str).str.strip()
 
-    s = t.groupby(id_col)[val_col].last()
+    s = t.groupby(id_col, sort=False)[valcol].last()
     s.index.name = "Connector_ID"
     s.name = tag_name
     return s
@@ -98,12 +111,53 @@ class UMLDiagramData:
 
 
 class UMLVisualizer:
-    def __init__(self, uml_data: UMLData | None = None):
-        if uml_data is None:
-            uml_data = UMLData()
+    def __init__(self, uml_data: UMLData | None = None, svg_renderer_path: str | None = None):
+        self.uml_data = uml_data or UMLData()
 
-        self.uml_data = uml_data
+        # Try explicit arg → env var → legacy ravens.data constant
+        default_from_pkg = None
+        try:
+            DEFAULT = importlib.import_module("ravens.data")._SVG_RENDERER_PATH
+            default_from_pkg = str(DEFAULT)
+        except Exception:
+            pass
 
+        self._svg_renderer_path = str(
+            svg_renderer_path
+            or os.environ.get("SVG_RENDERER_PATH", "")
+            or (default_from_pkg or "")
+        )
+
+        if not self._svg_renderer_path or not os.path.exists(self._svg_renderer_path):
+            raise FileNotFoundError(
+                "svgRenderer.js not found. Pass svg_renderer_path=..., or set SVG_RENDERER_PATH, "
+                "or ensure ravens.data._SVG_RENDERER_PATH points to the renderer."
+            )
+
+        # ---- caches (avoid per-diagram recompute) ----
+        # roles as dicts
+        self._node_role_by_oid = object_role_lookup(self.uml_data).to_dict()       # Object_ID -> role
+        self._edge_role_by_cid = connector_role_lookup(self.uml_data).to_dict()    # Connector_ID -> role
+
+        # object quick lookups
+        objs = self.uml_data.objects
+        self._obj_name = objs["Name"].astype(str).to_dict()
+        self._obj_stereo = objs["Stereotype"].astype(str).fillna("").to_dict()
+
+        # attributes grouped once (Object_ID -> [(Name, Type), ...])
+        self._attrs_by_obj = {}
+        if not self.uml_data.attributes.empty:
+            for r in self.uml_data.attributes.itertuples(index=False):
+                self._attrs_by_obj.setdefault(int(r.Object_ID), []).append((str(r.Name), str(r.Type)))
+
+        # connectors dict and “generalization parent” map
+        cons = self.uml_data.connectors
+        self._con_by_id = cons[["Start_Object_ID","End_Object_ID","Connector_Type",
+                                "SourceRole","DestRole","SourceCard","DestCard"]].to_dict("index")
+        gen = cons[cons["Connector_Type"].astype(str) == "Generalization"]
+        self._gen_parent = {int(r.Start_Object_ID): int(r.End_Object_ID) for r in gen.itertuples(index=False)}
+
+        # working buffers
         self._current_diagram = None
         self._current_svg_data = None
         self._current_svg = None
@@ -164,141 +218,192 @@ class UMLVisualizer:
         return object_style
 
     def _create_svg_data(self, diagram_id: int):
-        dobjects = self.uml_data.diagramobjects[self.uml_data.diagramobjects["Diagram_ID"] == diagram_id]
+        dobj = self.uml_data.diagramobjects
+        dlinks = self.uml_data.diagramlinks
+
+        dobjects = dobj[dobj["Diagram_ID"] == diagram_id]
         if dobjects.empty:
-            return {"cx": 0, "cy": 0, "nodes": [], "links": []}
+            self._current_diagram = diagram_id
+            self._current_svg_data = {"cx": 0, "cy": 0, "nodes": [], "links": []}
+            return
 
-        svg_data = {
-            "cx": max([abs(o.RectRight) for o in dobjects.itertuples()]),
-            "cy": max([abs(o.RectBottom) for o in dobjects.itertuples()]),
-        }
+        # canvas size
+        cx = int(abs(dobjects["RectRight"]).max())
+        cy = int(abs(dobjects["RectBottom"]).max())
+        svg_data = {"cx": cx, "cy": cy}
 
-        # --- precompute role lookups once per diagram render ---
-        node_roles = object_role_lookup(self.uml_data)       # Object_ID -> role (str)
-        edge_roles = connector_role_lookup(self.uml_data)    # Connector_ID -> role (str)
-
+        # nodes present on this diagram (set for quick membership checks)
+        node_ids = set(int(r.Object_ID) for r in dobjects.itertuples(index=False))
         boxes_data = []
-        nodes = []
-        objs_in_diagram = [
-            _o.Object_ID
-            for _o in self.uml_data.diagramobjects[self.uml_data.diagramobjects["Diagram_ID"] == diagram_id].itertuples()
-        ]
 
-        for o in self.uml_data.diagramobjects[self.uml_data.diagramobjects["Diagram_ID"] == diagram_id].itertuples():
-            object_style = self._parse_object_style(str(o.ObjectStyle))
-            obj = self.uml_data.objects.loc[o.Object_ID]
+        for o in dobjects.itertuples(index=False):
+            oid = int(o.Object_ID)
+            stereo = self._obj_stereo.get(oid, "")
 
+            # text lines
             text_lines = []
-            if obj.Stereotype == "enumeration":
-                text_lines.append({"text": f"<<{obj.Stereotype}>>", "align": "center"})
-                text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
+            if stereo == "enumeration":
+                text_lines.append({"text": f"<<{stereo}>>", "align": "center"})
+                text_lines.append({"text": f"{self._obj_name.get(oid,'')}", "align": "center", "style": "bold"})
                 text_lines.append({})
                 text_lines.append({"text": "literals", "align": "center", "style": "italic"})
-                for attr in self.uml_data.attributes[self.uml_data.attributes["Object_ID"] == o.Object_ID].itertuples():
-                    text_lines.append({"text": f"{attr.Name}", "align": "left"})
-            elif obj.Stereotype == "CIMDatatype":
-                text_lines.append({"text": f"<<{obj.Stereotype}>>", "align": "center"})
-                text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
-                if object_style.get("AttPub", "1") == "1":
+                for name,_type in self._attrs_by_obj.get(oid, []):
+                    text_lines.append({"text": f"{name}", "align": "left"})
+            elif stereo == "CIMDatatype":
+                text_lines.append({"text": f"<<{stereo}>>", "align": "center"})
+                text_lines.append({"text": f"{self._obj_name.get(oid,'')}", "align": "center", "style": "bold"})
+                # show attributes if AttPub==1
+                show_attrs = "1"
+                try:
+                    # parse once, cheap key lookup
+                    for part in str(o.ObjectStyle).split(";"):
+                        if part.startswith("AttPub="):
+                            show_attrs = part.split("=",1)[1]
+                            break
+                except Exception:
+                    pass
+                if show_attrs == "1":
                     text_lines.append({})
-                    for attr in self.uml_data.attributes[self.uml_data.attributes["Object_ID"] == o.Object_ID].itertuples():
-                        text_lines.append({"text": f"+   {attr.Name}: {attr.Type}", "align": "left"})
+                    for name,_type in self._attrs_by_obj.get(oid, []):
+                        text_lines.append({"text": f"+   {name}: {_type}", "align": "left"})
             else:
-                gen_obj_id = None
-                for c in self.uml_data.connectors[
-                    (self.uml_data.connectors["Start_Object_ID"] == o.Object_ID)
-                    & (self.uml_data.connectors["Connector_Type"] == "Generalization")
-                ].itertuples():
-                    gen_obj_id = c.End_Object_ID
-                    break
-
-                if (gen_obj_id is not None) and (gen_obj_id not in objs_in_diagram):
-                    text_lines.append({"text": f"{self.uml_data.objects.loc[gen_obj_id].Name}", "align": "right", "style": "italic"})
-
-                text_lines.append({"text": f"{obj.Name}", "align": "center", "style": "bold"})
-                if object_style.get("AttPub", "1") == "1":
+                # parent (generalization target) if not on diagram
+                parent_id = self._gen_parent.get(oid)
+                if parent_id and parent_id not in node_ids:
+                    text_lines.append({"text": f"{self._obj_name.get(parent_id,'')}", "align": "right", "style": "italic"})
+                text_lines.append({"text": f"{self._obj_name.get(oid,'')}", "align": "center", "style": "bold"})
+                # show attributes if AttPub==1
+                show_attrs = "1"
+                try:
+                    for part in str(o.ObjectStyle).split(";"):
+                        if part.startswith("AttPub="):
+                            show_attrs = part.split("=",1)[1]
+                            break
+                except Exception:
+                    pass
+                if show_attrs == "1":
                     text_lines.append({})
-                    for attr in self.uml_data.attributes[self.uml_data.attributes["Object_ID"] == o.Object_ID].itertuples():
-                        text_lines.append({"text": f"+   {attr.Name}: {attr.Type}", "align": "left"})
+                    for name,_type in self._attrs_by_obj.get(oid, []):
+                        text_lines.append({"text": f"+   {name}: {_type}", "align": "left"})
 
-            # --- node color from ravensRole tag ---
-            role_node = node_roles.get(o.Object_ID, None)
-            if isinstance(role_node, float) and pd.isna(role_node):
-                role_node = None
-            node_hex = NODE_MAP_CI.get(str(role_node).strip().casefold(), DEFAULT_NODE_HEX) if role_node else DEFAULT_NODE_HEX
+            # node color from ravensRole (case-insensitive); fallback default
+            # node color: tag first, then stereotype, then default
+            role = self._node_role_by_oid.get(oid)
+            role_key = (str(role).strip().casefold() if role is not None else "")
+            stereo_key = str(stereo or "").strip().casefold()
 
-            box_data = {
-                "id": o.Object_ID,
-                "x": o.RectLeft,
-                "y": -o.RectTop,
-                "width": abs(o.RectRight - o.RectLeft),
-                "height": abs(o.RectTop - o.RectBottom),
+            node_hex = (
+                NODE_MAP_CI.get(role_key)
+                or STEREO_MAP_CI.get(stereo_key)
+                or DEFAULT_NODE_HEX
+            )
+
+            boxes_data.append({
+                "id": oid,
+                "x": int(o.RectLeft),
+                "y": -int(o.RectTop),
+                "width": int(abs(o.RectRight - o.RectLeft)),
+                "height": int(abs(o.RectTop - o.RectBottom)),
                 "textLines": text_lines,
                 "color": node_hex,
-            }
-            nodes.append(o.Object_ID)
-            boxes_data.append(box_data)
+            })
 
         svg_data["nodes"] = boxes_data
 
+        # links
         links_data = []
-        for l in self.uml_data.diagramlinks[self.uml_data.diagramlinks["DiagramID"] == diagram_id].itertuples():
-            if l.Hidden:
+        for l in dlinks[dlinks["DiagramID"] == diagram_id].itertuples(index=False):
+            if getattr(l, "Hidden", False):
+                continue
+            cid = int(l.ConnectorID)
+            c = self._con_by_id.get(cid)
+            if not c:
+                continue
+            s = int(c["Start_Object_ID"]); t = int(c["End_Object_ID"])
+            if s not in node_ids or t not in node_ids:
                 continue
 
-            link_style = self._parse_link_style(str(l.Geometry))
+            # parse link geometry once
+            link_style = {}
+            try:
+                geom = str(l.Geometry)
+                if "$" in geom:
+                    pre, post = geom.split("$", 1)
+                    if post:
+                        for item in post.split(";"):
+                            if not item: continue
+                            k, v = item.split("=", 1)
+                            d = {}
+                            for seg in v.split(":"):
+                                if "=" in seg:
+                                    a, b = seg.split("=",1)
+                                    d[a] = int(b)
+                            link_style[k] = d
+                else:
+                    # not strictly needed, we only read HDN/CX/CY keys below
+                    pass
+            except Exception:
+                pass
 
-            connector = self.uml_data.connectors.loc[l.ConnectorID]
-            if connector.Start_Object_ID not in nodes or connector.End_Object_ID not in nodes:
-                continue
+            role_e = self._edge_role_by_cid.get(cid)
+            edge_hex = EDGE_MAP_CI.get(str(role_e).strip().casefold(), DEFAULT_EDGE_HEX) if role_e else DEFAULT_EDGE_HEX
 
-            # --- edge color from ravensRole tag ---
-            role_edge = edge_roles.get(l.ConnectorID, None)
-            if isinstance(role_edge, float) and pd.isna(role_edge):
-                role_edge = None
-            edge_hex = EDGE_MAP_CI.get(str(role_edge).strip().casefold(), DEFAULT_EDGE_HEX) if role_edge else DEFAULT_EDGE_HEX
-
-            link_data = {
-                "source": str(connector.Start_Object_ID),
-                "target": str(connector.End_Object_ID),
-                "type": str(connector.Connector_Type).lower(),
-                "textStartTop": f"+{connector.SourceRole}" if not pd.isnull(connector.SourceRole) else "",
+            links_data.append({
+                "source": str(s),
+                "target": str(t),
+                "type": str(c["Connector_Type"]).lower(),
+                "textStartTop": f"+{c['SourceRole']}" if pd.notna(c["SourceRole"]) else "",
                 "textStartTopHidden": link_style.get("LLT", {}).get("HDN", 0),
                 "textStartTopXPos": link_style.get("LLT", {}).get("CX", 0.0),
                 "textStartTopYPos": link_style.get("LLT", {}).get("CY", 0.0),
-                "textEndTop": f"+{connector.DestRole}" if not pd.isnull(connector.DestRole) else "",
+                "textEndTop": f"+{c['DestRole']}" if pd.notna(c["DestRole"]) else "",
                 "textEndTopHidden": link_style.get("LRT", {}).get("HDN", 0),
                 "textEndTopXPos": link_style.get("LRT", {}).get("CX", 0.0),
                 "textEndTopYPos": link_style.get("LRT", {}).get("CY", 0.0),
-                "textStartBtm": f"{connector.SourceCard}" if not pd.isnull(connector.SourceCard) else "",
+                "textStartBtm": f"{c['SourceCard']}" if pd.notna(c["SourceCard"]) else "",
                 "textStartBtmHidden": link_style.get("LLB", {}).get("HDN", 0),
                 "textStartBtmXPos": link_style.get("LLB", {}).get("CX", 0.0),
                 "textStartBtmYPos": link_style.get("LLB", {}).get("CY", 0.0),
-                "textEndBtm": f"{connector.DestCard}" if not pd.isnull(connector.DestCard) else "",
+                "textEndBtm": f"{c['DestCard']}" if pd.notna(c["DestCard"]) else "",
                 "textEndBtmHidden": link_style.get("LRB", {}).get("HDN", 0),
                 "textEndBtmXPos": link_style.get("LRB", {}).get("CX", 0.0),
                 "textEndBtmYPos": link_style.get("LRB", {}).get("CY", 0.0),
                 "color": edge_hex,
-            }
-
-            links_data.append(link_data)
+            })
 
         svg_data["links"] = links_data
-
         self._current_diagram = diagram_id
         self._current_svg_data = svg_data
 
     def _create_svg(self):
-        data_json = json.dumps(self._current_svg_data)
+        # write the (possibly large) payload to a temp file instead of passing on CLI
+        data_json = json.dumps(self._current_svg_data, ensure_ascii=False)
+        tf = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8")
+        try:
+            tf.write(data_json)
+            tf.close()
+            json_path = tf.name
 
-        # Call the Node.js script
-        result = subprocess.run(["node", _SVG_RENDERER_PATH, data_json], capture_output=True, text=True)
+            result = subprocess.run(
+                ["node", self._svg_renderer_path, json_path],
+                capture_output=True, text=True
+            )
 
-        if result.stderr:
-            raise Exception(result.stderr)
+            if result.returncode != 0:
+                raise RuntimeError(f"Renderer failed ({result.returncode}):\n{result.stderr}")
 
-        # Get the SVG output
-        self._current_svg = result.stdout
+            self._current_svg = result.stdout
+
+        except FileNotFoundError as e:
+            # Proper message when Node truly isn’t found
+            raise FileNotFoundError(
+                "Node.js not found on PATH. Run `node -v` to verify, then reopen your shell."
+            ) from e
+        finally:
+            try:
+                os.remove(tf.name)
+            except Exception:
+                pass
 
     def _save_current_svg(self, filename: str):
         self._current_svg_data["outputPath"] = filename
@@ -345,17 +450,14 @@ class UMLVisualizer:
         for diagram in self.uml_data.diagrams[self.uml_data.diagrams["Diagram_Type"] == "Logical"].itertuples():
             package_name = str(self.uml_data.packages.loc[diagram.Package_ID].Name).strip()
             try:
-                self._create_svg_data(diagram.Index)  # fixed: no extra uml_data arg
-
-                path = os.path.join(svg_dir_path, f"{str(package_name)}.{str(diagram.Name)}.svg")
+                self._create_svg_data(diagram.Index)
+                path = os.path.join(svg_dir_path, f"{package_name}.{diagram.Name}.svg")
                 self._save_current_svg(path)
-
                 paths.append(path)
-            except Exception as msg:
-                print(f"{str(package_name)}.{str(diagram.Name)} :: {str(diagram.Index)}")
-                print(msg)
+            except Exception as e:
+                print(f"{package_name}.{diagram.Name} :: {diagram.Index}")
+                print(repr(e))  # <= no more lonely 'nan'
                 continue
-
         return paths
 
 
