@@ -707,11 +707,8 @@ class CrowsImport(RavensImport):
         schema: RavensSchema | None = None
     ):
         
-        #Save Ravens Init Parameters
-        self.network_profile = network_profile,
-        self.schema_template = schema_template,
-        self.cim_namespace = cim_namespace,
-        self.schema = schema,
+
+
         # Initialize the parent class with its expected parameters
         super().__init__(
             network_profile = network_profile,
@@ -722,8 +719,12 @@ class CrowsImport(RavensImport):
 
         self.status = 0 #data is un-simplified
         self.__name__ = "User Facing Simplifier"
-
-
+        
+        #Save Ravens Init Parameters
+        self.network_profile = deepcopy(network_profile)
+        self.schema_template = deepcopy(schema_template)
+        self.cim_namespace = deepcopy(cim_namespace)
+        self.schema = deepcopy(schema)
 
         #Simplification Parameters
         self.remove_BIS = remove_BIS

@@ -125,7 +125,6 @@ def wire2PL_compute(raven, output_file = None):
             #A) Setup
             #stores the key for this line segments wire spacing info
             wsi_key = get(wire,"ACLineSegment.WireSpacingInfo").split("::")[-1].strip("'")
-            print(wsi_key)
             #map of phase number to wire info
             wi_keys = {get(phase,"ACLineSegmentPhase.sequenceNumber"):get(phase,"PowerSystemResource.AssetDatasheet").split("::")[-1].strip("'") for phase in get(wire,"ACLineSegment.ACLineSegmentPhase")}
             n_phases = len(wi_keys)
