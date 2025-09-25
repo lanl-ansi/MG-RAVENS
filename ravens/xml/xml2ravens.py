@@ -1,6 +1,5 @@
 import json
 import sys
-sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-Ravens')
 from multiprocessing import Value
 import pathlib
 import re
@@ -719,7 +718,7 @@ class CrowsImport(RavensImport):
 
         self.status = 0 #data is un-simplified
         self.__name__ = "User Facing Simplifier"
-        
+
         #Save Ravens Init Parameters
         self.network_profile = deepcopy(network_profile)
         self.schema_template = deepcopy(schema_template)
