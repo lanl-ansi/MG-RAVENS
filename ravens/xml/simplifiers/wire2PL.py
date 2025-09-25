@@ -124,9 +124,10 @@ def wire2PL_compute(raven, output_file = None):
         if not has(wire,"ACLineSegment.PerLengthImpedance"):
             #A) Setup
             #stores the key for this line segments wire spacing info
-            wsi_key = get(wire,"ACLineSegment.WireSpacingInfo").split(":")[-1].strip("'")
+            wsi_key = get(wire,"ACLineSegment.WireSpacingInfo").split("::")[-1].strip("'")
+            print(wsi_key)
             #map of phase number to wire info
-            wi_keys = {get(phase,"ACLineSegmentPhase.sequenceNumber"):get(phase,"PowerSystemResource.AssetDatasheet").split(":")[-1].strip("'") for phase in get(wire,"ACLineSegment.ACLineSegmentPhase")}
+            wi_keys = {get(phase,"ACLineSegmentPhase.sequenceNumber"):get(phase,"PowerSystemResource.AssetDatasheet").split("::")[-1].strip("'") for phase in get(wire,"ACLineSegment.ACLineSegmentPhase")}
             n_phases = len(wi_keys)
             wi_types = [WIT[wi_key] for wi_key in wi_keys.values()]
             for i in range(1,len(wi_types)):

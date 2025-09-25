@@ -1,4 +1,6 @@
 import json
+import sys
+sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-Ravens')
 from multiprocessing import Value
 import pathlib
 import re
@@ -221,7 +223,11 @@ class PathState:
 
 
 class RavensImport(RDFGraph):
-    def __init__(self, network_profile: pathlib.Path | str | RDFGraph, schema_template: SchemaTemplate | None = None, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, schema: RavensSchema | None = None):
+    def __init__(self, 
+                 network_profile: pathlib.Path | str | RDFGraph, 
+                 schema_template: SchemaTemplate | None = None, 
+                 cim_namespace: str = _DEFAULT_CIM_NAMESPACE, 
+                 schema: RavensSchema | None = None):
         if isinstance(network_profile, RDFGraph):
             self.__dict__ = network_profile.__dict__.copy()
         else:
@@ -579,7 +585,7 @@ class RavensImport(RDFGraph):
                         if _rdf_type is not None and str(_rdf_type).split("#")[-1] == ref.id:
                             data[pn] = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
 
-        if "IdentifiedObject.mRID" not in data.keys() and not self.prune_unncessary:
+        if "IdentifiedObject.mRID" not in data.keys():
             if f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json" in self.schema.schemas and "IdentifiedObject.mRID" in self.schema.schemas[f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json"]["properties"]:
                 data["IdentifiedObject.mRID"] = str(subject)
 
@@ -689,38 +695,35 @@ class RavensImport(RDFGraph):
 
 class CrowsImport(RavensImport):
     def __init__(
-        self, 
-        cim_profile_path: pathlib.PosixPath | str | None = None,  
+        self,
+        network_profile: pathlib.Path | str | RDFGraph,  
+        cim_profile_path: pathlib.PosixPath | str | None = None, 
         remove_BIS: bool = True, 
         simplify_AC: bool = True,
         simplify_tank: bool = True,
         tank_merge: bool = True,
-        schema_template: SchemaTemplate | None = None,
-        prune_unnecessary: bool = False,
-        cim_namespace: str = _DEFAULT_CIM_NAMESPACE,
-        schema: RavensSchema | None = None,
-        cim_profile_rdf: Graph | None = None,
+        schema_template: SchemaTemplate | None = None, 
+        cim_namespace: str = _DEFAULT_CIM_NAMESPACE, 
+        schema: RavensSchema | None = None
     ):
+        
+        #Save Ravens Init Parameters
+        self.network_profile = network_profile,
+        self.schema_template = schema_template,
+        self.cim_namespace = cim_namespace,
+        self.schema = schema,
         # Initialize the parent class with its expected parameters
         super().__init__(
-            cim_profile_path=cim_profile_path,
-            schema_template=schema_template,
-            prune_unnecessary=prune_unnecessary,
-            cim_namespace=cim_namespace,
-            schema=schema,
-            cim_profile_rdf=cim_profile_rdf,
+            network_profile = network_profile,
+            schema_template = schema_template,
+            cim_namespace = cim_namespace,
+            schema = schema,
         )
 
         self.status = 0 #data is un-simplified
         self.__name__ = "User Facing Simplifier"
 
-        #Save Ravens Init Parameters
-        self.cim_profile_path = cim_profile_path
-        self.schema_template = schema_template
-        self.prune_unnecessary = prune_unnecessary
-        self.cim_namespace = cim_namespace
-        self.schema = schema
-        self.cim_profile_rdf = cim_profile_rdf
+
 
         #Simplification Parameters
         self.remove_BIS = remove_BIS
@@ -871,12 +874,10 @@ class CrowsImport(RavensImport):
     def restore_ravens(self):
         'method to re-convert to ravens from the base XML'
         super().__init__( #re-init the parent ImportRavens object to recreate data from raw xml
-            cim_profile_path=self.cim_profile_path,
+            network_profile=self.network_profile,
             schema_template=self.schema_template,
-            prune_unnecessary=self.prune_unnecessary,
             cim_namespace=self.cim_namespace,
-            schema=self.schema,
-            cim_profile_rdf=self.cim_profile_rdf,
+            schema=self.schema
         )
         self.status = 0 #data is un-simplified
     
@@ -903,12 +904,12 @@ class CrowsImport(RavensImport):
 
 if __name__ == "__main__":
     # Creation of MG-RAVENS File from xml 
-    d = RavensImport("examples/IEEE13_Assets.xml")
-    d.dump("examples/IEEE13_Assets.json", indent=2)
+    d = RavensImport("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/IEEE13_Assets.xml")
+    d.dump("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/IEEE13_Assets.json", indent=2)
 
     #Creation of Simplified MG-RAVENS File from xml
-    d2 = CrowsImport("examples/IEEE13_Assets.xml")
-    d2.dump("examples/IEEE13_Assets_simplified.json", indent=2)
+    d2 = CrowsImport("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/IEEE13_Assets.xml")
+    d2.dump("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/IEEE13_Assets_simplified.json", indent=2)
     assert(d2.is_simplified())
     d2.restore_ravens()
     assert(not d2.is_simplified())

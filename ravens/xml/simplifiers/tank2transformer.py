@@ -104,6 +104,7 @@ def tank2transformer_compute(raven,output_file = None, tank_merge = False):
                     
                     #get relevant transformer tank info
                     tank_info_name = get(tank,"PowerSystemResource.AssetDatasheet").split(":")[-1].strip("'")
+                    # tank_info_name = get(tank,"PowerSystemResource.AssetDatasheet").strip("'")
                     TTI = []
                     for tti in TTIs.values():
                         if get(tti,"IdentifiedObject.name") == tank_info_name:
@@ -209,6 +210,7 @@ def create_end(transformer,terminals,pattern,end_num,TTIs):
     }
     tank_end_info = None
     asset_info_name = transformer["PowerTransformer.TransformerTank"][0]["PowerSystemResource.AssetDatasheet"].split(":")[-1].strip("'")
+    # asset_info_name = transformer["PowerTransformer.TransformerTank"][0]["PowerSystemResource.AssetDatasheet"].strip("'")
     for tti in TTIs.values():
         if get(tti,"IdentifiedObject.name") == asset_info_name:
             tank_end_info = tti["PowerTransformerInfo.TransformerTankInfos"][asset_info_name]["TransformerTankInfo.TransformerEndInfos"][0]
