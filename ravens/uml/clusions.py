@@ -32,42 +32,92 @@ class UMLExclusions:
         self.object_ids = [obj.Index for obj in self.uml_data.objects.itertuples() if lambda_func(obj)] + [obj.Index for p in self.package_ids for obj in self.uml_data.objects[self.uml_data.objects["Package_ID"] == p].itertuples()]
 
 
-def get_inclusions(uml_data, package=None):
+class UMLInclusions:
     """
-    Returns dictionary of various IDs that are only found within a
-    specified package. Includes all packages (and objects) contained
-    within the requested package.
+    Mirrors UMLExclusions but for allow-lists.
+    Empty sets mean 'no restriction' for that kind.
     """
+    def __init__(
+        self,
+        object_ids: set[int] | None = None,
+        connector_ids: set[int] | None = None,
+        package_ids: set[int] | None = None,
+        diagram_ids: set[int] | None = None,
+        link_instance_ids: set[int] | None = None,
+        obj_instance_ids: set[int] | None = None,
+    ):
+        self.object_ids        = set(int(x) for x in (object_ids or set()))
+        self.connector_ids     = set(int(x) for x in (connector_ids or set()))
+        self.package_ids       = set(int(x) for x in (package_ids or set()))
+        self.diagram_ids       = set(int(x) for x in (diagram_ids or set()))
+        self.link_instance_ids = set(int(x) for x in (link_instance_ids or set()))
+        self.obj_instance_ids  = set(int(x) for x in (obj_instance_ids or set()))
 
-    inclusions = {}
-    inclusions["Package_ID"] = package_IDs(package_graph(uml_data), package)
-    inclusions["Diagram_ID"] = set(
-        uml_data.diagrams.index[
-            uml_data.diagrams["Package_ID"].isin(inclusions["Package_ID"])
-        ].to_list()
-    )
-    inclusions["link_Instance_ID"] = set(
-        uml_data.diagramlinks.index[
-            uml_data.diagramlinks["DiagramID"].isin(inclusions["Diagram_ID"])
-        ].tolist()
-    )
-    inclusions["Connector_ID"] = set(
-        uml_data.diagramlinks["ConnectorID"][
-            uml_data.diagramlinks["DiagramID"].isin(inclusions["Diagram_ID"])
-        ].tolist()
-    )
-    inclusions["obj_Instance_ID"] = set(
-        uml_data.diagramobjects.index[
-            uml_data.diagramobjects["Diagram_ID"].isin(inclusions["Diagram_ID"])
-        ].tolist()
-    )
-    inclusions["Object_ID"] = set(
-        uml_data.diagramobjects["Object_ID"][
-            uml_data.diagramobjects["Diagram_ID"].isin(inclusions["Diagram_ID"])
-        ].tolist()
+    @classmethod
+    def from_dict(cls, d: dict):
+        return cls(
+            object_ids        = d.get("Object_ID"),
+            connector_ids     = d.get("Connector_ID"),
+            package_ids       = d.get("Package_ID"),
+            diagram_ids       = d.get("Diagram_ID"),
+            link_instance_ids = d.get("link_Instance_ID"),
+            obj_instance_ids  = d.get("obj_Instance_ID"),
+        )
+
+    def allow(self, kind: str, id_value: int) -> bool:
+        """
+        Empty set => allow all. Otherwise require membership.
+        kind ∈ {'object','connector','package','diagram','link_instance','obj_instance'}
+        """
+        sets = {
+            "object":        self.object_ids,
+            "connector":     self.connector_ids,
+            "package":       self.package_ids,
+            "diagram":       self.diagram_ids,
+            "link_instance": self.link_instance_ids,
+            "obj_instance":  self.obj_instance_ids,
+        }
+        s = sets.get(kind)
+        if s is None:
+            raise ValueError(f"Unknown inclusion kind: {kind!r}")
+        return (len(s) == 0) or (int(id_value) in s)
+
+
+def get_inclusions(uml_data, package=None) -> UMLInclusions:
+    def col(df, *names):
+        for n in names:
+            if isinstance(df, pd.DataFrame) and n in df.columns:
+                return n
+        raise KeyError(f"None of {names} in {list(getattr(df, 'columns', []))}")
+
+    pkg_ids = package_IDs(package_graph(uml_data), package)
+    pkg_ids = set(int(x) for x in pkg_ids)
+
+    d_pkg_col = col(uml_data.diagrams, "Package_ID")
+    diagram_ids = set(
+        uml_data.diagrams.index[uml_data.diagrams[d_pkg_col].isin(pkg_ids)].tolist()
     )
 
-    return inclusions
+    dl = uml_data.diagramlinks
+    dl_did = col(dl, "DiagramID", "Diagram_ID")
+    dl_cid = col(dl, "ConnectorID", "Connector_ID")
+    link_instance_ids = set(int(i) for i in dl.index[dl[dl_did].isin(diagram_ids)].tolist())
+    connector_ids = set(int(x) for x in dl[dl_cid][dl[dl_did].isin(diagram_ids)].tolist())
+
+    do = uml_data.diagramobjects
+    do_did = col(do, "Diagram_ID", "DiagramID")
+    do_oid = col(do, "Object_ID", "ObjectID", "ElementID")
+    obj_instance_ids = set(int(i) for i in do.index[do[do_did].isin(diagram_ids)].tolist())
+    object_ids = set(int(x) for x in do[do_oid][do[do_did].isin(diagram_ids)].tolist())
+
+    return UMLInclusions(
+        object_ids=object_ids,
+        connector_ids=connector_ids,
+        package_ids=pkg_ids,
+        diagram_ids=diagram_ids,
+        link_instance_ids=link_instance_ids,
+        obj_instance_ids=obj_instance_ids,
+    )
 
 
 def package_graph(uml_data):

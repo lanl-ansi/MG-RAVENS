@@ -1,8 +1,6 @@
 import os
 import re
 import glob
-import json
-import pathlib
 import pandas as pd
 import networkx as nx
 from typing import Literal, Iterable, Optional
@@ -10,9 +8,7 @@ from typing import Literal, Iterable, Optional
 from ravens.uml import clusions
 from ravens.uml import UMLData, UMLExclusions, validate
 from ravens.uml.visualize import UMLVisualizer
-from ravens.data import _TEMPLATE_JSON_PATH, _TEMPLATE_AUTOJSON_PATH
 from ravens import jps
-
 
 
 from typing import Literal
@@ -20,7 +16,7 @@ import pandas as pd
 import networkx as nx
 import re
 
-class UMLGraphs:
+class UMLGraphsEnhanced:
     """
     JPS rewrite of the UMLGraphs class that constructs the graphs in a way that is
     parseable for validation and ultimately JSON creation.
@@ -28,17 +24,24 @@ class UMLGraphs:
     """
 
     # -------------------- init --------------------
-    def __init__(self, uml_data=None, exclusions=None, schema_template=None):
+    def __init__(self, uml_data=None, exclusions=None, inclusions=None, schema_template=None):
         if uml_data is None:
             uml_data = UMLData()
         self.uml_data = uml_data
         self.exclusions = UMLExclusions() if exclusions is None else exclusions
-        self.inclusions = clusions.get_inclusions(
-            uml_data=self.uml_data, package='SimplifiedDiagrams')
 
-        # template pathing
-        self.path_template_hand = _TEMPLATE_JSON_PATH
-        self.path_template_auto = _TEMPLATE_AUTOJSON_PATH
+        # inclusions has the following keys:
+        # 'Object_ID', 'obj_Instance_ID', 'edge_Instance_ID', 'Connector_ID', 'Diagram_ID', 'Package_ID'
+        if inclusions is not None:
+            inclusions = inclusions or {}
+            self.inclusions = inclusions
+            self._include_sets = {
+                "object":             set(inclusions.get("Object_ID", [])),
+                "obj_instance":       set(inclusions.get("obj_Instance_ID", [])),
+                "connector_instance": set(inclusions.get("edge_Instance_ID", [])),
+                "connector":          set(inclusions.get("Connector_ID", [])),
+                "package":            set(inclusions.get("Package_ID", [])),
+            }
 
         # Only keep this tag
         self.tag_name_filter = "ravensRole"
@@ -54,49 +57,14 @@ class UMLGraphs:
             ).to_dict()
         )
 
-        self.G = self.build_G()            # generalization (child -> parent), no inclusions
-        self.GR = self.G.reverse(copy=False)
-        self.A = self.build_A()            # association graph, honors self.inclusions if set
+        # self.graph = self.build_association_graph(inclusions=clusions.get_inclusions(uml_data, package='RAVENS'))
+
+        self.H  = self.build_generalization_graph()          # child -> parent
+        self.HR = self.H.reverse(copy=False)                 # parent -> child
+
 
         if schema_template is not None:
             self._build_subgraphs_from_template(schema_template)
-
-    def _allow(self, kind: str, id_value: int) -> bool:
-        """
-        Unified inclusions check.
-        - If self.inclusions is None: allow everything.
-        - If it's UMLInclusions: delegate to .allow(kind, id).
-        - If it's the old dict-shaped inclusions: check membership by mapped key.
-        Empty sets mean 'no restriction' for that kind.
-        """
-        inc = getattr(self, "inclusions", None)
-        if inc is None:
-            return True
-
-        # New style: UMLInclusions
-        if hasattr(inc, "allow") and callable(getattr(inc, "allow")):
-            return inc.allow(kind, int(id_value))
-
-        # Back-compat: dict-shaped inclusions from clusions.get_inclusions
-        key_map = {
-            "object":        "Object_ID",
-            "connector":     "Connector_ID",
-            "package":       "Package_ID",
-            "diagram":       "Diagram_ID",
-            "link_instance": "link_Instance_ID",
-            "obj_instance":  "obj_Instance_ID",
-        }
-        key = key_map.get(kind)
-        if key is None:
-            raise ValueError(f"Unknown inclusion kind: {kind!r}")
-
-        vals = inc.get(key, set()) or set()
-        # normalize to ints
-        try:
-            s = {int(v) for v in vals}
-        except Exception:
-            s = set(vals)
-        return (len(s) == 0) or (int(id_value) in s)
 
     # -------------------- graph build --------------------
     def build_graph(self) -> nx.MultiDiGraph:
@@ -106,637 +74,153 @@ class UMLGraphs:
         return G
 
 
-    def build_G(self) -> nx.DiGraph:
-        """
-        Generalization graph (child -> parent), built from the ENTIRE EA model,
-        ignoring inclusions. Nodes = ALL classes; edges = Generalization only.
-        """
-        G = nx.DiGraph()
-        # Add all class nodes (no inclusions filter here)
-        for oid, row in self.uml_data.objects.iterrows():
-            if str(row.get("Object_Type", "")) != "Class":
-                continue
-            G.add_node(int(oid), **{
-                "Name": str(row.get("Name") or ""),
-                "ravensRole": self.role_for_object(int(oid)),
-                "Package_ID": row.get("Package_ID"),
-                "Stereotype": row.get("Stereotype"),
-            })
+    def _add_enhanced_class_nodes_to_graph(self, G: nx.MultiDiGraph) -> nx.MultiDiGraph:
+        # Optional perf: pre-group diagramobjects by Object_ID
+        do = self.uml_data.diagramobjects
+        by_obj = do.groupby("Object_ID", sort=False) if isinstance(do, pd.DataFrame) and "Object_ID" in do.columns else None
 
-        # Add Generalization edges (EA: Start=child, End=parent)
-        for cid, crow in self.uml_data.connectors.iterrows():
-            if str(crow.get("Connector_Type", "")) != "Generalization":
+        for oid, row in self.uml_data.objects.iterrows():
+            # Inclusion & type filter 
+            if (
+                not self.inclusions is not None and self._is_included(oid, "object")
+                or row.Object_Type != "Class"
+                or oid in self.exclusions.object_ids
+                or row.Package_ID in self.exclusions.package_ids
+            ):
                 continue
-            child  = int(crow.Start_Object_ID)
-            parent = int(crow.End_Object_ID)
-            if child in G and parent in G and child != parent:
-                G.add_edge(child, parent, Connector_ID=int(cid))
+
+            node_attrs = {
+                "Name": str(row.Name),
+                "Object_Type": row.Object_Type,
+                "Package_ID": row.Package_ID,
+                "Stereotype": row.get("Stereotype", None),
+            }
+            node_role = self.role_for_object(int(oid))
+            node_attrs["ravensRole"] = node_role
+
+            # ---------- gather instance-level data ----------
+            if by_obj is not None and oid in by_obj.groups:
+                instances = by_obj.get_group(oid)
+            else:
+                instances = pd.DataFrame(columns=["Diagram_ID", "Object_ID", "InstanceID"])
+
+            inst_attrs = {
+                "Package_ID":   [],
+                "Package_Name": [],
+                "Instance_ID":  [],
+                "DiagramName":  [],
+            }
+
+            for iid, inst in instances.iterrows():
+                if not self._is_included(iid, "obj_instance"):
+                    continue
+
+                # Diagram id (compat for DiagramID vs Diagram_ID on diagramobjects)
+                did = inst["Diagram_ID"] if "Diagram_ID" in inst.index else inst.get("DiagramID")
+                if pd.isna(did):
+                    continue
+                did = int(did)
+
+                if did not in self.uml_data.diagrams.index:
+                    continue
+
+                pkg_id = int(self.uml_data.diagrams.loc[did]["Package_ID"])
+                if not self._is_included(pkg_id, "package"):
+                    continue
+
+                inst_attrs["Package_ID"].append(pkg_id)
+                if pkg_id in self.uml_data.packages.index:
+                    inst_attrs["Package_Name"].append(self.uml_data.packages.loc[pkg_id]["Name"])
+                else:
+                    inst_attrs["Package_Name"].append(None)
+                inst_attrs["Instance_ID"].append(int(iid))
+                inst_attrs["DiagramName"].append(self.uml_data.diagrams.loc[did]["Name"])
+
+            # attach instance details only if any survived filtering
+            if any(len(v) for v in inst_attrs.values()):
+                node_attrs["instances"] = inst_attrs
+
+            G.add_node(int(oid), **node_attrs)
 
         return G
-    
 
-    def build_A(self) -> nx.MultiDiGraph:
-        """
-        Association/Aggregation/Composition graph (label-directed).
-        Honors inclusions strictly via:
-        - nodes: Object_ID
-        - edges: Connector_ID
-        - edge instances: link_Instance_ID and Diagram_ID
-        No package checks here.
-        """
-        A = nx.MultiDiGraph()
-
-        # ---- nodes: include by Object_ID only ----
-        for oid, row in self.uml_data.objects.iterrows():
-            if str(row.get("Object_Type", "")) != "Class":
-                continue
-            if not self._is_included(int(oid), "object"):
-                continue
-            A.add_node(int(oid), **{
-                "Name": str(row.get("Name") or ""),
-                "ravensRole": self.role_for_object(int(oid)),
-                "Package_ID": row.get("Package_ID"),
-                "Stereotype": row.get("Stereotype"),
-            })
-
-        # ---- edges: Association / Aggregation / Composition only ----
-        dl = getattr(self.uml_data, "diagramlinks", None)
+    # -------------------- edges --------------------
+    def _add_enhanced_edges_to_graph(self, G: nx.MultiDiGraph) -> nx.MultiDiGraph:
+        dl = self.uml_data.diagramlinks
         if not isinstance(dl, pd.DataFrame) or dl.empty:
-            return A
-
-        ASSOCIATION_TYPES = {"Association", "Aggregation", "Composition"}
-        diagrams_df = self.uml_data.diagrams
-
-        # Normalize common column names from diagramlinks
+            return G
         cid_col = "ConnectorID" if "ConnectorID" in dl.columns else ("Connector_ID" if "Connector_ID" in dl.columns else None)
-        did_col = "DiagramID"   if "DiagramID"   in dl.columns else ("Diagram_ID"   if "Diagram_ID"   in dl.columns else None)
-        if cid_col is None or did_col is None:
-            return A
+        if cid_col is None:
+            return G
+        did_col_cand = ("DiagramID", "Diagram_ID")
 
         for cid, crow in self.uml_data.connectors.iterrows():
-            ctype = str(crow.get("Connector_Type", ""))
-            if ctype not in ASSOCIATION_TYPES:
+            s_id, e_id = crow.Start_Object_ID, crow.End_Object_ID
+            if not all(n in G for n in (s_id, e_id)):
                 continue
-            if not self._is_included(int(cid), "connector"):
+            if not all(self._is_included(n, "object") for n in (s_id, e_id)):
                 continue
-
-            s_id, e_id = int(crow.Start_Object_ID), int(crow.End_Object_ID)
-            if not (s_id in A and e_id in A):
+            if not self._is_included(cid, "connector"):
                 continue
 
-            # diagramlink rows for this connector
-            rows = dl.loc[dl[cid_col] == cid]
-            if rows.empty:
-                continue
+            # All diagram instances for this connector
+            do_insts = dl.loc[dl[cid_col] == cid]
 
-            for iid, irow in rows.iterrows():
-                # link-instance & diagram gating
-                if not self._is_included(int(iid), "link_instance"):
+            for iid, irow in do_insts.iterrows():  # iid is row index (instance id)
+                # diagram id column on diagramlinks may vary
+                did = None
+                for dcol in did_col_cand:
+                    if dcol in irow.index:
+                        did = irow[dcol]
+                        break
+                if pd.isna(did):
                     continue
-                did = int(irow[did_col])
-                if not self._is_included(did, "diagram"):
-                    continue
-                if did not in diagrams_df.index:
+                did = int(did)
+
+                if did not in self.uml_data.diagrams.index:
                     continue
 
+                # Ensure instance occurs in included package
+                pkg_id = int(self.uml_data.diagrams.loc[did]["Package_ID"])
+                if not self._is_included(pkg_id, "package"):
+                    continue
+
+                # Base attrs (orientation-independent) - tag-first
                 edge_attrs = {
-                    "Diagram":        str(diagrams_df.loc[did].get("Name") or ""),
+                    "Diagram":        self.uml_data.diagrams.loc[did]["Name"],
                     "DiagramID":      did,
                     "InstanceID":     int(iid),
                     "ConnectorID":    int(cid),
-                    "Connector_Type": ctype,
+                    "Connector_Type": crow.Connector_Type,
+                    # "ravensRole":     self.role_for_connector(int(cid)),
                 }
 
-                # labels/multiplicity
-                label_info = jps.parse_connector_label_info(irow, crow)
-                mult_info  = jps.parse_multiplicity(label_info)
-                start_mult = mult_info.get("start_mult", "")
-                end_mult   = mult_info.get("end_mult", "")
+                # Parse labels & multiplicity once (relative to canonical Start/End)
+                label_info   = jps.parse_connector_label_info(irow, crow)
+                mult_info    = jps.parse_multiplicity(label_info)  # {'start_mult':..., 'end_mult':...}
+                start_mult   = mult_info.get("start_mult", "")
+                end_mult     = mult_info.get("end_mult", "")
 
-                # direction from labels; fallback to bidirectional
-                try:
-                    edges_w_dir = jps.connector_directionality_from_labels(
-                        label_info, connector_type=ctype, s_id=s_id, e_id=e_id
-                    )
-                except Exception:
-                    edges_w_dir = [(s_id, e_id, ""), (e_id, s_id, "")]
+                # Get directed edges from labels
+                edges_w_dir = jps.connector_directionality_from_labels(
+                    label_info,
+                    connector_type=crow.Connector_Type,
+                    s_id=s_id,
+                    e_id=e_id,
+                )
 
                 for u, v, lbl in edges_w_dir:
-                    if u not in A or v not in A:
-                        continue
                     oriented = jps.orient_edge_attrs_for_direction(
-                        edge_attrs.copy(),
-                        u=u, v=v, s_id=s_id, e_id=e_id,
+                        edge_attrs.copy(),  # copy to keep base attrs per edge
+                        u=u, v=v,
+                        s_id=s_id, e_id=e_id,
                         start_mult=start_mult, end_mult=end_mult,
                         objects_df=self.uml_data.objects,
                     )
                     oriented["label"] = lbl
-                    A.add_edge(int(u), int(v), **oriented)
+                    G.add_edge(int(u), int(v), **oriented)
 
-        return A
-    
-    def _is_included(self, id_value, kind: str) -> bool:
-        """Compatibility wrapper so older code that calls _is_included still works."""
-        return self._allow(kind, int(id_value))
-    
-    def _root_id(self) -> int:
-        """Return the Object_ID of the class literally named 'Root'. Raises if missing."""
-        objs = getattr(self.uml_data, "objects", None)
-        if objs is None or objs.empty:
-            raise ValueError("uml_data.objects is empty; cannot locate 'Root'.")
-        matches = [int(i) for i, nm in objs["Name"].items() if str(nm).strip() == "Root"]
-        if not matches:
-            raise ValueError("No class named 'Root' found in EA objects.")
-        return matches[0]
-
-    def first_level_neighbors_of_root(self) -> list[str]:
-        """
-        Names of classes adjacent to literal 'Root' in A (undirected).
-        Returns [] if Root or A are missing.
-        """
-        try:
-            root_ids = [int(i) for i, nm in self.uml_data.objects["Name"].items()
-                        if str(nm).strip() == "Root"]
-        except Exception:
-            root_ids = []
-        if not root_ids or not hasattr(self, "A") or self.A is None:
-            return []
-        root_id = root_ids[0]
-        if root_id not in self.A:
-            # If A was built before the fix, rebuild once here.
-            self.A = self.build_A()
-            if root_id not in self.A:
-                return []
-
-        neigh = set(self.A.successors(root_id)) | set(self.A.predecessors(root_id))
-        names = []
-        for n in neigh:
-            try:
-                nm = str(self.uml_data.objects.loc[int(n), "Name"]).strip()
-            except Exception:
-                nm = ""
-            if nm and nm != "Root":
-                names.append(nm)
-        return sorted(set(names), key=str.casefold)
-
-    
-    def _load_template(self, template: dict | str | None, *, which: str) -> dict:
-        """
-        Load a template from a dict or a filesystem path. If None, tries the
-        persisted path (self.path_template_hand / self.path_template_auto depending on 'which').
-        """
-        if template is None:
-            if which == "hand":
-                template = self.path_template_hand
-            elif which == "auto":
-                template = self.path_template_auto
-            else:
-                raise ValueError("which must be 'hand' or 'auto'")
-
-        if template is None:
-            raise ValueError(f"No {which} template provided and no persisted path set.")
-
-        if isinstance(template, dict):
-            return template
-
-        import json, pathlib
-        p = pathlib.Path(str(template))
-        if not p.exists():
-            raise FileNotFoundError(f"{which} template not found at: {p}")
-        return json.loads(p.read_text(encoding="utf-8"))
-
-
-    def generate_auto_template_skeleton(self, out_path: str | None = None) -> dict:
-        """
-        First-step skeleton:
-        • Root object
-        • First-level properties = A-neighbors of literal 'Root' (by name), each emitted as an object stub
-        Writes to `out_path` if provided; else uses self.path_template_auto if set.
-        """
-        targets = out_path or self.path_template_auto
-
-        names = self.first_level_neighbors_of_root()
-        schema = {
-            "title": "Root",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": "https://example.org/schema/Root.json",
-            "type": "object",
-            "properties": {},
-        }
-        for nm in names:
-            schema["properties"][nm] = {
-                "$objectType": "object",
-                "$objectId": nm,
-                "type": "object",
-                "properties": {}
-            }
-
-        if targets:
-            import json, pathlib
-            p = pathlib.Path(str(targets))
-            p.parent.mkdir(parents=True, exist_ok=True)
-            p.write_text(json.dumps(schema, indent=2), encoding="utf-8")
-        return schema
-    
-
-    def validate_root_paths(self) -> dict:
-        """
-        For each ravensRole=rootClass, check reachability to literal 'Root' in A (undirected).
-        Returns { 'ok': [...names], 'broken': [...names] }.
-        """
-        # locate Root id
-        try:
-            root_ids = [int(i) for i, nm in self.uml_data.objects["Name"].items() if str(nm).strip() == "Root"]
-        except Exception:
-            root_ids = []
-        if not root_ids or not hasattr(self, "A") or self.A is None:
-            return {"ok": [], "broken": []}
-        root_id = root_ids[0]
-
-        # collect all rootClass nodes
-        roots = []
-        for n in self.A.nodes():
-            role = (self.role_for_object(int(n)) or "").strip()
-            if role == "rootClass":
-                try:
-                    nm = str(self.uml_data.objects.loc[int(n), "Name"]).strip()
-                except Exception:
-                    nm = str(n)
-                roots.append((int(n), nm))
-
-        # make an undirected view of A for reachability
-        U = self.A.to_undirected(as_view=True)
-        ok, broken = [], []
-        for nid, nm in roots:
-            if nid in U and root_id in U and nx.has_path(U, nid, root_id):
-                ok.append(nm)
-            else:
-                broken.append(nm)
-        ok.sort(key=str.casefold)
-        broken.sort(key=str.casefold)
-        return {"ok": ok, "broken": broken}
-
-
-    def validate_root_neighbors_against_template(self, template: dict | str | None = None) -> dict:
-        """
-        Compare:
-        • Expected = names adjacent to literal 'Root' in A (undirected)
-        • Actual   = first-level property names under 'Root' in the given template
-        If template is None, uses self.path_template_hand.
-        """
-        tpl = self._load_template(template, which="hand")
-        # pull top-level properties under Root
-        actual = sorted((tpl.get("properties") or {}).keys(), key=str.casefold)
-
-        expected = self.first_level_neighbors_of_root()
-
-        exp_set, act_set = set(expected), set(actual)
-        return {
-            "expected": expected,
-            "actual": actual,
-            "missing_in_template": sorted(exp_set - act_set, key=str.casefold),
-            "extra_in_template":   sorted(act_set - exp_set, key=str.casefold),
-        }
-
-
-    def validate_all(self, *, template: dict | str | None = None) -> dict:
-        """
-        Run available validations. If a template is provided (dict or path), includes
-        the root-neighbor comparison; otherwise skips it.
-        """
-        result = {
-            "root_paths": self.validate_root_paths()
-        }
-        if template is not None:
-            result["root_neighbors_vs_template"] = self.validate_root_neighbors_against_template(template)
-        return result
-
-    def validate_and_report(self) -> dict:
-        out = {"root_paths": self.validate_root_paths()}
-        out["root_neighbors_vs_template"] = self.validate_root_neighbors_against_template(None)
-        # pretty print using persisted hand path
-        self.print_root_neighbor_diff(None, title="Root neighbors vs HAND template (persisted)")
-        return out
-
-
-    def print_root_neighbor_diff(self, template: dict | str | None = None,
-                                *, title: str | None = None) -> str:
-        title = title or "Root neighbors vs hand template"
-        diff = self.validate_root_neighbors_against_template(template)
-
-        missing = diff["missing_in_template"]
-        extra   = diff["extra_in_template"]
-        expected = diff["expected"]
-        actual   = diff["actual"]
-
-        lines = []
-        lines.append(f"=== {title} ===")
-        lines.append(f"Expected (A neighbors): {len(expected)}  |  Actual (template): {len(actual)}")
-        lines.append("")
-
-        if not missing and not extra:
-            lines.append("✓ Perfect match.")
-        else:
-            if missing:
-                lines.append(f"✗ Missing in template ({len(missing)}):")
-                lines.extend([f"  - {n}"] for n in missing)
-            else:
-                lines.append("✓ No items missing from template.")
-            lines.append("")
-            if extra:
-                lines.append(f"✗ Extra in template ({len(extra)}):")
-                lines.extend([f"  - {n}"] for n in extra)
-            else:
-                lines.append("✓ No extra items in template.")
-        lines.append("")
-        text = "\n".join(line if isinstance(line, str) else line[0] for line in lines)
-        print(text)
-        return text
-
-    def walk(
-        self,
-        start_id: int,
-        *,
-        graph: str = "A",          # "A" (associations) or "G" (generalization)
-        direction: str | None = None,
-        max_depth: int | None = None,
-        include_start: bool = False,
-        return_paths: bool = False,
-        dedupe: bool = True,
-        edge_pred=None,            # callable(u, v, edge_data) -> bool  | None
-        node_pred=None,            # callable(n, node_data) -> bool     | None
-    ):
-        """
-        BFS traversal that RETURNS A LIST (not a generator).
-
-        Parameters
-        ----------
-        start_id : int
-            Node to start from (works for any node present in the chosen graph).
-        graph : "A" | "G"
-            Which graph to walk. "A" uses self.A (associations/aggregations; MultiDiGraph).
-            "G" uses self.H (generalization; DiGraph oriented child->parent).
-        direction :
-            For graph="A": "out" | "in" | "undirected" (default: "undirected")
-            For graph="G": "up" | "down" | "both"      (default: "down")
-            - "up"   = to parents (H.successors)
-            - "down" = to children (H.predecessors)
-        max_depth : int | None
-            Maximum number of edges from start to include (None = unbounded).
-        include_start : bool
-            If True, include the start node in results.
-        return_paths : bool
-            If True, return list of (node_id, path_node_ids) tuples where path includes the start.
-            If False, return list of node_ids.
-        dedupe : bool
-            If True, never revisit a node (prevents cycles/duplicates).
-        edge_pred : callable(u, v, edge_data) -> bool | None
-            If provided, only traverse edges for which this returns True.
-            For MultiDiGraph (A), edge_data is one of the parallel edges; neighbor allowed if ANY edge passes.
-        node_pred : callable(n, node_data) -> bool | None
-            If provided, only enqueue/return nodes for which this returns True.
-
-        Returns
-        -------
-        list
-            If return_paths=False: [node_id, ...]
-            If return_paths=True:  [(node_id, [start_id, ..., node_id]), ...]
-        """
-        # --- pick the graph ---
-        if graph == "A":
-            G = getattr(self, "A", None)
-            if G is None:
-                raise RuntimeError("Association graph 'A' is not built on this instance.")
-            kind = "A"
-            # default direction for A
-            direction = (direction or "undirected").lower()
-            if direction not in ("out", "in", "undirected"):
-                raise ValueError("direction must be 'out', 'in', or 'undirected' for graph='A'")
-        elif graph == "G":
-            G = getattr(self, "H", None)
-            if G is None:
-                raise RuntimeError("Generalization graph 'G' (self.H) is not built on this instance.")
-            kind = "G"
-            # default direction for G
-            direction = (direction or "down").lower()
-            if direction not in ("up", "down", "both"):
-                raise ValueError("direction must be 'up', 'down', or 'both' for graph='G'")
-        else:
-            raise ValueError("graph must be 'A' or 'G'")
-
-        if start_id not in G:
-            return []
-
-        from collections import deque
-
-        # neighbor selector
-        def neighbors_A(n: int):
-            if direction == "out":
-                neighs = set(G.successors(n))
-            elif direction == "in":
-                neighs = set(G.predecessors(n))
-            else:  # undirected
-                neighs = set(G.successors(n)) | set(G.predecessors(n))
-            if edge_pred is None:
-                return list(neighs)
-            # apply edge predicate: keep neighbor if ANY parallel edge (in any direction we consider) passes
-            kept = []
-            for v in neighs:
-                ok = False
-                if G.has_edge(n, v):
-                    for k, d in G.get_edge_data(n, v).items():
-                        if edge_pred(n, v, d):
-                            ok = True; break
-                if not ok and direction in ("in", "undirected") and G.has_edge(v, n):
-                    for k, d in G.get_edge_data(v, n).items():
-                        if edge_pred(v, n, d):
-                            ok = True; break
-                if ok:
-                    kept.append(v)
-            return kept
-
-        def neighbors_G(n: int):
-            # self.H is oriented child -> parent
-            up_parents    = set(G.successors(n))   # to parents
-            down_children = set(G.predecessors(n)) # to children
-            if direction == "up":
-                neighs = up_parents
-            elif direction == "down":
-                neighs = down_children
-            else:  # both
-                neighs = up_parents | down_children
-            # no parallel edges in DiGraph; apply edge_pred if provided using placeholder edge data
-            if edge_pred is None:
-                return list(neighs)
-            kept = []
-            for v in neighs:
-                d = G.get_edge_data(n, v, default={})
-                # Some callers may not care about edge_data content for H; pass a minimal dict
-                if edge_pred(n, v, d if d is not None else {}):
-                    kept.append(v)
-            return kept
-
-        get_neighbors = neighbors_A if kind == "A" else neighbors_G
-
-        # BFS
-        q = deque()
-        visited = set()
-        results = []
-
-        # seed
-        if include_start:
-            if (node_pred is None) or node_pred(start_id, self.graph.nodes.get(start_id, {})):
-                results.append((start_id, [start_id]) if return_paths else start_id)
-        q.append((start_id, [start_id], 0))
-        if dedupe:
-            visited.add(start_id)
-
-        while q:
-            node, path, depth = q.popleft()
-
-            if (max_depth is not None) and (depth >= max_depth):
-                continue
-
-            # expand
-            neighs = sorted(get_neighbors(node), key=lambda x: (str(self.graph.nodes.get(x, {}).get("Name") or "")).casefold())
-            for v in neighs:
-                if dedupe and (v in visited):
-                    continue
-                if (node_pred is not None) and (not node_pred(v, self.graph.nodes.get(v, {}))):
-                    # skip enqueuing and skip returning this node
-                    continue
-
-                new_path = path + [v]
-                if return_paths:
-                    results.append((v, new_path))
-                else:
-                    results.append(v)
-
-                q.append((v, new_path, depth + 1))
-                if dedupe:
-                    visited.add(v)
-
-        return results
-
-
-    
-    def report_root_connections(self) -> list[tuple[str, str, str]]:
-        """
-        Find classes connected to 'Root' by association/aggregation in A.
-        Returns list of (OtherClassName, ConnectorType, DiagramName).
-        """
-        # find Root id
-        root_ids = [int(i) for i, r in self.uml_data.objects["Name"].items() if str(r) == "Root"]
-        if not root_ids:
-            return []
-        root_id = root_ids[0]
-
-        out = []
-        for u, v, k, d in self.A.edges(keys=True, data=True):
-            if u == root_id or v == root_id:
-                other = v if u == root_id else u
-                out.append((str(self.uml_data.objects.loc[other]["Name"]),
-                            str(d.get("Connector_Type") or ""),
-                            str(d.get("Diagram") or "")))
-        # de-dup & sort
-        out = sorted(set(out), key=lambda t: (t[0].casefold(), t[1], t[2].casefold()))
-        return out
-
-    def report_container_neighborhood(self) -> list[tuple[str, list[str]]]:
-        """
-        For each rootClass, list the contiguous chain of notConcrete parents in G
-        (closest first). This is *report-only* to guide later placement.
-        """
-        def role(n): return (self.role_for_object(int(n)) or "").strip()
-        roots = [n for n in self.G.nodes if role(n) == "rootClass"]
-        not_concrete = {"containerClass", "substitutableClass", "inheritOnlyClass", "yellowClass", "compoundClass", ""}
-
-        rows = []
-        for r in sorted(roots, key=lambda n: str(self.uml_data.objects.loc[n]["Name"]).casefold()):
-            chain = []
-            frontier = [r]
-            seen = set([r])
-            while frontier:
-                cur = frontier.pop()
-                for parent in self.G.successors(cur):  # child -> parent
-                    if parent in seen:
-                        continue
-                    seen.add(parent)
-                    if role(parent) in not_concrete:
-                        chain.append(str(self.uml_data.objects.loc[parent]["Name"]))
-                        frontier.append(parent)  # keep climbing only through notConcrete
-            rows.append((str(self.uml_data.objects.loc[r]["Name"]), chain))
-        return rows
-    
-    def report_substitutable_coverage(self) -> list[dict]:
-        """
-        For each substitutableClass node, list concrete descendants and whether each
-        has a canonical definition under Root (i.e., is a rootClass).
-        """
-        def name(n): return str(self.uml_data.objects.loc[n]["Name"])
-        def role(n): return (self.role_for_object(int(n)) or "").strip()
-
-        concrete = {n for n in self.G.nodes if role(n) in ("rootClass", "embeddedClass")}
-        roots    = {n for n in self.G.nodes if role(n) == "rootClass"}
-        subs     = [n for n in self.G.nodes if role(n) == "substitutableClass"]
-
-        rows = []
-        for s in sorted(subs, key=lambda n: name(n).casefold()):
-            desc = {d for d in nx.descendants(self.GR, s) if d in concrete}
-            variants = []
-            for d in sorted(desc, key=lambda n: name(n).casefold()):
-                variants.append({
-                    "variant": name(d),
-                    "concreteRole": role(d),
-                    "emittedAsCanonical": bool(d in roots),
-                    "referencePathIfEmitted": f"Root/{name(d)}" if d in roots else ""
-                })
-            rows.append({
-                "substitutable": name(s),
-                "variant_count": len(variants),
-                "variants": variants
-            })
-        return rows
-    
-    def validate_h_only_expectations(self) -> dict:
-        """
-        Lightweight checks your mentor asked for (H-only):
-        - Every rootClass is emitted at Root (report only: list their names).
-        - Walking down from any rootClass in GR should NOT pass through embeddedClass nodes.
-        - Every substitutableClass anyOf has at least one concrete option (by G).
-        Returns a dict of issues.
-        """
-        def name(n): return str(self.uml_data.objects.loc[n]["Name"])
-        def role(n): return (self.role_for_object(int(n)) or "").strip()
-
-        issues = {"embedded_below_root": [], "substitutable_with_no_variants": []}
-
-        roots   = [n for n in self.G.nodes if role(n) == "rootClass"]
-        concrete = {n for n in self.G.nodes if role(n) in ("rootClass", "embeddedClass")}
-        subs    = [n for n in self.G.nodes if role(n) == "substitutableClass"]
-
-        # embedded below roots (in G-only)
-        for r in roots:
-            bad = []
-            for d in nx.descendants(self.GR, r):
-                if role(d) == "embeddedClass":
-                    bad.append(name(d))
-            if bad:
-                issues["embedded_below_root"].append({"root": name(r), "embedded_found": sorted(set(bad))})
-
-        # substitutable with no concrete variants
-        for s in subs:
-            has_variant = False
-            for d in nx.descendants(self.GR, s):
-                if d in concrete:
-                    has_variant = True
-                    break
-            if not has_variant:
-                issues["substitutable_with_no_variants"].append(name(s))
-
-        return issues
-
-
+        return G
 
 
     def _ensure_indexes(self):
@@ -1336,6 +820,16 @@ class UMLGraphs:
         return pd.DataFrame(rows, columns=["Start_Object_ID","End_Object_ID","Connector_ID","ravensRole","Connector_Type","Diagram_ID"])
 
 
+    # Inclusion helpers
+    IdKind = Literal["object", "obj_instance", "connector_instance", "connector", "package"]
+    def _is_included(self, id_value, kind: IdKind) -> bool:
+        try:
+            container = self._include_sets[kind]
+        except KeyError:
+            raise ValueError(f"Unknown id kind: {kind!r}")
+        return (not container) or (id_value in container)
+
+
     def export_ea_jscript_all(
         self,
         role_sets: dict | None = None,
@@ -1456,3 +950,246 @@ class UMLGraphs:
         return script
 
 
+class UMLGraphs:
+    def __init__(self, uml_data=None, exclusions=None, inclusions=None, schema_template=None):
+        if uml_data is None:
+            uml_data = UMLData()
+        self.uml_data = uml_data
+        self.exclusions = UMLExclusions() if exclusions is None else exclusions
+
+        # inclusions has the following keys:
+        # 'Object_ID', 'obj_Instance_ID', 'link_Instance_ID', 'Connector_ID', 'Diagram_ID', 'Package_ID'
+        inclusions = inclusions or {}
+        self.inclusions = inclusions
+        self.included_object_ids = set(inclusions.get('Object_ID', []))
+        self.included_obj_instance_ids = set(inclusions.get('obj_Instance_ID', []))
+        self.included_link_instance_ids = set(inclusions.get('link_Instance_ID', []))
+        # The rest (Connector_ID, Diagram_ID, Package_ID) can be added similarly as needed
+
+        self.gen_graph = self.build_generalization_graph()
+        self.attr_graph = self.build_attribute_graph()
+        self.assoc_graph = self.build_association_graph()
+        self.graph = nx.compose_all([self.gen_graph, self.attr_graph, self.assoc_graph])
+        self.subgraphs = {}
+
+        if schema_template is not None:
+            self._build_subgraphs_from_template(schema_template)
+
+    # Inclusion helpers
+    def _is_object_included(self, object_id):
+        # If not filtering by object_id, always include
+        return (not self.included_object_ids) or (object_id in self.included_object_ids)
+
+    def _is_obj_instance_included(self, instance_id):
+        return (not self.included_obj_instance_ids) or (instance_id in self.included_obj_instance_ids)
+
+    def _is_link_instance_included(self, instance_id):
+        return (not self.included_link_instance_ids) or (instance_id in self.included_link_instance_ids)
+
+    # Main node addition
+    def _add_enhanced_class_nodes_to_graph(self, G):
+        for oid, row in self.uml_data.objects.iterrows():
+            if (
+                not self._is_object_included(oid)
+                or row.Object_Type != "Class"
+                or pd.notnull(row.Stereotype)
+                or oid in self.exclusions.object_ids
+                or row.Package_ID in self.exclusions.package_ids
+            ):
+                continue
+
+            node_attrs = {
+                "Name": str(row.Name),
+                "Object_Type": row.Object_Type,
+                "Note": str(row.Note),
+                "Package_ID": row.Package_ID,
+            }
+
+            # ---------- gather instance-level data ----------
+            instances = self.uml_data.diagramobjects[
+                self.uml_data.diagramobjects["Object_ID"] == oid
+            ]
+
+            inst_attrs = {
+                "Package_ID": [],
+                "Package_Name": [],
+                "Instance_ID": [],
+                "DiagramName": [],
+            }
+
+            for iid, inst in instances.iterrows():
+                if not self._is_obj_instance_included(iid):
+                    continue
+                did = inst.Diagram_ID
+                if did not in self.uml_data.diagrams.index:
+                    continue
+
+                pkg_id = int(self.uml_data.diagrams.loc[did]["Package_ID"])
+                inst_attrs["Package_ID"].append(pkg_id)
+                inst_attrs["Package_Name"].append(
+                    self.uml_data.packages.loc[pkg_id]["Name"]
+                )
+                inst_attrs["Instance_ID"].append(iid)
+                inst_attrs["DiagramName"].append(self.uml_data.diagrams.loc[did]["Name"])
+
+            # attach instance details only if any survived filtering
+            if any(len(v) for v in inst_attrs.values()):
+                node_attrs["instances"] = inst_attrs
+
+            G.add_node(oid, **node_attrs)
+
+        return G
+
+    def _add_enhanced_edges_to_graph(self, G, connector_types=("Association", "Aggregation", "Generalization")):
+        for cid, row in self.uml_data.connectors.iterrows():
+            if row.Connector_Type not in connector_types:
+                continue
+            s_id, e_id = row.Start_Object_ID, row.End_Object_ID
+            if not all(n in G for n in [s_id, e_id]):
+                continue
+            if not all(self._is_object_included(n) for n in [s_id, e_id]):
+                continue
+
+            edge_attrs = {
+                "Connector_ID": cid,
+                "Connector_Type": row.Connector_Type,
+                "SourceCard": row.SourceCard,
+                "DestCard": row.DestCard,
+                "SourceRole": row.SourceRole,
+                "DestRole": row.DestRole,
+                "startlabel": jps.parse_connector_labels(row)[0],
+                "endlabel": jps.parse_connector_labels(row)[1],
+            }
+
+            # Connector/link instances (filter by included_link_instance_ids)
+            insts = self.uml_data.diagramlinks[self.uml_data.diagramlinks["ConnectorID"] == cid]
+            inst_attrs = {"iid": [], "did": [], "i_start_hidden": [], "i_end_hidden": []}
+            for iid, inst_row in insts.iterrows():
+                if not self._is_link_instance_included(iid):
+                    continue
+                inst_attrs["iid"].append(iid)
+                inst_attrs["did"].append(inst_row["DiagramID"])
+                sh, eh = jps.label_visibility(inst_row["Geometry"])
+                inst_attrs["i_start_hidden"].append(sh)
+                inst_attrs["i_end_hidden"].append(eh)
+
+            if any(len(v) for v in inst_attrs.values()):
+                edge_attrs["instances"] = inst_attrs
+
+            directed = (row.Connector_Type != "Generalization")
+            edge_attrs["directed"] = directed
+            G.add_edge(s_id, e_id, **edge_attrs)
+            if not directed:
+                G.add_edge(e_id, s_id, **edge_attrs)
+        return G
+
+    def build_attribute_graph(self) -> nx.MultiDiGraph:
+        AT = nx.MultiDiGraph()
+        AT = self._add_enhanced_class_nodes_to_graph(AT)
+        for n in list(AT.nodes):
+            for attr in self.uml_data.attributes[self.uml_data.attributes["Object_ID"] == n].itertuples():
+                AT.add_edge(attr.Index, n, Connector_Type="Attribute", Connector_ID="ATTR_" + str(attr.Index), weight=100.0)
+                AT.nodes[attr.Index].update({
+                    "Name": str(attr.Name),
+                    "Note": str(attr.Notes),
+                    "Object_Type": "Attribute",
+                    "Attribute_ID": str(attr.Index)
+                })
+        return AT
+
+    def build_association_graph(self) -> nx.MultiDiGraph:
+        AG = nx.MultiDiGraph()
+        AG = self._add_enhanced_class_nodes_to_graph(AG)
+        for c in self.uml_data.connectors[
+            (self.uml_data.connectors["Connector_Type"] == "Association")
+            | (self.uml_data.connectors["Connector_Type"] == "Aggregation")
+        ].itertuples():
+            if (
+                self.uml_data.objects.loc[c.Start_Object_ID]["Object_Type"] == "Class"
+                and self.uml_data.objects.loc[c.End_Object_ID]["Object_Type"] == "Class"
+                and self._is_object_included(c.Start_Object_ID)
+                and self._is_object_included(c.End_Object_ID)
+                and pd.isnull(self.uml_data.objects.loc[c.Start_Object_ID]["Stereotype"])
+                and pd.isnull(self.uml_data.objects.loc[c.End_Object_ID]["Stereotype"])
+                and c.Start_Object_ID not in self.exclusions.object_ids
+                and c.End_Object_ID not in self.exclusions.object_ids
+            ):
+                AG.add_edge(
+                    c.End_Object_ID,
+                    c.Start_Object_ID,
+                    SourceCard=str(c.DestCard),
+                    DestCard=str(c.SourceCard),
+                    SourceRole=str(c.DestRole) if not pd.isnull(c.DestRole) else str(self.uml_data.objects.loc[c.End_Object_ID]["Name"]),
+                    DestRole=str(c.SourceRole) if not pd.isnull(c.SourceRole) else str(self.uml_data.objects.loc[c.Start_Object_ID]["Name"]),
+                    Connector_ID="ASC_REV_" + str(c.Index),
+                    End_Object_ID=str(c.Start_Object_ID),
+                    Start_Object_ID=str(c.End_Object_ID),
+                    Connector_Type=str(c.Connector_Type),
+                    weight=1.0,
+                )
+
+                AG.add_edge(
+                    c.Start_Object_ID,
+                    c.End_Object_ID,
+                    DestCard=str(c.DestCard),
+                    SourceCard=str(c.SourceCard),
+                    DestRole=str(c.DestRole) if not pd.isnull(c.DestRole) else str(self.uml_data.objects.loc[c.End_Object_ID]["Name"]),
+                    SourceRole=str(c.SourceRole) if not pd.isnull(c.SourceRole) else str(self.uml_data.objects.loc[c.Start_Object_ID]["Name"]),
+                    Connector_ID="ASC_FWD_" + str(c.Index),
+                    Start_Object_ID=str(c.Start_Object_ID),
+                    End_Object_ID=str(c.End_Object_ID),
+                    Connector_Type=str(c.Connector_Type),
+                    weight=1.0,
+                )
+        return AG
+    
+    def _build_subgraphs_from_template(self, template):
+        id2name = {
+            **{obj.Index: str(obj.Name) for obj in uml_data.objects.itertuples()},
+            **{attr.Index: str(attr.Name) for attr in uml_data.attributes.itertuples()},
+        }
+        cls_name2id = {str(obj.Name): obj.Index for obj in uml_data.objects[uml_data.objects["Object_Type"] == "Class"].itertuples() if pd.isnull(obj.Stereotype)}
+
+        template_names = template.nodes
+
+        for name in template_names:
+            obj_id = cls_name2id[name]
+            nodes = {at for n in [obj_id] + list(nx.ancestors(GG, obj_id)) + list(nx.descendants(GG, obj_id)) for a in list(AG.neighbors(n)) + [n] for at in [n, a] + list(AT.predecessors(a)) + list(AT.predecessors(n))}
+
+            self.subgraphs[name] = nx.subgraph(GG_AT_AG, nodes)
+
+    def export_subgraphs(self, export_dir: str, clean_dir: bool = False):
+        if clean_dir:
+            for file in glob.glob(os.path.join(export_dir, "*")):
+                os.remove(file)
+
+        for k, v in self.subgraphs.items():
+            nx.write_graphml(v, os.path.join(export_dir, f"{k}.graphml"))
+
+    def export_graph(self, file_out: str):
+        nx.write_graphml(self.graph, file_out, named_key_ids=True, edge_id_from_attribute="Connector_ID")
+
+    def export_generalization_graph(self, file_out: str):
+        nx.write_graphml(self.gen_graph, file_out)
+
+    def export_attribute_graph(self, file_out: str):
+        nx.write_graphml(self.attr_graph, file_out)
+
+    def export_association_graph(self, file_out: str):
+        nx.write_graphml(self.assoc_graph, file_out)
+
+
+if __name__ == "__main__":
+    import pathlib
+    from ravens.schema import SchemaTemplate
+
+    pathlib.Path("out/CIM_graphs").mkdir(parents=True, exist_ok=True)
+    pathlib.Path("out/template_graphs").mkdir(parents=True, exist_ok=True)
+
+    exclusions = UMLExclusions().exclude_by_name_startswith(["Inf", "Mkt"])
+
+    graphs = UMLGraphs(exclusions=exclusions)
+    graphs.export_graph("out/CIM_graphs/GG_AT_AG.graphml")
+
+    graphs_with_subgraphs = UMLGraphs(exclusions=exclusions, schema_template=SchemaTemplate().loadf("cim/schema_template.json"))
+    graphs.export_subgraphs("out/template_graphs")

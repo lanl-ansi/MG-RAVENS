@@ -631,34 +631,22 @@ def save_auto_template(auto_template):
     return
 
 def compare_templates():
-
     from ravens.data import _TEMPLATE_AUTOJSON_PATH, _TEMPLATE_JSON_PATH
-    # ------------------------------------------------------------------
-    # 0.  Load files – adjust paths
-    # ------------------------------------------------------------------
-    hand_path = _TEMPLATE_AUTOJSON_PATH        # hand-crafted reference
-    auto_path = _TEMPLATE_JSON_PATH   # freshly generated
+
+    # hand = curated reference; auto = freshly generated
+    hand_path = _TEMPLATE_JSON_PATH
+    auto_path = _TEMPLATE_AUTOJSON_PATH
 
     tpl_hand = json.loads(hand_path.read_text(encoding="utf-8"))
     tpl_auto = json.loads(auto_path.read_text(encoding="utf-8"))
 
-    # ------------------------------------------------------------------
-    # 1.  Flatten each template into {path_str: signature_dict}
-    # ------------------------------------------------------------------
     def walk(node, prefix=()):
-        if len(prefix) >= 3:      # Root / Child / Grandchild
+        if len(prefix) >= 3:
             return
-
-        """Yield (path_tuple, leaf_dict) for every object / container / reference."""
-        # unwrap array wrapper
         if isinstance(node, dict) and node.get("type") == "array":
             node = node["items"]
-
-        # identify leaves we care about
         if isinstance(node, dict) and "$objectType" in node:
             yield prefix, node
-
-        # traverse children
         if isinstance(node, dict):
             for k, v in node.get("properties", {}).items():
                 yield from walk(v, prefix + (k,))
@@ -666,13 +654,11 @@ def compare_templates():
                 label = v.get("$objectId") or v.get("$objectType") or "?"
                 yield from walk(v, prefix + (f"|{label}",))
 
-
-
     def flatten(tpl):
         out = {}
         for p, n in walk(tpl):
             sig = {
-                "kind"      : n["$objectType"],                    # object / container / reference
+                "kind"      : n["$objectType"],
                 "objectId"  : n.get("$objectId"),
                 "primary"   : n.get("$primaryObjectHash"),
                 "secondary" : n.get("$secondaryObjectHash"),
@@ -684,14 +670,10 @@ def compare_templates():
     flat_hand = flatten(tpl_hand)
     flat_auto = flatten(tpl_auto)
 
-    # ------------------------------------------------------------------
-    # 2.  Compare
-    # ------------------------------------------------------------------
     only_in_hand = flat_hand.keys() - flat_auto.keys()
     only_in_auto = flat_auto.keys() - flat_hand.keys()
     in_both      = flat_hand.keys() & flat_auto.keys()
 
-    # helper to diff signature dicts (ignores None == missing)
     def sig_diff(a, b):
         diff = {}
         for k in a.keys() | b.keys():
@@ -701,13 +683,9 @@ def compare_templates():
         return diff
 
     changed = {p: sig_diff(flat_hand[p], flat_auto[p])
-            for p in in_both
-            if sig_diff(flat_hand[p], flat_auto[p])}
+               for p in in_both
+               if sig_diff(flat_hand[p], flat_auto[p])}
 
-
-    # ------------------------------------------------------------------
-    # 3.  Human-friendly report
-    # ------------------------------------------------------------------
     print("="*60)
     print("🟢  EXACT MATCH:", len(in_both) - len(changed))
     print("➖  Missing in auto :", len(only_in_hand))
