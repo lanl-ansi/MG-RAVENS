@@ -3,169 +3,120 @@ import pathlib
 import pandas as pd
 import networkx as nx
 
-from ravens.uml import clusions
-from ravens.uml import UMLData, UMLExclusions
+from ravens.uml.clusions import UMLInclusions
+from ravens.uml import UMLData
 from ravens import jps
 
 
+# --- in graph.py ---
+
 class UMLGraphs:
-    """
-    Graph builders for EA models:
-
-    - H: inheritance/generalization graph (child -> parent), built from ALL classes.
-    - A: association/aggregation/composition graph (label-directed), filtered by inclusions.
-
-    Tag-driven: node/edge meaning should come from tags (ravensRole), not colors.
-    """
-
-    # -------------------- init --------------------
-    def __init__(self, uml_data=None, exclusions=None, schema_template=None):
-        # schema_template is ignored (template code factored out)
+    def __init__(self, uml_data=None, inclusions: Optional[UMLInclusions] = None):
         if uml_data is None:
             uml_data = UMLData()
         self.uml_data = uml_data
-        self.exclusions = UMLExclusions() if exclusions is None else exclusions
-        self.inclusions = clusions.get_inclusions(
-            uml_data=self.uml_data, package="SimplifiedDiagrams"
-        )
 
-        # Only keep this tag
-        self.tag_name_filter = "ravensRole"
+        # inclusions: if None => no restrictions (both H and A are global)
+        self.inclusions = inclusions  # may be None
 
-        # Tables & tags
         self._ensure_indexes()
-        self.object_tags = self._build_object_tags()
+        self.tag_name_filter = "ravensRole"  
+        self.object_tags    = self._build_object_tags()
         self.connector_tags = self._build_connector_tags()
 
         self._object_role_map = (
-            self.object_tags["Value"]
-            .groupby(level="Object_ID")
-            .last()
-            .apply(lambda v: self._normalize_role(v, kind="node"))
-            .to_dict()
+            self.object_tags["Value"].groupby(level="Object_ID").last().apply(
+                lambda v: self._normalize_role(v, kind="node")
+            ).to_dict()
         )
 
-        # Build graphs
-        self.H = self.build_H()                 # inheritance (child -> parent)
-        self.HR = self.H.reverse(copy=False)    # reverse: parent -> child
-        self.A = self.build_A()                 # associations (filtered by inclusions)
+        # Build graphs (H honors inclusions iff provided; otherwise full)
+        self.H  = self.build_H()
+        self.HR = self.H.reverse(copy=False)
+        self.A  = self.build_A()
 
-    # -------------------- inclusions --------------------
     def _allow(self, kind: str, id_value: int) -> bool:
-        """
-        Unified inclusions check.
-        - If self.inclusions is None: allow everything.
-        - If it's UMLInclusions: delegate to .allow(kind, id).
-        - If it's the old dict-shaped inclusions: check membership by mapped key.
-        Empty sets mean 'no restriction' for that kind.
-        """
         inc = getattr(self, "inclusions", None)
         if inc is None:
             return True
-
         if hasattr(inc, "allow") and callable(getattr(inc, "allow")):
             return inc.allow(kind, int(id_value))
-
+        # (fallback to dict-shaped behavior if you still support it)
         key_map = {
-            "object": "Object_ID",
-            "connector": "Connector_ID",
-            "package": "Package_ID",
-            "diagram": "Diagram_ID",
+            "object":        "Object_ID",
+            "connector":     "Connector_ID",
+            "package":       "Package_ID",
+            "diagram":       "Diagram_ID",
             "link_instance": "link_Instance_ID",
-            "obj_instance": "obj_Instance_ID",
+            "obj_instance":  "obj_Instance_ID",
         }
-        key = key_map.get(kind)
-        if key is None:
-            raise ValueError(f"Unknown inclusion kind: {kind!r}")
+        vals = set(inc.get(key_map.get(kind), set()) or set())
+        return (len(vals) == 0) or (int(id_value) in {int(v) for v in vals})
 
-        vals = inc.get(key, set()) or set()
-        try:
-            s = {int(v) for v in vals}
-        except Exception:
-            s = set(vals)
-        return (len(s) == 0) or (int(id_value) in s)
-
-    def _is_included(self, id_value, kind: str) -> bool:
-        return self._allow(kind, int(id_value))
-
-    # -------------------- H: inheritance --------------------
     def build_H(self) -> nx.DiGraph:
         """
-        Generalization graph (child -> parent), built from the ENTIRE EA model,
-        ignoring inclusions. Nodes = ALL classes; edges = Generalization only.
+        Generalization H (child -> parent). If inclusions is provided,
+        nodes/edges are filtered via _allow().
         """
         H = nx.DiGraph()
 
-        # Add all class nodes
+        # Nodes
         for oid, row in self.uml_data.objects.iterrows():
             if str(row.get("Object_Type", "")) != "Class":
                 continue
-            H.add_node(
-                int(oid),
-                **{
-                    "Name": str(row.get("Name") or ""),
-                    "ravensRole": self.role_for_object(int(oid)),
-                    "Package_ID": row.get("Package_ID"),
-                    "Stereotype": row.get("Stereotype"),
-                },
-            )
+            if not self._allow("object", int(oid)):
+                continue
+            H.add_node(int(oid), **{
+                "Name": str(row.get("Name") or ""),
+                "ravensRole": self.role_for_object(int(oid)),
+                "Package_ID": row.get("Package_ID"),
+                "Stereotype": row.get("Stereotype"),
+            })
 
-        # Add Generalization edges (EA: Start=child, End=parent)
+        # Edges (Generalization only)
         for cid, crow in self.uml_data.connectors.iterrows():
             if str(crow.get("Connector_Type", "")) != "Generalization":
                 continue
-            child = int(crow.Start_Object_ID)
+            if not self._allow("connector", int(cid)):
+                continue
+            child  = int(crow.Start_Object_ID)
             parent = int(crow.End_Object_ID)
             if child in H and parent in H and child != parent:
                 H.add_edge(child, parent, Connector_ID=int(cid))
-
         return H
 
     # -------------------- A: associations --------------------
     def build_A(self) -> nx.MultiDiGraph:
         """
-        Association/Aggregation/Composition graph (label-directed).
-        Honors inclusions strictly via:
-        - nodes: Object_ID
-        - edges: Connector_ID
-        - edge instances: link_Instance_ID and Diagram_ID
+        Association/Aggregation/Composition graph; honors inclusions via:
+          - nodes: 'object'
+          - edges: 'connector'
+          - link instances: 'link_instance'
+          - diagrams: 'diagram'
         """
         A = nx.MultiDiGraph()
 
-        # nodes by Object_ID
+        # nodes
         for oid, row in self.uml_data.objects.iterrows():
             if str(row.get("Object_Type", "")) != "Class":
                 continue
-            if not self._is_included(int(oid), "object"):
+            if not self._allow("object", int(oid)):
                 continue
-            A.add_node(
-                int(oid),
-                **{
-                    "Name": str(row.get("Name") or ""),
-                    "ravensRole": self.role_for_object(int(oid)),
-                    "Package_ID": row.get("Package_ID"),
-                    "Stereotype": row.get("Stereotype"),
-                },
-            )
+            A.add_node(int(oid), **{
+                "Name": str(row.get("Name") or ""),
+                "ravensRole": self.role_for_object(int(oid)),
+                "Package_ID": row.get("Package_ID"),
+                "Stereotype": row.get("Stereotype"),
+            })
 
-        # edges from diagramlinks + connectors
         dl = getattr(self.uml_data, "diagramlinks", None)
         if not isinstance(dl, pd.DataFrame) or dl.empty:
             return A
 
         ASSOCIATION_TYPES = {"Association", "Aggregation", "Composition"}
         diagrams_df = self.uml_data.diagrams
-
-        cid_col = (
-            "ConnectorID"
-            if "ConnectorID" in dl.columns
-            else ("Connector_ID" if "Connector_ID" in dl.columns else None)
-        )
-        did_col = (
-            "DiagramID"
-            if "DiagramID" in dl.columns
-            else ("Diagram_ID" if "Diagram_ID" in dl.columns else None)
-        )
+        cid_col = "ConnectorID" if "ConnectorID" in dl.columns else ("Connector_ID" if "Connector_ID" in dl.columns else None)
+        did_col = "DiagramID"   if "DiagramID"   in dl.columns else ("Diagram_ID"   if "Diagram_ID"   in dl.columns else None)
         if cid_col is None or did_col is None:
             return A
 
@@ -173,7 +124,7 @@ class UMLGraphs:
             ctype = str(crow.get("Connector_Type", ""))
             if ctype not in ASSOCIATION_TYPES:
                 continue
-            if not self._is_included(int(cid), "connector"):
+            if not self._allow("connector", int(cid)):
                 continue
 
             s_id, e_id = int(crow.Start_Object_ID), int(crow.End_Object_ID)
@@ -185,19 +136,19 @@ class UMLGraphs:
                 continue
 
             for iid, irow in rows.iterrows():
-                if not self._is_included(int(iid), "link_instance"):
+                if not self._allow("link_instance", int(iid)):
                     continue
                 did = int(irow[did_col])
-                if not self._is_included(did, "diagram"):
+                if not self._allow("diagram", did):
                     continue
                 if did not in diagrams_df.index:
                     continue
 
                 edge_attrs = {
-                    "Diagram": str(diagrams_df.loc[did].get("Name") or ""),
-                    "DiagramID": did,
-                    "InstanceID": int(iid),
-                    "ConnectorID": int(cid),
+                    "Diagram":        str(diagrams_df.loc[did].get("Name") or ""),
+                    "DiagramID":      did,
+                    "InstanceID":     int(iid),
+                    "ConnectorID":    int(cid),
                     "Connector_Type": ctype,
                 }
 

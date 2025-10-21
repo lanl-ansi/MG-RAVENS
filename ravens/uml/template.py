@@ -60,6 +60,26 @@ class TemplateGenerator:
             # Cross-refs ON by default
             self.EMIT_CROSS_REFS: bool = True
 
+            self._FIELD_ORDER = {
+                            "schema": [
+                                "title", "$schema", "$id", "type",
+                                "$primaryObjectHash", "$secondaryObjectHash",
+                                "properties",
+                            ],
+                            "object": [
+                                "$objectType", "type", "$objectId",
+                                "$primaryObjectHash", "$secondaryObjectHash",
+                                "properties",
+                            ],
+                            "container": [
+                                "$objectType", "type", "properties",
+                            ],
+                            "reference": [
+                                "$objectType", "type", "$objectId", "$referencePath", "properties",
+                            ],
+                        }
+
+
     # -------------------- basic helpers --------------------
 
     def _role(self, n: int) -> str:
@@ -108,6 +128,40 @@ class TemplateGenerator:
                 else:
                     q.append(child)
         return nearest
+    
+    def _find_node_by_name(self, name: str) -> Optional[int]:
+        """Return the first node id whose Name == name (checks A first, then H)."""
+        for G in (self.A, self.H):
+            if not isinstance(G, nx.Graph):
+                continue
+            hits = [int(n) for n, d in G.nodes(data=True)
+                    if (d.get("Name") or "").strip() == name]
+            if hits:
+                return hits[0]
+        return None
+
+    def _diagram_neighbors(self, node_id: int, diagram_name: str) -> list[int]:
+        """Neighbors of node_id in A restricted to edges from a specific diagram."""
+        if not isinstance(self.A, nx.MultiDiGraph) or node_id not in self.A:
+            return []
+        dn = (diagram_name or "").strip()
+
+        nbrs: set[int] = set()
+        # Successors where the edge's Diagram matches
+        for _, v, d in self.A.out_edges(node_id, data=True):
+            if (d.get("Diagram") or "").strip() == dn:
+                nbrs.add(int(v))
+        # Predecessors where the edge's Diagram matches
+        for u, _, d in self.A.in_edges(node_id, data=True):
+            if (d.get("Diagram") or "").strip() == dn:
+                nbrs.add(int(u))
+
+        nbrs.discard(int(node_id))
+        def _nm(n: int) -> str:
+            return (self.A.nodes[n].get("Name")
+                    if n in self.A else self.H.nodes[n].get("Name")) or ""
+        return sorted(nbrs, key=lambda n: _nm(n).casefold())
+
 
     # -------------------- anchor detection --------------------
     def _compute_anchors(self) -> Set[int]:
@@ -223,6 +277,71 @@ class TemplateGenerator:
         }
         self._add_property(at_ptr, label, ref)
 
+    def _apply_hashes_if_rootclass(self, node_id: int, obj: dict) -> None:
+        """
+        If node_id is tagged rootClass, add the standard object hashes
+        (mirrors hand template).
+        """
+        if self._role(int(node_id)) == "rootClass":
+            obj["$primaryObjectHash"] = "IdentifiedObject.name"
+            obj["$secondaryObjectHash"] = "IdentifiedObject.mRID"
+
+    def _order_fields(self, kind: str, d: dict) -> dict:
+        """
+        Return a new dict whose keys follow the preferred order for `kind`,
+        with any extra keys appended in their existing order.
+        """
+        if not isinstance(d, dict):
+            return d
+        order = self._FIELD_ORDER.get(kind, [])
+        out = {}
+        # 1) keys we know, in fixed order
+        for k in order:
+            if k in d:
+                out[k] = d[k]
+        # 2) any extras, in existing order
+        for k in d:
+            if k not in out:
+                out[k] = d[k]
+        return out
+
+    def _apply_field_order_recursively(self, node: dict) -> dict:
+        """
+        Walk the entire JSON and reorder keys according to _FIELD_ORDER.
+        """
+        if not isinstance(node, dict):
+            return node
+
+        # Decide kind
+        if "anyOf" in node and isinstance(node["anyOf"], list):
+            # Recurse into anyOf entries (they are typically 'reference' objects)
+            node["anyOf"] = [self._apply_field_order_recursively(v) for v in node["anyOf"]]
+            # No special order for the wrapper; just return
+            return node
+
+        kind = None
+        if node is getattr(self, "_root_schema_obj", None):
+            kind = "schema"
+        else:
+            ot = node.get("$objectType")
+            if ot == "object":
+                kind = "object"
+            elif ot == "container":
+                kind = "container"
+            elif ot == "reference":
+                kind = "reference"
+
+        # Recurse into children first
+        props = node.get("properties")
+        if isinstance(props, dict):
+            node["properties"] = {
+                k: self._apply_field_order_recursively(v)
+                for k, v in props.items()
+            }
+
+        # Reorder this node’s keys if we know its kind
+        return self._order_fields(kind, node) if kind else node
+
     # -------------------- build --------------------
 
     def build(self) -> dict:
@@ -256,6 +375,8 @@ class TemplateGenerator:
             "type": "object",
             "properties": {},
         }
+        self._root_schema_obj = schema
+
         # register Root
         self.def_ptr[self.root_id] = schema
         self.path_map[self.root_id] = (root_title,)
@@ -269,7 +390,7 @@ class TemplateGenerator:
 
         FIRST_LEVEL_SET = {int(n) for n in first_level_nodes}  # guard to prevent new Root/* later
 
-        def ensure_defined(n: int, stack_containers: set[int], *, force_owner: Optional[int] = None, at_top_level: bool = False):
+        def ensure_defined(n: int, stack_containers: set[int], *, force_owner: Optional[int] = None, at_top_level: bool = False, force_kind: Optional[str] = None):
             """Define node n under an owner. If force_owner is provided, use that owner."""
             n = int(n)
             if n in self.def_ptr:
@@ -297,7 +418,12 @@ class TemplateGenerator:
             r  = role(n).strip()
 
             # emission rules
-            if r == "substitutableClass":
+            if force_kind == "container":
+                node_obj = {"$objectType": "container", "type": "object", "properties": {}}
+            elif force_kind == "object":
+                node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
+                self._apply_hashes_if_rootclass(n, node_obj)
+            elif r == "substitutableClass":
                 node_obj = {"anyOf": []}
             elif r == "containerClass":
                 node_obj = {"$objectType": "container", "type": "object", "properties": {}}
@@ -309,6 +435,7 @@ class TemplateGenerator:
             else:
                 # default object (also used for top-level inheritOnly)
                 node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
+                self._apply_hashes_if_rootclass(n, node_obj)
 
             self._add_property(owner_ptr, nm, node_obj)
             self.path_map[n] = owner_path + (nm,)
@@ -337,11 +464,36 @@ class TemplateGenerator:
         for n in first_level_nodes:
             ensure_defined(n, stack_containers={self.root_id}, force_owner=self.root_id, at_top_level=True)
 
+        # ---------- SPECIAL DIAGRAMS: treat "Versions" and "Group" like mini-Roots ----------
+        special_diagrams = ("Versions", "Group")
+        walk_anchors = list(first_level_nodes)  # start with A-derived top-level
+
+        for label in special_diagrams:
+            sid = self._find_node_by_name(label)
+            if sid is None:
+                continue
+
+            # Ensure the special node sits under Root as a CONTAINER (override tag)
+            ensure_defined(
+                sid,
+                stack_containers={self.root_id},
+                force_owner=self.root_id,
+                at_top_level=True,
+                force_kind="container",
+            )
+
+            # Place every node connected to it *in its own diagram* directly under it
+            for child in self._diagram_neighbors(sid, label):
+                ensure_defined(child, stack_containers={self.root_id, sid}, force_owner=sid)
+
+            # Make sure we descend H from this anchor too (even if it wasn't a Root->child in A)
+            if sid not in walk_anchors:
+                walk_anchors.append(sid)
+
         # ---------- 2) descend H below each top-level anchor ----------
-        from collections import deque
         visited_down = set()
 
-        for anchor in first_level_nodes:
+        for anchor in walk_anchors:
             # stack tracks container anchors along the branch (Root + this anchor to start)
             stack = [self.root_id, anchor] if role(anchor).strip() in ("containerClass", "rootClass", "inheritOnlyClass", "substitutableClass", "") else [self.root_id, anchor]
 
@@ -375,10 +527,12 @@ class TemplateGenerator:
                         q.append(child)
 
         # ---------- 3) top-level ordering like hand ----------
-        schema["properties"] = self._order_top_level_like_hand(schema.get("properties", {}))
+        schema["properties"] = self._order_props_like_hand(schema.get("properties", {}))
 
-        # cache for save()
+        # Enforce field order ($hashes before properties, etc.)
+        schema = self._apply_field_order_recursively(schema)
         self._last_auto = schema
+
         return schema
 
     def _sort_properties(
@@ -467,7 +621,7 @@ class TemplateGenerator:
         Write the auto template JSON. If `auto_template` is not provided, use the
         most recent `build()` result cached on this instance.
         """
-        data = auto_template or getattr(self, "_last_built", None)
+        data = auto_template or getattr(self, "_last_auto", None)
         if not isinstance(data, dict):
             raise ValueError("No auto template provided and nothing cached from build().")
         _TEMPLATE_AUTOJSON_PATH.write_text(json.dumps(data, indent=2), encoding="utf-8")

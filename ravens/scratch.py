@@ -6,18 +6,26 @@ import pandas as pd
 from pathlib import Path
 from ravens.uml import graph 
 from ravens import jps
-from ravens.uml import UMLData, graph, validate
+from ravens.uml import UMLData, graph, validate, clusions
 from importlib import reload
 from pprint import pprint
 from ravens.uml import template 
 
+reload(graph)
+reload(clusions)
 uml_data = UMLData().loadf()
-ug = graph.UMLGraphs(uml_data=uml_data)
+inc = clusions.UMLInclusions(
+    uml_data=uml_data,
+    package_names=["SimplifiedDiagrams"],
+    include_subpackages=True,
+    exclude_inf_mkt=True,
+)
+ug = graph.UMLGraphs(uml_data=uml_data, inclusions=inc)  # both H and A filtered
 
-
-tg = template.TemplateGenerator(A=ug.A, H=ug.H, root_name="Root")
-auto = tg.build()                          # minimal skeleton (Root + first-level A neighbors)
-template.TemplateGenerator.save_auto_template(auto) # writes to _TEMPLATE_AUTOJSON_PATH
+reload(template)
+tg = template.TemplateGenerator(H=ug.H, A=ug.A, root_name="Root")
+auto = tg.build()
+tg.save_auto_template(auto)
 
 
 
@@ -66,7 +74,7 @@ with open(filename, 'wb') as f:
 
 
 # Issues to discuss
-Do the diamonds imply anything in the template? [see Decorators notes below]
+Do the8 diamonds imply anything in the template? [see Decorators notes below]
 Red connecting two yellows--ok? E.g. in Transformers, PowerSystemResource -> AssetInfo
 Do all colored connectors require a label? I haven't found one manually that doesn't have this. 
 Relatedly, must mutliplicity be specified if the label is specified? 

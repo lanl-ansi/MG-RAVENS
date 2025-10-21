@@ -1,6 +1,184 @@
+from __future__ import annotations
+import re
 import pandas as pd
 import networkx as nx
+from typing import Optional, Iterable, Set
+
 from ravens.uml import UMLData
+
+
+def _col(df: pd.DataFrame, *candidates: str) -> str | None:
+    for c in candidates:
+        if c in df.columns:
+            return c
+    return None
+
+class UMLInclusions:
+    """
+    Auto-populated inclusions:
+      • Allowed packages: by name (plus optional subpackages)
+      • Allowed diagrams: all diagrams inside allowed packages
+      • Allowed objects: objects in allowed packages OR appearing on allowed diagrams
+      • Allowed connectors: on allowed diagrams OR with both endpoints allowed
+    Name filter (toggle): exclude objects whose Name matches ^(Inf[A-Z]|Mkt[A-Z]).
+    Empty allow-sets mean 'no restriction' for that kind.
+    """
+
+    def __init__(
+        self,
+        uml_data,
+        packages: Iterable[str] | None = None,          # alias for package_names
+        package_names: Iterable[str] | None = None,
+        include_subpackages: bool = True,
+        exclude_inf_mkt: bool = False,
+    ):
+        self.uml = uml_data
+        self.exclude_inf_mkt = bool(exclude_inf_mkt)
+        self._name_rx = re.compile(r'^(Inf[A-Z]|Mkt[A-Z])')
+
+        # Accept either arg name
+        if package_names is None and packages is not None:
+            package_names = packages
+
+        # ---------- packages ----------
+        self._allow_packages: Set[int] = set()
+        if package_names:
+            base = self._packages_by_name({str(n).strip() for n in package_names})
+            subs = self._subpackages_of(base) if include_subpackages else set()
+            self._allow_packages = base | subs
+
+        # ---------- diagrams in allowed packages ----------
+        self._allow_diagrams: Set[int] = set()
+        if self._allow_packages and isinstance(self.uml.diagrams, pd.DataFrame) and not self.uml.diagrams.empty:
+            d = self.uml.diagrams
+            d_pkg = _col(d, "Package_ID", "PackageID", "PackageId")
+            d_id  = _col(d, "Diagram_ID", "DiagramID", "DiagramId")
+            if d_pkg and d_id:
+                self._allow_diagrams = set(
+                    d.loc[d[d_pkg].astype(int).isin(self._allow_packages), d_id].astype(int)
+                )
+
+        # ---------- objects: in allowed packages OR on allowed diagrams ----------
+        self._allow_objects: Set[int] = set()
+        if isinstance(self.uml.objects, pd.DataFrame) and not self.uml.objects.empty:
+            o = self.uml.objects
+            o_pkg = _col(o, "Package_ID", "PackageID", "PackageId")
+            o_id  = _col(o, "Object_ID", "ObjectID", "ElementID", "Element_ID")
+            if o_pkg and o_id and self._allow_packages:
+                self._allow_objects |= set(
+                    o.loc[o[o_pkg].astype(int).isin(self._allow_packages), o_id].astype(int)
+                )
+            if self._allow_diagrams:
+                self._allow_objects |= self._objects_on_diagrams(self._allow_diagrams)
+
+        # ---------- connectors: on allowed diagrams OR both endpoints allowed ----------
+        self._allow_connectors: Set[int] = set()
+        if self._allow_diagrams:
+            self._allow_connectors |= self._connectors_on_diagrams(self._allow_diagrams)
+        if isinstance(self.uml.connectors, pd.DataFrame) and not self.uml.connectors.empty and self._allow_objects:
+            c = self.uml.connectors
+            c_id  = _col(c, "Connector_ID", "ConnectorID", "ConnectorId", "ElementID")
+            c_s   = _col(c, "Start_Object_ID", "StartObjectID", "StartElementID")
+            c_e   = _col(c, "End_Object_ID", "EndObjectID", "EndElementID")
+            if c_id and c_s and c_e:
+                both_ok = c.loc[
+                    c[c_s].astype(int).isin(self._allow_objects)
+                    & c[c_e].astype(int).isin(self._allow_objects),
+                    c_id
+                ].astype(int)
+                self._allow_connectors |= set(both_ok)
+
+    # ---------------- allow API ----------------
+
+    def allow(self, kind: str, id_value: int) -> bool:
+        i = int(id_value)
+        if kind == "package":
+            return (not self._allow_packages) or (i in self._allow_packages)
+        if kind == "diagram":
+            return (not self._allow_diagrams) or (i in self._allow_diagrams)
+        if kind == "connector":
+            return (not self._allow_connectors) or (i in self._allow_connectors)
+        if kind == "object":
+            # scope check
+            in_scope = (not self._allow_objects) or (i in self._allow_objects)
+            if not in_scope:
+                return False
+            # optional name filter
+            if self.exclude_inf_mkt:
+                o = self.uml.objects
+                o_id = _col(o, "Object_ID", "ObjectID", "ElementID", "Element_ID")
+                o_nm = _col(o, "Name")
+                try:
+                    if o_id and o_nm:
+                        name = str(o.loc[i, o_nm])
+                    else:
+                        name = ""
+                except Exception:
+                    name = ""
+                if self._name_rx.match(name or ""):
+                    return False
+            return True
+        if kind in ("link_instance", "obj_instance"):
+            # gated via diagrams/objects already
+            return True
+        raise ValueError(f"Unknown inclusion kind: {kind!r}")
+
+    # ---------------- helpers ----------------
+
+    def _packages_by_name(self, names: Set[str]) -> Set[int]:
+        if not isinstance(self.uml.packages, pd.DataFrame) or self.uml.packages.empty:
+            return set()
+        p = self.uml.packages
+        p_id  = _col(p, "Package_ID", "PackageID", "PackageId", "ID")
+        p_nm  = _col(p, "Name")
+        if not p_id or not p_nm:
+            return set()
+        want = {n.casefold() for n in names}
+        hits = p.loc[p[p_nm].astype(str).str.casefold().isin(want)]
+        return set(hits[p_id].astype(int))
+
+    def _subpackages_of(self, roots: Set[int]) -> Set[int]:
+        if not isinstance(self.uml.packages, pd.DataFrame) or self.uml.packages.empty or not roots:
+            return set()
+        p = self.uml.packages
+        p_id = _col(p, "Package_ID", "PackageID", "PackageId", "ID")
+        p_parent = _col(p, "Parent_ID", "ParentID", "ParentId")
+        if not p_id or not p_parent:
+            return set()
+        pk = p[[p_id, p_parent]].dropna()
+        pk = pk.astype({p_id: int, p_parent: int})
+        parents = set(roots)
+        out: Set[int] = set()
+        changed = True
+        while changed:
+            changed = False
+            children = set(pk.loc[pk[p_parent].isin(parents), p_id].astype(int))
+            children -= out
+            if children:
+                out |= children
+                parents = children
+                changed = True
+        return out
+
+    def _objects_on_diagrams(self, diagram_ids: Set[int]) -> Set[int]:
+        if not isinstance(self.uml.diagramobjects, pd.DataFrame) or self.uml.diagramobjects.empty or not diagram_ids:
+            return set()
+        d = self.uml.diagramobjects
+        d_id = _col(d, "Diagram_ID", "DiagramID", "DiagramId")
+        o_id = _col(d, "Object_ID", "ObjectID", "ElementID", "Element_ID")
+        if not d_id or not o_id:
+            return set()
+        return set(d.loc[d[d_id].astype(int).isin(diagram_ids), o_id].astype(int))
+
+    def _connectors_on_diagrams(self, diagram_ids: Set[int]) -> Set[int]:
+        if not isinstance(self.uml.diagramlinks, pd.DataFrame) or self.uml.diagramlinks.empty or not diagram_ids:
+            return set()
+        dl = self.uml.diagramlinks
+        d_id  = _col(dl, "Diagram_ID", "DiagramID", "DiagramId")
+        c_id  = _col(dl, "Connector_ID", "ConnectorID", "ConnectorId", "ElementID")
+        if not d_id or not c_id:
+            return set()
+        return set(dl.loc[dl[d_id].astype(int).isin(diagram_ids), c_id].astype(int))
 
 
 class UMLExclusions:
@@ -31,144 +209,9 @@ class UMLExclusions:
     def _build_object_exclusions(self, lambda_func):
         self.object_ids = [obj.Index for obj in self.uml_data.objects.itertuples() if lambda_func(obj)] + [obj.Index for p in self.package_ids for obj in self.uml_data.objects[self.uml_data.objects["Package_ID"] == p].itertuples()]
 
-
-class UMLInclusions:
-    """
-    Mirrors UMLExclusions but for allow-lists.
-    Empty sets mean 'no restriction' for that kind.
-    """
-    def __init__(
-        self,
-        object_ids: set[int] | None = None,
-        connector_ids: set[int] | None = None,
-        package_ids: set[int] | None = None,
-        diagram_ids: set[int] | None = None,
-        link_instance_ids: set[int] | None = None,
-        obj_instance_ids: set[int] | None = None,
-    ):
-        self.object_ids        = set(int(x) for x in (object_ids or set()))
-        self.connector_ids     = set(int(x) for x in (connector_ids or set()))
-        self.package_ids       = set(int(x) for x in (package_ids or set()))
-        self.diagram_ids       = set(int(x) for x in (diagram_ids or set()))
-        self.link_instance_ids = set(int(x) for x in (link_instance_ids or set()))
-        self.obj_instance_ids  = set(int(x) for x in (obj_instance_ids or set()))
-
-    @classmethod
-    def from_dict(cls, d: dict):
-        return cls(
-            object_ids        = d.get("Object_ID"),
-            connector_ids     = d.get("Connector_ID"),
-            package_ids       = d.get("Package_ID"),
-            diagram_ids       = d.get("Diagram_ID"),
-            link_instance_ids = d.get("link_Instance_ID"),
-            obj_instance_ids  = d.get("obj_Instance_ID"),
-        )
-
-    def allow(self, kind: str, id_value: int) -> bool:
-        """
-        Empty set => allow all. Otherwise require membership.
-        kind ∈ {'object','connector','package','diagram','link_instance','obj_instance'}
-        """
-        sets = {
-            "object":        self.object_ids,
-            "connector":     self.connector_ids,
-            "package":       self.package_ids,
-            "diagram":       self.diagram_ids,
-            "link_instance": self.link_instance_ids,
-            "obj_instance":  self.obj_instance_ids,
-        }
-        s = sets.get(kind)
-        if s is None:
-            raise ValueError(f"Unknown inclusion kind: {kind!r}")
-        return (len(s) == 0) or (int(id_value) in s)
-
-
-def get_inclusions(uml_data, package=None) -> UMLInclusions:
-    def col(df, *names):
-        for n in names:
-            if isinstance(df, pd.DataFrame) and n in df.columns:
-                return n
-        raise KeyError(f"None of {names} in {list(getattr(df, 'columns', []))}")
-
-    pkg_ids = package_IDs(package_graph(uml_data), package)
-    pkg_ids = set(int(x) for x in pkg_ids)
-
-    d_pkg_col = col(uml_data.diagrams, "Package_ID")
-    diagram_ids = set(
-        uml_data.diagrams.index[uml_data.diagrams[d_pkg_col].isin(pkg_ids)].tolist()
-    )
-
-    dl = uml_data.diagramlinks
-    dl_did = col(dl, "DiagramID", "Diagram_ID")
-    dl_cid = col(dl, "ConnectorID", "Connector_ID")
-    link_instance_ids = set(int(i) for i in dl.index[dl[dl_did].isin(diagram_ids)].tolist())
-    connector_ids = set(int(x) for x in dl[dl_cid][dl[dl_did].isin(diagram_ids)].tolist())
-
-    do = uml_data.diagramobjects
-    do_did = col(do, "Diagram_ID", "DiagramID")
-    do_oid = col(do, "Object_ID", "ObjectID", "ElementID")
-    obj_instance_ids = set(int(i) for i in do.index[do[do_did].isin(diagram_ids)].tolist())
-    object_ids = set(int(x) for x in do[do_oid][do[do_did].isin(diagram_ids)].tolist())
-
-    return UMLInclusions(
-        object_ids=object_ids,
-        connector_ids=connector_ids,
-        package_ids=pkg_ids,
-        diagram_ids=diagram_ids,
-        link_instance_ids=link_instance_ids,
-        obj_instance_ids=obj_instance_ids,
-    )
-
-
-def package_graph(uml_data):
-    """
-    Returns a networkx graph of package relationships.
-    Retains Name and Notes package attributes as node properties.
-    """
-
-    g = nx.DiGraph()
-    valid_package_ids = set(uml_data.packages.index)
-    for package, row in uml_data.packages.iterrows():
-        node_attributes = {key: row[key] for key in ["Name", "Notes"] if key in row}
-        g.add_node(package, **node_attributes)
-        if pd.notna(row["Parent_ID"]):
-            parent_id = row["Parent_ID"]
-            if parent_id in valid_package_ids:
-                parent_row = uml_data.packages.loc[parent_id]
-                parent_attributes = {
-                    key: parent_row[key]
-                    for key in ["Name", "Notes"]
-                    if key in parent_row
-                }
-                g.add_node(parent_id, **parent_attributes)
-            else:
-                g.add_node(parent_id)
-
-            g.add_edge(parent_id, package)
-
-    return g
-
-
-def package_IDs(G, package="RAVENS"):
-    """
-    Returns all package node IDs. If a package is provided,
-    returns that package node ID along with all its descendant
-    packages.
-    """
-    package_node = None
-    found = False
-    for node, data in G.nodes(data=True):
-        if data.get("Name") == package:
-            package_node = node
-            found = True
-            break
-
-    if found is False:
-        raise KeyError(f"Could not find package named {package}.")
-    nodes_below = list(nx.descendants(G, package_node))
-
-    return [package_node] + nodes_below
-
-
 if __name__ == "__main__":
+    # Example: exclusions class (unchanged)
     exclusions = UMLExclusions().exclude_by_name_startswith(["Inf", "Mkt"])
+
+    # Example: inclusions built from uml_data with name prefix filter ON
+    # inc = UMLInclusions.get_inclusions(UMLData(), package="RAVENS", exclude_inf_mkt_caps=True)
