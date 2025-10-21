@@ -6,18 +6,20 @@ import pandas as pd
 from pathlib import Path
 from ravens.uml import graph 
 from ravens import jps
-from ravens.uml import UMLData, graph, clusions, validate
+from ravens.uml import UMLData, graph, validate
 from importlib import reload
 from pprint import pprint
-from ravens.uml.validate import ModelValidator
-from ravens.uml import template
+from ravens.uml import template 
 
 uml_data = UMLData().loadf()
 ug = graph.UMLGraphs(uml_data=uml_data)
-ug.debug_root_to_A()
 
-at = ug.generate_auto_template_skeleton()  # writes to self.path_template_auto
-report = ug.validate_and_report()
+
+tg = template.TemplateGenerator(A=ug.A, H=ug.H, root_name="Root")
+auto = tg.build()                          # minimal skeleton (Root + first-level A neighbors)
+template.TemplateGenerator.save_auto_template(auto) # writes to _TEMPLATE_AUTOJSON_PATH
+
+
 
 
 # # Find problems

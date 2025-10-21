@@ -1,8 +1,8 @@
-# template.py
 from __future__ import annotations
 
 import json
-from typing import Dict, Tuple, Optional, List, Set
+from collections import deque
+from typing import Dict, List, Set, Tuple, Optional, Literal
 import networkx as nx
 
 from ravens.data import _TEMPLATE_JSON_PATH, _TEMPLATE_AUTOJSON_PATH
@@ -10,348 +10,166 @@ from ravens.data import _TEMPLATE_JSON_PATH, _TEMPLATE_AUTOJSON_PATH
 
 class TemplateGenerator:
     """
-    Root-down, node-driven template generator.
+    Build an auto_template using only the inheritance graph H (child -> parent).
 
-    Key rules
-    ---------
-    • Walk downward from Root along associations/aggregations ONLY (no Generalization).
-    • For each reached class X, walk UP inheritance (Generalization) to find the nearest
-      container/root; that ancestor is X's canonical owner in the template.
-    • Define each class ONCE at its canonical owner (container/object/substitutable/skip inheritOnly).
-    • If X is encountered elsewhere during traversal, add a REFERENCE at that location
-      pointing to X's canonical path.
-    • Build anyOf for substitutableClass using CONCRETE descendants via inheritance,
-      but only include variants that were actually encountered (so they have definitions).
-    • No connector tags or multiplicity are used in this pass.
+    Placement rules (H-only, tag-light):
+      • Concrete = nodes tagged 'rootClass' or 'embeddedClass'.
+      • Anchor containers (top-level under Root) = nodes having >= 2 concrete descendants in H.
+        (E.g., 'Versions' becomes a container even if its tag says inheritOnly.)
+      • Concrete nodes with no qualifying ancestor anchor -> placed directly under Root.
+      • Under each container anchor, emit its nearest concrete descendants.
+      • A class is defined exactly once; additional appearances are references.
+      • Cross-references are enabled.
+
+    We do not use A at all in this pass and we do not trust notConcrete tags for placement
+    (we only read 'rootClass'/'embeddedClass' to know what is "concrete").
     """
 
-    # ------------------------ init & graphs ------------------------
+    def __init__(self, *, H: nx.DiGraph, A: Optional[nx.MultiDiGraph] = None, root_name: str = "Root"):
+           
+            if not isinstance(H, nx.DiGraph):
+                raise TypeError("H must be a networkx.DiGraph oriented child -> parent.")
+            self.H: nx.DiGraph = H
+            self.HR: nx.DiGraph = H.reverse(copy=False)
+            self.A = A 
+            self.root_name = root_name
 
-    def __init__(self, G: nx.MultiDiGraph, uml_data=None, *, root_name: str = "Root"):
-        self.G = G
-        self.uml_data = uml_data
-        self.root_name = root_name
+            # Find Root in either graph by Name
+            def _find_root_id(G):
+                hits = [int(n) for n, d in G.nodes(data=True) if (d.get("Name") or "").strip() == self.root_name]
+                return hits[0] if hits else None
 
-        # Resolve Root node id
-        hits = [int(n) for n, d in self.G.nodes(data=True) if d.get("Name") == self.root_name]
-        if not hits:
-            raise ValueError(f"No node named '{self.root_name}' in G.")
-        if len(hits) > 1:
-            raise ValueError(f"Multiple nodes named '{self.root_name}' in G.")
-        self.root_id = hits[0]
+            self.root_id = _find_root_id(self.A) or _find_root_id(self.H)
+            if self.root_id is None:
+                raise ValueError(f"No node named '{self.root_name}' in A or H.")
 
-        # Roles (from element tags)
-        self.role_map: Dict[int, str] = {
-            int(n): (d.get("ravensRole") or "").strip()
-            for n, d in self.G.nodes(data=True)
-        }
+            # simple name accessor that works off either graph
+            self._name = lambda nid: (self.A.nodes[nid].get("Name")
+                                    if nid in self.A else self.H.nodes[nid].get("Name")) or ""
 
-        # Association/Aggregation graph (GA): child -> parent, excluding Generalization
-        self.GA = self._build_association_graph()
-        self.GR = self.GA  # traverse Root -> neighbors using the undirected view
-        self.GH = self._build_inheritance_graph()
-        self.HR = self.GH.reverse(copy=False)
+            # Role map from node tags (only used to detect concrete)
+            self.role_map: Dict[int, str] = {
+                int(n): (d.get("ravensRole") or "").strip()
+                for n, d in self.H.nodes(data=True)
+            }
 
-        # Caches for canonical placement & JSON assembly
-        self._owner_cache: Dict[int, int] = {}             # node -> canonical owner id
-        self.def_ptr: Dict[int, Optional[dict]] = {}       # node -> dict of its definition (or placeholder) if emitted
-        self.path_map: Dict[int, Tuple[str, ...]] = {}     # node -> tuple of property path segments where it is defined
+            # Where a node is defined (object) or only referenced
+            self.def_ptr: Dict[int, Optional[dict]] = {}
+            self.path_map: Dict[int, Tuple[str, ...]] = {}
 
-    def _build_association_graph(self) -> nx.DiGraph:
-        """
-        Association/Aggregation edges treated as undirected for traversal:
-        we add both (u->v) and (v->u). Generalization is excluded here.
-        """
-        GA = nx.DiGraph()
-        GA.add_nodes_from(self.G.nodes(data=True))
-        for u, v, d in self.G.edges(data=True):
-            if d.get("Connector_Type") == "Generalization":
-                continue
-            u = int(u); v = int(v)
-            GA.add_edge(u, v)
-            GA.add_edge(v, u)  # make traversal effectively undirected
-        return GA
+            # Cross-refs ON by default
+            self.EMIT_CROSS_REFS: bool = True
 
-    def _build_inheritance_graph(self) -> nx.DiGraph:
-        """Inheritance connectors only (Generalization). Orientation: child -> parent type."""
-        GH = nx.DiGraph()
-        GH.add_nodes_from(self.G.nodes())
-        for u, v, d in self.G.edges(data=True):
-            if d.get("Connector_Type") == "Generalization" and u != v:
-                GH.add_edge(int(u), int(v))
-        return GH
-
-    # ------------------------ roles & helpers ------------------------
+    # -------------------- basic helpers --------------------
 
     def _role(self, n: int) -> str:
         return (self.role_map.get(int(n)) or "").strip()
 
-    def _is_container_node(self, n: int) -> bool:
-        """
-        A node is a container anchor iff it is the actual Root node or tagged containerClass.
-        (rootClass is NOT a container anchor.)
-        """
-        return int(n) == int(self.root_id) or self._role(n) == "containerClass"
-
-    def _is_concrete_node(self, n: int) -> bool:
-        """Concrete = emits an object/container (i.e., not inheritOnly or substitutable placeholder)."""
+    def _is_concrete(self, n: int) -> bool:
         r = self._role(n)
-        return r not in ("inheritOnlyClass", "substitutableClass")
+        return r in ("rootClass", "embeddedClass")
 
-    def _name(self, obj_id: int) -> str:
-        return (self.G.nodes[obj_id].get("Name") or "").split(" (")[0]
+    def _name(self, n: int) -> str:
+        nm = (self.H.nodes[int(n)].get("Name") or "").strip()
+        return nm.split(" (")[0]  # strip EA suffixes if present
 
     @staticmethod
     def _path_str(segments: Tuple[str, ...]) -> str:
         return "/".join(segments or ())
 
-    # ------------------------ canonical owner via GH ------------------------
+    # descendants in HR = walking downward in type hierarchy
+    def _concrete_descendants(self, n: int) -> Set[int]:
+        if n not in self.HR:
+            return set()
+        return {d for d in nx.descendants(self.HR, int(n)) if self._is_concrete(d)}
 
-    def _canonical_owner(self, n: int) -> int:
+    def _nearest_concrete_descendants(self, n: int) -> Set[int]:
         """
-        Walk UP GH (child -> parent type) to find nearest ancestor that is container/root.
-        If none found, fall back to Root.
+        Among all concrete descendants of n, keep only those that do not have
+        another concrete descendant *between* n and themselves (i.e., "closest concretes").
         """
-        n = int(n)
-        if n in self._owner_cache:
-            return self._owner_cache[n]
-
-        if n == self.root_id:
-            self._owner_cache[n] = n
-            return n
-
-        # BFS up GH
+        all_conc = self._concrete_descendants(n)
+        if not all_conc:
+            return set()
+        # distance from n to each concrete (downward in HR)
+        # BFS levels: nearest first
+        nearest: Set[int] = set()
         from collections import deque
-
+        q = deque([n])
         seen = {n}
-        q = deque([(n, 0)])
-        candidates: List[Tuple[int, int]] = []  # (ancestor, dist)
-
         while q:
-            cur, dist = q.popleft()
-            for parent in self.GH.successors(cur):  # child -> parent type
+            cur = q.popleft()
+            for child in self.HR.successors(cur):
+                if child in seen:
+                    continue
+                seen.add(child)
+                if self._is_concrete(child):
+                    nearest.add(child)
+                else:
+                    q.append(child)
+        return nearest
+
+    # -------------------- anchor detection --------------------
+    def _compute_anchors(self) -> Set[int]:
+        """
+        Anchor = any node having >= 2 concrete descendants.
+        These will be emitted as top-level containers under Root.
+        """
+        anchors: Set[int] = set()
+        for n in self.H.nodes():
+            conc = self._concrete_descendants(n)
+            if len(conc) >= 2:
+                anchors.add(int(n))
+        # Root is implicitly an anchor for anything unclaimed
+        anchors.add(self.root_id)
+        return anchors
+
+    def _nearest_anchor_for_concrete(self, c: int, anchors: Set[int]) -> int:
+        """
+        Walk upward (H: child->parent) from concrete c to the nearest ancestor in 'anchors'.
+        If none found (shouldn't happen since Root in anchors), return Root.
+        """
+        q = deque([(int(c), 0)])
+        seen = {int(c)}
+        best: Optional[Tuple[int, int]] = None  # (anchor, dist)
+        while q:
+            cur, d = q.popleft()
+            for parent in self.H.successors(cur):
                 if parent in seen:
                     continue
                 seen.add(parent)
-                if self._is_container_node(parent):
-                    candidates.append((int(parent), dist + 1))
-                q.append((parent, dist + 1))
-
-        if not candidates:
-            owner = self.root_id
-        else:
-            best_dist = min(d for _, d in candidates)
-            best = [a for (a, d) in candidates if d == best_dist]
-            best.sort(key=lambda a: (self._name(a) or "").casefold())
-            owner = best[0]
-
-        self._owner_cache[n] = owner
-        return owner
-
-    # ------------------------ build (Root-down traversal) ------------------------
-
-    def build(self) -> dict:
-        """Construct the auto template as a dict."""
-        root_title = self._name(self.root_id)
-        schema = {
-            "title": root_title,
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": f"https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/{root_title}.json",
-            "type": "object",
-            "$primaryObjectHash": "IdentifiedObject.name",
-            "$secondaryObjectHash": "IdentifiedObject.mRID",
-            "properties": {},
-        }
-
-        # Register Root definition & path
-        self.def_ptr[self.root_id] = schema
-        self.path_map[self.root_id] = (root_title,)
-
-        visited_descend: set[int] = set()
-        seen_assoc_pair: set[tuple[int, int]] = set()
-        EMIT_CROSS_REFERENCES = False  # turn off for now
-
-        def ensure_defined(n: int, stack_containers: set[int]) -> None:
-            """
-            Define node n under its owner:
-            • Prefer branch-local owner (nearest container on current stack).
-            • If none found, fall back to global canonical container ancestor (via GH).
-            • If still none, owner = Root.
-            Ensures the chosen owner is defined first.
-
-            Top-level rule: if n is a direct child of Root (stack == {Root}) and role is
-            inheritOnlyClass, still emit a concrete object at the top level.
-            """
-            n = int(n)
-            if n in self.def_ptr:
-                return
-
-            role = self._role(n)
-
-            # --- choose owner ---
-            # 1) branch-local
-            owner = self._nearest_stack_container_owner(n, stack_containers)
-
-            # 2) global canonical (if branch-local gave Root because nothing matched)
-            if owner == self.root_id:
-                glob = self._canonical_owner(n)
-                if glob != self.root_id:
-                    owner = glob
-
-            # safety: avoid self-ownership
-            if owner == n:
-                owner = self.root_id
-
-            # --- ensure owner is defined first ---
-            if owner not in self.def_ptr:
-                # Recurse to define the owner (its owner will be resolved similarly)
-                # Use the same stack; Root will already be defined.
-                ensure_defined(owner, stack_containers)
-
-            owner_ptr = self.def_ptr.get(owner)
-            owner_path = self.path_map.get(owner)
-            if not isinstance(owner_ptr, dict) or not isinstance(owner_path, tuple):
-                raise RuntimeError(f"Owner for node {n} is not defined.")
-
-            name = self._name(n)
-            at_top_level = (stack_containers == {self.root_id})
-
-            # --- emission rules ---
-            if role == "inheritOnlyClass" and not at_top_level:
-                # Not emitted, but record its canonical path for references/anyOf bookkeeping.
-                self.path_map[n] = owner_path + (name,)
-                self.def_ptr[n] = None
-                return
-
-            if role == "substitutableClass":
-                placeholder = {"anyOf": []}
-                self._add_property(owner_ptr, name, placeholder)
-                self.path_map[n] = owner_path + (name,)
-                self.def_ptr[n] = placeholder
-                return
-
-            if role == "containerClass":
-                obj = {"$objectType": "container", "type": "object", "properties": {}}
-                self._add_property(owner_ptr, name, obj)
-                self.path_map[n] = owner_path + (name,)
-                self.def_ptr[n] = obj
-                return
-
-            # Default: emit a concrete object (also used for top-level inheritOnlyClass)
-            obj = {"$objectType": "object", "type": "object", "$objectId": name, "properties": {}}
-            self._add_property(owner_ptr, name, obj)
-            self.path_map[n] = owner_path + (name,)
-            self.def_ptr[n] = obj
-
-        def add_reference(at_node: int, target: int) -> None:
-            """(Disabled by default) Add a reference to target under at_node."""
-            if not EMIT_CROSS_REFERENCES:
-                return
-            at_ptr = self.def_ptr.get(at_node)
-            if not isinstance(at_ptr, dict):
-                return
-            if target not in self.path_map:
-                return
-            ref = {
-                "$objectType": "reference",
-                "type": "object",
-                "$objectId": self._name(target),
-                "$referencePath": self._path_str(self.path_map[target]),
-                "properties": {},
-            }
-            self._add_property(at_ptr, self._name(target), ref)
-
-
-        def dfs_descend(cur: int, stack_containers: list[int]) -> None:
-            """Root-down traversal over undirected associations (GR) with a branch-local container stack."""
-            # Ensure current node is defined (especially if it's a container anchoring this branch)
-            if cur not in self.def_ptr:
-                ensure_defined(cur, set(stack_containers))
-
-            if cur in visited_descend:
-                return
-            visited_descend.add(cur)
-
-            # Extend the stack with cur if it's a container/root
-            next_stack = list(stack_containers)
-            if self._role(cur) in ("containerClass", "rootClass"):
-                if cur not in next_stack:
-                    next_stack.append(cur)
-
-            # Explore association neighbors (undirected), deterministic by name
-            for child in sorted(self.GR.successors(cur), key=lambda x: (self._name(x) or "").casefold()):
-                pair = (cur, child)
-                if pair in seen_assoc_pair:
-                    continue
-                seen_assoc_pair.add(pair)
-
-                # Define child using branch-local owner
-                ensure_defined(child, set(next_stack))
-
-                # Optionally (currently off): add a reference when owner != cur
-                owner = self._nearest_stack_container_owner(child, set(next_stack))
-                if owner != cur:
-                    add_reference(cur, child)
-
-                dfs_descend(child, next_stack)
-
-        # Register Root
-        self.def_ptr[self.root_id] = schema
-        self.path_map[self.root_id] = (root_title,)
-
-        # Start traversal
-        dfs_descend(self.root_id, [self.root_id])
-
-        # anyOf + sort stay the same
-        self._emit_substitutable_anyofs()
-        self._sort_properties_recursive(schema)
-        return schema
-
-    # ------------------------ anyOf emission ------------------------
-
-    def _emit_substitutable_anyofs(self) -> None:
+                if parent in anchors:
+                    if best is None or d + 1 < best[1]:
+                        best = (int(parent), d + 1)
+                q.append((parent, d + 1))
+        return best[0] if best else self.root_id
+    
+    def _nearest_owner_in_stack(self, n: int, stack_containers: set[int]) -> int:
         """
-        For each substitutableClass node S that has a placeholder definition,
-        collect CONCRETE descendants via inheritance (HR), but only include
-        those that were actually defined (so they have $referencePath).
+        Walk *up* H (child -> parent) to find the nearest ancestor that is in stack_containers.
+        If none found, return self.root_id.
         """
-        subs = [n for n in self.G.nodes() if self._role(n) == "substitutableClass"]
-
-        for s in subs:
-            placeholder = self.def_ptr.get(s)
-            if not (isinstance(placeholder, dict) and "anyOf" in placeholder):
-                continue
-
-            # Gather concrete descendants in GH (downward via HR)
-            concrete_desc: List[int] = []
-            if self.HR.has_node(s):
-                for d in nx.descendants(self.HR, s):
-                    if self._is_concrete_node(d) and d in self.def_ptr and isinstance(self.def_ptr[d], dict):
-                        concrete_desc.append(int(d))
-
-            # Deduplicate by label, stable order
-            seen: Set[str] = set()
-            opts: List[dict] = []
-            for d in sorted(concrete_desc, key=lambda x: (self._name(x) or "").casefold()):
-                label = self._name(d)
-                if label in seen:
+        from collections import deque
+        n = int(n)
+        if not stack_containers:
+            return self.root_id
+        seen = {n}
+        q = deque([n])
+        while q:
+            cur = q.popleft()
+            for parent in self.H.successors(cur):  # child -> parent
+                if parent in seen:
                     continue
-                seen.add(label)
-                opts.append({
-                    "$objectType": "reference",
-                    "type": "object",
-                    "$objectId": label,
-                    "$referencePath": self._path_str(self.path_map.get(d, ())),
-                    "properties": {},
-                })
+                if parent in stack_containers:
+                    return int(parent)  # nearest by BFS
+                seen.add(parent)
+                q.append(parent)
+        return self.root_id
 
-            placeholder["anyOf"] = opts
-
-    # ------------------------ JSON utils ------------------------
-
+    # -------------------- JSON assembly helpers --------------------
     @staticmethod
-    def _add_property(parent_obj: dict, key: str, prop: dict) -> None:
-        """Insert prop under parent_obj['properties'] with collision-safe suffixing."""
+    def _add_property(parent_obj: dict, key: str, prop: dict) -> str:
+        """Insert prop under parent_obj['properties'] with collision-safe suffixing. Returns final key used."""
         props = parent_obj.setdefault("properties", {})
         k = key
         if k in props:
@@ -360,269 +178,296 @@ class TemplateGenerator:
                 i += 1
             k = f"{key}_{i}"
         props[k] = prop
+        return k
 
-    def _sort_properties_recursive(self, node: dict) -> None:
-        if not isinstance(node, dict):
+    def _ensure_defined(self, node_id: int, owner_ptr: dict, owner_path: Tuple[str, ...]) -> None:
+        """Define a node if not already defined under owner_ptr."""
+        if node_id in self.def_ptr:
             return
-        props = node.get("properties")
-        if isinstance(props, dict):
-            ordered = dict(sorted(props.items(), key=lambda kv: kv[0].casefold()))
-            node["properties"] = ordered
-            for child in ordered.values():
-                self._sort_properties_recursive(child)
-        if isinstance(node.get("anyOf"), list):
-            node["anyOf"] = sorted(node["anyOf"], key=lambda d: (d.get("$objectId") or "").casefold())
+        name = self._name(node_id)
 
-    # ------------------------ save & compare helpers ------------------------
-    def _nearest_stack_container_owner(self, n: int, stack_containers: set[int]) -> int:
+        # Decide kind: anchors -> containers; concretes -> object; otherwise reference-only later
+        # We only *define* anchors and concretes. Non-anchors/non-concretes are referenced when needed.
+        is_anchor = getattr(self, "_anchor_set", set())
+        is_anchor = node_id in is_anchor
+
+        if is_anchor:
+            obj = {"$objectType": "container", "type": "object", "properties": {}}
+        elif self._is_concrete(node_id):
+            obj = {"$objectType": "object", "type": "object", "$objectId": name, "properties": {}}
+        else:
+            # Not anchor, not concrete: do not define here; it will be referenced when needed.
+            self.def_ptr[node_id] = None
+            self.path_map[node_id] = owner_path + (name,)
+            return
+
+        self._add_property(owner_ptr, name, obj)
+        self.def_ptr[node_id] = obj
+        self.path_map[node_id] = owner_path + (name,)
+
+    def _add_reference(self, at_owner_id: int, target_id: int) -> None:
+        if not self.EMIT_CROSS_REFS:
+            return
+        at_ptr = self.def_ptr.get(at_owner_id)
+        if not isinstance(at_ptr, dict):
+            return
+        if target_id not in self.path_map:
+            return
+        label = self._name(target_id)
+        ref = {
+            "$objectType": "reference",
+            "type": "object",
+            "$objectId": label,
+            "$referencePath": self._path_str(self.path_map[target_id]),
+            "properties": {},
+        }
+        self._add_property(at_ptr, label, ref)
+
+    # -------------------- build --------------------
+
+    def build(self) -> dict:
         """
-        Choose owner for node n as the nearest CONTAINER ancestor in GH
-        that is present in the CURRENT traversal stack. If none, owner = Root.
+        Build auto_template:
+
+        1) Top-level (Root/*) comes *only* from A: all nodes with a directed edge Root -> X.
+        2) Everything else is filled using H traversal (down via HR), with owner selection
+        based on the current branch's container stack (no new top-level unless A says so).
+        3) Cross-references are emitted when an encountered node’s owner ≠ the current node.
+        4) Top-level keys are ordered like the hand template (intersection first), then A–Z.
         """
-        from collections import deque
+        # ---------- setup ----------
+        EMIT_XREFS = self.EMIT_CROSS_REFS
+        root_title = (self.A.nodes[self.root_id].get("Name") if self.root_id in self.A
+                    else self.H.nodes[self.root_id].get("Name")) or "Root"
 
-        n = int(n)
-        seen = {n}
-        q = deque([(n, 0)])
-        candidates = []  # (ancestor, dist)
+        # caches
+        self._owner_cache = {}
+        self.def_ptr = {}
+        self.path_map = {}
+        role = lambda n: (self.A.nodes[n].get("ravensRole")
+                        if n in self.A else self.H.nodes[n].get("ravensRole")) or ""
+        name = lambda n: (self.A.nodes[n].get("Name")
+                        if n in self.A else self.H.nodes[n].get("Name")) or ""
 
-        while q:
-            cur, dist = q.popleft()
-            for parent in self.GH.successors(cur):  # child -> parent type
-                if parent in seen:
-                    continue
-                seen.add(parent)
-                if parent in stack_containers:
-                    candidates.append((int(parent), dist + 1))
-                q.append((parent, dist + 1))
+        schema = {
+            "title": root_title,
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": f"https://example.org/schema/{root_title}.json",
+            "type": "object",
+            "properties": {},
+        }
+        # register Root
+        self.def_ptr[self.root_id] = schema
+        self.path_map[self.root_id] = (root_title,)
 
-        if not candidates:
-            return self.root_id
-        best_dist = min(d for _, d in candidates)
-        best = [a for (a, d) in candidates if d == best_dist]
-        best.sort(key=lambda a: (self._name(a) or "").casefold())
-        return best[0]
+        # ---------- 1) first-level from A (directed Root -> child) ----------
+        if self.root_id in self.A:
+            first_level_nodes = sorted(set(self.A.successors(self.root_id)),
+                                    key=lambda n: name(n).casefold())
+        else:
+            first_level_nodes = []
 
+        FIRST_LEVEL_SET = {int(n) for n in first_level_nodes}  # guard to prevent new Root/* later
 
-    @staticmethod
-    def save_auto_template(auto_template: dict) -> None:
-        """
-        Save auto template aligned to hand template's key order where possible.
-        """
-        template_hand = json.loads(_TEMPLATE_JSON_PATH.read_text(encoding="utf-8"))
-        auto_ordered = TemplateGenerator._reorder_like_template(auto_template, template_hand)
-        _TEMPLATE_AUTOJSON_PATH.write_text(json.dumps(auto_ordered, indent=2), encoding="utf-8")
+        def ensure_defined(n: int, stack_containers: set[int], *, force_owner: Optional[int] = None, at_top_level: bool = False):
+            """Define node n under an owner. If force_owner is provided, use that owner."""
+            n = int(n)
+            if n in self.def_ptr:
+                return
 
-    @staticmethod
-    def _reorder_like_template(source: dict, template: dict) -> dict:
-        """
-        Return a *new* dict where every nested `properties` object is reordered
-        to match the template's key order. Extras appended A–Z.
-        """
-        if not isinstance(source, dict):
-            return source
-        out = dict(source)
-        if "properties" in out and isinstance(out["properties"], dict):
-            src_props = out["properties"]
-            tmpl_props = template.get("properties", {}) if isinstance(template, dict) else {}
-            ordered_keys = list(tmpl_props) + sorted(k for k in src_props if k not in tmpl_props)
-            out["properties"] = {
-                k: TemplateGenerator._reorder_like_template(src_props[k], tmpl_props.get(k, {}))
-                for k in ordered_keys if k in src_props
+            # owner selection
+            if force_owner is not None:
+                owner = int(force_owner)
+            else:
+                owner = self._nearest_owner_in_stack(n, stack_containers)
+                # Prevent accidental new top-level entries: if owner resolves to Root
+                # but n is not an A-derived first-level node, keep it off Root by
+                # attaching to the nearest non-root container in the stack (or current anchor).
+                if owner == self.root_id and n not in FIRST_LEVEL_SET:
+                    # prefer the closest container in the stack (excluding root if possible)
+                    non_root = [c for c in stack_containers if c != self.root_id]
+                    owner = non_root[-1] if non_root else self.root_id
+
+            owner_ptr = self.def_ptr.get(owner)
+            owner_path = self.path_map.get(owner)
+            if not isinstance(owner_ptr, dict) or not isinstance(owner_path, tuple):
+                raise RuntimeError(f"Owner for node {n} is not defined.")
+
+            nm = name(n)
+            r  = role(n).strip()
+
+            # emission rules
+            if r == "substitutableClass":
+                node_obj = {"anyOf": []}
+            elif r == "containerClass":
+                node_obj = {"$objectType": "container", "type": "object", "properties": {}}
+            elif r == "inheritOnlyClass" and not at_top_level:
+                # not emitted; record its canonical path for referencing
+                self.path_map[n] = owner_path + (nm,)
+                self.def_ptr[n] = None
+                return
+            else:
+                # default object (also used for top-level inheritOnly)
+                node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
+
+            self._add_property(owner_ptr, nm, node_obj)
+            self.path_map[n] = owner_path + (nm,)
+            self.def_ptr[n] = node_obj
+
+        def add_xref(at_node: int, target: int):
+            """Add a reference to 'target' under 'at_node' (if enabled)."""
+            if not self.EMIT_CROSS_REFS:
+                return
+            at_ptr = self.def_ptr.get(at_node)
+            if not isinstance(at_ptr, dict):
+                return
+            tgt_path = self.path_map.get(target)
+            if not tgt_path:
+                return
+            ref = {
+                "$objectType": "reference",
+                "type": "object",
+                "$objectId": name(target),
+                "$referencePath": "/".join(tgt_path),
+                "properties": {}
             }
-        for k, v in list(out.items()):
-            if isinstance(v, dict) and k != "properties":
-                out[k] = TemplateGenerator._reorder_like_template(v, template.get(k, {}) if isinstance(template, dict) else {})
-        return out
+            self._add_property(at_ptr, name(target), ref)
 
-    @staticmethod
-    def compare_templates_relaxed(
+        # Force-create top-level from A under Root (even if inheritOnly)
+        for n in first_level_nodes:
+            ensure_defined(n, stack_containers={self.root_id}, force_owner=self.root_id, at_top_level=True)
+
+        # ---------- 2) descend H below each top-level anchor ----------
+        from collections import deque
+        visited_down = set()
+
+        for anchor in first_level_nodes:
+            # stack tracks container anchors along the branch (Root + this anchor to start)
+            stack = [self.root_id, anchor] if role(anchor).strip() in ("containerClass", "rootClass", "inheritOnlyClass", "substitutableClass", "") else [self.root_id, anchor]
+
+            q = deque([anchor])
+            while q:
+                cur = q.popleft()
+                if cur in visited_down:
+                    continue
+                visited_down.add(cur)
+
+                # walk downward in inheritance via HR (parent -> child)
+                if cur not in self.HR:
+                    continue
+                children = sorted(self.HR.successors(cur), key=lambda n: name(n).casefold())
+                for child in children:
+                    # owner based on current container stack; never create new top-level unless in FIRST_LEVEL_SET
+                    ensure_defined(child, stack_containers=set(stack))
+
+                    # add cross-ref if the child wasn't defined under 'cur'
+                    if self.EMIT_CROSS_REFS:
+                        owner_here = self._nearest_owner_in_stack(child, set(stack))
+                        if owner_here != cur and child in self.def_ptr and isinstance(self.def_ptr[child], dict):
+                            add_xref(cur, child)
+
+                    # extend stack if this child is a container
+                    if role(child).strip() == "containerClass":
+                        q.append(child)
+                        # branch-local stack extension
+                        stack = stack + [child]
+                    else:
+                        q.append(child)
+
+        # ---------- 3) top-level ordering like hand ----------
+        schema["properties"] = self._order_top_level_like_hand(schema.get("properties", {}))
+
+        # cache for save()
+        self._last_auto = schema
+        return schema
+
+    def _sort_properties(
+        self,
+        node: dict,
         *,
-        arrays_compatible: bool = False,
-        reference_path_strict: bool = False,
-        variant_overlap_threshold: float = 0.5,
-        depth: int = 3,
-        sample_n: int = 10,
+        template: dict | None = None,
+        mode: Literal["hand", "alpha", "none"] = "hand",
     ) -> dict:
         """
-        Relaxed comparator (path/label/anyOf-aware).
+        Reorder every nested `properties` dict.
+
+        mode="hand":  follow the hand template's property order; append extras A–Z
+        mode="alpha": sort all properties A–Z (no template needed)
+        mode="none":  leave insertion order as-is (no changes)
+
+        Returns the *same* dict (mutates in place).
         """
-        def last_segment(p: str) -> str:
-            if not isinstance(p, str) or not p:
-                return ""
-            return p.strip("/").split("/")[-1]
-
-        def is_array(node: dict) -> bool:
-            return isinstance(node, dict) and node.get("type") == "array"
-
-        def unwrap_array(node: dict) -> dict:
-            if is_array(node):
-                return node.get("items") or {}
+        if not isinstance(node, dict) or mode == "none":
             return node
 
-        def node_kind(node: dict) -> str:
-            if isinstance(node, dict) and "anyOf" in node and isinstance(node["anyOf"], list):
-                return "anyOf"
-            if isinstance(node, dict):
-                return str(node.get("$objectType") or "object")
-            return "object"
+        def recur(src: dict, tmpl: dict | None) -> dict:
+            if not isinstance(src, dict):
+                return src
 
-        def label_for_node(node: dict, prop_name: str) -> str:
-            if not isinstance(node, dict):
-                return prop_name
-            if node.get("$objectType") == "reference":
-                if not reference_path_strict:
-                    return last_segment(node.get("$referencePath", "")) or node.get("$objectId") or prop_name
-                return node.get("$referencePath") or node.get("$objectId") or prop_name
-            return node.get("$objectId") or prop_name
+            # Recurse into children first so nested structures are sorted too
+            props = src.get("properties")
+            if isinstance(props, dict):
+                if mode == "hand" and isinstance(tmpl, dict):
+                    tmpl_props = tmpl.get("properties", {}) if isinstance(tmpl, dict) else {}
+                    # 1) keys in hand order; 2) extras A–Z
+                    ordered_keys = list(tmpl_props) + sorted(k for k in props if k not in tmpl_props)
+                elif mode == "alpha":
+                    ordered_keys = sorted(props)
+                    tmpl_props = {}
+                else:  # mode == "hand" but no template provided
+                    ordered_keys = sorted(props)
+                    tmpl_props = {}
 
-        def variant_labels(node: dict) -> set:
-            labels = set()
-            if not (isinstance(node, dict) and isinstance(node.get("anyOf"), list)):
-                return labels
-            for v in node["anyOf"]:
-                if not isinstance(v, dict):
+                new_props = {}
+                for k in ordered_keys:
+                    if k not in props:
+                        continue
+                    child_tmpl = tmpl_props.get(k, {}) if isinstance(tmpl_props, dict) else {}
+                    new_props[k] = recur(props[k], child_tmpl)
+                src["properties"] = new_props
+
+            # Keep anyOf stable (or sort by label if you prefer):
+            if isinstance(src.get("anyOf"), list):
+                # keep current order; if you want alpha, uncomment:
+                # src["anyOf"] = sorted(src["anyOf"], key=lambda d: (d.get("$objectId") or "").casefold())
+                pass
+
+            # Recurse into any other dict fields
+            for k, v in list(src.items()):
+                if k == "properties":
                     continue
-                if v.get("$objectType") == "reference":
-                    lbl = last_segment(v.get("$referencePath", "")) or v.get("$objectId") or v.get("$objectType") or "?"
-                else:
-                    lbl = v.get("$objectId") or v.get("$objectType") or "?"
-                labels.add(str(lbl))
-            return labels
+                if isinstance(v, dict):
+                    tmpl_child = template.get(k, {}) if (mode == "hand" and isinstance(template, dict)) else None
+                    src[k] = recur(v, tmpl_child)
 
-        def walk(tpl: dict, *, max_depth: int):
-            def _walk(node: dict, prefix: tuple):
-                if len(prefix) >= max_depth:
-                    return
-                if not isinstance(node, dict):
-                    return
-                arr = is_array(node)
-                core = unwrap_array(node)
-                if "anyOf" in core and isinstance(core["anyOf"], list):
-                    yield prefix, {"type": "array" if arr else core.get("type"), **core}, arr
-                    return
-                if "$objectType" in core:
-                    yield prefix, {"type": "array" if arr else core.get("type"), **core}, arr
-                props = core.get("properties")
-                if isinstance(props, dict):
-                    for k, v in props.items():
-                        yield from _walk(v, prefix + (str(k),))
-            yield from _walk(tpl, ())
+            return src
 
-        def flatten_strict(tpl: dict) -> dict:
-            out = {}
-            for p, node, arr in walk(tpl, max_depth=depth):
-                core = unwrap_array(node)
-                sig = {
-                    "kind": core.get("$objectType"),
-                    "objectId": core.get("$objectId"),
-                    "primary": core.get("$primaryObjectHash"),
-                    "secondary": core.get("$secondaryObjectHash"),
-                    "refPath": core.get("$referencePath"),
-                    "is_array": bool(arr),
-                    "is_anyof": isinstance(core.get("anyOf"), list),
-                }
-                out["/".join(p)] = sig
-            return out
+        return recur(node, template)
+    
+    def _order_props_like_hand(self, props: dict) -> dict:
+        if not isinstance(props, dict):
+            return props
+        try:
+            import json
+            from ravens.data import _TEMPLATE_JSON_PATH
+            hand = json.loads(_TEMPLATE_JSON_PATH.read_text(encoding="utf-8"))
+            hand_props = hand.get("properties", {}) if isinstance(hand, dict) else {}
+        except Exception:
+            hand_props = {}
 
-        def flatten_relaxed(tpl: dict) -> dict:
-            out = {}
-            for p, node, arr in walk(tpl, max_depth=depth):
-                core = unwrap_array(node)
-                path = "/".join(p)
-                prop_name = p[-1] if p else ""
-                k = node_kind(core)
-                if k == "anyOf":
-                    out[path] = {"is_array": bool(arr), "kind": "anyOf", "variants": variant_labels(core)}
-                else:
-                    out[path] = {"is_array": bool(arr), "kind": k, "label": label_for_node(core, prop_name)}
-            return out
+        in_both = [k for k in hand_props.keys() if k in props]
+        extras = sorted([k for k in props.keys() if k not in hand_props], key=str.casefold)
+        ordered_keys = in_both + extras
+        return {k: props[k] for k in ordered_keys}
 
-        hand = json.loads(_TEMPLATE_JSON_PATH.read_text(encoding="utf-8"))
-        auto = json.loads(_TEMPLATE_AUTOJSON_PATH.read_text(encoding="utf-8"))
 
-        strict_hand = flatten_strict(hand)
-        strict_auto = flatten_strict(auto)
-        relaxed_hand = flatten_relaxed(hand)
-        relaxed_auto = flatten_relaxed(auto)
-
-        paths_hand = set(strict_hand.keys())
-        paths_auto = set(strict_auto.keys())
-        in_both = paths_hand & paths_auto
-        changed_strict = {p for p in in_both if strict_hand[p] != strict_auto[p]}
-        exact_matches = in_both - changed_strict
-
-        def relaxed_equal(a: dict, b: dict) -> bool:
-            if not arrays_compatible and bool(a.get("is_array")) != bool(b.get("is_array")):
-                return False
-            if a.get("kind") == "anyOf" and b.get("kind") == "anyOf":
-                A, B = set(a.get("variants") or ()), set(b.get("variants") or ())
-                if not A and not B:
-                    return True
-                inter = len(A & B)
-                uni = len(A | B) or 1
-                return (inter / uni) >= variant_overlap_threshold
-            if a.get("kind") == "anyOf":
-                return (b.get("label", "") in (a.get("variants") or set()))
-            if b.get("kind") == "anyOf":
-                return (a.get("label", "") in (b.get("variants") or set()))
-            return str(a.get("label", "")).strip() == str(b.get("label", "")).strip()
-
-        paths_hand_rel = set(relaxed_hand.keys())
-        paths_auto_rel = set(relaxed_auto.keys())
-        in_both_rel = paths_hand_rel & paths_auto_rel
-
-        relaxed_matches = set()
-        for p in in_both_rel:
-            if p in exact_matches:
-                continue
-            if relaxed_equal(relaxed_hand[p], relaxed_auto[p]):
-                relaxed_matches.add(p)
-
-        presence_only = in_both_rel - exact_matches - relaxed_matches
-        only_in_hand = sorted(paths_hand_rel - paths_auto_rel)
-        only_in_auto = sorted(paths_auto_rel - paths_hand_rel)
-
-        print("=" * 60)
-        print(f"🟢  EXACT MATCH: {len(exact_matches)}")
-        print(f"🟡  RELAXED MATCH: {len(relaxed_matches)}")
-        print(f"⚪  PATH MATCH (presence-only): {len(presence_only)}")
-        print(f"➖  Missing in auto : {len(only_in_hand)}")
-        print(f"➕  New in auto     : {len(only_in_auto)}")
-        print(f"✏️  Changed (strict): {len(changed_strict)}")
-        print("=" * 60)
-
-        def sample(paths, label):
-            if not paths:
-                return
-            print(f"\n{label}  ({len(paths)}):")
-            for p in list(sorted(paths))[:sample_n]:
-                print("   ", p)
-
-        sample(only_in_hand, "➖  only in hand-crafted")
-        sample(only_in_auto, "➕  only in auto")
-        sample(relaxed_matches, "🟡  relaxed matches (not exact)")
-        sample(presence_only, "⚪  path matches (presence-only)")
-        sample(changed_strict, "✏️  changed (strict)")
-
-        return {
-            "counts": {
-                "exact": len(exact_matches),
-                "relaxed": len(relaxed_matches),
-                "presence_only": len(presence_only),
-                "only_in_hand": len(only_in_hand),
-                "only_in_auto": len(only_in_auto),
-                "changed_strict": len(changed_strict),
-                "common_paths": len(in_both_rel),
-            },
-            "sets": {
-                "exact": sorted(exact_matches),
-                "relaxed": sorted(relaxed_matches),
-                "presence_only": sorted(presence_only),
-                "only_in_hand": only_in_hand,
-                "only_in_auto": only_in_auto,
-                "changed_strict": sorted(changed_strict),
-            },
-            "strict_signatures": {"hand": strict_hand, "auto": strict_auto},
-            "relaxed_signatures": {"hand": relaxed_hand, "auto": relaxed_auto},
-        }
+    # -------------------- save helpers --------------------
+    def save_auto_template(self, auto_template: Optional[dict] = None) -> None:
+        """
+        Write the auto template JSON. If `auto_template` is not provided, use the
+        most recent `build()` result cached on this instance.
+        """
+        data = auto_template or getattr(self, "_last_built", None)
+        if not isinstance(data, dict):
+            raise ValueError("No auto template provided and nothing cached from build().")
+        _TEMPLATE_AUTOJSON_PATH.write_text(json.dumps(data, indent=2), encoding="utf-8")
