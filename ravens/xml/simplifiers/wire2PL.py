@@ -1,6 +1,7 @@
 import json
 import numpy as np
 import scipy.special as sp
+import warnings
 from .ll_simp import ll_simp as ll
 np.set_printoptions(edgeitems=3, linewidth=200, precision=5, suppress=False, threshold=1000, formatter=None)
 
@@ -27,7 +28,8 @@ def wire2PL(in_data,out_data=None):
         #4) clean up any remaining wire info references
         wire_info_purge("tmp/w2lp_mp.json",out_data)
     else:
-        raise ValueError("Invalid arguments. Expected either a dictionary or two filenames.")
+        warnings.warn("Invalid arguments. Expected either a dictionary or two filenames. No File Modification Returning Null Dict.")
+        return {}
 
 def wire2PL_compute(raven, output_file = None):
     #1) find all wireinfo objects
@@ -86,7 +88,9 @@ def wire2PL_compute(raven, output_file = None):
             RDC[wi_name] = get(wi,"WireInfo.rDC20")
             RAC[wi_name] = RDC[wi_name]*1.02
         else:
-            raise KeyError("WireInfo object does not specify rDC or rAC")
+            warnings.warn("WireInfo object does not specify rDC or rAC")
+            RDC[wi_name] = 1
+            RAC[wi_name] = 1.02
         if has(wi,"WireInfo.gmr"):
             GMR[wi_name] = get(wi,"WireInfo.gmr")
             R[wi_name] = get(wi,"WireInfo.radius")
@@ -94,7 +98,9 @@ def wire2PL_compute(raven, output_file = None):
             GMR[wi_name] = get(wi,"WireInfo.radius")*0.778
             R[wi_name] = get(wi,"WireInfo.radius")
         else: 
-            raise KeyError("WireInfo object does not specify radius or GMR")
+            warnings.warn("WireInfo object does not specify radius or GMR, replacing with default values.")
+            GMR[wi_name] = 0.778
+            R[wi_name] = 1
         if (get(wi,"Ravens.cimObjectType")=="ConcentricNeutralCableInfo"):
             DON[wi_name] = get(wi,"ConcentricNeutralCableInfo.diameterOverNeutral") 
             NSR[wi_name] = get(wi,"ConcentricNeutralCableInfo.neutralStrandRadius") * 2.0
@@ -117,7 +123,10 @@ def wire2PL_compute(raven, output_file = None):
             X[wsi_name] = {wp["WirePosition.sequenceNumber"]:wp["WirePosition.xCoord"] for wp in wps}
             Y[wsi_name] = {wp["WirePosition.sequenceNumber"]:wp["WirePosition.yCoord"] for wp in wps}
         else:
-            raise KeyError("WireSpacing Info does not properly specify Wire positions")
+            warnings.warn("WireSpacing Info does not properly specify Wire positions, replacing with null dictionaries")
+            X[wsi_name] = {}
+            Y[wsi_name] = {}
+
 
     #generate a Z matrix for each wire that needs one and insert into ravens
     for wire_name, wire in wires.items():
@@ -131,7 +140,7 @@ def wire2PL_compute(raven, output_file = None):
             wi_types = [WIT[wi_key] for wi_key in wi_keys.values()]
             for i in range(1,len(wi_types)):
                 if wi_types[0] != wi_types[i]:
-                    raise KeyError("Line Segment uses multiple component types")
+                    warnings.warn("Line Segment uses multiple component types")
             wi_type = wi_types[0]
             n_conds = len(wire["ACLineSegment.ACLineSegmentPhase"])
             wire_positions = X[wsi_key].keys()

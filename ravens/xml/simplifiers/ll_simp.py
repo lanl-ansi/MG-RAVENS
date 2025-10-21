@@ -1,4 +1,5 @@
 import json
+import warnings
 from .tl_simp import tl_simp
 
 class ll_simp:
@@ -37,7 +38,8 @@ class ll_simp:
 
                 json.dump(raven, output_file, indent=2)
         else:
-            raise ValueError("Invalid arguments. Expected either a dictionary or two filenames.")
+            warnings.warn("Invalid arguments. Expected either a dictionary or two filenames. Returning null dictionary.")
+            return {}
 
     def prune(self,raven):
         if isinstance(raven,dict):

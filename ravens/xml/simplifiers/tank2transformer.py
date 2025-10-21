@@ -3,6 +3,7 @@ import numpy as np
 import scipy.special as sp
 from .ll_simp import ll_simp as ll
 from .DY_Transforms import wye_2_delta as w2d
+import warnings
 # from ll_simp import ll_simp as ll
 # from DY_Transforms import wye_2_delta as w2d
 np.set_printoptions(edgeitems=3, linewidth=200, precision=5, suppress=False, threshold=1000, formatter=None)
@@ -35,7 +36,8 @@ def tank2transformer(in_data,out_data=None,tank_merge=True):
         #4) clean up any remaining wire info references
         transformer_tank_purge("tmp/t2t_mp.json", out_data)
     else:
-        raise ValueError("Invalid arguments. Expected either a dictionary or two filenames.")
+        warnings.warn("Invalid arguments. Expected either a dictionary or two filenames. Returning a null dictionary")
+        return {}
 
 
 def tank2transformer_compute(raven,output_file = None, tank_merge = False):
@@ -100,7 +102,7 @@ def tank2transformer_compute(raven,output_file = None, tank_merge = False):
                         term["Terminal.phases"] = paired_tank_end["TransformerTankEnd.phases"]
 
                     if len(tank_ends) != len(tank_terminals):
-                        raise KeyError("Not able to find enough terminals for tank " + str(get(tank,"IdentifiedObject.name")))
+                        warnings.warn("Not able to find enough terminals for tank " + str(get(tank,"IdentifiedObject.name")))
                     
                     #get relevant transformer tank info
                     tank_info_name = get(tank,"PowerSystemResource.AssetDatasheet").split(":")[-1].strip("'")
@@ -110,7 +112,7 @@ def tank2transformer_compute(raven,output_file = None, tank_merge = False):
                         if get(tti,"IdentifiedObject.name") == tank_info_name:
                             TTI.append(tti["PowerTransformerInfo.TransformerTankInfos"][tank_info_name]["TransformerTankInfo.TransformerEndInfos"])
                     if len(TTI) != 1:
-                        raise KeyError("Transformer Tank Info improperly defined for " + str(tank_info_name))
+                        warnings.warn("Transformer Tank Info improperly defined for " + str(tank_info_name))
                     TTI = TTI[0]
 
                     # b) convert to new math
@@ -272,7 +274,8 @@ def create_end(transformer,terminals,pattern,end_num,TTIs):
             new_end["TransformerEnd.CoreAdmittance"]["TransformerCoreAdmittance.g"] = new_end["TransformerEnd.CoreAdmittance"]["TransformerCoreAdmittance.g"]*np.sqrt(3)
             new_end["TransformerEnd.CoreAdmittance"]["TransformerCoreAdmittance.b"] = new_end["TransformerEnd.CoreAdmittance"]["TransformerCoreAdmittance.b"]*np.sqrt(3)
     else:
-        raise KeyError("Unsupported Connection Type",pattern)
+        warnings.warn("Unsupported Connection Type",pattern)
+        new_end["PowerTransformerEnd.connectionKind"] = "WindingConnection.NULL"
     return new_end
 
 
@@ -398,17 +401,18 @@ def calc_TSI(tank_end_info, TSI,TEI_xr,ESCT,aux):
         rs_pct = (r_s/zbase)*100.0
         x_sc = (np.sqrt((leak_impedance_wdg/zbase)**2 - (rs_pct+rs_pct)**2)/100)*zbase
 
-        # REPEATED IN PARSING: RS and XSC computation based on ratios
-        # r_s = r_s/ratio_self**2
-        # x_sc = (x_sc/ratio_1**2)   # w.r.t wdg1
-
         return {
             "Ravens.cimObjectType": "TransformerStarImpedance",
             "TransformerStarImpedance.r": r_s*2, #TODO: Validate the 2x?
             "TransformerStarImpedance.x": x_sc,
         }
     else:
-        raise KeyError("Did not specify enough transformer info to define a star impedance")
+        warnings.warn("Did not specify enough transformer info to define a star impedance, returning a default TSI")
+        return {
+            "Ravens.cimObjectType": "TransformerStarImpedance",
+            "TransformerStarImpedance.r": 0,
+            "TransformerStarImpedance.x": 0,
+        }
 
 def calc_TCA(tank_end_info,EENLT,aux):
     if EENLT != None:
@@ -436,7 +440,13 @@ def calc_TCA(tank_end_info,EENLT,aux):
                   "TransformerCoreAdmittance.b": b_sh,
                 }
     else:
-        raise KeyError("Did not specify enough transformer info to define a core admittance")
+        warnings.warn("Did not specify enough transformer info to define a core admittance, returning a null TCA")
+        return  {
+            "Ravens.cimObjectType": "TransformerCoreAdmittance",
+            "TransformerCoreAdmittance.g": 0,
+            "TransformerCoreAdmittance.b": 0,
+        }
+        
 
         
 

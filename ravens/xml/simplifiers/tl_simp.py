@@ -1,4 +1,5 @@
 import json
+import warnings
 
 class tl_simp:
     def __init__(self,tl_targets):
@@ -23,7 +24,8 @@ class tl_simp:
 
                 json.dump(raven, output_file,indent=2)
         else:
-            raise ValueError("Invalid arguments. Expected either a dictionary or two filenames.")
+            warnings.warn("Invalid arguments. Expected either a dictionary or two filenames. Returning null dictionary")
+            return {}
 
 
 if __name__ == "__main__":

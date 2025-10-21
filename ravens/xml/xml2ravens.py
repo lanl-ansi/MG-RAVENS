@@ -913,4 +913,3 @@ if __name__ == "__main__":
     assert(d2.is_simplified())
     d2.restore_ravens()
     assert(not d2.is_simplified())
-
