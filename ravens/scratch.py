@@ -11,16 +11,10 @@ from importlib import reload
 from pprint import pprint
 from ravens.uml import template 
 
-reload(graph)
-reload(clusions)
 uml_data = UMLData().loadf()
-inc = clusions.UMLInclusions(
-    uml_data=uml_data,
-    package_names=["SimplifiedDiagrams"],
-    include_subpackages=True,
-    exclude_inf_mkt=True,
-)
-ug = graph.UMLGraphs(uml_data=uml_data, inclusions=inc)  # both H and A filtered
+inc = clusions.UMLInclusions(uml_data=uml_data, packages=["SimplifiedDiagrams"], exclude_inf_mkt_initial=True)
+uml_data_filtered = inc.apply()
+ug = graph.UMLGraphs(uml_data=uml_data_filtered)  # both H and A filtered
 
 reload(template)
 tg = template.TemplateGenerator(H=ug.H, A=ug.A, root_name="Root")
@@ -28,7 +22,38 @@ auto = tg.build()
 tg.save_auto_template(auto)
 
 
+import re
+def debug_name_leaks(ug):
+    def nm(i): 
+        try: return str(ug.uml_data.objects.loc[int(i)]["Name"])
+        except Exception: return ""
+    bad = []
+    for n in ug.H.nodes:
+        if re.match(r'^(?:Inf|Mkt)[A-Z]', nm(n)):
+            bad.append(("H", n, nm(n)))
+    for n in ug.A.nodes:
+        if re.match(r'^(?:Inf|Mkt)[A-Z]', nm(n)):
+            bad.append(("A", n, nm(n)))
+    return bad
 
+inc = clusions.UMLInclusions(
+    uml_data,
+    packages=["SimplifiedDiagrams"],
+    exclude_inf_mkt_initial=True,   # drop InfX/MktX by name
+    auto_apply=True                 # builds .filtered_uml_data immediately
+)
+
+ug = graph.UMLGraphs(inclusions=inc)  # uses inc.filtered_uml_data directly
+leaks = debug_name_leaks(ug)  # should now be []
+print("Leaks:", leaks)
+
+
+# # Set EA tags according to inferences from hand template
+# reload(graph)
+# reload(validate)
+# from ravens.data import _TEMPLATE_JSON_PATH
+# role_sets = validate.guess_notconcrete_roles_from_hand(_TEMPLATE_JSON_PATH, ug)
+# script = ug.export_ea_jscript_all(role_sets=role_sets, out_path="retag_from_hand.js")
 
 # # Find problems
 # mv = ModelValidator(G, root_name="Root")
@@ -45,30 +70,6 @@ tg.save_auto_template(auto)
 # updates.to_csv(path_out, index=False)
 # path_invalids = Path(r'X:\Research\Ravens\validation_exports\invalids.xlsx')
 # validate.write_validation_report(path_invalids, blah)
-
-# Template generator
-reload(template)
-from ravens.uml.template import TemplateGenerator
-tg = TemplateGenerator(G, root_name="Root")
-auto_schema = tg.build()
-
-TemplateGenerator.save_auto_template(auto_schema)
-c = TemplateGenerator.compare_templates_relaxed(
-    arrays_compatible=True,         # arrays ignored for now
-    reference_path_strict=False,    # compare by last segment/label
-    variant_overlap_threshold=0.5,
-    depth=3,
-    sample_n=10,
-)
-
-
-# Define the filename for the pickle file
-import pickle
-filename = r'X:\Research\Ravens\ravensG.pickle'
-
-# Save the graph object to the pickle file
-with open(filename, 'wb') as f:
-    pickle.dump(G, f)
 
 
 
@@ -92,13 +93,6 @@ Validations
 5) green connectors cannot flow to magenta objects; and can only flow to yellow if there's a green eventually underneath that yellow [does it need to exist within the same diagram?]
 
 
-                                                      
-df2 = jps.legends_on_diagram(uml_data, 11107)
-
-# Store the autogen template
-root_id = [n for n, d in G.nodes(data=True) if d.get("Name").startswith("Root")][0]
-schema_root = ug.build_two_level_schema(root_id)
-validate.save_auto_template(schema_root)
 
 ## Validations ##
 
@@ -116,14 +110,6 @@ validate.save_auto_template(schema_root)
 #     Else (ordinary object)
     #     include $objectId = class name
     #     add both hash fields; set to CIM paths unless the class lacks IdentifiedObject, in which case set both to null.
-
-
-
-json_paths = jps.auto_template_paths()
-validate.compare_templates()
-
-# For directionality (when building graphs)
-
 
 # For later
 distinction between object and reference?

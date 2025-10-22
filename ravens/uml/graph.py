@@ -12,25 +12,25 @@ from ravens import jps
 
 class UMLGraphs:
     def __init__(self, uml_data=None, inclusions: Optional[UMLInclusions] = None):
-        if uml_data is None:
-            uml_data = UMLData()
-        self.uml_data = uml_data
-
-        # inclusions: if None => no restrictions (both H and A are global)
-        self.inclusions = inclusions  # may be None
+        
+        # If inclusions is provided and it has filtered_uml_data, prefer that and disable gating.
+        if inclusions is not None and getattr(inclusions, "filtered_uml_data", None) is not None:
+            self.uml_data = inclusions.filtered_uml_data
+            self.inclusions = None  # graphs see only filtered world; no runtime allow()
+        else:
+            from ravens.uml import UMLData
+            self.uml_data = uml_data if uml_data is not None else UMLData()
+            self.inclusions = inclusions  # optional; used only if you keep gating
 
         self._ensure_indexes()
-        self.tag_name_filter = "ravensRole"  
+        self.tag_name_filter = "ravensRole"
         self.object_tags    = self._build_object_tags()
         self.connector_tags = self._build_connector_tags()
-
         self._object_role_map = (
             self.object_tags["Value"].groupby(level="Object_ID").last().apply(
                 lambda v: self._normalize_role(v, kind="node")
             ).to_dict()
         )
-
-        # Build graphs (H honors inclusions iff provided; otherwise full)
         self.H  = self.build_H()
         self.HR = self.H.reverse(copy=False)
         self.A  = self.build_A()
@@ -743,15 +743,26 @@ class UMLGraphs:
         print_to_console: bool = True,
     ) -> str:
         """
-        Emit a single EA JScript to clear & assign ravensRole for not-concrete classes.
-        (Works off the provided role sets; uses no template logic.)
+        Emit a single EA JScript that updates ravensRole for *only* the IDs passed in.
+        - Does NOT clear all not-concrete tags globally.
+        - Clears only the union of (inheritOnly|container|substitutable) provided.
+        - Skips 'Root' by name.
+        - Does not overwrite concrete roles (rootClass / embeddedClass).
+        - Assumes role_sets are already disjoint (overlap handled by guess function).
         """
         if role_sets is None:
-            role_sets = self.retag_notconcrete_roles(write_back=False)
+            raise ValueError("export_ea_jscript_all: role_sets must be provided (disjoint).")
 
-        containers = [int(x) for x in role_sets.get("containerClass", [])]
-        substitutables = [int(x) for x in role_sets.get("substitutableClass", [])]
-        inheritonly = [int(x) for x in role_sets.get("inheritOnlyClass", [])]
+        inh_ids = sorted({int(x) for x in role_sets.get("inheritOnlyClass", []) if x is not None})
+        con_ids = sorted({int(x) for x in role_sets.get("containerClass", []) if x is not None})
+        sub_ids = sorted({int(x) for x in role_sets.get("substitutableClass", []) if x is not None})
+
+        # Defensive overlap check (won't mutate; just warns in the script console)
+        overlap_inh_con = set(inh_ids) & set(con_ids)
+        overlap_inh_sub = set(inh_ids) & set(sub_ids)
+        overlap_con_sub = set(con_ids) & set(sub_ids)
+
+        all_ids = sorted(set(inh_ids) | set(con_ids) | set(sub_ids))
 
         def fmt_array(name, items):
             if not items:
@@ -759,46 +770,104 @@ class UMLGraphs:
             CHUNK = 25
             lines = []
             for i in range(0, len(items), CHUNK):
-                lines.append(", ".join(str(v) for v in items[i : i + CHUNK]))
+                lines.append(", ".join(str(v) for v in items[i:i+CHUNK]))
             inner = ",\n    ".join(lines)
             return f"var {name} = [\n    {inner}\n];"
 
         script = f"""//!INC Local Scripts.EAConstants-JScript
 
-// Single script to re-tag not-concrete roles in EA (skips literal 'Root').
-{fmt_array("CONTAINER_IDS", containers)}
-{fmt_array("SUBSTITUTABLE_IDS", substitutables)}
-{fmt_array("INHERITONLY_IDS", inheritonly)}
+    // Update ravensRole for selected elements only.
+    // NOTE: This script *only* clears/sets IDs we pass in. It will not touch any others.
 
-function setRoleByList(idList, roleValue) {{
-    for (var i=0; i<idList.length; i++) {{
-        var id = idList[i];
-        var el = Repository.GetElementByID(id);
-        if (!el) continue;
-        if (el.Name && el.Name === "Root") continue;
-        var tv = null;
-        try {{ tv = el.TaggedValues.GetByName("ravensRole"); }} catch(e) {{ tv = null; }}
-        if (tv == null) {{
-            tv = el.TaggedValues.AddNew("ravensRole", "");
-        }}
-        tv.Value = roleValue;
-        tv.Update();
-        el.TaggedValues.Refresh();
-        el.Update();
+    {fmt_array("ALL_IDS", all_ids)}
+    {fmt_array("INHERITONLY_IDS", inh_ids)}
+    {fmt_array("CONTAINER_IDS",   con_ids)}
+    {fmt_array("SUBSTITUTABLE_IDS", sub_ids)}
+
+    // --- helpers ---
+    function setMsg(label, arr) {{
+        Session.Output(label + " (" + arr.length + "): " + (arr.length ? arr.slice(0, 10).join(", ") + (arr.length>10?" ...":"") : "[]"));
     }}
-}}
 
-function main() {{
-    setRoleByList(CONTAINER_IDS, "containerClass");
-    setRoleByList(SUBSTITUTABLE_IDS, "substitutableClass");
-    setRoleByList(INHERITONLY_IDS, "inheritOnlyClass");
-    Session.Output("Done.");
-}}
-main();
-"""
+    function clearSelected(ids) {{
+        for (var i=0; i<ids.length; i++) {{
+            var el = Repository.GetElementByID(ids[i]);
+            if (!el) continue;
+            if (el.Name && el.Name === "Root") continue;
+
+            var tv = null;
+            try {{ tv = el.TaggedValues.GetByName("ravensRole"); }} catch(e) {{ tv = null; }}
+            if (tv != null) {{
+                // Only clear if it's one of the not-concrete roles we're managing
+                if (tv.Value === "containerClass" || tv.Value === "substitutableClass" || tv.Value === "inheritOnlyClass") {{
+                    tv.Value = "";
+                    tv.Update();
+                    el.TaggedValues.Refresh();
+                }}
+            }}
+            el.Update();
+        }}
+    }}
+
+    function setRoleByList(idList, roleValue) {{
+        for (var i=0; i<idList.length; i++) {{
+            var id = idList[i];
+            var el = Repository.GetElementByID(id);
+            if (!el) continue;
+            if (el.Name && el.Name === "Root") continue;
+
+            var tv = null;
+            try {{ tv = el.TaggedValues.GetByName("ravensRole"); }} catch(e) {{ tv = null; }}
+            if (tv == null) {{
+                tv = el.TaggedValues.AddNew("ravensRole", "");
+            }}
+
+            // don't overwrite concrete roles
+            if (tv.Value === "rootClass" || tv.Value === "embeddedClass") continue;
+
+            // skip if already the desired value to minimize churn
+            if (tv.Value === roleValue) continue;
+
+            tv.Value = roleValue;
+            tv.Update();
+            el.TaggedValues.Refresh();
+            el.Update();
+        }}
+    }}
+
+    function main() {{
+        Session.Output("Re-tagging selected not-concrete roles: starting...");
+        setMsg("inheritOnly IDs", INHERITONLY_IDS);
+        setMsg("container IDs", CONTAINER_IDS);
+        setMsg("substitutable IDs", SUBSTITUTABLE_IDS);
+
+        // Clear only those we will (re)set:
+        clearSelected(ALL_IDS);
+
+        // Because sets are expected disjoint, order is irrelevant; keep it stable.
+        setRoleByList(INHERITONLY_IDS, "inheritOnlyClass");
+        setRoleByList(CONTAINER_IDS,   "containerClass");
+        setRoleByList(SUBSTITUTABLE_IDS, "substitutableClass");
+
+        // Warn if overlaps (should be none if guess function enforces precedence)
+        var warn = [];
+        if ({'true' if overlap_inh_con else 'false'}) warn.push("inheritOnly ∩ container overlap exists");
+        if ({'true' if overlap_inh_sub else 'false'}) warn.push("inheritOnly ∩ substitutable overlap exists");
+        if ({'true' if overlap_con_sub else 'false'}) warn.push("container ∩ substitutable overlap exists");
+        if (warn.length) {{
+            for (var i=0; i<warn.length; i++) Session.Output("WARNING: " + warn[i]);
+        }}
+
+        Session.Output("Done. Updated " + ALL_IDS.length + " element(s).");
+    }}
+
+    main();
+    """
+
         if print_to_console:
             print(script)
         if out_path:
+            import pathlib
             p = pathlib.Path(out_path)
             p.write_text(script, encoding="utf-8")
         return script

@@ -1,3 +1,4 @@
+from __future__ import annotations
 import json
 import pandas as pd
 import networkx as nx
@@ -5,6 +6,12 @@ from collections import OrderedDict
 from pprint import pprint
 from ravens.uml.legend import ravens_colors
 from openpyxl.utils import get_column_letter
+
+from typing import Dict, Set, Tuple, List, Optional, Union
+import json
+import re
+
+from ravens.uml.graph import UMLGraphs
 
 from ravens.data import _TEMPLATE_JSON_PATH
 
@@ -702,6 +709,190 @@ def compare_templates():
     sample(only_in_hand, "➖  only in hand-crafted")
     sample(only_in_auto, "➕  only in auto")
     sample(changed.keys(), "✏️  changed signature")
+
+
+# ------------------ Functions to match EA model to hand template  --------------
+
+Json = Dict[str, object]
+
+def _load_json(hand: Union[str, Json]) -> Json:
+    if isinstance(hand, dict):
+        return hand
+    with open(str(hand), "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def _label_for(node: dict, prop_name: Optional[str]) -> str:
+    # Prefer explicit $objectId; else use the property name that introduced this node.
+    return str(node.get("$objectId") or prop_name or "").strip()
+
+def _iter_nodes(node: object, prop_name: Optional[str] = None):
+    """
+    Yield (prop_name, node_dict) for every object-bearing dict in the schema tree.
+    This treats anything with a 'properties' or 'anyOf' as a node worth inspecting.
+    """
+    if not isinstance(node, dict):
+        return
+    yield (prop_name, node)
+
+    # Dive into properties
+    props = node.get("properties")
+    if isinstance(props, dict):
+        for k, v in props.items():
+            _k = str(k)
+            for item in _iter_nodes(v, _k):
+                yield item
+
+    # Dive into anyOf alternatives
+    if isinstance(node.get("anyOf"), list):
+        for v in node["anyOf"]:
+            for item in _iter_nodes(v, prop_name):
+                yield item
+
+def _collect_reference_names(node: object) -> Set[str]:
+    """
+    Collect base-class names that appear inside $referencePath strings.
+    We split on '/' and then strip any trailing '.Something' part.
+    """
+    names: Set[str] = set()
+
+    def walk(n: object):
+        if isinstance(n, dict):
+            # capture any $referencePath if present
+            rp = n.get("$referencePath")
+            if isinstance(rp, str) and rp:
+                for seg in rp.split("/"):
+                    seg = seg.strip()
+                    if not seg:
+                        continue
+                    base = seg.split(".", 1)[0]
+                    if base:
+                        names.add(base)
+            # recurse
+            for v in n.values():
+                walk(v)
+        elif isinstance(n, list):
+            for v in n:
+                walk(v)
+
+    walk(node)
+    return names
+
+def _name_to_unique_id_map(ug: UMLGraphs) -> Dict[str, int]:
+    """
+    Build a name->Object_ID map, **only** for unique names.
+    If a name maps to multiple IDs, we do not include it (we'll warn later).
+    """
+    name_to_ids: Dict[str, Set[int]] = {}
+    objs = ug.uml_data.objects
+    for oid, row in objs.iterrows():
+        if str(row.get("Object_Type", "")) != "Class":
+            continue
+        nm = str(row.get("Name") or "").strip()
+        if not nm:
+            continue
+        s = name_to_ids.setdefault(nm, set())
+        s.add(int(oid))
+    uniq: Dict[str, int] = {nm: next(iter(s)) for nm, s in name_to_ids.items() if len(s) == 1}
+    return uniq
+
+def guess_notconcrete_roles_from_hand(path_to_hand_template, ug) -> dict:
+    """
+    Infer notConcrete roles from the hand template.
+
+    Rules:
+      • $objectType == "container"  -> containerClass
+      • node with "anyOf"           -> substitutableClass
+      • otherwise                   -> inheritOnlyClass (default)
+    Precedence: substitutable > container > inheritOnly.
+    Nodes already concrete in EA (rootClass/embeddedClass) are skipped.
+    """
+    import json
+
+    # Load hand template (path or dict)
+    hand = (
+        json.loads(path_to_hand_template.read_text(encoding="utf-8"))
+        if not isinstance(path_to_hand_template, dict)
+        else path_to_hand_template
+    )
+
+    # --- collect names from hand template ---
+    names_container: set[str] = set()
+    names_substitutable: set[str] = set()
+    names_seen: set[str] = set()
+
+    for prop_name, node in _iter_nodes(hand):
+        if not isinstance(node, dict):
+            continue
+        label = _label_for(node, prop_name)  # prefers $objectId, falls back to prop name
+        if not label:
+            continue
+        names_seen.add(label)
+        if str(node.get("$objectType") or "") == "container":
+            names_container.add(label)
+        if isinstance(node.get("anyOf"), list):
+            names_substitutable.add(label)
+
+    # also pick up base names seen inside $referencePath (e.g., "Root/Versions.IEC61968CIMVersion")
+    names_seen |= _collect_reference_names(hand)
+
+    # default the rest to inheritOnly (and never try to tag literal Root)
+    names_inheritonly: set[str] = set(n for n in names_seen if n not in names_container | names_substitutable and n != "Root")
+
+    # --- resolve names -> unique Object_IDs ---
+    uniq = _name_to_unique_id_map(ug)  # builds unique name->Object_ID map from EA objects
+
+    def resolve(name_set: set[str], bucket_label: str) -> set[int]:
+        ids, unresolved = set(), []
+        for nm in sorted(name_set):
+            oid = uniq.get(nm)
+            if oid is None:
+                unresolved.append(nm)
+            else:
+                ids.add(int(oid))
+        if unresolved:
+            print(f"[infer] Unresolved class names ({bucket_label}): " + ", ".join(unresolved))
+        return ids
+
+    raw_container_ids     = resolve(names_container,    "containerClass")
+    raw_substitutable_ids = resolve(names_substitutable,"substitutableClass")
+    raw_inheritonly_ids   = resolve(names_inheritonly,  "inheritOnlyClass")
+
+    # --- skip anything already concrete in EA ---
+    def is_concrete(oid: int) -> bool:
+        r = (ug.role_for_object(oid) or "").strip()
+        return r in ("rootClass", "embeddedClass")
+
+    raw_container_ids     = {i for i in raw_container_ids     if not is_concrete(i)}
+    raw_substitutable_ids = {i for i in raw_substitutable_ids if not is_concrete(i)}
+    raw_inheritonly_ids   = {i for i in raw_inheritonly_ids   if not is_concrete(i)}
+
+    # --- precedence & disjointness: substitutable > container > inheritOnly ---
+    sub_ids = set(raw_substitutable_ids)
+    con_ids = set(raw_container_ids) - sub_ids
+    inh_ids = set(raw_inheritonly_ids) - sub_ids - con_ids
+
+    return {
+        "substitutableClass": sorted(sub_ids),
+        "containerClass":     sorted(con_ids),
+        "inheritOnlyClass":   sorted(inh_ids),
+    }
+
+def sync_ea_roles_to_hand_template(
+    ug: UMLGraphs,
+    *,
+    hand: Union[str, Json],
+    out_path: Optional[str] = None,
+    print_to_console: bool = True,
+) -> str:
+    """
+    One-shot convenience:
+      1) Infer role sets from hand template
+      2) Generate the EA JScript using ug.export_ea_jscript_all(role_sets=...)
+
+    Returns the JScript string. Optionally writes it to out_path.
+    """
+    role_sets = guess_notconcrete_roles_from_hand(hand, ug)
+    return ug.export_ea_jscript_all(role_sets=role_sets, out_path=out_path, print_to_console=print_to_console)
 
 
 
