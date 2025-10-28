@@ -8,11 +8,35 @@ from ravens.uml import UMLData
 from ravens import jps
 
 
-# --- in graph.py ---
+def _col(df, *cands):
+    """Return the first existing column name from candidates, else None."""
+    for c in cands:
+        if c in df.columns:
+            return c
+    return None
+
+def _hidden_connector_ids_from_diagramlinks(uml_data, path_contains: str | None = "SimplifiedDiagrams") -> set[int]:
+    """
+    Return ConnectorIDs that are hidden (Hidden == True) in uml_data.diagramlinks,
+    optionally restricted to rows whose Path contains `path_contains`.
+    """
+    import re
+    dl = getattr(uml_data, "diagramlinks", None)
+    if dl is None or getattr(dl, "empty", True):
+        return set()
+
+    # Column names in your dump: ['DiagramID','ConnectorID','Geometry','Style','Hidden','Path']
+    if "ConnectorID" not in dl.columns or "Hidden" not in dl.columns:
+        return set()
+
+    m = dl["Hidden"] == True
+    if path_contains and "Path" in dl.columns:
+        m &= dl["Path"].astype(str).str.contains(re.escape(path_contains), na=False)
+
+    return {int(x) for x in dl.loc[m, "ConnectorID"].dropna().unique().tolist()}
 
 class UMLGraphs:
     def __init__(self, uml_data=None, inclusions: Optional[UMLInclusions] = None):
-        
         # If inclusions is provided and it has filtered_uml_data, prefer that and disable gating.
         if inclusions is not None and getattr(inclusions, "filtered_uml_data", None) is not None:
             self.uml_data = inclusions.filtered_uml_data
@@ -20,7 +44,7 @@ class UMLGraphs:
         else:
             from ravens.uml import UMLData
             self.uml_data = uml_data if uml_data is not None else UMLData()
-            self.inclusions = inclusions  # optional; used only if you keep gating
+            self.inclusions = inclusions
 
         self._ensure_indexes()
         self.tag_name_filter = "ravensRole"
@@ -31,7 +55,7 @@ class UMLGraphs:
                 lambda v: self._normalize_role(v, kind="node")
             ).to_dict()
         )
-        self.H  = self.build_H()
+        self.H  = self.build_H()  # <-- use kwargs decided above
         self.HR = self.H.reverse(copy=False)
         self.A  = self.build_A()
 
@@ -53,36 +77,75 @@ class UMLGraphs:
         vals = set(inc.get(key_map.get(kind), set()) or set())
         return (len(vals) == 0) or (int(id_value) in {int(v) for v in vals})
 
+
     def build_H(self) -> nx.DiGraph:
         """
         Generalization H (child -> parent). If inclusions is provided,
         nodes/edges are filtered via _allow().
         """
+        import pandas as pd
         H = nx.DiGraph()
 
-        # Nodes
+        # --- nodes (Class only) ---
         for oid, row in self.uml_data.objects.iterrows():
+            try:
+                oid_i = int(oid)
+            except Exception:
+                continue
             if str(row.get("Object_Type", "")) != "Class":
                 continue
-            if not self._allow("object", int(oid)):
+            if not self._allow("object", oid_i):
                 continue
-            H.add_node(int(oid), **{
-                "Name": str(row.get("Name") or ""),
-                "ravensRole": self.role_for_object(int(oid)),
-                "Package_ID": row.get("Package_ID"),
-                "Stereotype": row.get("Stereotype"),
-            })
+            H.add_node(
+                oid_i,
+                Name=str(row.get("Name") or ""),
+                ravensRole=self.role_for_object(oid_i),
+                Package_ID=row.get("Package_ID"),
+                Stereotype=row.get("Stereotype"),
+            )
 
-        # Edges (Generalization only)
-        for cid, crow in self.uml_data.connectors.iterrows():
-            if str(crow.get("Connector_Type", "")) != "Generalization":
+        if H.number_of_nodes() == 0:
+            return H
+
+        # --- edges (Generalization only) ---
+        con = self.uml_data.connectors
+        if con is None or con.empty:
+            return H
+
+        # tolerant column resolution
+        c_type = "Connector_Type" if "Connector_Type" in con.columns else ("Type" if "Type" in con.columns else None)
+        c_src  = "Start_Object_ID" if "Start_Object_ID" in con.columns else ("StartObjectID" if "StartObjectID" in con.columns else None)
+        c_dst  = "End_Object_ID"   if "End_Object_ID"   in con.columns else ("EndObjectID"   if "EndObjectID"   in con.columns else None)
+        c_id   = "Connector_ID"    if "Connector_ID"    in con.columns else ("ConnectorID"    if "ConnectorID"    in con.columns else None)
+        if not all([c_type, c_src, c_dst]):
+            return H  # cannot build edges without these
+
+        # case-insensitive match for generalizations
+        gen_mask = con[c_type].astype(str).str.strip().str.casefold() == "generalization"
+        gen_rows = con.loc[gen_mask]
+
+        for idx, crow in gen_rows.iterrows():
+            # connector id: prefer column, else fall back to index
+            cid_val = pd.to_numeric(crow.get(c_id), errors="coerce") if c_id is not None else pd.NA
+            if pd.isna(cid_val):
+                cid_val = pd.to_numeric(idx, errors="coerce")
+            if pd.isna(cid_val):
                 continue
-            if not self._allow("connector", int(cid)):
+            cid = int(cid_val)
+
+            if not self._allow("connector", cid):
                 continue
-            child  = int(crow.Start_Object_ID)
-            parent = int(crow.End_Object_ID)
+
+            child  = pd.to_numeric(crow.get(c_src), errors="coerce")
+            parent = pd.to_numeric(crow.get(c_dst), errors="coerce")
+            if pd.isna(child) or pd.isna(parent):
+                continue
+            child  = int(child)
+            parent = int(parent)
+
             if child in H and parent in H and child != parent:
-                H.add_edge(child, parent, Connector_ID=int(cid))
+                H.add_edge(child, parent, Connector_ID=cid, Type="Generalization")
+
         return H
 
     # -------------------- A: associations --------------------
@@ -871,3 +934,5 @@ class UMLGraphs:
             p = pathlib.Path(out_path)
             p.write_text(script, encoding="utf-8")
         return script
+
+

@@ -72,7 +72,7 @@ class TemplateGenerator:
                                 "properties",
                             ],
                             "container": [
-                                "$objectType", "type", "properties",
+                                "$objectType", "type", "description", "properties",
                             ],
                             "reference": [
                                 "$objectType", "type", "$objectId", "$referencePath", "properties",
@@ -348,30 +348,79 @@ class TemplateGenerator:
         """
         Build auto_template:
 
-        1) Top-level (Root/*) comes *only* from A: all nodes with a directed edge Root -> X.
-        2) Everything else is filled using H traversal (down via HR), with owner selection
-        based on the current branch's container stack (no new top-level unless A says so).
+        1) Top-level (Root/*): prefer A (Root -> X). Also include H-anchors (>=2 concrete descendants)
+        as containers under Root.
+        2) Descend H (via HR) from every top-level start (A-first-level and anchors).
         3) Cross-references are emitted when an encountered node’s owner ≠ the current node.
-        4) Top-level keys are ordered like the hand template (intersection first), then A–Z.
+        4) Top-level keys ordered to match the hand template first, then A–Z.
         """
+        # --- ONLY FOR children directly under "Versions" ---
+        def _override_versions_hashes_if_child_of_versions(owner_path: tuple, obj_dict: dict) -> None:
+            """
+            If the emitted node is an *object* placed directly under the 'Versions'
+            container, set $primaryObjectHash to null and remove $secondaryObjectHash.
+            """
+            if not isinstance(obj_dict, dict):
+                return
+            if not owner_path or owner_path[-1] != "Versions":
+                return
+            if obj_dict.get("$objectType") != "object":
+                return
+            obj_dict["$primaryObjectHash"] = None
+            obj_dict.pop("$secondaryObjectHash", None)
+
+        # --- ONLY for objects directly under "Versions" (hash override only) ---
+        def _override_versions_object(owner_path: tuple, obj_dict: dict) -> None:
+            """
+            If an *object* is emitted directly under the 'Versions' container:
+            - set $primaryObjectHash to null
+            - remove $secondaryObjectHash
+            """
+            if not isinstance(obj_dict, dict):
+                return
+            if not owner_path or owner_path[-1] != "Versions":
+                return
+            if obj_dict.get("$objectType") != "object":
+                return
+            obj_dict["$primaryObjectHash"] = None
+            obj_dict.pop("$secondaryObjectHash", None)
+
+
+        # --- Decorate the 'Versions' container itself ---
+        def _decorate_versions_container(obj_name: str, obj_dict: dict) -> None:
+            """
+            If the emitted node is the 'Versions' *container*:
+            - insert 'description' after 'type' and before 'properties'
+            """
+            if obj_name != "Versions" or not isinstance(obj_dict, dict):
+                return
+            if obj_dict.get("$objectType") != "container":
+                return
+            props = obj_dict.pop("properties", {})
+            obj_dict["description"] = "Specify the versions of CIM / RAVENS used in this file"
+            obj_dict["properties"] = props
+
         # ---------- setup ----------
-        EMIT_XREFS = self.EMIT_CROSS_REFS
-        root_title = (self.A.nodes[self.root_id].get("Name") if self.root_id in self.A
+        root_title = (self.A.nodes[self.root_id].get("Name") if isinstance(self.A, nx.Graph) and self.root_id in self.A
                     else self.H.nodes[self.root_id].get("Name")) or "Root"
 
         # caches
         self._owner_cache = {}
         self.def_ptr = {}
         self.path_map = {}
+
         role = lambda n: (self.A.nodes[n].get("ravensRole")
-                        if n in self.A else self.H.nodes[n].get("ravensRole")) or ""
+                        if isinstance(self.A, nx.Graph) and n in self.A else self.H.nodes[n].get("ravensRole")) or ""
         name = lambda n: (self.A.nodes[n].get("Name")
-                        if n in self.A else self.H.nodes[n].get("Name")) or ""
+                        if isinstance(self.A, nx.Graph) and n in self.A else self.H.nodes[n].get("Name")) or ""
+
+        # compute anchors from H and expose to _ensure_defined
+        self._anchor_set = self._compute_anchors()
 
         schema = {
             "title": root_title,
             "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "$id": f"https://example.org/schema/{root_title}.json",
+            "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Root.json",
             "type": "object",
             "properties": {},
         }
@@ -381,31 +430,27 @@ class TemplateGenerator:
         self.def_ptr[self.root_id] = schema
         self.path_map[self.root_id] = (root_title,)
 
-        # ---------- 1) first-level from A (directed Root -> child) ----------
-        if self.root_id in self.A:
-            first_level_nodes = sorted(set(self.A.successors(self.root_id)),
-                                    key=lambda n: name(n).casefold())
+        # ---------- 1) top-level from A (Root -> child) ----------
+        if isinstance(self.A, nx.DiGraph) and self.root_id in self.A:
+            first_level_nodes = sorted(set(self.A.successors(self.root_id)), key=lambda n: name(n).casefold())
         else:
             first_level_nodes = []
 
-        FIRST_LEVEL_SET = {int(n) for n in first_level_nodes}  # guard to prevent new Root/* later
+        FIRST_LEVEL_SET = {int(n) for n in first_level_nodes}
 
-        def ensure_defined(n: int, stack_containers: set[int], *, force_owner: Optional[int] = None, at_top_level: bool = False, force_kind: Optional[str] = None):
-            """Define node n under an owner. If force_owner is provided, use that owner."""
+        def ensure_defined(n: int, stack_containers: set[int], *, force_owner: Optional[int] = None,
+                        at_top_level: bool = False, force_kind: Optional[str] = None):
             n = int(n)
             if n in self.def_ptr:
                 return
 
-            # owner selection
+            # choose owner
             if force_owner is not None:
                 owner = int(force_owner)
             else:
                 owner = self._nearest_owner_in_stack(n, stack_containers)
-                # Prevent accidental new top-level entries: if owner resolves to Root
-                # but n is not an A-derived first-level node, keep it off Root by
-                # attaching to the nearest non-root container in the stack (or current anchor).
-                if owner == self.root_id and n not in FIRST_LEVEL_SET:
-                    # prefer the closest container in the stack (excluding root if possible)
+                # prevent accidental new top-level unless explicitly in FIRST_LEVEL_SET
+                if owner == self.root_id and n not in FIRST_LEVEL_SET and not at_top_level:
                     non_root = [c for c in stack_containers if c != self.root_id]
                     owner = non_root[-1] if non_root else self.root_id
 
@@ -420,29 +465,33 @@ class TemplateGenerator:
             # emission rules
             if force_kind == "container":
                 node_obj = {"$objectType": "container", "type": "object", "properties": {}}
+                _decorate_versions_container(nm, node_obj)
             elif force_kind == "object":
                 node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
                 self._apply_hashes_if_rootclass(n, node_obj)
+                _override_versions_object(owner_path, node_obj)   
+            elif n in getattr(self, "_anchor_set", set()):
+                node_obj = {"$objectType": "container", "type": "object", "properties": {}}
             elif r == "substitutableClass":
                 node_obj = {"anyOf": []}
             elif r == "containerClass":
                 node_obj = {"$objectType": "container", "type": "object", "properties": {}}
+                _decorate_versions_container(nm, node_obj)
             elif r == "inheritOnlyClass" and not at_top_level:
-                # not emitted; record its canonical path for referencing
+                # not emitted; record for referencing
                 self.path_map[n] = owner_path + (nm,)
                 self.def_ptr[n] = None
                 return
             else:
-                # default object (also used for top-level inheritOnly)
                 node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
                 self._apply_hashes_if_rootclass(n, node_obj)
+                _override_versions_object(owner_path, node_obj)   
 
             self._add_property(owner_ptr, nm, node_obj)
             self.path_map[n] = owner_path + (nm,)
             self.def_ptr[n] = node_obj
 
         def add_xref(at_node: int, target: int):
-            """Add a reference to 'target' under 'at_node' (if enabled)."""
             if not self.EMIT_CROSS_REFS:
                 return
             at_ptr = self.def_ptr.get(at_node)
@@ -460,43 +509,40 @@ class TemplateGenerator:
             }
             self._add_property(at_ptr, name(target), ref)
 
-        # Force-create top-level from A under Root (even if inheritOnly)
+        # Force-create top-level A-derived under Root (even if inheritOnly)
         for n in first_level_nodes:
             ensure_defined(n, stack_containers={self.root_id}, force_owner=self.root_id, at_top_level=True)
 
+        # ---------- also promote H-anchors to top level under Root ----------
+        anchors = sorted((self._anchor_set - {self.root_id}), key=lambda n: name(n).casefold())
+        for a in anchors:
+            if a not in self.def_ptr:
+                ensure_defined(a, stack_containers={self.root_id}, force_owner=self.root_id,
+                            at_top_level=True, force_kind="container")
+
+        # collect starting points for H descent
+        walk_anchors = list(dict.fromkeys(list(first_level_nodes) + anchors))
+
         # ---------- SPECIAL DIAGRAMS: treat "Versions" and "Group" like mini-Roots ----------
         special_diagrams = ("Versions", "Group")
-        walk_anchors = list(first_level_nodes)  # start with A-derived top-level
-
         for label in special_diagrams:
             sid = self._find_node_by_name(label)
             if sid is None:
                 continue
-
-            # Ensure the special node sits under Root as a CONTAINER (override tag)
-            ensure_defined(
-                sid,
-                stack_containers={self.root_id},
-                force_owner=self.root_id,
-                at_top_level=True,
-                force_kind="container",
-            )
-
+            if sid not in self.def_ptr:
+                ensure_defined(sid, stack_containers={self.root_id}, force_owner=self.root_id,
+                            at_top_level=True, force_kind="container")
             # Place every node connected to it *in its own diagram* directly under it
             for child in self._diagram_neighbors(sid, label):
                 ensure_defined(child, stack_containers={self.root_id, sid}, force_owner=sid)
-
-            # Make sure we descend H from this anchor too (even if it wasn't a Root->child in A)
             if sid not in walk_anchors:
                 walk_anchors.append(sid)
 
-        # ---------- 2) descend H below each top-level anchor ----------
+        # ---------- 2) descend H below each top-level start ----------
         visited_down = set()
-
         for anchor in walk_anchors:
-            # stack tracks container anchors along the branch (Root + this anchor to start)
-            stack = [self.root_id, anchor] if role(anchor).strip() in ("containerClass", "rootClass", "inheritOnlyClass", "substitutableClass", "") else [self.root_id, anchor]
-
+            stack = [self.root_id, anchor]
+            from collections import deque
             q = deque([anchor])
             while q:
                 cur = q.popleft()
@@ -504,24 +550,19 @@ class TemplateGenerator:
                     continue
                 visited_down.add(cur)
 
-                # walk downward in inheritance via HR (parent -> child)
                 if cur not in self.HR:
                     continue
                 children = sorted(self.HR.successors(cur), key=lambda n: name(n).casefold())
                 for child in children:
-                    # owner based on current container stack; never create new top-level unless in FIRST_LEVEL_SET
                     ensure_defined(child, stack_containers=set(stack))
+                    # add xref if ownership differs
+                    owner_here = self._nearest_owner_in_stack(child, set(stack))
+                    if owner_here != cur and child in self.def_ptr and isinstance(self.def_ptr[child], dict):
+                        add_xref(cur, child)
 
-                    # add cross-ref if the child wasn't defined under 'cur'
-                    if self.EMIT_CROSS_REFS:
-                        owner_here = self._nearest_owner_in_stack(child, set(stack))
-                        if owner_here != cur and child in self.def_ptr and isinstance(self.def_ptr[child], dict):
-                            add_xref(cur, child)
-
-                    # extend stack if this child is a container
-                    if role(child).strip() == "containerClass":
+                    # if child is a container (role tag or anchor), continue walking with it on the stack
+                    if (role(child).strip() == "containerClass") or (child in self._anchor_set):
                         q.append(child)
-                        # branch-local stack extension
                         stack = stack + [child]
                     else:
                         q.append(child)
@@ -529,10 +570,9 @@ class TemplateGenerator:
         # ---------- 3) top-level ordering like hand ----------
         schema["properties"] = self._order_props_like_hand(schema.get("properties", {}))
 
-        # Enforce field order ($hashes before properties, etc.)
+        # Enforce field order across the tree
         schema = self._apply_field_order_recursively(schema)
         self._last_auto = schema
-
         return schema
 
     def _sort_properties(

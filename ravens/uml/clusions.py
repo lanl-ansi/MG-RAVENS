@@ -9,30 +9,21 @@ from ravens.uml import UMLData
 
 _NAME_EXCLUDE_RX = re.compile(r'^(?:Inf[A-Z]|Mkt[A-Z])')
 
-def _as_series(df: pd.DataFrame, col: str) -> pd.Series:
-    if df is None or df.empty:
-        return pd.Series([], dtype="Int64")
-    if col in df.columns:
-        return pd.to_numeric(df[col], errors="coerce").astype("Int64")
-    if df.index.name == col:
-        return pd.to_numeric(df.index.to_series(), errors="coerce").astype("Int64")
-    return pd.Series([], dtype="Int64")
-
 @dataclass
 class UMLInclusions:
-    uml_data: UMLData
+    uml_data: "UMLData"
     packages: Optional[Iterable[str]] = None
-    exclude_inf_mkt_initial: bool = False
-    auto_apply: bool = True
+    auto_apply: bool = True  # runs apply() upon instantiation
 
-    # filled on init
-    allowed_packages: Set[int] = None
-    allowed_diagrams: Set[int] = None
-    allowed_objects: Set[int] = None
-    allowed_connectors: Set[int] = None
-    allowed_link_instances: Set[int] = None
+    exclude_inf_mkt_initial: bool = True
+    # To handle connectors that are invisible within "hidden_scope_path" package.
+    exclude_hidden_links: bool = True
+    hidden_scope_path: Optional[str] = "SimplifiedDiagrams"
+    drop_objects_without_visible_generalization: bool = True
 
-    filtered_uml_data: UMLData = None  # subset view you can pass straight to graph builds
+    def __post_init__(self):
+        if self.auto_apply:
+            self.apply()
 
     def __post_init__(self):
         self._compute_allowed_sets()
@@ -56,106 +47,202 @@ class UMLInclusions:
 
     # ---------- core ----------
     def _compute_allowed_sets(self):
+        """
+        Compute allowed packages, diagrams, objects, connectors, and link instances.
+
+        Visibility policy:
+        - ASSOCIATIONS: must appear on an allowed diagram AND be visible (Hidden==False)
+            within hidden_scope_path (if provided).
+        - GENERALIZATIONS: keep globally, EXCEPT those with a diagramlink that is
+            Hidden==True within hidden_scope_path (global veto).
+        - OPTIONAL OBJECT-LEVEL VETO: if exclude_objects_with_hidden_generalization is True,
+            any object participating in a hidden-in-scope generalization is removed from
+            allowed_objects (so it cannot leak in via other edges).
+        - OPTIONAL PRUNE: if drop_objects_without_visible_generalization is True, keep only
+            objects that are endpoints of the remaining (non-vetoed) generalizations.
+
+        Tolerant to EA column variants and to connector IDs living on the index.
+        """
         uml = self.uml_data
+        # --- helpers -------------------------------------------------------------
+        def _ser_numeric(s):
+            return pd.to_numeric(s, errors="coerce").astype("Int64")
 
-        # 1) packages by name (if provided)
+        def _colser(df, *names):
+            for n in names:
+                if n in df.columns:
+                    return _ser_numeric(df[n])
+            if df.index.name in names:
+                return _ser_numeric(df.index.to_series())
+            return pd.Series([], dtype="Int64")
+
+        def _cid_series(df):
+            if "Connector_ID" in df.columns:
+                return _ser_numeric(df["Connector_ID"])
+            if "ConnectorID" in df.columns:
+                return _ser_numeric(df["ConnectorID"])
+            # use index
+            return _ser_numeric(df.index.to_series())
+
+        # ---------------- 1) packages ----------------
+        pkg_df = getattr(uml, "packages", pd.DataFrame())
         if self.packages:
-            want = {str(x).strip() for x in self.packages if str(x).strip()}
-            pkg_df = getattr(uml, "packages", pd.DataFrame())
-            hits = pkg_df.loc[pkg_df["Name"].astype(str).isin(want)] if not pkg_df.empty else pd.DataFrame()
-            self.allowed_packages = set(int(x) for x in _as_series(hits, "Package_ID").dropna().tolist())
+            want = {str(x).strip().casefold() for x in self.packages if str(x).strip()}
+            if not pkg_df.empty:
+                name_cf = pkg_df.get("Name", pd.Series("", index=pkg_df.index)).astype(str).str.casefold()
+                path_cf = pkg_df.get("Path", pd.Series("", index=pkg_df.index)).astype(str).str.casefold()
+                hit = name_cf.isin(want)
+                for w in want:
+                    hit = hit | path_cf.str.contains(w, na=False)
+                self.allowed_packages = set(int(x) for x in _colser(pkg_df.loc[hit], pkg_df.index.name or "Package_ID").dropna().tolist())
+            else:
+                self.allowed_packages = set()
         else:
-            # if no package restriction, allow all packages that exist
-            self.allowed_packages = set(int(x) for x in _as_series(getattr(uml, "packages", pd.DataFrame()), "Package_ID").dropna().tolist())
+            self.allowed_packages = set(int(x) for x in _colser(pkg_df, "Package_ID").dropna().tolist())
 
-        # 2) diagrams in those packages
+        # ---------------- 2) diagrams in those packages ----------------
         dia_df = getattr(uml, "diagrams", pd.DataFrame())
-        if dia_df.empty:
+        if dia_df.empty or not self.allowed_packages:
             self.allowed_diagrams = set()
         else:
-            dser = _as_series(dia_df, "Diagram_ID")
-            # filter by Package_ID ∈ allowed_packages
-            keep = dia_df["Package_ID"].astype("Int64").isin(self.allowed_packages)
+            dser = _colser(dia_df, "Diagram_ID", "DiagramID")
+            keep = _ser_numeric(dia_df.get("Package_ID")).isin(self.allowed_packages)
             self.allowed_diagrams = set(int(x) for x in dser[keep].dropna().tolist())
 
-        # 3) objects appearing on those diagrams (diagramobjects table)
+        # ---------------- 3) objects appearing on those diagrams ----------------
         do_df = getattr(uml, "diagramobjects", pd.DataFrame())
-        if do_df.empty:
-            objs_on_diagrams = set()
+        objs_on_diagrams = set()
+        if not do_df.empty and self.allowed_diagrams:
+            dcol = "Diagram_ID" if "Diagram_ID" in do_df.columns else ("DiagramID" if "DiagramID" in do_df.columns else None)
+            ocol = "Object_ID"  if "Object_ID"  in do_df.columns else ("ObjectID"  if "ObjectID"  in do_df.columns else None)
+            if dcol and ocol:
+                keep = _ser_numeric(do_df[dcol]).isin(self.allowed_diagrams)
+                objs_on_diagrams = set(int(x) for x in _ser_numeric(do_df.loc[keep, ocol]).dropna().tolist())
+
+        obj_df = getattr(uml, "objects", pd.DataFrame())
+        if obj_df.empty:
+            self.allowed_objects = set()
         else:
-            did_col = "Diagram_ID" if "Diagram_ID" in do_df.columns else "DiagramID"
-            oid_col = "Object_ID" if "Object_ID" in do_df.columns else "ObjectID"
-            if did_col not in do_df.columns or oid_col not in do_df.columns:
-                objs_on_diagrams = set()
+            all_obj_ids = set(int(x) for x in _colser(obj_df, "Object_ID").dropna().tolist())
+            if self.allowed_diagrams:
+                allowed = objs_on_diagrams
             else:
-                keep = pd.to_numeric(do_df[did_col], errors="coerce").astype("Int64").isin(self.allowed_diagrams)
-                objs_on_diagrams = set(int(x) for x in pd.to_numeric(do_df.loc[keep, oid_col], errors="coerce").dropna().astype(int).tolist())
+                allowed = all_obj_ids
 
-        # optionally remove InfX/MktX by name at this stage
-        if self.exclude_inf_mkt_initial and objs_on_diagrams:
-            obj_df = getattr(uml, "objects", pd.DataFrame())
-            if not obj_df.empty:
-                names = obj_df.loc[obj_df.index.isin(objs_on_diagrams), "Name"].astype(str)
-                block = set(int(i) for i, nm in names.items() if _NAME_EXCLUDE_RX.match(nm))
-                objs_on_diagrams -= block
+            # Optional Inf*/Mkt* exclusion
+            if getattr(self, "exclude_inf_mkt_initial", False):
+                name_ser = obj_df.get("Name", pd.Series("", index=obj_df.index)).astype(str)
+                keep_names = ~(name_ser.str.startswith(("Inf", "Mkt"), na=False))
+                kept_ids = set(int(x) for x in _colser(obj_df[keep_names], obj_df.index.name or "Object_ID").dropna().tolist())
+                allowed = allowed & kept_ids
 
-        self.allowed_objects = objs_on_diagrams
+            self.allowed_objects = allowed
 
-        # 4) connectors
-        # For H (Generalization): keep connector if both endpoints are allowed objects and type is Generalization.
-        # For A (Association-like): we ALSO require a diagramlink into an allowed diagram, and keep only those connector IDs.
+        # ---------------- 4) connectors ----------------
         con_df = getattr(uml, "connectors", pd.DataFrame())
-        if con_df.empty:
+        if con_df.empty or not self.allowed_objects:
             self.allowed_connectors = set()
         else:
-            # endpoints
-            s = pd.to_numeric(con_df.get("Start_Object_ID"), errors="coerce").astype("Int64")
-            e = pd.to_numeric(con_df.get("End_Object_ID"), errors="coerce").astype("Int64")
-            ctype = con_df.get("Connector_Type").astype(str)
+            def _ser_numeric(s): return pd.to_numeric(s, errors="coerce").astype("Int64")
+            def _colser(df, *names):
+                for n in names:
+                    if n in df.columns:
+                        return _ser_numeric(df[n])
+                if df.index.name in names:
+                    return _ser_numeric(df.index.to_series())
+                return pd.Series([], dtype="Int64")
 
-            # connectors that appear on allowed diagrams (through diagramlinks)
-            dl_df = getattr(uml, "diagramlinks", pd.DataFrame())
-            if not dl_df.empty:
-                cid_col = "Connector_ID" if "Connector_ID" in dl_df.columns else ("ConnectorID" if "ConnectorID" in dl_df.columns else None)
-                did_col = "Diagram_ID"   if "Diagram_ID"   in dl_df.columns else ("DiagramID"   if "DiagramID"   in dl_df.columns else None)
+            # endpoints and normalized type
+            s = _colser(con_df, "Start_Object_ID", "StartObjectID")
+            e = _colser(con_df, "End_Object_ID",   "EndObjectID")
+            if "Connector_Type" in con_df.columns:
+                ctype = con_df["Connector_Type"].astype(str).str.strip().str.casefold()
+            elif "Type" in con_df.columns:
+                ctype = con_df["Type"].astype(str).str.strip().str.casefold()
             else:
-                cid_col = did_col = None
+                ctype = pd.Series("", index=con_df.index, dtype="string")
 
-            links_in_allowed = set()
-            if cid_col and did_col:
-                keep = pd.to_numeric(dl_df[did_col], errors="coerce").astype("Int64").isin(self.allowed_diagrams)
-                links_in_allowed = set(int(x) for x in pd.to_numeric(dl_df.loc[keep, cid_col], errors="coerce").dropna().astype(int).tolist())
+            # connector-id value per row (column if present, else use index value)
+            if "Connector_ID" in con_df.columns:
+                cid_val = _ser_numeric(con_df["Connector_ID"])
+            elif "ConnectorID" in con_df.columns:
+                cid_val = _ser_numeric(con_df["ConnectorID"])
+            else:
+                cid_val = _ser_numeric(con_df.index.to_series())  # EA default: index = Connector_ID
 
-            # Association-like ⇒ must be in links_in_allowed AND both endpoints allowed
-            assoc_mask = ctype.isin({"Association", "Aggregation", "Composition"})
-            assoc_ids = set(int(i) for i in _as_series(con_df[assoc_mask], "Connector_ID").tolist())
-            assoc_ids = {cid for cid in assoc_ids if cid in links_in_allowed}
-            assoc_ids = {
-                cid for cid in assoc_ids
-                if int(s.loc[cid]) in self.allowed_objects and int(e.loc[cid]) in self.allowed_objects
-            }
+            # diagramlinks: use DiagramID & Hidden ONLY (NEVER Path)
+            dl_df = getattr(uml, "diagramlinks", pd.DataFrame())
+            hidden_veto_cids: set[int] = set()
+            links_in_allowed_visible: set[int] = set()
 
-            # Generalization ⇒ both endpoints allowed
-            gen_mask = (ctype == "Generalization")
-            gen_ids = set(int(i) for i in _as_series(con_df[gen_mask], "Connector_ID").tolist())
-            gen_ids = {
-                cid for cid in gen_ids
-                if int(s.loc[cid]) in self.allowed_objects and int(e.loc[cid]) in self.allowed_objects
-            }
+            if not dl_df.empty and "ConnectorID" in dl_df.columns and "DiagramID" in dl_df.columns:
+                dl_cid = _ser_numeric(dl_df["ConnectorID"])
+                dl_did = _ser_numeric(dl_df["DiagramID"])
+                in_scope = dl_did.isin(self.allowed_diagrams)
+
+                # Global VETO set for generalizations: any link Hidden==True on a scoped diagram
+                if getattr(self, "exclude_hidden_links", True):
+                    hidden_rows = in_scope & (dl_df.get("Hidden", False) == True)
+                    hidden_veto_cids = set(int(x) for x in dl_cid.loc[hidden_rows].dropna().tolist())
+
+                # For associations we still require a visible link on an allowed diagram
+                vis_rows = in_scope & (dl_df.get("Hidden", False) == False)
+                links_in_allowed_visible = set(int(x) for x in dl_cid.loc[vis_rows].dropna().tolist())
+
+            # --- collect association ids (by iterating rows for ID safety) ---
+            assoc_ids: set[int] = set()
+            assoc_mask = ctype.isin({"association", "aggregation", "composition"})
+            for idx in con_df.index[assoc_mask]:
+                cid = cid_val.loc[idx]
+                if pd.isna(cid): 
+                    continue
+                cid = int(cid)
+                if cid not in links_in_allowed_visible:
+                    continue
+                if int(s.loc[idx]) in self.allowed_objects and int(e.loc[idx]) in self.allowed_objects:
+                    assoc_ids.add(cid)
+
+            # --- collect generalization ids with the "hidden in scoped diagrams" VETO ---
+            gen_ids: set[int] = set()
+            gen_mask = (ctype == "generalization")
+            for idx in con_df.index[gen_mask]:
+                cid = cid_val.loc[idx]
+                if pd.isna(cid): 
+                    continue
+                cid = int(cid)
+                if cid in hidden_veto_cids:
+                    continue
+                if int(s.loc[idx]) in self.allowed_objects and int(e.loc[idx]) in self.allowed_objects:
+                    gen_ids.add(cid)
+
+            # --- optional pruning: keep only objects that are endpoints of remaining gen edges
+            if getattr(self, "drop_objects_without_visible_generalization", False) and gen_ids:
+                gen_endpoints = {int(s.loc[idx]) for idx in con_df.index[gen_mask] if int(cid_val.loc[idx]) in gen_ids} | \
+                                {int(e.loc[idx]) for idx in con_df.index[gen_mask] if int(cid_val.loc[idx]) in gen_ids}
+                self.allowed_objects &= gen_endpoints
+                # keep associations consistent with pruned object set
+                assoc_ids = {
+                    cid for cid in assoc_ids
+                    if int(s.loc[cid_val.index[cid_val == cid][0]]) in self.allowed_objects
+                    and int(e.loc[cid_val.index[cid_val == cid][0]]) in self.allowed_objects
+                }
 
             self.allowed_connectors = assoc_ids | gen_ids
 
-        # 5) link instances (diagramlinks rows that point to allowed diagrams AND allowed connectors)
+        # ---------------- 5) link instances that survive --------------------------
         dl_df = getattr(uml, "diagramlinks", pd.DataFrame())
         if not dl_df.empty and self.allowed_diagrams and self.allowed_connectors:
             cid_col = "Connector_ID" if "Connector_ID" in dl_df.columns else ("ConnectorID" if "ConnectorID" in dl_df.columns else None)
             did_col = "Diagram_ID"   if "Diagram_ID"   in dl_df.columns else ("DiagramID"   if "DiagramID"   in dl_df.columns else None)
             if cid_col and did_col:
                 keep = (
-                    pd.to_numeric(dl_df[did_col], errors="coerce").astype("Int64").isin(self.allowed_diagrams)
-                    & pd.to_numeric(dl_df[cid_col], errors="coerce").astype("Int64").isin(self.allowed_connectors)
+                    _ser_numeric(dl_df[did_col]).isin(self.allowed_diagrams)
+                    & _ser_numeric(dl_df[cid_col]).isin(self.allowed_connectors)
                 )
-                self.allowed_link_instances = set(int(i) for i in _as_series(dl_df[keep], dl_df.index.name or "InstanceID").dropna().tolist())
+                if "InstanceID" in dl_df.columns:
+                    self.allowed_link_instances = set(int(i) for i in _ser_numeric(dl_df.loc[keep, "InstanceID"]).dropna().tolist())
+                else:
+                    self.allowed_link_instances = set(int(i) for i in _ser_numeric(dl_df.index.to_series().loc[keep]).dropna().tolist())
             else:
                 self.allowed_link_instances = set()
         else:

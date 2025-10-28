@@ -1,43 +1,40 @@
 {
   "title": "Root",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/schema/Root.json",
+  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/Root.json",
   "type": "object",
   "properties": {
     "Versions": {
       "$objectType": "container",
       "type": "object",
+      "description": "Specify the versions of CIM / RAVENS used in this file",
       "properties": {
         "IEC61968CIMVersion": {
           "$objectType": "object",
           "type": "object",
           "$objectId": "IEC61968CIMVersion",
-          "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "$primaryObjectHash": null,
           "properties": {}
         },
         "IEC61970CIMVersion": {
           "$objectType": "object",
           "type": "object",
           "$objectId": "IEC61970CIMVersion",
-          "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "$primaryObjectHash": null,
           "properties": {}
         },
         "IEC62325CIMVersion": {
           "$objectType": "object",
           "type": "object",
           "$objectId": "IEC62325CIMVersion",
-          "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "$primaryObjectHash": null,
           "properties": {}
         },
         "RavensVersion": {
           "$objectType": "object",
           "type": "object",
           "$objectId": "RavensVersion",
-          "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "$primaryObjectHash": null,
           "properties": {}
         }
       }
@@ -146,67 +143,10 @@
       "$objectType": "container",
       "type": "object",
       "properties": {
-        "ACLineSegmentPhase": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "ACLineSegmentPhase",
-          "properties": {}
-        },
         "ControlArea": {
           "$objectType": "object",
           "type": "object",
           "$objectId": "ControlArea",
-          "properties": {}
-        },
-        "EnergyConsumerPhase": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "EnergyConsumerPhase",
-          "properties": {}
-        },
-        "EnergySourcePhase": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "EnergySourcePhase",
-          "properties": {}
-        },
-        "Equipment": {
-          "anyOf": [],
-          "properties": {
-            "ConductingEquipment": {
-              "$objectType": "reference",
-              "type": "object",
-              "$objectId": "ConductingEquipment",
-              "$referencePath": "Root/PowerSystemResource/ConductingEquipment",
-              "properties": {}
-            },
-            "GeneratingUnit": {
-              "$objectType": "reference",
-              "type": "object",
-              "$objectId": "GeneratingUnit",
-              "$referencePath": "Root/PowerSystemResource/GeneratingUnit",
-              "properties": {}
-            },
-            "PowerElectronicsUnit": {
-              "$objectType": "reference",
-              "type": "object",
-              "$objectId": "PowerElectronicsUnit",
-              "$referencePath": "Root/PowerSystemResource/PowerElectronicsUnit",
-              "properties": {}
-            },
-            "TransformerTank": {
-              "$objectType": "reference",
-              "type": "object",
-              "$objectId": "TransformerTank",
-              "$referencePath": "Root/PowerSystemResource/TransformerTank",
-              "properties": {}
-            }
-          }
-        },
-        "PowerElectronicsConnectionPhase": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "PowerElectronicsConnectionPhase",
           "properties": {}
         },
         "RegulatingControl": {
@@ -216,27 +156,6 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {}
-        },
-        "ShuntCompensatorPhase": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "ShuntCompensatorPhase",
-          "properties": {
-            "LinearShuntCompensatorPhase": {
-              "$objectType": "reference",
-              "type": "object",
-              "$objectId": "LinearShuntCompensatorPhase",
-              "$referencePath": "Root/PowerSystemResource/LinearShuntCompensatorPhase",
-              "properties": {}
-            },
-            "NonlinearShuntCompensatorPhase": {
-              "$objectType": "reference",
-              "type": "object",
-              "$objectId": "NonlinearShuntCompensatorPhase",
-              "$referencePath": "Root/PowerSystemResource/NonlinearShuntCompensatorPhase",
-              "properties": {}
-            }
-          }
         },
         "SwitchPhase": {
           "$objectType": "object",
@@ -251,185 +170,6 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {}
-        },
-        "WireSegmentPhase": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "WireSegmentPhase",
-          "properties": {}
-        },
-        "ConductingEquipment": {
-          "$objectType": "container",
-          "type": "object",
-          "properties": {
-            "Conductor": {
-              "$objectType": "container",
-              "type": "object",
-              "properties": {
-                "ACLineSegment": {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "ACLineSegment",
-                  "$primaryObjectHash": "IdentifiedObject.name",
-                  "$secondaryObjectHash": "IdentifiedObject.mRID",
-                  "properties": {}
-                },
-                "WireSegment": {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "WireSegment",
-                  "$primaryObjectHash": "IdentifiedObject.name",
-                  "$secondaryObjectHash": "IdentifiedObject.mRID",
-                  "properties": {}
-                }
-              }
-            },
-            "EarthFaultCompensator": {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "EarthFaultCompensator",
-              "properties": {
-                "GroundingImpedance": {
-                  "$objectType": "reference",
-                  "type": "object",
-                  "$objectId": "GroundingImpedance",
-                  "$referencePath": "Root/PowerSystemResource/ConductingEquipment/GroundingImpedance",
-                  "properties": {}
-                }
-              }
-            },
-            "EnergyConnection": {
-              "$objectType": "container",
-              "type": "object",
-              "properties": {
-                "EnergyConsumer": {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "EnergyConsumer",
-                  "$primaryObjectHash": "IdentifiedObject.name",
-                  "$secondaryObjectHash": "IdentifiedObject.mRID",
-                  "properties": {}
-                },
-                "EnergySource": {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "EnergySource",
-                  "$primaryObjectHash": "IdentifiedObject.name",
-                  "$secondaryObjectHash": "IdentifiedObject.mRID",
-                  "properties": {}
-                },
-                "RegulatingCondEq": {
-                  "$objectType": "container",
-                  "type": "object",
-                  "properties": {
-                    "PowerElectronicsConnection": {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "PowerElectronicsConnection",
-                      "$primaryObjectHash": "IdentifiedObject.name",
-                      "$secondaryObjectHash": "IdentifiedObject.mRID",
-                      "properties": {}
-                    },
-                    "RotatingMachine": {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "RotatingMachine",
-                      "$primaryObjectHash": "IdentifiedObject.name",
-                      "$secondaryObjectHash": "IdentifiedObject.mRID",
-                      "properties": {}
-                    },
-                    "ShuntCompensator": {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "ShuntCompensator",
-                      "$primaryObjectHash": "IdentifiedObject.name",
-                      "$secondaryObjectHash": "IdentifiedObject.mRID",
-                      "properties": {}
-                    },
-                    "StaticVarCompensator": {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "StaticVarCompensator",
-                      "$primaryObjectHash": "IdentifiedObject.name",
-                      "$secondaryObjectHash": "IdentifiedObject.mRID",
-                      "properties": {}
-                    }
-                  }
-                }
-              }
-            },
-            "Ground": {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "Ground",
-              "properties": {}
-            },
-            "PowerTransformer": {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "PowerTransformer",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
-            },
-            "SeriesCompensator": {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "SeriesCompensator",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
-            },
-            "Switch": {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "Switch",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {
-                "Disconnector": {
-                  "$objectType": "reference",
-                  "type": "object",
-                  "$objectId": "Disconnector",
-                  "$referencePath": "Root/PowerSystemResource/ConductingEquipment/Disconnector",
-                  "properties": {}
-                }
-              }
-            },
-            "GroundingImpedance": {
-              "anyOf": []
-            },
-            "Disconnector": {
-              "anyOf": []
-            },
-            "DisconnectingCircuitBreaker": {
-              "anyOf": []
-            }
-          }
-        },
-        "GeneratingUnit": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "GeneratingUnit",
-          "properties": {}
-        },
-        "PowerElectronicsUnit": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "PowerElectronicsUnit",
-          "properties": {}
-        },
-        "TransformerTank": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "TransformerTank",
-          "properties": {}
-        },
-        "LinearShuntCompensatorPhase": {
-          "anyOf": []
-        },
-        "NonlinearShuntCompensatorPhase": {
-          "anyOf": []
         },
         "Microgrid": {
           "anyOf": []
@@ -456,39 +196,7 @@
     "PerLengthLineParameter": {
       "$objectType": "container",
       "type": "object",
-      "properties": {
-        "PerLengthImpedance": {
-          "anyOf": [],
-          "properties": {
-            "PerLengthPhaseImpedance": {
-              "$objectType": "reference",
-              "type": "object",
-              "$objectId": "PerLengthPhaseImpedance",
-              "$referencePath": "Root/PerLengthLineParameter/PerLengthPhaseImpedance",
-              "properties": {}
-            },
-            "PerLengthSequenceImpedance": {
-              "$objectType": "reference",
-              "type": "object",
-              "$objectId": "PerLengthSequenceImpedance",
-              "$referencePath": "Root/PerLengthLineParameter/PerLengthSequenceImpedance",
-              "properties": {}
-            }
-          }
-        },
-        "PerLengthPhaseImpedance": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "PerLengthPhaseImpedance",
-          "properties": {}
-        },
-        "PerLengthSequenceImpedance": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "PerLengthSequenceImpedance",
-          "properties": {}
-        }
-      }
+      "properties": {}
     },
     "OperationalLimitType": {
       "$objectType": "object",
@@ -740,31 +448,32 @@
       "properties": {}
     },
     "ProposedAssetOption": {
-      "anyOf": [],
+      "$objectType": "container",
+      "type": "object",
       "properties": {
         "ProposedConductorOption": {
           "$objectType": "object",
-          "$objectId": "ProposedConductorOption",
           "type": "object",
-          "properties": {},
+          "$objectId": "ProposedConductorOption",
           "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID"
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
         },
         "ProposedEnergyProducerOption": {
           "$objectType": "object",
-          "$objectId": "ProposedEnergyProducerOption",
           "type": "object",
-          "properties": {},
+          "$objectId": "ProposedEnergyProducerOption",
           "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID"
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
         },
         "ProposedSwitchOption": {
           "$objectType": "object",
-          "$objectId": "ProposedSwitchOption",
           "type": "object",
-          "properties": {},
+          "$objectId": "ProposedSwitchOption",
           "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID"
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
         }
       }
     },
@@ -824,6 +533,135 @@
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {}
     },
+    "ConductingEquipment": {
+      "$objectType": "container",
+      "type": "object",
+      "properties": {
+        "EarthFaultCompensator": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "EarthFaultCompensator",
+          "properties": {
+            "GroundingImpedance": {
+              "$objectType": "reference",
+              "type": "object",
+              "$objectId": "GroundingImpedance",
+              "$referencePath": "Root/ConductingEquipment/GroundingImpedance",
+              "properties": {}
+            }
+          }
+        },
+        "Ground": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Ground",
+          "properties": {}
+        },
+        "PowerTransformer": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "PowerTransformer",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        "SeriesCompensator": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "SeriesCompensator",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        "Switch": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Switch",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {
+            "Disconnector": {
+              "$objectType": "reference",
+              "type": "object",
+              "$objectId": "Disconnector",
+              "$referencePath": "Root/ConductingEquipment/Disconnector",
+              "properties": {}
+            }
+          }
+        },
+        "GroundingImpedance": {
+          "anyOf": []
+        },
+        "Disconnector": {
+          "anyOf": []
+        },
+        "DisconnectingCircuitBreaker": {
+          "anyOf": []
+        }
+      }
+    },
+    "Conductor": {
+      "$objectType": "container",
+      "type": "object",
+      "properties": {
+        "ACLineSegment": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "ACLineSegment",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        "WireSegment": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "WireSegment",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        }
+      }
+    },
+    "EnergyConnection": {
+      "$objectType": "container",
+      "type": "object",
+      "properties": {
+        "EnergyConsumer": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "EnergyConsumer",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        "EnergySource": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "EnergySource",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        }
+      }
+    },
+    "Equipment": {
+      "$objectType": "container",
+      "type": "object",
+      "properties": {
+        "GeneratingUnit": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "GeneratingUnit",
+          "properties": {}
+        },
+        "PowerElectronicsUnit": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "PowerElectronicsUnit",
+          "properties": {}
+        }
+      }
+    },
     "FossilFuel": {
       "$objectType": "object",
       "type": "object",
@@ -833,6 +671,86 @@
       "properties": {
         "DieselFuel": {
           "anyOf": []
+        }
+      }
+    },
+    "PerLengthImpedance": {
+      "$objectType": "container",
+      "type": "object",
+      "properties": {
+        "PerLengthPhaseImpedance": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "PerLengthPhaseImpedance",
+          "properties": {}
+        },
+        "PerLengthSequenceImpedance": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "PerLengthSequenceImpedance",
+          "properties": {}
+        }
+      }
+    },
+    "RegulatingCondEq": {
+      "$objectType": "container",
+      "type": "object",
+      "properties": {
+        "PowerElectronicsConnection": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "PowerElectronicsConnection",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        "RotatingMachine": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "RotatingMachine",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        "ShuntCompensator": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "ShuntCompensator",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        "StaticVarCompensator": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "StaticVarCompensator",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        }
+      }
+    },
+    "TransformerTest": {
+      "$objectType": "container",
+      "type": "object",
+      "properties": {
+        "NoLoadTest": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "NoLoadTest",
+          "properties": {}
+        },
+        "OpenCircuitTest": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "OpenCircuitTest",
+          "properties": {}
+        },
+        "ShortCircuitTest": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "ShortCircuitTest",
+          "properties": {}
         }
       }
     }

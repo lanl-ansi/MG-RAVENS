@@ -6,6 +6,7 @@ from collections import OrderedDict
 from pprint import pprint
 from ravens.uml.legend import ravens_colors
 from openpyxl.utils import get_column_letter
+from pathlib import Path
 
 from typing import Dict, Set, Tuple, List, Optional, Union
 import json
@@ -806,7 +807,6 @@ def guess_notconcrete_roles_from_hand(path_to_hand_template, ug) -> dict:
     Precedence: substitutable > container > inheritOnly.
     Nodes already concrete in EA (rootClass/embeddedClass) are skipped.
     """
-    import json
 
     # Load hand template (path or dict)
     hand = (
