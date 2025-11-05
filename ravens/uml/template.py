@@ -515,12 +515,20 @@ class TemplateGenerator:
             tgt_path = self.path_map.get(target)
             if not tgt_path:
                 return
+
+            # Drop the leading "Root" segment from the path if present
+            root_title = self._root_schema_obj.get("title", "Root") if isinstance(getattr(self, "_root_schema_obj", None), dict) else "Root"
+            if len(tgt_path) >= 1 and tgt_path[0] == root_title:
+                ref_path = "/".join(tgt_path[1:])
+            else:
+                ref_path = "/".join(tgt_path)
+
+            # Match hand template: references are strings, no "properties" block
             ref = {
                 "$objectType": "reference",
-                "type": "object",
                 "$objectId": name(target),
-                "$referencePath": "/".join(tgt_path),
-                "properties": {}
+                "type": "string",
+                "$referencePath": ref_path,
             }
             self._add_property(at_ptr, name(target), ref)
 

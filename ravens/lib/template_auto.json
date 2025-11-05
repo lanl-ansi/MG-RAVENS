@@ -84,10 +84,9 @@
           "properties": {
             "EquipmentContainer": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "EquipmentContainer",
-              "$referencePath": "Root/PowerSystemResource/EquipmentContainer",
-              "properties": {}
+              "$referencePath": "PowerSystemResource/EquipmentContainer"
             }
           }
         },
@@ -194,10 +193,9 @@
                   "properties": {
                     "GroundingImpedance": {
                       "$objectType": "reference",
-                      "type": "object",
+                      "type": "string",
                       "$objectId": "GroundingImpedance",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/GroundingImpedance",
-                      "properties": {}
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/GroundingImpedance"
                     }
                   }
                 },
@@ -214,17 +212,15 @@
                       "properties": {
                         "ConformLoad": {
                           "$objectType": "reference",
-                          "type": "object",
+                          "type": "string",
                           "$objectId": "ConformLoad",
-                          "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/ConformLoad",
-                          "properties": {}
+                          "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/ConformLoad"
                         },
                         "NonConformLoad": {
                           "$objectType": "reference",
-                          "type": "object",
+                          "type": "string",
                           "$objectId": "NonConformLoad",
-                          "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/NonConformLoad",
-                          "properties": {}
+                          "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/NonConformLoad"
                         }
                       }
                     },
@@ -257,17 +253,15 @@
                           "properties": {
                             "AsynchronousMachine": {
                               "$objectType": "reference",
-                              "type": "object",
+                              "type": "string",
                               "$objectId": "AsynchronousMachine",
-                              "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/AsynchronousMachine",
-                              "properties": {}
+                              "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/AsynchronousMachine"
                             },
                             "SynchronousMachine": {
                               "$objectType": "reference",
-                              "type": "object",
+                              "type": "string",
                               "$objectId": "SynchronousMachine",
-                              "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/SynchronousMachine",
-                              "properties": {}
+                              "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/SynchronousMachine"
                             }
                           }
                         },
@@ -280,17 +274,15 @@
                           "properties": {
                             "LinearShuntCompensator": {
                               "$objectType": "reference",
-                              "type": "object",
+                              "type": "string",
                               "$objectId": "LinearShuntCompensator",
-                              "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/LinearShuntCompensator",
-                              "properties": {}
+                              "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/LinearShuntCompensator"
                             },
                             "NonlinearShuntCompensator": {
                               "$objectType": "reference",
-                              "type": "object",
+                              "type": "string",
                               "$objectId": "NonlinearShuntCompensator",
-                              "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/NonlinearShuntCompensator",
-                              "properties": {}
+                              "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/NonlinearShuntCompensator"
                             }
                           }
                         },
@@ -355,52 +347,45 @@
                   "properties": {
                     "Cut": {
                       "$objectType": "reference",
-                      "type": "object",
+                      "type": "string",
                       "$objectId": "Cut",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/Cut",
-                      "properties": {}
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Cut"
                     },
                     "Disconnector": {
                       "$objectType": "reference",
-                      "type": "object",
+                      "type": "string",
                       "$objectId": "Disconnector",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/Disconnector",
-                      "properties": {}
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Disconnector"
                     },
                     "Fuse": {
                       "$objectType": "reference",
-                      "type": "object",
+                      "type": "string",
                       "$objectId": "Fuse",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/Fuse",
-                      "properties": {}
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Fuse"
                     },
                     "GroundDisconnector": {
                       "$objectType": "reference",
-                      "type": "object",
+                      "type": "string",
                       "$objectId": "GroundDisconnector",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/GroundDisconnector",
-                      "properties": {}
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/GroundDisconnector"
                     },
                     "Jumper": {
                       "$objectType": "reference",
-                      "type": "object",
+                      "type": "string",
                       "$objectId": "Jumper",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/Jumper",
-                      "properties": {}
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Jumper"
                     },
                     "ProtectedSwitch": {
                       "$objectType": "reference",
-                      "type": "object",
+                      "type": "string",
                       "$objectId": "ProtectedSwitch",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/ProtectedSwitch",
-                      "properties": {}
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/ProtectedSwitch"
                     },
                     "Sectionaliser": {
                       "$objectType": "reference",
-                      "type": "object",
+                      "type": "string",
                       "$objectId": "Sectionaliser",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/Sectionaliser",
-                      "properties": {}
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Sectionaliser"
                     }
                   }
                 },
@@ -427,24 +412,21 @@
                   "properties": {
                     "Breaker": {
                       "$objectType": "reference",
-                      "type": "object",
                       "$objectId": "Breaker",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/Breaker",
-                      "properties": {}
+                      "type": "string",
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Breaker"
                     },
                     "LoadBreakSwitch": {
                       "$objectType": "reference",
-                      "type": "object",
                       "$objectId": "LoadBreakSwitch",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/LoadBreakSwitch",
-                      "properties": {}
+                      "type": "string",
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/LoadBreakSwitch"
                     },
                     "Recloser": {
                       "$objectType": "reference",
-                      "type": "object",
                       "$objectId": "Recloser",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/Recloser",
-                      "properties": {}
+                      "type": "string",
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Recloser"
                     }
                   }
                 },
@@ -456,10 +438,9 @@
                   "properties": {
                     "DisconnectingCircuitBreaker": {
                       "$objectType": "reference",
-                      "type": "object",
                       "$objectId": "DisconnectingCircuitBreaker",
-                      "$referencePath": "Root/PowerSystemResource/Equipment/ConductingEquipment/DisconnectingCircuitBreaker",
-                      "properties": {}
+                      "type": "string",
+                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/DisconnectingCircuitBreaker"
                     }
                   }
                 },
@@ -481,38 +462,33 @@
               "properties": {
                 "HydroGeneratingUnit": {
                   "$objectType": "reference",
-                  "type": "object",
+                  "type": "string",
                   "$objectId": "HydroGeneratingUnit",
-                  "$referencePath": "Root/PowerSystemResource/Equipment/HydroGeneratingUnit",
-                  "properties": {}
+                  "$referencePath": "PowerSystemResource/Equipment/HydroGeneratingUnit"
                 },
                 "NuclearGeneratingUnit": {
                   "$objectType": "reference",
-                  "type": "object",
+                  "type": "string",
                   "$objectId": "NuclearGeneratingUnit",
-                  "$referencePath": "Root/PowerSystemResource/Equipment/NuclearGeneratingUnit",
-                  "properties": {}
+                  "$referencePath": "PowerSystemResource/Equipment/NuclearGeneratingUnit"
                 },
                 "SolarGeneratingUnit": {
                   "$objectType": "reference",
-                  "type": "object",
+                  "type": "string",
                   "$objectId": "SolarGeneratingUnit",
-                  "$referencePath": "Root/PowerSystemResource/Equipment/SolarGeneratingUnit",
-                  "properties": {}
+                  "$referencePath": "PowerSystemResource/Equipment/SolarGeneratingUnit"
                 },
                 "ThermalGeneratingUnit": {
                   "$objectType": "reference",
-                  "type": "object",
+                  "type": "string",
                   "$objectId": "ThermalGeneratingUnit",
-                  "$referencePath": "Root/PowerSystemResource/Equipment/ThermalGeneratingUnit",
-                  "properties": {}
+                  "$referencePath": "PowerSystemResource/Equipment/ThermalGeneratingUnit"
                 },
                 "WindGeneratingUnit": {
                   "$objectType": "reference",
-                  "type": "object",
+                  "type": "string",
                   "$objectId": "WindGeneratingUnit",
-                  "$referencePath": "Root/PowerSystemResource/Equipment/WindGeneratingUnit",
-                  "properties": {}
+                  "$referencePath": "PowerSystemResource/Equipment/WindGeneratingUnit"
                 }
               }
             },
@@ -523,24 +499,21 @@
               "properties": {
                 "BatteryUnit": {
                   "$objectType": "reference",
-                  "type": "object",
+                  "type": "string",
                   "$objectId": "BatteryUnit",
-                  "$referencePath": "Root/PowerSystemResource/Equipment/BatteryUnit",
-                  "properties": {}
+                  "$referencePath": "PowerSystemResource/Equipment/BatteryUnit"
                 },
                 "PhotoVoltaicUnit": {
                   "$objectType": "reference",
-                  "type": "object",
+                  "type": "string",
                   "$objectId": "PhotoVoltaicUnit",
-                  "$referencePath": "Root/PowerSystemResource/Equipment/PhotoVoltaicUnit",
-                  "properties": {}
+                  "$referencePath": "PowerSystemResource/Equipment/PhotoVoltaicUnit"
                 },
                 "PowerElectronicsWindUnit": {
                   "$objectType": "reference",
-                  "type": "object",
+                  "type": "string",
                   "$objectId": "PowerElectronicsWindUnit",
-                  "$referencePath": "Root/PowerSystemResource/Equipment/PowerElectronicsWindUnit",
-                  "properties": {}
+                  "$referencePath": "PowerSystemResource/Equipment/PowerElectronicsWindUnit"
                 }
               }
             },
@@ -597,52 +570,45 @@
           "properties": {
             "BTMEquipmentContainer": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "BTMEquipmentContainer",
-              "$referencePath": "Root/PowerSystemResource/BTMEquipmentContainer",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "PowerSystemResource/BTMEquipmentContainer"
             },
             "DCEquipmentContainer": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "DCEquipmentContainer",
-              "$referencePath": "Root/PowerSystemResource/DCEquipmentContainer",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "PowerSystemResource/DCEquipmentContainer"
             },
             "Feeder": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "Feeder",
-              "$referencePath": "Root/PowerSystemResource/Feeder",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "PowerSystemResource/Feeder"
             },
             "Line": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "Line",
-              "$referencePath": "Root/PowerSystemResource/Line",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "PowerSystemResource/Line"
             },
             "Microgrid": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "Microgrid",
-              "$referencePath": "Root/PowerSystemResource/Microgrid",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "PowerSystemResource/Microgrid"
             },
             "Substation": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "Substation",
-              "$referencePath": "Root/PowerSystemResource/Substation",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "PowerSystemResource/Substation"
             },
             "VoltageLevel": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "VoltageLevel",
-              "$referencePath": "Root/PowerSystemResource/VoltageLevel",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "PowerSystemResource/VoltageLevel"
             }
           }
         },
@@ -654,10 +620,9 @@
           "properties": {
             "DCLine": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "DCLine",
-              "$referencePath": "Root/PowerSystemResource/DCLine",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "PowerSystemResource/DCLine"
             }
           }
         },
@@ -669,10 +634,9 @@
           "properties": {
             "Circuit": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "Circuit",
-              "$referencePath": "Root/PowerSystemResource/Circuit",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "PowerSystemResource/Circuit"
             }
           }
         },
@@ -817,24 +781,21 @@
           "properties": {
             "OutageScenario": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "OutageScenario",
-              "$referencePath": "Root/Document/OutageScenario",
-              "properties": {}
+              "$referencePath": "Document/OutageScenario"
             },
             "PlannedOutage": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "PlannedOutage",
-              "$referencePath": "Root/Document/PlannedOutage",
-              "properties": {}
+              "$referencePath": "Document/PlannedOutage"
             },
             "UnplannedOutage": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "UnplannedOutage",
-              "$referencePath": "Root/Document/UnplannedOutage",
-              "properties": {}
+              "$referencePath": "Document/UnplannedOutage"
             }
           }
         },
@@ -932,17 +893,15 @@
           "properties": {
             "CableInfo": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "CableInfo",
-              "$referencePath": "Root/AssetInfo/CableInfo",
-              "properties": {}
+              "$referencePath": "AssetInfo/CableInfo"
             },
             "OverheadWireInfo": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "OverheadWireInfo",
-              "$referencePath": "Root/AssetInfo/OverheadWireInfo",
-              "properties": {}
+              "$referencePath": "AssetInfo/OverheadWireInfo"
             }
           }
         },
@@ -959,17 +918,15 @@
           "properties": {
             "ConcentricNeutralCableInfo": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "ConcentricNeutralCableInfo",
-              "$referencePath": "Root/AssetInfo/ConcentricNeutralCableInfo",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "AssetInfo/ConcentricNeutralCableInfo"
             },
             "TapeShieldCableInfo": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "TapeShieldCableInfo",
-              "$referencePath": "Root/AssetInfo/TapeShieldCableInfo",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "AssetInfo/TapeShieldCableInfo"
             }
           }
         },
@@ -996,10 +953,9 @@
           "properties": {
             "EndDevice": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "EndDevice",
-              "$referencePath": "Root/Asset/EndDevice",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "Asset/EndDevice"
             }
           }
         },
@@ -1008,10 +964,9 @@
           "properties": {
             "Meter": {
               "$objectType": "reference",
-              "type": "object",
               "$objectId": "Meter",
-              "$referencePath": "Root/Asset/Meter",
-              "properties": {}
+              "type": "string",
+              "$referencePath": "Asset/Meter"
             }
           }
         },
@@ -1102,31 +1057,27 @@
           "properties": {
             "ProposedBatteryUnitOption": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "ProposedBatteryUnitOption",
-              "$referencePath": "Root/ProposedAssetOption/ProposedBatteryUnitOption",
-              "properties": {}
+              "$referencePath": "ProposedAssetOption/ProposedBatteryUnitOption"
             },
             "ProposedGeneratingUnitOption": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "ProposedGeneratingUnitOption",
-              "$referencePath": "Root/ProposedAssetOption/ProposedGeneratingUnitOption",
-              "properties": {}
+              "$referencePath": "ProposedAssetOption/ProposedGeneratingUnitOption"
             },
             "ProposedPhotoVoltaicUnitOption": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "ProposedPhotoVoltaicUnitOption",
-              "$referencePath": "Root/ProposedAssetOption/ProposedPhotoVoltaicUnitOption",
-              "properties": {}
+              "$referencePath": "ProposedAssetOption/ProposedPhotoVoltaicUnitOption"
             },
             "ProposedWindUnitOption": {
               "$objectType": "reference",
-              "type": "object",
+              "type": "string",
               "$objectId": "ProposedWindUnitOption",
-              "$referencePath": "Root/ProposedAssetOption/ProposedWindUnitOption",
-              "properties": {}
+              "$referencePath": "ProposedAssetOption/ProposedWindUnitOption"
             }
           }
         },
