@@ -114,7 +114,6 @@ class TemplateGenerator:
         # distance from n to each concrete (downward in HR)
         # BFS levels: nearest first
         nearest: Set[int] = set()
-        from collections import deque
         q = deque([n])
         seen = {n}
         while q:
@@ -178,6 +177,23 @@ class TemplateGenerator:
         anchors.add(self.root_id)
         return anchors
 
+    def _nearest_anchor_ancestor(self, n: int) -> int:
+        n = int(n)
+        if not isinstance(self._anchor_set, set):
+            return self.root_id
+        seen = {n}
+        q = deque([n])
+        while q:
+            cur = q.popleft()
+            for parent in self.H.successors(cur):  # H: child -> parent
+                if parent in seen:
+                    continue
+                seen.add(parent)
+                if parent in self._anchor_set:
+                    return int(parent)
+                q.append(parent)
+        return self.root_id
+
     def _nearest_anchor_for_concrete(self, c: int, anchors: Set[int]) -> int:
         """
         Walk upward (H: child->parent) from concrete c to the nearest ancestor in 'anchors'.
@@ -203,7 +219,6 @@ class TemplateGenerator:
         Walk *up* H (child -> parent) to find the nearest ancestor that is in stack_containers.
         If none found, return self.root_id.
         """
-        from collections import deque
         n = int(n)
         if not stack_containers:
             return self.root_id
@@ -513,15 +528,16 @@ class TemplateGenerator:
         for n in first_level_nodes:
             ensure_defined(n, stack_containers={self.root_id}, force_owner=self.root_id, at_top_level=True)
 
-        # ---------- also promote H-anchors to top level under Root ----------
+        # ---------- only promote *top-level* H-anchors ----------
         anchors = sorted((self._anchor_set - {self.root_id}), key=lambda n: name(n).casefold())
-        for a in anchors:
+        top_level_anchors = [a for a in anchors if self._nearest_anchor_ancestor(a) == self.root_id]
+        for a in top_level_anchors:
             if a not in self.def_ptr:
                 ensure_defined(a, stack_containers={self.root_id}, force_owner=self.root_id,
                             at_top_level=True, force_kind="container")
 
         # collect starting points for H descent
-        walk_anchors = list(dict.fromkeys(list(first_level_nodes) + anchors))
+        walk_anchors = list(dict.fromkeys(list(first_level_nodes) + top_level_anchors))
 
         # ---------- SPECIAL DIAGRAMS: treat "Versions" and "Group" like mini-Roots ----------
         special_diagrams = ("Versions", "Group")
@@ -540,12 +556,14 @@ class TemplateGenerator:
 
         # ---------- 2) descend H below each top-level start ----------
         visited_down = set()
+
+        def is_container_like(n: int) -> bool:
+            return (role(n).strip() == "containerClass") or (n in self._anchor_set)
+
         for anchor in walk_anchors:
-            stack = [self.root_id, anchor]
-            from collections import deque
-            q = deque([anchor])
+            q = deque([(anchor, [self.root_id, anchor])])
             while q:
-                cur = q.popleft()
+                cur, cur_stack = q.popleft()
                 if cur in visited_down:
                     continue
                 visited_down.add(cur)
@@ -554,18 +572,14 @@ class TemplateGenerator:
                     continue
                 children = sorted(self.HR.successors(cur), key=lambda n: name(n).casefold())
                 for child in children:
-                    ensure_defined(child, stack_containers=set(stack))
-                    # add xref if ownership differs
-                    owner_here = self._nearest_owner_in_stack(child, set(stack))
+                    ensure_defined(child, stack_containers=set(cur_stack))
+
+                    owner_here = self._nearest_owner_in_stack(child, set(cur_stack))
                     if owner_here != cur and child in self.def_ptr and isinstance(self.def_ptr[child], dict):
                         add_xref(cur, child)
 
-                    # if child is a container (role tag or anchor), continue walking with it on the stack
-                    if (role(child).strip() == "containerClass") or (child in self._anchor_set):
-                        q.append(child)
-                        stack = stack + [child]
-                    else:
-                        q.append(child)
+                    next_stack = (cur_stack + [child]) if is_container_like(child) else cur_stack
+                    q.append((child, next_stack))
 
         # ---------- 3) top-level ordering like hand ----------
         schema["properties"] = self._order_props_like_hand(schema.get("properties", {}))
