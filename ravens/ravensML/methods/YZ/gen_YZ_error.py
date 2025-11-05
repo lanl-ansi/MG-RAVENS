@@ -3,7 +3,7 @@ import copy
 import random
 from typing import List, Sequence, Tuple, Any, Dict
 import numpy as np
-sys.path.append('/Users/oreed/Desktop/Grid Correction Project/src')
+sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
 from framework.dataset import MGRavensDataset
 
 
@@ -78,7 +78,7 @@ def generate_yz_error(
 
 
 if __name__ == "__main__":
-    MGR = MGRavensDataset(data_dir="data/raw")
+    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")
     MGR_CONN_TEST, Y = generate_yz_error(MGR,occurrence_prob=1,size=1)  
 
 

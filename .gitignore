@@ -1,10 +1,13 @@
 *.vscode
 node_modules/
 
+MG-RAVENS/tests/tmp/
 out/
 cimpy-1.0.2/
 test_env
 tests_fixes
+
+MG-RAVENS/ravens/ravensML/data/
 
 deprecated.*
 test.*

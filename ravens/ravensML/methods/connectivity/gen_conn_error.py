@@ -2,7 +2,7 @@ import sys
 import copy
 import random
 from typing import List, Sequence, Tuple, Any, Dict
-sys.path.append('/Users/oreed/Desktop/Grid Correction Project/src')
+sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
 from framework.dataset import MGRavensDataset
 
 

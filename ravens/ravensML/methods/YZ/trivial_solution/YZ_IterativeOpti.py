@@ -17,7 +17,7 @@ from julia import PowerModelsDistribution as PMD
 from julia import Ipopt
 from julia import Main
 
-sys.path.append('/Users/oreed/Desktop/Grid Correction Project/src')
+sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
 from framework.dataset import MGRavensDataset
 
 class YZ_Iterative_Optimizer(object):
@@ -134,20 +134,20 @@ class YZ_Iterative_Optimizer(object):
         """
         os.makedirs("tmp", exist_ok=True)
         
-        tmp_file = "methods/YZ/trivial_solution/tmp/tmp_pf.json"
+        tmp_file = "ravens/ravensML/methods/YZ/trivial_solution/tmp/tmp_pf.json"
         with open(tmp_file, "w") as file:
             json.dump(mgr_grid, file, indent=2)
  
         Main.eval("eng = parse_file(\""+tmp_file+"\")")
         Main.eval("rav_model = instantiate_mc_model_ravens(eng, IVRUPowerModel, build_mc_pf)")
         Main.eval("""
-        open("methods/YZ/trivial_solution/tmp/mc_info.json", "w") do f
+        open("ravens/ravensML/methods/YZ/trivial_solution/tmp/mc_info.json", "w") do f
             JSON.print(f, rav_model, 2)
         end
         """)
         
         #process branch map between Ravens and Power Models Distribution
-        with open("methods/YZ/trivial_solution/tmp/mc_info.json", 'r') as file:
+        with open("ravens/ravensML/methods/YZ/trivial_solution/tmp/mc_info.json", 'r') as file:
             rav_model = json.load(file)
         rav_model_branches = rav_model["data"]["branch"]
 
@@ -161,12 +161,12 @@ class YZ_Iterative_Optimizer(object):
         
         Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>0, \"tol\"=>1e-6),solution_processors=Function[])")
         Main.eval("""
-        open("methods/YZ/trivial_solution/tmp/pf_info.json", "w") do f
+        open("ravens/ravensML/methods/YZ/trivial_solution/tmp/pf_info.json", "w") do f
             JSON.print(f, result)
         end
         """)
     
-        with open("methods/YZ/trivial_solution/tmp/pf_info.json", 'r') as file:
+        with open("ravens/ravensML/methods/YZ/trivial_solution/tmp/pf_info.json", 'r') as file:
             file_content = json.load(file)
 
         return file_content
@@ -228,7 +228,7 @@ class YZ_Iterative_Optimizer(object):
         branch_infeasibility = self.analyze_branch_infeasibility(results)
 
         #debug prints
-        with open("methods/YZ/trivial_solution/tmp/log.txt", "w") as f:
+        with open("ravens/ravensML/methods/YZ/trivial_solution/tmp/log.txt", "w") as f:
             f.write("keys: " + str(results.keys()) + "\n")
             f.write("infeasibility results: ")
             json.dump(branch_infeasibility, f, indent=2)
@@ -394,7 +394,7 @@ class YZ_Iterative_Optimizer(object):
 
 if __name__ == "__main__":
     from methods.YZ.gen_YZ_error import generate_yz_error
-    MGR = MGRavensDataset(data_dir="data/YZ_test")
+    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")
     MGR_YZ, Y = generate_yz_error(MGR, occurrence_prob=1,
                                     deletion_prob=0,
                                     mult_mean = 1,

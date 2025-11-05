@@ -457,7 +457,7 @@ class MGRavensDataset:
 
 
 if __name__ == "__main__":
-    MGR = MGRavensDataset(data_dir="data")
+    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")
     MGR.load_data()
     MGR.process_for_ML()
     # print(MGR.ML_data[0].keys())
