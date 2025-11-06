@@ -60,7 +60,7 @@ class YZ_Iterative_Optimizer(object):
             
             if result_dict["termination_status"] == "LOCALLY_SOLVED" or result_dict["termination_status"] == "OPTIMAL":
                 print("Grid is already feasible. No modifications needed.")
-                self.output_data.append((mgr_NAME, mgr_grid))
+                self.output_data.append((mgr_NAME, mgr_grid,original_values))
                 continue
             
             # If not feasible, start iterative optimization
@@ -82,33 +82,80 @@ class YZ_Iterative_Optimizer(object):
             
             for iteration in range(MAX_ITER):
                 print(f"Iteration {iteration + 1}")
+                modifications_made = False
                 
-                # Identify problematic branches and compute violation metrics
-                mgr_MLD_updated, violation_score = self.PMD_get_new_yz(current_mgr_MLD, result_dict)
+                # Get current violation score
+                current_violation_score = self._get_score(i, current_mgr_MLD)
+                print(f"Current violation score: {current_violation_score}")
                 
-                print(f"Violation score: {violation_score}")
+                # Identify problematic branches
+                branch_infeasibility = self.analyze_branch_infeasibility(result_dict)
                 
-                # Check if we've made an improvement
-                if violation_score < best_violation_score:
-                    print(f"Found better solution with violation score: {violation_score}")
-                    best_violation_score = violation_score
-                    best_violation_state = copy.deepcopy(mgr_MLD_updated)
+                # Create copies for testing individual parameter changes
+                r_only_mld = copy.deepcopy(current_mgr_MLD)
+                x_only_mld = copy.deepcopy(current_mgr_MLD)
+                b_only_mld = copy.deepcopy(current_mgr_MLD)
+                
+                # Apply changes to each parameter separately
+                r_only_mld = self.apply_parameter_changes(r_only_mld, branch_infeasibility, ["R"])
+                x_only_mld = self.apply_parameter_changes(x_only_mld, branch_infeasibility, ["X"])
+                b_only_mld = self.apply_parameter_changes(b_only_mld, branch_infeasibility, ["B"])
+                rx_mld = self.apply_parameter_changes(b_only_mld, branch_infeasibility, ["X","R"])
+                all_mld = self.apply_parameter_changes(b_only_mld, branch_infeasibility, ["X","R","B"])
+                
+                # Test each change separately
+                r_score = self._get_score(i, r_only_mld)
+                x_score = self._get_score(i, x_only_mld)
+                b_score = self._get_score(i, b_only_mld)
+                rx_score = self._get_score(i, rx_mld)
+                all_score = self._get_score(i, all_mld)
+                
+                print(f"R-only score: {r_score}, X-only score: {x_score}, B-only score: {b_score}, R/X score: {rx_score}, all score: {all_score}")
+                
+                # Keep only the changes that improve the score
+                improved_mld = copy.deepcopy(current_mgr_MLD)
+                
+                if r_score < current_violation_score or all_score < current_violation_score or rx_score < current_violation_score:
+                    print("Applying R changes (improved score)")
+                    for branch_id, features in r_only_mld["edge_features"].items():
+                        if branch_id in improved_mld["edge_features"]:
+                            improved_mld["edge_features"][branch_id]["R"] = features["R"]
                     modifications_made = True
                 
-                # If no updates were made, use the best solution found so far
-                if mgr_MLD_updated == current_mgr_MLD:
-                    print("No updates made. Using best solution found.")
-                    if best_violation_state is not None:
-                        self.MGR_set_yz(i, best_violation_state)
-                        current_mgr_MLD = best_violation_state
-                    break
+                if x_score < current_violation_score or all_score < current_violation_score or rx_score < current_violation_score:
+                    print("Applying X changes (improved score)")
+                    for branch_id, features in x_only_mld["edge_features"].items():
+                        if branch_id in improved_mld["edge_features"]:
+                            improved_mld["edge_features"][branch_id]["X"] = features["X"]
+                    modifications_made = True
                 
-                # Update with new settings
-                self.MGR_set_yz(i, mgr_MLD_updated) 
-                current_mgr_MLD = mgr_MLD_updated
+                if b_score < current_violation_score or all_score < current_violation_score:
+                    print("Applying B changes (improved score)")
+                    for branch_id, features in b_only_mld["edge_features"].items():
+                        if branch_id in improved_mld["edge_features"]:
+                            improved_mld["edge_features"][branch_id]["B"] = features["B"]
+                    modifications_made = True
+
+
                 
-                # Run power flow again with modified parameters
-                result_dict = self._run_pf(mgr_grid)
+                # Update current state with improved parameters
+                if modifications_made:
+                    current_mgr_MLD = improved_mld
+                    # Run PF with the updated parameters
+                    self.MGR_set_yz(i, current_mgr_MLD)
+                    result_dict = self._run_pf(mgr_grid)
+                    
+                    # Check if we've made an improvement
+                    violation_score = self._get_score(i, current_mgr_MLD)
+                    if violation_score < best_violation_score:
+                        print(f"Found better solution with violation score: {violation_score}")
+                        best_violation_score = violation_score
+                        best_violation_state = copy.deepcopy(current_mgr_MLD)
+                else:
+                    print("No improvements found, reducing learning rate")
+                    self.learning_rate *= 0.8
+                
+                print(f"Violation score at iteration #{iteration}: {best_violation_score}")
                 
                 # Check if the grid is now feasible
                 if result_dict["termination_status"] == "LOCALLY_SOLVED" or result_dict["termination_status"] == "OPTIMAL":
@@ -121,11 +168,77 @@ class YZ_Iterative_Optimizer(object):
                     print("Could not make grid feasible within iteration limit. Using best configuration found.")
                     if best_violation_state is not None:
                         self.MGR_set_yz(i, best_violation_state)
+                    _, best_grid, _ = self.input_dataset[i]
+                    break
             
             # Add the (potentially modified) grid to output data
-            self.output_data.append((mgr_NAME, mgr_grid,best_violation_state))
+            final_state = best_violation_state if best_violation_state is not None else current_mgr_MLD
+            self.output_data.append((mgr_NAME, mgr_grid, final_state))
         
         return self.output_data
+
+    def apply_parameter_changes(self, mld, branch_infeasibility, param_types):
+        """
+        Apply changes to only one parameter type (R, X, or B)
+        """
+        # Sort branches by their infeasibility to focus on the most problematic ones
+        sorted_branches = sorted(
+            branch_infeasibility.items(), 
+            key=lambda x: x[1]["total_infeasibility"], 
+            reverse=True
+        )
+        # Focus on the top 40% most infeasible branches (or at least 1)
+        top_branch_count = max(1, int(0.8 * len(sorted_branches)))
+        top_branches = sorted_branches[:top_branch_count]
+        
+        # Apply corrections to the most problematic branches
+        for pmd_branch_id, metrics in top_branches:
+            branch_id = self.P2R[pmd_branch_id]
+            branch_id_str = str(branch_id)  # Ensure branch_id is a string for dictionary lookup
+            if branch_id_str not in mld["edge_features"]:
+                print(f"<DEBUG> edge key {branch_id_str} does not exist in {list(mld['edge_features'].keys())}")
+                continue
+                
+            # Get current matrices
+            R = mld["edge_features"][branch_id_str]["R"]
+            X = mld["edge_features"][branch_id_str]["X"]
+            B = mld["edge_features"][branch_id_str]["B"]
+            
+            # Convert to numpy arrays for easier manipulation
+            R_np = np.array(R)
+            X_np = np.array(X)
+            B_np = np.array(B)
+            
+            if "R" in param_types and metrics["r_infeasibility"] > 0.03:
+                scale_factor = 1.0 - min(0.9, self.learning_rate * np.log1p(metrics["r_infeasibility"]))
+                R_np = R_np * scale_factor
+                R_np = np.maximum(R_np, 1e-6)  # Ensure resistance is positive
+                mld["edge_features"][branch_id_str]["R"] = R_np.tolist()
+                
+            elif "X" in param_types and metrics["x_infeasibility"] > 0.03:
+                scale_factor = 1.0 - min(0.9, self.learning_rate * np.log1p(metrics["x_infeasibility"]))
+                X_np = X_np * scale_factor
+                mld["edge_features"][branch_id_str]["X"] = X_np.tolist()
+                
+            elif "B" in param_types and metrics["b_infeasibility"] > 0.03:
+                scale_factor = 1.0 + min(0.9, self.learning_rate * np.log1p(metrics["b_infeasibility"]))
+                B_np = B_np * scale_factor
+                mld["edge_features"][branch_id_str]["B"] = B_np.tolist()
+        
+        return mld
+
+    def _get_score(self,i,MLD):
+        #given new MLD generate a new MGR grid with updated parameters
+        self.MGR_set_yz(i,MLD) 
+        #get those updated parameters
+        _, mgr_RAW, _ = self.input_dataset[i]
+
+        #compute quality of results
+        results = self._run_pf(mgr_RAW)
+        branch_infeasibility = self.analyze_branch_infeasibility(results)
+        violation_score = sum(branch["total_infeasibility"] for branch in branch_infeasibility.values())
+
+        return violation_score
 
 
     def _run_pf(self, mgr_grid):
@@ -256,7 +369,7 @@ class YZ_Iterative_Optimizer(object):
             reverse=True
         )
         # Focus on the top 40% most infeasible branches (or at least 1)
-        top_branch_count = max(1, int(0.4 * len(sorted_branches)))
+        top_branch_count = max(1, int(0.8 * len(sorted_branches)))
         top_branches = sorted_branches[:top_branch_count]
 
         # Track if any changes were made
@@ -284,7 +397,7 @@ class YZ_Iterative_Optimizer(object):
             # The larger the infeasibility, the more aggressive the correction
             
             # R matrix correction - reduce resistance to address r_infeasibility
-            if metrics["r_infeasibility"] > 0.0:
+            if metrics["r_infeasibility"] > 0.1:
                 scale_factor = 1.0 - min(0.9, self.learning_rate * np.log1p(metrics["r_infeasibility"]))
                 # print("<DEBUG> r:",scale_factor)
                 R_np_new = R_np * scale_factor
@@ -293,7 +406,7 @@ class YZ_Iterative_Optimizer(object):
                     changes_made = True
             
             # X matrix correction - adjust reactance to address x_infeasibility
-            if metrics["x_infeasibility"] > 0.0:
+            if metrics["x_infeasibility"] > 0.1:
                 scale_factor = 1.0 - min(0.9, self.learning_rate * np.log1p(metrics["x_infeasibility"]))
                 # print("<DEBUG> x:",scale_factor)
                 X_np_new = X_np * scale_factor
@@ -302,7 +415,7 @@ class YZ_Iterative_Optimizer(object):
                     changes_made = True
             
             # B matrix correction - adjust susceptance to address b_infeasibility
-            if metrics["b_infeasibility"] > 0.0:
+            if metrics["b_infeasibility"] > 0.1:
                 # For B matrix, we might need to increase values to reduce infeasibility
                 scale_factor = 1.0 + min(0.9, self.learning_rate * np.log1p(metrics["b_infeasibility"]))
                 # print("<DEBUG> b:",scale_factor)
@@ -323,9 +436,9 @@ class YZ_Iterative_Optimizer(object):
         # If no changes were made, return the original with its violation score
         if not changes_made:
             print("No changes made to parameters.")
-            return current_ml, violation_score
+            return current_ml
 
-        return MLD_updated, violation_score
+        return MLD_updated
 
     
 
@@ -406,4 +519,3 @@ if __name__ == "__main__":
     
     YZIO = YZ_Iterative_Optimizer(max_iter = 10)
     YZIO(MGR_YZ)
-

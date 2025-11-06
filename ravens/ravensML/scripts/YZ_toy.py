@@ -23,12 +23,12 @@ def test_yz_optimizer():
     # Generate YZ errors
     MGR_YZ, Y = generate_yz_error(MGR, 
                                   occurrence_prob=1,
-                                  deletion_prob=0,
+                                  deletion_prob=.2,
                                   mult_mean=1,
-                                  mult_var=1,
+                                  mult_var=5,
                                   add_mean=0,
-                                  add_var=1, 
-                                  size=10)  # Use 3 samples for testing
+                                  add_var=5, 
+                                  size=1)  # Use 3 samples for testing
     
     # Process the dataset for ML
     MGR_YZ.process_for_ML()
@@ -112,7 +112,7 @@ def calculate_matrix_difference(matrix1, matrix2):
     if m1.shape != m2.shape:
         return float('nan')
     
-    return np.mean(np.abs(m1 - m2))
+    return np.mean(m1 - m2)
 
 
 def calculate_relative_difference(matrix1, matrix2):
@@ -163,7 +163,7 @@ def print_parameter_report(comparison_results):
         avg_x_rel_diff = np.mean([b["X_rel_diff"] for b in branches.values()])
         avg_b_rel_diff = np.mean([b["B_rel_diff"] for b in branches.values()])
         
-        print(f"  Average absolute differences:")
+        print(f"  Average differences:")
         print(f"    R matrix: {avg_r_diff:.6f}")
         print(f"    X matrix: {avg_x_diff:.6f}")
         print(f"    B matrix: {avg_b_diff:.6f}")
