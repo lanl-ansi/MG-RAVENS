@@ -30,6 +30,9 @@ role_sets = updateea.build_role_sets_for_containers_from_uml(cs, uml_data)
 js = updateea.export_ea_jscript_all(role_sets, out_path="temp/ea_scripts_containers.js", print_to_console=False)
 
 
+# Template comparison
+cmp = template.TemplateCompare()
+cmp.print_report()
 
 
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from collections import deque
+from pathlib import Path
 from typing import Dict, List, Set, Tuple, Optional, Literal
 import networkx as nx
 
@@ -234,6 +235,33 @@ class TemplateGenerator:
                 seen.add(parent)
                 q.append(parent)
         return self.root_id
+
+    def _make_anyof_variants(self, base_id: int) -> list[dict]:
+        """
+        Build H-only 'anyOf' variants:
+        • include the base class as an object variant
+        • include every concrete descendant (role in {'rootClass','embeddedClass'})
+        Each variant is a minimal object stub (hashes added if base/descendant is rootClass).
+        """
+        def _variant(n: int) -> dict:
+            obj = {"$objectType": "object", "type": "object", "$objectId": self._name(n), "properties": {}}
+            self._apply_hashes_if_rootclass(n, obj)
+            return obj
+
+        # base first
+        variants = [_variant(int(base_id))]
+
+        # then all concrete descendants (sorted, de-duped by name)
+        seen = {self._name(int(base_id))}
+        conc = sorted(self._concrete_descendants(int(base_id)), key=lambda i: self._name(i).casefold())
+        for n in conc:
+            nm = self._name(n)
+            if nm in seen:
+                continue
+            variants.append(_variant(n))
+            seen.add(nm)
+
+        return variants
 
     # -------------------- JSON assembly helpers --------------------
     @staticmethod
@@ -488,7 +516,7 @@ class TemplateGenerator:
             elif n in getattr(self, "_anchor_set", set()):
                 node_obj = {"$objectType": "container", "type": "object", "properties": {}}
             elif r == "substitutableClass":
-                node_obj = {"anyOf": []}
+                node_obj = {"anyOf": self._make_anyof_variants(n)}
             elif r == "containerClass":
                 node_obj = {"$objectType": "container", "type": "object", "properties": {}}
                 _decorate_versions_container(nm, node_obj)
@@ -687,3 +715,111 @@ class TemplateGenerator:
         if not isinstance(data, dict):
             raise ValueError("No auto template provided and nothing cached from build().")
         _TEMPLATE_AUTOJSON_PATH.write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+
+class TemplateCompare:
+    """
+    Compare structural aspects of the hand vs auto templates.
+
+    Defaults:
+      • Loads hand from ravens.data._TEMPLATE_JSON_PATH
+      • Loads auto from ravens.data._TEMPLATE_AUTOJSON_PATH
+
+    You can override either by passing a dict or a path-like.
+    """
+
+    def __init__(self,
+                 hand: Optional[dict | str | "os.PathLike[str]"] = None,
+                 auto: Optional[dict | str | "os.PathLike[str]"] = None,
+                 root_title: str = "Root",
+                 encoding: str = "utf-8"):
+        self.root_title = root_title
+        self.encoding = encoding
+        self.hand_schema, self.hand_path = self._coerce_schema(hand, default_path=_TEMPLATE_JSON_PATH)
+        self.auto_schema, self.auto_path = self._coerce_schema(auto, default_path=_TEMPLATE_AUTOJSON_PATH)
+
+    # ---------- construction helpers ----------
+
+    def _coerce_schema(self, src, default_path):
+        """
+        Returns (schema_dict, pathlib.Path|None). If src is None, load default_path.
+        If src is a path-like/str, load it. If src is a dict, return it as-is.
+        """
+        if src is None:
+            path = Path(default_path)
+            data = json.loads(path.read_text(encoding=self.encoding))
+            return data, path
+        if isinstance(src, dict):
+            return src, None
+        # path-like
+        path = Path(src)
+        data = json.loads(path.read_text(encoding=self.encoding))
+        return data, path
+
+    # ---------- internals ----------
+
+    def _find_root_obj(self, schema: dict) -> dict:
+        """
+        Return the object that represents 'Root'.
+        Assumes top-level is Root; if not, tries to find an object with title == self.root_title.
+        """
+        if isinstance(schema, dict):
+            # direct match
+            if schema.get("title") == self.root_title and isinstance(schema.get("properties"), dict):
+                return schema
+            # fallback: top-level with properties
+            if "properties" in schema and isinstance(schema["properties"], dict):
+                return schema
+        return schema
+
+    def _root_keys(self, schema: dict) -> set[str]:
+        root = self._find_root_obj(schema)
+        props = root.get("properties", {})
+        if not isinstance(props, dict):
+            return set()
+        return set(props.keys())
+
+    # ---------- public API ----------
+
+    @classmethod
+    def from_paths(cls, hand_path: str, auto_path: str, root_title: str = "Root", encoding: str = "utf-8"):
+        return cls(hand=hand_path, auto=auto_path, root_title=root_title, encoding=encoding)
+
+    def compare_root_objects(self) -> dict:
+        """
+        Compute the three sets: hand_only, auto_only, both.
+        """
+        h = self._root_keys(self.hand_schema)
+        a = self._root_keys(self.auto_schema)
+        return {
+            "hand_only": sorted(h - a, key=str.casefold),
+            "auto_only": sorted(a - h, key=str.casefold),
+            "both":      sorted(h & a, key=str.casefold),
+        }
+
+    def report(self) -> str:
+        """
+        Return a printable, multi-line text report.
+        """
+        cmp = self.compare_root_objects()
+        sections = [
+            ("Hand only", cmp["hand_only"]),
+            ("Auto only", cmp["auto_only"]),
+            ("Both",      cmp["both"]),
+        ]
+        lines = []
+        for title, items in sections:
+            lines.append(f"{title} ({len(items)}):")
+            if items:
+                for it in items:
+                    lines.append(f"  - {it}")
+            else:
+                lines.append("  (none)")
+            lines.append("")  # blank line
+        return "\n".join(lines).rstrip()
+
+    def print_report(self) -> None:
+        print(self.report())
+
+    def __str__(self) -> str:
+        return self.report()
