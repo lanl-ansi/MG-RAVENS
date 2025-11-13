@@ -162,6 +162,50 @@ class TemplateGenerator:
                     if n in self.A else self.H.nodes[n].get("Name")) or ""
         return sorted(nbrs, key=lambda n: _nm(n).casefold())
 
+    def _collect_polymorphic_variants(self, base: int) -> list[int]:
+        """
+        Return [base, ...descendants...] to use as anyOf variants, excluding inheritOnly.
+        Includes the base if it isn't inheritOnly.
+        """
+        def keep(n: int) -> bool:
+            return self._role(n) != "inheritOnlyClass"
+
+        seen, out = set(), []
+        if keep(base):
+            out.append(base)
+            seen.add(base)
+
+        from collections import deque
+        q = deque([base])
+        while q:
+            cur = q.popleft()
+            for ch in self.HR.successors(cur):
+                if ch in seen:
+                    continue
+                seen.add(ch)
+                if keep(ch):
+                    out.append(ch)
+                q.append(ch)
+
+        # sort by Name but keep base first if present
+        base_first = out[:1]
+        rest = sorted(out[1:], key=lambda n: self._name(n).casefold())
+        return base_first + rest
+
+    def _make_ref(self, target: int) -> dict | None:
+        """Make a hand-style reference object to an already-defined target."""
+        tgt_path = self.path_map.get(target)
+        if not tgt_path:
+            return None
+        root_title = self._root_schema_obj.get("title", "Root")
+        ref_path = "/".join(tgt_path[1:]) if (len(tgt_path) >= 1 and tgt_path[0] == root_title) else "/".join(tgt_path)
+        return {
+            "$objectType": "reference",
+            "$objectId": self._name(target),
+            "type": "string",
+            "$referencePath": ref_path,
+        }
+
 
     # -------------------- anchor detection --------------------
     def _compute_anchors(self) -> Set[int]:
@@ -235,33 +279,6 @@ class TemplateGenerator:
                 seen.add(parent)
                 q.append(parent)
         return self.root_id
-
-    def _make_anyof_variants(self, base_id: int) -> list[dict]:
-        """
-        Build H-only 'anyOf' variants:
-        • include the base class as an object variant
-        • include every concrete descendant (role in {'rootClass','embeddedClass'})
-        Each variant is a minimal object stub (hashes added if base/descendant is rootClass).
-        """
-        def _variant(n: int) -> dict:
-            obj = {"$objectType": "object", "type": "object", "$objectId": self._name(n), "properties": {}}
-            self._apply_hashes_if_rootclass(n, obj)
-            return obj
-
-        # base first
-        variants = [_variant(int(base_id))]
-
-        # then all concrete descendants (sorted, de-duped by name)
-        seen = {self._name(int(base_id))}
-        conc = sorted(self._concrete_descendants(int(base_id)), key=lambda i: self._name(i).casefold())
-        for n in conc:
-            nm = self._name(n)
-            if nm in seen:
-                continue
-            variants.append(_variant(n))
-            seen.add(nm)
-
-        return variants
 
     # -------------------- JSON assembly helpers --------------------
     @staticmethod
@@ -385,6 +402,42 @@ class TemplateGenerator:
         # Reorder this node’s keys if we know its kind
         return self._order_fields(kind, node) if kind else node
 
+    def _make_anyof_variants(self, base_id: int) -> list[dict]:
+        """
+        Build object-anyOf variants for a polymorphic family:
+        • include the base (if not inheritOnlyClass)
+        • include ALL descendants except inheritOnlyClass
+        """
+        def _variant(n: int) -> dict:
+            obj = {"$objectType": "object", "type": "object", "$objectId": self._name(n), "properties": {}}
+            self._apply_hashes_if_rootclass(n, obj)
+            return obj
+
+        keep = lambda nid: self._role(nid) != "inheritOnlyClass"
+
+        out, seen = [], set()
+        if keep(int(base_id)):
+            out.append(_variant(int(base_id)))
+            seen.add(self._name(int(base_id)))
+
+        # walk downward in H 
+        from collections import deque
+        q = deque([int(base_id)])
+        while q:
+            cur = q.popleft()
+            for ch in self.HR.successors(cur):
+                q.append(ch)
+                if not keep(ch):
+                    continue
+                nm = self._name(ch)
+                if nm in seen:
+                    continue
+                out.append(_variant(ch))
+                seen.add(nm)
+
+        # keep base first, sort the rest by name
+        return out[:1] + sorted(out[1:], key=lambda d: d["$objectId"].casefold())
+
     # -------------------- build --------------------
 
     def build(self) -> dict:
@@ -397,20 +450,20 @@ class TemplateGenerator:
         3) Cross-references are emitted when an encountered node’s owner ≠ the current node.
         4) Top-level keys ordered to match the hand template first, then A–Z.
         """
-        # --- ONLY FOR children directly under "Versions" ---
-        def _override_versions_hashes_if_child_of_versions(owner_path: tuple, obj_dict: dict) -> None:
-            """
-            If the emitted node is an *object* placed directly under the 'Versions'
-            container, set $primaryObjectHash to null and remove $secondaryObjectHash.
-            """
-            if not isinstance(obj_dict, dict):
-                return
-            if not owner_path or owner_path[-1] != "Versions":
-                return
-            if obj_dict.get("$objectType") != "object":
-                return
-            obj_dict["$primaryObjectHash"] = None
-            obj_dict.pop("$secondaryObjectHash", None)
+        # # --- ONLY FOR children directly under "Versions" ---
+        # def _override_versions_hashes_if_child_of_versions(owner_path: tuple, obj_dict: dict) -> None:
+        #     """
+        #     If the emitted node is an *object* placed directly under the 'Versions'
+        #     container, set $primaryObjectHash to null and remove $secondaryObjectHash.
+        #     """
+        #     if not isinstance(obj_dict, dict):
+        #         return
+        #     if not owner_path or owner_path[-1] != "Versions":
+        #         return
+        #     if obj_dict.get("$objectType") != "object":
+        #         return
+        #     obj_dict["$primaryObjectHash"] = None
+        #     obj_dict.pop("$secondaryObjectHash", None)
 
         # --- ONLY for objects directly under "Versions" (hash override only) ---
         def _override_versions_object(owner_path: tuple, obj_dict: dict) -> None:
@@ -451,6 +504,7 @@ class TemplateGenerator:
         self._owner_cache = {}
         self.def_ptr = {}
         self.path_map = {}
+        self._object_anyof_nodes = set()
 
         role = lambda n: (self.A.nodes[n].get("ravensRole")
                         if isinstance(self.A, nx.Graph) and n in self.A else self.H.nodes[n].get("ravensRole")) or ""
@@ -475,7 +529,11 @@ class TemplateGenerator:
 
         # ---------- 1) top-level from A (Root -> child) ----------
         if isinstance(self.A, nx.DiGraph) and self.root_id in self.A:
-            first_level_nodes = sorted(set(self.A.successors(self.root_id)), key=lambda n: name(n).casefold())
+            fl = {int(n) for n in self.A.successors(self.root_id)}
+            first_level_nodes = sorted(
+                [n for n in fl if role(n).strip() != "inheritOnlyClass"],
+                key=lambda n: name(n).casefold()
+            )
         else:
             first_level_nodes = []
 
@@ -505,30 +563,57 @@ class TemplateGenerator:
             nm = name(n)
             r  = role(n).strip()
 
-            # emission rules
+            # --- emission rules ---
             if force_kind == "container":
                 node_obj = {"$objectType": "container", "type": "object", "properties": {}}
                 _decorate_versions_container(nm, node_obj)
+
             elif force_kind == "object":
                 node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
                 self._apply_hashes_if_rootclass(n, node_obj)
-                _override_versions_object(owner_path, node_obj)   
+                _override_versions_object(owner_path, node_obj)
+
             elif n in getattr(self, "_anchor_set", set()):
                 node_obj = {"$objectType": "container", "type": "object", "properties": {}}
-            elif r == "substitutableClass":
-                node_obj = {"anyOf": self._make_anyof_variants(n)}
-            elif r == "containerClass":
-                node_obj = {"$objectType": "container", "type": "object", "properties": {}}
-                _decorate_versions_container(nm, node_obj)
-            elif r == "inheritOnlyClass" and not at_top_level:
-                # not emitted; record for referencing
+
+            elif r == "inheritOnlyClass":
+                # never emit inheritOnly; still record a path for completeness
                 self.path_map[n] = owner_path + (nm,)
                 self.def_ptr[n] = None
                 return
+
+            elif r == "containerClass":
+                node_obj = {"$objectType": "container", "type": "object", "properties": {}}
+                _decorate_versions_container(nm, node_obj)
+
+            elif r == "rootClass":
+                # If this root class is polymorphic, emit metadata + object-anyOf (like hand template).
+                variants = self._make_anyof_variants(n)
+                if len(variants) >= 2:
+                    node_obj = {
+                        "$objectType": "object",
+                        "$objectId": nm,
+                        "type": "object",
+                        "anyOf": variants
+                    }
+                    self._apply_hashes_if_rootclass(n, node_obj)     # adds $primaryObjectHash / $secondaryObjectHash
+                    _override_versions_object(owner_path, node_obj)  # keep your Versions tweaks
+                    self._object_anyof_nodes.add(n)                  # remember to suppress named children later
+                else:
+                    node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
+                    self._apply_hashes_if_rootclass(n, node_obj)
+                    _override_versions_object(owner_path, node_obj)
+
+            elif r == "substitutableClass":
+                # Substitutable classes themselves are plain objects; parent carries the anyOf.
+                node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
+                self._apply_hashes_if_rootclass(n, node_obj)
+                _override_versions_object(owner_path, node_obj)
+
             else:
                 node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
                 self._apply_hashes_if_rootclass(n, node_obj)
-                _override_versions_object(owner_path, node_obj)   
+                _override_versions_object(owner_path, node_obj)
 
             self._add_property(owner_ptr, nm, node_obj)
             self.path_map[n] = owner_path + (nm,)
@@ -540,25 +625,21 @@ class TemplateGenerator:
             at_ptr = self.def_ptr.get(at_node)
             if not isinstance(at_ptr, dict):
                 return
-            tgt_path = self.path_map.get(target)
-            if not tgt_path:
+
+            # If target participates in a polymorphic family (base + descendants),
+            # emit an anyOf of references; otherwise emit a single reference.
+            variants = self._collect_polymorphic_variants(int(target))
+            # Only use anyOf if there are >= 2 viable variants
+            if len(variants) >= 2:
+                items = [self._make_ref(v) for v in variants]
+                items = [x for x in items if isinstance(x, dict)]
+                self._add_property(at_ptr, self._name(target), {"anyOf": items})
                 return
 
-            # Drop the leading "Root" segment from the path if present
-            root_title = self._root_schema_obj.get("title", "Root") if isinstance(getattr(self, "_root_schema_obj", None), dict) else "Root"
-            if len(tgt_path) >= 1 and tgt_path[0] == root_title:
-                ref_path = "/".join(tgt_path[1:])
-            else:
-                ref_path = "/".join(tgt_path)
-
-            # Match hand template: references are strings, no "properties" block
-            ref = {
-                "$objectType": "reference",
-                "$objectId": name(target),
-                "type": "string",
-                "$referencePath": ref_path,
-            }
-            self._add_property(at_ptr, name(target), ref)
+            # fallback: single reference
+            ref = self._make_ref(int(target))
+            if ref:
+                self._add_property(at_ptr, self._name(target), ref)
 
         # Force-create top-level A-derived under Root (even if inheritOnly)
         for n in first_level_nodes:
@@ -566,7 +647,10 @@ class TemplateGenerator:
 
         # ---------- only promote *top-level* H-anchors ----------
         anchors = sorted((self._anchor_set - {self.root_id}), key=lambda n: name(n).casefold())
-        top_level_anchors = [a for a in anchors if self._nearest_anchor_ancestor(a) == self.root_id]
+        top_level_anchors = [
+            a for a in anchors
+            if (self._nearest_anchor_ancestor(a) == self.root_id) and (role(a).strip() != "inheritOnlyClass")
+        ]
         for a in top_level_anchors:
             if a not in self.def_ptr:
                 ensure_defined(a, stack_containers={self.root_id}, force_owner=self.root_id,
@@ -594,28 +678,59 @@ class TemplateGenerator:
         visited_down = set()
 
         def is_container_like(n: int) -> bool:
-            return (role(n).strip() == "containerClass") or (n in self._anchor_set)
+            r = role(n).strip()
+            return (r != "inheritOnlyClass") and ((r == "containerClass") or (n in self._anchor_set))
 
         for anchor in walk_anchors:
-            q = deque([(anchor, [self.root_id, anchor])])
+            q = deque([(anchor, self.path_map.get(anchor, ("Root",)))])
             while q:
-                cur, cur_stack = q.popleft()
-                if cur in visited_down:
-                    continue
-                visited_down.add(cur)
+                cur, owner_path = q.popleft()
 
-                if cur not in self.HR:
+                # Where is 'cur' defined and what JSON dict owns its properties?
+                owner_ptr = self.def_ptr.get(cur)
+                if not isinstance(owner_ptr, dict):
+                    # if cur wasn’t defined yet (shouldn’t happen for anchors), skip
                     continue
+
+                # Don’t add named children to an object that is represented as anyOf
+                skip_named_children = cur in getattr(self, "_object_anyof_nodes", set())
+
+                # Get HR children of 'cur' (i.e., its subclasses)
                 children = sorted(self.HR.successors(cur), key=lambda n: name(n).casefold())
+
+                # >>> THIS LOOP MUST BE INSIDE 'while q:' <<<
                 for child in children:
-                    ensure_defined(child, stack_containers=set(cur_stack))
+                    rchild = role(child).strip()
+                    cname = name(child)
 
-                    owner_here = self._nearest_owner_in_stack(child, set(cur_stack))
-                    if owner_here != cur and child in self.def_ptr and isinstance(self.def_ptr[child], dict):
-                        add_xref(cur, child)
+                    # Determine whether this child should be treated as a container “shelf”
+                    is_container_like = (
+                        (rchild == "containerClass") or
+                        (child in self._anchor_set and rchild != "inheritOnlyClass")
+                    )
 
-                    next_stack = (cur_stack + [child]) if is_container_like(child) else cur_stack
-                    q.append((child, next_stack))
+                    # Define child (if needed) under the current owner (cur)
+                    if child not in self.def_ptr:
+                        ensure_defined(
+                            child,
+                            stack_containers={cur},
+                            force_owner=cur,
+                            at_top_level=False,
+                            # containers get container kind; others follow their role
+                            force_kind="container" if is_container_like else None,
+                        )
+                    else:
+                        # if it is defined elsewhere, add a cross-ref here
+                        if self.EMIT_CROSS_REFS:
+                            add_xref(cur, child)
+
+                    # If the current node is an object-anyOf wrapper, don’t add named props
+                    if skip_named_children:
+                        continue
+
+                    # If we just defined a container here, descend into it
+                    if is_container_like:
+                        q.append((child, self.path_map.get(child, owner_path + (cname,))))
 
         # ---------- 3) top-level ordering like hand ----------
         schema["properties"] = self._order_props_like_hand(schema.get("properties", {}))
@@ -823,3 +938,4 @@ class TemplateCompare:
 
     def __str__(self) -> str:
         return self.report()
+

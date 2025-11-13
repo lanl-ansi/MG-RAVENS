@@ -155,6 +155,12 @@
               "$objectId": "CapacityPrices",
               "$referencePath": "EnergyPrices/CapacityPrices"
             },
+            "SubGeographicalRegion.CoincidentPeakPrices": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "CoincidentPeakPrices",
+              "$referencePath": "EnergyPrices/CoincidentPeakPrices"
+            },
             "SubGeographicalRegion.LocationalMarginalPrices": {
               "$objectType": "reference",
               "type": "string",
@@ -659,6 +665,82 @@
                   }
                 }
               }
+            },
+            {
+              "$objectType": "object",
+              "$objectId": "Microgrid",
+              "type": "object",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {
+                "PowerSystemResource.Location": {
+                  "$objectType": "reference",
+                  "type": "string",
+                  "$objectId": "Location",
+                  "$referencePath": "Location"
+                },
+                "ConnectivityNodeContainer.ConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "type": "string",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
+                "EquipmentContainer.Equipments": {
+                  "type": "array",
+                  "items": {
+                    "$objectType": "reference",
+                    "$objectId": "Equipment",
+                    "$arrayPosition": null,
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Equipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      }
+                    ]
+                  }
+                }
+              }
             }
           ]
         },
@@ -764,20 +846,6 @@
             }
           ]
         },
-        "PopulationGroup": {
-          "$objectType": "object",
-          "type": "object",
-          "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "properties": {
-            "PopulationGroup.Location": {
-              "$objectType": "reference",
-              "$objectId": "Location",
-              "$referencePath": "Location",
-              "type": "string"
-            }
-          }
-        },
         "ProposedAssetSet": {
           "$objectType": "object",
           "type": "object",
@@ -878,6 +946,12 @@
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "properties": {
+                            "EnergyConnection.PhaseConnectionDetail": {
+                              "$objectType": "object",
+                              "$objectId": "PhaseConnectionDetail",
+                              "type": "object",
+                              "properties": {}
+                            },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
@@ -928,6 +1002,12 @@
                                   "type": "object",
                                   "$primaryObjectHash": null,
                                   "properties": {
+                                    "PowerElectronicsUnit.CostFunction": {
+                                      "type": "string",
+                                      "$objectType": "reference",
+                                      "$objectId": "ProducerCostFunction",
+                                      "$referencePath": "/ProducerCostFunction"
+                                    },
                                     "BatteryUnit.BatteryResponse": {
                                       "$objectType": "object",
                                       "type": "object",
@@ -953,6 +1033,12 @@
                                   "$objectId": "PhotoVoltaicUnit",
                                   "type": "object",
                                   "properties": {
+                                    "PowerElectronicsUnit.CostFunction": {
+                                      "type": "string",
+                                      "$objectType": "reference",
+                                      "$objectId": "ProducerCostFunction",
+                                      "$referencePath": "/ProducerCostFunction"
+                                    },
                                     "PhotoVoltaicUnit.GenerationProfile": {
                                       "$objectType": "reference",
                                       "$objectId": "Curve",
@@ -966,6 +1052,12 @@
                                   "$objectId": "PowerElectronicsWindUnit",
                                   "type": "object",
                                   "properties": {
+                                    "PowerElectronicsUnit.CostFunction": {
+                                      "type": "string",
+                                      "$objectType": "reference",
+                                      "$objectId": "ProducerCostFunction",
+                                      "$referencePath": "/ProducerCostFunction"
+                                    },
                                     "PowerElectronicsWindUnit.GenerationProfile": {
                                       "$objectType": "reference",
                                       "$objectId": "Curve",
@@ -1037,6 +1129,12 @@
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "properties": {
+                            "EnergyConnection.PhaseConnectionDetail": {
+                              "$objectType": "object",
+                              "$objectId": "PhaseConnectionDetail",
+                              "type": "object",
+                              "properties": {}
+                            },
                             "PowerSystemResource.Location": {
                               "$objectType": "reference",
                               "type": "string",
@@ -1546,6 +1644,18 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "RotatingMachine",
                               "properties": {
+                                "EnergyConnection.PhaseConnectionDetail": {
+                                  "$objectType": "object",
+                                  "$objectId": "PhaseConnectionDetail",
+                                  "type": "object",
+                                  "properties": {}
+                                },
+                                "RotatingMachine.CostFunction": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "ProducerCostFunction",
+                                  "$referencePath": "/ProducerCostFunction"
+                                },
                                 "RotatingMachine.RotatingMachineResponse": {
                                   "$objectType": "object",
                                   "type": "object",
@@ -1774,6 +1884,18 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "SynchronousMachine",
                               "properties": {
+                                "EnergyConnection.PhaseConnectionDetail": {
+                                  "$objectType": "object",
+                                  "$objectId": "PhaseConnectionDetail",
+                                  "type": "object",
+                                  "properties": {}
+                                },
+                                "RotatingMachine.CostFunction": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "ProducerCostFunction",
+                                  "$referencePath": "/ProducerCostFunction"
+                                },
                                 "SynchronousMachine.SynchronousMachinePhase": {
                                   "type": "array",
                                   "items": {
@@ -2012,6 +2134,18 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "AsynchronousMachine",
                               "properties": {
+                                "EnergyConnection.PhaseConnectionDetail": {
+                                  "$objectType": "object",
+                                  "$objectId": "PhaseConnectionDetail",
+                                  "type": "object",
+                                  "properties": {}
+                                },
+                                "RotatingMachine.CostFunction": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "ProducerCostFunction",
+                                  "$referencePath": "/ProducerCostFunction"
+                                },
                                 "RotatingMachine.RotatingMachineResponse": {
                                   "$objectType": "object",
                                   "type": "object",
@@ -2526,6 +2660,12 @@
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "properties": {
+                        "EnergySource.CostFunction": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "ProducerCostFunction",
+                          "$referencePath": "/ProducerCostFunction"
+                        },
                         "EnergySource.GenerationProfile": {
                           "$objectType": "reference",
                           "type": "string",
@@ -5472,6 +5612,12 @@
       "anyOf": [
         {
           "$objectType": "object",
+          "$objectId": "SwitchingAction",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
           "$objectId": "EnergySourceAction",
           "type": "object",
           "properties": {}
@@ -6032,6 +6178,21 @@
                   }
                 }
               }
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "OutageScenario",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {
+                "Outage.OutageIsolationEquipment": {
+                  "$objectType": "reference",
+                  "$objectId": "ConductingEquipment",
+                  "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment",
+                  "type": "string"
+                }
+              }
             }
           ]
         }
@@ -6076,6 +6237,13 @@
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "anyOf": [
+        {
+          "$objectType": "object",
+          "$objectId": "EnvironmentalPhenomenon",
+          "$primaryObjectHash": null,
+          "type": "object",
+          "properties": {}
+        },
         {
           "$objectType": "object",
           "$objectId": "HydrosphericPhenomenon",
@@ -6397,21 +6565,6 @@
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {}
     },
-    "OutageScenario": {
-      "$objectType": "object",
-      "type": "object",
-      "$objectId": "OutageScenario",
-      "$primaryObjectHash": "IdentifiedObject.name",
-      "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "properties": {
-        "Outage.OutageIsolationEquipment": {
-          "$objectType": "reference",
-          "$objectId": "ConductingEquipment",
-          "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment",
-          "type": "string"
-        }
-      }
-    },
     "CommunityFacility": {
       "$objectType": "object",
       "$objectId": "CommunityFacility",
@@ -6635,6 +6788,42 @@
               }
             }
           }
+        },
+        "CoincidentPeakPrices": {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "CoincidentPeakPrices",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {
+            "EnergyPrices.Regions": {
+              "type": "array",
+              "items": {
+                "$objectType": "reference",
+                "$objectId": "GeographicalRegion",
+                "$referencePath": "Group/GeographicalRegion",
+                "type": "string"
+              }
+            },
+            "CoincidentPeakPrices.CoincidentPeakPriceCurve": {
+              "$objectType": "object",
+              "$objectId": "PriceCurve",
+              "type": "object",
+              "$primaryObjectHash": null,
+              "properties": {
+                "PriceCurve.CurveDatas": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$objectId": "CurveData",
+                    "$objectType": "object",
+                    "$arrayPosition": null,
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -6667,16 +6856,37 @@
           "type": "string",
           "$objectType": "reference",
           "$objectId": "DesignAlgorithmProperties",
-          "$referencePath": "AlgorithmProperties/DesignAlgorithmProperties"
+          "$referencePath": "ApplicationSettings"
         }
       }
     },
-    "AlgorithmProperties": {
-      "$objectType": "container",
-      "type": "object",
-      "$objectId": "AlgorithmProperties",
-      "properties": {
-        "DesignAlgorithmProperties": {
+    "ApplicationSettings": {
+      "$objectType": "object",
+      "$objectId": "ApplicationSettings",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "ApplicationSettings",
+          "properties": {
+            "ApplicationSettings.Settings": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "GenericApplicationSetting",
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "AlgorithmProperties",
+          "properties": {}
+        },
+        {
           "$objectType": "object",
           "type": "object",
           "$objectId": "DesignAlgorithmProperties",
@@ -6691,7 +6901,7 @@
             }
           }
         },
-        "PowerFlowSolutionProperties": {
+        {
           "$objectType": "object",
           "type": "object",
           "$objectId": "PowerFlowSolutionProperties",
@@ -6699,22 +6909,23 @@
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {}
         },
-        "AlgorithmObjectives": {
-          "$objectType": "container",
+        {
+          "$objectType": "object",
           "type": "object",
-          "$objectId": "AlgorithmObjectives",
-          "properties": {
-            "BusVoltageObjective": {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "BusVoltageObjective",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {}
-            }
-          }
+          "$objectId": "BusVoltageObjective",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "OptimizationAlgorithmProperties",
+          "type": "object",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
         }
-      }
+      ]
     },
     "ProposedAssetOption": {
       "$objectType": "container",
@@ -6781,6 +6992,31 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "anyOf": [
+            {
+              "$objectType": "object",
+              "$objectId": "ProposedEnergyProducerOption",
+              "type": "object",
+              "properties": {
+                "ProposedAssetOption.ProposedConnectivityNodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "ConnectivityNode"
+                  }
+                },
+                "ProposedAssetOption.ProposedLocations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ProposedSiteLocation",
+                    "$referencePath": "ProposedSiteLocation"
+                  }
+                }
+              }
+            },
             {
               "$objectType": "object",
               "$objectId": "ProposedBatteryUnitOption",
@@ -7521,6 +7757,1046 @@
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {}
+    },
+    "AnalysisResult": {
+      "$objectType": "object",
+      "$objectId": "AnalysisResult",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "OperationsResult",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {
+            "OperationsResult.Voltages": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArVoltage",
+                "type": "object",
+                "properties": {
+                  "ArVoltage.ConnectivityNode": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "/ConnectivityNode"
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvVoltage",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvVoltage",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.Injections": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArInjection",
+                "type": "object",
+                "properties": {
+                  "ArInjection.ConnectivityNode": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "/ConnectivityNode"
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvInjection",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvInjection",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.CurrentFlows": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArCurrentFlow",
+                "type": "object",
+                "properties": {
+                  "ArCurrentFlow.ConductingEquipment": {
+                    "$objectType": "reference",
+                    "$objectId": "ConductingEquipment",
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ConductingEquipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RegulatingCondEq",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RotatingMachine",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/RotatingMachine"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerElectronicsConnection",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/PowerElectronicsConnection"
+                      }
+                    ]
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvCurrentFlow",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvCurrentFlow",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.Statuses": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArStatus",
+                "type": "object",
+                "properties": {
+                  "ArCurrentFlow.ConductingEquipment": {
+                    "$objectType": "reference",
+                    "$objectId": "ConductingEquipment",
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ConductingEquipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RegulatingCondEq",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/RegulatingCondEq"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RotatingMachine",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/RegulatingCondEq/RotatingMachine"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerElectronicsConnection",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/RegulatingCondEq/PowerElectronicsConnection"
+                      }
+                    ]
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvStatus",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvStatus",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.PowerFlows": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArPowerFlow",
+                "type": "object",
+                "properties": {
+                  "ArPowerFlow.ConductingEquipment": {
+                    "$objectType": "reference",
+                    "$objectId": "ConductingEquipment",
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ConductingEquipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RegulatingCondEq",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/RegulatingCondEq"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RotatingMachine",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/RegulatingCondEq/RotatingMachine"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerElectronicsConnection",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/RegulatingCondEq/PowerElectronicsConnection"
+                      }
+                    ]
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvPowerFlow",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvPowerFlow",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.Switches": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArSwitch",
+                "type": "object",
+                "properties": {
+                  "ArVoltage.Switch": {
+                    "$objectType": "reference",
+                    "$objectId": "Switch",
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ProtectedSwitch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Breaker",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "LoadBreakSwitch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Recloser",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Cut",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Sectionaliser",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Fuse",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "GroundDisconnector",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Jumper",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      }
+                    ]
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvSwitch",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvSwitch",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.TransformerTaps": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArTapStep",
+                "type": "object",
+                "properties": {
+                  "ArTapStep.TapChanger": {
+                    "$objectType": "reference",
+                    "$objectId": "TapChanger",
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RatioTapChanger",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/TapChanger/RatioTapChanger"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PhaseTapChanger",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/TapChanger/PhaseTapChanger"
+                      }
+                    ]
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvTapStep",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvTapStep",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.ShuntSections": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArShuntCompensatorSections",
+                "type": "object",
+                "properties": {
+                  "ArShuntCompensatorSections.ShuntCompensator": {
+                    "$objectType": "reference",
+                    "$objectId": "ShuntCompensator",
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ShuntCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/ShuntCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "LinearShuntCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/ShuntCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "NonlinearShuntCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/ShuntCompensator"
+                      }
+                    ]
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvShuntCompensatorSections",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvShuntCompensatorSections",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "AnalysisResult",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {
+            "AnalysisResult.Generics": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$objectType": "object",
+                "$objectId": "ArGeneric",
+                "properties": {
+                  "AnalysisResultData.DataValues": {
+                    "type": "object",
+                    "$objectType": "object",
+                    "$objectId": "AvGeneric",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvGeneric",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "FaultStudyResult",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {
+            "FaultStudyResult.Fault": {
+              "type": "string",
+              "$objectType": "reference",
+              "$objectId": "Fault",
+              "$referencePath": "/Fault"
+            },
+            "OperationsResult.Voltages": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArVoltage",
+                "type": "object",
+                "properties": {
+                  "ArVoltage.ConnectivityNode": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "/ConnectivityNode"
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvVoltage",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvVoltage",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.Injections": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArInjection",
+                "type": "object",
+                "properties": {
+                  "ArInjection.ConnectivityNode": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "ConnectivityNode",
+                    "$referencePath": "/ConnectivityNode"
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvInjection",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvInjection",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.CurrentFlows": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArCurrentFlow",
+                "type": "object",
+                "properties": {
+                  "ArCurrentFlow.ConductingEquipment": {
+                    "$objectType": "reference",
+                    "$objectId": "ConductingEquipment",
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ConductingEquipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RegulatingCondEq",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RotatingMachine",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/RotatingMachine"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerElectronicsConnection",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/PowerElectronicsConnection"
+                      }
+                    ]
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvCurrentFlow",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvCurrentFlow",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "OperationsResult.PowerFlows": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "$objectId": "ArPowerFlow",
+                "type": "object",
+                "properties": {
+                  "ArPowerFlow.ConductingEquipment": {
+                    "$objectType": "reference",
+                    "$objectId": "ConductingEquipment",
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ConductingEquipment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergyConsumer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "EnergySource",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "ACLineSegment",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "SeriesCompensator",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "Switch",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerTransformer",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RegulatingCondEq",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/RegulatingCondEq"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "RotatingMachine",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/RegulatingCondEq/RotatingMachine"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "$objectId": "PowerElectronicsConnection",
+                        "type": "string",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/RegulatingCondEq/PowerElectronicsConnection"
+                      }
+                    ]
+                  },
+                  "AnalysisResultData.DataValues": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AvPowerFlow",
+                    "properties": {}
+                  },
+                  "AnalysisResultData.Curve": {
+                    "$objectType": "object",
+                    "type": "object",
+                    "$objectId": "AnalysisResultCurve",
+                    "properties": {
+                      "AnalysisResultCurve.CurveDatas": {
+                        "type": "array",
+                        "items": {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ArCurveData",
+                          "properties": {
+                            "ArCurveData.DataValues": {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AvPowerFlow",
+                              "properties": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ProducerCostFunction": {
+      "$objectType": "object",
+      "type": "object",
+      "$objectId": "ProducerCostFunction",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {
+        "ProducerCostFunction.CostParameters": {
+          "type": "array",
+          "items": {
+            "$objectId": "ProducerCostParameter",
+            "$objectType": "object",
+            "anyOf": [
+              {
+                "$objectId": "PiecewiseLinearCostParameter",
+                "$objectType": "object",
+                "type": "object",
+                "properties": {}
+              },
+              {
+                "$objectId": "PolynomialCostParameter",
+                "$objectType": "object",
+                "type": "object",
+                "properties": {}
+              }
+            ]
+          }
+        }
+      }
     }
   }
 }

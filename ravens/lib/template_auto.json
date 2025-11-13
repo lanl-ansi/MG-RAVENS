@@ -77,26 +77,109 @@
       "properties": {
         "ConnectivityNodeContainer": {
           "$objectType": "object",
-          "type": "object",
           "$objectId": "ConnectivityNodeContainer",
-          "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "properties": {
-            "EquipmentContainer": {
-              "$objectType": "reference",
-              "type": "string",
+          "type": "object",
+          "anyOf": [
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "ConnectivityNodeContainer",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "BTMEquipmentContainer",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "Circuit",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "DCEquipmentContainer",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "DCLine",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
               "$objectId": "EquipmentContainer",
-              "$referencePath": "PowerSystemResource/EquipmentContainer"
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "Feeder",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "Line",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "Microgrid",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "Substation",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "VoltageLevel",
+              "properties": {}
             }
-          }
+          ],
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID"
         },
         "EnergyArea": {
           "$objectType": "object",
-          "type": "object",
           "$objectId": "EnergyArea",
+          "type": "object",
+          "anyOf": [
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "EnergyArea",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "LoadArea",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "SubLoadArea",
+              "properties": {}
+            }
+          ],
           "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "properties": {}
+          "$secondaryObjectHash": "IdentifiedObject.mRID"
         },
         "GeographicalRegion": {
           "$objectType": "object",
@@ -150,6 +233,16 @@
       "$objectType": "container",
       "type": "object",
       "properties": {
+        "ConnectivityNodeContainer": {
+          "anyOf": [
+            {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "ConnectivityNodeContainer",
+              "$referencePath": "Group/ConnectivityNodeContainer"
+            }
+          ]
+        },
         "ControlArea": {
           "$objectType": "object",
           "type": "object",
@@ -190,14 +283,7 @@
                   "$objectType": "object",
                   "type": "object",
                   "$objectId": "EarthFaultCompensator",
-                  "properties": {
-                    "GroundingImpedance": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "GroundingImpedance",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/GroundingImpedance"
-                    }
-                  }
+                  "properties": {}
                 },
                 "EnergyConnection": {
                   "$objectType": "container",
@@ -205,24 +291,32 @@
                   "properties": {
                     "EnergyConsumer": {
                       "$objectType": "object",
-                      "type": "object",
                       "$objectId": "EnergyConsumer",
-                      "$primaryObjectHash": "IdentifiedObject.name",
-                      "$secondaryObjectHash": "IdentifiedObject.mRID",
-                      "properties": {
-                        "ConformLoad": {
-                          "$objectType": "reference",
-                          "type": "string",
-                          "$objectId": "ConformLoad",
-                          "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/ConformLoad"
+                      "type": "object",
+                      "anyOf": [
+                        {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "EnergyConsumer",
+                          "$primaryObjectHash": "IdentifiedObject.name",
+                          "$secondaryObjectHash": "IdentifiedObject.mRID",
+                          "properties": {}
                         },
-                        "NonConformLoad": {
-                          "$objectType": "reference",
-                          "type": "string",
+                        {
+                          "$objectType": "object",
+                          "type": "object",
+                          "$objectId": "ConformLoad",
+                          "properties": {}
+                        },
+                        {
+                          "$objectType": "object",
+                          "type": "object",
                           "$objectId": "NonConformLoad",
-                          "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/NonConformLoad"
+                          "properties": {}
                         }
-                      }
+                      ],
+                      "$primaryObjectHash": "IdentifiedObject.name",
+                      "$secondaryObjectHash": "IdentifiedObject.mRID"
                     },
                     "EnergySource": {
                       "$objectType": "object",
@@ -246,45 +340,61 @@
                         },
                         "RotatingMachine": {
                           "$objectType": "object",
-                          "type": "object",
                           "$objectId": "RotatingMachine",
-                          "$primaryObjectHash": "IdentifiedObject.name",
-                          "$secondaryObjectHash": "IdentifiedObject.mRID",
-                          "properties": {
-                            "AsynchronousMachine": {
-                              "$objectType": "reference",
-                              "type": "string",
-                              "$objectId": "AsynchronousMachine",
-                              "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/AsynchronousMachine"
+                          "type": "object",
+                          "anyOf": [
+                            {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "RotatingMachine",
+                              "$primaryObjectHash": "IdentifiedObject.name",
+                              "$secondaryObjectHash": "IdentifiedObject.mRID",
+                              "properties": {}
                             },
-                            "SynchronousMachine": {
-                              "$objectType": "reference",
-                              "type": "string",
+                            {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "AsynchronousMachine",
+                              "properties": {}
+                            },
+                            {
+                              "$objectType": "object",
+                              "type": "object",
                               "$objectId": "SynchronousMachine",
-                              "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/SynchronousMachine"
+                              "properties": {}
                             }
-                          }
+                          ],
+                          "$primaryObjectHash": "IdentifiedObject.name",
+                          "$secondaryObjectHash": "IdentifiedObject.mRID"
                         },
                         "ShuntCompensator": {
                           "$objectType": "object",
-                          "type": "object",
                           "$objectId": "ShuntCompensator",
-                          "$primaryObjectHash": "IdentifiedObject.name",
-                          "$secondaryObjectHash": "IdentifiedObject.mRID",
-                          "properties": {
-                            "LinearShuntCompensator": {
-                              "$objectType": "reference",
-                              "type": "string",
-                              "$objectId": "LinearShuntCompensator",
-                              "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/LinearShuntCompensator"
+                          "type": "object",
+                          "anyOf": [
+                            {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "ShuntCompensator",
+                              "$primaryObjectHash": "IdentifiedObject.name",
+                              "$secondaryObjectHash": "IdentifiedObject.mRID",
+                              "properties": {}
                             },
-                            "NonlinearShuntCompensator": {
-                              "$objectType": "reference",
-                              "type": "string",
+                            {
+                              "$objectType": "object",
+                              "type": "object",
+                              "$objectId": "LinearShuntCompensator",
+                              "properties": {}
+                            },
+                            {
+                              "$objectType": "object",
+                              "type": "object",
                               "$objectId": "NonlinearShuntCompensator",
-                              "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/NonlinearShuntCompensator"
+                              "properties": {}
                             }
-                          }
+                          ],
+                          "$primaryObjectHash": "IdentifiedObject.name",
+                          "$secondaryObjectHash": "IdentifiedObject.mRID"
                         },
                         "StaticVarCompensator": {
                           "$objectType": "object",
@@ -293,68 +403,8 @@
                           "$primaryObjectHash": "IdentifiedObject.name",
                           "$secondaryObjectHash": "IdentifiedObject.mRID",
                           "properties": {}
-                        },
-                        "AsynchronousMachine": {
-                          "anyOf": [
-                            {
-                              "$objectType": "object",
-                              "type": "object",
-                              "$objectId": "AsynchronousMachine",
-                              "properties": {}
-                            }
-                          ]
-                        },
-                        "SynchronousMachine": {
-                          "anyOf": [
-                            {
-                              "$objectType": "object",
-                              "type": "object",
-                              "$objectId": "SynchronousMachine",
-                              "properties": {}
-                            }
-                          ]
-                        },
-                        "LinearShuntCompensator": {
-                          "anyOf": [
-                            {
-                              "$objectType": "object",
-                              "type": "object",
-                              "$objectId": "LinearShuntCompensator",
-                              "properties": {}
-                            }
-                          ]
-                        },
-                        "NonlinearShuntCompensator": {
-                          "anyOf": [
-                            {
-                              "$objectType": "object",
-                              "type": "object",
-                              "$objectId": "NonlinearShuntCompensator",
-                              "properties": {}
-                            }
-                          ]
                         }
                       }
-                    },
-                    "ConformLoad": {
-                      "anyOf": [
-                        {
-                          "$objectType": "object",
-                          "type": "object",
-                          "$objectId": "ConformLoad",
-                          "properties": {}
-                        }
-                      ]
-                    },
-                    "NonConformLoad": {
-                      "anyOf": [
-                        {
-                          "$objectType": "object",
-                          "type": "object",
-                          "$objectId": "NonConformLoad",
-                          "properties": {}
-                        }
-                      ]
                     }
                   }
                 },
@@ -382,202 +432,86 @@
                 },
                 "Switch": {
                   "$objectType": "object",
-                  "type": "object",
                   "$objectId": "Switch",
+                  "type": "object",
+                  "anyOf": [
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "Switch",
+                      "$primaryObjectHash": "IdentifiedObject.name",
+                      "$secondaryObjectHash": "IdentifiedObject.mRID",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "Breaker",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "Cut",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "DisconnectingCircuitBreaker",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "Disconnector",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "Fuse",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "GroundDisconnector",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "Jumper",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "LoadBreakSwitch",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "ProtectedSwitch",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "Recloser",
+                      "properties": {}
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$objectId": "Sectionaliser",
+                      "properties": {}
+                    }
+                  ],
                   "$primaryObjectHash": "IdentifiedObject.name",
-                  "$secondaryObjectHash": "IdentifiedObject.mRID",
-                  "properties": {
-                    "Cut": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "Cut",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Cut"
-                    },
-                    "Disconnector": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "Disconnector",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Disconnector"
-                    },
-                    "Fuse": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "Fuse",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Fuse"
-                    },
-                    "GroundDisconnector": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "GroundDisconnector",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/GroundDisconnector"
-                    },
-                    "Jumper": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "Jumper",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Jumper"
-                    },
-                    "ProtectedSwitch": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "ProtectedSwitch",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/ProtectedSwitch"
-                    },
-                    "Sectionaliser": {
-                      "$objectType": "reference",
-                      "type": "string",
-                      "$objectId": "Sectionaliser",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Sectionaliser"
-                    }
-                  }
-                },
-                "GroundingImpedance": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "GroundingImpedance",
-                      "properties": {}
-                    }
-                  ]
-                },
-                "Cut": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "Cut",
-                      "properties": {}
-                    }
-                  ]
-                },
-                "Disconnector": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "Disconnector",
-                      "properties": {}
-                    }
-                  ]
-                },
-                "Fuse": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "Fuse",
-                      "properties": {}
-                    }
-                  ]
-                },
-                "GroundDisconnector": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "GroundDisconnector",
-                      "properties": {}
-                    }
-                  ]
-                },
-                "Jumper": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "Jumper",
-                      "properties": {}
-                    }
-                  ]
-                },
-                "ProtectedSwitch": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "ProtectedSwitch",
-                      "properties": {}
-                    }
-                  ],
-                  "properties": {
-                    "Breaker": {
-                      "$objectType": "reference",
-                      "$objectId": "Breaker",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Breaker"
-                    },
-                    "LoadBreakSwitch": {
-                      "$objectType": "reference",
-                      "$objectId": "LoadBreakSwitch",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/LoadBreakSwitch"
-                    },
-                    "Recloser": {
-                      "$objectType": "reference",
-                      "$objectId": "Recloser",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Recloser"
-                    }
-                  }
-                },
-                "Sectionaliser": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "Sectionaliser",
-                      "properties": {}
-                    }
-                  ]
-                },
-                "Breaker": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "Breaker",
-                      "properties": {}
-                    }
-                  ],
-                  "properties": {
-                    "DisconnectingCircuitBreaker": {
-                      "$objectType": "reference",
-                      "$objectId": "DisconnectingCircuitBreaker",
-                      "type": "string",
-                      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/DisconnectingCircuitBreaker"
-                    }
-                  }
-                },
-                "LoadBreakSwitch": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "LoadBreakSwitch",
-                      "properties": {}
-                    }
-                  ]
-                },
-                "Recloser": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "Recloser",
-                      "properties": {}
-                    }
-                  ]
-                },
-                "DisconnectingCircuitBreaker": {
-                  "anyOf": [
-                    {
-                      "$objectType": "object",
-                      "type": "object",
-                      "$objectId": "DisconnectingCircuitBreaker",
-                      "properties": {}
-                    }
-                  ]
+                  "$secondaryObjectHash": "IdentifiedObject.mRID"
                 }
               }
             },
@@ -585,143 +519,13 @@
               "$objectType": "object",
               "type": "object",
               "$objectId": "GeneratingUnit",
-              "properties": {
-                "HydroGeneratingUnit": {
-                  "$objectType": "reference",
-                  "type": "string",
-                  "$objectId": "HydroGeneratingUnit",
-                  "$referencePath": "PowerSystemResource/Equipment/HydroGeneratingUnit"
-                },
-                "NuclearGeneratingUnit": {
-                  "$objectType": "reference",
-                  "type": "string",
-                  "$objectId": "NuclearGeneratingUnit",
-                  "$referencePath": "PowerSystemResource/Equipment/NuclearGeneratingUnit"
-                },
-                "SolarGeneratingUnit": {
-                  "$objectType": "reference",
-                  "type": "string",
-                  "$objectId": "SolarGeneratingUnit",
-                  "$referencePath": "PowerSystemResource/Equipment/SolarGeneratingUnit"
-                },
-                "ThermalGeneratingUnit": {
-                  "$objectType": "reference",
-                  "type": "string",
-                  "$objectId": "ThermalGeneratingUnit",
-                  "$referencePath": "PowerSystemResource/Equipment/ThermalGeneratingUnit"
-                },
-                "WindGeneratingUnit": {
-                  "$objectType": "reference",
-                  "type": "string",
-                  "$objectId": "WindGeneratingUnit",
-                  "$referencePath": "PowerSystemResource/Equipment/WindGeneratingUnit"
-                }
-              }
+              "properties": {}
             },
             "PowerElectronicsUnit": {
               "$objectType": "object",
               "type": "object",
               "$objectId": "PowerElectronicsUnit",
-              "properties": {
-                "BatteryUnit": {
-                  "$objectType": "reference",
-                  "type": "string",
-                  "$objectId": "BatteryUnit",
-                  "$referencePath": "PowerSystemResource/Equipment/BatteryUnit"
-                },
-                "PhotoVoltaicUnit": {
-                  "$objectType": "reference",
-                  "type": "string",
-                  "$objectId": "PhotoVoltaicUnit",
-                  "$referencePath": "PowerSystemResource/Equipment/PhotoVoltaicUnit"
-                },
-                "PowerElectronicsWindUnit": {
-                  "$objectType": "reference",
-                  "type": "string",
-                  "$objectId": "PowerElectronicsWindUnit",
-                  "$referencePath": "PowerSystemResource/Equipment/PowerElectronicsWindUnit"
-                }
-              }
-            },
-            "HydroGeneratingUnit": {
-              "anyOf": [
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "HydroGeneratingUnit",
-                  "properties": {}
-                }
-              ]
-            },
-            "NuclearGeneratingUnit": {
-              "anyOf": [
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "NuclearGeneratingUnit",
-                  "properties": {}
-                }
-              ]
-            },
-            "SolarGeneratingUnit": {
-              "anyOf": [
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "SolarGeneratingUnit",
-                  "properties": {}
-                }
-              ]
-            },
-            "ThermalGeneratingUnit": {
-              "anyOf": [
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "ThermalGeneratingUnit",
-                  "properties": {}
-                }
-              ]
-            },
-            "WindGeneratingUnit": {
-              "anyOf": [
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "WindGeneratingUnit",
-                  "properties": {}
-                }
-              ]
-            },
-            "BatteryUnit": {
-              "anyOf": [
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "BatteryUnit",
-                  "properties": {}
-                }
-              ]
-            },
-            "PhotoVoltaicUnit": {
-              "anyOf": [
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "PhotoVoltaicUnit",
-                  "properties": {}
-                }
-              ]
-            },
-            "PowerElectronicsWindUnit": {
-              "anyOf": [
-                {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "PowerElectronicsWindUnit",
-                  "properties": {}
-                }
-              ]
+              "properties": {}
             }
           }
         },
@@ -746,168 +550,6 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {}
-        },
-        "EquipmentContainer": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "EquipmentContainer",
-              "properties": {}
-            },
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "VoltageLevel",
-              "properties": {}
-            }
-          ],
-          "properties": {
-            "BTMEquipmentContainer": {
-              "$objectType": "reference",
-              "$objectId": "BTMEquipmentContainer",
-              "type": "string",
-              "$referencePath": "PowerSystemResource/BTMEquipmentContainer"
-            },
-            "DCEquipmentContainer": {
-              "$objectType": "reference",
-              "$objectId": "DCEquipmentContainer",
-              "type": "string",
-              "$referencePath": "PowerSystemResource/DCEquipmentContainer"
-            },
-            "Feeder": {
-              "$objectType": "reference",
-              "$objectId": "Feeder",
-              "type": "string",
-              "$referencePath": "PowerSystemResource/Feeder"
-            },
-            "Line": {
-              "$objectType": "reference",
-              "$objectId": "Line",
-              "type": "string",
-              "$referencePath": "PowerSystemResource/Line"
-            },
-            "Microgrid": {
-              "$objectType": "reference",
-              "$objectId": "Microgrid",
-              "type": "string",
-              "$referencePath": "PowerSystemResource/Microgrid"
-            },
-            "Substation": {
-              "$objectType": "reference",
-              "$objectId": "Substation",
-              "type": "string",
-              "$referencePath": "PowerSystemResource/Substation"
-            },
-            "VoltageLevel": {
-              "$objectType": "reference",
-              "$objectId": "VoltageLevel",
-              "type": "string",
-              "$referencePath": "PowerSystemResource/VoltageLevel"
-            }
-          }
-        },
-        "BTMEquipmentContainer": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "BTMEquipmentContainer",
-              "properties": {}
-            }
-          ]
-        },
-        "DCEquipmentContainer": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "DCEquipmentContainer",
-              "properties": {}
-            }
-          ],
-          "properties": {
-            "DCLine": {
-              "$objectType": "reference",
-              "$objectId": "DCLine",
-              "type": "string",
-              "$referencePath": "PowerSystemResource/DCLine"
-            }
-          }
-        },
-        "Feeder": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "Feeder",
-              "properties": {}
-            }
-          ]
-        },
-        "Line": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "Line",
-              "properties": {}
-            }
-          ],
-          "properties": {
-            "Circuit": {
-              "$objectType": "reference",
-              "$objectId": "Circuit",
-              "type": "string",
-              "$referencePath": "PowerSystemResource/Circuit"
-            }
-          }
-        },
-        "Microgrid": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "Microgrid",
-              "properties": {}
-            }
-          ]
-        },
-        "Substation": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "Substation",
-              "properties": {}
-            }
-          ]
-        },
-        "VoltageLevel": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "VoltageLevel",
-          "properties": {}
-        },
-        "DCLine": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "DCLine",
-              "properties": {}
-            }
-          ]
-        },
-        "Circuit": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "Circuit",
-              "properties": {}
-            }
-          ]
         }
       }
     },
@@ -969,79 +611,111 @@
     },
     "SwitchingAction": {
       "$objectType": "object",
-      "type": "object",
       "$objectId": "SwitchingAction",
+      "type": "object",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "SwitchingAction",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "GenericAction",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "GroundAction",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "ShuntCompensatorAction",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "SwitchAction",
+          "properties": {}
+        }
+      ],
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {
         "GenericAction": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "GenericAction",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "GenericAction",
+          "type": "object",
+          "properties": {}
         },
         "GroundAction": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "GroundAction",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "GroundAction",
+          "type": "object",
+          "properties": {}
         },
         "ShuntCompensatorAction": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "ShuntCompensatorAction",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "ShuntCompensatorAction",
+          "type": "object",
+          "properties": {}
         },
         "SwitchAction": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "SwitchAction",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "SwitchAction",
+          "type": "object",
+          "properties": {}
         }
       }
     },
     "Fault": {
       "$objectType": "object",
-      "type": "object",
       "$objectId": "Fault",
+      "type": "object",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Fault",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "EquipmentFault",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "LineFault",
+          "properties": {}
+        }
+      ],
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {
         "EquipmentFault": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "EquipmentFault",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "EquipmentFault",
+          "type": "object",
+          "properties": {}
         },
         "LineFault": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "LineFault",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "LineFault",
+          "type": "object",
+          "properties": {}
         }
       }
     },
@@ -1067,60 +741,38 @@
       "properties": {
         "Outage": {
           "$objectType": "object",
-          "type": "object",
           "$objectId": "Outage",
+          "type": "object",
+          "anyOf": [
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "Outage",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "OutageScenario",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "PlannedOutage",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "UnplannedOutage",
+              "properties": {}
+            }
+          ],
           "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "properties": {
-            "OutageScenario": {
-              "$objectType": "reference",
-              "type": "string",
-              "$objectId": "OutageScenario",
-              "$referencePath": "Document/OutageScenario"
-            },
-            "PlannedOutage": {
-              "$objectType": "reference",
-              "type": "string",
-              "$objectId": "PlannedOutage",
-              "$referencePath": "Document/PlannedOutage"
-            },
-            "UnplannedOutage": {
-              "$objectType": "reference",
-              "type": "string",
-              "$objectId": "UnplannedOutage",
-              "$referencePath": "Document/UnplannedOutage"
-            }
-          }
-        },
-        "OutageScenario": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "OutageScenario",
-              "properties": {}
-            }
-          ]
-        },
-        "PlannedOutage": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "PlannedOutage",
-              "properties": {}
-            }
-          ]
-        },
-        "UnplannedOutage": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "UnplannedOutage",
-              "properties": {}
-            }
-          ]
+          "$secondaryObjectHash": "IdentifiedObject.mRID"
         }
       }
     },
@@ -1135,12 +787,6 @@
           "properties": {}
         }
       }
-    },
-    "EnvironmentalPhenomenon": {
-      "$objectType": "object",
-      "type": "object",
-      "$objectId": "EnvironmentalPhenomenon",
-      "properties": {}
     },
     "AssetInfo": {
       "$objectType": "container",
@@ -1200,24 +846,44 @@
         },
         "WireInfo": {
           "$objectType": "object",
-          "type": "object",
           "$objectId": "WireInfo",
-          "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "properties": {
-            "CableInfo": {
-              "$objectType": "reference",
-              "type": "string",
-              "$objectId": "CableInfo",
-              "$referencePath": "AssetInfo/CableInfo"
+          "type": "object",
+          "anyOf": [
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "WireInfo",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
             },
-            "OverheadWireInfo": {
-              "$objectType": "reference",
-              "type": "string",
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "CableInfo",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "ConcentricNeutralCableInfo",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
               "$objectId": "OverheadWireInfo",
-              "$referencePath": "AssetInfo/OverheadWireInfo"
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "TapeShieldCableInfo",
+              "properties": {}
             }
-          }
+          ],
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID"
         },
         "WireSpacingInfo": {
           "$objectType": "object",
@@ -1226,115 +892,49 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {}
-        },
-        "CableInfo": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "CableInfo",
-              "properties": {}
-            }
-          ],
-          "properties": {
-            "ConcentricNeutralCableInfo": {
-              "$objectType": "reference",
-              "$objectId": "ConcentricNeutralCableInfo",
-              "type": "string",
-              "$referencePath": "AssetInfo/ConcentricNeutralCableInfo"
-            },
-            "TapeShieldCableInfo": {
-              "$objectType": "reference",
-              "$objectId": "TapeShieldCableInfo",
-              "type": "string",
-              "$referencePath": "AssetInfo/TapeShieldCableInfo"
-            }
-          }
-        },
-        "OverheadWireInfo": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "OverheadWireInfo",
-              "properties": {}
-            }
-          ]
-        },
-        "ConcentricNeutralCableInfo": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "ConcentricNeutralCableInfo",
-              "properties": {}
-            }
-          ]
-        },
-        "TapeShieldCableInfo": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "TapeShieldCableInfo",
-              "properties": {}
-            }
-          ]
         }
       }
     },
     "Asset": {
       "$objectType": "object",
-      "type": "object",
       "$objectId": "Asset",
+      "type": "object",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Asset",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "AssetContainer",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "EndDevice",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Meter",
+          "properties": {}
+        }
+      ],
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {
         "AssetContainer": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "AssetContainer",
-              "properties": {}
-            }
-          ],
-          "properties": {
-            "EndDevice": {
-              "$objectType": "reference",
-              "$objectId": "EndDevice",
-              "type": "string",
-              "$referencePath": "Asset/EndDevice"
-            }
-          }
-        },
-        "EndDevice": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "EndDevice",
-              "properties": {}
-            }
-          ],
-          "properties": {
-            "Meter": {
-              "$objectType": "reference",
-              "$objectId": "Meter",
-              "type": "string",
-              "$referencePath": "Asset/Meter"
-            }
-          }
-        },
-        "Meter": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "Meter",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "AssetContainer",
+          "type": "object",
+          "properties": {}
         }
       }
     },
@@ -1348,30 +948,44 @@
     },
     "CommunityFacility": {
       "$objectType": "object",
-      "type": "object",
       "$objectId": "CommunityFacility",
+      "type": "object",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "CommunityFacility",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "GridFacility",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "NonGridFacility",
+          "properties": {}
+        }
+      ],
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {
         "GridFacility": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "GridFacility",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "GridFacility",
+          "type": "object",
+          "properties": {}
         },
         "NonGridFacility": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "NonGridFacility",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "NonGridFacility",
+          "type": "object",
+          "properties": {}
         }
       }
     },
@@ -1413,6 +1027,14 @@
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {}
     },
+    "ApplicationSettings": {
+      "$objectType": "object",
+      "type": "object",
+      "$objectId": "ApplicationSettings",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {}
+    },
     "ProposedAssetOption": {
       "$objectType": "container",
       "type": "object",
@@ -1427,36 +1049,44 @@
         },
         "ProposedEnergyProducerOption": {
           "$objectType": "object",
-          "type": "object",
           "$objectId": "ProposedEnergyProducerOption",
-          "$primaryObjectHash": "IdentifiedObject.name",
-          "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "properties": {
-            "ProposedBatteryUnitOption": {
-              "$objectType": "reference",
-              "type": "string",
+          "type": "object",
+          "anyOf": [
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "ProposedEnergyProducerOption",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {}
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
               "$objectId": "ProposedBatteryUnitOption",
-              "$referencePath": "ProposedAssetOption/ProposedBatteryUnitOption"
+              "properties": {}
             },
-            "ProposedGeneratingUnitOption": {
-              "$objectType": "reference",
-              "type": "string",
+            {
+              "$objectType": "object",
+              "type": "object",
               "$objectId": "ProposedGeneratingUnitOption",
-              "$referencePath": "ProposedAssetOption/ProposedGeneratingUnitOption"
+              "properties": {}
             },
-            "ProposedPhotoVoltaicUnitOption": {
-              "$objectType": "reference",
-              "type": "string",
+            {
+              "$objectType": "object",
+              "type": "object",
               "$objectId": "ProposedPhotoVoltaicUnitOption",
-              "$referencePath": "ProposedAssetOption/ProposedPhotoVoltaicUnitOption"
+              "properties": {}
             },
-            "ProposedWindUnitOption": {
-              "$objectType": "reference",
-              "type": "string",
+            {
+              "$objectType": "object",
+              "type": "object",
               "$objectId": "ProposedWindUnitOption",
-              "$referencePath": "ProposedAssetOption/ProposedWindUnitOption"
+              "properties": {}
             }
-          }
+          ],
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID"
         },
         "ProposedSwitchOption": {
           "$objectType": "object",
@@ -1465,46 +1095,6 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {}
-        },
-        "ProposedBatteryUnitOption": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "ProposedBatteryUnitOption",
-              "properties": {}
-            }
-          ]
-        },
-        "ProposedGeneratingUnitOption": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "ProposedGeneratingUnitOption",
-              "properties": {}
-            }
-          ]
-        },
-        "ProposedPhotoVoltaicUnitOption": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "ProposedPhotoVoltaicUnitOption",
-              "properties": {}
-            }
-          ]
-        },
-        "ProposedWindUnitOption": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "ProposedWindUnitOption",
-              "properties": {}
-            }
-          ]
         }
       }
     },
@@ -1550,20 +1140,32 @@
     },
     "BasicIntervalSchedule": {
       "$objectType": "object",
-      "type": "object",
       "$objectId": "BasicIntervalSchedule",
+      "type": "object",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "BasicIntervalSchedule",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "EnergyConsumerSchedule",
+          "properties": {}
+        }
+      ],
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {
         "EnergyConsumerSchedule": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "EnergyConsumerSchedule",
-              "properties": {}
-            }
-          ]
+          "$objectType": "object",
+          "$objectId": "EnergyConsumerSchedule",
+          "type": "object",
+          "properties": {}
         }
       }
     },
@@ -1575,45 +1177,49 @@
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {}
     },
-    "FossilFuel": {
+    "AnalysisResult": {
       "$objectType": "object",
       "type": "object",
+      "$objectId": "AnalysisResult",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {}
+    },
+    "ProducerCostFunction": {
+      "$objectType": "object",
+      "type": "object",
+      "$objectId": "ProducerCostFunction",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {}
+    },
+    "FossilFuel": {
+      "$objectType": "object",
       "$objectId": "FossilFuel",
+      "type": "object",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "FossilFuel",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "DieselFuel",
+          "properties": {}
+        }
+      ],
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
       "properties": {
         "DieselFuel": {
-          "anyOf": [
-            {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "DieselFuel",
-              "properties": {}
-            }
-          ]
-        }
-      }
-    },
-    "TransformerTest": {
-      "$objectType": "container",
-      "type": "object",
-      "properties": {
-        "NoLoadTest": {
           "$objectType": "object",
+          "$objectId": "DieselFuel",
           "type": "object",
-          "$objectId": "NoLoadTest",
-          "properties": {}
-        },
-        "OpenCircuitTest": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "OpenCircuitTest",
-          "properties": {}
-        },
-        "ShortCircuitTest": {
-          "$objectType": "object",
-          "type": "object",
-          "$objectId": "ShortCircuitTest",
           "properties": {}
         }
       }

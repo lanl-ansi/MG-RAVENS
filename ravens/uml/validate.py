@@ -2,7 +2,7 @@ from __future__ import annotations
 import json
 import pandas as pd
 import networkx as nx
-from collections import OrderedDict
+from collections import OrderedDict, deque
 from pprint import pprint
 from ravens.uml.legend import ravens_colors
 from openpyxl.utils import get_column_letter
@@ -14,7 +14,7 @@ import re
 
 from ravens.uml.graph import UMLGraphs
 
-from ravens.data import _TEMPLATE_JSON_PATH
+from ravens.data import _TEMPLATE_JSON_PATH, _TEMPLATE_AUTOJSON_PATH
 
 import pandas as pd
 import networkx as nx
@@ -536,6 +536,562 @@ def write_validation_report(path, results, include_ok=False, summary_first=True)
     return summary_df
 
 
+def _find_root_obj(schema: dict, default_title: str = "Root") -> tuple[dict, str]:
+    """Return (root_object, root_title)."""
+    if isinstance(schema, dict):
+        title = schema.get("title") or default_title
+        if isinstance(schema.get("properties"), dict):
+            return schema, title
+    return schema, default_title
+
+def _join(path_tuple: tuple[str, ...]) -> str:
+    return "/".join(path_tuple)
+
+def find_highest_belonging(schema: dict, target: str, root_title: str = "Root") -> dict:
+    """
+    Find the highest-level spot where `target` appears:
+      - as a named property (category='property')
+      - as an object anyOf variant under some property (category='object_anyOf')
+      - as a reference anyOf variant under some property (category='ref_anyOf')
+      - as a direct reference property (category='ref_property')
+    Returns: {"category", "path", "depth"} (path joined with '/'), or {"category": None, ...} if not found.
+    """
+    root, title = _find_root_obj(schema, default_title=root_title)
+    best = {"category": None, "path": None, "depth": None}
+
+    def consider(category: str, path_tuple: tuple[str, ...]):
+        nonlocal best
+        depth = len(path_tuple)
+        if best["path"] is None or depth < best["depth"]:
+            best = {"category": category, "path": _join(path_tuple), "depth": depth}
+        elif depth == best["depth"]:
+            # Prefer property > object_anyOf > ref_anyOf > ref_property
+            order = {"property": 0, "object_anyOf": 1, "ref_anyOf": 2, "ref_property": 3}
+            if order.get(category, 99) < order.get(best["category"], 99):
+                best = {"category": category, "path": _join(path_tuple), "depth": depth}
+
+    q = deque([(root, (title,))])
+    while q:
+        node, path = q.popleft()
+        if not isinstance(node, dict):
+            continue
+
+        props = node.get("properties")
+        if isinstance(props, dict):
+            for prop_name, child in props.items():
+                ppath = path + (prop_name,)
+
+                # A) Named property match
+                if prop_name == target:
+                    consider("property", ppath)
+
+                # B) Direct ref or array-of-refs
+                if isinstance(child, dict):
+                    if child.get("$objectType") == "reference" and child.get("$objectId") == target:
+                        consider("ref_property", ppath)
+
+                    if child.get("type") == "array":
+                        items = child.get("items")
+                        if isinstance(items, dict):
+                            if items.get("$objectType") == "reference" and items.get("$objectId") == target:
+                                consider("ref_property", ppath)
+                            if isinstance(items.get("anyOf"), list):
+                                for ent in items["anyOf"]:
+                                    if isinstance(ent, dict) and ent.get("$objectId") == target:
+                                        consider("ref_anyOf" if ent.get("$objectType") == "reference" else "object_anyOf", ppath)
+
+                    # C) anyOf under the property
+                    if isinstance(child.get("anyOf"), list):
+                        for ent in child["anyOf"]:
+                            if isinstance(ent, dict) and ent.get("$objectId") == target:
+                                consider("ref_anyOf" if ent.get("$objectType") == "reference" else "object_anyOf", ppath)
+
+                    # D) Traverse deeper
+                    if isinstance(child.get("properties"), dict):
+                        q.append((child, ppath))
+                    if isinstance(child.get("anyOf"), list):
+                        # Traverse object-anyOf entries (they may have 'properties'); skip reference entries
+                        for ent in child["anyOf"]:
+                            if isinstance(ent, dict) and ent.get("$objectType") != "reference" and isinstance(ent.get("properties"), dict):
+                                ent_name = ent.get("$objectId") or "<anon>"
+                                q.append((ent, ppath + (f"[anyOf:{ent_name}]",)))
+
+    return best
+
+# ---------- Variant listing at a found path ----------
+
+def _get_by_path(schema: dict, path: str) -> dict | None:
+    """Return the object at 'A/B/C' where segments are property names from Root downward."""
+    if not path:
+        return None
+    segs = path.split("/")
+    node, title = _find_root_obj(schema, default_title=segs[0])
+    if segs[0] != title:
+        # if first segment isn't the real title, still try from top
+        node, _ = _find_root_obj(schema)
+    for seg in segs[1:]:
+        props = node.get("properties", {})
+        if seg in props:
+            node = props[seg]
+            continue
+        # allow stepping onto an anyOf wrapper node via property segment
+        # if a previous seg selected a property, its value is 'node' already
+        # (we don't step into [anyOf:*] pseudo-nodes here)
+        return None
+    return node
+
+def list_variants_at_path(schema: dict, path: str) -> dict:
+    """
+    From a property node at 'path', list anyOf variants that belong there.
+    Returns:
+      {
+        "object_anyOf": [names...],   # $objectId from entries without $objectType:'reference'
+        "ref_anyOf":    [names...],   # $objectId from entries with    $objectType:'reference'
+        "has_properties": bool,
+        "properties_keys": [keys...]  # only if a 'properties' dict exists
+      }
+    """
+    out = {"object_anyOf": [], "ref_anyOf": [], "has_properties": False, "properties_keys": []}
+    node = _get_by_path(schema, path)
+    if not isinstance(node, dict):
+        return out
+
+    if isinstance(node.get("anyOf"), list):
+        for ent in node["anyOf"]:
+            if not isinstance(ent, dict):
+                continue
+            nm = ent.get("$objectId")
+            if not nm:
+                continue
+            if ent.get("$objectType") == "reference":
+                out["ref_anyOf"].append(nm)
+            else:
+                out["object_anyOf"].append(nm)
+
+    props = node.get("properties")
+    if isinstance(props, dict):
+        out["has_properties"] = True
+        out["properties_keys"] = sorted(props.keys(), key=str.casefold)
+
+    out["object_anyOf"].sort(key=str.casefold)
+    out["ref_anyOf"].sort(key=str.casefold)
+    return out
+
+# ---------- schema load / root helpers ----------
+
+def _load_schema(p: str) -> dict:
+    return json.loads(Path(p).read_text(encoding="utf-8"))
+
+def _root_obj(schema: dict, default_title: str = "Root") -> tuple[dict, str]:
+    """Return (root_object, root_title)."""
+    if isinstance(schema, dict) and isinstance(schema.get("properties"), dict):
+        return schema, schema.get("title", default_title) or default_title
+    return schema, default_title
+
+def _get_by_path(schema: dict, path: str) -> dict | None:
+    """Follow 'A/B/C' through properties; returns node dict or None."""
+    if not path:
+        return None
+    segs = path.split("/")
+    node, title = _root_obj(schema, default_title=segs[0])
+    # tolerate when first seg != actual title
+    if segs[0] != title:
+        node, _ = _root_obj(schema)
+    for seg in segs[1:]:
+        props = node.get("properties", {})
+        if seg in props:
+            node = props[seg]
+        else:
+            return None
+    return node
+
+# ---------- occurrence search (highest-level) ----------
+
+def find_highest_occurrence(schema: dict, target: str, root_title: str = "Root") -> dict:
+    """
+    Return {'category','path','depth'} for the highest-level spot where `target` appears,
+    preferring a *named property* if it exists anywhere (even if deeper than some anyOf).
+      categories:
+        - 'root'            (if target == root title)
+        - 'property'        (named property: "... target ...": { ... })
+        - 'object_anyOf'    (anyOf entry with $objectId == target and not a reference)
+        - 'ref_anyOf'       (anyOf entry that's a reference)
+        - 'ref_property'    (direct reference property or array-of-refs)
+    """
+    from collections import deque
+
+    root, title = _root_obj(schema, default_title=root_title)
+
+    # special case: the root object itself
+    if target == title:
+        return {"category": "root", "path": title, "depth": 1}
+
+    # keep the shallowest hit per category
+    best = {
+        "property": None,
+        "object_anyOf": None,
+        "ref_anyOf": None,
+        "ref_property": None,
+    }
+
+    def _consider(cat: str, path_tuple: tuple[str, ...]):
+        d = len(path_tuple)
+        curr = best.get(cat)
+        if curr is None or d < curr["depth"]:
+            best[cat] = {"category": cat, "path": "/".join(path_tuple), "depth": d}
+
+    q = deque([(root, (title,))])
+    while q:
+        node, path = q.popleft()
+        if not isinstance(node, dict):
+            continue
+
+        props = node.get("properties")
+        if isinstance(props, dict):
+            for pname, child in props.items():
+                ppath = path + (pname,)
+
+                # Named property match: "target": { ... }
+                if pname == target:
+                    _consider("property", ppath)
+
+                if not isinstance(child, dict):
+                    continue
+
+                # anyOf under this property
+                anyof = child.get("anyOf")
+                if isinstance(anyof, list):
+                    for ent in anyof:
+                        if isinstance(ent, dict) and ent.get("$objectId") == target:
+                            if ent.get("$objectType") == "reference":
+                                _consider("ref_anyOf", ppath)
+                            else:
+                                _consider("object_anyOf", ppath)
+
+                # direct reference (or array of references)
+                if child.get("$objectType") == "reference" and child.get("$objectId") == target:
+                    _consider("ref_property", ppath)
+                if child.get("type") == "array" and isinstance(child.get("items"), dict):
+                    it = child["items"]
+                    if it.get("$objectType") == "reference" and it.get("$objectId") == target:
+                        _consider("ref_property", ppath)
+                    iany = it.get("anyOf")
+                    if isinstance(iany, list):
+                        for ent in iany:
+                            if isinstance(ent, dict) and ent.get("$objectId") == target:
+                                _consider("ref_anyOf" if ent.get("$objectType") == "reference" else "object_anyOf", ppath)
+
+                # traverse deeper
+                if isinstance(child.get("properties"), dict):
+                    q.append((child, ppath))
+                if isinstance(child.get("anyOf"), list):
+                    for ent in child["anyOf"]:
+                        if isinstance(ent, dict) and ent.get("$objectType") != "reference" and isinstance(ent.get("properties"), dict):
+                            nm = ent.get("$objectId") or "<anon>"
+                            q.append((ent, ppath + (f"[anyOf:{nm}]",)))
+
+    # choose in strict priority order: property > object_anyOf > ref_anyOf > ref_property
+    for cat in ("property", "object_anyOf", "ref_anyOf", "ref_property"):
+        if best[cat] is not None:
+            return best[cat]
+
+    return {"category": None, "path": None, "depth": None}
+
+# ---------- belonging enumeration ----------
+
+def enumerate_belonging_levels(schema: dict, at_path: str) -> tuple[list[str], list[str]]:
+    """
+    Return (lev1, lev2plus) belonging sets for node at 'at_path'.
+    Belonging includes:
+      • immediate property names
+      • object-anyOf variant names ($objectId), not references
+    LEV2+ includes all deeper descendants’ property names and object-anyOf names (deduped),
+    excluding items already in LEV1.
+    """
+    node = _get_by_path(schema, at_path) if at_path else None
+    if not isinstance(node, dict):
+        # special case: if at_path == 'Root' and _get_by_path failed, it means the schema root is the node
+        root, title = _root_obj(schema)
+        if at_path == title:
+            node = root
+        else:
+            return [], []
+
+    lev1 = set()
+    lev2 = set()
+
+    # collect level 1
+    props = node.get("properties")
+    if isinstance(props, dict):
+        lev1.update(props.keys())
+
+    anyof = node.get("anyOf")
+    if isinstance(anyof, list):
+        for ent in anyof:
+            if isinstance(ent, dict) and ent.get("$objectType") != "reference":
+                nm = ent.get("$objectId")
+                if nm:
+                    lev1.add(nm)
+
+    # traverse deeper (BFS) to build LEV2+
+    q = deque()
+
+    # seed with immediate children nodes we can descend into
+    if isinstance(props, dict):
+        for pname, child in props.items():
+            if isinstance(child, dict):
+                q.append(child)
+    if isinstance(anyof, list):
+        for ent in anyof:
+            if isinstance(ent, dict) and ent.get("$objectType") != "reference":
+                q.append(ent)
+
+    while q:
+        cur = q.popleft()
+        if not isinstance(cur, dict):
+            continue
+
+        cprops = cur.get("properties")
+        if isinstance(cprops, dict):
+            for pname, child in cprops.items():
+                if pname not in lev1:
+                    lev2.add(pname)
+                if isinstance(child, dict):
+                    q.append(child)
+
+        cany = cur.get("anyOf")
+        if isinstance(cany, list):
+            for ent in cany:
+                if isinstance(ent, dict) and ent.get("$objectType") != "reference":
+                    nm = ent.get("$objectId")
+                    if nm and nm not in lev1:
+                        lev2.add(nm)
+                    q.append(ent)
+
+    lev1_list = sorted(lev1, key=str.casefold)
+    lev2_list = sorted(lev2 - lev1, key=str.casefold)
+    return lev1_list, lev2_list
+
+# ---------- pretty diff & report ----------
+
+def _diff_lists(a: list[str], b: list[str]) -> dict:
+    return {
+        "hand_only": sorted(set(a) - set(b), key=str.casefold),
+        "auto_only": sorted(set(b) - set(a), key=str.casefold),
+        "both":      sorted(set(a) & set(b), key=str.casefold),
+    }
+
+def compare_belonging_levels(
+    object_name: str,
+    root_title: str = "Root",
+    max_lev: int = 1,
+) -> Dict[int, pd.DataFrame]:
+    """
+    Compare 'belonging' for any object (incl. 'Root') up to max_lev.
+
+    Returns:
+      { level:int -> pandas.DataFrame(index=<names>, columns=['HAND','AUTO']) }
+
+    Rules:
+      • "Belonging" == immediate property keys + object-anyOf variant $objectId.
+      • Reference-anyOf entries are ignored for belonging.
+      • Each name is counted at its shallowest level only.
+      • Cells are True if present at that level, else None (blank).
+    """
+    hand = _load_schema(_TEMPLATE_JSON_PATH)
+    auto = _load_schema(_TEMPLATE_AUTOJSON_PATH)
+
+    h_occ = find_highest_occurrence(hand, object_name, root_title=root_title)
+    a_occ = find_highest_occurrence(auto, object_name, root_title=root_title)
+
+    # Resolve the node paths where we start belonging enumeration
+    h_path = (root_title if h_occ.get("category") == "root" else h_occ.get("path"))
+    a_path = (root_title if a_occ.get("category") == "root" else a_occ.get("path"))
+
+    # Enumerate belonging by level (empty dicts if not found)
+    h_levels = enumerate_belonging_by_levels(hand, h_path, max_lev) if h_path else {lev: [] for lev in range(1, max_lev + 1)}
+    a_levels = enumerate_belonging_by_levels(auto, a_path, max_lev) if a_path else {lev: [] for lev in range(1, max_lev + 1)}
+
+    out: Dict[int, pd.DataFrame] = {}
+    for lev in range(1, max_lev + 1):
+        hset = set(h_levels.get(lev, []))
+        aset = set(a_levels.get(lev, []))
+        names = sorted(hset | aset, key=str.casefold)
+
+        df = pd.DataFrame(index=names, columns=["HAND", "AUTO"])
+        if names:
+            df["HAND"] = [True if n in hset else '' for n in names]
+            df["AUTO"] = [True if n in aset else '' for n in names]
+        out[lev] = df
+
+    return out
+
+from typing import Dict, List, Set
+
+def enumerate_belonging_by_levels(schema: dict, at_path: str, max_lev: int = 1) -> Dict[int, List[str]]:
+    """
+    Return {level -> [names]} for 1..max_lev, where names are:
+      • if the node has object-anyOf entries at that level: the variants' $objectId
+      • otherwise: the node's immediate property keys
+    Reference-anyOf entries are ignored for belonging.
+
+    Traversal is BFS over 'properties' and object-anyOf entries. Each name is
+    recorded at its shallowest level only.
+    """
+    if max_lev < 1:
+        max_lev = 1
+
+    # locate the starting node (object_name's highest occurrence path was already found upstream)
+    node = _get_by_path(schema, at_path) if at_path else None
+    if not isinstance(node, dict):
+        root, title = _root_obj(schema)
+        if at_path == title:
+            node = root
+        else:
+            return {lev: [] for lev in range(1, max_lev + 1)}
+
+    by_level: Dict[int, Set[str]] = {lev: set() for lev in range(1, max_lev + 1)}
+    seen_name_level: Dict[str, int] = {}
+    visited_nodes: Set[int] = set()
+
+    from collections import deque
+    q = deque([(node, 0)])
+    visited_nodes.add(id(node))
+
+    def _enqueue(child, next_depth: int):
+        if next_depth > max_lev:
+            return
+        if isinstance(child, dict):
+            cid = id(child)
+            if cid not in visited_nodes:
+                visited_nodes.add(cid)
+                q.append((child, next_depth))
+
+    while q:
+        cur, depth = q.popleft()
+        if not isinstance(cur, dict):
+            continue
+
+        lev = depth + 1
+        if lev > max_lev:
+            continue
+
+        # Gather object-anyOf variant names (non-reference entries only)
+        variants = []
+        anyof = cur.get("anyOf")
+        if isinstance(anyof, list):
+            for ent in anyof:
+                if isinstance(ent, dict) and ent.get("$objectType") != "reference":
+                    nm = ent.get("$objectId")
+                    if nm:
+                        variants.append(nm)
+
+        # If object-anyOf exists at this node, we ONLY record those names at this level
+        if variants:
+            for nm in variants:
+                if nm not in seen_name_level:
+                    by_level[lev].add(nm)
+                    seen_name_level[nm] = lev
+            # enqueue variants for deeper traversal
+            for ent in anyof:
+                if isinstance(ent, dict) and ent.get("$objectType") != "reference":
+                    _enqueue(ent, depth + 1)
+
+            # still enqueue properties for deeper levels, but DO NOT record property names at this level
+            props = cur.get("properties")
+            if isinstance(props, dict):
+                for _, child in props.items():
+                    _enqueue(child, depth + 1)
+            continue  # skip recording properties at this level
+
+        # Otherwise (no object-anyOf here): record immediate property names at this level
+        props = cur.get("properties")
+        if isinstance(props, dict):
+            for pname, child in props.items():
+                if pname not in seen_name_level:
+                    by_level[lev].add(pname)
+                    seen_name_level[pname] = lev
+                _enqueue(child, depth + 1)
+
+        # Also traverse anyOf entries (if present) for deeper levels
+        if isinstance(anyof, list):
+            for ent in anyof:
+                if isinstance(ent, dict) and ent.get("$objectType") != "reference":
+                    _enqueue(ent, depth + 1)
+
+    return {lev: sorted(by_level[lev], key=str.casefold) for lev in range(1, max_lev + 1)}
+
+
+# --- helper: load (no guardrails) ---
+def _load_schema(p: Path) -> dict:
+    return json.loads(Path(p).read_text(encoding="utf-8"))
+
+# --- helper: collect all object-anyOf property names across a schema ---
+def _collect_anyof_object_names(schema: dict) -> set[str]:
+    """
+    Returns the set of property *names* for which the property's value
+    contains an 'anyOf' with at least one non-reference entry.
+    (Ignores reference-anyOfs and doesn't care about nesting depth.)
+    """
+    from collections import deque
+    out: set[str] = set()
+    q = deque([schema])
+    seen_ids = {id(schema)}
+    while q:
+        node = q.popleft()
+        if not isinstance(node, dict):
+            continue
+
+        props = node.get("properties")
+        if isinstance(props, dict):
+            for pname, child in props.items():
+                if isinstance(child, dict):
+                    anyof = child.get("anyOf")
+                    if isinstance(anyof, list):
+                        # object-anyOf if ANY entry is NOT a reference
+                        if any(isinstance(ent, dict) and ent.get("$objectType") != "reference" for ent in anyof):
+                            out.add(pname)
+                    # traverse deeper
+                    cid = id(child)
+                    if cid not in seen_ids:
+                        seen_ids.add(cid)
+                        q.append(child)
+
+        # also traverse object-anyOf entries (not refs) in case deeper properties contain more anyOfs
+        anyof_here = node.get("anyOf")
+        if isinstance(anyof_here, list):
+            for ent in anyof_here:
+                if isinstance(ent, dict) and ent.get("$objectType") != "reference":
+                    eid = id(ent)
+                    if eid not in seen_ids:
+                        seen_ids.add(eid)
+                        q.append(ent)
+
+    return out
+
+# --- main: compare object-anyOf presence across HAND vs AUTO ---
+def compare_anyof_objects(
+    hand_path: Path = _TEMPLATE_JSON_PATH,
+    auto_path: Path = _TEMPLATE_AUTOJSON_PATH,
+) -> pd.DataFrame:
+    """
+    Scan both templates and report which *property names* are defined as object-anyOf.
+    Returns a single DataFrame with index = object name, columns ['HAND','AUTO'].
+      • True if present as object-anyOf in that template
+      • '' (empty string) otherwise
+    """
+    hand = _load_schema(hand_path)
+    auto = _load_schema(auto_path)
+
+    hand_names = _collect_anyof_object_names(hand)
+    auto_names = _collect_anyof_object_names(auto)
+
+    names = sorted(hand_names | auto_names, key=str.casefold)
+    df = pd.DataFrame(index=names, columns=["HAND", "AUTO"])
+    if names:
+        df["HAND"] = [True if n in hand_names else "" for n in names]
+        df["AUTO"] = [True if n in auto_names else "" for n in names]
+    return df
 
 
 
@@ -897,431 +1453,3 @@ def sync_ea_roles_to_hand_template(
 
 
 
-# class ModelValidator:
-#     """
-#     Runs RAVENS-specific validations on a directed NetworkX graph created from EA database tables.
-#     - Each check returns None (pass) or a DataFrame (fail).
-#     - validate() returns {check_id: df_or_None}.
-#     """
-
-#     def __init__(self, G, root_name="Root"):
-#         self.G = G
-#         self.G_rev = G.reverse(copy=False)
-#         self.root_name = root_name
-
-#         # Try to import ravens_colors (node/connector color definitions)
-#         try:
-#             from ravens.uml.legend import ravens_colors as _ravens_colors
-#             self.ravens_colors = _ravens_colors
-#         except Exception:
-#             self.ravens_colors = {}
-
-#         # Build DataFrames from G
-#         self.df_edges = nx.to_pandas_edgelist(G)  # expects edge attrs already on G
-#         self.df_nodes = self._to_pandas_nodelist(G)
-
-#         # Caches from DFs
-#         self.name_map = (
-#             self.df_nodes.set_index("node")["Name"].to_dict()
-#             if "Name" in self.df_nodes.columns else {}
-#         )
-#         self.node_color_map = (
-#             self.df_nodes.set_index("node")["ObjectColor"]
-#             .astype(str).str.strip().str.lower()
-#             .to_dict()
-#             if "ObjectColor" in self.df_nodes.columns else {}
-#         )
-#         self.node_diagrams_map = (
-#             pd.concat(
-#                 [
-#                     self.df_edges[["source", "Diagram"]].rename(columns={"source": "node"}),
-#                     self.df_edges[["target", "Diagram"]].rename(columns={"target": "node"}),
-#                 ],
-#                 ignore_index=True,
-#             )
-#             .dropna(subset=["node"])
-#             .groupby("node")["Diagram"]
-#             .apply(lambda x: sorted(set(x.dropna().astype(str))))
-#             .to_dict()
-#             if "Diagram" in self.df_edges.columns else {}
-#         )
-
-#         # Resolve root id from node DF
-#         if "Name" not in self.df_nodes.columns:
-#             raise ValueError("df_nodes has no 'Name' column; cannot resolve Root.")
-#         hits = self.df_nodes.loc[self.df_nodes["Name"] == self.root_name, "node"]
-#         if hits.empty:
-#             raise ValueError("No node named '{}' in df_nodes.".format(self.root_name))
-#         if len(hits) > 1:
-#             raise ValueError("Multiple nodes named '{}' in df_nodes.".format(self.root_name))
-#         self.root_id = int(hits.iloc[0])
-#         if self.root_id not in self.G:
-#             raise ValueError("Resolved root id {} not present in graph.".format(self.root_id))
-
-#     @staticmethod
-#     def _to_pandas_nodelist(G):
-#         """Build a nodes DataFrame: one row per node with attributes expanded."""
-#         rows = []
-#         for n, attrs in G.nodes(data=True):
-#             row = {"node": n}
-#             row.update(attrs or {})
-#             rows.append(row)
-#         return pd.DataFrame(rows) if rows else pd.DataFrame(columns=["node"])
-
-#     # ---------------- object color checks ----------------
-#     def obj_colors_invalid(self):
-#         """
-#         1) Invalid instance colors (not in ravens_colors.values() or {'None','default'})
-#         2) Uncolored nodes (no instance uses a valid ravens color)
-#         -> emits one row per instance (location, color)
-#         """
-#         rows = []
-#         valid_values = set(self.ravens_colors.values())
-#         ok_for_invalid_check = valid_values | {"None", "default"}
-
-#         for node_id, data in self.G.nodes(data=True):
-#             instances = data.get("instances") or {}
-#             name = data.get("Name")
-
-#             pkgs  = instances.get("Package_Name", []) or []
-#             diags = instances.get("DiagramName", []) or []
-#             cols  = instances.get("ObjectColor", []) or []
-#             hexes = instances.get("ObjectColorHex", []) or []
-
-#             # 1) Instance-level invalid colors (exclude 'None'/'default' from being "invalid")
-#             for i, c in enumerate(cols):
-#                 if c not in ok_for_invalid_check:
-#                     loc = "{}.{}.{}".format(
-#                         pkgs[i] if i < len(pkgs) else None,
-#                         diags[i] if i < len(diags) else None,
-#                         name,
-#                     )
-#                     rows.append({
-#                         "violation_type": "invalid_color_instance",
-#                         "node": node_id,
-#                         "Name": name,
-#                         "location": loc,
-#                         "color": c,
-#                         "color_hex": hexes[i] if i < len(hexes) else None,
-#                     })
-
-#             # 2) Node-level uncolored: no valid RAVENS color across any instance
-#             has_any_valid = any(c in valid_values for c in cols)
-#             if not has_any_valid:
-#                 if cols:
-#                     m = max(len(pkgs), len(diags), len(cols))
-#                     for i in range(m):
-#                         loc = "{}.{}.{}".format(
-#                             pkgs[i] if i < len(pkgs) else None,
-#                             diags[i] if i < len(diags) else None,
-#                             name,
-#                         )
-#                         rows.append({
-#                             "violation_type": "uncolored_node",
-#                             "node": node_id,
-#                             "Name": name,
-#                             "location": loc,
-#                             "color": cols[i] if i < len(cols) else None,
-#                             "color_hex": hexes[i] if i < len(hexes) else None,
-#                         })
-#                 else:
-#                     # no instances at all
-#                     rows.append({
-#                         "violation_type": "uncolored_node",
-#                         "node": node_id,
-#                         "Name": name,
-#                         "location": None,
-#                         "color": None,
-#                         "color_hex": None,
-#                     })
-
-#         return None if not rows else pd.DataFrame(rows)
-
-
-#     def obj_colors_instance_mismatches(self):
-#         """Objects with ≥2 instances colored differently; one row per instance."""
-#         rows = []
-#         for node_id, data in self.G.nodes(data=True):
-#             instances = data.get("instances")
-#             if not instances:
-#                 continue
-#             pkgs  = instances.get("Package_Name", []) or []
-#             diags = instances.get("DiagramName", []) or []
-#             cols  = instances.get("ObjectColor", []) or []
-#             hexes = instances.get("ObjectColorHex", []) or []
-#             distinct_hex = set([h for h in hexes if h is not None])
-#             if len(distinct_hex) <= 1:
-#                 continue
-#             m = max(len(pkgs), len(diags), len(cols), len(hexes))
-#             for i in range(m):
-#                 rows.append({
-#                     "node": node_id,
-#                     "Name": data.get("Name"),
-#                     "location": "{}.{}".format(
-#                         pkgs[i] if i < len(pkgs) else None,
-#                         diags[i] if i < len(diags) else None
-#                     ),
-#                     "ObjectColor": cols[i] if i < len(cols) else None,
-#                     "ObjectColorHex": hexes[i] if i < len(hexes) else None,
-#                     "instances_count": len(cols),
-#                     "n_distinct_colors": len(distinct_hex),
-#                 })
-#         return None if not rows else pd.DataFrame(rows).sort_values(["Name", "location"]).reset_index(drop=True)
-
-#     # ---------------- edge label/multiplicity ----------------
-#     def colored_connectors_labeled(self):
-#         need = {"color", "label"}
-#         if not need.issubset(self.df_edges.columns):
-#             return None
-#         colored = self.df_edges[self.df_edges["color"].astype(str).str.lower().isin(["red", "green"])]
-#         invalid = colored[colored["label"].isna() | (colored["label"].astype(str).str.strip() == "")]
-#         return None if invalid.empty else invalid
-
-#     def label_requires_end_mult(self):
-#         need = {"label", "end_mult"}
-#         if not need.issubset(self.df_edges.columns):
-#             return None
-#         has_label = self.df_edges["label"].notna() & (self.df_edges["label"].astype(str).str.strip() != "")
-#         missing_end = self.df_edges["end_mult"].isna() | (self.df_edges["end_mult"].astype(str).str.strip() == "")
-#         invalid = self.df_edges[has_label & missing_end]
-#         return None if invalid.empty else invalid
-
-#     # ---------------- reachability ----------------
-#     def root_connectivity(self):
-#         """
-#         Strong (directional) connectivity: a node is valid iff there exists a
-#         directed path node -> ... -> Root in G.
-
-#         Returns
-#         -------
-#         None, or a DataFrame of nodes that CANNOT reach Root, with chain grouping,
-#         simple levels, in/out degrees (within the unreachable subgraph), and Diagram.
-#         """
-#         if "node" not in self.df_nodes.columns:
-#             return None
-
-#         nodes_to_check = set(self.df_nodes["node"]) & set(self.G.nodes())
-#         if not nodes_to_check:
-#             return None
-
-#         # Precompute: nodes that CAN reach Root (via reversed graph)
-#         # In G_rev, descendants from Root are exactly the nodes that have a path to Root in G.
-#         reachable_to_root = {self.root_id} | nx.descendants(self.G_rev, self.root_id)
-
-#         unreachable = sorted(nodes_to_check - reachable_to_root)
-#         if not unreachable:
-#             return None
-
-#         # Group unreachable nodes into "chains" (ignore direction for grouping visualization)
-#         G_unreach = self.G.subgraph(unreachable).copy()
-#         chains = list(nx.weakly_connected_components(G_unreach))
-
-#         chain_id_map, chain_sizes = {}, {}
-#         for i, comp in enumerate(chains, start=1):
-#             for n in comp:
-#                 chain_id_map[n] = i
-#             chain_sizes[i] = len(comp)
-
-#         # Degrees within the unreachable directed subgraph (for context)
-#         in_deg  = dict(G_unreach.in_degree())
-#         out_deg = dict(G_unreach.out_degree())
-
-#         # Simple "level" within each chain:
-#         #   start from local sources (zero in-degree *within the unreachable subgraph*)
-#         #   and use shortest directed distance (+1) so tops are level=1.
-#         level_map = {}
-#         for comp in chains:
-#             sub = G_unreach.subgraph(comp)
-#             tops = [n for n in sub if sub.in_degree(n) == 0] or list(sub.nodes())  # handle cycles
-#             for t in tops:
-#                 # level for t is 1; descendants get dist+1
-#                 level_map[t] = max(level_map.get(t, 1), 1)
-#                 for node, dist in nx.single_source_shortest_path_length(sub, t).items():
-#                     level_map[node] = max(level_map.get(node, 1), dist + 1)
-
-#         df = (
-#             self.df_nodes[self.df_nodes["node"].isin(unreachable)]
-#             .copy()
-#             .assign(
-#                 chain_id=lambda d: d["node"].map(chain_id_map),
-#                 chain_size=lambda d: d["chain_id"].map(chain_sizes),
-#                 level=lambda d: d["node"].map(level_map).fillna(1).astype(int),
-#                 in_deg_unreach=lambda d: d["node"].map(in_deg).fillna(0).astype(int),
-#                 out_deg_unreach=lambda d: d["node"].map(out_deg).fillna(0).astype(int),
-#                 Diagram=lambda d: d["node"].map(self.node_diagrams_map).apply(
-#                     lambda v: ", ".join(v) if isinstance(v, list) else None
-#                 ),
-#             )
-#             .sort_values(["chain_id", "level", "Name", "node"])
-#             .reset_index(drop=True)
-#         )
-#         return df
-
-#     # ---------------- connector color rules ----------------
-#     def red_into_green_object(self):
-#         if "color" not in self.df_edges.columns or "ObjectColor" not in self.df_nodes.columns:
-#             return None
-#         edge_col = self.df_edges["color"].astype(str).str.strip().str.lower()
-#         tgt_color = self.df_edges["target"].map(self.node_color_map)
-#         mask = (edge_col == "red") & (tgt_color == "green")
-#         bad = self.df_edges.loc[mask].copy()
-#         if bad.empty:
-#             return None
-#         if self.name_map:
-#             bad["source_Name"] = bad["source"].map(self.name_map)
-#             bad["target_Name"] = bad["target"].map(self.name_map)
-#         bad["source_ObjectColor"] = bad["source"].map(self.node_color_map)
-#         bad["target_ObjectColor"] = bad["target"].map(self.node_color_map)
-#         return bad
-
-#     def green_connector_rules(self):
-#         if "color" not in self.df_edges.columns or "ObjectColor" not in self.df_nodes.columns:
-#             return None
-#         green_nodes = {n for n, c in self.node_color_map.items() if c == "green"} & set(self.G.nodes())
-#         nodes_with_green_desc = set()
-#         if green_nodes:
-#             for g in green_nodes:
-#                 nodes_with_green_desc |= {g} | nx.descendants(self.G_rev, g)
-
-#         edge_col = self.df_edges["color"].astype(str).str.strip().str.lower()
-#         tgt_color = self.df_edges["target"].map(self.node_color_map)
-
-#         ruleA = (edge_col == "green") & (tgt_color == "magenta")
-#         ruleB = (edge_col == "green") & (tgt_color == "yellow") & (~self.df_edges["target"].isin(nodes_with_green_desc))
-
-#         violations = self.df_edges.loc[ruleA | ruleB].copy()
-#         if violations.empty:
-#             return None
-
-#         violations.loc[ruleA[ruleA].index, "violation_type"] = "green_edge_to_magenta_object"
-#         violations.loc[ruleB[ruleB].index, "violation_type"] = "green_edge_to_yellow_without_green_descendant"
-
-#         if self.name_map:
-#             violations["source_Name"] = violations["source"].map(self.name_map)
-#             violations["target_Name"] = violations["target"].map(self.name_map)
-#         violations["source_ObjectColor"] = violations["source"].map(self.node_color_map)
-#         violations["target_ObjectColor"] = violations["target"].map(self.node_color_map)
-#         violations["target_has_green_descendant"] = violations["target"].isin(nodes_with_green_desc)
-
-#         cols = [
-#             "violation_type", "ConnectorID", "Diagram", "Connector_Type", "label",
-#             "source", "source_Name", "source_ObjectColor",
-#             "target", "target_Name", "target_ObjectColor",
-#             "target_has_green_descendant", "color"
-#         ]
-#         cols = [c for c in cols if c in violations.columns] + [c for c in violations.columns if c not in cols]
-#         return violations[cols]
-
-#     def con_colors_instance_mismatches(self):
-#         """
-#         Instances where connectors of the same id have different colors.
-#         Looks for 'ConnectorID' (preferred) or falls back to 'connector_id'.
-#         Color column searched in ['color','c_linecolor'].
-#         """
-#         id_col = "ConnectorID" if "ConnectorID" in self.df_edges.columns else (
-#             "connector_id" if "connector_id" in self.df_edges.columns else None
-#         )
-#         if id_col is None:
-#             return None
-
-#         color_col = "color" if "color" in self.df_edges.columns else (
-#             "c_linecolor" if "c_linecolor" in self.df_edges.columns else None
-#         )
-#         if color_col is None:
-#             return None
-
-#         groups = []
-#         for _, insts in self.df_edges.groupby(id_col, dropna=False):
-#             if len(insts) < 2:
-#                 continue
-#             if insts[color_col].astype(str).nunique() > 1:
-#                 groups.append(insts)
-#         return None if not groups else pd.concat(groups, ignore_index=True)
-
-#     def con_colors_invalid(self):
-#         """
-#         Connector colors not in RAVENS connector color definitions.
-#         Valid set composed from:
-#         - 'default'
-#         - keys containing 'connector' OR values containing 'connector'
-#         Works with 'color' or 'c_linecolor'.
-#         Also returns source/target object names from node attributes.
-#         """
-#         # pick the color column
-#         color_col = "color" if "color" in self.df_edges.columns else (
-#             "c_linecolor" if "c_linecolor" in self.df_edges.columns else None
-#         )
-#         if color_col is None:
-#             return None
-
-#         # valid set
-#         valid = set([c[1].split(' ')[0] for c in self.ravens_colors.items() if 'connector' in c[1]])
-#         valid |= {"default"}
-
-#         # basic invalid selection
-#         df = self.df_edges.rename(columns={color_col: "Color"}).copy()
-#         keep_cols = [c for c in ["Color", "Diagram", "source", "target", "ConnectorID",
-#                                 "Connector_Type", "label", "Start_Object", "End_Object"]
-#                     if c in df.columns]
-#         out = df[keep_cols].copy()
-#         # import pdb
-#         # pdb.set_trace()
-#         out = out[~out["Color"].isin(valid)]
-#         if out.empty:
-#             return None
-
-#         # add names from nodes
-#         # (self.name_map built from df_nodes: node -> Name)
-#         if getattr(self, "name_map", None):
-#             out["source_Name"] = out["source"].map(self.name_map)
-#             out["target_Name"] = out["target"].map(self.name_map)
-
-#         # optional: include node colors (handy context)
-#         if getattr(self, "node_color_map", None):
-#             out["source_ObjectColor"] = out["source"].map(self.node_color_map)
-#             out["target_ObjectColor"] = out["target"].map(self.node_color_map)
-
-#         # reorder for readability
-#         preferred = [
-#             "Color", "Diagram", "ConnectorID", "Connector_Type", "label",
-#             "source", "source_Name", "source_ObjectColor",
-#             "target", "target_Name", "target_ObjectColor",
-#             "Start_Object", "End_Object",
-#         ]
-#         cols = [c for c in preferred if c in out.columns] + [c for c in out.columns if c not in preferred]
-#         return out[cols]
-
-#     # ---------------- run-all + summarize ----------------
-#     def validate(self, include_ok=False, include=None, exclude=None):
-#         checks = {
-#             "object_colors_invalid": self.obj_colors_invalid,
-#             "object_instance_color_mismatch": self.obj_colors_instance_mismatches,
-#             "object_cant_reach_root": self.root_connectivity,
-#             "connector_unlabeled": self.colored_connectors_labeled,
-#             "connector_color_invalid": self.con_colors_invalid,
-#             "connector_instances_color_mismatch": self.con_colors_instance_mismatches,
-#             "connector_lacks_multiplicity": self.label_requires_end_mult,
-#             "connector_green_rule_violatons": self.green_connector_rules,
-#             "red_connector_green_object": self.red_into_green_object,
-#         }
-#         sel = set(checks.keys())
-#         if include is not None:
-#             sel &= set(include)
-#         if exclude is not None:
-#             sel -= set(exclude)
-
-#         results = {}
-#         for cid in sorted(sel):
-#             df = checks[cid]()
-#             if df is not None or include_ok:
-#                 results[cid] = df
-#         return results
-
-#     @staticmethod
-#     def summarize(results):
-#         rows = []
-#         for cid, df in results.items():
-#             status = "fail" if isinstance(df, pd.DataFrame) and not df.empty else "ok"
-#             n = int(len(df)) if isinstance(df, pd.DataFrame) else 0
-#             rows.append({"check_id": cid, "status": status, "n_rows": n})
-#         return pd.DataFrame(rows).sort_values(["status", "check_id"]).reset_index(drop=True)

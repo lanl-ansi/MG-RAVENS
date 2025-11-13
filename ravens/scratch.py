@@ -23,11 +23,15 @@ tg = template.TemplateGenerator(H=ug.H, A=ug.A, root_name="Root")
 auto = tg.build()
 tg.save_auto_template(auto)
 
+reload(validate)
+dfs = validate.compare_belonging_levels('SwitchingAction', max_lev=2)
+aos = validate.compare_anyof_objects() 
 
-# 3) Build role sets + emit JScript
-cs = updateea.container_names_from_hand_template()
-role_sets = updateea.build_role_sets_for_containers_from_uml(cs, uml_data)
-js = updateea.export_ea_jscript_all(role_sets, out_path="temp/ea_scripts_containers.js", print_to_console=False)
+
+# # 3) Build role sets + emit JScript
+# cs = updateea.container_names_from_hand_template()
+# role_sets = updateea.build_role_sets_for_containers_from_uml(cs, uml_data)
+# js = updateea.export_ea_jscript_all(role_sets, out_path="temp/ea_scripts_containers.js", print_to_console=False)
 
 
 # Template comparison
@@ -54,6 +58,7 @@ Validations
 3) check that all objects have a path to Root
 4) red connectors cannot flow to green objects
 5) green connectors cannot flow to magenta objects; and can only flow to yellow if there's a green eventually underneath that yellow [does it need to exist within the same diagram?]
+inheritOnly do not appear in template.
 
 
 
