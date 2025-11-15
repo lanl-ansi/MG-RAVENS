@@ -261,7 +261,19 @@ class MGRavensDataset:
                                 else:
                                     to_bus = bus_id
                                     break
-                        
+                        ends = xfmr_data.get("PowerTransformer.PowerTransformerEnd",{})
+                        R_mat = [0 for _ in ends]
+                        X_mat = [0 for _ in ends]
+                        G_mat = [0 for _ in ends]
+                        B_mat = [0 for _ in ends]
+                        for i, end in enumerate(ends):
+                            TSI = end.get("TransformerEnd.StarImpedance",{})
+                            R_mat[i] = TSI.get("TransformerStarImpedance.r",0)
+                            X_mat[i] = TSI.get("TransformerStarImpedance.x",0)
+                            TCA = end.get("TransformerEnd.CoreAdmittance",{})
+                            G_mat[i] = TSI.get("TransformerCoreAdmittance.g",0)
+                            B_mat[i] = TSI.get("TransformerCoreAdmittance.b",0)
+
                         from_bus = "NOT_FOUND_" + from_bus if from_bus not in buses else from_bus 
                         to_bus = "NOT_FOUND_" + to_bus if to_bus not in buses else to_bus 
                         
@@ -270,9 +282,10 @@ class MGRavensDataset:
                                     key=xfmr_id,
                                     type='transformer',
                                     id=xfmr_id,
-                                    # Default transformer parameters
-                                    r=0.0,
-                                    x=0.1,
+                                    R=R_mat,
+                                    X=X_mat,
+                                    G=G_mat,
+                                    B=B_mat,
                                     tap=1.0,
                                     shift=0.0,
                                     branch_id=xfmr_id,
@@ -320,6 +333,7 @@ class MGRavensDataset:
                 "phases": data.get('phases', 1),
                 "R": data.get('R', [0.0]),
                 "X": data.get('X', [0.0]),
+                "G": data.get('G', [0.0]),
                 "B": data.get('B', [0.0]),
                 "Edge Type": edge_type,
                 "Tap": data.get('tap', 1.0) if edge_type else 0.0,  # Transformer tap ratio (if applicable)

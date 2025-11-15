@@ -55,21 +55,21 @@ def generate_yz_error(
             if random.random() < deletion_prob: #Deletion Error
                 for entry in pid:
                     # Directly modify the values in the original dictionary
-                    for param in ["r", "x", "g", "b"]:
+                    for param in ["r", "x", "b"]:
                         key = f"PhaseImpedanceData.{param}"
                         if key in entry and entry[key] is not None:  # Check if parameter exists
                             entry[key] = 0
             else: #Affine Error
-                for entry in pid:
-                    # Directly modify the values in the original dictionary
-                    for param in ["r", "x", "g", "b"]:
-                        key = f"PhaseImpedanceData.{param}"
-                        if key in entry and entry[key] is not None:  # Check if parameter exists
-                            if random.random() < occurrence_prob:
+                for param in ["r", "x", "b"]:
+                    if random.random() < occurrence_prob:
+                        for entry in pid:
+                            # Directly modify the values in the original dictionary
+                            m = np.random.normal(loc=mult_mean,scale=np.sqrt(mult_var))
+                            a = np.random.normal(loc=add_mean,scale=np.sqrt(add_var))
+                            key = f"PhaseImpedanceData.{param}"
+                            if key in entry and entry[key] is not None:  # Check if parameter exists
                                 #generate affine error
-                                m = np.random.normal(loc=mult_mean,scale=np.sqrt(mult_var))
-                                a = np.random.normal(loc=add_mean,scale=np.sqrt(add_var))
-                                entry[key] = m*entry[key]+a   
+                                entry[key] = max(0.0,m*entry[key]+a)   
 
         #store errored input X
         corrupted_mgr.raw_data.append([file_name,ravens_data])            

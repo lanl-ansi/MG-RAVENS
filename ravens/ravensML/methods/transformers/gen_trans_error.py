@@ -77,11 +77,11 @@ def generate_trans_error(
                 for end in ends:
                     clean_end(end)
                     TSI = end.get("TransformerEnd.StarImpedance")                   
-                    TSI["TransformerStarImpedance.r"] = next(m)*TSI["TransformerStarImpedance.r"] + next(a) if (random.random() < occurrence_prob) else TSI["TransformerStarImpedance.r"]
-                    TSI["TransformerStarImpedance.x"] = next(m)*TSI["TransformerStarImpedance.x"] + next(a) if (random.random() < occurrence_prob) else TSI["TransformerStarImpedance.x"]
+                    TSI["TransformerStarImpedance.r"] = abs(next(m)*TSI["TransformerStarImpedance.r"] + next(a)) if (random.random() < occurrence_prob) else TSI["TransformerStarImpedance.r"]
+                    TSI["TransformerStarImpedance.x"] = abs(next(m)*TSI["TransformerStarImpedance.x"] + next(a)) if (random.random() < occurrence_prob) else TSI["TransformerStarImpedance.x"]
                     TCA = end.get("TransformerEnd.CoreAdmittance")
-                    TCA["TransformerCoreAdmittance.g"] = next(m)*TCA["TransformerCoreAdmittance.b"] + next(a) if (random.random() < occurrence_prob) else TCA["TransformerCoreAdmittance.g"]
-                    TCA["TransformerCoreAdmittance.b"] = next(m)*TCA["TransformerCoreAdmittance.b"] + next(a) if (random.random() < occurrence_prob) else TCA["TransformerCoreAdmittance.b"] 
+                    TCA["TransformerCoreAdmittance.g"] = abs(next(m)*TCA["TransformerCoreAdmittance.g"] + next(a)) if (random.random() < occurrence_prob) else TCA["TransformerCoreAdmittance.g"]
+                    TCA["TransformerCoreAdmittance.b"] = abs(next(m)*TCA["TransformerCoreAdmittance.b"] + next(a)) if (random.random() < occurrence_prob) else TCA["TransformerCoreAdmittance.b"] 
 
         #store errored input X
         corrupted_mgr.raw_data.append([file_name,ravens_data])            
@@ -102,8 +102,11 @@ def clean_end(end):
 
 
 if __name__ == "__main__":
-    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")
-    MGR_CONN_TEST, Y = generate_trans_error(MGR,occurrence_prob=1,size=1)  
+    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/trans_test")
+    MGR_TEST, Y = generate_trans_error(MGR,occurrence_prob=1,size=1)  
+    print(MGR_TEST.raw_data[0][1].get("PowerSystemResource",{}).get("Equipment",{}).get("ConductingEquipment",{}).get("PowerTransformer",{}))
+
+    
 
 
 
