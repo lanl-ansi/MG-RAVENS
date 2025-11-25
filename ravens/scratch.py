@@ -27,6 +27,7 @@ reload(validate)
 dfs = validate.compare_belonging_levels('SwitchingAction', max_lev=2)
 aos = validate.compare_anyof_objects() 
 
+Ok, it's time to add associations to the auto template. from recent notes with mentor, associations: "hidden label determines which object they live in (the labeled side is not the side they're in). the multiplicity determines whether they're objects (0..1) or arrays (0...* or basically anything that's not 0..1). associations should not have a primary hash in the template." 
 
 # # 3) Build role sets + emit JScript
 # cs = updateea.container_names_from_hand_template()

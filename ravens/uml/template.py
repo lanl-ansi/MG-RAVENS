@@ -402,15 +402,19 @@ class TemplateGenerator:
         # Reorder this node’s keys if we know its kind
         return self._order_fields(kind, node) if kind else node
 
-    def _make_anyof_variants(self, base_id: int) -> list[dict]:
+    def _make_anyof_variants(self, base_id: int, *, drop_hashes: bool = False) -> list[dict]:
         """
         Build object-anyOf variants for a polymorphic family:
         • include the base (if not inheritOnlyClass)
         • include ALL descendants except inheritOnlyClass
+
+        If drop_hashes=True, do NOT put $primaryObjectHash / $secondaryObjectHash
+        on any variant objects (the parent wrapper will carry identity).
         """
         def _variant(n: int) -> dict:
             obj = {"$objectType": "object", "type": "object", "$objectId": self._name(n), "properties": {}}
-            self._apply_hashes_if_rootclass(n, obj)
+            if not drop_hashes:
+                self._apply_hashes_if_rootclass(n, obj)
             return obj
 
         keep = lambda nid: self._role(nid) != "inheritOnlyClass"
@@ -420,7 +424,6 @@ class TemplateGenerator:
             out.append(_variant(int(base_id)))
             seen.add(self._name(int(base_id)))
 
-        # walk downward in H 
         from collections import deque
         q = deque([int(base_id)])
         while q:
@@ -435,8 +438,38 @@ class TemplateGenerator:
                 out.append(_variant(ch))
                 seen.add(nm)
 
-        # keep base first, sort the rest by name
         return out[:1] + sorted(out[1:], key=lambda d: d["$objectId"].casefold())
+    
+    def _strip_hashes_inside_anyof_when_parent_has_hashes(self, node: dict) -> None:
+        """
+        If a node has an 'anyOf' AND carries hashes itself, remove hashes
+        from all child anyOf entries. Recurse throughout the tree.
+        """
+        if not isinstance(node, dict):
+            return
+
+        parent_has_hashes = (
+            ("$primaryObjectHash" in node and node["$primaryObjectHash"] is not None) or
+            ("$secondaryObjectHash" in node and node["$secondaryObjectHash"] is not None)
+        )
+
+        if parent_has_hashes and isinstance(node.get("anyOf"), list):
+            for ent in node["anyOf"]:
+                if isinstance(ent, dict):
+                    ent.pop("$primaryObjectHash", None)
+                    ent.pop("$secondaryObjectHash", None)
+
+        props = node.get("properties")
+        if isinstance(props, dict):
+            for child in props.values():
+                self._strip_hashes_inside_anyof_when_parent_has_hashes(child)
+
+        anyof = node.get("anyOf")
+        if isinstance(anyof, list):
+            for ent in anyof:
+                if isinstance(ent, dict):
+                    self._strip_hashes_inside_anyof_when_parent_has_hashes(ent)
+
 
     # -------------------- build --------------------
 
@@ -587,8 +620,9 @@ class TemplateGenerator:
                 _decorate_versions_container(nm, node_obj)
 
             elif r == "rootClass":
-                # If this root class is polymorphic, emit metadata + object-anyOf (like hand template).
-                variants = self._make_anyof_variants(n)
+                # If this root class is polymorphic, emit metadata + object-anyOf (like hand template),
+                # but suppress hashes on the anyOf entries themselves.
+                variants = self._make_anyof_variants(n, drop_hashes=True)
                 if len(variants) >= 2:
                     node_obj = {
                         "$objectType": "object",
@@ -596,8 +630,8 @@ class TemplateGenerator:
                         "type": "object",
                         "anyOf": variants
                     }
-                    self._apply_hashes_if_rootclass(n, node_obj)     # adds $primaryObjectHash / $secondaryObjectHash
-                    _override_versions_object(owner_path, node_obj)  # keep your Versions tweaks
+                    self._apply_hashes_if_rootclass(n, node_obj)     # hashes live on the wrapper
+                    _override_versions_object(owner_path, node_obj)  # keep your Versions tweak
                     self._object_anyof_nodes.add(n)                  # remember to suppress named children later
                 else:
                     node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
@@ -734,6 +768,12 @@ class TemplateGenerator:
 
         # ---------- 3) top-level ordering like hand ----------
         schema["properties"] = self._order_props_like_hand(schema.get("properties", {}))
+
+        # enforce: if a node has anyOf AND carries hashes, its anyOf entries must NOT have hashes
+        self._strip_hashes_inside_anyof_when_parent_has_hashes(schema)
+
+        # keep your existing field-order step here (don’t duplicate if you already call it)
+        schema = self._apply_field_order_recursively(schema)
 
         # Enforce field order across the tree
         schema = self._apply_field_order_recursively(schema)
