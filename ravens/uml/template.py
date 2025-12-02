@@ -206,6 +206,103 @@ class TemplateGenerator:
             "$referencePath": ref_path,
         }
 
+    def _emit_association_entries(self) -> None:
+        """
+        For each UML Association edge in A, add a dotted association property
+        onto the owning object, e.g. 'Foo.Bars' on Foo, whose schema is either
+        a single reference or an array of references to the target object.
+
+        Rules:
+          • Owner class  = Start_Object (unlabeled side)
+          • Target class = End_Object   (labeled side)
+          • Property name = edge 'label' (can be plural)
+          • Multiplicity for the property = end_mult
+                0..1  -> single reference object
+                other -> array of references
+          • Association entries must NOT carry primary/secondary hashes.
+        """
+        A = self.A
+        if A is None or not isinstance(A, nx.MultiDiGraph):
+            return
+
+        # Map Name -> node id (int), using both A and H to be robust
+        name_to_id: dict[str, int] = {}
+        for G in (A, self.H):
+            if not isinstance(G, nx.Graph):
+                continue
+            for nid, data in G.nodes(data=True):
+                nm = (data.get("Name") or "").strip()
+                if not nm:
+                    continue
+                try:
+                    nid_i = int(nid)
+                except Exception:
+                    continue
+                if nm not in name_to_id:
+                    name_to_id[nm] = nid_i
+
+        seen_connectors: set[int] = set()
+
+        for u, v, key, data in A.edges(keys=True, data=True):
+            if str(data.get("Connector_Type", "")).strip() != "Association":
+                continue
+
+            # Deduplicate per connector so we only emit once per connector id
+            cid_raw = data.get("ConnectorID")
+            try:
+                cid = int(cid_raw)
+            except Exception:
+                cid = None
+            if cid is not None:
+                if cid in seen_connectors:
+                    continue
+                seen_connectors.add(cid)
+
+            owner_name = (data.get("Start_Object") or "").strip()
+            target_name = (data.get("End_Object") or "").strip()
+            if not owner_name or not target_name:
+                continue
+
+            # label is the property name on the owner
+            label = (data.get("label") or target_name).strip()
+            mult = (data.get("end_mult") or "").strip()
+
+            owner_id = name_to_id.get(owner_name)
+            target_id = name_to_id.get(target_name)
+            if owner_id is None or target_id is None:
+                continue
+
+            owner_ptr = self.def_ptr.get(owner_id)
+            if not isinstance(owner_ptr, dict):
+                # owner wasn’t emitted (e.g. outside Root subtree)
+                continue
+
+            ref = self._make_ref(target_id)
+            if not isinstance(ref, dict):
+                continue
+
+            # Make absolutely sure association entries never carry hashes
+            ref.pop("$primaryObjectHash", None)
+            ref.pop("$secondaryObjectHash", None)
+
+            mult_norm = mult.replace(" ", "")
+            is_single = (mult_norm == "0..1" or mult_norm == "")
+
+            if is_single:
+                prop_schema = ref
+            else:
+                prop_schema = {
+                    "type": "array",
+                    "items": ref,
+                }
+
+            # And again at top level, in case _make_ref ever changes
+            prop_schema.pop("$primaryObjectHash", None)
+            prop_schema.pop("$secondaryObjectHash", None)
+
+            prop_key = f"{owner_name}.{label}"
+            self._add_property(owner_ptr, prop_key, prop_schema)
+
 
     # -------------------- anchor detection --------------------
     def _compute_anchors(self) -> Set[int]:
@@ -653,6 +750,74 @@ class TemplateGenerator:
             self.path_map[n] = owner_path + (nm,)
             self.def_ptr[n] = node_obj
 
+        # For anchors, prefer the unique base-class owner when possible.
+        def preferred_anchor_owner(a: int) -> int:
+            """
+            Decide which node should own an anchor `a`.
+
+            - If `a` has exactly one base class in H and that base is not Root,
+              we ensure the base is defined (as a container under Root) and
+              then use that base as the owner.
+            - Otherwise, fall back to Root.
+
+            Debug prints are included to understand what happens for anchors
+            like 'Equipment'.
+            """
+            a = int(a)
+            parents = list(self.H.successors(a))  # H: child -> parent
+            base = int(parents[0]) if len(parents) == 1 else None
+
+            # Basic info for debugging
+            try:
+                a_name = name(a)
+                parent_names = [name(p) for p in parents]
+                naa = self._nearest_anchor_ancestor(a) if hasattr(self, "_anchor_set") else None
+                print(
+                    f"[AUTO][anchor] considering {a} ({a_name}); "
+                    f"parents={parents} ({parent_names}); "
+                    f"nearest_anchor_ancestor={naa}; "
+                    f"base={base}"
+                )
+            except Exception:
+                pass
+
+            # If there is a single, non-root base, prefer it as the owner.
+            if base is not None and base != self.root_id:
+                # If the base is not yet defined, define it as a container under Root
+                if base not in self.def_ptr:
+                    try:
+                        print(
+                            f"[AUTO][anchor] base {base} ({name(base)}) not yet defined; "
+                            f"defining it under Root before placing {a_name}"
+                        )
+                    except Exception:
+                        pass
+                    ensure_defined(
+                        base,
+                        stack_containers={self.root_id},
+                        force_owner=self.root_id,
+                        at_top_level=True,
+                        force_kind="container",
+                    )
+
+                base_ptr = self.def_ptr.get(base)
+                if isinstance(base_ptr, dict):
+                    try:
+                        print(
+                            f"[AUTO][anchor] -> using base owner for {a_name}: "
+                            f"{base} ({name(base)})"
+                        )
+                    except Exception:
+                        pass
+                    return base
+
+            # Fallback: Root owns the anchor
+            try:
+                print(f"[AUTO][anchor] -> defaulting owner of {name(a)} to Root")
+            except Exception:
+                pass
+            return self.root_id
+
         def add_xref(at_node: int, target: int):
             if not self.EMIT_CROSS_REFS:
                 return
@@ -686,9 +851,37 @@ class TemplateGenerator:
             if (self._nearest_anchor_ancestor(a) == self.root_id) and (role(a).strip() != "inheritOnlyClass")
         ]
         for a in top_level_anchors:
-            if a not in self.def_ptr:
-                ensure_defined(a, stack_containers={self.root_id}, force_owner=self.root_id,
-                            at_top_level=True, force_kind="container")
+            if a in self.def_ptr:
+                # Already defined somewhere else (e.g., as a base we just forced into existence)
+                continue
+
+            owner_for_anchor = preferred_anchor_owner(a)
+
+            # Debug: show the final decision
+            try:
+                print(
+                    f"[AUTO][anchor] FINAL placement for {name(a)}: "
+                    f"owner={owner_for_anchor} ({name(owner_for_anchor)})"
+                )
+            except Exception:
+                pass
+
+            ensure_defined(
+                a,
+                stack_containers={owner_for_anchor},
+                force_owner=owner_for_anchor,
+                at_top_level=(owner_for_anchor == self.root_id),
+                force_kind="container",
+            )
+
+            owner_for_anchor = preferred_anchor_owner(a)
+            ensure_defined(
+                a,
+                stack_containers={owner_for_anchor},
+                force_owner=owner_for_anchor,
+                at_top_level=(owner_for_anchor == self.root_id),
+                force_kind="container",
+            )
 
         # collect starting points for H descent
         walk_anchors = list(dict.fromkeys(list(first_level_nodes) + top_level_anchors))
@@ -708,7 +901,7 @@ class TemplateGenerator:
             if sid not in walk_anchors:
                 walk_anchors.append(sid)
 
-        # ---------- 2) descend H below each top-level start ----------
+        # ---------- 2a) descend H below each top-level start ----------
         visited_down = set()
 
         def is_container_like(n: int) -> bool:
@@ -762,9 +955,13 @@ class TemplateGenerator:
                     if skip_named_children:
                         continue
 
-                    # If we just defined a container here, descend into it
-                    if is_container_like:
+                    # If we just defined a container or object here, descend into any
+                    # non-inheritOnly child so we traverse the full depth of H.
+                    if rchild != "inheritOnlyClass":
                         q.append((child, self.path_map.get(child, owner_path + (cname,))))
+
+        # ---------- 2b) associations: dotted reference properties on owners ----------
+        self._emit_association_entries()
 
         # ---------- 3) top-level ordering like hand ----------
         schema["properties"] = self._order_props_like_hand(schema.get("properties", {}))

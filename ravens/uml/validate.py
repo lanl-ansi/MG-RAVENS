@@ -1,4 +1,6 @@
 from __future__ import annotations
+from typing import Dict, Set, Tuple, List, Optional, Union, Iterable
+
 import json
 import pandas as pd
 import networkx as nx
@@ -8,17 +10,8 @@ from ravens.uml.legend import ravens_colors
 from openpyxl.utils import get_column_letter
 from pathlib import Path
 
-from typing import Dict, Set, Tuple, List, Optional, Union
-import json
-import re
-
 from ravens.uml.graph import UMLGraphs
-
 from ravens.data import _TEMPLATE_JSON_PATH, _TEMPLATE_AUTOJSON_PATH
-
-import pandas as pd
-import networkx as nx
-from typing import Optional, Iterable, Dict, Set, Tuple
 
 class ModelValidator:
     """

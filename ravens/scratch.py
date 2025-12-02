@@ -23,11 +23,23 @@ tg = template.TemplateGenerator(H=ug.H, A=ug.A, root_name="Root")
 auto = tg.build()
 tg.save_auto_template(auto)
 
-reload(validate)
-dfs = validate.compare_belonging_levels('SwitchingAction', max_lev=2)
-aos = validate.compare_anyof_objects() 
+A = ug.A
+sfind = 'ConnectivityNode'
+efind = 'Terminal'
+for u, v, key, data in A.edges(keys=True, data=True):
+    if data.get("Connector_Type") != "Association":
+        continue
+    start = (data.get("Start_Object") or "").strip()
+    end   = (data.get("End_Object") or "").strip()
 
-Ok, it's time to add associations to the auto template. from recent notes with mentor, associations: "hidden label determines which object they live in (the labeled side is not the side they're in). the multiplicity determines whether they're objects (0..1) or arrays (0...* or basically anything that's not 0..1). associations should not have a primary hash in the template." 
+    if sfind in start and efind in end:
+        print(data)
+    
+
+
+reload(validate)
+dfs = validate.compare_belonging_levels('Root', max_lev=1)
+aos = validate.compare_anyof_objects() 
 
 # # 3) Build role sets + emit JScript
 # cs = updateea.container_names_from_hand_template()
