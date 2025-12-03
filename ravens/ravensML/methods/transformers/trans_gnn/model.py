@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
 
 class GCNBlock(nn.Module):
@@ -27,16 +26,18 @@ class SimpleGNN(torch.nn.Module):
         self.block1 = GCNBlock(in_channels, 64)
         self.block2 = GCNBlock(64, 128)
         self.block3 = GCNBlock(128, 512)
-        self.block4 = GCNBlock(512, 1024)
+        self.block4 = GCNBlock(512, 512)
+        self.block5 = GCNBlock(512, 1024)
         
         # Final classification head
         self.generator = nn.Sequential(
-            nn.Dropout(0.25),
+            nn.Dropout(0.20),
             nn.Linear(1024, 512),
             nn.ReLU(),
+            nn.Dropout(0.20),
             nn.Linear(512, 128),
             nn.ReLU(),
-            nn.Dropout(0.25),
+            nn.Dropout(0.20),
             nn.Linear(128, out_channels)
         )
     
@@ -49,6 +50,7 @@ class SimpleGNN(torch.nn.Module):
         x = self.block2(x, edge_index)
         x = self.block3(x, edge_index)
         x = self.block4(x, edge_index)
+        x = self.block5(x, edge_index)
         
         # Generate output
         x = self.generator(x)
