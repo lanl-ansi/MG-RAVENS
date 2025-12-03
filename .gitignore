@@ -1,13 +1,17 @@
 *.vscode
 node_modules/
 
-MG-RAVENS/tests/tmp/
+tests/tmp/
 out/
 cimpy-1.0.2/
 test_env
 tests_fixes
 
-MG-RAVENS/ravens/ravensML/data/
+ravens/ravensML/data/
+ravens/ravensML/processed/
+ravens/ravensML/methods/transformers/trans_gnn/tmp/
+ravens/ravensML/methods/transformers/trivial_solution/tmp/
+
 
 deprecated.*
 test.*

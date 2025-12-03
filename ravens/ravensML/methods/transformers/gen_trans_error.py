@@ -30,9 +30,10 @@ def generate_trans_error(
     # 1  setup new dataset so the original stays pristine.
     # ------------------------------------------------------------------
     corrupted_mgr = copy.deepcopy(mgr)
+    corrected_mgr = copy.deepcopy(mgr)
     raw_data = copy.deepcopy(corrupted_mgr.raw_data)
     corrupted_mgr.raw_data = []
-    corrections = []
+    corrected_mgr.raw_data = []
 
 
     # ------------------------------------------------------------------
@@ -46,7 +47,7 @@ def generate_trans_error(
         file_name,ravens_data=ravens_data_prime[0],ravens_data_prime[1]
 
         #store correct output Y 
-        corrections.append(copy.deepcopy(ravens_data)) 
+        corrected_mgr.raw_data.append([file_name,copy.deepcopy(ravens_data)]) 
 
         #produce errored input X
         transformers = ravens_data.get("PowerSystemResource",{}).get("Equipment",{}).get("ConductingEquipment",{}).get("PowerTransformer",{})
@@ -86,7 +87,7 @@ def generate_trans_error(
         #store errored input X
         corrupted_mgr.raw_data.append([file_name,ravens_data])            
 
-    return (corrupted_mgr, corrections)
+    return (corrupted_mgr, corrected_mgr)
 
 def clean_end(end):
     if "TransformerEnd.StarImpedance" not in end.keys():
