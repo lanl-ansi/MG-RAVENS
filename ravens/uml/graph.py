@@ -83,7 +83,6 @@ class UMLGraphs:
         Generalization H (child -> parent). If inclusions is provided,
         nodes/edges are filtered via _allow().
         """
-        import pandas as pd
         H = nx.DiGraph()
 
         # --- nodes (Class only) ---
@@ -124,6 +123,9 @@ class UMLGraphs:
         gen_mask = con[c_type].astype(str).str.strip().str.casefold() == "generalization"
         gen_rows = con.loc[gen_mask]
 
+        # hidden labels
+        hidden_cids = _hidden_connector_ids_from_diagramlinks(self.uml_data)
+
         for idx, crow in gen_rows.iterrows():
             # connector id: prefer column, else fall back to index
             cid_val = pd.to_numeric(crow.get(c_id), errors="coerce") if c_id is not None else pd.NA
@@ -132,6 +134,9 @@ class UMLGraphs:
             if pd.isna(cid_val):
                 continue
             cid = int(cid_val)
+
+            if cid in hidden_cids:
+                continue  # skip hidden generalizations globally
 
             if not self._allow("connector", cid):
                 continue
@@ -173,6 +178,10 @@ class UMLGraphs:
             })
 
         dl = getattr(self.uml_data, "diagramlinks", None)
+
+        # hidden connectors
+        hidden_cids = _hidden_connector_ids_from_diagramlinks(self.uml_data)
+
         if not isinstance(dl, pd.DataFrame) or dl.empty:
             return A
 
@@ -184,6 +193,10 @@ class UMLGraphs:
             return A
 
         for cid, crow in self.uml_data.connectors.iterrows():
+            # skip hidden associations
+            if cid in hidden_cids:
+                continue 
+
             ctype = str(crow.get("Connector_Type", ""))
             if ctype not in ASSOCIATION_TYPES:
                 continue
@@ -199,6 +212,9 @@ class UMLGraphs:
                 continue
 
             for iid, irow in rows.iterrows():
+                # skip this connector instance if it's hidden on this diagram
+                if bool(irow.get("Hidden", False)):
+                    continue
                 if not self._allow("link_instance", int(iid)):
                     continue
                 did = int(irow[did_col])

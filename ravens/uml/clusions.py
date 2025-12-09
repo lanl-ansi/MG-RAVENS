@@ -180,14 +180,23 @@ class UMLInclusions:
                 dl_did = _ser_numeric(dl_df["DiagramID"])
                 in_scope = dl_did.isin(self.allowed_diagrams)
 
-                # Global VETO set for generalizations: any link Hidden==True on a scoped diagram
-                if getattr(self, "exclude_hidden_links", True):
-                    hidden_rows = in_scope & (dl_df.get("Hidden", False) == True)
-                    hidden_veto_cids = set(int(x) for x in dl_cid.loc[hidden_rows].dropna().tolist())
+                hidden_veto_cids = set()
+                links_in_allowed_visible = set()
 
-                # For associations we still require a visible link on an allowed diagram
-                vis_rows = in_scope & (dl_df.get("Hidden", False) == False)
-                links_in_allowed_visible = set(int(x) for x in dl_cid.loc[vis_rows].dropna().tolist())
+                # rows within allowed diagrams
+                hidden_rows  = in_scope & (dl_df.get("Hidden", False) == True)
+                visible_rows = in_scope & (dl_df.get("Hidden", False) == False)
+
+                hidden_cids  = set(int(x) for x in dl_cid.loc[hidden_rows].dropna().tolist())
+                visible_cids = set(int(x) for x in dl_cid.loc[visible_rows].dropna().tolist())
+
+                if getattr(self, "exclude_hidden_links", True):
+                    # GENERALIZATIONS: veto only connectors that are hidden everywhere
+                    # (appear in hidden_cids but never in visible_cids)
+                    hidden_veto_cids = hidden_cids - visible_cids
+
+                # ASSOCIATIONS: still require at least one visible occurrence
+                links_in_allowed_visible = visible_cids
 
             # --- collect association ids (by iterating rows for ID safety) ---
             assoc_ids: set[int] = set()

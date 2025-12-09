@@ -208,18 +208,22 @@ class TemplateGenerator:
 
     def _emit_association_entries(self) -> None:
         """
-        For each UML Association edge in A, add a dotted association property
-        onto the owning object, e.g. 'Foo.Bars' on Foo, whose schema is either
-        a single reference or an array of references to the target object.
+        For each UML Association / Aggregation / Composition edge in A, add a
+        dotted association property onto the owning object, e.g.
+        "Foo.Bars" on Foo, whose schema is either a single reference or an
+        array of references to the target object.
 
         Rules:
-          • Owner class  = Start_Object (unlabeled side)
-          • Target class = End_Object   (labeled side)
-          • Property name = edge 'label' (can be plural)
+          • Owner class   = Start_Object (unlabeled side)
+          • Target class  = End_Object   (labeled side)
+          • Property name = edge "label" (can be plural)
           • Multiplicity for the property = end_mult
                 0..1  -> single reference object
                 other -> array of references
           • Association entries must NOT carry primary/secondary hashes.
+          • If the target participates in a polymorphic family (base + descendants),
+            emit a HAND-style anyOf of references under an outer reference node
+            whose $objectId is the base (e.g. "Equipment").
         """
         A = self.A
         if A is None or not isinstance(A, nx.MultiDiGraph):
@@ -241,29 +245,83 @@ class TemplateGenerator:
                 if nm not in name_to_id:
                     name_to_id[nm] = nid_i
 
-        seen_connectors: set[int] = set()
+        # Deduplicate at the (connector, owner, label) level so that:
+        #   • multiple diagrams using the same connector don't create duplicates
+        #   • but a connector that truly yields two directions (A->B and B->A)
+        #     can still create two different properties.
+        seen_props: set[tuple[int, str, str]] = set()
+
+        # Treat aggregation / composition like associations, but skip the
+        # structural containers we handle specially elsewhere.
+        ASSOC_LIKE = {"Association", "Aggregation", "Composition"}
+        STRUCTURAL_CONTAINERS = {"Root", "Group", "Groups", "Version", "Versions"}
+
+        def make_polymorphic_ref_schema(target_id: int) -> dict | None:
+            """
+            Return a HAND-style reference schema for the given target:
+              • if target has >=2 polymorphic variants (base + descendants,
+                excluding inheritOnly), return:
+                    {
+                      "$objectType": "reference",
+                      "$objectId": <base-name>,
+                      "anyOf": [ <simple refs for each variant> ]
+                    }
+              • otherwise, return a simple reference for the target.
+            In all cases, strip primary/secondary hashes from the inner refs.
+            """
+            # Find polymorphic variants (base + descendants, excluding inheritOnly)
+            try:
+                variants = self._collect_polymorphic_variants(int(target_id))
+            except Exception:
+                variants = [int(target_id)]
+            variants = [int(v) for v in variants if v is not None]
+
+            # If we truly have a family, build the outer anyOf wrapper
+            if len(variants) >= 2:
+                items: list[dict] = []
+                for v in variants:
+                    ref = self._make_ref(v)
+                    if not isinstance(ref, dict):
+                        continue
+                    # Ensure no hashes on association references
+                    ref.pop("$primaryObjectHash", None)
+                    ref.pop("$secondaryObjectHash", None)
+                    items.append(ref)
+                if not items:
+                    return None
+                outer = {
+                    "$objectType": "reference",
+                    "$objectId": self._name(target_id),
+                    "anyOf": items,
+                }
+                # Just in case, also strip hashes at the outer level
+                outer.pop("$primaryObjectHash", None)
+                outer.pop("$secondaryObjectHash", None)
+                return outer
+
+            # Fallback: single reference
+            ref = self._make_ref(int(target_id))
+            if not isinstance(ref, dict):
+                return None
+            ref.pop("$primaryObjectHash", None)
+            ref.pop("$secondaryObjectHash", None)
+            return ref
 
         for u, v, key, data in A.edges(keys=True, data=True):
-            if str(data.get("Connector_Type", "")).strip() != "Association":
+            ctype = str(data.get("Connector_Type", "")).strip()
+            if ctype not in ASSOC_LIKE:
                 continue
-
-            # Deduplicate per connector so we only emit once per connector id
-            cid_raw = data.get("ConnectorID")
-            try:
-                cid = int(cid_raw)
-            except Exception:
-                cid = None
-            if cid is not None:
-                if cid in seen_connectors:
-                    continue
-                seen_connectors.add(cid)
 
             owner_name = (data.get("Start_Object") or "").strip()
             target_name = (data.get("End_Object") or "").strip()
             if not owner_name or not target_name:
                 continue
 
-            # label is the property name on the owner
+            # Skip structural container wiring; those are handled specially elsewhere.
+            if owner_name in STRUCTURAL_CONTAINERS or target_name in STRUCTURAL_CONTAINERS:
+                continue
+
+            # Property label and multiplicity (end side)
             label = (data.get("label") or target_name).strip()
             mult = (data.get("end_mult") or "").strip()
 
@@ -277,32 +335,53 @@ class TemplateGenerator:
                 # owner wasn’t emitted (e.g. outside Root subtree)
                 continue
 
-            ref = self._make_ref(target_id)
-            if not isinstance(ref, dict):
+            # Build the reference schema, possibly polymorphic
+            ref_schema = make_polymorphic_ref_schema(target_id)
+            if not isinstance(ref_schema, dict):
                 continue
-
-            # Make absolutely sure association entries never carry hashes
-            ref.pop("$primaryObjectHash", None)
-            ref.pop("$secondaryObjectHash", None)
 
             mult_norm = mult.replace(" ", "")
             is_single = (mult_norm == "0..1" or mult_norm == "")
 
             if is_single:
-                prop_schema = ref
+                prop_schema = ref_schema
             else:
                 prop_schema = {
                     "type": "array",
-                    "items": ref,
+                    "items": ref_schema,
                 }
 
-            # And again at top level, in case _make_ref ever changes
+            # Make absolutely sure association entries never carry hashes at any level
             prop_schema.pop("$primaryObjectHash", None)
             prop_schema.pop("$secondaryObjectHash", None)
+            if isinstance(prop_schema.get("items"), dict):
+                prop_schema["items"].pop("$primaryObjectHash", None)
+                prop_schema["items"].pop("$secondaryObjectHash", None)
+
+            # Dedup at (connector, owner, label)
+            cid_raw = data.get("ConnectorID")
+            try:
+                cid = int(cid_raw)
+            except Exception:
+                cid = -1  # group "unknown" connectors
+            sig = (cid, owner_name, label)
+            if sig in seen_props:
+                continue
+            seen_props.add(sig)
 
             prop_key = f"{owner_name}.{label}"
+
+            # 1) Add to the owning object itself
             self._add_property(owner_ptr, prop_key, prop_schema)
 
+            # 2) Duplicate into each anyOf variant of the owner (HAND pattern)
+            anyof_list = owner_ptr.get("anyOf", [])
+            if isinstance(anyof_list, list):
+                for variant in anyof_list:
+                    if not isinstance(variant, dict):
+                        continue
+                    vprops = variant.setdefault("properties", {})
+                    vprops[prop_key] = prop_schema
 
     # -------------------- anchor detection --------------------
     def _compute_anchors(self) -> Set[int]:
@@ -728,7 +807,7 @@ class TemplateGenerator:
                         "anyOf": variants
                     }
                     self._apply_hashes_if_rootclass(n, node_obj)     # hashes live on the wrapper
-                    _override_versions_object(owner_path, node_obj)  # keep your Versions tweak
+                    _override_versions_object(owner_path, node_obj)  # keep the Versions tweak
                     self._object_anyof_nodes.add(n)                  # remember to suppress named children later
                 else:
                     node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}

@@ -23,23 +23,43 @@ tg = template.TemplateGenerator(H=ug.H, A=ug.A, root_name="Root")
 auto = tg.build()
 tg.save_auto_template(auto)
 
-A = ug.A
-sfind = 'ConnectivityNode'
-efind = 'Terminal'
-for u, v, key, data in A.edges(keys=True, data=True):
-    if data.get("Connector_Type") != "Association":
-        continue
-    start = (data.get("Start_Object") or "").strip()
-    end   = (data.get("End_Object") or "").strip()
+# fault has all the associations identified properly, but the emissions aren't quite the same
+# location
 
-    if sfind in start and efind in end:
-        print(data)
-    
+# use operationallimitset, fault, and location for first cut of association compares
+# embedded vs reference
+# avoid everything under switches and powersystemresource for now (it's too complicated)
+# look for disconnected graphs in generalizations - these could represent new type
+
+con = uml_data.connectors.reset_index()   # brings ConnectorID into columns
+obj = uml_data.objects.reset_index()
+
+# Figure out the object ID & name columns
+obj_id_col  = 'Object_ID' if 'Object_ID' in obj.columns else 'ObjectID'
+name_col    = 'Name'      if 'Name' in obj.columns      else 'Object'
+
+obj_names = obj.set_index(obj_id_col)[name_col]
+
+# Attach human-readable names to each connector end
+con['StartName'] = con['Start_Object_ID'].map(obj_names)
+con['EndName']   = con['End_Object_ID'].map(obj_names)
+
+mask = (
+    (con['Connector_Type'] == 'Association') &
+    (
+        ((con['StartName'] == 'Location')      & (con['EndName'] == 'PositionPoint')) |
+        ((con['StartName'] == 'PositionPoint') & (con['EndName'] == 'Location'))
+    )
+)
+
+print(con.loc[mask])
+cids = con.loc[mask, 'Connector_ID'].unique().tolist()
+
+print(uml_data.diagramlinks.loc[
+    uml_data.diagramlinks['ConnectorID'].isin(cids),
+    ['DiagramID', 'ConnectorID', 'Hidden', 'Style', 'Geometry']])
 
 
-reload(validate)
-dfs = validate.compare_belonging_levels('Root', max_lev=1)
-aos = validate.compare_anyof_objects() 
 
 # # 3) Build role sets + emit JScript
 # cs = updateea.container_names_from_hand_template()
@@ -53,17 +73,19 @@ cmp.print_report()
 
 
 
+# H: DiGraph with edges child -> parent, nodes have "Name" attribute
+name = nx.get_node_attributes(ug.A, "Name")
 
-# Issues to discuss
-Do the8 diamonds imply anything in the template? [see Decorators notes below]
-Red connecting two yellows--ok? E.g. in Transformers, PowerSystemResource -> AssetInfo
-Do all colored connectors require a label? I haven't found one manually that doesn't have this. 
-Relatedly, must mutliplicity be specified if the label is specified? 
-Associations - no directionality (can be b.a or a.b) [How is this represented in JSON if it can be either?]
+# 1. find the node id whose Name == "Root"
+root_id = next(n for n, nm in name.items() if nm == "Root")
+neighbor_ids = set(H.predecessors(root_id)) | set(H.successors(root_id))
+neighbor_names = sorted((name[n] for n in neighbor_ids), key=str.casefold)
 
-# Decorators - ignore for now
-Is it important that I parse the connector decorations? If so, what are the validation checks I should perform?
-Generalizations need arrows.  Arrows do not matter for associations. Unclear what the rules for aggregations are.
+
+
+
+
+
 
 Validations
 1) check that all colored connectors are labeled on one end (i.e. label is not None; can group by connectorID)
