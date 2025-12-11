@@ -480,10 +480,9 @@ class YZ_Iterative_Optimizer(object):
             b_infeasibility = 0
             if 'csr_fr' in branch and 'csi_fr' in branch:
                 # For the shunt admittance (B), we can check if the values are consistent
-                # This is a simplified check - in reality, the B matrix has more complex constraints
                 for i in range(min(len(branch['csr_fr']), len(branch['csi_fr']))):
                     # In a lossless line, the real part should be close to zero
-                    b_infeasibility += abs(branch['csr_fr'][i])
+                    b_infeasibility += abs(branch['csr_fr'][i] + branch['csr_to'][i])
             
             # Calculate power flow infeasibility (power should be conserved)
             power_infeasibility = 0

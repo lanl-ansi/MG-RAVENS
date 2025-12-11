@@ -7,9 +7,10 @@ def train_epoch(model, loader, loss_fn, optimizer, device):
         data = data.to(device)
 
         optimizer.zero_grad()
-        pred   = model(data)                # [N, feat_dim]
-        target = data.y["x"]                # same shape
+        pred   = model(data)              
+        target = data.y["edge_attr"]           
         loss   = loss_fn(pred, target)
+
 
         loss.backward()
         optimizer.step()
@@ -24,7 +25,7 @@ def validate(model, loader, loss_fn, device):
         for data in loader:
             data = data.to(device)
             pred   = model(data)
-            target = data.y["x"]
+            target = data.y["edge_attr"]
             loss   = loss_fn(pred, target)
             total_loss += loss.item() * data.num_graphs
     return total_loss / len(loader.dataset)

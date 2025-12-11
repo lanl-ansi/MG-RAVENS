@@ -14,7 +14,7 @@ class GraphSearchConnectivity(object):
     For each grid:
         1. Compute connected components.
         2. Detect dead nodes (names starting with NOT_FOUND_).
-        3. Gather edges that involve at least one dead node → errored edges.
+        3. Gather edges that involve at least one dead node -> errored edges.
         4. Count, per dead node, how many distinct errored edges reference it.
         5. Propose replacement edges for every dead node (k‑nearest by edit distance,
            then choose the candidate that minimises the number of connected components).
@@ -35,29 +35,21 @@ class GraphSearchConnectivity(object):
             # print(grid["file_name"])
             new_grid = grid.copy()
 
-            # ------------------------------------------------------
             # 1  Connected components
-            # ------------------------------------------------------
             new_grid["connected_components"] = self._find_cc(new_grid)
 
-            # ------------------------------------------------------
             # 2  Detect dead nodes
-            # ------------------------------------------------------
             dead_nodes = [
                 node for node in new_grid["graph"].nodes
                 if re.match(r'^NOT_FOUND_', node)
             ]
 
-            # ------------------------------------------------------
             # 3  Collect errored edges and per‑node reference counts
-            # ------------------------------------------------------
             errored_edges, node_ref_counts = self._collect_errored_edges(
                 new_grid["graph"], dead_nodes
             )
 
-            # ------------------------------------------------------
-            # 4  Propose corrections (k‑nearest + **only keep improvements**)
-            # ------------------------------------------------------
+            # 4  Propose corrections
             corrected_dead_nodes = [node.strip("NOT_FOUND_") for node in dead_nodes]
             targets = [node for node in new_grid["graph"].nodes
                     if node not in dead_nodes]
@@ -76,13 +68,12 @@ class GraphSearchConnectivity(object):
                     names.extend([None] * (k - len(names)))
                 nearest_names.append(names)
 
-            # ----- **MINIMAL CHANGE START** ---------------------------------
             # original number of connected components (before any rewiring)
             orig_cc = len(new_grid["connected_components"])
 
             proposed_corrections: Dict[str, Dict[str, Any]] = {}
             for idx, dead_node in enumerate(dead_nodes):
-                # neighbours of the dead node in the original graph
+                # neighbors of the dead node in the original graph
                 neighbors = list(new_grid["graph"].neighbors(dead_node))
 
                 best_candidate = None
@@ -112,8 +103,7 @@ class GraphSearchConnectivity(object):
                     "connected_components_if_applied": best_cc,
                 }
 
-            # ----- **Detect Missing Nodes** ---------------------------------
-            #
+
             # Any errored edge that still points to a dead node whose
             # replacement was not chosen is considered “missing”.  We add a
             # new node (the stripped name) and remember which existing node(s)
@@ -132,7 +122,7 @@ class GraphSearchConnectivity(object):
                         if dead in dead_nodes:
                             # Was a replacement found for this dead node?
                             repl = proposed_corrections[dead]["replacement_node"]
-                            if repl is None:                     # no replacement → truly missing
+                            if repl is None:                     # no replacement -> truly missing
                                 clean_name = dead.replace("NOT_FOUND_", "")
                                 missing_nodes.append(clean_name)
                             # If a replacement *was* found we already plan to re‑wire,
@@ -146,7 +136,7 @@ class GraphSearchConnectivity(object):
                         if dead in dead_nodes:
                             # Was a replacement found for this dead node?
                             repl = proposed_corrections[dead]["replacement_node"]
-                            if repl is None:                     # no replacement → truly missing
+                            if repl is None:                     # no replacement -> truly missing
                                 clean_name = dead.replace("NOT_FOUND_", "")
                                 missing_nodes.append(clean_name)
                             # If a replacement *was* found we already plan to re‑wire,
@@ -184,7 +174,7 @@ class GraphSearchConnectivity(object):
 
 
     # ------------------------------------------------------------------
-    # Helper: connected components (unchanged)
+    # Helper: connected components 
     # ------------------------------------------------------------------
     @staticmethod
     def _find_cc(grid):
@@ -192,7 +182,7 @@ class GraphSearchConnectivity(object):
         return list(nx.connected_components(grid["graph"]))
 
     # ------------------------------------------------------------------
-    # Helper: collect errored edges and per‑node counts (unchanged)
+    # Helper: collect errored edges and per‑node counts 
     # ------------------------------------------------------------------
     @staticmethod
     def _collect_errored_edges(G, dead_nodes):
@@ -265,7 +255,7 @@ class GraphSearchConnectivity(object):
             lines.append("Dead Node Reference Counts:")
             for node in sorted(dead_nodes):
                 cnt = node_ref_counts.get(node, 0)
-                lines.append(f"  {node!r} → referenced by {cnt} edge(s)")
+                lines.append(f"  {node!r} -> referenced by {cnt} edge(s)")
             lines.append("")
 
         # ---- List of distinct errored edges ------------------------
@@ -303,7 +293,7 @@ class GraphSearchConnectivity(object):
                 new_edges = info["new_edges"]
                 comp = info["connected_components_if_applied"]
 
-                lines.append(f"  {dead_node!r} → replace with {repl!r}")
+                lines.append(f"  {dead_node!r} -> replace with {repl!r}")
 
                 if new_edges:
                     # pretty‑print the edge list
@@ -332,7 +322,7 @@ class GraphSearchConnectivity(object):
         return "\n".join(lines)
 
     # ------------------------------------------------------------------
-    # Levenshtein implementation (unchanged)
+    # Levenshtein implementation 
     # ------------------------------------------------------------------
     @staticmethod
     def _levenshtein(a: str, b: str) -> int:
@@ -353,7 +343,7 @@ class GraphSearchConnectivity(object):
         return previous[-1]
 
     # ------------------------------------------------------------------
-    # Full NxM edit‑distance matrix (unchanged)
+    # Full NxM edit‑distance matrix 
     # ------------------------------------------------------------------
     def edit_distance(self, src: Sequence[str], targets: Sequence[str]) -> List[List[int]]:
         src = list(src)
@@ -369,7 +359,7 @@ class GraphSearchConnectivity(object):
         return dist
 
     # ------------------------------------------------------------------
-    # evaluate a single candidate replacement (unchanged)
+    # evaluate a single candidate replacement 
     # ------------------------------------------------------------------
     @staticmethod
     def _evaluate_candidate(
@@ -401,7 +391,7 @@ class GraphSearchConnectivity(object):
 
 
 # ----------------------------------------------------------------------
-# Driver code (unchanged)
+# Driver code 
 # ----------------------------------------------------------------------
 if __name__ == "__main__":
     MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")

@@ -421,8 +421,8 @@ class Trans_Iterative_Optimizer(object):
 
 if __name__ == "__main__":
     from methods.transformers.gen_trans_error import generate_trans_error
-    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/trans_test")
-    MGR_Trans, Y = generate_trans_error(MGR, occurrence_prob=1,
+    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/proposed_trans_test")
+    MGR_Trans, Y = generate_trans_error(MGR, occurrence_prob=0,
                                     deletion_prob=0,
                                     mult_mean = 1,
                                     mult_var = 1,

@@ -129,7 +129,8 @@ class MGRavensDataset:
                     X=X.tolist(),
                     B=B.tolist(),
                     branch_id=branch_id,
-                    edge_type='line')  # Mark as a line
+                    edge_type='line',
+                    name=branch_data.get("IdentifiedObject.name",{}))  # Mark as a line
 
         # Extract switches as edges
         switches = ravens_data['PowerSystemResource']['Equipment']['ConductingEquipment'].get('Switch', {})
@@ -152,7 +153,8 @@ class MGRavensDataset:
                     X=np.zeros((phases,phases)).tolist(),
                     B=np.zeros((phases,phases)).tolist(),
                     branch_id=switch_id,
-                    edge_type='switch')  # Mark as a switch
+                    edge_type='switch',
+                    name=switch_data.get("IdentifiedObject.name",{}))  # Mark as a switch
         
         # Extract loads and generators and add them as node attributes
         loads = ravens_data['PowerSystemResource']['Equipment']['ConductingEquipment']['EnergyConnection'].get('EnergyConsumer', {})
@@ -216,7 +218,7 @@ class MGRavensDataset:
                                 node_type='virtual_generator')  # Mark as a virtual generator bus
                         
                         # Create a branch to represent the source impedance
-                        phases = len(terminals[0].get('Terminal.phases', [1, 2, 3]))
+                        phases = len(terminals[0].get('Terminal.phases', "TEST.ABC").split(".")[-1])
                         
                         # Create impedance matrices
                         R_mat = np.zeros((phases, phases))
@@ -237,7 +239,8 @@ class MGRavensDataset:
                                 X=X_mat.tolist(),
                                 B=np.zeros((phases, phases)).tolist(),
                                 branch_id=virtual_branch_id,
-                                edge_type='virtual_branch')  # Mark as a virtual branch
+                                edge_type='virtual_branch',
+                                name=gen_data.get("IdentifiedObject.name",{}))  # Mark as a virtual branch
 
         # Process transformers if available
         if 'PowerSystemResource' in ravens_data and 'Equipment' in ravens_data['PowerSystemResource']:
@@ -289,7 +292,8 @@ class MGRavensDataset:
                                     tap=1.0,
                                     shift=0.0,
                                     branch_id=xfmr_id,
-                                    edge_type='transformer')  # Mark as a transformer
+                                    edge_type='transformer',
+                                    name=xfmr_data.get("IdentifiedObject.name",{}))  # Mark as a transformer
         
         # Convert to feature matrices for GNN
         # Node features
@@ -330,15 +334,18 @@ class MGRavensDataset:
             edge_type = 1.0 if data.get('edge_type') == 'transformer' else 0.0  # Edge type feature (0=line, 1=transformer)
             
             features = {
+                "name": data.get('name',"NO_NAME"),
                 "phases": data.get('phases', 1),
                 "R": data.get('R', [0.0]),
                 "X": data.get('X', [0.0]),
                 "G": data.get('G', [0.0]),
                 "B": data.get('B', [0.0]),
-                "Edge Type": edge_type,
+                "Edge Type": edge_type, #1 = Transformer, 0 = Other Edge
+                # "Rated_S": data.get('RS', [0.0]), #Transformer Rated S (if applicable)
+                # "Rated_U": data.get('RU', [0.0]), #Transformer Rated U (if applicable)
                 "Tap": data.get('tap', 1.0) if edge_type else 0.0,  # Transformer tap ratio (if applicable)
                 "Shift": data.get('shift', 0.0) if edge_type else 0.0,  # Phase shift angle (if applicable)
-                "edge_type": data.get('edge_type', 'line')  # Store the edge type as a string
+                "edge_type": edge_type  # Store the edge type as a string
             }
             edge_features[branch_id] = features
         
@@ -346,7 +353,7 @@ class MGRavensDataset:
             'file_name': file_name,
             'node_ids': node_ids,
             'node_features': np.array(node_features, dtype=np.float32).tolist(),
-            'edge_index': edge_indices,  # [2, num_edges] format
+            'edge_index': edge_indices,  
             'edge_features': edge_features,
             'graph': G,  # Keep the original graph for reference
             'original_data': ravens_data  # Keep the original data
@@ -464,7 +471,7 @@ class MGRavensDataset:
     def __getitem__(self, index):
         if self.is_raw:
             self.process_for_ML()
-        return self.raw_data[index][0],self.raw_data[index][1],self.ML_data[index]
+        return self.raw_data[index][0],self.raw_data[index][1],self.ML_data[index] #NAME, MGR, ML
     
     def __len__(self):
         return len(self.raw_data)
@@ -476,6 +483,6 @@ if __name__ == "__main__":
     MGR.process_for_ML()
     # print(MGR.ML_data[0].keys())
     # print(MGR.ML_data[0]['node_features'])
-    MGR.visualize_graph()
+    MGR.visualize_graph(2)
     # MGR.save_data(0,"tmp/test_SL.json")
     

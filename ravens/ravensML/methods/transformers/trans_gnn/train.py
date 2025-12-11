@@ -3,6 +3,9 @@ import torch.nn as nn
 import torch.optim as optim
 from torch_geometric.loader import DataLoader
 import matplotlib.pyplot as plt
+import random
+import pprint
+from mgr_helpers import unpack_edge
 
 from data import MGTransformerDataset
 from model import SimpleGNN
@@ -22,7 +25,7 @@ dataset = MGTransformerDataset(
     split="train",
     size=10000,
     error_kwargs={"deletion_prob": 0.01, 
-                  "occurrence_prob": 0.35,
+                  "occurrence_prob": 0.55,
                   "mult_mean": 1,
                   "mult_var": 1,
                   "add_mean": 0,
@@ -36,21 +39,30 @@ val_len   = len(dataset) - train_len
 train_set, val_set = torch.utils.data.random_split(dataset, [train_len, val_len])
 
 # data loaders
-batch_size = 16
+batch_size = 32
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
 val_loader   = DataLoader(val_set,   batch_size=batch_size, shuffle=False)
 
 # input / output dimensions
 sample = dataset[0]
-node_feat_dim = sample.x.shape[1]  
+node_feat_dim = sample.x.shape[1]
+edge_feat_dim = sample.edge_attr.shape[1]
+output_feat_dim = sample.y["edge_attr"].shape[1]
+
 
 # model
-model = SimpleGNN(in_channels=node_feat_dim,
-                    out_channels=node_feat_dim).to(device)
-print(f"Model initialized → input dim {node_feat_dim}")
+model = SimpleGNN(
+    node_in_channels=node_feat_dim,   
+    edge_in_channels=edge_feat_dim,
+    edge_out_channels=output_feat_dim 
+).to(device)
+
+print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)}")
 
 # Training Settings
-loss_fn = nn.MSELoss()
+# loss_fn = nn.MSELoss()
+import custom_loss as cl
+loss_fn = cl.WeightedMSELoss(3,penalty_strength=5)
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
 epochs = 30
@@ -75,7 +87,7 @@ for epoch in range(1, epochs + 1):
     if va_loss < best_val:
         best_val = va_loss
         torch.save(model.state_dict(), "ravens/ravensML/methods/transformers/trans_gnn/tmp/best_model.pth")
-        print("  → saved new best model")
+        print("  -> saved new best model")
 
 # -------------------------
 #   Plot losses
@@ -96,17 +108,13 @@ plt.close()
 # -------------------------
 model.eval()
 with torch.no_grad():
-    for j in range(5):
-        sample = dataset[j].to(device)           # single graph
-        pred   = model(sample)                    # [num_nodes, feat_dim]
+    sample = dataset[random.randint(0,len(dataset)-1)].to(device)     
+    pred   = model(sample)
 
-        print("\n--- First 3 nodes (prediction vs ground‑truth) ---")
-        for i in range(min(3, pred.shape[0])):
-            print(f"\nNode {i}:")
-            print("  pred :", pred[i, :5].cpu().numpy())
-            print("  true :", sample.y["x"][i, :5].cpu().numpy())
-
-        test_mse = loss_fn(pred, sample.y["x"])
-        print(f"\nTest MSE on this graph: {test_mse.item():.6f}")
+    pprint.pprint(unpack_edge(sample.y["edge_attr"][0],3))
+    pprint.pprint(unpack_edge(pred[0],3))
+    pprint.pprint(unpack_edge(sample["edge_attr"][0],3))
+    test_mse = loss_fn(pred, sample.y["edge_attr"])
+    print(f"\nTest MSE on this graph: {test_mse.item():.6f}")
 
 print("\nTraining finished!")

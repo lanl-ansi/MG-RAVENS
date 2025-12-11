@@ -19,10 +19,6 @@ def dict_to_pyg(data_dict: Dict[str, Any]) -> Data:
     """
     Convert the dictionary produced by ``MGRavensDataset.ravens_to_ML`` into a
     ``torch_geometric.data.Data`` object.
-
-    The function is robust to edge‑feature entries that are scalars or 1‑D
-    vectors – they are automatically turned into square matrices before
-    padding.
     """
     # --------------------------------------------------------------
     # 1) Node features
@@ -107,6 +103,8 @@ def dict_to_pyg(data_dict: Dict[str, Any]) -> Data:
         tap = float(feat.get("Tap", 1.0))
         shift = float(feat.get("Shift", 0.0))
 
+        # print(feat.get("name"))
+
         # Flatten everything in a deterministic order
         flat_feat = [
             float(phases),                     # 1
@@ -119,8 +117,8 @@ def dict_to_pyg(data_dict: Dict[str, Any]) -> Data:
             shift,                             # 1
         ]
 
-        # Two directions → two identical rows
-        edge_attrs.extend([flat_feat, flat_feat])
+        # Two directions -> two identical rows
+        edge_attrs.extend([flat_feat,flat_feat])
 
     edge_attr = torch.tensor(edge_attrs, dtype=torch.float)
 
@@ -241,7 +239,10 @@ class MGTransformerDataset(InMemoryDataset):
             corrupt_data.y = {
                 "x": clean_data.x,
                 "edge_attr": clean_data.edge_attr,
-                "edge_index": clean_data.edge_index,   # same topology, but kept for completeness
+                "edge_index": clean_data.edge_index, 
+                "max_phase": clean_data.max_phase,
+                "file_name": clean_copies[i][0],
+                "raw_mgr": clean_copies[i][1],
             }
             data_list.append(corrupt_data)
 
@@ -271,93 +272,3 @@ class MGTransformerDataset(InMemoryDataset):
     def __getitem__(self, idx):
         # Returns a single Data object whose .y holds the clean target
         return super().__getitem__(idx)
-
-# --------------------------------------------------------------
-#  __main__  – quick sanity‑check for the dataset implementation
-# --------------------------------------------------------------
-if __name__ == "__main__":
-    import argparse
-    import os
-    import torch
-    import numpy as np
-    from torch_geometric.loader import DataLoader
-
-    # ------------------------------------------------------------------
-    # Helper: simple reproducibility function (same as utils.set_seed)
-    # ------------------------------------------------------------------
-    def set_seed(seed: int = 42) -> None:
-        import random
-        random.seed(seed)
-        np.random.seed(seed)
-        torch.manual_seed(seed)
-        torch.cuda.manual_seed_all(seed)
-
-    # ------------------------------------------------------------------
-    # Argument parser – only the few options we need for a quick test
-    # ------------------------------------------------------------------
-    parser = argparse.ArgumentParser(
-        description="Quick test of MGTransformerDataset & GNN2GNN"
-    )
-    parser.add_argument(
-        "--root",
-        type=str,
-        default=".",
-        help="Root folder that contains a sub‑folder `raw/` with the JSON files.",
-    )
-    parser.add_argument(
-        "--batch-size", type=int, default=4, help="Batch size for the DataLoader."
-    )
-    parser.add_argument(
-        "--seed", type=int, default=123, help="Random seed for reproducibility."
-    )
-    parser.add_argument(
-        "--size", type=int, default=100, help="Size of the full synthetic dataset."
-    )
-    args = parser.parse_args()
-
-    set_seed(args.seed)
-
-    # ------------------------------------------------------------------
-    # 1 Build the dataset (train split) – you may also try "val"/"test"
-    # ------------------------------------------------------------------
-    from data import MGTransformerDataset   # <-- this file itself
-
-    # Error‑generator hyper‑params used for the test (keep them mild)
-    error_kwargs = {
-        "deletion_prob": 0.01,
-        "occurrence_prob": 0.05,
-    }
-
-    dataset = MGTransformerDataset(
-        root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
-        split="train",
-        size=args.size,
-        error_kwargs=error_kwargs,
-    )
-
-    print("\n=== Dataset sanity check ===")
-    print(f"Root folder                : {os.path.abspath(args.root)}")
-    print(f"Number of raw JSON files   : {len(dataset.raw_file_names)}")
-    print(f"Number of (corrupt, clean) pairs in this split : {len(dataset)}")
-
-    # ------------------------------------------------------------------
-    # 2 Inspect the first sample
-    # ------------------------------------------------------------------
-    sample = dataset[0]                     # a torch_geometric Data object
-    print("\n--- First sample overview ---")
-    print(f"  corrupted node feature shape : {sample.x.shape}")          # [N, node_feat_dim]
-    print(f"  corrupted edge attr shape    : {sample.edge_attr.shape}")   # [E, edge_feat_dim]
-    print(f"  corrupted edge_index shape   : {sample.edge_index.shape}")  # [2, E]
-
-    # Ground‑truth (clean) tensors are stored in `sample.y`
-    clean_node = sample.y["x"]
-    clean_edge = sample.y["edge_attr"]
-    print(f"  clean node feature shape      : {clean_node.shape}")
-    print(f"  clean edge attr shape         : {clean_edge.shape}")
-
-    # Quick sanity: dimensions must match
-    assert sample.x.shape == clean_node.shape, "Node feature dims do not match!"
-    assert sample.edge_attr.shape == clean_edge.shape, "Edge attr dims do not match!"
-
-    print(sample.x.shape)
-    print(sample.y)
