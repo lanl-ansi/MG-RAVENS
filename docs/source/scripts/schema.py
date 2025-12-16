@@ -4,8 +4,7 @@ import os
 import pathlib
 import sys
 
-# Increase recursion limit for complex schema processing
-sys.setrecursionlimit(5000)
+sys.setrecursionlimit(10000)
 
 from ravens.schema import RavensSchema, generate_schema_docs
 from ravens.uml import UMLExclusions
@@ -51,7 +50,7 @@ def build_schema_docs():
     try:
         a = RavensSchema(uml_exclusions=UMLExclusions().exclude_by_name_startswith(["Mkt"]))
         a.export_schemas(tmp_dir)
-        generate_schema_docs(tmp_dir, static_schema_dir)
+        generate_schema_docs(tmp_dir, static_schema_dir, template_name="flat")
         modify_schema_docs_resource_paths(static_schema_dir)
         build_markdown_file(schema_md_dir, static_schema_dir)
     except RecursionError as e:

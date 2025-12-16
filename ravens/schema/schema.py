@@ -297,8 +297,8 @@ class RavensSchema:
                 json.dump(v, f, indent=2)
 
 
-def generate_schema_docs(schema_dir: pathlib.Path | str, out_dir: pathlib.Path | str) -> None:
-    Gen.generate_from_filename(schema_dir, out_dir, config=Gen.GenerationConfiguration(template_name="js"))
+def generate_schema_docs(schema_dir: pathlib.Path | str, out_dir: pathlib.Path | str, template_name: str = "js") -> None:
+    Gen.generate_from_filename(schema_dir, out_dir, config=Gen.GenerationConfiguration(template_name=template_name))
 
 
 if __name__ == "__main__":
