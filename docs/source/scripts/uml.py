@@ -12,6 +12,7 @@ def build_uml_docs():
     for package_name in ["EconomicDesign", "SimplifiedDiagrams", "EquipmentExtensions", "Software"]:
 
         paths = uml_vis.save_uml_diagrams_from_package_name(package_name, static_uml_path)
+        paths.sort()
         md_str = (
             md_str
             + f"\n## {package_name}\n"
