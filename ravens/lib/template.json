@@ -749,28 +749,89 @@
           "type": "object",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "properties": {
-            "EnergyArea.Equipments": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "$objectType": "reference",
-                "$referencePath": "PowerSystemResource/Equipment",
-                "$objectId": "Equipment"
-              },
-              "EnergyArea.EquivalentInjection": {
-                "$objectType": "reference",
-                "$objectId": "EquivalentInjection",
-                "type": "string",
-                "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EquivalentEquipment/EquivalentInjection"
+          "anyOf": [
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "EnergyArea",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {
+                "EnergyArea.Equipments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$referencePath": "PowerSystemResource/Equipment",
+                    "$objectId": "Equipment"
+                  },
+                  "EnergyArea.EquivalentInjection": {
+                    "$objectType": "reference",
+                    "$objectId": "EquivalentInjection",
+                    "type": "string",
+                    "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EquivalentEquipment/EquivalentInjection"
+                  }
+                }
               }
             },
-            "SubLoadArea": {
-              "type": "object",
+            {
               "$objectType": "object",
-              "properties": {}
+              "type": "object",
+              "$objectId": "LoadArea",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {
+                "EnergyArea.Equipments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$referencePath": "PowerSystemResource/Equipment",
+                    "$objectId": "Equipment"
+                  },
+                  "EnergyArea.EquivalentInjection": {
+                    "$objectType": "reference",
+                    "$objectId": "EquivalentInjection",
+                    "type": "string",
+                    "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EquivalentEquipment/EquivalentInjection"
+                  }
+                },
+                "LoadArea.SubLoadAreas": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$objectId": "LoadArea",
+                    "$referencePath": "Group/EnergyArea"
+                  }
+                }
+              }
+            },
+            {
+              "$objectType": "object",
+              "type": "object",
+              "$objectId": "SubLoadArea",
+              "$primaryObjectHash": "IdentifiedObject.name",
+              "$secondaryObjectHash": "IdentifiedObject.mRID",
+              "properties": {
+                "EnergyArea.Equipments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "$objectType": "reference",
+                    "$referencePath": "PowerSystemResource/Equipment",
+                    "$objectId": "Equipment"
+                  },
+                  "EnergyArea.EquivalentInjection": {
+                    "$objectType": "reference",
+                    "$objectId": "EquivalentInjection",
+                    "type": "string",
+                    "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EquivalentEquipment/EquivalentInjection"
+                  }
+                }
+              }
             }
-          }
+          ]
         },
         "LoadGroup": {
           "$objectType": "object",
@@ -964,6 +1025,12 @@
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
+                            "Equipment.OperationalLimitSet": {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "OperationalLimitSet",
+                              "$referencePath": "/OperationalLimitSet"
+                            },
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
@@ -1147,6 +1214,12 @@
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
+                            "Equipment.OperationalLimitSet": {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "OperationalLimitSet",
+                              "$referencePath": "/OperationalLimitSet"
+                            },
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
@@ -1210,6 +1283,12 @@
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
+                            "Equipment.OperationalLimitSet": {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "OperationalLimitSet",
+                              "$referencePath": "/OperationalLimitSet"
+                            },
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
@@ -1272,6 +1351,12 @@
                               "type": "string",
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
+                            },
+                            "Equipment.OperationalLimitSet": {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "OperationalLimitSet",
+                              "$referencePath": "/OperationalLimitSet"
                             },
                             "ConductingEquipment.Terminals": {
                               "type": "array",
@@ -1342,6 +1427,12 @@
                                   "type": "string",
                                   "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
+                                },
+                                "Equipment.OperationalLimitSet": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "OperationalLimitSet",
+                                  "$referencePath": "/OperationalLimitSet"
                                 },
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
@@ -1445,6 +1536,12 @@
                                   "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 },
+                                "Equipment.OperationalLimitSet": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "OperationalLimitSet",
+                                  "$referencePath": "/OperationalLimitSet"
+                                },
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
                                   "items": {
@@ -1547,6 +1644,12 @@
                                   "$objectId": "SwitchingAction",
                                   "$referencePath": "SwitchingAction"
                                 },
+                                "Equipment.OperationalLimitSet": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "OperationalLimitSet",
+                                  "$referencePath": "/OperationalLimitSet"
+                                },
                                 "ConductingEquipment.Terminals": {
                                   "type": "array",
                                   "items": {
@@ -1644,6 +1747,12 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "RotatingMachine",
                               "properties": {
+                                "Equipment.OperationalLimitSet": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "OperationalLimitSet",
+                                  "$referencePath": "/OperationalLimitSet"
+                                },
                                 "EnergyConnection.PhaseConnectionDetail": {
                                   "$objectType": "object",
                                   "$objectId": "PhaseConnectionDetail",
@@ -1884,6 +1993,12 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "SynchronousMachine",
                               "properties": {
+                                "Equipment.OperationalLimitSet": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "OperationalLimitSet",
+                                  "$referencePath": "/OperationalLimitSet"
+                                },
                                 "EnergyConnection.PhaseConnectionDetail": {
                                   "$objectType": "object",
                                   "$objectId": "PhaseConnectionDetail",
@@ -2134,6 +2249,12 @@
                               "$secondaryObjectHash": "IdentifiedObject.mRID",
                               "$objectId": "AsynchronousMachine",
                               "properties": {
+                                "Equipment.OperationalLimitSet": {
+                                  "type": "string",
+                                  "$objectType": "reference",
+                                  "$objectId": "OperationalLimitSet",
+                                  "$referencePath": "/OperationalLimitSet"
+                                },
                                 "EnergyConnection.PhaseConnectionDetail": {
                                   "$objectType": "object",
                                   "$objectId": "PhaseConnectionDetail",
@@ -2401,6 +2522,12 @@
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
+                            "Equipment.OperationalLimitSet": {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "OperationalLimitSet",
+                              "$referencePath": "/OperationalLimitSet"
+                            },
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
@@ -2492,6 +2619,12 @@
                               "type": "string",
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
+                            },
+                            "Equipment.OperationalLimitSet": {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "OperationalLimitSet",
+                              "$referencePath": "/OperationalLimitSet"
                             },
                             "ConductingEquipment.Terminals": {
                               "type": "array",
@@ -2585,6 +2718,12 @@
                               "$objectId": "SwitchingAction",
                               "$referencePath": "SwitchingAction"
                             },
+                            "Equipment.OperationalLimitSet": {
+                              "type": "string",
+                              "$objectType": "reference",
+                              "$objectId": "OperationalLimitSet",
+                              "$referencePath": "/OperationalLimitSet"
+                            },
                             "ConductingEquipment.Terminals": {
                               "type": "array",
                               "items": {
@@ -2660,6 +2799,12 @@
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "properties": {
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
+                        },
                         "EnergySource.CostFunction": {
                           "type": "string",
                           "$objectType": "reference",
@@ -2757,6 +2902,12 @@
                   "$objectType": "container",
                   "type": "object",
                   "properties": {
+                    "Equipment.OperationalLimitSet": {
+                      "type": "string",
+                      "$objectType": "reference",
+                      "$objectId": "OperationalLimitSet",
+                      "$referencePath": "/OperationalLimitSet"
+                    },
                     "VsConverter": {
                       "$objectType": "object",
                       "type": "object",
@@ -3291,6 +3442,12 @@
                       "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
+                    "Equipment.OperationalLimitSet": {
+                      "type": "string",
+                      "$objectType": "reference",
+                      "$objectId": "OperationalLimitSet",
+                      "$referencePath": "/OperationalLimitSet"
+                    },
                     "ConductingEquipment.Terminals": {
                       "type": "array",
                       "items": {
@@ -3357,6 +3514,12 @@
                           "type": "string",
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
+                        },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
                         },
                         "ConductingEquipment.Terminals": {
                           "type": "array",
@@ -3663,6 +3826,12 @@
                       "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
+                    "Equipment.OperationalLimitSet": {
+                      "type": "string",
+                      "$objectType": "reference",
+                      "$objectId": "OperationalLimitSet",
+                      "$referencePath": "/OperationalLimitSet"
+                    },
                     "ConductingEquipment.Terminals": {
                       "type": "array",
                       "items": {
@@ -3731,6 +3900,12 @@
                       "type": "string",
                       "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
+                    },
+                    "Equipment.OperationalLimitSet": {
+                      "type": "string",
+                      "$objectType": "reference",
+                      "$objectId": "OperationalLimitSet",
+                      "$referencePath": "/OperationalLimitSet"
                     },
                     "ConductingEquipment.Terminals": {
                       "type": "array",
@@ -3801,6 +3976,12 @@
                       "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
                     },
+                    "Equipment.OperationalLimitSet": {
+                      "type": "string",
+                      "$objectType": "reference",
+                      "$objectId": "OperationalLimitSet",
+                      "$referencePath": "/OperationalLimitSet"
+                    },
                     "ConductingEquipment.Terminals": {
                       "type": "array",
                       "items": {
@@ -3863,6 +4044,12 @@
                       "type": "string",
                       "$objectId": "SwitchingAction",
                       "$referencePath": "SwitchingAction"
+                    },
+                    "Equipment.OperationalLimitSet": {
+                      "type": "string",
+                      "$objectType": "reference",
+                      "$objectId": "OperationalLimitSet",
+                      "$referencePath": "/OperationalLimitSet"
                     },
                     "Ground.GroundAction": {
                       "$objectType": "reference",
@@ -3939,6 +4126,12 @@
                           "type": "string",
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
+                        },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
@@ -4042,6 +4235,12 @@
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
+                        },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
@@ -4143,6 +4342,12 @@
                           "type": "string",
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
+                        },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
@@ -4246,6 +4451,12 @@
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
+                        },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
@@ -4348,6 +4559,12 @@
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
+                        },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
@@ -4449,6 +4666,12 @@
                           "type": "string",
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
+                        },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
@@ -4558,6 +4781,12 @@
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
+                        },
                         "ConductingEquipment.Terminals": {
                           "type": "array",
                           "items": {
@@ -4653,6 +4882,12 @@
                           "type": "string",
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
+                        },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
@@ -4756,6 +4991,12 @@
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
                         },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
+                        },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
                           "type": "string",
@@ -4857,6 +5098,12 @@
                           "type": "string",
                           "$objectId": "SwitchingAction",
                           "$referencePath": "SwitchingAction"
+                        },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
                         },
                         "Switch.SwitchAction": {
                           "$objectType": "reference",
@@ -5020,6 +5267,12 @@
                             "type": "string",
                             "$referencePath": "BaseVoltage"
                           },
+                          "Equipment.OperationalLimitSet": {
+                            "type": "string",
+                            "$objectType": "reference",
+                            "$objectId": "OperationalLimitSet",
+                            "$referencePath": "/OperationalLimitSet"
+                          },
                           "TransformerEnd.RatioTapChanger": {
                             "$objectType": "reference",
                             "$objectId": "RatioTapChanger",
@@ -5071,6 +5324,12 @@
                       "$objectId": "PowerTransformerInfo",
                       "$referencePath": "AssetInfo/PowerTransformerInfo",
                       "type": "string"
+                    },
+                    "Equipment.OperationalLimitSet": {
+                      "type": "string",
+                      "$objectType": "reference",
+                      "$objectId": "OperationalLimitSet",
+                      "$referencePath": "/OperationalLimitSet"
                     },
                     "ConductingEquipment.Terminals": {
                       "type": "array",
@@ -5934,37 +6193,6 @@
         }
       }
     },
-    "DynamicsFunctionBlock": {
-      "$objectType": "object",
-      "$primaryObjectHash": "IdentifiedObject.name",
-      "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "anyOf": [
-        {
-          "$objectType": "object",
-          "$objectId": "RotatingMachineDynamics",
-          "type": "object",
-          "properties": {}
-        },
-        {
-          "$objectType": "object",
-          "$objectId": "StaticVarCompensatorDynamics",
-          "type": "object",
-          "properties": {}
-        },
-        {
-          "$objectType": "object",
-          "$objectId": "HVDCDynamics",
-          "type": "object",
-          "properties": {}
-        },
-        {
-          "$objectType": "object",
-          "$objectId": "VoltageCompensatorDynamics",
-          "type": "object",
-          "properties": {}
-        }
-      ]
-    },
     "Document": {
       "$objectType": "container",
       "type": "object",
@@ -6240,35 +6468,136 @@
         {
           "$objectType": "object",
           "$objectId": "EnvironmentalPhenomenon",
-          "$primaryObjectHash": null,
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
           "type": "object",
           "properties": {}
         },
         {
           "$objectType": "object",
           "$objectId": "HydrosphericPhenomenon",
-          "$primaryObjectHash": null,
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "Flood",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "Whirlpool",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "Tsunami",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
           "type": "object",
           "properties": {}
         },
         {
           "$objectType": "object",
           "$objectId": "AtmosphericPhenomenon",
-          "$primaryObjectHash": null,
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "VolcanicAshCloud",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "CloudCondition",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "Cyclone",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "Tornado",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
           "type": "object",
           "properties": {}
         },
         {
           "$objectType": "object",
           "$objectId": "GeosphericPhenomenon",
-          "$primaryObjectHash": null,
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "Earthquake",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "Fire",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "Landslide",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "LightningStrike",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
           "type": "object",
           "properties": {}
         },
         {
           "$objectType": "object",
           "$objectId": "SpacePhenomenon",
-          "$primaryObjectHash": null,
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "type": "object",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "$objectId": "MagneticStorm",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
           "type": "object",
           "properties": {}
         }
@@ -6557,13 +6886,29 @@
         }
       }
     },
-    "FossilFuelCosts": {
+    "FossilFuel": {
       "$objectType": "object",
-      "type": "object",
       "$objectId": "FossilFuel",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "properties": {}
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "FossilFuel",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "DieselFuel",
+          "$primaryObjectHash": "IdentifiedObject.name",
+          "$secondaryObjectHash": "IdentifiedObject.mRID",
+          "properties": {}
+        }
+      ]
     },
     "CommunityFacility": {
       "$objectType": "object",

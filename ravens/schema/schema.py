@@ -230,52 +230,83 @@ class RavensSchema:
             self.schemas[_schema["$id"]] = {**self.schemas.get(_schema["$id"], {}), **_schema}
 
     def insert_refs(self):
-        for schema_key, schema in self.schemas.items():
-            if "patternProperties" in schema.keys():
-                for pattern, json_object in schema["patternProperties"].items():
-                    key = json_object.get("$id", None)
-                    if key in self.schemas.keys():
-                        self.schemas[schema_key]["patternProperties"][pattern] = {"$ref": key}
-            elif "properties" in schema.keys():
-                for k, v in schema["properties"].items():
-                    if v.get("type", "") == "object" or (isinstance(v.get("type", ""), list) and "object" in v["type"]):
-                        key = v.get("$id", k)
-                        if key in self.schemas:
-                            self.schemas[schema_key]["properties"][k] = {"$ref": key}
+        logger.info("Inserting schema references")
+        for schema_key in list(self.schemas.keys()):
+            self.schemas[schema_key] = self._process_schema_refs(schema_key, self.schemas[schema_key])
 
-                    elif v.get("type", "") == "array" and v["items"].get("type", "") == "object":
-                        key = v["items"].get("$id", k)
-                        if key in self.schemas:
-                            self.schemas[schema_key]["properties"][k]["items"] = {"$ref": key}
-                    elif v.get("$ref", "").startswith("#/$defs/"):
-                        ref = v["$ref"].split("#/$defs/")[1]
-                        if self.schema_path(ref) in self.schemas:
-                            self.schemas[schema_key]["properties"][k]["$ref"] = self.schema_path(ref)
-            elif "anyOf" in schema:
-                for i, item in enumerate(schema["anyOf"]):
-                    if item.get("$ref", "").startswith("#/$defs/"):
-                        ref = v["$ref"].split("#/$defs/")[1]
-                        if self.schema_path(ref) in self.schemas:
-                            self.schemas[schema_key]["anyOf"][i]["$ref"] = self.schema_path(ref)
-                    else:
-                        key = item.get("title", "")
-                        if key in self.schemas:
-                            self.schemas[schema_key]["anyOf"][i] = {"$ref": f"./{key}.json"}
-            elif "items" in schema:
-                if "anyOf" in schema["items"]:
-                    for i, item in enumerate(schema["items"]["anyOf"]):
-                        if item.get("$ref", "").startswith("#/$defs/"):
-                            ref = v["$ref"].split("#/$defs/")[1]
-                            if self.schema_path(ref) in self.schemas:
-                                self.schemas[schema_key]["items"]["anyOf"][i]["$ref"] = self.schema_path(ref)
-                        else:
-                            key = item.get("$id", "")
-                            if key in self.schemas:
-                                self.schemas[schema_key]["items"]["anyOf"][i] = {"$ref": key}
+    def _process_schema_refs(self, schema_key: str, schema: dict, path: str = "") -> dict:
+        """Recursively process and fix $ref references in schema"""
+        if not isinstance(schema, dict):
+            return schema
+
+        schema = deepcopy(schema)
+
+        # Handle $ref at current level
+        if "$ref" in schema:
+            if schema["$ref"].startswith("#/$defs/"):
+                ref = schema["$ref"].split("#/$defs/")[1]
+                ref_path = self.schema_path(ref)
+                if ref_path in self.schemas:
+                    schema["$ref"] = ref_path
+                    logger.debug(f"Updated ref in {schema_key}{path}: #/$defs/{ref} -> {ref_path}")
                 else:
-                    key = schema["items"].get("$id", "")
-                    if key in self.schemas:
-                        self.schemas[schema_key]["items"] = {"$ref": key}
+                    logger.warning(f"Reference #/$defs/{ref} not found in schemas for {schema_key}{path}")
+
+        # Recursively process nested structures
+        if "patternProperties" in schema:
+            for pattern, json_object in list(schema["patternProperties"].items()):
+                if isinstance(json_object, dict):
+                    if "$id" in json_object and json_object["$id"] in self.schemas and json_object["$id"] != schema_key:
+                        schema["patternProperties"][pattern] = {"$ref": json_object["$id"]}
+                    else:
+                        schema["patternProperties"][pattern] = self._process_schema_refs(
+                            schema_key, json_object, f"{path}.patternProperties['{pattern}']"
+                        )
+
+        if "properties" in schema:
+            for k, v in list(schema["properties"].items()):
+                if isinstance(v, dict):
+                    if "$id" in v and v["$id"] in self.schemas and v["$id"] != schema_key:
+                        schema["properties"][k] = {"$ref": v["$id"]}
+                    else:
+                        schema["properties"][k] = self._process_schema_refs(
+                            schema_key, v, f"{path}.properties['{k}']"
+                        )
+
+        if "anyOf" in schema:
+            for i, item in enumerate(schema["anyOf"]):
+                if isinstance(item, dict):
+                    if "$id" in item and item["$id"] in self.schemas and item["$id"] != schema_key:
+                        schema["anyOf"][i] = {"$ref": item["$id"]}
+                    else:
+                        schema["anyOf"][i] = self._process_schema_refs(
+                            schema_key, item, f"{path}.anyOf[{i}]"
+                        )
+
+        if "allOf" in schema:
+            for i, item in enumerate(schema["allOf"]):
+                if isinstance(item, dict):
+                    schema["allOf"][i] = self._process_schema_refs(
+                        schema_key, item, f"{path}.allOf[{i}]"
+                    )
+
+        if "oneOf" in schema:
+            for i, item in enumerate(schema["oneOf"]):
+                if isinstance(item, dict):
+                    schema["oneOf"][i] = self._process_schema_refs(
+                        schema_key, item, f"{path}.oneOf[{i}]"
+                    )
+
+        if "items" in schema:
+            if isinstance(schema["items"], dict):
+                if "$id" in schema["items"] and schema["items"]["$id"] in self.schemas and schema["items"]["$id"] != schema_key:
+                    schema["items"] = {"$ref": schema["items"]["$id"]}
+                else:
+                    schema["items"] = self._process_schema_refs(
+                        schema_key, schema["items"], f"{path}.items"
+                    )
+
+        return schema
 
     @staticmethod
     def get_cim_copyright_notice(uml_data: UMLData, cim_copyright_notice_object_id: int = 29601) -> str:
@@ -297,8 +328,11 @@ class RavensSchema:
                 json.dump(v, f, indent=2)
 
 
-def generate_schema_docs(schema_dir: pathlib.Path | str, out_dir: pathlib.Path | str) -> None:
-    Gen.generate_from_filename(schema_dir, out_dir, config=Gen.GenerationConfiguration(template_name="js"))
+def generate_schema_docs(schema_dir: pathlib.Path | str, out_dir: pathlib.Path | str, template_name: str = "js") -> None:
+    out_path = pathlib.Path(out_dir)
+    out_path.mkdir(parents=True, exist_ok=True)
+    logger.info(f"Generating schema documentation from {schema_dir} to {out_dir}")
+    Gen.generate_from_filename(schema_dir, str(out_dir), config=Gen.GenerationConfiguration(template_name=template_name))
 
 
 if __name__ == "__main__":
@@ -309,3 +343,4 @@ if __name__ == "__main__":
     schema.export_schemas("out/schema/separate/")
 
     generate_schema_docs("out/schema/separate", "out/schema/docs")
+
