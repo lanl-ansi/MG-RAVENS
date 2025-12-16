@@ -94,8 +94,105 @@ function isWithin45DegreesFromHorizontal(sourceBox, targetBox) {
     (angleDegrees >= 135 && angleDegrees <= 225)
   );
 }
+function createLegend(zoomGroup, legendData, roleMappings) {
+  const legend = zoomGroup
+    .append("g")
+    .attr("class", "legend")
+    .attr("transform", `translate(${legendData.x}, ${legendData.y})`);
 
-function createUmlDiagram(svg, boxesData, linksData) {
+  // Background box
+  legend
+    .append("rect")
+    .attr("width", legendData.width)
+    .attr("height", legendData.height)
+    .attr("fill", "white")
+    .attr("stroke", "black")
+    .attr("stroke-width", 1);
+
+  const padding = 8;
+  const lineHeight = 14;
+  const fontSize = 8;
+  const colorBoxSize = 10;
+  let currentY = padding + fontSize;
+
+  // Title
+  legend
+    .append("text")
+    .attr("x", legendData.width / 2)
+    .attr("y", currentY)
+    .attr("text-anchor", "middle")
+    .attr("font-weight", "bold")
+    .attr("font-size", `${fontSize + 2}px`)
+    .text("Legend");
+
+  currentY += lineHeight + 3;
+
+  // Node legend entries
+  if (legendData.config.show_nodes && roleMappings.nodes) {
+    Object.entries(roleMappings.nodes).forEach(([role, color]) => {
+      // Color box
+      legend
+        .append("rect")
+        .attr("x", padding)
+        .attr("y", currentY - colorBoxSize / 2)
+        .attr("width", colorBoxSize)
+        .attr("height", colorBoxSize)
+        .attr("fill", color)
+        .attr("stroke", "black")
+        .attr("stroke-width", 1);
+
+      // Label
+      legend
+        .append("text")
+        .attr("x", padding + colorBoxSize + 3)
+        .attr("y", currentY)
+        .attr("dy", "0.35em")
+        .attr("font-size", `${fontSize}px`)
+        .text(role);
+
+      currentY += lineHeight;
+    });
+  }
+
+  // Edge legend entries
+  if (legendData.config.show_edges && roleMappings.edges) {
+    if (legendData.config.show_nodes) {
+      currentY += 3;
+    }
+
+    Object.entries(roleMappings.edges).forEach(([role, color]) => {
+      // Color line
+      legend
+        .append("line")
+        .attr("x1", padding)
+        .attr("x2", padding + colorBoxSize)
+        .attr("y1", currentY)
+        .attr("y2", currentY)
+        .attr("stroke", color)
+        .attr("stroke-width", 3);
+
+      // Label
+      legend
+        .append("text")
+        .attr("x", padding + colorBoxSize + 3)
+        .attr("y", currentY)
+        .attr("dy", "0.35em")
+        .attr("font-size", `${fontSize}px`)
+        .text(role);
+
+      currentY += lineHeight;
+    });
+  }
+
+  return legend;
+}
+function createUmlDiagram(
+  svg,
+  boxesData,
+  linksData,
+  legendsData,
+  roleMappings
+) {
   svg.selectAll("*").remove();
 
   svg
@@ -541,12 +638,24 @@ function createUmlDiagram(svg, boxesData, linksData) {
     .style("font-size", "10px")
     .style("fill", "black");
 
+  // After creating all boxes and links, add legends
+  console.error("Legends data:", JSON.stringify(legendsData, null, 2));
+  console.error("Role mappings:", JSON.stringify(roleMappings, null, 2));
+
+  if (legendsData && legendsData.length > 0) {
+    legendsData.forEach((legendData) => {
+      createLegend(zoomGroup, legendData, roleMappings);
+    });
+  }
+
   return svg.node();
 }
 
 function createStandaloneUmlSvg(data) {
   // ---- patched: safe globals for Node 20+ ----
-  const dom = new JSDOM(`<!DOCTYPE html><html><body></body></html>`, { pretendToBeVisual: true });
+  const dom = new JSDOM(`<!DOCTYPE html><html><body></body></html>`, {
+    pretendToBeVisual: true,
+  });
   const { window } = dom;
   const { document } = window;
 
@@ -558,13 +667,14 @@ function createStandaloneUmlSvg(data) {
   if (!("navigator" in globalThis)) {
     Object.defineProperty(globalThis, "navigator", {
       get: () => window.navigator,
-      configurable: true
+      configurable: true,
     });
   }
 
   // (optional) RAF polyfill for libs expecting it
   if (!globalThis.requestAnimationFrame) {
-    globalThis.requestAnimationFrame = (cb) => setTimeout(() => cb(Date.now()), 16);
+    globalThis.requestAnimationFrame = (cb) =>
+      setTimeout(() => cb(Date.now()), 16);
     globalThis.cancelAnimationFrame = (id) => clearTimeout(id);
   }
   // -------------------------------------------
@@ -576,7 +686,13 @@ function createStandaloneUmlSvg(data) {
     .attr("height", data.cy + 5)
     .attr("xmlns", "http://www.w3.org/2000/svg");
 
-  const svgElement = createUmlDiagram(svg, data.nodes, data.links);
+  const svgElement = createUmlDiagram(
+    svg,
+    data.nodes,
+    data.links,
+    data.legends || [],
+    data.roleMappings || {}
+  );
 
   const serializer = new window.XMLSerializer();
   let svgString = serializer.serializeToString(svgElement);
