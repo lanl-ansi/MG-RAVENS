@@ -4,46 +4,35 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Overpass:300,400,600,800">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../../_static/schema/schema_doc.css">
-    <script src="https://use.fontawesome.com/facf9fa52c.js"></script>
-    <script src="../../_static/schema/schema_doc.min.js"></script>
     <meta charset="utf-8"/>
         
     
     <title>Message</title>
 </head>
-<body onload="anchorOnLoad();" id="root">
+<body id="root"><h1>Message</h1>
 
-    <div class="breadcrumbs"></div> <h1>Message</h1><br/>
-<span class="description"><p>Class used to communicate generic messages from software to users, e.g. errors, warnings, etc.</p>
-</span><div class="any-of-value" id="anyOf"><h2 class="handle">
-  <label>Any of</label>
-</h2><ul class="nav nav-tabs" id="tabsanyOf_anyOf" role="tablist"><li class="nav-item">
-            <a class="nav-link active anyOf-option"
-               id="anyOf_i0" data-toggle="tab" href="#tab-pane_anyOf_i0" role="tab"
-               onclick="setAnchor('#anyOf_i0')"
-            >Error</a>
-        </li><li class="nav-item">
-            <a class="nav-link anyOf-option"
-               id="anyOf_i1" data-toggle="tab" href="#tab-pane_anyOf_i1" role="tab"
-               onclick="setAnchor('#anyOf_i1')"
-            >Warning</a>
-        </li><li class="nav-item">
-            <a class="nav-link anyOf-option"
-               id="anyOf_i2" data-toggle="tab" href="#tab-pane_anyOf_i2" role="tab"
-               onclick="setAnchor('#anyOf_i2')"
-            >Info</a>
-        </li><li class="nav-item">
-            <a class="nav-link anyOf-option"
-               id="anyOf_i3" data-toggle="tab" href="#tab-pane_anyOf_i3" role="tab"
-               onclick="setAnchor('#anyOf_i3')"
-            >Debug</a>
-        </li></ul>
-<div class="tab-content card"><div class="tab-pane fade card-body active show"
-             id="tab-pane_anyOf_i0" role="tabpanel">
+    <div class="breadcrumbs"></div><br/>
+
+
+
+
+
+
+
+<p>Class used to communicate generic messages from software to users, e.g. errors, warnings, etc.</p>
+
+
+
+
+<div class="any-of-value" id="anyOf"><a id="anyOf" href="#anyOf">
+    <h2 class="handle ml-2 mt-2">
+      <label>Any of</label>
+    </h2>
+</a><div class="card">
+        <h3 class="ml-2 mt-2"><a id="anyOf_i0" href="#anyOf_i0">Error</a></h3>
+        <div class="card-body">
             
 
     <div class="breadcrumbs">root
@@ -53,16 +42,27 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a></div><h4>Error</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Generalization of Message to communicate Errors.</p>
-</span>
+    <a href="#anyOf_i0">Error</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
+
+
+
+
+
+
+
+<p>Generalization of Message to communicate Errors.</p>
+
+
+
+
+
 
      <span class="badge badge-info no-additional">No Additional Properties</span>
         
@@ -71,19 +71,14 @@
         
 
         
-<div class="accordion" id="accordionanyOf_i0_MessageApplication">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i0_MessageApplication">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i0_MessageApplication"
-                        aria-expanded="" aria-controls="anyOf_i0_MessageApplication" onclick="setAnchor('#anyOf_i0_MessageApplication')"><span class="property-name">Message.Application</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i0_MessageApplication"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i0_MessageApplication"
-             data-parent="#accordionanyOf_i0_MessageApplication">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i0_MessageApplication">
+        <h2 class="mb-0">
+            <a href="#anyOf_i0_MessageApplication"><span class="property-name">Message.Application</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -92,46 +87,50 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a>
+    <a href="#anyOf_i0">Error</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0_MessageApplication" onclick="anchorLink('anyOf_i0_MessageApplication')">Message.Application</a></div><h4>Application_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Pointer to Application object</p>
-</span><span class="pattern-value" id="anyOf_i0_MessageApplication_pattern">Must match regular expression: <code>^Application::&#39;(.+)&#39;$</code></span>
+    <a href="#anyOf_i0_MessageApplication">Message.Application</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Pointer to Application object</p>
+
+
+
+
+<span class="pattern-value" id="anyOf_i0_MessageApplication_pattern">Must match regular expression: <code>^Application::&#39;(.+)&#39;$</code></span>
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i0_MessageAlgorithm">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i0_MessageAlgorithm">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i0_MessageAlgorithm"
-                        aria-expanded="" aria-controls="anyOf_i0_MessageAlgorithm" onclick="setAnchor('#anyOf_i0_MessageAlgorithm')"><span class="property-name">Message.Algorithm</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i0_MessageAlgorithm"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i0_MessageAlgorithm"
-             data-parent="#accordionanyOf_i0_MessageAlgorithm">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i0_MessageAlgorithm">
+        <h2 class="mb-0">
+            <a href="#anyOf_i0_MessageAlgorithm"><span class="property-name">Message.Algorithm</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -140,46 +139,50 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a>
+    <a href="#anyOf_i0">Error</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0_MessageAlgorithm" onclick="anchorLink('anyOf_i0_MessageAlgorithm')">Message.Algorithm</a></div><h4>Algorithm_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Pointer to Algorithm object</p>
-</span><span class="pattern-value" id="anyOf_i0_MessageAlgorithm_pattern">Must match regular expression: <code>^Algorithm::&#39;(.+)&#39;$</code></span>
+    <a href="#anyOf_i0_MessageAlgorithm">Message.Algorithm</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Pointer to Algorithm object</p>
+
+
+
+
+<span class="pattern-value" id="anyOf_i0_MessageAlgorithm_pattern">Must match regular expression: <code>^Algorithm::&#39;(.+)&#39;$</code></span>
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i0_Messagemessage">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i0_Messagemessage">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i0_Messagemessage"
-                        aria-expanded="" aria-controls="anyOf_i0_Messagemessage" onclick="setAnchor('#anyOf_i0_Messagemessage')"><span class="property-name">Message.message</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i0_Messagemessage"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i0_Messagemessage"
-             data-parent="#accordionanyOf_i0_Messagemessage">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i0_Messagemessage">
+        <h2 class="mb-0">
+            <a href="#anyOf_i0_Messagemessage"><span class="property-name">Message.message</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -188,46 +191,50 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a>
+    <a href="#anyOf_i0">Error</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0_Messagemessage" onclick="anchorLink('anyOf_i0_Messagemessage')">Message.message</a></div><h4>message</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>nan</p>
-</span>
+    <a href="#anyOf_i0_Messagemessage">Message.message</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>nan</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i0_Messagecode">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i0_Messagecode">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i0_Messagecode"
-                        aria-expanded="" aria-controls="anyOf_i0_Messagecode" onclick="setAnchor('#anyOf_i0_Messagecode')"><span class="property-name">Message.code</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i0_Messagecode"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i0_Messagecode"
-             data-parent="#accordionanyOf_i0_Messagecode">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i0_Messagecode">
+        <h2 class="mb-0">
+            <a href="#anyOf_i0_Messagecode"><span class="property-name">Message.code</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -236,46 +243,50 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a>
+    <a href="#anyOf_i0">Error</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0_Messagecode" onclick="anchorLink('anyOf_i0_Messagecode')">Message.code</a></div><h4>code</h4><span class="badge badge-dark value-type">Type: integer</span><br/>
-<span class="description"><p>nan</p>
-</span>
+    <a href="#anyOf_i0_Messagecode">Message.code</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
+
+
+
+
+
+
+<p>nan</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i0_RavenscimObjectType">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i0_RavenscimObjectType">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i0_RavenscimObjectType"
-                        aria-expanded="" aria-controls="anyOf_i0_RavenscimObjectType" onclick="setAnchor('#anyOf_i0_RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i0_RavenscimObjectType"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i0_RavenscimObjectType"
-             data-parent="#accordionanyOf_i0_RavenscimObjectType">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i0_RavenscimObjectType">
+        <h2 class="mb-0">
+            <a href="#anyOf_i0_RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -284,25 +295,36 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a>
+    <a href="#anyOf_i0">Error</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0_RavenscimObjectType" onclick="anchorLink('anyOf_i0_RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-</span><div class="enum-value" id="anyOf_i0_RavenscimObjectType_enum">
-            <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"Error"</li></ul>
+    <a href="#anyOf_i0_RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+
+
+
+
+
+
+
+<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+
+
+
+
+<div class="enum-value" id="anyOf_i0_RavenscimObjectType_enum">
+                <h4>Must be one of:</h4>
+                <ul class="list-group"><li class="list-group-item enum-item">"Error"</li></ul>
             </div>
         
 
@@ -310,23 +332,16 @@
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i0_IdentifiedObjectdescription">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i0_IdentifiedObjectdescription">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i0_IdentifiedObjectdescription"
-                        aria-expanded="" aria-controls="anyOf_i0_IdentifiedObjectdescription" onclick="setAnchor('#anyOf_i0_IdentifiedObjectdescription')"><span class="property-name">IdentifiedObject.description</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i0_IdentifiedObjectdescription"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i0_IdentifiedObjectdescription"
-             data-parent="#accordionanyOf_i0_IdentifiedObjectdescription">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i0_IdentifiedObjectdescription">
+        <h2 class="mb-0">
+            <a href="#anyOf_i0_IdentifiedObjectdescription"><span class="property-name">IdentifiedObject.description</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -335,46 +350,50 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a>
+    <a href="#anyOf_i0">Error</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0_IdentifiedObjectdescription" onclick="anchorLink('anyOf_i0_IdentifiedObjectdescription')">IdentifiedObject.description</a></div><h4>description</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
-</span>
+    <a href="#anyOf_i0_IdentifiedObjectdescription">IdentifiedObject.description</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i0_IdentifiedObjectaliasName">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i0_IdentifiedObjectaliasName">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i0_IdentifiedObjectaliasName"
-                        aria-expanded="" aria-controls="anyOf_i0_IdentifiedObjectaliasName" onclick="setAnchor('#anyOf_i0_IdentifiedObjectaliasName')"><span class="property-name">IdentifiedObject.aliasName</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i0_IdentifiedObjectaliasName"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i0_IdentifiedObjectaliasName"
-             data-parent="#accordionanyOf_i0_IdentifiedObjectaliasName">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i0_IdentifiedObjectaliasName">
+        <h2 class="mb-0">
+            <a href="#anyOf_i0_IdentifiedObjectaliasName"><span class="property-name">IdentifiedObject.aliasName</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -383,47 +402,51 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a>
+    <a href="#anyOf_i0">Error</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0_IdentifiedObjectaliasName" onclick="anchorLink('anyOf_i0_IdentifiedObjectaliasName')">IdentifiedObject.aliasName</a></div><h4>aliasName</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
+    <a href="#anyOf_i0_IdentifiedObjectaliasName">IdentifiedObject.aliasName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
 The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
-</span>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i0_IdentifiedObjectmRID">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i0_IdentifiedObjectmRID">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i0_IdentifiedObjectmRID"
-                        aria-expanded="" aria-controls="anyOf_i0_IdentifiedObjectmRID" onclick="setAnchor('#anyOf_i0_IdentifiedObjectmRID')"><span class="property-name">IdentifiedObject.mRID</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i0_IdentifiedObjectmRID"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i0_IdentifiedObjectmRID"
-             data-parent="#accordionanyOf_i0_IdentifiedObjectmRID">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i0_IdentifiedObjectmRID">
+        <h2 class="mb-0">
+            <a href="#anyOf_i0_IdentifiedObjectmRID"><span class="property-name">IdentifiedObject.mRID</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -432,47 +455,51 @@ The attribute aliasName is retained because of backwards compatibility between C
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a>
+    <a href="#anyOf_i0">Error</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0_IdentifiedObjectmRID" onclick="anchorLink('anyOf_i0_IdentifiedObjectmRID')">IdentifiedObject.mRID</a></div><h4>mRID</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
+    <a href="#anyOf_i0_IdentifiedObjectmRID">IdentifiedObject.mRID</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
 For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
-</span>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i0_IdentifiedObjectname">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i0_IdentifiedObjectname">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i0_IdentifiedObjectname"
-                        aria-expanded="" aria-controls="anyOf_i0_IdentifiedObjectname" onclick="setAnchor('#anyOf_i0_IdentifiedObjectname')"><span class="property-name">IdentifiedObject.name</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i0_IdentifiedObjectname"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i0_IdentifiedObjectname"
-             data-parent="#accordionanyOf_i0_IdentifiedObjectname">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i0_IdentifiedObjectname">
+        <h2 class="mb-0">
+            <a href="#anyOf_i0_IdentifiedObjectname"><span class="property-name">IdentifiedObject.name</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -481,35 +508,46 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0" onclick="anchorLink('anyOf_i0')">Error</a>
+    <a href="#anyOf_i0">Error</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i0_IdentifiedObjectname" onclick="anchorLink('anyOf_i0_IdentifiedObjectname')">IdentifiedObject.name</a></div><h4>name</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The name is any free human readable and possibly non unique text naming the object.</p>
-</span>
+    <a href="#anyOf_i0_IdentifiedObjectname">IdentifiedObject.name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The name is any free human readable and possibly non unique text naming the object.</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-        </div><div class="tab-pane fade card-body "
-             id="tab-pane_anyOf_i1" role="tabpanel">
+        </div>
+    </div><div class="card">
+        <h3 class="ml-2 mt-2"><a id="anyOf_i1" href="#anyOf_i1">Warning</a></h3>
+        <div class="card-body">
             
 
     <div class="breadcrumbs">root
@@ -519,16 +557,27 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a></div><h4>Warning</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Generalization of Message to communicate Warnings.</p>
-</span>
+    <a href="#anyOf_i1">Warning</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
+
+
+
+
+
+
+
+<p>Generalization of Message to communicate Warnings.</p>
+
+
+
+
+
 
      <span class="badge badge-info no-additional">No Additional Properties</span>
         
@@ -537,19 +586,14 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
 
         
-<div class="accordion" id="accordionanyOf_i1_MessageApplication">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i1_MessageApplication">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i1_MessageApplication"
-                        aria-expanded="" aria-controls="anyOf_i1_MessageApplication" onclick="setAnchor('#anyOf_i1_MessageApplication')"><span class="property-name">Message.Application</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i1_MessageApplication"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i1_MessageApplication"
-             data-parent="#accordionanyOf_i1_MessageApplication">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i1_MessageApplication">
+        <h2 class="mb-0">
+            <a href="#anyOf_i1_MessageApplication"><span class="property-name">Message.Application</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -558,46 +602,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a>
+    <a href="#anyOf_i1">Warning</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1_MessageApplication" onclick="anchorLink('anyOf_i1_MessageApplication')">Message.Application</a></div><h4>Application_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Pointer to Application object</p>
-</span><span class="pattern-value" id="anyOf_i1_MessageApplication_pattern">Must match regular expression: <code>^Application::&#39;(.+)&#39;$</code></span>
+    <a href="#anyOf_i1_MessageApplication">Message.Application</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Pointer to Application object</p>
+
+
+
+
+<span class="pattern-value" id="anyOf_i1_MessageApplication_pattern">Must match regular expression: <code>^Application::&#39;(.+)&#39;$</code></span>
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i1_MessageAlgorithm">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i1_MessageAlgorithm">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i1_MessageAlgorithm"
-                        aria-expanded="" aria-controls="anyOf_i1_MessageAlgorithm" onclick="setAnchor('#anyOf_i1_MessageAlgorithm')"><span class="property-name">Message.Algorithm</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i1_MessageAlgorithm"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i1_MessageAlgorithm"
-             data-parent="#accordionanyOf_i1_MessageAlgorithm">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i1_MessageAlgorithm">
+        <h2 class="mb-0">
+            <a href="#anyOf_i1_MessageAlgorithm"><span class="property-name">Message.Algorithm</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -606,46 +654,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a>
+    <a href="#anyOf_i1">Warning</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1_MessageAlgorithm" onclick="anchorLink('anyOf_i1_MessageAlgorithm')">Message.Algorithm</a></div><h4>Algorithm_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Pointer to Algorithm object</p>
-</span><span class="pattern-value" id="anyOf_i1_MessageAlgorithm_pattern">Must match regular expression: <code>^Algorithm::&#39;(.+)&#39;$</code></span>
+    <a href="#anyOf_i1_MessageAlgorithm">Message.Algorithm</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Pointer to Algorithm object</p>
+
+
+
+
+<span class="pattern-value" id="anyOf_i1_MessageAlgorithm_pattern">Must match regular expression: <code>^Algorithm::&#39;(.+)&#39;$</code></span>
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i1_Messagemessage">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i1_Messagemessage">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i1_Messagemessage"
-                        aria-expanded="" aria-controls="anyOf_i1_Messagemessage" onclick="setAnchor('#anyOf_i1_Messagemessage')"><span class="property-name">Message.message</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i1_Messagemessage"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i1_Messagemessage"
-             data-parent="#accordionanyOf_i1_Messagemessage">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i1_Messagemessage">
+        <h2 class="mb-0">
+            <a href="#anyOf_i1_Messagemessage"><span class="property-name">Message.message</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -654,46 +706,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a>
+    <a href="#anyOf_i1">Warning</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1_Messagemessage" onclick="anchorLink('anyOf_i1_Messagemessage')">Message.message</a></div><h4>message</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>nan</p>
-</span>
+    <a href="#anyOf_i1_Messagemessage">Message.message</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>nan</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i1_Messagecode">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i1_Messagecode">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i1_Messagecode"
-                        aria-expanded="" aria-controls="anyOf_i1_Messagecode" onclick="setAnchor('#anyOf_i1_Messagecode')"><span class="property-name">Message.code</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i1_Messagecode"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i1_Messagecode"
-             data-parent="#accordionanyOf_i1_Messagecode">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i1_Messagecode">
+        <h2 class="mb-0">
+            <a href="#anyOf_i1_Messagecode"><span class="property-name">Message.code</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -702,46 +758,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a>
+    <a href="#anyOf_i1">Warning</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1_Messagecode" onclick="anchorLink('anyOf_i1_Messagecode')">Message.code</a></div><h4>code</h4><span class="badge badge-dark value-type">Type: integer</span><br/>
-<span class="description"><p>nan</p>
-</span>
+    <a href="#anyOf_i1_Messagecode">Message.code</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
+
+
+
+
+
+
+<p>nan</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i1_RavenscimObjectType">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i1_RavenscimObjectType">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i1_RavenscimObjectType"
-                        aria-expanded="" aria-controls="anyOf_i1_RavenscimObjectType" onclick="setAnchor('#anyOf_i1_RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i1_RavenscimObjectType"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i1_RavenscimObjectType"
-             data-parent="#accordionanyOf_i1_RavenscimObjectType">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i1_RavenscimObjectType">
+        <h2 class="mb-0">
+            <a href="#anyOf_i1_RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -750,25 +810,36 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a>
+    <a href="#anyOf_i1">Warning</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1_RavenscimObjectType" onclick="anchorLink('anyOf_i1_RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-</span><div class="enum-value" id="anyOf_i1_RavenscimObjectType_enum">
-            <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"Warning"</li></ul>
+    <a href="#anyOf_i1_RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+
+
+
+
+
+
+
+<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+
+
+
+
+<div class="enum-value" id="anyOf_i1_RavenscimObjectType_enum">
+                <h4>Must be one of:</h4>
+                <ul class="list-group"><li class="list-group-item enum-item">"Warning"</li></ul>
             </div>
         
 
@@ -776,23 +847,16 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i1_IdentifiedObjectdescription">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i1_IdentifiedObjectdescription">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i1_IdentifiedObjectdescription"
-                        aria-expanded="" aria-controls="anyOf_i1_IdentifiedObjectdescription" onclick="setAnchor('#anyOf_i1_IdentifiedObjectdescription')"><span class="property-name">IdentifiedObject.description</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i1_IdentifiedObjectdescription"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i1_IdentifiedObjectdescription"
-             data-parent="#accordionanyOf_i1_IdentifiedObjectdescription">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i1_IdentifiedObjectdescription">
+        <h2 class="mb-0">
+            <a href="#anyOf_i1_IdentifiedObjectdescription"><span class="property-name">IdentifiedObject.description</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -801,46 +865,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a>
+    <a href="#anyOf_i1">Warning</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1_IdentifiedObjectdescription" onclick="anchorLink('anyOf_i1_IdentifiedObjectdescription')">IdentifiedObject.description</a></div><h4>description</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
-</span>
+    <a href="#anyOf_i1_IdentifiedObjectdescription">IdentifiedObject.description</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i1_IdentifiedObjectaliasName">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i1_IdentifiedObjectaliasName">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i1_IdentifiedObjectaliasName"
-                        aria-expanded="" aria-controls="anyOf_i1_IdentifiedObjectaliasName" onclick="setAnchor('#anyOf_i1_IdentifiedObjectaliasName')"><span class="property-name">IdentifiedObject.aliasName</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i1_IdentifiedObjectaliasName"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i1_IdentifiedObjectaliasName"
-             data-parent="#accordionanyOf_i1_IdentifiedObjectaliasName">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i1_IdentifiedObjectaliasName">
+        <h2 class="mb-0">
+            <a href="#anyOf_i1_IdentifiedObjectaliasName"><span class="property-name">IdentifiedObject.aliasName</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -849,47 +917,51 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a>
+    <a href="#anyOf_i1">Warning</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1_IdentifiedObjectaliasName" onclick="anchorLink('anyOf_i1_IdentifiedObjectaliasName')">IdentifiedObject.aliasName</a></div><h4>aliasName</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
+    <a href="#anyOf_i1_IdentifiedObjectaliasName">IdentifiedObject.aliasName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
 The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
-</span>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i1_IdentifiedObjectmRID">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i1_IdentifiedObjectmRID">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i1_IdentifiedObjectmRID"
-                        aria-expanded="" aria-controls="anyOf_i1_IdentifiedObjectmRID" onclick="setAnchor('#anyOf_i1_IdentifiedObjectmRID')"><span class="property-name">IdentifiedObject.mRID</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i1_IdentifiedObjectmRID"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i1_IdentifiedObjectmRID"
-             data-parent="#accordionanyOf_i1_IdentifiedObjectmRID">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i1_IdentifiedObjectmRID">
+        <h2 class="mb-0">
+            <a href="#anyOf_i1_IdentifiedObjectmRID"><span class="property-name">IdentifiedObject.mRID</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -898,47 +970,51 @@ The attribute aliasName is retained because of backwards compatibility between C
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a>
+    <a href="#anyOf_i1">Warning</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1_IdentifiedObjectmRID" onclick="anchorLink('anyOf_i1_IdentifiedObjectmRID')">IdentifiedObject.mRID</a></div><h4>mRID</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
+    <a href="#anyOf_i1_IdentifiedObjectmRID">IdentifiedObject.mRID</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
 For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
-</span>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i1_IdentifiedObjectname">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i1_IdentifiedObjectname">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i1_IdentifiedObjectname"
-                        aria-expanded="" aria-controls="anyOf_i1_IdentifiedObjectname" onclick="setAnchor('#anyOf_i1_IdentifiedObjectname')"><span class="property-name">IdentifiedObject.name</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i1_IdentifiedObjectname"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i1_IdentifiedObjectname"
-             data-parent="#accordionanyOf_i1_IdentifiedObjectname">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i1_IdentifiedObjectname">
+        <h2 class="mb-0">
+            <a href="#anyOf_i1_IdentifiedObjectname"><span class="property-name">IdentifiedObject.name</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -947,35 +1023,46 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1" onclick="anchorLink('anyOf_i1')">Warning</a>
+    <a href="#anyOf_i1">Warning</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i1_IdentifiedObjectname" onclick="anchorLink('anyOf_i1_IdentifiedObjectname')">IdentifiedObject.name</a></div><h4>name</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The name is any free human readable and possibly non unique text naming the object.</p>
-</span>
+    <a href="#anyOf_i1_IdentifiedObjectname">IdentifiedObject.name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The name is any free human readable and possibly non unique text naming the object.</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-        </div><div class="tab-pane fade card-body "
-             id="tab-pane_anyOf_i2" role="tabpanel">
+        </div>
+    </div><div class="card">
+        <h3 class="ml-2 mt-2"><a id="anyOf_i2" href="#anyOf_i2">Info</a></h3>
+        <div class="card-body">
             
 
     <div class="breadcrumbs">root
@@ -985,16 +1072,27 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a></div><h4>Info</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Generalization of Message to communicate Informational notices.</p>
-</span>
+    <a href="#anyOf_i2">Info</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
+
+
+
+
+
+
+
+<p>Generalization of Message to communicate Informational notices.</p>
+
+
+
+
+
 
      <span class="badge badge-info no-additional">No Additional Properties</span>
         
@@ -1003,19 +1101,14 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
 
         
-<div class="accordion" id="accordionanyOf_i2_MessageApplication">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i2_MessageApplication">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i2_MessageApplication"
-                        aria-expanded="" aria-controls="anyOf_i2_MessageApplication" onclick="setAnchor('#anyOf_i2_MessageApplication')"><span class="property-name">Message.Application</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i2_MessageApplication"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i2_MessageApplication"
-             data-parent="#accordionanyOf_i2_MessageApplication">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i2_MessageApplication">
+        <h2 class="mb-0">
+            <a href="#anyOf_i2_MessageApplication"><span class="property-name">Message.Application</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1024,46 +1117,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a>
+    <a href="#anyOf_i2">Info</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2_MessageApplication" onclick="anchorLink('anyOf_i2_MessageApplication')">Message.Application</a></div><h4>Application_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Pointer to Application object</p>
-</span><span class="pattern-value" id="anyOf_i2_MessageApplication_pattern">Must match regular expression: <code>^Application::&#39;(.+)&#39;$</code></span>
+    <a href="#anyOf_i2_MessageApplication">Message.Application</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Pointer to Application object</p>
+
+
+
+
+<span class="pattern-value" id="anyOf_i2_MessageApplication_pattern">Must match regular expression: <code>^Application::&#39;(.+)&#39;$</code></span>
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i2_MessageAlgorithm">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i2_MessageAlgorithm">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i2_MessageAlgorithm"
-                        aria-expanded="" aria-controls="anyOf_i2_MessageAlgorithm" onclick="setAnchor('#anyOf_i2_MessageAlgorithm')"><span class="property-name">Message.Algorithm</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i2_MessageAlgorithm"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i2_MessageAlgorithm"
-             data-parent="#accordionanyOf_i2_MessageAlgorithm">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i2_MessageAlgorithm">
+        <h2 class="mb-0">
+            <a href="#anyOf_i2_MessageAlgorithm"><span class="property-name">Message.Algorithm</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1072,46 +1169,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a>
+    <a href="#anyOf_i2">Info</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2_MessageAlgorithm" onclick="anchorLink('anyOf_i2_MessageAlgorithm')">Message.Algorithm</a></div><h4>Algorithm_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Pointer to Algorithm object</p>
-</span><span class="pattern-value" id="anyOf_i2_MessageAlgorithm_pattern">Must match regular expression: <code>^Algorithm::&#39;(.+)&#39;$</code></span>
+    <a href="#anyOf_i2_MessageAlgorithm">Message.Algorithm</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Pointer to Algorithm object</p>
+
+
+
+
+<span class="pattern-value" id="anyOf_i2_MessageAlgorithm_pattern">Must match regular expression: <code>^Algorithm::&#39;(.+)&#39;$</code></span>
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i2_Messagemessage">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i2_Messagemessage">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i2_Messagemessage"
-                        aria-expanded="" aria-controls="anyOf_i2_Messagemessage" onclick="setAnchor('#anyOf_i2_Messagemessage')"><span class="property-name">Message.message</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i2_Messagemessage"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i2_Messagemessage"
-             data-parent="#accordionanyOf_i2_Messagemessage">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i2_Messagemessage">
+        <h2 class="mb-0">
+            <a href="#anyOf_i2_Messagemessage"><span class="property-name">Message.message</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1120,46 +1221,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a>
+    <a href="#anyOf_i2">Info</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2_Messagemessage" onclick="anchorLink('anyOf_i2_Messagemessage')">Message.message</a></div><h4>message</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>nan</p>
-</span>
+    <a href="#anyOf_i2_Messagemessage">Message.message</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>nan</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i2_Messagecode">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i2_Messagecode">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i2_Messagecode"
-                        aria-expanded="" aria-controls="anyOf_i2_Messagecode" onclick="setAnchor('#anyOf_i2_Messagecode')"><span class="property-name">Message.code</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i2_Messagecode"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i2_Messagecode"
-             data-parent="#accordionanyOf_i2_Messagecode">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i2_Messagecode">
+        <h2 class="mb-0">
+            <a href="#anyOf_i2_Messagecode"><span class="property-name">Message.code</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1168,46 +1273,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a>
+    <a href="#anyOf_i2">Info</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2_Messagecode" onclick="anchorLink('anyOf_i2_Messagecode')">Message.code</a></div><h4>code</h4><span class="badge badge-dark value-type">Type: integer</span><br/>
-<span class="description"><p>nan</p>
-</span>
+    <a href="#anyOf_i2_Messagecode">Message.code</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
+
+
+
+
+
+
+<p>nan</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i2_RavenscimObjectType">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i2_RavenscimObjectType">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i2_RavenscimObjectType"
-                        aria-expanded="" aria-controls="anyOf_i2_RavenscimObjectType" onclick="setAnchor('#anyOf_i2_RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i2_RavenscimObjectType"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i2_RavenscimObjectType"
-             data-parent="#accordionanyOf_i2_RavenscimObjectType">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i2_RavenscimObjectType">
+        <h2 class="mb-0">
+            <a href="#anyOf_i2_RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1216,25 +1325,36 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a>
+    <a href="#anyOf_i2">Info</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2_RavenscimObjectType" onclick="anchorLink('anyOf_i2_RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-</span><div class="enum-value" id="anyOf_i2_RavenscimObjectType_enum">
-            <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"Info"</li></ul>
+    <a href="#anyOf_i2_RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+
+
+
+
+
+
+
+<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+
+
+
+
+<div class="enum-value" id="anyOf_i2_RavenscimObjectType_enum">
+                <h4>Must be one of:</h4>
+                <ul class="list-group"><li class="list-group-item enum-item">"Info"</li></ul>
             </div>
         
 
@@ -1242,23 +1362,16 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i2_IdentifiedObjectdescription">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i2_IdentifiedObjectdescription">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i2_IdentifiedObjectdescription"
-                        aria-expanded="" aria-controls="anyOf_i2_IdentifiedObjectdescription" onclick="setAnchor('#anyOf_i2_IdentifiedObjectdescription')"><span class="property-name">IdentifiedObject.description</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i2_IdentifiedObjectdescription"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i2_IdentifiedObjectdescription"
-             data-parent="#accordionanyOf_i2_IdentifiedObjectdescription">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i2_IdentifiedObjectdescription">
+        <h2 class="mb-0">
+            <a href="#anyOf_i2_IdentifiedObjectdescription"><span class="property-name">IdentifiedObject.description</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1267,46 +1380,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a>
+    <a href="#anyOf_i2">Info</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2_IdentifiedObjectdescription" onclick="anchorLink('anyOf_i2_IdentifiedObjectdescription')">IdentifiedObject.description</a></div><h4>description</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
-</span>
+    <a href="#anyOf_i2_IdentifiedObjectdescription">IdentifiedObject.description</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i2_IdentifiedObjectaliasName">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i2_IdentifiedObjectaliasName">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i2_IdentifiedObjectaliasName"
-                        aria-expanded="" aria-controls="anyOf_i2_IdentifiedObjectaliasName" onclick="setAnchor('#anyOf_i2_IdentifiedObjectaliasName')"><span class="property-name">IdentifiedObject.aliasName</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i2_IdentifiedObjectaliasName"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i2_IdentifiedObjectaliasName"
-             data-parent="#accordionanyOf_i2_IdentifiedObjectaliasName">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i2_IdentifiedObjectaliasName">
+        <h2 class="mb-0">
+            <a href="#anyOf_i2_IdentifiedObjectaliasName"><span class="property-name">IdentifiedObject.aliasName</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1315,47 +1432,51 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a>
+    <a href="#anyOf_i2">Info</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2_IdentifiedObjectaliasName" onclick="anchorLink('anyOf_i2_IdentifiedObjectaliasName')">IdentifiedObject.aliasName</a></div><h4>aliasName</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
+    <a href="#anyOf_i2_IdentifiedObjectaliasName">IdentifiedObject.aliasName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
 The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
-</span>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i2_IdentifiedObjectmRID">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i2_IdentifiedObjectmRID">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i2_IdentifiedObjectmRID"
-                        aria-expanded="" aria-controls="anyOf_i2_IdentifiedObjectmRID" onclick="setAnchor('#anyOf_i2_IdentifiedObjectmRID')"><span class="property-name">IdentifiedObject.mRID</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i2_IdentifiedObjectmRID"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i2_IdentifiedObjectmRID"
-             data-parent="#accordionanyOf_i2_IdentifiedObjectmRID">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i2_IdentifiedObjectmRID">
+        <h2 class="mb-0">
+            <a href="#anyOf_i2_IdentifiedObjectmRID"><span class="property-name">IdentifiedObject.mRID</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1364,47 +1485,51 @@ The attribute aliasName is retained because of backwards compatibility between C
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a>
+    <a href="#anyOf_i2">Info</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2_IdentifiedObjectmRID" onclick="anchorLink('anyOf_i2_IdentifiedObjectmRID')">IdentifiedObject.mRID</a></div><h4>mRID</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
+    <a href="#anyOf_i2_IdentifiedObjectmRID">IdentifiedObject.mRID</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
 For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
-</span>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i2_IdentifiedObjectname">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i2_IdentifiedObjectname">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i2_IdentifiedObjectname"
-                        aria-expanded="" aria-controls="anyOf_i2_IdentifiedObjectname" onclick="setAnchor('#anyOf_i2_IdentifiedObjectname')"><span class="property-name">IdentifiedObject.name</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i2_IdentifiedObjectname"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i2_IdentifiedObjectname"
-             data-parent="#accordionanyOf_i2_IdentifiedObjectname">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i2_IdentifiedObjectname">
+        <h2 class="mb-0">
+            <a href="#anyOf_i2_IdentifiedObjectname"><span class="property-name">IdentifiedObject.name</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1413,35 +1538,46 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2" onclick="anchorLink('anyOf_i2')">Info</a>
+    <a href="#anyOf_i2">Info</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i2_IdentifiedObjectname" onclick="anchorLink('anyOf_i2_IdentifiedObjectname')">IdentifiedObject.name</a></div><h4>name</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The name is any free human readable and possibly non unique text naming the object.</p>
-</span>
+    <a href="#anyOf_i2_IdentifiedObjectname">IdentifiedObject.name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The name is any free human readable and possibly non unique text naming the object.</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-        </div><div class="tab-pane fade card-body "
-             id="tab-pane_anyOf_i3" role="tabpanel">
+        </div>
+    </div><div class="card">
+        <h3 class="ml-2 mt-2"><a id="anyOf_i3" href="#anyOf_i3">Debug</a></h3>
+        <div class="card-body">
             
 
     <div class="breadcrumbs">root
@@ -1451,16 +1587,27 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a></div><h4>Debug</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Generalization of Message to communicate additional information for debugging purposes.</p>
-</span>
+    <a href="#anyOf_i3">Debug</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
+
+
+
+
+
+
+
+<p>Generalization of Message to communicate additional information for debugging purposes.</p>
+
+
+
+
+
 
      <span class="badge badge-info no-additional">No Additional Properties</span>
         
@@ -1469,19 +1616,14 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
 
         
-<div class="accordion" id="accordionanyOf_i3_MessageApplication">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i3_MessageApplication">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i3_MessageApplication"
-                        aria-expanded="" aria-controls="anyOf_i3_MessageApplication" onclick="setAnchor('#anyOf_i3_MessageApplication')"><span class="property-name">Message.Application</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i3_MessageApplication"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i3_MessageApplication"
-             data-parent="#accordionanyOf_i3_MessageApplication">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i3_MessageApplication">
+        <h2 class="mb-0">
+            <a href="#anyOf_i3_MessageApplication"><span class="property-name">Message.Application</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1490,46 +1632,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a>
+    <a href="#anyOf_i3">Debug</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3_MessageApplication" onclick="anchorLink('anyOf_i3_MessageApplication')">Message.Application</a></div><h4>Application_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Pointer to Application object</p>
-</span><span class="pattern-value" id="anyOf_i3_MessageApplication_pattern">Must match regular expression: <code>^Application::&#39;(.+)&#39;$</code></span>
+    <a href="#anyOf_i3_MessageApplication">Message.Application</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Pointer to Application object</p>
+
+
+
+
+<span class="pattern-value" id="anyOf_i3_MessageApplication_pattern">Must match regular expression: <code>^Application::&#39;(.+)&#39;$</code></span>
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i3_MessageAlgorithm">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i3_MessageAlgorithm">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i3_MessageAlgorithm"
-                        aria-expanded="" aria-controls="anyOf_i3_MessageAlgorithm" onclick="setAnchor('#anyOf_i3_MessageAlgorithm')"><span class="property-name">Message.Algorithm</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i3_MessageAlgorithm"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i3_MessageAlgorithm"
-             data-parent="#accordionanyOf_i3_MessageAlgorithm">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i3_MessageAlgorithm">
+        <h2 class="mb-0">
+            <a href="#anyOf_i3_MessageAlgorithm"><span class="property-name">Message.Algorithm</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1538,46 +1684,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a>
+    <a href="#anyOf_i3">Debug</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3_MessageAlgorithm" onclick="anchorLink('anyOf_i3_MessageAlgorithm')">Message.Algorithm</a></div><h4>Algorithm_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Pointer to Algorithm object</p>
-</span><span class="pattern-value" id="anyOf_i3_MessageAlgorithm_pattern">Must match regular expression: <code>^Algorithm::&#39;(.+)&#39;$</code></span>
+    <a href="#anyOf_i3_MessageAlgorithm">Message.Algorithm</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Pointer to Algorithm object</p>
+
+
+
+
+<span class="pattern-value" id="anyOf_i3_MessageAlgorithm_pattern">Must match regular expression: <code>^Algorithm::&#39;(.+)&#39;$</code></span>
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i3_Messagemessage">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i3_Messagemessage">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i3_Messagemessage"
-                        aria-expanded="" aria-controls="anyOf_i3_Messagemessage" onclick="setAnchor('#anyOf_i3_Messagemessage')"><span class="property-name">Message.message</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i3_Messagemessage"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i3_Messagemessage"
-             data-parent="#accordionanyOf_i3_Messagemessage">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i3_Messagemessage">
+        <h2 class="mb-0">
+            <a href="#anyOf_i3_Messagemessage"><span class="property-name">Message.message</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1586,46 +1736,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a>
+    <a href="#anyOf_i3">Debug</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3_Messagemessage" onclick="anchorLink('anyOf_i3_Messagemessage')">Message.message</a></div><h4>message</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>nan</p>
-</span>
+    <a href="#anyOf_i3_Messagemessage">Message.message</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>nan</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i3_Messagecode">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i3_Messagecode">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i3_Messagecode"
-                        aria-expanded="" aria-controls="anyOf_i3_Messagecode" onclick="setAnchor('#anyOf_i3_Messagecode')"><span class="property-name">Message.code</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i3_Messagecode"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i3_Messagecode"
-             data-parent="#accordionanyOf_i3_Messagecode">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i3_Messagecode">
+        <h2 class="mb-0">
+            <a href="#anyOf_i3_Messagecode"><span class="property-name">Message.code</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1634,46 +1788,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a>
+    <a href="#anyOf_i3">Debug</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3_Messagecode" onclick="anchorLink('anyOf_i3_Messagecode')">Message.code</a></div><h4>code</h4><span class="badge badge-dark value-type">Type: integer</span><br/>
-<span class="description"><p>nan</p>
-</span>
+    <a href="#anyOf_i3_Messagecode">Message.code</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
+
+
+
+
+
+
+<p>nan</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i3_RavenscimObjectType">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i3_RavenscimObjectType">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i3_RavenscimObjectType"
-                        aria-expanded="" aria-controls="anyOf_i3_RavenscimObjectType" onclick="setAnchor('#anyOf_i3_RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i3_RavenscimObjectType"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i3_RavenscimObjectType"
-             data-parent="#accordionanyOf_i3_RavenscimObjectType">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i3_RavenscimObjectType">
+        <h2 class="mb-0">
+            <a href="#anyOf_i3_RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1682,25 +1840,36 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a>
+    <a href="#anyOf_i3">Debug</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3_RavenscimObjectType" onclick="anchorLink('anyOf_i3_RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-</span><div class="enum-value" id="anyOf_i3_RavenscimObjectType_enum">
-            <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"Debug"</li></ul>
+    <a href="#anyOf_i3_RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+
+
+
+
+
+
+
+<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+
+
+
+
+<div class="enum-value" id="anyOf_i3_RavenscimObjectType_enum">
+                <h4>Must be one of:</h4>
+                <ul class="list-group"><li class="list-group-item enum-item">"Debug"</li></ul>
             </div>
         
 
@@ -1708,23 +1877,16 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i3_IdentifiedObjectdescription">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i3_IdentifiedObjectdescription">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i3_IdentifiedObjectdescription"
-                        aria-expanded="" aria-controls="anyOf_i3_IdentifiedObjectdescription" onclick="setAnchor('#anyOf_i3_IdentifiedObjectdescription')"><span class="property-name">IdentifiedObject.description</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i3_IdentifiedObjectdescription"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i3_IdentifiedObjectdescription"
-             data-parent="#accordionanyOf_i3_IdentifiedObjectdescription">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i3_IdentifiedObjectdescription">
+        <h2 class="mb-0">
+            <a href="#anyOf_i3_IdentifiedObjectdescription"><span class="property-name">IdentifiedObject.description</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1733,46 +1895,50 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a>
+    <a href="#anyOf_i3">Debug</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3_IdentifiedObjectdescription" onclick="anchorLink('anyOf_i3_IdentifiedObjectdescription')">IdentifiedObject.description</a></div><h4>description</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
-</span>
+    <a href="#anyOf_i3_IdentifiedObjectdescription">IdentifiedObject.description</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i3_IdentifiedObjectaliasName">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i3_IdentifiedObjectaliasName">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i3_IdentifiedObjectaliasName"
-                        aria-expanded="" aria-controls="anyOf_i3_IdentifiedObjectaliasName" onclick="setAnchor('#anyOf_i3_IdentifiedObjectaliasName')"><span class="property-name">IdentifiedObject.aliasName</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i3_IdentifiedObjectaliasName"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i3_IdentifiedObjectaliasName"
-             data-parent="#accordionanyOf_i3_IdentifiedObjectaliasName">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i3_IdentifiedObjectaliasName">
+        <h2 class="mb-0">
+            <a href="#anyOf_i3_IdentifiedObjectaliasName"><span class="property-name">IdentifiedObject.aliasName</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1781,47 +1947,51 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a>
+    <a href="#anyOf_i3">Debug</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3_IdentifiedObjectaliasName" onclick="anchorLink('anyOf_i3_IdentifiedObjectaliasName')">IdentifiedObject.aliasName</a></div><h4>aliasName</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
+    <a href="#anyOf_i3_IdentifiedObjectaliasName">IdentifiedObject.aliasName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
 The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
-</span>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i3_IdentifiedObjectmRID">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i3_IdentifiedObjectmRID">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i3_IdentifiedObjectmRID"
-                        aria-expanded="" aria-controls="anyOf_i3_IdentifiedObjectmRID" onclick="setAnchor('#anyOf_i3_IdentifiedObjectmRID')"><span class="property-name">IdentifiedObject.mRID</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i3_IdentifiedObjectmRID"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i3_IdentifiedObjectmRID"
-             data-parent="#accordionanyOf_i3_IdentifiedObjectmRID">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i3_IdentifiedObjectmRID">
+        <h2 class="mb-0">
+            <a href="#anyOf_i3_IdentifiedObjectmRID"><span class="property-name">IdentifiedObject.mRID</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1830,47 +2000,51 @@ The attribute aliasName is retained because of backwards compatibility between C
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a>
+    <a href="#anyOf_i3">Debug</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3_IdentifiedObjectmRID" onclick="anchorLink('anyOf_i3_IdentifiedObjectmRID')">IdentifiedObject.mRID</a></div><h4>mRID</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
+    <a href="#anyOf_i3_IdentifiedObjectmRID">IdentifiedObject.mRID</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
 For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
-</span>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-<div class="accordion" id="accordionanyOf_i3_IdentifiedObjectname">
-    <div class="card">
-        <div class="card-header" id="headinganyOf_i3_IdentifiedObjectname">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#anyOf_i3_IdentifiedObjectname"
-                        aria-expanded="" aria-controls="anyOf_i3_IdentifiedObjectname" onclick="setAnchor('#anyOf_i3_IdentifiedObjectname')"><span class="property-name">IdentifiedObject.name</span></button>
-            </h2>
-        </div>
 
-        <div id="anyOf_i3_IdentifiedObjectname"
-             class="collapse property-definition-div" aria-labelledby="headinganyOf_i3_IdentifiedObjectname"
-             data-parent="#accordionanyOf_i3_IdentifiedObjectname">
-            <div class="card-body pl-5">
+<div class="card">
+    <div class="card-header" id="anyOf_i3_IdentifiedObjectname">
+        <h2 class="mb-0">
+            <a href="#anyOf_i3_IdentifiedObjectname"><span class="property-name">IdentifiedObject.name</span></a></h2>
+    </div>
+
+    <div class="card-body property-definition-div">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1879,34 +2053,44 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf" onclick="anchorLink('anyOf')">anyOf</a>
+    <a href="#anyOf">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3" onclick="anchorLink('anyOf_i3')">Debug</a>
+    <a href="#anyOf_i3">Debug</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#anyOf_i3_IdentifiedObjectname" onclick="anchorLink('anyOf_i3_IdentifiedObjectname')">IdentifiedObject.name</a></div><h4>name</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The name is any free human readable and possibly non unique text naming the object.</p>
-</span>
+    <a href="#anyOf_i3_IdentifiedObjectname">IdentifiedObject.name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+
+
+
+
+
+
+
+<p>The name is any free human readable and possibly non unique text naming the object.</p>
+
+
+
+
+
         
 
         
         
 
         
-            </div>
-        </div>
     </div>
 </div>
-        </div></div></div>
+        </div>
+    </div></div>
         
 
         
@@ -1915,6 +2099,6 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-09-04 at 21:01:22 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-12-16 at 18:14:06 +0000</p>
     </footer></body>
 </html>

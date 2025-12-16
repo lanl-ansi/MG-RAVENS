@@ -7,7 +7,6 @@ body {
 
 .btn.btn-link {
     font-size: 18px;
-    user-select: text;
 }
 
 .jsfh-animated-property {
@@ -60,22 +59,19 @@ body {
     content: '- Read Less';
 }
 
+.property-name {
+    font-size: 1rem;
+}
+
 .badge {
     font-size: 100%;
 	margin-bottom: 0.5rem;
     margin-top: 0.5rem;
 }
 
-.badge.value-type {
+.badge.value-type,.badge.no-additional,.badge.default-value {
     font-size: 120%;
     margin-right: 5px;
-    margin-bottom: 10px;
-}
-
-
-.badge.default-value {
-    font-size: 120%;
-    margin-left: 5px;
     margin-bottom: 10px;
 }
 
@@ -83,8 +79,8 @@ body {
     display: inline-block;
 }
 
-.badge.required-property,.badge.deprecated-property,.badge.pattern-property,.badge.no-additional {
-    font-size: 100%;
+.badge.required-property,.badge.deprecated-property,.badge.pattern-property {
+    font-size: 60%;
     margin-left: 10px;
 }
 

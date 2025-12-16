@@ -4,33 +4,33 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Overpass:300,400,600,800">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../../_static/schema/schema_doc.css">
-    <script src="https://use.fontawesome.com/facf9fa52c.js"></script>
-    <script src="../../_static/schema/schema_doc.min.js"></script>
     <meta charset="utf-8"/>
         
     
     <title>PhaseCode</title>
 </head>
-<body onload="anchorOnLoad();" id="root">
+<body id="root"><h1>PhaseCode</h1>
 
-    <div class="breadcrumbs"></div> <h1>PhaseCode</h1><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-<div class="description collapse" id="collapseDescription_root">
-            <p>An unordered enumeration of phase identifiers.  Allows designation of phases for both transmission and distribution equipment, circuits and loads.   The enumeration, by itself, does not describe how the phases are connected together or connected to ground.  Ground is not explicitly denoted as a phase.<br />
+    <div class="breadcrumbs"></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+
+
+
+
+
+
+
+<p>An unordered enumeration of phase identifiers.  Allows designation of phases for both transmission and distribution equipment, circuits and loads.   The enumeration, by itself, does not describe how the phases are connected together or connected to ground.  Ground is not explicitly denoted as a phase.<br />
 Residential and small commercial loads are often served from single-phase, or split-phase, secondary circuits. For the example of s12N, phases 1 and 2 refer to hot wires that are 180 degrees out of phase, while N refers to the neutral wire. Through single-phase transformer connections, these secondary circuits may be served from one or two of the primary phases A, B, and C. For three-phase loads, use the A, B, C phase codes instead of s12N.<br />
 The integer values are from IEC 61968-9 to support revenue metering applications.</p>
 
-        </div>
-        <div>
-            <a class="collapse-description-link collapsed" data-toggle="collapse" href="#collapseDescription_root"
-               aria-expanded="false" aria-controls="collapseDescriptionroot"
-            ></a>
-        </div><div class="enum-value" id="enum">
-            <h4>Must be one of:</h4>
-            <ul class="list-group"><li class="list-group-item enum-item">"PhaseCode.ACN"</li><li class="list-group-item enum-item">"PhaseCode.s2N"</li><li class="list-group-item enum-item">"PhaseCode.N"</li><li class="list-group-item enum-item">"PhaseCode.X"</li><li class="list-group-item enum-item">"PhaseCode.BN"</li><li class="list-group-item enum-item">"PhaseCode.s12N"</li><li class="list-group-item enum-item">"PhaseCode.none"</li><li class="list-group-item enum-item">"PhaseCode.s1"</li><li class="list-group-item enum-item">"PhaseCode.AC"</li><li class="list-group-item enum-item">"PhaseCode.ABC"</li><li class="list-group-item enum-item">"PhaseCode.AB"</li><li class="list-group-item enum-item">"PhaseCode.s1N"</li><li class="list-group-item enum-item">"PhaseCode.BC"</li><li class="list-group-item enum-item">"PhaseCode.XY"</li><li class="list-group-item enum-item">"PhaseCode.ABCN"</li><li class="list-group-item enum-item">"PhaseCode.C"</li><li class="list-group-item enum-item">"PhaseCode.s12"</li><li class="list-group-item enum-item">"PhaseCode.AN"</li><li class="list-group-item enum-item">"PhaseCode.XYN"</li><li class="list-group-item enum-item">"PhaseCode.ABN"</li><li class="list-group-item enum-item">"PhaseCode.XN"</li><li class="list-group-item enum-item">"PhaseCode.s2"</li><li class="list-group-item enum-item">"PhaseCode.CN"</li><li class="list-group-item enum-item">"PhaseCode.B"</li><li class="list-group-item enum-item">"PhaseCode.A"</li><li class="list-group-item enum-item">"PhaseCode.BCN"</li></ul>
+
+
+
+<div class="enum-value" id="enum">
+                <h4>Must be one of:</h4>
+                <ul class="list-group"><li class="list-group-item enum-item">"PhaseCode.ACN"</li><li class="list-group-item enum-item">"PhaseCode.s2N"</li><li class="list-group-item enum-item">"PhaseCode.N"</li><li class="list-group-item enum-item">"PhaseCode.X"</li><li class="list-group-item enum-item">"PhaseCode.BN"</li><li class="list-group-item enum-item">"PhaseCode.s12N"</li><li class="list-group-item enum-item">"PhaseCode.none"</li><li class="list-group-item enum-item">"PhaseCode.s1"</li><li class="list-group-item enum-item">"PhaseCode.AC"</li><li class="list-group-item enum-item">"PhaseCode.ABC"</li><li class="list-group-item enum-item">"PhaseCode.AB"</li><li class="list-group-item enum-item">"PhaseCode.s1N"</li><li class="list-group-item enum-item">"PhaseCode.BC"</li><li class="list-group-item enum-item">"PhaseCode.XY"</li><li class="list-group-item enum-item">"PhaseCode.ABCN"</li><li class="list-group-item enum-item">"PhaseCode.C"</li><li class="list-group-item enum-item">"PhaseCode.s12"</li><li class="list-group-item enum-item">"PhaseCode.AN"</li><li class="list-group-item enum-item">"PhaseCode.XYN"</li><li class="list-group-item enum-item">"PhaseCode.ABN"</li><li class="list-group-item enum-item">"PhaseCode.XN"</li><li class="list-group-item enum-item">"PhaseCode.s2"</li><li class="list-group-item enum-item">"PhaseCode.CN"</li><li class="list-group-item enum-item">"PhaseCode.B"</li><li class="list-group-item enum-item">"PhaseCode.A"</li><li class="list-group-item enum-item">"PhaseCode.BCN"</li></ul>
             </div>
         
 
@@ -40,6 +40,6 @@ The integer values are from IEC 61968-9 to support revenue metering applications
         
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-09-04 at 21:00:05 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-12-16 at 18:13:52 +0000</p>
     </footer></body>
 </html>
