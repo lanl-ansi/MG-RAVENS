@@ -19,6 +19,12 @@
       "description": "Pointer to SwitchingAction object",
       "pattern": "^SwitchingAction::'(.+)'$"
     },
+    "Equipment.OperationalLimitSet": {
+      "type": "string",
+      "title": "OperationalLimitSet_Pointer",
+      "description": "Pointer to OperationalLimitSet object",
+      "pattern": "^OperationalLimitSet::'(.+)'$"
+    },
     "ConductingEquipment.Terminals": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
     },

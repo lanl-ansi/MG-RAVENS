@@ -2,6 +2,12 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "Equipment.OperationalLimitSet": {
+      "type": "string",
+      "title": "OperationalLimitSet_Pointer",
+      "description": "Pointer to OperationalLimitSet object",
+      "pattern": "^OperationalLimitSet::'(.+)'$"
+    },
     "EnergyConnection.PhaseConnectionDetail": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectionDetail.json"
     },

@@ -7,6 +7,12 @@
       "description": "Pointer to BaseVoltage object",
       "pattern": "^BaseVoltage::'(.+)'$"
     },
+    "Equipment.OperationalLimitSet": {
+      "type": "string",
+      "title": "OperationalLimitSet_Pointer",
+      "description": "Pointer to OperationalLimitSet object",
+      "pattern": "^OperationalLimitSet::'(.+)'$"
+    },
     "TransformerEnd.RatioTapChanger": {
       "type": "string",
       "title": "RatioTapChanger_Pointer",

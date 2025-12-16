@@ -47,9 +47,6 @@
     "Location": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LocationContainer_Container.json"
     },
-    "DynamicsFunctionBlock": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DynamicsFunctionBlockContainer_Container.json"
-    },
     "Document": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Document.json"
     },
@@ -68,7 +65,7 @@
     "ProposedSiteLocation": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocationContainer_Container.json"
     },
-    "FossilFuelCosts": {
+    "FossilFuel": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FossilFuelContainer_Container.json"
     },
     "CommunityFacility": {

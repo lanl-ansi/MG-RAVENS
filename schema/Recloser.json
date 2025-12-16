@@ -14,6 +14,12 @@
       "description": "Pointer to SwitchingAction object",
       "pattern": "^SwitchingAction::'(.+)'$"
     },
+    "Equipment.OperationalLimitSet": {
+      "type": "string",
+      "title": "OperationalLimitSet_Pointer",
+      "description": "Pointer to OperationalLimitSet object",
+      "pattern": "^OperationalLimitSet::'(.+)'$"
+    },
     "Switch.SwitchAction": {
       "type": "string",
       "title": "SwitchingAction_Pointer",

@@ -1,6 +1,12 @@
 {
   "type": "object",
   "properties": {
+    "Equipment.OperationalLimitSet": {
+      "type": "string",
+      "title": "OperationalLimitSet_Pointer",
+      "description": "Pointer to OperationalLimitSet object",
+      "pattern": "^OperationalLimitSet::'(.+)'$"
+    },
     "VsConverter": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VsConverterContainer_Container.json"
     },

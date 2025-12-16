@@ -4,6 +4,12 @@
   "title": "EnergySource",
   "additionalProperties": false,
   "properties": {
+    "Equipment.OperationalLimitSet": {
+      "type": "string",
+      "title": "OperationalLimitSet_Pointer",
+      "description": "Pointer to OperationalLimitSet object",
+      "pattern": "^OperationalLimitSet::'(.+)'$"
+    },
     "EnergySource.CostFunction": {
       "type": "string",
       "title": "ProducerCostFunction_Pointer",
