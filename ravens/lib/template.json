@@ -6888,7 +6888,6 @@
     },
     "FossilFuel": {
       "$objectType": "object",
-      "type": "object",
       "$objectId": "FossilFuel",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
