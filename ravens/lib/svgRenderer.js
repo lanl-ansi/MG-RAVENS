@@ -545,20 +545,29 @@ function createUmlDiagram(svg, boxesData, linksData) {
 }
 
 function createStandaloneUmlSvg(data) {
-  const { window } = new JSDOM(`<!DOCTYPE html><body></body>`);
-
-  Object.defineProperty(window, "navigator", {
-    value: {
-      maxTouchPoints: 1,
-      userAgent: "node.js",
-    },
-    writable: true,
-  });
-
+  // ---- patched: safe globals for Node 20+ ----
+  const dom = new JSDOM(`<!DOCTYPE html><html><body></body></html>`, { pretendToBeVisual: true });
+  const { window } = dom;
   const { document } = window;
-  global.document = document;
-  global.window = window;
-  global.navigator = window.navigator;
+
+  // expose window/document
+  globalThis.window = window;
+  globalThis.document = document;
+
+  // Node 20+ already has a read-only globalThis.navigator; only define if missing
+  if (!("navigator" in globalThis)) {
+    Object.defineProperty(globalThis, "navigator", {
+      get: () => window.navigator,
+      configurable: true
+    });
+  }
+
+  // (optional) RAF polyfill for libs expecting it
+  if (!globalThis.requestAnimationFrame) {
+    globalThis.requestAnimationFrame = (cb) => setTimeout(() => cb(Date.now()), 16);
+    globalThis.cancelAnimationFrame = (id) => clearTimeout(id);
+  }
+  // -------------------------------------------
 
   const svg = d3
     .select(document.body)
@@ -579,14 +588,12 @@ function createStandaloneUmlSvg(data) {
       var script = document.createElementNS("http://www.w3.org/2000/svg", "script");
       script.setAttribute("href", "https://d3js.org/d3.v7.min.js");
       script.addEventListener("load", function() {
-        // D3.js is loaded, now execute the custom script
         function embedUmlScript() {
           const svg = d3.select("svg");
           const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", function (event) {
             d3.select("g.zoom-group").attr("transform", event.transform);
           });
           svg.call(zoom);
-
         }
         embedUmlScript();
       });
@@ -594,7 +601,6 @@ function createStandaloneUmlSvg(data) {
     ]]>
   </script>`;
 
-  // Inject the script right before the closing </svg> tag
   svgString = svgString.replace("</svg>", `${d3Script}</svg>`);
 
   const fullSvgString = `<?xml version="1.0" encoding="UTF-8"?>\n${svgString}`;
@@ -607,8 +613,16 @@ function createStandaloneUmlSvg(data) {
 }
 
 const args = process.argv.slice(2);
-const jsonString = args[0];
+const arg0 = args[0] || "";
 
-const jsObject = JSON.parse(jsonString);
+let data;
+try {
+  // first try to parse as inline JSON
+  data = JSON.parse(arg0);
+} catch (_) {
+  // fallback: treat arg as a path to a JSON file
+  const txt = fs.readFileSync(arg0, "utf-8").replace(/\uFEFF/g, "");
+  data = JSON.parse(txt);
+}
 
-createStandaloneUmlSvg(jsObject);
+createStandaloneUmlSvg(data);
