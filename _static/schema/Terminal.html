@@ -4,43 +4,41 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Overpass:300,400,600,800">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../../_static/schema/schema_doc.css">
+    <script src="https://use.fontawesome.com/facf9fa52c.js"></script>
+    <script src="../../_static/schema/schema_doc.min.js"></script>
     <meta charset="utf-8"/>
         
     
     <title>Terminal</title>
 </head>
-<body id="root"><h1>Terminal</h1>
+<body onload="anchorOnLoad();" id="root">
 
-    <div class="breadcrumbs"></div><span class="badge badge-dark value-type">Type: object</span><br/>
-
-
-
-
-
-
-
-<p>An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</p>
-
-
-
-
- <span class="badge badge-info no-additional">No Additional Properties</span>
+    <div class="breadcrumbs"></div> <h1>Terminal</h1><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</p>
+</span> <span class="badge badge-info no-additional">No Additional Properties</span>
         
 
         
         
 
         
+<div class="accordion" id="accordionTerminalConnectivityNode">
+    <div class="card">
+        <div class="card-header" id="headingTerminalConnectivityNode">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalConnectivityNode"
+                        aria-expanded="" aria-controls="TerminalConnectivityNode" onclick="setAnchor('#TerminalConnectivityNode')"><span class="property-name">Terminal.ConnectivityNode</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalConnectivityNode">
-        <h2 class="mb-0">
-            <a href="#TerminalConnectivityNode"><span class="property-name">Terminal.ConnectivityNode</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalConnectivityNode"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalConnectivityNode"
+             data-parent="#accordionTerminalConnectivityNode">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -49,36 +47,32 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalConnectivityNode">Terminal.ConnectivityNode</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Pointer to ConnectivityNode object</p>
-
-
-
-
-<span class="pattern-value" id="TerminalConnectivityNode_pattern">Must match regular expression: <code>^ConnectivityNode::&#39;(.+)&#39;$</code></span>
+    <a href="#TerminalConnectivityNode" onclick="anchorLink('TerminalConnectivityNode')">Terminal.ConnectivityNode</a></div><h4>ConnectivityNode_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Pointer to ConnectivityNode object</p>
+</span><span class="pattern-value" id="TerminalConnectivityNode_pattern">Must match regular expression: <code>^ConnectivityNode::&#39;(.+)&#39;$</code></span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionTerminalSvPowerFlow">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow" onclick="setAnchor('#TerminalSvPowerFlow')"><span class="property-name">Terminal.SvPowerFlow</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow"><span class="property-name">Terminal.SvPowerFlow</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow"
+             data-parent="#accordionTerminalSvPowerFlow">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -87,20 +81,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a></div><span class="badge badge-dark value-type">Type: array</span><br/>
-
-
-
-
-
-
-
-<p>Array of SvPowerFlow objects</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a></div><h4>SvPowerFlow_Array</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+<span class="description"><p>Array of SvPowerFlow objects</p>
+</span>
 
     
         
@@ -120,27 +103,16 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
-
-
-
-
-
-
-
-<p>State variable for power flow. Load convention is used for flow direction. This means flow out from the TopologicalNode into the equipment is positive.</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a></div><h4>SvPowerFlow</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>State variable for power flow. Load convention is used for flow direction. This means flow out from the TopologicalNode into the equipment is positive.</p>
+</span>
 
      <span class="badge badge-info no-additional">No Additional Properties</span>
         
@@ -149,14 +121,19 @@
         
 
         
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_SvPowerFlowp">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_SvPowerFlowp">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_SvPowerFlowp"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_SvPowerFlowp" onclick="setAnchor('#TerminalSvPowerFlow_items_SvPowerFlowp')"><span class="property-name">SvPowerFlow.p</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_SvPowerFlowp">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_SvPowerFlowp"><span class="property-name">SvPowerFlow.p</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_SvPowerFlowp"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_SvPowerFlowp"
+             data-parent="#accordionTerminalSvPowerFlow_items_SvPowerFlowp">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -165,34 +142,23 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp">SvPowerFlow.p</a></div><span class="badge badge-dark value-type">Type: object or number</span><br/>
-
-
-
-
-
-
-
-<p>The active power flow. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowp')">SvPowerFlow.p</a></div><h4>p</h4><span class="badge badge-dark value-type">Type: object or number</span><br/>
+<span class="description"><p>The active power flow. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.</p>
+</span>
 
      <span class="badge badge-info no-additional">No Additional Properties</span>
         
@@ -201,14 +167,19 @@
         
 
         
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_SvPowerFlowp_value">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_SvPowerFlowp_value">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_SvPowerFlowp_value"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_SvPowerFlowp_value" onclick="setAnchor('#TerminalSvPowerFlow_items_SvPowerFlowp_value')"><span class="property-name">value</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_SvPowerFlowp_value">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_SvPowerFlowp_value"><span class="property-name">value</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_SvPowerFlowp_value"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_SvPowerFlowp_value"
+             data-parent="#accordionTerminalSvPowerFlow_items_SvPowerFlowp_value">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -217,57 +188,53 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp">SvPowerFlow.p</a>
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowp')">SvPowerFlow.p</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp_value">value</a></div><span class="badge badge-dark value-type">Type: number</span> <span class="badge badge-success default-value">Default: null</span><br/>
-
-
-
-
-
-
-
-<p>nan</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp_value" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowp_value')">value</a></div><span class="badge badge-dark value-type">Type: number</span> <span class="badge badge-success default-value">Default: null</span><br/>
+<span class="description"><p>nan</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_SvPowerFlowp_unit">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_SvPowerFlowp_unit">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_SvPowerFlowp_unit"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_SvPowerFlowp_unit" onclick="setAnchor('#TerminalSvPowerFlow_items_SvPowerFlowp_unit')"><span class="property-name">unit</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_SvPowerFlowp_unit">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_SvPowerFlowp_unit"><span class="property-name">unit</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_SvPowerFlowp_unit"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_SvPowerFlowp_unit"
+             data-parent="#accordionTerminalSvPowerFlow_items_SvPowerFlowp_unit">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -276,45 +243,34 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp">SvPowerFlow.p</a>
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowp')">SvPowerFlow.p</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp_unit">unit</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span> <span class="badge badge-success default-value">Default: "W"</span><br/>
-
-
-
-
-
-
-
-<p>nan</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp_unit" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowp_unit')">unit</a></div><h4>UnitSymbol</h4><span class="badge badge-dark value-type">Type: enum (of string)</span> <span class="badge badge-success default-value">Default: "W"</span><br/>
+<span class="description"><p>nan</p>
+</span>
 
     <div class="enum-value" id="TerminalSvPowerFlow_items_SvPowerFlowp_unit_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
             </div>
         
 
@@ -322,16 +278,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_SvPowerFlowp_multiplier">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_SvPowerFlowp_multiplier">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_SvPowerFlowp_multiplier"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_SvPowerFlowp_multiplier" onclick="setAnchor('#TerminalSvPowerFlow_items_SvPowerFlowp_multiplier')"><span class="property-name">multiplier</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_SvPowerFlowp_multiplier">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_SvPowerFlowp_multiplier"><span class="property-name">multiplier</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_SvPowerFlowp_multiplier"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_SvPowerFlowp_multiplier"
+             data-parent="#accordionTerminalSvPowerFlow_items_SvPowerFlowp_multiplier">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -340,45 +303,34 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp">SvPowerFlow.p</a>
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowp')">SvPowerFlow.p</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp_multiplier">multiplier</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span> <span class="badge badge-success default-value">Default: "none"</span><br/>
-
-
-
-
-
-
-
-<p>nan</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowp_multiplier" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowp_multiplier')">multiplier</a></div><h4>UnitMultiplier</h4><span class="badge badge-dark value-type">Type: enum (of string)</span> <span class="badge badge-success default-value">Default: "none"</span><br/>
+<span class="description"><p>nan</p>
+</span>
 
     <div class="enum-value" id="TerminalSvPowerFlow_items_SvPowerFlowp_multiplier_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
             </div>
         
 
@@ -386,18 +338,27 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_SvPowerFlowphase">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_SvPowerFlowphase">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_SvPowerFlowphase"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_SvPowerFlowphase" onclick="setAnchor('#TerminalSvPowerFlow_items_SvPowerFlowphase')"><span class="property-name">SvPowerFlow.phase</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_SvPowerFlowphase">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_SvPowerFlowphase"><span class="property-name">SvPowerFlow.phase</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_SvPowerFlowphase"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_SvPowerFlowphase"
+             data-parent="#accordionTerminalSvPowerFlow_items_SvPowerFlowphase">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -406,38 +367,27 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowphase">SvPowerFlow.phase</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>The individual phase of the flow.   If unspecified, then assumed to be balanced among phases.</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowphase" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowphase')">SvPowerFlow.phase</a></div><h4>phase</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>The individual phase of the flow.   If unspecified, then assumed to be balanced among phases.</p>
+</span>
 
     <div class="enum-value" id="TerminalSvPowerFlow_items_SvPowerFlowphase_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"SinglePhaseKind.B"</li><li class="list-group-item enum-item">"SinglePhaseKind.N"</li><li class="list-group-item enum-item">"SinglePhaseKind.C"</li><li class="list-group-item enum-item">"SinglePhaseKind.s2"</li><li class="list-group-item enum-item">"SinglePhaseKind.A"</li><li class="list-group-item enum-item">"SinglePhaseKind.s1"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"SinglePhaseKind.B"</li><li class="list-group-item enum-item">"SinglePhaseKind.N"</li><li class="list-group-item enum-item">"SinglePhaseKind.C"</li><li class="list-group-item enum-item">"SinglePhaseKind.s2"</li><li class="list-group-item enum-item">"SinglePhaseKind.A"</li><li class="list-group-item enum-item">"SinglePhaseKind.s1"</li></ul>
             </div>
         
 
@@ -445,16 +395,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_SvPowerFlowq">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_SvPowerFlowq">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_SvPowerFlowq"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_SvPowerFlowq" onclick="setAnchor('#TerminalSvPowerFlow_items_SvPowerFlowq')"><span class="property-name">SvPowerFlow.q</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_SvPowerFlowq">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_SvPowerFlowq"><span class="property-name">SvPowerFlow.q</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_SvPowerFlowq"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_SvPowerFlowq"
+             data-parent="#accordionTerminalSvPowerFlow_items_SvPowerFlowq">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -463,34 +420,23 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq">SvPowerFlow.q</a></div><span class="badge badge-dark value-type">Type: object or number</span><br/>
-
-
-
-
-
-
-
-<p>The reactive power flow. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowq')">SvPowerFlow.q</a></div><h4>q</h4><span class="badge badge-dark value-type">Type: object or number</span><br/>
+<span class="description"><p>The reactive power flow. Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.</p>
+</span>
 
      <span class="badge badge-info no-additional">No Additional Properties</span>
         
@@ -499,14 +445,19 @@
         
 
         
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_SvPowerFlowq_multiplier">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_SvPowerFlowq_multiplier">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_SvPowerFlowq_multiplier"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_SvPowerFlowq_multiplier" onclick="setAnchor('#TerminalSvPowerFlow_items_SvPowerFlowq_multiplier')"><span class="property-name">multiplier</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_SvPowerFlowq_multiplier">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_SvPowerFlowq_multiplier"><span class="property-name">multiplier</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_SvPowerFlowq_multiplier"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_SvPowerFlowq_multiplier"
+             data-parent="#accordionTerminalSvPowerFlow_items_SvPowerFlowq_multiplier">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -515,45 +466,34 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq">SvPowerFlow.q</a>
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowq')">SvPowerFlow.q</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq_multiplier">multiplier</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span> <span class="badge badge-success default-value">Default: "none"</span><br/>
-
-
-
-
-
-
-
-<p>nan</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq_multiplier" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowq_multiplier')">multiplier</a></div><h4>UnitMultiplier</h4><span class="badge badge-dark value-type">Type: enum (of string)</span> <span class="badge badge-success default-value">Default: "none"</span><br/>
+<span class="description"><p>nan</p>
+</span>
 
     <div class="enum-value" id="TerminalSvPowerFlow_items_SvPowerFlowp_multiplier_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
             </div>
         
 
@@ -561,16 +501,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_SvPowerFlowq_value">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_SvPowerFlowq_value">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_SvPowerFlowq_value"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_SvPowerFlowq_value" onclick="setAnchor('#TerminalSvPowerFlow_items_SvPowerFlowq_value')"><span class="property-name">value</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_SvPowerFlowq_value">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_SvPowerFlowq_value"><span class="property-name">value</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_SvPowerFlowq_value"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_SvPowerFlowq_value"
+             data-parent="#accordionTerminalSvPowerFlow_items_SvPowerFlowq_value">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -579,57 +526,53 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq">SvPowerFlow.q</a>
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowq')">SvPowerFlow.q</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq_value">value</a></div><span class="badge badge-dark value-type">Type: number</span> <span class="badge badge-success default-value">Default: null</span><br/>
-
-
-
-
-
-
-
-<p>nan</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq_value" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowq_value')">value</a></div><span class="badge badge-dark value-type">Type: number</span> <span class="badge badge-success default-value">Default: null</span><br/>
+<span class="description"><p>nan</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_SvPowerFlowq_unit">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_SvPowerFlowq_unit">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_SvPowerFlowq_unit"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_SvPowerFlowq_unit" onclick="setAnchor('#TerminalSvPowerFlow_items_SvPowerFlowq_unit')"><span class="property-name">unit</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_SvPowerFlowq_unit">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_SvPowerFlowq_unit"><span class="property-name">unit</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_SvPowerFlowq_unit"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_SvPowerFlowq_unit"
+             data-parent="#accordionTerminalSvPowerFlow_items_SvPowerFlowq_unit">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -638,45 +581,34 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq">SvPowerFlow.q</a>
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowq')">SvPowerFlow.q</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq_unit">unit</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span> <span class="badge badge-success default-value">Default: "VAr"</span><br/>
-
-
-
-
-
-
-
-<p>nan</p>
-
-
-
-
-
+    <a href="#TerminalSvPowerFlow_items_SvPowerFlowq_unit" onclick="anchorLink('TerminalSvPowerFlow_items_SvPowerFlowq_unit')">unit</a></div><h4>UnitSymbol</h4><span class="badge badge-dark value-type">Type: enum (of string)</span> <span class="badge badge-success default-value">Default: "VAr"</span><br/>
+<span class="description"><p>nan</p>
+</span>
 
     <div class="enum-value" id="TerminalSvPowerFlow_items_SvPowerFlowp_unit_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
             </div>
         
 
@@ -684,18 +616,27 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionTerminalSvPowerFlow_items_RavenscimObjectType">
+    <div class="card">
+        <div class="card-header" id="headingTerminalSvPowerFlow_items_RavenscimObjectType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#TerminalSvPowerFlow_items_RavenscimObjectType"
+                        aria-expanded="" aria-controls="TerminalSvPowerFlow_items_RavenscimObjectType" onclick="setAnchor('#TerminalSvPowerFlow_items_RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="TerminalSvPowerFlow_items_RavenscimObjectType">
-        <h2 class="mb-0">
-            <a href="#TerminalSvPowerFlow_items_RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="TerminalSvPowerFlow_items_RavenscimObjectType"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalSvPowerFlow_items_RavenscimObjectType"
+             data-parent="#accordionTerminalSvPowerFlow_items_RavenscimObjectType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -704,36 +645,25 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow">Terminal.SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow" onclick="anchorLink('TerminalSvPowerFlow')">Terminal.SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items">SvPowerFlow</a>
+    <a href="#TerminalSvPowerFlow_items" onclick="anchorLink('TerminalSvPowerFlow_items')">SvPowerFlow</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#TerminalSvPowerFlow_items_RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-
-
-
-
-<div class="enum-value" id="TerminalSvPowerFlow_items_RavenscimObjectType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"SvPowerFlow"</li></ul>
+    <a href="#TerminalSvPowerFlow_items_RavenscimObjectType" onclick="anchorLink('TerminalSvPowerFlow_items_RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+</span><div class="enum-value" id="TerminalSvPowerFlow_items_RavenscimObjectType_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"SvPowerFlow"</li></ul>
             </div>
         
 
@@ -741,20 +671,29 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
         </div>
     </div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionACDCTerminalconnected">
+    <div class="card">
+        <div class="card-header" id="headingACDCTerminalconnected">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#ACDCTerminalconnected"
+                        aria-expanded="" aria-controls="ACDCTerminalconnected" onclick="setAnchor('#ACDCTerminalconnected')"><span class="property-name">ACDCTerminal.connected</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="ACDCTerminalconnected">
-        <h2 class="mb-0">
-            <a href="#ACDCTerminalconnected"><span class="property-name">ACDCTerminal.connected</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="ACDCTerminalconnected"
+             class="collapse property-definition-div" aria-labelledby="headingACDCTerminalconnected"
+             data-parent="#accordionACDCTerminalconnected">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -763,37 +702,40 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ACDCTerminalconnected">ACDCTerminal.connected</a></div><span class="badge badge-dark value-type">Type: boolean</span><br/>
-
-
-
-
-
-
-
-<p>The connected status is related to a bus-branch model and the topological node to terminal relation.  True implies the terminal is connected to the related topological node and false implies it is not.<br />
+    <a href="#ACDCTerminalconnected" onclick="anchorLink('ACDCTerminalconnected')">ACDCTerminal.connected</a></div><h4>connected</h4><span class="badge badge-dark value-type">Type: boolean</span><br/>
+<div class="description collapse" id="collapseDescription_ACDCTerminalconnected">
+            <p>The connected status is related to a bus-branch model and the topological node to terminal relation.  True implies the terminal is connected to the related topological node and false implies it is not.<br />
 In a bus-branch model, the connected status is used to tell if equipment is disconnected without having to change the connectivity described by the topological node to terminal relation. A valid case is that conducting equipment can be connected in one end and open in the other. In particular for an AC line segment, where the reactive line charging can be significant, this is a relevant case.</p>
 
-
-
-
-
+        </div>
+        <div>
+            <a class="collapse-description-link collapsed" data-toggle="collapse" href="#collapseDescription_ACDCTerminalconnected"
+               aria-expanded="false" aria-controls="collapseDescriptionACDCTerminalconnected"
+            ></a>
+        </div>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionTerminalphases">
+    <div class="card">
+        <div class="card-header" id="headingTerminalphases">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#Terminalphases"
+                        aria-expanded="" aria-controls="Terminalphases" onclick="setAnchor('#Terminalphases')"><span class="property-name">Terminal.phases</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="Terminalphases">
-        <h2 class="mb-0">
-            <a href="#Terminalphases"><span class="property-name">Terminal.phases</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="Terminalphases"
+             class="collapse property-definition-div" aria-labelledby="headingTerminalphases"
+             data-parent="#accordionTerminalphases">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -802,25 +744,21 @@ In a bus-branch model, the connected status is used to tell if equipment is disc
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#Terminalphases">Terminal.phases</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Represents the normal network phasing condition. If the attribute is missing, three phases (ABC) shall be assumed, except for terminals of grounding classes (specializations of EarthFaultCompensator, GroundDisconnector, and Ground) which will be assumed to be N. Therefore, phase code ABCN is explicitly declared when needed, e.g. for star point grounding equipment.<br />
+    <a href="#Terminalphases" onclick="anchorLink('Terminalphases')">Terminal.phases</a></div><h4>phases</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<div class="description collapse" id="collapseDescription_Terminalphases">
+            <p>Represents the normal network phasing condition. If the attribute is missing, three phases (ABC) shall be assumed, except for terminals of grounding classes (specializations of EarthFaultCompensator, GroundDisconnector, and Ground) which will be assumed to be N. Therefore, phase code ABCN is explicitly declared when needed, e.g. for star point grounding equipment.<br />
 The phase code on terminals connecting same ConnectivityNode or same TopologicalNode as well as for equipment between two terminals shall be consistent.</p>
 
-
-
-
-
+        </div>
+        <div>
+            <a class="collapse-description-link collapsed" data-toggle="collapse" href="#collapseDescription_Terminalphases"
+               aria-expanded="false" aria-controls="collapseDescriptionTerminalphases"
+            ></a>
+        </div>
 
     <div class="enum-value" id="Terminalphases_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"PhaseCode.ACN"</li><li class="list-group-item enum-item">"PhaseCode.s2N"</li><li class="list-group-item enum-item">"PhaseCode.N"</li><li class="list-group-item enum-item">"PhaseCode.X"</li><li class="list-group-item enum-item">"PhaseCode.BN"</li><li class="list-group-item enum-item">"PhaseCode.s12N"</li><li class="list-group-item enum-item">"PhaseCode.none"</li><li class="list-group-item enum-item">"PhaseCode.s1"</li><li class="list-group-item enum-item">"PhaseCode.AC"</li><li class="list-group-item enum-item">"PhaseCode.ABC"</li><li class="list-group-item enum-item">"PhaseCode.AB"</li><li class="list-group-item enum-item">"PhaseCode.s1N"</li><li class="list-group-item enum-item">"PhaseCode.BC"</li><li class="list-group-item enum-item">"PhaseCode.XY"</li><li class="list-group-item enum-item">"PhaseCode.ABCN"</li><li class="list-group-item enum-item">"PhaseCode.C"</li><li class="list-group-item enum-item">"PhaseCode.s12"</li><li class="list-group-item enum-item">"PhaseCode.AN"</li><li class="list-group-item enum-item">"PhaseCode.XYN"</li><li class="list-group-item enum-item">"PhaseCode.ABN"</li><li class="list-group-item enum-item">"PhaseCode.XN"</li><li class="list-group-item enum-item">"PhaseCode.s2"</li><li class="list-group-item enum-item">"PhaseCode.CN"</li><li class="list-group-item enum-item">"PhaseCode.B"</li><li class="list-group-item enum-item">"PhaseCode.A"</li><li class="list-group-item enum-item">"PhaseCode.BCN"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"PhaseCode.ACN"</li><li class="list-group-item enum-item">"PhaseCode.s2N"</li><li class="list-group-item enum-item">"PhaseCode.N"</li><li class="list-group-item enum-item">"PhaseCode.X"</li><li class="list-group-item enum-item">"PhaseCode.BN"</li><li class="list-group-item enum-item">"PhaseCode.s12N"</li><li class="list-group-item enum-item">"PhaseCode.none"</li><li class="list-group-item enum-item">"PhaseCode.s1"</li><li class="list-group-item enum-item">"PhaseCode.AC"</li><li class="list-group-item enum-item">"PhaseCode.ABC"</li><li class="list-group-item enum-item">"PhaseCode.AB"</li><li class="list-group-item enum-item">"PhaseCode.s1N"</li><li class="list-group-item enum-item">"PhaseCode.BC"</li><li class="list-group-item enum-item">"PhaseCode.XY"</li><li class="list-group-item enum-item">"PhaseCode.ABCN"</li><li class="list-group-item enum-item">"PhaseCode.C"</li><li class="list-group-item enum-item">"PhaseCode.s12"</li><li class="list-group-item enum-item">"PhaseCode.AN"</li><li class="list-group-item enum-item">"PhaseCode.XYN"</li><li class="list-group-item enum-item">"PhaseCode.ABN"</li><li class="list-group-item enum-item">"PhaseCode.XN"</li><li class="list-group-item enum-item">"PhaseCode.s2"</li><li class="list-group-item enum-item">"PhaseCode.CN"</li><li class="list-group-item enum-item">"PhaseCode.B"</li><li class="list-group-item enum-item">"PhaseCode.A"</li><li class="list-group-item enum-item">"PhaseCode.BCN"</li></ul>
             </div>
         
 
@@ -828,16 +766,23 @@ The phase code on terminals connecting same ConnectivityNode or same Topological
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionACDCTerminalsequenceNumber">
+    <div class="card">
+        <div class="card-header" id="headingACDCTerminalsequenceNumber">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#ACDCTerminalsequenceNumber"
+                        aria-expanded="" aria-controls="ACDCTerminalsequenceNumber" onclick="setAnchor('#ACDCTerminalsequenceNumber')"><span class="property-name">ACDCTerminal.sequenceNumber</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="ACDCTerminalsequenceNumber">
-        <h2 class="mb-0">
-            <a href="#ACDCTerminalsequenceNumber"><span class="property-name">ACDCTerminal.sequenceNumber</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="ACDCTerminalsequenceNumber"
+             class="collapse property-definition-div" aria-labelledby="headingACDCTerminalsequenceNumber"
+             data-parent="#accordionACDCTerminalsequenceNumber">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -846,36 +791,32 @@ The phase code on terminals connecting same ConnectivityNode or same Topological
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ACDCTerminalsequenceNumber">ACDCTerminal.sequenceNumber</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
-
-
-
-
-
-
-
-<p>The orientation of the terminal connections for a multiple terminal conducting equipment.  The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.</p>
-
-
-
-
-
+    <a href="#ACDCTerminalsequenceNumber" onclick="anchorLink('ACDCTerminalsequenceNumber')">ACDCTerminal.sequenceNumber</a></div><h4>sequenceNumber</h4><span class="badge badge-dark value-type">Type: integer</span><br/>
+<span class="description"><p>The orientation of the terminal connections for a multiple terminal conducting equipment.  The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionRavenscimObjectType">
+    <div class="card">
+        <div class="card-header" id="headingRavenscimObjectType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#RavenscimObjectType"
+                        aria-expanded="" aria-controls="RavenscimObjectType" onclick="setAnchor('#RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="RavenscimObjectType">
-        <h2 class="mb-0">
-            <a href="#RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="RavenscimObjectType"
+             class="collapse property-definition-div" aria-labelledby="headingRavenscimObjectType"
+             data-parent="#accordionRavenscimObjectType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -884,22 +825,11 @@ The phase code on terminals connecting same ConnectivityNode or same Topological
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-
-
-
-
-<div class="enum-value" id="RavenscimObjectType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"Terminal"</li></ul>
+    <a href="#RavenscimObjectType" onclick="anchorLink('RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+</span><div class="enum-value" id="RavenscimObjectType_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"Terminal"</li></ul>
             </div>
         
 
@@ -907,16 +837,23 @@ The phase code on terminals connecting same ConnectivityNode or same Topological
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionIdentifiedObjectdescription">
+    <div class="card">
+        <div class="card-header" id="headingIdentifiedObjectdescription">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#IdentifiedObjectdescription"
+                        aria-expanded="" aria-controls="IdentifiedObjectdescription" onclick="setAnchor('#IdentifiedObjectdescription')"><span class="property-name">IdentifiedObject.description</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="IdentifiedObjectdescription">
-        <h2 class="mb-0">
-            <a href="#IdentifiedObjectdescription"><span class="property-name">IdentifiedObject.description</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="IdentifiedObjectdescription"
+             class="collapse property-definition-div" aria-labelledby="headingIdentifiedObjectdescription"
+             data-parent="#accordionIdentifiedObjectdescription">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -925,36 +862,32 @@ The phase code on terminals connecting same ConnectivityNode or same Topological
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#IdentifiedObjectdescription">IdentifiedObject.description</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
-
-
-
-
-
+    <a href="#IdentifiedObjectdescription" onclick="anchorLink('IdentifiedObjectdescription')">IdentifiedObject.description</a></div><h4>description</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionIdentifiedObjectaliasName">
+    <div class="card">
+        <div class="card-header" id="headingIdentifiedObjectaliasName">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#IdentifiedObjectaliasName"
+                        aria-expanded="" aria-controls="IdentifiedObjectaliasName" onclick="setAnchor('#IdentifiedObjectaliasName')"><span class="property-name">IdentifiedObject.aliasName</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="IdentifiedObjectaliasName">
-        <h2 class="mb-0">
-            <a href="#IdentifiedObjectaliasName"><span class="property-name">IdentifiedObject.aliasName</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="IdentifiedObjectaliasName"
+             class="collapse property-definition-div" aria-labelledby="headingIdentifiedObjectaliasName"
+             data-parent="#accordionIdentifiedObjectaliasName">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -963,37 +896,33 @@ The phase code on terminals connecting same ConnectivityNode or same Topological
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#IdentifiedObjectaliasName">IdentifiedObject.aliasName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
+    <a href="#IdentifiedObjectaliasName" onclick="anchorLink('IdentifiedObjectaliasName')">IdentifiedObject.aliasName</a></div><h4>aliasName</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
 The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
-
-
-
-
-
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionIdentifiedObjectmRID">
+    <div class="card">
+        <div class="card-header" id="headingIdentifiedObjectmRID">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#IdentifiedObjectmRID"
+                        aria-expanded="" aria-controls="IdentifiedObjectmRID" onclick="setAnchor('#IdentifiedObjectmRID')"><span class="property-name">IdentifiedObject.mRID</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="IdentifiedObjectmRID">
-        <h2 class="mb-0">
-            <a href="#IdentifiedObjectmRID"><span class="property-name">IdentifiedObject.mRID</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="IdentifiedObjectmRID"
+             class="collapse property-definition-div" aria-labelledby="headingIdentifiedObjectmRID"
+             data-parent="#accordionIdentifiedObjectmRID">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1002,37 +931,33 @@ The attribute aliasName is retained because of backwards compatibility between C
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#IdentifiedObjectmRID">IdentifiedObject.mRID</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
+    <a href="#IdentifiedObjectmRID" onclick="anchorLink('IdentifiedObjectmRID')">IdentifiedObject.mRID</a></div><h4>mRID</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
 For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
-
-
-
-
-
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionIdentifiedObjectname">
+    <div class="card">
+        <div class="card-header" id="headingIdentifiedObjectname">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#IdentifiedObjectname"
+                        aria-expanded="" aria-controls="IdentifiedObjectname" onclick="setAnchor('#IdentifiedObjectname')"><span class="property-name">IdentifiedObject.name</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="IdentifiedObjectname">
-        <h2 class="mb-0">
-            <a href="#IdentifiedObjectname"><span class="property-name">IdentifiedObject.name</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="IdentifiedObjectname"
+             class="collapse property-definition-div" aria-labelledby="headingIdentifiedObjectname"
+             data-parent="#accordionIdentifiedObjectname">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1041,30 +966,21 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#IdentifiedObjectname">IdentifiedObject.name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The name is any free human readable and possibly non unique text naming the object.</p>
-
-
-
-
-
+    <a href="#IdentifiedObjectname" onclick="anchorLink('IdentifiedObjectname')">IdentifiedObject.name</a></div><h4>name</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The name is any free human readable and possibly non unique text naming the object.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-12-16 at 18:56:58 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-12-17 at 16:01:24 +0000</p>
     </footer></body>
 </html>

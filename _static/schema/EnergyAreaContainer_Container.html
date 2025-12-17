@@ -4,48 +4,46 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Overpass:300,400,600,800">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../../_static/schema/schema_doc.css">
+    <script src="https://use.fontawesome.com/facf9fa52c.js"></script>
+    <script src="../../_static/schema/schema_doc.min.js"></script>
     <meta charset="utf-8"/>
         
     
     <title>EnergyAreaContainer</title>
 </head>
-<body id="root"><h1>EnergyAreaContainer</h1>
+<body onload="anchorOnLoad();" id="root">
 
-    <div class="breadcrumbs"></div><span class="badge badge-dark value-type">Type: object</span><br/>
-
-
-
-
-
-
-
-<p>Hash table of EnergyArea objects</p>
-
-
-
-
- <span class="badge badge-info no-additional">No Additional Properties</span>
+    <div class="breadcrumbs"></div> <h1>EnergyAreaContainer</h1><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Hash table of EnergyArea objects</p>
+</span> <span class="badge badge-info no-additional">No Additional Properties</span>
         
 
         
         
 
         
-
-<div class="card">
-    <div class="card-header" id="pattern1">
-        <h2 class="mb-0">
-            <a href="#pattern1"><span class="property-name">EnergyArea</span></a> <span class="badge badge-info pattern-property">Pattern Property</span></h2>
-    </div>
-
-    <div class="card-body property-definition-div"><h2 class="handle">
-                <label>Pattern Property</label>
+<div class="accordion" id="accordionpattern1">
+    <div class="card">
+        <div class="card-header" id="headingpattern1">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1"
+                        aria-expanded="" aria-controls="pattern1" onclick="setAnchor('#pattern1')"><span class="property-name">EnergyArea</span> <span class="badge badge-info pattern-property">Pattern Property</span></button>
             </h2>
-            <p>All properties whose name matches the following regular expression must respect the following conditions</p>
-            <span class="pattern-value">Property name regular expression: <code>^.+$</code></span>
-            <br/>
+        </div>
+
+        <div id="pattern1"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1"
+             data-parent="#accordionpattern1">
+            <div class="card-body pl-5"><h2 class="handle">
+                        <label>Pattern Property</label>
+                    </h2>
+                    <p>All properties whose name matches the following regular expression must respect the following conditions</p>
+                    <span class="pattern-value">Property name regular expression: <code>^.+$</code></span>
+                    <br/>
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -54,28 +52,30 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a></div><h4>EnergyArea</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Describes an area having energy production or consumption.  Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.</p>
+</span>
 
-
-
-
-
-
-
-<p>Describes an area having energy production or consumption.  Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.</p>
-
-
-
-
-
-
-    <div class="any-of-value" id="pattern1_pattern4"><a id="pattern1_pattern4" href="#pattern1_pattern4">
-    <h2 class="handle ml-2 mt-2">
-      <label>Any of</label>
-    </h2>
-</a><div class="card">
-        <h3 class="ml-2 mt-2"><a id="pattern1_pattern4_i0" href="#pattern1_pattern4_i0">EnergyArea</a></h3>
-        <div class="card-body">
+    <div class="any-of-value" id="pattern1_pattern4"><h2 class="handle">
+  <label>Any of</label>
+</h2><ul class="nav nav-tabs" id="tabspattern1_pattern4_anyOf" role="tablist"><li class="nav-item">
+            <a class="nav-link active anyOf-option"
+               id="pattern1_pattern4_i0" data-toggle="tab" href="#tab-pane_pattern1_pattern4_i0" role="tab"
+               onclick="setAnchor('#pattern1_pattern4_i0')"
+            >EnergyArea</a>
+        </li><li class="nav-item">
+            <a class="nav-link anyOf-option"
+               id="pattern1_pattern4_i1" data-toggle="tab" href="#tab-pane_pattern1_pattern4_i1" role="tab"
+               onclick="setAnchor('#pattern1_pattern4_i1')"
+            >LoadArea</a>
+        </li><li class="nav-item">
+            <a class="nav-link anyOf-option"
+               id="pattern1_pattern4_i2" data-toggle="tab" href="#tab-pane_pattern1_pattern4_i2" role="tab"
+               onclick="setAnchor('#pattern1_pattern4_i2')"
+            >SubLoadArea</a>
+        </li></ul>
+<div class="tab-content card"><div class="tab-pane fade card-body active show"
+             id="tab-pane_pattern1_pattern4_i0" role="tabpanel">
             
 
     <div class="breadcrumbs">root
@@ -85,48 +85,42 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i0">EnergyArea</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
-
-
-
-
-
-
-
-<p>Describes an area having energy production or consumption.  Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.</p>
-
-
-
-
- <span class="badge badge-info no-additional">No Additional Properties</span>
+    <a href="#pattern1_pattern4_i0" onclick="anchorLink('pattern1_pattern4_i0')">EnergyArea</a></div><h4>EnergyArea</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Describes an area having energy production or consumption.  Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.</p>
+</span> <span class="badge badge-info no-additional">No Additional Properties</span>
         
 
         
         
 
         
+<div class="accordion" id="accordionpattern1_pattern4_i0_EnergyAreaEquipments">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i0_EnergyAreaEquipments">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i0_EnergyAreaEquipments"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i0_EnergyAreaEquipments" onclick="setAnchor('#pattern1_pattern4_i0_EnergyAreaEquipments')"><span class="property-name">EnergyArea.Equipments</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i0_EnergyAreaEquipments">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i0_EnergyAreaEquipments"><span class="property-name">EnergyArea.Equipments</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="pattern1_pattern4_i0_EnergyAreaEquipments"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i0_EnergyAreaEquipments"
+             data-parent="#accordionpattern1_pattern4_i0_EnergyAreaEquipments">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -135,41 +129,30 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i0">EnergyArea</a>
+    <a href="#pattern1_pattern4_i0" onclick="anchorLink('pattern1_pattern4_i0')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i0_EnergyAreaEquipments">EnergyArea.Equipments</a></div><span class="badge badge-dark value-type">Type: array of string</span><br/>
-
-
-
-
-
-
-
-<p>Pointers to Equipment objects</p>
-
-
-
-
-
+    <a href="#pattern1_pattern4_i0_EnergyAreaEquipments" onclick="anchorLink('pattern1_pattern4_i0_EnergyAreaEquipments')">EnergyArea.Equipments</a></div><h4>Equipment_PointerArray</h4><span class="badge badge-dark value-type">Type: array of string</span><br/>
+<span class="description"><p>Pointers to Equipment objects</p>
+</span>
         
 
         
@@ -187,48 +170,37 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i0">EnergyArea</a>
+    <a href="#pattern1_pattern4_i0" onclick="anchorLink('pattern1_pattern4_i0')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i0_EnergyAreaEquipments">EnergyArea.Equipments</a>
+    <a href="#pattern1_pattern4_i0_EnergyAreaEquipments" onclick="anchorLink('pattern1_pattern4_i0_EnergyAreaEquipments')">EnergyArea.Equipments</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i0_EnergyAreaEquipments_items">Equipment_Pointer</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Pointer to Equipment object</p>
-
-
-
-
-
+    <a href="#pattern1_pattern4_i0_EnergyAreaEquipments_items" onclick="anchorLink('pattern1_pattern4_i0_EnergyAreaEquipments_items')">Equipment_Pointer</a></div><h4>Equipment_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Pointer to Equipment object</p>
+</span>
         
 
         
@@ -237,16 +209,23 @@
         
         </div>
     </div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionpattern1_pattern4_i0_RavenscimObjectType">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i0_RavenscimObjectType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i0_RavenscimObjectType"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i0_RavenscimObjectType" onclick="setAnchor('#pattern1_pattern4_i0_RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i0_RavenscimObjectType">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i0_RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="pattern1_pattern4_i0_RavenscimObjectType"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i0_RavenscimObjectType"
+             data-parent="#accordionpattern1_pattern4_i0_RavenscimObjectType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -255,43 +234,32 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i0">EnergyArea</a>
+    <a href="#pattern1_pattern4_i0" onclick="anchorLink('pattern1_pattern4_i0')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i0_RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-
-
-
-
-<div class="enum-value" id="pattern1_pattern4_i0_RavenscimObjectType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"EnergyArea"</li></ul>
+    <a href="#pattern1_pattern4_i0_RavenscimObjectType" onclick="anchorLink('pattern1_pattern4_i0_RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+</span><div class="enum-value" id="pattern1_pattern4_i0_RavenscimObjectType_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"EnergyArea"</li></ul>
             </div>
         
 
@@ -299,250 +267,234 @@
         
 
         
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i0_IdentifiedObjectdescription">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i0_IdentifiedObjectdescription"><span class="property-name">IdentifiedObject.description</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i0">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i0_IdentifiedObjectdescription">IdentifiedObject.description</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i0_IdentifiedObjectaliasName">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i0_IdentifiedObjectaliasName"><span class="property-name">IdentifiedObject.aliasName</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i0">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i0_IdentifiedObjectaliasName">IdentifiedObject.aliasName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
-The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i0_IdentifiedObjectmRID">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i0_IdentifiedObjectmRID"><span class="property-name">IdentifiedObject.mRID</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i0">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i0_IdentifiedObjectmRID">IdentifiedObject.mRID</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
-For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i0_IdentifiedObjectname">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i0_IdentifiedObjectname"><span class="property-name">IdentifiedObject.name</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i0">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i0_IdentifiedObjectname">IdentifiedObject.name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The name is any free human readable and possibly non unique text naming the object.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
+            </div>
         </div>
-    </div><div class="card">
-        <h3 class="ml-2 mt-2"><a id="pattern1_pattern4_i1" href="#pattern1_pattern4_i1">LoadArea</a></h3>
-        <div class="card-body">
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i0_IdentifiedObjectdescription">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i0_IdentifiedObjectdescription">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i0_IdentifiedObjectdescription"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i0_IdentifiedObjectdescription" onclick="setAnchor('#pattern1_pattern4_i0_IdentifiedObjectdescription')"><span class="property-name">IdentifiedObject.description</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i0_IdentifiedObjectdescription"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i0_IdentifiedObjectdescription"
+             data-parent="#accordionpattern1_pattern4_i0_IdentifiedObjectdescription">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i0" onclick="anchorLink('pattern1_pattern4_i0')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i0_IdentifiedObjectdescription" onclick="anchorLink('pattern1_pattern4_i0_IdentifiedObjectdescription')">IdentifiedObject.description</a></div><h4>description</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i0_IdentifiedObjectaliasName">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i0_IdentifiedObjectaliasName">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i0_IdentifiedObjectaliasName"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i0_IdentifiedObjectaliasName" onclick="setAnchor('#pattern1_pattern4_i0_IdentifiedObjectaliasName')"><span class="property-name">IdentifiedObject.aliasName</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i0_IdentifiedObjectaliasName"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i0_IdentifiedObjectaliasName"
+             data-parent="#accordionpattern1_pattern4_i0_IdentifiedObjectaliasName">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i0" onclick="anchorLink('pattern1_pattern4_i0')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i0_IdentifiedObjectaliasName" onclick="anchorLink('pattern1_pattern4_i0_IdentifiedObjectaliasName')">IdentifiedObject.aliasName</a></div><h4>aliasName</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i0_IdentifiedObjectmRID">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i0_IdentifiedObjectmRID">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i0_IdentifiedObjectmRID"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i0_IdentifiedObjectmRID" onclick="setAnchor('#pattern1_pattern4_i0_IdentifiedObjectmRID')"><span class="property-name">IdentifiedObject.mRID</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i0_IdentifiedObjectmRID"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i0_IdentifiedObjectmRID"
+             data-parent="#accordionpattern1_pattern4_i0_IdentifiedObjectmRID">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i0" onclick="anchorLink('pattern1_pattern4_i0')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i0_IdentifiedObjectmRID" onclick="anchorLink('pattern1_pattern4_i0_IdentifiedObjectmRID')">IdentifiedObject.mRID</a></div><h4>mRID</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i0_IdentifiedObjectname">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i0_IdentifiedObjectname">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i0_IdentifiedObjectname"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i0_IdentifiedObjectname" onclick="setAnchor('#pattern1_pattern4_i0_IdentifiedObjectname')"><span class="property-name">IdentifiedObject.name</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i0_IdentifiedObjectname"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i0_IdentifiedObjectname"
+             data-parent="#accordionpattern1_pattern4_i0_IdentifiedObjectname">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i0" onclick="anchorLink('pattern1_pattern4_i0')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i0_IdentifiedObjectname" onclick="anchorLink('pattern1_pattern4_i0_IdentifiedObjectname')">IdentifiedObject.name</a></div><h4>name</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The name is any free human readable and possibly non unique text naming the object.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+        </div><div class="tab-pane fade card-body "
+             id="tab-pane_pattern1_pattern4_i1" role="tabpanel">
             
 
     <div class="breadcrumbs">root
@@ -552,48 +504,42 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
-
-
-
-
-
-
-
-<p>The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.</p>
-
-
-
-
- <span class="badge badge-info no-additional">No Additional Properties</span>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a></div><h4>LoadArea</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.</p>
+</span> <span class="badge badge-info no-additional">No Additional Properties</span>
         
 
         
         
 
         
+<div class="accordion" id="accordionpattern1_pattern4_i1_EnergyAreaEquipments">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i1_EnergyAreaEquipments">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i1_EnergyAreaEquipments"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i1_EnergyAreaEquipments" onclick="setAnchor('#pattern1_pattern4_i1_EnergyAreaEquipments')"><span class="property-name">EnergyArea.Equipments</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i1_EnergyAreaEquipments">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i1_EnergyAreaEquipments"><span class="property-name">EnergyArea.Equipments</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="pattern1_pattern4_i1_EnergyAreaEquipments"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i1_EnergyAreaEquipments"
+             data-parent="#accordionpattern1_pattern4_i1_EnergyAreaEquipments">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -602,41 +548,30 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1_EnergyAreaEquipments">EnergyArea.Equipments</a></div><span class="badge badge-dark value-type">Type: array of string</span><br/>
-
-
-
-
-
-
-
-<p>Pointers to Equipment objects</p>
-
-
-
-
-
+    <a href="#pattern1_pattern4_i1_EnergyAreaEquipments" onclick="anchorLink('pattern1_pattern4_i1_EnergyAreaEquipments')">EnergyArea.Equipments</a></div><h4>Equipment_PointerArray</h4><span class="badge badge-dark value-type">Type: array of string</span><br/>
+<span class="description"><p>Pointers to Equipment objects</p>
+</span>
         
 
         
@@ -654,48 +589,37 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1_EnergyAreaEquipments">EnergyArea.Equipments</a>
+    <a href="#pattern1_pattern4_i1_EnergyAreaEquipments" onclick="anchorLink('pattern1_pattern4_i1_EnergyAreaEquipments')">EnergyArea.Equipments</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1_EnergyAreaEquipments_items">Equipment_Pointer</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Pointer to Equipment object</p>
-
-
-
-
-
+    <a href="#pattern1_pattern4_i1_EnergyAreaEquipments_items" onclick="anchorLink('pattern1_pattern4_i1_EnergyAreaEquipments_items')">Equipment_Pointer</a></div><h4>Equipment_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Pointer to Equipment object</p>
+</span>
         
 
         
@@ -704,16 +628,23 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
         </div>
     </div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionpattern1_pattern4_i1_LoadAreaSubLoadAreas">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i1_LoadAreaSubLoadAreas">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i1_LoadAreaSubLoadAreas"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i1_LoadAreaSubLoadAreas" onclick="setAnchor('#pattern1_pattern4_i1_LoadAreaSubLoadAreas')"><span class="property-name">LoadArea.SubLoadAreas</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i1_LoadAreaSubLoadAreas">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i1_LoadAreaSubLoadAreas"><span class="property-name">LoadArea.SubLoadAreas</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="pattern1_pattern4_i1_LoadAreaSubLoadAreas"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i1_LoadAreaSubLoadAreas"
+             data-parent="#accordionpattern1_pattern4_i1_LoadAreaSubLoadAreas">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -722,41 +653,30 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1_LoadAreaSubLoadAreas">LoadArea.SubLoadAreas</a></div><span class="badge badge-dark value-type">Type: array of string</span><br/>
-
-
-
-
-
-
-
-<p>Pointers to LoadArea objects</p>
-
-
-
-
-
+    <a href="#pattern1_pattern4_i1_LoadAreaSubLoadAreas" onclick="anchorLink('pattern1_pattern4_i1_LoadAreaSubLoadAreas')">LoadArea.SubLoadAreas</a></div><h4>LoadArea_PointerArray</h4><span class="badge badge-dark value-type">Type: array of string</span><br/>
+<span class="description"><p>Pointers to LoadArea objects</p>
+</span>
         
 
         
@@ -774,48 +694,37 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1_LoadAreaSubLoadAreas">LoadArea.SubLoadAreas</a>
+    <a href="#pattern1_pattern4_i1_LoadAreaSubLoadAreas" onclick="anchorLink('pattern1_pattern4_i1_LoadAreaSubLoadAreas')">LoadArea.SubLoadAreas</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1_LoadAreaSubLoadAreas_items">LoadArea_Pointer</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Pointer to LoadArea object</p>
-
-
-
-
-
+    <a href="#pattern1_pattern4_i1_LoadAreaSubLoadAreas_items" onclick="anchorLink('pattern1_pattern4_i1_LoadAreaSubLoadAreas_items')">LoadArea_Pointer</a></div><h4>LoadArea_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Pointer to LoadArea object</p>
+</span>
         
 
         
@@ -824,16 +733,23 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
         </div>
     </div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionpattern1_pattern4_i1_RavenscimObjectType">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i1_RavenscimObjectType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i1_RavenscimObjectType"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i1_RavenscimObjectType" onclick="setAnchor('#pattern1_pattern4_i1_RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i1_RavenscimObjectType">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i1_RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="pattern1_pattern4_i1_RavenscimObjectType"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i1_RavenscimObjectType"
+             data-parent="#accordionpattern1_pattern4_i1_RavenscimObjectType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -842,43 +758,32 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i1_RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-
-
-
-
-<div class="enum-value" id="pattern1_pattern4_i1_RavenscimObjectType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"LoadArea"</li></ul>
+    <a href="#pattern1_pattern4_i1_RavenscimObjectType" onclick="anchorLink('pattern1_pattern4_i1_RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+</span><div class="enum-value" id="pattern1_pattern4_i1_RavenscimObjectType_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"LoadArea"</li></ul>
             </div>
         
 
@@ -886,250 +791,234 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
 
         
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i1_IdentifiedObjectdescription">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i1_IdentifiedObjectdescription"><span class="property-name">IdentifiedObject.description</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i1_IdentifiedObjectdescription">IdentifiedObject.description</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i1_IdentifiedObjectaliasName">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i1_IdentifiedObjectaliasName"><span class="property-name">IdentifiedObject.aliasName</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i1_IdentifiedObjectaliasName">IdentifiedObject.aliasName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
-The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i1_IdentifiedObjectmRID">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i1_IdentifiedObjectmRID"><span class="property-name">IdentifiedObject.mRID</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i1_IdentifiedObjectmRID">IdentifiedObject.mRID</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
-For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i1_IdentifiedObjectname">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i1_IdentifiedObjectname"><span class="property-name">IdentifiedObject.name</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i1">LoadArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i1_IdentifiedObjectname">IdentifiedObject.name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The name is any free human readable and possibly non unique text naming the object.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
+            </div>
         </div>
-    </div><div class="card">
-        <h3 class="ml-2 mt-2"><a id="pattern1_pattern4_i2" href="#pattern1_pattern4_i2">SubLoadArea</a></h3>
-        <div class="card-body">
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i1_IdentifiedObjectdescription">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i1_IdentifiedObjectdescription">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i1_IdentifiedObjectdescription"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i1_IdentifiedObjectdescription" onclick="setAnchor('#pattern1_pattern4_i1_IdentifiedObjectdescription')"><span class="property-name">IdentifiedObject.description</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i1_IdentifiedObjectdescription"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i1_IdentifiedObjectdescription"
+             data-parent="#accordionpattern1_pattern4_i1_IdentifiedObjectdescription">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i1_IdentifiedObjectdescription" onclick="anchorLink('pattern1_pattern4_i1_IdentifiedObjectdescription')">IdentifiedObject.description</a></div><h4>description</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i1_IdentifiedObjectaliasName">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i1_IdentifiedObjectaliasName">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i1_IdentifiedObjectaliasName"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i1_IdentifiedObjectaliasName" onclick="setAnchor('#pattern1_pattern4_i1_IdentifiedObjectaliasName')"><span class="property-name">IdentifiedObject.aliasName</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i1_IdentifiedObjectaliasName"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i1_IdentifiedObjectaliasName"
+             data-parent="#accordionpattern1_pattern4_i1_IdentifiedObjectaliasName">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i1_IdentifiedObjectaliasName" onclick="anchorLink('pattern1_pattern4_i1_IdentifiedObjectaliasName')">IdentifiedObject.aliasName</a></div><h4>aliasName</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i1_IdentifiedObjectmRID">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i1_IdentifiedObjectmRID">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i1_IdentifiedObjectmRID"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i1_IdentifiedObjectmRID" onclick="setAnchor('#pattern1_pattern4_i1_IdentifiedObjectmRID')"><span class="property-name">IdentifiedObject.mRID</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i1_IdentifiedObjectmRID"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i1_IdentifiedObjectmRID"
+             data-parent="#accordionpattern1_pattern4_i1_IdentifiedObjectmRID">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i1_IdentifiedObjectmRID" onclick="anchorLink('pattern1_pattern4_i1_IdentifiedObjectmRID')">IdentifiedObject.mRID</a></div><h4>mRID</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i1_IdentifiedObjectname">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i1_IdentifiedObjectname">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i1_IdentifiedObjectname"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i1_IdentifiedObjectname" onclick="setAnchor('#pattern1_pattern4_i1_IdentifiedObjectname')"><span class="property-name">IdentifiedObject.name</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i1_IdentifiedObjectname"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i1_IdentifiedObjectname"
+             data-parent="#accordionpattern1_pattern4_i1_IdentifiedObjectname">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i1" onclick="anchorLink('pattern1_pattern4_i1')">LoadArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i1_IdentifiedObjectname" onclick="anchorLink('pattern1_pattern4_i1_IdentifiedObjectname')">IdentifiedObject.name</a></div><h4>name</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The name is any free human readable and possibly non unique text naming the object.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+        </div><div class="tab-pane fade card-body "
+             id="tab-pane_pattern1_pattern4_i2" role="tabpanel">
             
 
     <div class="breadcrumbs">root
@@ -1139,48 +1028,42 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i2">SubLoadArea</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
-
-
-
-
-
-
-
-<p>The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.</p>
-
-
-
-
- <span class="badge badge-info no-additional">No Additional Properties</span>
+    <a href="#pattern1_pattern4_i2" onclick="anchorLink('pattern1_pattern4_i2')">SubLoadArea</a></div><h4>SubLoadArea</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.</p>
+</span> <span class="badge badge-info no-additional">No Additional Properties</span>
         
 
         
         
 
         
+<div class="accordion" id="accordionpattern1_pattern4_i2_EnergyAreaEquipments">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i2_EnergyAreaEquipments">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i2_EnergyAreaEquipments"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i2_EnergyAreaEquipments" onclick="setAnchor('#pattern1_pattern4_i2_EnergyAreaEquipments')"><span class="property-name">EnergyArea.Equipments</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i2_EnergyAreaEquipments">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i2_EnergyAreaEquipments"><span class="property-name">EnergyArea.Equipments</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="pattern1_pattern4_i2_EnergyAreaEquipments"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i2_EnergyAreaEquipments"
+             data-parent="#accordionpattern1_pattern4_i2_EnergyAreaEquipments">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1189,41 +1072,30 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i2">SubLoadArea</a>
+    <a href="#pattern1_pattern4_i2" onclick="anchorLink('pattern1_pattern4_i2')">SubLoadArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i2_EnergyAreaEquipments">EnergyArea.Equipments</a></div><span class="badge badge-dark value-type">Type: array of string</span><br/>
-
-
-
-
-
-
-
-<p>Pointers to Equipment objects</p>
-
-
-
-
-
+    <a href="#pattern1_pattern4_i2_EnergyAreaEquipments" onclick="anchorLink('pattern1_pattern4_i2_EnergyAreaEquipments')">EnergyArea.Equipments</a></div><h4>Equipment_PointerArray</h4><span class="badge badge-dark value-type">Type: array of string</span><br/>
+<span class="description"><p>Pointers to Equipment objects</p>
+</span>
         
 
         
@@ -1241,48 +1113,37 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i2">SubLoadArea</a>
+    <a href="#pattern1_pattern4_i2" onclick="anchorLink('pattern1_pattern4_i2')">SubLoadArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i2_EnergyAreaEquipments">EnergyArea.Equipments</a>
+    <a href="#pattern1_pattern4_i2_EnergyAreaEquipments" onclick="anchorLink('pattern1_pattern4_i2_EnergyAreaEquipments')">EnergyArea.Equipments</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i2_EnergyAreaEquipments_items">Equipment_Pointer</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Pointer to Equipment object</p>
-
-
-
-
-
+    <a href="#pattern1_pattern4_i2_EnergyAreaEquipments_items" onclick="anchorLink('pattern1_pattern4_i2_EnergyAreaEquipments_items')">Equipment_Pointer</a></div><h4>Equipment_Pointer</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Pointer to Equipment object</p>
+</span>
         
 
         
@@ -1291,16 +1152,23 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
         </div>
     </div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionpattern1_pattern4_i2_RavenscimObjectType">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i2_RavenscimObjectType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i2_RavenscimObjectType"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i2_RavenscimObjectType" onclick="setAnchor('#pattern1_pattern4_i2_RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i2_RavenscimObjectType">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i2_RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="pattern1_pattern4_i2_RavenscimObjectType"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i2_RavenscimObjectType"
+             data-parent="#accordionpattern1_pattern4_i2_RavenscimObjectType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1309,43 +1177,32 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1">EnergyArea</a>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i2">SubLoadArea</a>
+    <a href="#pattern1_pattern4_i2" onclick="anchorLink('pattern1_pattern4_i2')">SubLoadArea</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#pattern1_pattern4_i2_RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-
-
-
-
-<div class="enum-value" id="pattern1_pattern4_i2_RavenscimObjectType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"SubLoadArea"</li></ul>
+    <a href="#pattern1_pattern4_i2_RavenscimObjectType" onclick="anchorLink('pattern1_pattern4_i2_RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+</span><div class="enum-value" id="pattern1_pattern4_i2_RavenscimObjectType_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"SubLoadArea"</li></ul>
             </div>
         
 
@@ -1353,258 +1210,245 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
         
 
         
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i2_IdentifiedObjectdescription">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i2_IdentifiedObjectdescription"><span class="property-name">IdentifiedObject.description</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i2">SubLoadArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i2_IdentifiedObjectdescription">IdentifiedObject.description</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i2_IdentifiedObjectaliasName">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i2_IdentifiedObjectaliasName"><span class="property-name">IdentifiedObject.aliasName</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i2">SubLoadArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i2_IdentifiedObjectaliasName">IdentifiedObject.aliasName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
-The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i2_IdentifiedObjectmRID">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i2_IdentifiedObjectmRID"><span class="property-name">IdentifiedObject.mRID</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i2">SubLoadArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i2_IdentifiedObjectmRID">IdentifiedObject.mRID</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
-For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header" id="pattern1_pattern4_i2_IdentifiedObjectname">
-        <h2 class="mb-0">
-            <a href="#pattern1_pattern4_i2_IdentifiedObjectname"><span class="property-name">IdentifiedObject.name</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1">EnergyArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4">anyOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i2">SubLoadArea</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#pattern1_pattern4_i2_IdentifiedObjectname">IdentifiedObject.name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The name is any free human readable and possibly non unique text naming the object.</p>
-
-
-
-
-
-        
-
-        
-        
-
-        
-    </div>
-</div>
+            </div>
         </div>
-    </div></div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i2_IdentifiedObjectdescription">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i2_IdentifiedObjectdescription">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i2_IdentifiedObjectdescription"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i2_IdentifiedObjectdescription" onclick="setAnchor('#pattern1_pattern4_i2_IdentifiedObjectdescription')"><span class="property-name">IdentifiedObject.description</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i2_IdentifiedObjectdescription"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i2_IdentifiedObjectdescription"
+             data-parent="#accordionpattern1_pattern4_i2_IdentifiedObjectdescription">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i2" onclick="anchorLink('pattern1_pattern4_i2')">SubLoadArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i2_IdentifiedObjectdescription" onclick="anchorLink('pattern1_pattern4_i2_IdentifiedObjectdescription')">IdentifiedObject.description</a></div><h4>description</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i2_IdentifiedObjectaliasName">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i2_IdentifiedObjectaliasName">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i2_IdentifiedObjectaliasName"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i2_IdentifiedObjectaliasName" onclick="setAnchor('#pattern1_pattern4_i2_IdentifiedObjectaliasName')"><span class="property-name">IdentifiedObject.aliasName</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i2_IdentifiedObjectaliasName"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i2_IdentifiedObjectaliasName"
+             data-parent="#accordionpattern1_pattern4_i2_IdentifiedObjectaliasName">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i2" onclick="anchorLink('pattern1_pattern4_i2')">SubLoadArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i2_IdentifiedObjectaliasName" onclick="anchorLink('pattern1_pattern4_i2_IdentifiedObjectaliasName')">IdentifiedObject.aliasName</a></div><h4>aliasName</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
+The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i2_IdentifiedObjectmRID">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i2_IdentifiedObjectmRID">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i2_IdentifiedObjectmRID"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i2_IdentifiedObjectmRID" onclick="setAnchor('#pattern1_pattern4_i2_IdentifiedObjectmRID')"><span class="property-name">IdentifiedObject.mRID</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i2_IdentifiedObjectmRID"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i2_IdentifiedObjectmRID"
+             data-parent="#accordionpattern1_pattern4_i2_IdentifiedObjectmRID">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i2" onclick="anchorLink('pattern1_pattern4_i2')">SubLoadArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i2_IdentifiedObjectmRID" onclick="anchorLink('pattern1_pattern4_i2_IdentifiedObjectmRID')">IdentifiedObject.mRID</a></div><h4>mRID</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionpattern1_pattern4_i2_IdentifiedObjectname">
+    <div class="card">
+        <div class="card-header" id="headingpattern1_pattern4_i2_IdentifiedObjectname">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#pattern1_pattern4_i2_IdentifiedObjectname"
+                        aria-expanded="" aria-controls="pattern1_pattern4_i2_IdentifiedObjectname" onclick="setAnchor('#pattern1_pattern4_i2_IdentifiedObjectname')"><span class="property-name">IdentifiedObject.name</span></button>
+            </h2>
+        </div>
+
+        <div id="pattern1_pattern4_i2_IdentifiedObjectname"
+             class="collapse property-definition-div" aria-labelledby="headingpattern1_pattern4_i2_IdentifiedObjectname"
+             data-parent="#accordionpattern1_pattern4_i2_IdentifiedObjectname">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1" onclick="anchorLink('pattern1')">EnergyArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4" onclick="anchorLink('pattern1_pattern4')">anyOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i2" onclick="anchorLink('pattern1_pattern4_i2')">SubLoadArea</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#pattern1_pattern4_i2_IdentifiedObjectname" onclick="anchorLink('pattern1_pattern4_i2_IdentifiedObjectname')">IdentifiedObject.name</a></div><h4>name</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The name is any free human readable and possibly non unique text naming the object.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+        </div></div></div>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
     </div>
 </div>
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-12-16 at 18:59:22 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-12-17 at 16:04:55 +0000</p>
     </footer></body>
 </html>

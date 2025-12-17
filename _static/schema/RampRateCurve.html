@@ -4,43 +4,41 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Overpass:300,400,600,800">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../../_static/schema/schema_doc.css">
+    <script src="https://use.fontawesome.com/facf9fa52c.js"></script>
+    <script src="../../_static/schema/schema_doc.min.js"></script>
     <meta charset="utf-8"/>
         
     
     <title>RampRateCurve</title>
 </head>
-<body id="root"><h1>RampRateCurve</h1>
+<body onload="anchorOnLoad();" id="root">
 
-    <div class="breadcrumbs"></div><span class="badge badge-dark value-type">Type: object</span><br/>
-
-
-
-
-
-
-
-<p>Ramp rate as a function of resource MW output.</p>
-
-
-
-
- <span class="badge badge-info no-additional">No Additional Properties</span>
+    <div class="breadcrumbs"></div> <h1>RampRateCurve</h1><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Ramp rate as a function of resource MW output.</p>
+</span> <span class="badge badge-info no-additional">No Additional Properties</span>
         
 
         
         
 
         
+<div class="accordion" id="accordionCurveCurveDatas">
+    <div class="card">
+        <div class="card-header" id="headingCurveCurveDatas">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurveCurveDatas"
+                        aria-expanded="" aria-controls="CurveCurveDatas" onclick="setAnchor('#CurveCurveDatas')"><span class="property-name">Curve.CurveDatas</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurveCurveDatas">
-        <h2 class="mb-0">
-            <a href="#CurveCurveDatas"><span class="property-name">Curve.CurveDatas</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurveCurveDatas"
+             class="collapse property-definition-div" aria-labelledby="headingCurveCurveDatas"
+             data-parent="#accordionCurveCurveDatas">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -49,20 +47,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas">Curve.CurveDatas</a></div><span class="badge badge-dark value-type">Type: array</span><br/>
-
-
-
-
-
-
-
-<p>Array of CurveData objects</p>
-
-
-
-
-
+    <a href="#CurveCurveDatas" onclick="anchorLink('CurveCurveDatas')">Curve.CurveDatas</a></div><h4>CurveData_Array</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+<span class="description"><p>Array of CurveData objects</p>
+</span>
 
     
         
@@ -82,27 +69,16 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas">Curve.CurveDatas</a>
+    <a href="#CurveCurveDatas" onclick="anchorLink('CurveCurveDatas')">Curve.CurveDatas</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items">CurveData</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
-
-
-
-
-
-
-
-<p>Multi-purpose data points for defining a curve.  The use of this generic class is discouraged if a more specific class can be used to specify the X and Y axis values along with their specific data types.</p>
-
-
-
-
-
+    <a href="#CurveCurveDatas_items" onclick="anchorLink('CurveCurveDatas_items')">CurveData</a></div><h4>CurveData</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Multi-purpose data points for defining a curve.  The use of this generic class is discouraged if a more specific class can be used to specify the X and Y axis values along with their specific data types.</p>
+</span>
 
      <span class="badge badge-info no-additional">No Additional Properties</span>
         
@@ -111,14 +87,19 @@
         
 
         
+<div class="accordion" id="accordionCurveCurveDatas_items_CurveDataxvalue">
+    <div class="card">
+        <div class="card-header" id="headingCurveCurveDatas_items_CurveDataxvalue">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurveCurveDatas_items_CurveDataxvalue"
+                        aria-expanded="" aria-controls="CurveCurveDatas_items_CurveDataxvalue" onclick="setAnchor('#CurveCurveDatas_items_CurveDataxvalue')"><span class="property-name">CurveData.xvalue</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurveCurveDatas_items_CurveDataxvalue">
-        <h2 class="mb-0">
-            <a href="#CurveCurveDatas_items_CurveDataxvalue"><span class="property-name">CurveData.xvalue</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurveCurveDatas_items_CurveDataxvalue"
+             class="collapse property-definition-div" aria-labelledby="headingCurveCurveDatas_items_CurveDataxvalue"
+             data-parent="#accordionCurveCurveDatas_items_CurveDataxvalue">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -127,50 +108,46 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas">Curve.CurveDatas</a>
+    <a href="#CurveCurveDatas" onclick="anchorLink('CurveCurveDatas')">Curve.CurveDatas</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items">CurveData</a>
+    <a href="#CurveCurveDatas_items" onclick="anchorLink('CurveCurveDatas_items')">CurveData</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items_CurveDataxvalue">CurveData.xvalue</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-
-
-
-
-
-
-<p>The data value of the X-axis variable,  depending on the X-axis units.</p>
-
-
-
-
-
+    <a href="#CurveCurveDatas_items_CurveDataxvalue" onclick="anchorLink('CurveCurveDatas_items_CurveDataxvalue')">CurveData.xvalue</a></div><h4>xvalue</h4><span class="badge badge-dark value-type">Type: number</span><br/>
+<span class="description"><p>The data value of the X-axis variable,  depending on the X-axis units.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurveCurveDatas_items_CurveDatay1value">
+    <div class="card">
+        <div class="card-header" id="headingCurveCurveDatas_items_CurveDatay1value">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurveCurveDatas_items_CurveDatay1value"
+                        aria-expanded="" aria-controls="CurveCurveDatas_items_CurveDatay1value" onclick="setAnchor('#CurveCurveDatas_items_CurveDatay1value')"><span class="property-name">CurveData.y1value</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurveCurveDatas_items_CurveDatay1value">
-        <h2 class="mb-0">
-            <a href="#CurveCurveDatas_items_CurveDatay1value"><span class="property-name">CurveData.y1value</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurveCurveDatas_items_CurveDatay1value"
+             class="collapse property-definition-div" aria-labelledby="headingCurveCurveDatas_items_CurveDatay1value"
+             data-parent="#accordionCurveCurveDatas_items_CurveDatay1value">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -179,50 +156,46 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas">Curve.CurveDatas</a>
+    <a href="#CurveCurveDatas" onclick="anchorLink('CurveCurveDatas')">Curve.CurveDatas</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items">CurveData</a>
+    <a href="#CurveCurveDatas_items" onclick="anchorLink('CurveCurveDatas_items')">CurveData</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items_CurveDatay1value">CurveData.y1value</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-
-
-
-
-
-
-<p>The data value of the  first Y-axis variable, depending on the Y-axis units.</p>
-
-
-
-
-
+    <a href="#CurveCurveDatas_items_CurveDatay1value" onclick="anchorLink('CurveCurveDatas_items_CurveDatay1value')">CurveData.y1value</a></div><h4>y1value</h4><span class="badge badge-dark value-type">Type: number</span><br/>
+<span class="description"><p>The data value of the  first Y-axis variable, depending on the Y-axis units.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurveCurveDatas_items_CurveDatay2value">
+    <div class="card">
+        <div class="card-header" id="headingCurveCurveDatas_items_CurveDatay2value">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurveCurveDatas_items_CurveDatay2value"
+                        aria-expanded="" aria-controls="CurveCurveDatas_items_CurveDatay2value" onclick="setAnchor('#CurveCurveDatas_items_CurveDatay2value')"><span class="property-name">CurveData.y2value</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurveCurveDatas_items_CurveDatay2value">
-        <h2 class="mb-0">
-            <a href="#CurveCurveDatas_items_CurveDatay2value"><span class="property-name">CurveData.y2value</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurveCurveDatas_items_CurveDatay2value"
+             class="collapse property-definition-div" aria-labelledby="headingCurveCurveDatas_items_CurveDatay2value"
+             data-parent="#accordionCurveCurveDatas_items_CurveDatay2value">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -231,50 +204,46 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas">Curve.CurveDatas</a>
+    <a href="#CurveCurveDatas" onclick="anchorLink('CurveCurveDatas')">Curve.CurveDatas</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items">CurveData</a>
+    <a href="#CurveCurveDatas_items" onclick="anchorLink('CurveCurveDatas_items')">CurveData</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items_CurveDatay2value">CurveData.y2value</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-
-
-
-
-
-
-<p>The data value of the second Y-axis variable (if present), depending on the Y-axis units.</p>
-
-
-
-
-
+    <a href="#CurveCurveDatas_items_CurveDatay2value" onclick="anchorLink('CurveCurveDatas_items_CurveDatay2value')">CurveData.y2value</a></div><h4>y2value</h4><span class="badge badge-dark value-type">Type: number</span><br/>
+<span class="description"><p>The data value of the second Y-axis variable (if present), depending on the Y-axis units.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurveCurveDatas_items_CurveDatay3value">
+    <div class="card">
+        <div class="card-header" id="headingCurveCurveDatas_items_CurveDatay3value">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurveCurveDatas_items_CurveDatay3value"
+                        aria-expanded="" aria-controls="CurveCurveDatas_items_CurveDatay3value" onclick="setAnchor('#CurveCurveDatas_items_CurveDatay3value')"><span class="property-name">CurveData.y3value</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurveCurveDatas_items_CurveDatay3value">
-        <h2 class="mb-0">
-            <a href="#CurveCurveDatas_items_CurveDatay3value"><span class="property-name">CurveData.y3value</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurveCurveDatas_items_CurveDatay3value"
+             class="collapse property-definition-div" aria-labelledby="headingCurveCurveDatas_items_CurveDatay3value"
+             data-parent="#accordionCurveCurveDatas_items_CurveDatay3value">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -283,50 +252,46 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas">Curve.CurveDatas</a>
+    <a href="#CurveCurveDatas" onclick="anchorLink('CurveCurveDatas')">Curve.CurveDatas</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items">CurveData</a>
+    <a href="#CurveCurveDatas_items" onclick="anchorLink('CurveCurveDatas_items')">CurveData</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items_CurveDatay3value">CurveData.y3value</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-
-
-
-
-
-
-<p>The data value of the third Y-axis variable (if present), depending on the Y-axis units.</p>
-
-
-
-
-
+    <a href="#CurveCurveDatas_items_CurveDatay3value" onclick="anchorLink('CurveCurveDatas_items_CurveDatay3value')">CurveData.y3value</a></div><h4>y3value</h4><span class="badge badge-dark value-type">Type: number</span><br/>
+<span class="description"><p>The data value of the third Y-axis variable (if present), depending on the Y-axis units.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType">
+    <div class="card">
+        <div class="card-header" id="headingCurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType"
+                        aria-expanded="" aria-controls="CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType" onclick="setAnchor('#CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType')"><span class="property-name">DefaultBidCurveData.bidSegmentCalcType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType">
-        <h2 class="mb-0">
-            <a href="#CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType"><span class="property-name">DefaultBidCurveData.bidSegmentCalcType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType"
+             class="collapse property-definition-div" aria-labelledby="headingCurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType"
+             data-parent="#accordionCurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -335,38 +300,27 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas">Curve.CurveDatas</a>
+    <a href="#CurveCurveDatas" onclick="anchorLink('CurveCurveDatas')">Curve.CurveDatas</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items">CurveData</a>
+    <a href="#CurveCurveDatas_items" onclick="anchorLink('CurveCurveDatas_items')">CurveData</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType">DefaultBidCurveData.bidSegmentCalcType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Type of calculation basis used to define the default bid segment curve.</p>
-
-
-
-
-
+    <a href="#CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType" onclick="anchorLink('CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType')">DefaultBidCurveData.bidSegmentCalcType</a></div><h4>bidSegmentCalcType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Type of calculation basis used to define the default bid segment curve.</p>
+</span>
 
     <div class="enum-value" id="CurveCurveDatas_items_DefaultBidCurveDatabidSegmentCalcType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"BidCalculationBasis.COST_BASED"</li><li class="list-group-item enum-item">"BidCalculationBasis.LMP_BASED"</li><li class="list-group-item enum-item">"BidCalculationBasis.NEGOTIATED"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"BidCalculationBasis.COST_BASED"</li><li class="list-group-item enum-item">"BidCalculationBasis.LMP_BASED"</li><li class="list-group-item enum-item">"BidCalculationBasis.NEGOTIATED"</li></ul>
             </div>
         
 
@@ -374,16 +328,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurveCurveDatas_items_RavenscimObjectType">
+    <div class="card">
+        <div class="card-header" id="headingCurveCurveDatas_items_RavenscimObjectType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurveCurveDatas_items_RavenscimObjectType"
+                        aria-expanded="" aria-controls="CurveCurveDatas_items_RavenscimObjectType" onclick="setAnchor('#CurveCurveDatas_items_RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurveCurveDatas_items_RavenscimObjectType">
-        <h2 class="mb-0">
-            <a href="#CurveCurveDatas_items_RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurveCurveDatas_items_RavenscimObjectType"
+             class="collapse property-definition-div" aria-labelledby="headingCurveCurveDatas_items_RavenscimObjectType"
+             data-parent="#accordionCurveCurveDatas_items_RavenscimObjectType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -392,36 +353,25 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas">Curve.CurveDatas</a>
+    <a href="#CurveCurveDatas" onclick="anchorLink('CurveCurveDatas')">Curve.CurveDatas</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items">CurveData</a>
+    <a href="#CurveCurveDatas_items" onclick="anchorLink('CurveCurveDatas_items')">CurveData</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurveCurveDatas_items_RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-
-
-
-
-<div class="enum-value" id="CurveCurveDatas_items_RavenscimObjectType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"CurveData"</li></ul>
+    <a href="#CurveCurveDatas_items_RavenscimObjectType" onclick="anchorLink('CurveCurveDatas_items_RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+</span><div class="enum-value" id="CurveCurveDatas_items_RavenscimObjectType_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"CurveData"</li></ul>
             </div>
         
 
@@ -429,20 +379,29 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
         </div>
     </div>
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionRampRateCurverampRateType">
+    <div class="card">
+        <div class="card-header" id="headingRampRateCurverampRateType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#RampRateCurverampRateType"
+                        aria-expanded="" aria-controls="RampRateCurverampRateType" onclick="setAnchor('#RampRateCurverampRateType')"><span class="property-name">RampRateCurve.rampRateType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="RampRateCurverampRateType">
-        <h2 class="mb-0">
-            <a href="#RampRateCurverampRateType"><span class="property-name">RampRateCurve.rampRateType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="RampRateCurverampRateType"
+             class="collapse property-definition-div" aria-labelledby="headingRampRateCurverampRateType"
+             data-parent="#accordionRampRateCurverampRateType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -451,24 +410,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#RampRateCurverampRateType">RampRateCurve.rampRateType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>How ramp rate is applied (e.g. raise or lower, as when applied to a generation resource)</p>
-
-
-
-
-
+    <a href="#RampRateCurverampRateType" onclick="anchorLink('RampRateCurverampRateType')">RampRateCurve.rampRateType</a></div><h4>rampRateType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>How ramp rate is applied (e.g. raise or lower, as when applied to a generation resource)</p>
+</span>
 
     <div class="enum-value" id="RampRateCurverampRateType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"RampRateType.LD_PICKUP"</li><li class="list-group-item enum-item">"RampRateType.LD_DROP"</li><li class="list-group-item enum-item">"RampRateType.OP"</li><li class="list-group-item enum-item">"RampRateType.REG"</li><li class="list-group-item enum-item">"RampRateType.OP_RES"</li><li class="list-group-item enum-item">"RampRateType.INTERTIE"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"RampRateType.LD_PICKUP"</li><li class="list-group-item enum-item">"RampRateType.LD_DROP"</li><li class="list-group-item enum-item">"RampRateType.OP"</li><li class="list-group-item enum-item">"RampRateType.REG"</li><li class="list-group-item enum-item">"RampRateType.OP_RES"</li><li class="list-group-item enum-item">"RampRateType.INTERTIE"</li></ul>
             </div>
         
 
@@ -476,16 +424,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurvecurveStyle">
+    <div class="card">
+        <div class="card-header" id="headingCurvecurveStyle">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurvecurveStyle"
+                        aria-expanded="" aria-controls="CurvecurveStyle" onclick="setAnchor('#CurvecurveStyle')"><span class="property-name">Curve.curveStyle</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurvecurveStyle">
-        <h2 class="mb-0">
-            <a href="#CurvecurveStyle"><span class="property-name">Curve.curveStyle</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurvecurveStyle"
+             class="collapse property-definition-div" aria-labelledby="headingCurvecurveStyle"
+             data-parent="#accordionCurvecurveStyle">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -494,24 +449,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurvecurveStyle">Curve.curveStyle</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>The style or shape of the curve.</p>
-
-
-
-
-
+    <a href="#CurvecurveStyle" onclick="anchorLink('CurvecurveStyle')">Curve.curveStyle</a></div><h4>curveStyle</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>The style or shape of the curve.</p>
+</span>
 
     <div class="enum-value" id="CurvecurveStyle_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"CurveStyle.straightLineYValues"</li><li class="list-group-item enum-item">"CurveStyle.constantYValue"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"CurveStyle.straightLineYValues"</li><li class="list-group-item enum-item">"CurveStyle.constantYValue"</li></ul>
             </div>
         
 
@@ -519,16 +463,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurvexMultiplier">
+    <div class="card">
+        <div class="card-header" id="headingCurvexMultiplier">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurvexMultiplier"
+                        aria-expanded="" aria-controls="CurvexMultiplier" onclick="setAnchor('#CurvexMultiplier')"><span class="property-name">Curve.xMultiplier</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurvexMultiplier">
-        <h2 class="mb-0">
-            <a href="#CurvexMultiplier"><span class="property-name">Curve.xMultiplier</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurvexMultiplier"
+             class="collapse property-definition-div" aria-labelledby="headingCurvexMultiplier"
+             data-parent="#accordionCurvexMultiplier">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -537,24 +488,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurvexMultiplier">Curve.xMultiplier</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Multiplier for X-axis.</p>
-
-
-
-
-
+    <a href="#CurvexMultiplier" onclick="anchorLink('CurvexMultiplier')">Curve.xMultiplier</a></div><h4>xMultiplier</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Multiplier for X-axis.</p>
+</span>
 
     <div class="enum-value" id="CurvexMultiplier_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
             </div>
         
 
@@ -562,16 +502,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionRampRateCurvecondition">
+    <div class="card">
+        <div class="card-header" id="headingRampRateCurvecondition">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#RampRateCurvecondition"
+                        aria-expanded="" aria-controls="RampRateCurvecondition" onclick="setAnchor('#RampRateCurvecondition')"><span class="property-name">RampRateCurve.condition</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="RampRateCurvecondition">
-        <h2 class="mb-0">
-            <a href="#RampRateCurvecondition"><span class="property-name">RampRateCurve.condition</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="RampRateCurvecondition"
+             class="collapse property-definition-div" aria-labelledby="headingRampRateCurvecondition"
+             data-parent="#accordionRampRateCurvecondition">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -580,24 +527,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#RampRateCurvecondition">RampRateCurve.condition</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>condition for the ramp rate</p>
-
-
-
-
-
+    <a href="#RampRateCurvecondition" onclick="anchorLink('RampRateCurvecondition')">RampRateCurve.condition</a></div><h4>condition</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>condition for the ramp rate</p>
+</span>
 
     <div class="enum-value" id="RampRateCurvecondition_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"RampRateCondition.NORMAL"</li><li class="list-group-item enum-item">"RampRateCondition.BEST"</li><li class="list-group-item enum-item">"RampRateCondition.WORST"</li><li class="list-group-item enum-item">"RampRateCondition.NA"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"RampRateCondition.NORMAL"</li><li class="list-group-item enum-item">"RampRateCondition.BEST"</li><li class="list-group-item enum-item">"RampRateCondition.WORST"</li><li class="list-group-item enum-item">"RampRateCondition.NA"</li></ul>
             </div>
         
 
@@ -605,16 +541,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionRavenscimObjectType">
+    <div class="card">
+        <div class="card-header" id="headingRavenscimObjectType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#RavenscimObjectType"
+                        aria-expanded="" aria-controls="RavenscimObjectType" onclick="setAnchor('#RavenscimObjectType')"><span class="property-name">Ravens.cimObjectType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="RavenscimObjectType">
-        <h2 class="mb-0">
-            <a href="#RavenscimObjectType"><span class="property-name">Ravens.cimObjectType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="RavenscimObjectType"
+             class="collapse property-definition-div" aria-labelledby="headingRavenscimObjectType"
+             data-parent="#accordionRavenscimObjectType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -623,22 +566,11 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#RavenscimObjectType">Ravens.cimObjectType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
-
-
-
-
-<div class="enum-value" id="RavenscimObjectType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"RampRateCurve"</li></ul>
+    <a href="#RavenscimObjectType" onclick="anchorLink('RavenscimObjectType')">Ravens.cimObjectType</a></div><h4>cimObjectType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Used in RAVENS Schema to identify the corresponding CIM Object Type of the JSON object.</p>
+</span><div class="enum-value" id="RavenscimObjectType_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"RampRateCurve"</li></ul>
             </div>
         
 
@@ -646,16 +578,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurvey1Multiplier">
+    <div class="card">
+        <div class="card-header" id="headingCurvey1Multiplier">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#Curvey1Multiplier"
+                        aria-expanded="" aria-controls="Curvey1Multiplier" onclick="setAnchor('#Curvey1Multiplier')"><span class="property-name">Curve.y1Multiplier</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="Curvey1Multiplier">
-        <h2 class="mb-0">
-            <a href="#Curvey1Multiplier"><span class="property-name">Curve.y1Multiplier</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="Curvey1Multiplier"
+             class="collapse property-definition-div" aria-labelledby="headingCurvey1Multiplier"
+             data-parent="#accordionCurvey1Multiplier">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -664,24 +603,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#Curvey1Multiplier">Curve.y1Multiplier</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Multiplier for Y1-axis.</p>
-
-
-
-
-
+    <a href="#Curvey1Multiplier" onclick="anchorLink('Curvey1Multiplier')">Curve.y1Multiplier</a></div><h4>y1Multiplier</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Multiplier for Y1-axis.</p>
+</span>
 
     <div class="enum-value" id="CurvexMultiplier_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
             </div>
         
 
@@ -689,16 +617,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurvey1Unit">
+    <div class="card">
+        <div class="card-header" id="headingCurvey1Unit">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#Curvey1Unit"
+                        aria-expanded="" aria-controls="Curvey1Unit" onclick="setAnchor('#Curvey1Unit')"><span class="property-name">Curve.y1Unit</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="Curvey1Unit">
-        <h2 class="mb-0">
-            <a href="#Curvey1Unit"><span class="property-name">Curve.y1Unit</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="Curvey1Unit"
+             class="collapse property-definition-div" aria-labelledby="headingCurvey1Unit"
+             data-parent="#accordionCurvey1Unit">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -707,24 +642,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#Curvey1Unit">Curve.y1Unit</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>The Y1-axis units of measure.</p>
-
-
-
-
-
+    <a href="#Curvey1Unit" onclick="anchorLink('Curvey1Unit')">Curve.y1Unit</a></div><h4>y1Unit</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>The Y1-axis units of measure.</p>
+</span>
 
     <div class="enum-value" id="Curvey1Unit_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
             </div>
         
 
@@ -732,16 +656,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionRampRateCurveconstraintRampType">
+    <div class="card">
+        <div class="card-header" id="headingRampRateCurveconstraintRampType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#RampRateCurveconstraintRampType"
+                        aria-expanded="" aria-controls="RampRateCurveconstraintRampType" onclick="setAnchor('#RampRateCurveconstraintRampType')"><span class="property-name">RampRateCurve.constraintRampType</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="RampRateCurveconstraintRampType">
-        <h2 class="mb-0">
-            <a href="#RampRateCurveconstraintRampType"><span class="property-name">RampRateCurve.constraintRampType</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="RampRateCurveconstraintRampType"
+             class="collapse property-definition-div" aria-labelledby="headingRampRateCurveconstraintRampType"
+             data-parent="#accordionRampRateCurveconstraintRampType">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -750,26 +681,15 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#RampRateCurveconstraintRampType">RampRateCurve.constraintRampType</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>The condition that identifies whether a Generating Resource should be constrained from Ancillary Service provision if its Schedule or Dispatch change across Trading Hours or Trading Intervals requires more than a specified fraction of the duration of the Trading Hour or Trading Interval. </p>
+    <a href="#RampRateCurveconstraintRampType" onclick="anchorLink('RampRateCurveconstraintRampType')">RampRateCurve.constraintRampType</a></div><h4>constraintRampType</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>The condition that identifies whether a Generating Resource should be constrained from Ancillary Service provision if its Schedule or Dispatch change across Trading Hours or Trading Intervals requires more than a specified fraction of the duration of the Trading Hour or Trading Interval. </p>
 
 <p>Valid values are Fast/Slow</p>
-
-
-
-
-
+</span>
 
     <div class="enum-value" id="RampRateCurveconstraintRampType_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"ConstraintRampType.SLOW"</li><li class="list-group-item enum-item">"ConstraintRampType.FAST"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"ConstraintRampType.SLOW"</li><li class="list-group-item enum-item">"ConstraintRampType.FAST"</li></ul>
             </div>
         
 
@@ -777,16 +697,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurvey2Multiplier">
+    <div class="card">
+        <div class="card-header" id="headingCurvey2Multiplier">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#Curvey2Multiplier"
+                        aria-expanded="" aria-controls="Curvey2Multiplier" onclick="setAnchor('#Curvey2Multiplier')"><span class="property-name">Curve.y2Multiplier</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="Curvey2Multiplier">
-        <h2 class="mb-0">
-            <a href="#Curvey2Multiplier"><span class="property-name">Curve.y2Multiplier</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="Curvey2Multiplier"
+             class="collapse property-definition-div" aria-labelledby="headingCurvey2Multiplier"
+             data-parent="#accordionCurvey2Multiplier">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -795,24 +722,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#Curvey2Multiplier">Curve.y2Multiplier</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Multiplier for Y2-axis.</p>
-
-
-
-
-
+    <a href="#Curvey2Multiplier" onclick="anchorLink('Curvey2Multiplier')">Curve.y2Multiplier</a></div><h4>y2Multiplier</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Multiplier for Y2-axis.</p>
+</span>
 
     <div class="enum-value" id="CurvexMultiplier_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
             </div>
         
 
@@ -820,16 +736,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurvey3Unit">
+    <div class="card">
+        <div class="card-header" id="headingCurvey3Unit">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#Curvey3Unit"
+                        aria-expanded="" aria-controls="Curvey3Unit" onclick="setAnchor('#Curvey3Unit')"><span class="property-name">Curve.y3Unit</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="Curvey3Unit">
-        <h2 class="mb-0">
-            <a href="#Curvey3Unit"><span class="property-name">Curve.y3Unit</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="Curvey3Unit"
+             class="collapse property-definition-div" aria-labelledby="headingCurvey3Unit"
+             data-parent="#accordionCurvey3Unit">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -838,24 +761,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#Curvey3Unit">Curve.y3Unit</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>The Y3-axis units of measure.</p>
-
-
-
-
-
+    <a href="#Curvey3Unit" onclick="anchorLink('Curvey3Unit')">Curve.y3Unit</a></div><h4>y3Unit</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>The Y3-axis units of measure.</p>
+</span>
 
     <div class="enum-value" id="Curvey1Unit_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
             </div>
         
 
@@ -863,16 +775,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurvexUnit">
+    <div class="card">
+        <div class="card-header" id="headingCurvexUnit">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#CurvexUnit"
+                        aria-expanded="" aria-controls="CurvexUnit" onclick="setAnchor('#CurvexUnit')"><span class="property-name">Curve.xUnit</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="CurvexUnit">
-        <h2 class="mb-0">
-            <a href="#CurvexUnit"><span class="property-name">Curve.xUnit</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="CurvexUnit"
+             class="collapse property-definition-div" aria-labelledby="headingCurvexUnit"
+             data-parent="#accordionCurvexUnit">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -881,24 +800,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CurvexUnit">Curve.xUnit</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>The X-axis units of measure.</p>
-
-
-
-
-
+    <a href="#CurvexUnit" onclick="anchorLink('CurvexUnit')">Curve.xUnit</a></div><h4>xUnit</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>The X-axis units of measure.</p>
+</span>
 
     <div class="enum-value" id="Curvey1Unit_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
             </div>
         
 
@@ -906,16 +814,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurvey3Multiplier">
+    <div class="card">
+        <div class="card-header" id="headingCurvey3Multiplier">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#Curvey3Multiplier"
+                        aria-expanded="" aria-controls="Curvey3Multiplier" onclick="setAnchor('#Curvey3Multiplier')"><span class="property-name">Curve.y3Multiplier</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="Curvey3Multiplier">
-        <h2 class="mb-0">
-            <a href="#Curvey3Multiplier"><span class="property-name">Curve.y3Multiplier</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="Curvey3Multiplier"
+             class="collapse property-definition-div" aria-labelledby="headingCurvey3Multiplier"
+             data-parent="#accordionCurvey3Multiplier">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -924,24 +839,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#Curvey3Multiplier">Curve.y3Multiplier</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>Multiplier for Y3-axis.</p>
-
-
-
-
-
+    <a href="#Curvey3Multiplier" onclick="anchorLink('Curvey3Multiplier')">Curve.y3Multiplier</a></div><h4>y3Multiplier</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Multiplier for Y3-axis.</p>
+</span>
 
     <div class="enum-value" id="CurvexMultiplier_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitMultiplier.f"</li><li class="list-group-item enum-item">"UnitMultiplier.c"</li><li class="list-group-item enum-item">"UnitMultiplier.G"</li><li class="list-group-item enum-item">"UnitMultiplier.d"</li><li class="list-group-item enum-item">"UnitMultiplier.z"</li><li class="list-group-item enum-item">"UnitMultiplier.p"</li><li class="list-group-item enum-item">"UnitMultiplier.y"</li><li class="list-group-item enum-item">"UnitMultiplier.h"</li><li class="list-group-item enum-item">"UnitMultiplier.Y"</li><li class="list-group-item enum-item">"UnitMultiplier.a"</li><li class="list-group-item enum-item">"UnitMultiplier.none"</li><li class="list-group-item enum-item">"UnitMultiplier.k"</li><li class="list-group-item enum-item">"UnitMultiplier.m"</li><li class="list-group-item enum-item">"UnitMultiplier.n"</li><li class="list-group-item enum-item">"UnitMultiplier.E"</li><li class="list-group-item enum-item">"UnitMultiplier.da"</li><li class="list-group-item enum-item">"UnitMultiplier.T"</li><li class="list-group-item enum-item">"UnitMultiplier.M"</li><li class="list-group-item enum-item">"UnitMultiplier.P"</li><li class="list-group-item enum-item">"UnitMultiplier.Z"</li><li class="list-group-item enum-item">"UnitMultiplier.micro"</li></ul>
             </div>
         
 
@@ -949,16 +853,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionCurvey2Unit">
+    <div class="card">
+        <div class="card-header" id="headingCurvey2Unit">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#Curvey2Unit"
+                        aria-expanded="" aria-controls="Curvey2Unit" onclick="setAnchor('#Curvey2Unit')"><span class="property-name">Curve.y2Unit</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="Curvey2Unit">
-        <h2 class="mb-0">
-            <a href="#Curvey2Unit"><span class="property-name">Curve.y2Unit</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="Curvey2Unit"
+             class="collapse property-definition-div" aria-labelledby="headingCurvey2Unit"
+             data-parent="#accordionCurvey2Unit">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -967,24 +878,13 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#Curvey2Unit">Curve.y2Unit</a></div><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
-
-
-
-
-
-
-
-<p>The Y2-axis units of measure.</p>
-
-
-
-
-
+    <a href="#Curvey2Unit" onclick="anchorLink('Curvey2Unit')">Curve.y2Unit</a></div><h4>y2Unit</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>The Y2-axis units of measure.</p>
+</span>
 
     <div class="enum-value" id="Curvey1Unit_enum">
-                <h4>Must be one of:</h4>
-                <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"UnitSymbol.JPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.NPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerW"</li><li class="list-group-item enum-item">"UnitSymbol.JPermol"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2sr"</li><li class="list-group-item enum-item">"UnitSymbol.V"</li><li class="list-group-item enum-item">"UnitSymbol.A2h"</li><li class="list-group-item enum-item">"UnitSymbol.JPerK"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perkg"</li><li class="list-group-item enum-item">"UnitSymbol.HzPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.T"</li><li class="list-group-item enum-item">"UnitSymbol.Vh"</li><li class="list-group-item enum-item">"UnitSymbol.tonne"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.CPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.VPerHz"</li><li class="list-group-item enum-item">"UnitSymbol.ohm"</li><li class="list-group-item enum-item">"UnitSymbol.K"</li><li class="list-group-item enum-item">"UnitSymbol.m3Compensated"</li><li class="list-group-item enum-item">"UnitSymbol.lx"</li><li class="list-group-item enum-item">"UnitSymbol.lPerh"</li><li class="list-group-item enum-item">"UnitSymbol.APerm"</li><li class="list-group-item enum-item">"UnitSymbol.charPers"</li><li class="list-group-item enum-item">"UnitSymbol.katPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Pas"</li><li class="list-group-item enum-item">"UnitSymbol.ohmPerm"</li><li class="list-group-item enum-item">"UnitSymbol.radPers2"</li><li class="list-group-item enum-item">"UnitSymbol.Btu"</li><li class="list-group-item enum-item">"UnitSymbol.WPers"</li><li class="list-group-item enum-item">"UnitSymbol.h"</li><li class="list-group-item enum-item">"UnitSymbol.lPerl"</li><li class="list-group-item enum-item">"UnitSymbol.l"</li><li class="list-group-item enum-item">"UnitSymbol.As"</li><li class="list-group-item enum-item">"UnitSymbol.cosPhi"</li><li class="list-group-item enum-item">"UnitSymbol.W"</li><li class="list-group-item enum-item">"UnitSymbol.count"</li><li class="list-group-item enum-item">"UnitSymbol.PaPers"</li><li class="list-group-item enum-item">"UnitSymbol.onePerHz"</li><li class="list-group-item enum-item">"UnitSymbol.m3Pers"</li><li class="list-group-item enum-item">"UnitSymbol.KPers"</li><li class="list-group-item enum-item">"UnitSymbol.Vs"</li><li class="list-group-item enum-item">"UnitSymbol.m2Pers"</li><li class="list-group-item enum-item">"UnitSymbol.Ah"</li><li class="list-group-item enum-item">"UnitSymbol.deg"</li><li class="list-group-item enum-item">"UnitSymbol.mPers2"</li><li class="list-group-item enum-item">"UnitSymbol.lm"</li><li class="list-group-item enum-item">"UnitSymbol.d"</li><li class="list-group-item enum-item">"UnitSymbol.JPerkgK"</li><li class="list-group-item enum-item">"UnitSymbol.m"</li><li class="list-group-item enum-item">"UnitSymbol.min"</li><li class="list-group-item enum-item">"UnitSymbol.dB"</li><li class="list-group-item enum-item">"UnitSymbol.Gy"</li><li class="list-group-item enum-item">"UnitSymbol.Nm"</li><li class="list-group-item enum-item">"UnitSymbol.JPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.sPers"</li><li class="list-group-item enum-item">"UnitSymbol.Q"</li><li class="list-group-item enum-item">"UnitSymbol.rev"</li><li class="list-group-item enum-item">"UnitSymbol.N"</li><li class="list-group-item enum-item">"UnitSymbol.Bq"</li><li class="list-group-item enum-item">"UnitSymbol.WPermK"</li><li class="list-group-item enum-item">"UnitSymbol.GyPers"</li><li class="list-group-item enum-item">"UnitSymbol.HPerm"</li><li class="list-group-item enum-item">"UnitSymbol.molPerkg"</li><li class="list-group-item enum-item">"UnitSymbol.molPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Wb"</li><li class="list-group-item enum-item">"UnitSymbol.VPerm"</li><li class="list-group-item enum-item">"UnitSymbol.WPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.kn"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm2"</li><li class="list-group-item enum-item">"UnitSymbol.anglemin"</li><li class="list-group-item enum-item">"UnitSymbol.Oe"</li><li class="list-group-item enum-item">"UnitSymbol.kgm"</li><li class="list-group-item enum-item">"UnitSymbol.character"</li><li class="list-group-item enum-item">"UnitSymbol.APerA"</li><li class="list-group-item enum-item">"UnitSymbol.A2s"</li><li class="list-group-item enum-item">"UnitSymbol.Qh"</li><li class="list-group-item enum-item">"UnitSymbol.JPers"</li><li class="list-group-item enum-item">"UnitSymbol.Hz"</li><li class="list-group-item enum-item">"UnitSymbol.rad"</li><li class="list-group-item enum-item">"UnitSymbol.kat"</li><li class="list-group-item enum-item">"UnitSymbol.degC"</li><li class="list-group-item enum-item">"UnitSymbol.bar"</li><li class="list-group-item enum-item">"UnitSymbol.M"</li><li class="list-group-item enum-item">"UnitSymbol.molPermol"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerJ"</li><li class="list-group-item enum-item">"UnitSymbol.J"</li><li class="list-group-item enum-item">"UnitSymbol.HzPers"</li><li class="list-group-item enum-item">"UnitSymbol.WPersr"</li><li class="list-group-item enum-item">"UnitSymbol.anglesec"</li><li class="list-group-item enum-item">"UnitSymbol.F"</li><li class="list-group-item enum-item">"UnitSymbol.Mx"</li><li class="list-group-item enum-item">"UnitSymbol.ha"</li><li class="list-group-item enum-item">"UnitSymbol.SPerm"</li><li class="list-group-item enum-item">"UnitSymbol.gal"</li><li class="list-group-item enum-item">"UnitSymbol.mmHg"</li><li class="list-group-item enum-item">"UnitSymbol.m2"</li><li class="list-group-item enum-item">"UnitSymbol.mPers"</li><li class="list-group-item enum-item">"UnitSymbol.V2h"</li><li class="list-group-item enum-item">"UnitSymbol.m3"</li><li class="list-group-item enum-item">"UnitSymbol.G"</li><li class="list-group-item enum-item">"UnitSymbol.H"</li><li class="list-group-item enum-item">"UnitSymbol.mol"</li><li class="list-group-item enum-item">"UnitSymbol.rotPers"</li><li class="list-group-item enum-item">"UnitSymbol.VAh"</li><li class="list-group-item enum-item">"UnitSymbol.mPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.onePerm"</li><li class="list-group-item enum-item">"UnitSymbol.V2"</li><li class="list-group-item enum-item">"UnitSymbol.WPerA"</li><li class="list-group-item enum-item">"UnitSymbol.Pa"</li><li class="list-group-item enum-item">"UnitSymbol.kgPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.CPerm3"</li><li class="list-group-item enum-item">"UnitSymbol.Sv"</li><li class="list-group-item enum-item">"UnitSymbol.S"</li><li class="list-group-item enum-item">"UnitSymbol.JPermolK"</li><li class="list-group-item enum-item">"UnitSymbol.ft3"</li><li class="list-group-item enum-item">"UnitSymbol.Wh"</li><li class="list-group-item enum-item">"UnitSymbol.radPers"</li><li class="list-group-item enum-item">"UnitSymbol.ohmm"</li><li class="list-group-item enum-item">"UnitSymbol.kgm2"</li><li class="list-group-item enum-item">"UnitSymbol.m3Perh"</li><li class="list-group-item enum-item">"UnitSymbol.dBm"</li><li class="list-group-item enum-item">"UnitSymbol.VA"</li><li class="list-group-item enum-item">"UnitSymbol.A2"</li><li class="list-group-item enum-item">"UnitSymbol.s"</li><li class="list-group-item enum-item">"UnitSymbol.therm"</li><li class="list-group-item enum-item">"UnitSymbol.VArh"</li><li class="list-group-item enum-item">"UnitSymbol.cd"</li><li class="list-group-item enum-item">"UnitSymbol.VPerV"</li><li class="list-group-item enum-item">"UnitSymbol.gPerg"</li><li class="list-group-item enum-item">"UnitSymbol.kg"</li><li class="list-group-item enum-item">"UnitSymbol.A"</li><li class="list-group-item enum-item">"UnitSymbol.m3Uncompensated"</li><li class="list-group-item enum-item">"UnitSymbol.ppm"</li><li class="list-group-item enum-item">"UnitSymbol.FPerm"</li><li class="list-group-item enum-item">"UnitSymbol.C"</li><li class="list-group-item enum-item">"UnitSymbol.sr"</li><li class="list-group-item enum-item">"UnitSymbol.none"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVAr"</li><li class="list-group-item enum-item">"UnitSymbol.VAr"</li><li class="list-group-item enum-item">"UnitSymbol.VPerVA"</li><li class="list-group-item enum-item">"UnitSymbol.lPers"</li></ul>
             </div>
         
 
@@ -992,16 +892,23 @@
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionIdentifiedObjectdescription">
+    <div class="card">
+        <div class="card-header" id="headingIdentifiedObjectdescription">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#IdentifiedObjectdescription"
+                        aria-expanded="" aria-controls="IdentifiedObjectdescription" onclick="setAnchor('#IdentifiedObjectdescription')"><span class="property-name">IdentifiedObject.description</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="IdentifiedObjectdescription">
-        <h2 class="mb-0">
-            <a href="#IdentifiedObjectdescription"><span class="property-name">IdentifiedObject.description</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="IdentifiedObjectdescription"
+             class="collapse property-definition-div" aria-labelledby="headingIdentifiedObjectdescription"
+             data-parent="#accordionIdentifiedObjectdescription">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1010,36 +917,32 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#IdentifiedObjectdescription">IdentifiedObject.description</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
-
-
-
-
-
+    <a href="#IdentifiedObjectdescription" onclick="anchorLink('IdentifiedObjectdescription')">IdentifiedObject.description</a></div><h4>description</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionIdentifiedObjectaliasName">
+    <div class="card">
+        <div class="card-header" id="headingIdentifiedObjectaliasName">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#IdentifiedObjectaliasName"
+                        aria-expanded="" aria-controls="IdentifiedObjectaliasName" onclick="setAnchor('#IdentifiedObjectaliasName')"><span class="property-name">IdentifiedObject.aliasName</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="IdentifiedObjectaliasName">
-        <h2 class="mb-0">
-            <a href="#IdentifiedObjectaliasName"><span class="property-name">IdentifiedObject.aliasName</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="IdentifiedObjectaliasName"
+             class="collapse property-definition-div" aria-labelledby="headingIdentifiedObjectaliasName"
+             data-parent="#accordionIdentifiedObjectaliasName">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1048,37 +951,33 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#IdentifiedObjectaliasName">IdentifiedObject.aliasName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
+    <a href="#IdentifiedObjectaliasName" onclick="anchorLink('IdentifiedObjectaliasName')">IdentifiedObject.aliasName</a></div><h4>aliasName</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.<br />
 The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
-
-
-
-
-
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionIdentifiedObjectmRID">
+    <div class="card">
+        <div class="card-header" id="headingIdentifiedObjectmRID">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#IdentifiedObjectmRID"
+                        aria-expanded="" aria-controls="IdentifiedObjectmRID" onclick="setAnchor('#IdentifiedObjectmRID')"><span class="property-name">IdentifiedObject.mRID</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="IdentifiedObjectmRID">
-        <h2 class="mb-0">
-            <a href="#IdentifiedObjectmRID"><span class="property-name">IdentifiedObject.mRID</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="IdentifiedObjectmRID"
+             class="collapse property-definition-div" aria-labelledby="headingIdentifiedObjectmRID"
+             data-parent="#accordionIdentifiedObjectmRID">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1087,37 +986,33 @@ The attribute aliasName is retained because of backwards compatibility between C
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#IdentifiedObjectmRID">IdentifiedObject.mRID</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
+    <a href="#IdentifiedObjectmRID" onclick="anchorLink('IdentifiedObjectmRID')">IdentifiedObject.mRID</a></div><h4>mRID</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.<br />
 For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
-
-
-
-
-
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
+<div class="accordion" id="accordionIdentifiedObjectname">
+    <div class="card">
+        <div class="card-header" id="headingIdentifiedObjectname">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#IdentifiedObjectname"
+                        aria-expanded="" aria-controls="IdentifiedObjectname" onclick="setAnchor('#IdentifiedObjectname')"><span class="property-name">IdentifiedObject.name</span></button>
+            </h2>
+        </div>
 
-<div class="card">
-    <div class="card-header" id="IdentifiedObjectname">
-        <h2 class="mb-0">
-            <a href="#IdentifiedObjectname"><span class="property-name">IdentifiedObject.name</span></a></h2>
-    </div>
-
-    <div class="card-body property-definition-div">
+        <div id="IdentifiedObjectname"
+             class="collapse property-definition-div" aria-labelledby="headingIdentifiedObjectname"
+             data-parent="#accordionIdentifiedObjectname">
+            <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1126,30 +1021,21 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#IdentifiedObjectname">IdentifiedObject.name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-
-
-
-
-
-
-
-<p>The name is any free human readable and possibly non unique text naming the object.</p>
-
-
-
-
-
+    <a href="#IdentifiedObjectname" onclick="anchorLink('IdentifiedObjectname')">IdentifiedObject.name</a></div><h4>name</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The name is any free human readable and possibly non unique text naming the object.</p>
+</span>
         
 
         
         
 
         
+            </div>
+        </div>
     </div>
 </div>
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-12-16 at 18:59:03 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-12-17 at 16:04:29 +0000</p>
     </footer></body>
 </html>
