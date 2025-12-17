@@ -70,6 +70,16 @@ class RDFGraph(object):
 
         nx.write_graphml(G, file_path, named_key_ids=True, edge_id_from_attribute="id")
 
+    def get(self, subject, predicate, default=None):
+        _v = self.graph.value(subject=subject, predicate=predicate)
+        if _v is None:
+            return default
+
+        return _v
+
+    def get_name(self, subject):
+        return self.get(subject, self.cim["IdentifiedObject.name"], str(subject))
+
     def save(self, path: pathlib.Path | str) -> None:
         rdfxml = self.graph.serialize(max_depth=1, format="pretty-xml")
         rdfxml = rdfxml.replace("rdf:about", "rdf:ID")
