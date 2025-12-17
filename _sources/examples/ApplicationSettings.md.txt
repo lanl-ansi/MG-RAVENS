@@ -26,6 +26,19 @@
       "IdentifiedObject.name": "ONM_block_settings",
       "IdentifiedObject.mRID": "6f85c1b4-1fb3-4e65-affd-1c654739cdd1",
       "OptimizationAlgorithmProperties.switchCloseMaximum": 1
+    },
+    "MySettings": {
+      "IdentifiedObject.mRID": "b95df443-bcee-49d5-b60c-e819df5b0959",
+      "IdentifiedObject.name": "MySettings",
+      "Ravens.cimObjectType": "AlgorithmSettings",
+      "ApplicationSettings.Settings": [
+        {
+          "Ravens.cimObjectType": "GenericApplicationSetting",
+          "name": "baseMVA",
+          "value": 100.0,
+          "type": "float"
+        }
+      ]
     }
   }
 }
