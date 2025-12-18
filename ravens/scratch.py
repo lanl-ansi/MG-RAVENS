@@ -26,39 +26,54 @@ tg.save_auto_template(auto)
 # fault has all the associations identified properly, but the emissions aren't quite the same
 # location
 
+name = 'Location'
+A = ug.A
+targets = [n for n, d in A.nodes(data=True) if d.get("Name") == name]
+if not targets:
+    raise ValueError('No node found with Name == "blah"')
+
+rows = []
+seen = set()  # (node, direction)
+
+for t in targets:
+    for n in A.predecessors(t):
+        key = (n, "incoming")
+        if key not in seen:
+            seen.add(key)
+            rows.append({"node": n, "direction": "incoming", **dict(A.nodes[n])})
+
+    for n in A.successors(t):
+        key = (n, "outgoing")
+        if key not in seen:
+            seen.add(key)
+            rows.append({"node": n, "direction": "outgoing", **dict(A.nodes[n])})
+
+df = pd.DataFrame(rows)
+
+inheretOnly "objects" don't ever show up in the template - only their properties
+embedded vs reference? 
+if there's a path to root, the inheritonlys should be references
+    references have to have to appear under root somewhere ($path must be consistent--must pass through a container or object (no associations except initial one to root))
+    embedded only exists "where we've put it". only exists under that thing, not in other places in the schema. 
+how to approach this problem (AnalysisResult, CostFunction) - need a new tag or need
+switchphase - exampel of where we need to consider tehy're embedded. when doing the G traversal, put the embedded clases in a separate bucket; revisit when doing associations to know where they actually go
+embeddedInheritOnly- new class? - "it is embedded, but we're not including it in the anyOf"
+if embedded with substitutable, we include everything in the anyOf. need a case where we don't include the top-level one.
+perlengthimpedance - good example of ???
+most likely case is that there is a generalization back to root of an embedded object?
+add primarykey to all of them (was showing up as null for some reason)
+acdcterminal is something i should ignore
+embeddedinheritonly - you don't care about them, you care about what's under them
+operationallimit - embeddedInheritOnly (changed)
+transfomerend needs to be looked up in data (add to spreadsheet)
+transformertest shoudl never show up
+why is switch seen as an orphan? 
+operationallimit - where to start 
+you do inherit inheritonly's associations. like with acdc.operationallimitset
 # use operationallimitset, fault, and location for first cut of association compares
 # embedded vs reference
 # avoid everything under switches and powersystemresource for now (it's too complicated)
 # look for disconnected graphs in generalizations - these could represent new type
-
-con = uml_data.connectors.reset_index()   # brings ConnectorID into columns
-obj = uml_data.objects.reset_index()
-
-# Figure out the object ID & name columns
-obj_id_col  = 'Object_ID' if 'Object_ID' in obj.columns else 'ObjectID'
-name_col    = 'Name'      if 'Name' in obj.columns      else 'Object'
-
-obj_names = obj.set_index(obj_id_col)[name_col]
-
-# Attach human-readable names to each connector end
-con['StartName'] = con['Start_Object_ID'].map(obj_names)
-con['EndName']   = con['End_Object_ID'].map(obj_names)
-
-mask = (
-    (con['Connector_Type'] == 'Association') &
-    (
-        ((con['StartName'] == 'Location')      & (con['EndName'] == 'PositionPoint')) |
-        ((con['StartName'] == 'PositionPoint') & (con['EndName'] == 'Location'))
-    )
-)
-
-print(con.loc[mask])
-cids = con.loc[mask, 'Connector_ID'].unique().tolist()
-
-print(uml_data.diagramlinks.loc[
-    uml_data.diagramlinks['ConnectorID'].isin(cids),
-    ['DiagramID', 'ConnectorID', 'Hidden', 'Style', 'Geometry']])
-
 
 
 # # 3) Build role sets + emit JScript

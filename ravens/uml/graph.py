@@ -554,9 +554,21 @@ class UMLGraphs:
         For each rootClass, list the contiguous chain of notConcrete parents in H
         (closest first). Report-only to guide placement.
         """
-        def role(n): return (self.role_for_object(int(n)) or "").strip()
+        def role(n): 
+            r = (self.role_for_object(int(n)) or "").strip()
+            return self._normalize_role(r, kind="node") or ""
+
         roots = [n for n in self.H.nodes if role(n) == "rootClass"]
-        not_concrete = {"containerClass", "substitutableClass", "inheritOnlyClass", "yellowClass", "compoundClass", ""}
+
+        not_concrete = {
+            "containerClass",
+            "substitutableClass",
+            "inheritOnlyClass",
+            "embeddedInheritOnlyClass",  # NEW
+            "yellowClass",
+            "compoundClass",
+            "",
+        }
 
         rows = []
         for r in sorted(roots, key=lambda n: str(self.uml_data.objects.loc[n]["Name"]).casefold()):
@@ -792,23 +804,50 @@ class UMLGraphs:
         return {k: ("" if pd.isna(v) else str(v)) for k, v in sub["Value"].items()}
 
     def _normalize_role(self, role: str, *, kind: Literal["node", "edge"]) -> Optional[str]:
-        _NODE_ROLE_ALIASES = {
-            "rootclass": "rootClass",
-            "compoundclass": "compoundClass",
-            "embeddedclass": "embeddedClass",
-            "yellowclass": "yellowClass",
-        }
-        _EDGE_ROLE_ALIASES = {
+        """
+        Normalize ravensRole values coming from EA tagged values.
+        - Accepts case-insensitive / underscore / space variants
+        - Preserves unknown roles (so they stay visible for debugging)
+        """
+        if role is None:
+            return None
+        raw = str(role).strip()
+        if not raw:
+            return None
+
+        # normalize for alias lookup
+        key = raw.casefold().replace("_", "").replace(" ", "")
+
+        if kind == "node":
+            aliases = {
+                # canonical concrete / structural roles
+                "rootclass": "rootClass",
+                "containerclass": "containerClass",
+                "embeddedclass": "embeddedClass",
+                "substitutableclass": "substitutableClass",
+
+                # inherit-only semantics
+                "inheritonlyclass": "inheritOnlyClass",
+                "inheritonly": "inheritOnlyClass",
+
+                # your new role
+                "embeddedinheritonlyclass": "embeddedInheritOnlyClass",
+                "embeddedinheritonly": "embeddedInheritOnlyClass",
+                "embeddedinheritonlycls": "embeddedInheritOnlyClass",
+
+                # legacy / misc roles you already use
+                "compoundclass": "compoundClass",
+                "yellowclass": "yellowClass",
+                "white": "white",
+            }
+            return aliases.get(key, raw)
+
+        # edge roles (keep what you already had, just normalize lookup)
+        aliases = {
             "referenceconnector": "referenceConnector",
             "embeddedconnector": "embeddedConnector",
         }
-        if not role:
-            return None
-        key = str(role).strip().casefold()
-        if kind == "node":
-            return _NODE_ROLE_ALIASES.get(key, role)
-        else:
-            return _EDGE_ROLE_ALIASES.get(key, role)
+        return aliases.get(key, raw)
 
     def role_for_object(self, object_id: int):
         return self._object_role_map.get(int(object_id))
