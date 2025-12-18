@@ -208,212 +208,327 @@ class TemplateGenerator:
 
     def _emit_association_entries(self) -> None:
         """
-        For each UML Association / Aggregation / Composition edge in A, add a
-        dotted association property onto the owning object, e.g.
-        "Foo.Bars" on Foo, whose schema is either a single reference or an
-        array of references to the target object.
+        Association catchers (A + H):
 
-        Rules:
-          • Owner class   = Start_Object (unlabeled side)
-          • Target class  = End_Object   (labeled side)
-          • Property name = edge "label" (can be plural)
-          • Multiplicity for the property = end_mult
-                0..1  -> single reference object
-                other -> array of references
-          • Association entries must NOT carry primary/secondary hashes.
-          • If the target participates in a polymorphic family (base + descendants),
-            emit a HAND-style anyOf of references under an outer reference node
-            whose $objectId is the base (e.g. "Equipment").
+        For each Association/Aggregation/Composition edge in A, we add a dotted property
+        onto every *emitted* descendant of the declaring owner in the inheritance tree H.
+
+        Example:
+            ConductingEquipment --(Terminals 0..*)--> Terminal
+        becomes a property:
+            "ConductingEquipment.Terminals" : { ... }
+        on ACLineSegment (and every other descendant of ConductingEquipment that is emitted).
+
+        Key points:
+        • Property key always uses the *declaring* owner name (not the recipient name).
+        • Targets that are globally-referenceable become HAND-style references (optionally anyOf).
+        • Targets tagged embeddedClass/embeddedInheritOnlyClass are **inlined** as object schemas
+            (because they are not globally referenceable).
+        • Embedded targets get one extra pass: we pull their own association properties (and those
+            of their embedded descendants) into the embedded object's "properties" (depth-limited).
+        • No association entry carries $primaryObjectHash / $secondaryObjectHash.
         """
         A = self.A
         if A is None or not isinstance(A, nx.MultiDiGraph):
             return
 
-        # Map Name -> node id (int), using both A and H to be robust
-        name_to_id: dict[str, int] = {}
-        for G in (A, self.H):
-            if not isinstance(G, nx.Graph):
-                continue
-            for nid, data in G.nodes(data=True):
-                nm = (data.get("Name") or "").strip()
-                if not nm:
-                    continue
-                try:
-                    nid_i = int(nid)
-                except Exception:
-                    continue
-                if nm not in name_to_id:
-                    name_to_id[nm] = nid_i
-
-        # Deduplicate at the (connector, owner, label) level so that:
-        #   • multiple diagrams using the same connector don't create duplicates
-        #   • but a connector that truly yields two directions (A->B and B->A)
-        #     can still create two different properties.
-        seen_props: set[tuple[int, str, str]] = set()
-
-        # Treat aggregation / composition like associations, but skip the
-        # structural containers we handle specially elsewhere.
         ASSOC_LIKE = {"Association", "Aggregation", "Composition"}
         STRUCTURAL_CONTAINERS = {"Root", "Group", "Groups", "Version", "Versions"}
 
+        def role_of(nid: int) -> str:
+            try:
+                return (self.role_map.get(int(nid)) or "").strip()
+            except Exception:
+                return ""
+
+        def is_embedded(nid: int) -> bool:
+            return role_of(nid) in ("embeddedClass", "embeddedInheritOnlyClass", "embeddedInheritOnly")
+
+        def is_inherit_only(nid: int) -> bool:
+            return role_of(nid) == "inheritOnlyClass"
+
+        def embedded_base_id(nid: int) -> int:
+            """
+            Pick the most-general embeddedClass ancestor in the chain.
+            If nid is not embedded, returns nid unchanged.
+            """
+            nid = int(nid)
+            if not is_embedded(nid):
+                return nid
+            best = nid
+            seen = {nid}
+            q = deque([nid])
+            while q:
+                cur = q.popleft()
+                for parent in self.H.successors(cur):  # H: child -> parent
+                    parent = int(parent)
+                    if parent in seen:
+                        continue
+                    seen.add(parent)
+                    if is_embedded(parent):
+                        best = parent
+                        q.append(parent)
+            return best
+
+        def family_members(base: int) -> list[int]:
+            """
+            base + all descendants in HR that are embedded-ish (exclude inheritOnly).
+            """
+            base = int(base)
+            out = [base]
+            try:
+                desc = nx.descendants(self.HR, base)
+            except Exception:
+                desc = set()
+            for d in desc:
+                d = int(d)
+                if d == base:
+                    continue
+                if is_inherit_only(d):
+                    continue
+                if is_embedded(d):
+                    out.append(d)
+            # keep base first, then name-sort rest
+            return out[:1] + sorted(out[1:], key=lambda n: (self._name(n) or "").casefold())
 
         def make_polymorphic_ref_schema(target_id: int) -> dict | None:
             """
-            Return a HAND-style schema for an association target.
-
-            Preference order:
-              1) If the target has >=2 *referencable* object-variants in H (descendants),
-                 emit a reference wrapper with anyOf of references to those variants.
-                 (The base itself is not included.)
-              2) If that fails but the target is defined as a container and it directly contains
-                 >=2 defined object-children, emit an anyOf wrapper over those children.
-              3) Otherwise emit a single reference for the target.
-
-            Note: Association-derived schemas must NOT carry primary/secondary hashes anywhere.
+            HAND-style reference schema to target_id:
+            • if target participates in a polymorphic family (base + descendants, excluding inheritOnly),
+                return an outer reference wrapper with anyOf of inner refs.
+            • else return a single reference.
             """
-            target_id = int(target_id)
+            try:
+                variants = self._collect_polymorphic_variants(int(target_id))
+            except Exception:
+                variants = [int(target_id)]
+            variants = [int(v) for v in variants if v is not None]
 
-            def _strip_hashes(d: dict) -> dict:
-                if isinstance(d, dict):
-                    d.pop("$primaryObjectHash", None)
-                    d.pop("$secondaryObjectHash", None)
-                return d
-
-            def _make_anyof_for(variant_ids: list[int]) -> dict | None:
+            # If we truly have a family, build the outer anyOf wrapper
+            if len(variants) >= 2:
                 items: list[dict] = []
-                for vid in variant_ids:
-                    ref = self._make_ref(int(vid))
-                    if isinstance(ref, dict):
-                        items.append(_strip_hashes(ref))
-                if len(items) < 2:
+                for v in variants:
+                    ref = self._make_ref(v)
+                    if not isinstance(ref, dict):
+                        continue
+                    ref.pop("$primaryObjectHash", None)
+                    ref.pop("$secondaryObjectHash", None)
+                    items.append(ref)
+                if not items:
                     return None
                 outer = {
                     "$objectType": "reference",
                     "$objectId": self._name(target_id),
                     "anyOf": items,
                 }
-                _strip_hashes(outer)
+                outer.pop("$primaryObjectHash", None)
+                outer.pop("$secondaryObjectHash", None)
                 return outer
 
-            # --- 1) H-based variants (descendants), excluding the base itself ---
-            try:
-                variants = [int(v) for v in self._collect_polymorphic_variants(target_id)]
-            except Exception:
-                variants = []
-            variants = [v for v in variants if v != target_id]
-
-            # Only keep variants we can actually reference (must have a path + a definition)
-            variants = [v for v in variants if v in self.path_map and isinstance(self.def_ptr.get(v), dict)]
-
-            # Prefer object variants (not containers)
-            obj_variants = [v for v in variants if self.def_ptr.get(v, {}).get("$objectType") == "object"]
-            if len(obj_variants) >= 2:
-                out = _make_anyof_for(obj_variants)
-                if out:
-                    return out
-
-            # --- 2) Container-local variants (children already defined under this container) ---
-            tgt_ptr = self.def_ptr.get(target_id)
-            if isinstance(tgt_ptr, dict) and tgt_ptr.get("$objectType") == "container":
-                props = tgt_ptr.get("properties")
-                if isinstance(props, dict) and props:
-                    child_ids: list[int] = []
-                    for child_name, child_schema in props.items():
-                        cid = name_to_id.get(str(child_name).strip())
-                        if cid is None:
-                            continue
-                        if cid in self.path_map and isinstance(self.def_ptr.get(cid), dict):
-                            if self.def_ptr[cid].get("$objectType") == "object":
-                                child_ids.append(int(cid))
-
-                    # keep stable order by Name
-                    child_ids = sorted(set(child_ids), key=lambda n: self._name(n).casefold())
-                    if len(child_ids) >= 2:
-                        out = _make_anyof_for(child_ids)
-                        if out:
-                            return out
-
-            # --- 3) Fallback: single reference ---
-            ref = self._make_ref(target_id)
+            # Fallback: single reference
+            ref = self._make_ref(int(target_id))
             if not isinstance(ref, dict):
                 return None
-            return _strip_hashes(ref)
+            ref.pop("$primaryObjectHash", None)
+            ref.pop("$secondaryObjectHash", None)
+            return ref
+
+        def build_target_schema(target_id: int, *, want_array_items: bool, depth: int) -> dict | None:
+            """
+            Build the schema that goes on the association property.
+
+            - If target is embedded-ish: inline an object schema (and optionally populate its properties)
+            - Else: return a reference schema (possibly anyOf)
+            """
+            target_id = int(target_id)
+
+            # Embedded targets are inlined (not references)
+            if is_embedded(target_id):
+                base = embedded_base_id(target_id)
+                obj: dict = {
+                    "$objectType": "object",
+                    "$objectId": self._name(base),
+                    "type": "object",
+                    "properties": {},
+                }
+                if want_array_items:
+                    # We don't have a reliable generic $arrayPosition signal in A yet.
+                    # Keep it explicit and null (matches many HAND patterns).
+                    obj["$arrayPosition"] = None
+
+                # Pull one level of association properties into the embedded object
+                if depth > 0:
+                    _populate_embedded_properties(obj, base, depth=depth)
+
+                obj.pop("$primaryObjectHash", None)
+                obj.pop("$secondaryObjectHash", None)
+                return obj
+
+            # Otherwise, emit references (possibly anyOf)
+            ref = make_polymorphic_ref_schema(target_id)
+            if not isinstance(ref, dict):
+                return None
+            return ref
+
+        def _populate_embedded_properties(obj_dict: dict, base_id: int, *, depth: int) -> None:
+            """
+            Mutate obj_dict["properties"] by adding association-like properties declared on:
+            - base_id itself
+            - embedded descendants of base_id (so ACDCTerminal.* shows up inside Terminal)
+            Depth-limited recursion for nested embedded objects.
+            """
+            if not isinstance(obj_dict, dict):
+                return
+            props = obj_dict.setdefault("properties", {})
+            if not isinstance(props, dict):
+                return
+
+            seen_local: set[tuple[int, str, str]] = set()  # (cid, owner_name, label)
+
+            for owner_id in family_members(base_id):
+                for _, tgt, key, ed in A.out_edges(owner_id, keys=True, data=True):
+                    ctype = str(ed.get("Connector_Type", "")).strip()
+                    if ctype not in ASSOC_LIKE:
+                        continue
+
+                    owner_name = (ed.get("Start_Object") or self._name(owner_id) or "").strip()
+                    target_name = (ed.get("End_Object") or self._name(tgt) or "").strip()
+                    if not owner_name or not target_name:
+                        continue
+                    if owner_name in STRUCTURAL_CONTAINERS or target_name in STRUCTURAL_CONTAINERS:
+                        continue
+
+                    label = (ed.get("label") or target_name).strip()
+                    mult = (ed.get("end_mult") or "").strip()
+                    mult_norm = mult.replace(" ", "")
+                    is_single = (mult_norm == "0..1" or mult_norm == "")
+
+                    cid_raw = ed.get("ConnectorID")
+                    try:
+                        cid = int(cid_raw)
+                    except Exception:
+                        cid = -1
+                    sig = (cid, owner_name, label)
+                    if sig in seen_local:
+                        continue
+                    seen_local.add(sig)
+
+                    prop_key = f"{owner_name}.{label}"
+
+                    if is_single:
+                        ts = build_target_schema(int(tgt), want_array_items=False, depth=depth-1)
+                        if not isinstance(ts, dict):
+                            continue
+                        ts.pop("$primaryObjectHash", None)
+                        ts.pop("$secondaryObjectHash", None)
+                        props[prop_key] = ts
+                    else:
+                        item = build_target_schema(int(tgt), want_array_items=True, depth=depth-1)
+                        if not isinstance(item, dict):
+                            continue
+                        item.pop("$primaryObjectHash", None)
+                        item.pop("$secondaryObjectHash", None)
+                        props[prop_key] = {
+                            "type": "array",
+                            "items": item,
+                        }
+
+        # -------------------- main catchers pass --------------------
+
+        def is_emitted_object(nid: int) -> bool:
+            ptr = self.def_ptr.get(int(nid))
+            return isinstance(ptr, dict) and ("properties" in ptr)
+
+        desc_cache: dict[int, set[int]] = {}
+
+        def recipients_for_owner(owner_id: int) -> set[int]:
+            """
+            All emitted nodes that should receive association properties declared on owner_id:
+            owner_id itself + all descendants in HR (excluding inheritOnly).
+            """
+            owner_id = int(owner_id)
+            if owner_id in desc_cache:
+                return desc_cache[owner_id]
+
+            recips = {owner_id}
+            try:
+                recips |= {int(d) for d in nx.descendants(self.HR, owner_id)}
+            except Exception:
+                pass
+
+            recips = {r for r in recips if (not is_inherit_only(r)) and is_emitted_object(r)}
+            desc_cache[owner_id] = recips
+            return recips
+
+        seen_props_global: set[tuple[int, int, str]] = set()  # (recipient_id, cid, prop_key)
 
         for u, v, key, data in A.edges(keys=True, data=True):
             ctype = str(data.get("Connector_Type", "")).strip()
             if ctype not in ASSOC_LIKE:
                 continue
 
-            owner_name = (data.get("Start_Object") or "").strip()
-            target_name = (data.get("End_Object") or "").strip()
+            owner_name = (data.get("Start_Object") or self._name(u) or "").strip()
+            target_name = (data.get("End_Object") or self._name(v) or "").strip()
             if not owner_name or not target_name:
                 continue
 
-            # Skip structural container wiring; those are handled specially elsewhere.
             if owner_name in STRUCTURAL_CONTAINERS or target_name in STRUCTURAL_CONTAINERS:
                 continue
 
-            # Property label and multiplicity (end side)
             label = (data.get("label") or target_name).strip()
             mult = (data.get("end_mult") or "").strip()
-
-            owner_id = name_to_id.get(owner_name)
-            target_id = name_to_id.get(target_name)
-            if owner_id is None or target_id is None:
-                continue
-
-            owner_ptr = self.def_ptr.get(owner_id)
-            if not isinstance(owner_ptr, dict):
-                # owner wasn’t emitted (e.g. outside Root subtree)
-                continue
-
-            # Build the reference schema, possibly polymorphic
-            ref_schema = make_polymorphic_ref_schema(target_id)
-            if not isinstance(ref_schema, dict):
-                continue
-
             mult_norm = mult.replace(" ", "")
             is_single = (mult_norm == "0..1" or mult_norm == "")
 
-            if is_single:
-                prop_schema = ref_schema
-            else:
-                prop_schema = {
-                    "type": "array",
-                    "items": ref_schema,
-                }
+            cid_raw = data.get("ConnectorID")
+            try:
+                cid = int(cid_raw)
+            except Exception:
+                cid = -1
 
-            # Make absolutely sure association entries never carry hashes at any level
+            prop_key = f"{owner_name}.{label}"
+
+            if is_single:
+                ts = build_target_schema(int(v), want_array_items=False, depth=1)
+                if not isinstance(ts, dict):
+                    continue
+                ts.pop("$primaryObjectHash", None)
+                ts.pop("$secondaryObjectHash", None)
+                prop_schema = ts
+            else:
+                item = build_target_schema(int(v), want_array_items=True, depth=1)
+                if not isinstance(item, dict):
+                    continue
+                item.pop("$primaryObjectHash", None)
+                item.pop("$secondaryObjectHash", None)
+                prop_schema = {"type": "array", "items": item}
+
             prop_schema.pop("$primaryObjectHash", None)
             prop_schema.pop("$secondaryObjectHash", None)
             if isinstance(prop_schema.get("items"), dict):
                 prop_schema["items"].pop("$primaryObjectHash", None)
                 prop_schema["items"].pop("$secondaryObjectHash", None)
 
-            # Dedup at (connector, owner, label)
-            cid_raw = data.get("ConnectorID")
-            try:
-                cid = int(cid_raw)
-            except Exception:
-                cid = -1  # group "unknown" connectors
-            sig = (cid, owner_name, label)
-            if sig in seen_props:
-                continue
-            seen_props.add(sig)
+            for recip in recipients_for_owner(int(u)):
+                recip_ptr = self.def_ptr.get(int(recip))
+                if not isinstance(recip_ptr, dict):
+                    continue
 
-            prop_key = f"{owner_name}.{label}"
+                sig = (int(recip), cid, prop_key)
+                if sig in seen_props_global:
+                    continue
+                seen_props_global.add(sig)
 
-            # 1) Add to the owning object itself
-            self._add_property(owner_ptr, prop_key, prop_schema)
+                self._add_property(recip_ptr, prop_key, prop_schema)
 
-            # 2) Duplicate into each anyOf variant of the owner (HAND pattern)
-            anyof_list = owner_ptr.get("anyOf", [])
-            if isinstance(anyof_list, list):
-                for variant in anyof_list:
-                    if not isinstance(variant, dict):
-                        continue
-                    vprops = variant.setdefault("properties", {})
-                    vprops[prop_key] = prop_schema
+                anyof_list = recip_ptr.get("anyOf", [])
+                if isinstance(anyof_list, list):
+                    for variant in anyof_list:
+                        if not isinstance(variant, dict):
+                            continue
+                        vprops = variant.setdefault("properties", {})
+                        if isinstance(vprops, dict) and prop_key not in vprops:
+                            vprops[prop_key] = prop_schema
 
     # -------------------- anchor detection --------------------
     def _compute_anchors(self) -> Set[int]:

@@ -50,15 +50,13 @@ for t in targets:
 
 df = pd.DataFrame(rows)
 
-inheretOnly "objects" don't ever show up in the template - only their properties
-embedded vs reference? 
-if there's a path to root, the inheritonlys should be references
-    references have to have to appear under root somewhere ($path must be consistent--must pass through a container or object (no associations except initial one to root))
-    embedded only exists "where we've put it". only exists under that thing, not in other places in the schema. 
-how to approach this problem (AnalysisResult, CostFunction) - need a new tag or need
+OperationalLimitSet and ProducerCostFunction are being handled well now.
+ACLineSegment is a good example of something I'm not understanding. The associations moving up the generalization chain through substitutables are pulled into the rootClass (ACLineSegment)'
+'in the HAND. I think ConnectivityNode might have a similar thing going on.
+
+AnalysisResult may still be a problem (it's messy)'
+
 switchphase - exampel of where we need to consider tehy're embedded. when doing the G traversal, put the embedded clases in a separate bucket; revisit when doing associations to know where they actually go
-embeddedInheritOnly- new class? - "it is embedded, but we're not including it in the anyOf"
-if embedded with substitutable, we include everything in the anyOf. need a case where we don't include the top-level one.
 perlengthimpedance - good example of ???
 most likely case is that there is a generalization back to root of an embedded object?
 add primarykey to all of them (was showing up as null for some reason)
