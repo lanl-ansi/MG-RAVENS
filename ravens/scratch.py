@@ -68,6 +68,32 @@ transformertest shoudl never show up
 why is switch seen as an orphan? 
 operationallimit - where to start 
 you do inherit inheritonly's associations. like with acdc.operationallimitset
+
+For a rootClass C, do we always inherit association-properties from all ancestors in H?
+If no, what’s the gate?
+-only if the association appears on a SimplifiedDiagram that includes C?
+-only if the ancestor association is “semantically required” (and how is that marked)?
+-only if the target is already reachable under Root by a “referencePath-consistent” chain?
+
+Noisy associations
+Are there specific association families that are intentionally excluded from HAND even if valid in UML?
+e.g. PowerSystemResource.Measurements looks like a prime candidate.
+
+Is there a denylist, or a tag/role that signals “don’t emit this as a property”?
+
+Polymorphism / anyOf policy
+When do we expand a reference into anyOf variants?
+-only when the target node is substitutableClass?
+-also when the target is a “base with embedded descendants” (your PerLengthImpedance situation)?
+-should there be a cap (e.g., don’t expand if >N variants)?
+
+Embedded inheritance
+For inherited associations that point to embeddedClass nodes (like ConductingEquipment.Terminals):
+-should they be inherited into all descendants?
+-or only into descendants that appear on diagrams where that embedded subtree is shown?
+
+Duplication rules
+If C already has a more-specific property (e.g. ACLineSegment.WireSpacingInfo), should an inherited PowerSystemResource.AssetDatasheet still appear, or should it be suppressed?
 # use operationallimitset, fault, and location for first cut of association compares
 # embedded vs reference
 # avoid everything under switches and powersystemresource for now (it's too complicated)
