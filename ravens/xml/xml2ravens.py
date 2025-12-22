@@ -1,19 +1,13 @@
 import json
-from multiprocessing import Value
 import pathlib
-import re
 import traceback
-
-import networkx as nx
 
 from ast import literal_eval
 from collections import namedtuple
 from copy import deepcopy
 from datetime import datetime
 
-from rdflib import Graph
-from rdflib.namespace import Namespace, RDF
-from rdflib.extras.external_graph_libs import rdflib_to_networkx_multidigraph
+from rdflib.namespace import RDF
 from rdflib.term import URIRef, Literal
 
 from ravens import __version__
@@ -23,9 +17,6 @@ from ravens.schema import SchemaTemplate, RavensSchema
 from ravens.xml.graph import RDFGraph
 
 Reference = namedtuple("Reference", ["parent", "id"])
-
-# TODO: Pick better prune keys
-prune_keys = ["IdentifiedObject.name", "IdentifiedObject.mRID", r"(.+)\.sequenceNumber"]
 
 
 def _str_to_bool(s: str) -> bool:
@@ -237,7 +228,7 @@ class RavensImport(RDFGraph):
         self.tokenized_paths = {}
         self.tokenize_paths()
 
-        self.unique_subject_types = {s: str(o).split("#")[-1] for s, o in self.graph.subject_objects(predicate=RDF.type)}
+        self.unique_subject_types = {s: str(o).removeprefix(self.cim) for s, o in self.graph.subject_objects(predicate=RDF.type)}
         self.paths: dict = {s: [] for s, t in self.unique_subject_types.items()}
 
         self.object_ids = {}
@@ -475,7 +466,36 @@ class RavensImport(RDFGraph):
         return positions
 
     def convert_rdf(self):
+        # Build dependency graph - which subjects depend on which others for embedding
+        dependencies = {}
         for subject in self.unique_subject_types.keys():
+            dependencies[subject] = set()
+            for p, o in self.graph.predicate_objects(subject=subject):
+                pn = str(p).removeprefix(self.cim)
+                # If this is a URIRef that's not a reference path and not a CIM enum
+                if isinstance(o, URIRef) and pn not in self.reference_paths and not str(o).startswith(str(self.cim)):
+                    # Check if this object should be embedded (has a path)
+                    if o in self.paths and self.paths.get(o):
+                        dependencies[subject].add(o)
+
+        # Topological sort to process dependencies first
+        processed = set()
+        processing_order = []
+
+        def visit(subj):
+            if subj in processed:
+                return
+            processed.add(subj)
+            for dep in dependencies.get(subj, set()):
+                if dep in dependencies:  # Only process if it's a known subject
+                    visit(dep)
+            processing_order.append(subj)
+
+        for subject in self.unique_subject_types.keys():
+            visit(subject)
+
+        # Now process in dependency order
+        for subject in processing_order:
             data = self.build_data(subject)
 
             if self.paths.get(subject, Path()):
@@ -490,9 +510,9 @@ class RavensImport(RDFGraph):
                 else:
                     self.path_state.current_resolved_path = self.path_state.resolved_path
                     self.add_to_data(self.data, data)
-                    self.path_state.current_path_index = 0  # reset index
+                    self.path_state.current_path_index = 0
 
-                self.path_state.resolved_path = None  # reset resolved path
+                self.path_state.resolved_path = None
                 self.path_state.current_resolved_path = None
             else:
                 logger.warning(f"Path for subject not found: {str(subject)}::{self.unique_subject_types[subject]}")
@@ -503,7 +523,9 @@ class RavensImport(RDFGraph):
         if position_primary is not None and pos_id is None:
             pos_id = self.graph.value(subject=subject, predicate=self.cim[position_primary])
             if position_secondary is not None and pos_id is None:
-                pos_id = str(subject)
+                # Fallback to subject string, but remove public_id prefix
+                subject_str = str(subject)
+                pos_id = subject_str.removeprefix(self.public_id) if subject_str.startswith(self.public_id) else subject_str
 
         if pos_id is not None:
             self.object_ids[subject] = pos_id
@@ -512,8 +534,17 @@ class RavensImport(RDFGraph):
 
     def build_data(self, subject):
         data: dict = {"Ravens.cimObjectType": str(self.graph.value(subject=subject, predicate=RDF.type)).split("#")[-1]}
+
+        # Get the resolved path to determine parent chain
+        parent_mrids = set()
+        if self.path_state.current_resolved_path is not None:
+            for segment in self.path_state.current_resolved_path:
+                if hasattr(segment, 'uri') and segment.uri in self.object_ids:
+                    parent_mrid = str(self.object_ids[segment.uri])
+                    parent_mrids.add(parent_mrid)
+
         for p, o in self.graph.predicate_objects(subject=subject):
-            pn = str(p).split("#")[-1]
+            pn = str(p).removeprefix(self.cim)
 
             if p != RDF.type:
                 value = o
@@ -541,11 +572,13 @@ class RavensImport(RDFGraph):
                         value = self._convert_with_literal_eval(o.value)
                 elif pn in self.reference_paths:
                     if o in self.object_ids:
-                        value = f"{str(self.graph.value(subject=o, predicate=RDF.type)).split("#")[-1]}::'{self.object_ids[o]}'"
+                        ref_mrid = str(self.object_ids[o])
+                        value = f"{str(self.graph.value(subject=o, predicate=RDF.type)).split('#')[-1]}::'{ref_mrid}'"
                     elif len(set(r.id for r in self.reference_paths[pn])) == 1:
                         ref = list(self.reference_paths[pn])[0]
                         try:
-                            value = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
+                            ref_mrid = str(self.find_position_id(o, self.tokenized_paths[ref.id][-1]["position"], self.tokenized_paths[ref.id][-1]["position_secondary"]))
+                            value = f"{ref.id}::'{ref_mrid}'"
                         except KeyError:
                             continue
                     else:
@@ -556,26 +589,44 @@ class RavensImport(RDFGraph):
                                 break
 
                         if ref is not None:
-                            value = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
+                            ref_mrid = str(self.find_position_id(o, self.tokenized_paths[ref.id][-1]["position"], self.tokenized_paths[ref.id][-1]["position_secondary"]))
+                            value = f"{ref.id}::'{ref_mrid}'"
                         else:
                             logger.warning(f"Can't find reference for {o}::{self.unique_subject_types[o]} from {subject}::{self.unique_subject_types[subject]}")
                             continue
                 elif isinstance(o, URIRef) and o.startswith(self.cim):
-                    value = o.split("#")[-1]
+                    value = o.removeprefix(self.cim)
+                elif isinstance(o, URIRef):
+                    # URIRef that's not in reference_paths and not a CIM enum
+                    # Check if it points to a parent object
+                    if o in self.object_ids:
+                        ref_mrid = str(self.object_ids[o])
+                        if ref_mrid in parent_mrids:
+                            logger.debug(f"Skipping self-referential link: {pn} points to parent {ref_mrid}")
+                            continue
+                    # If we get here, it's some other URIRef we don't handle
+                    continue
 
                 data[pn] = value
 
         for pn, items in self.reference_paths.items():
             for ref in items:
-                if ref.parent == self.graph.value(subject=subject, predicate=RDF.type).split("#")[-1] and pn not in data:
+                if ref.parent == str(self.graph.value(subject=subject, predicate=RDF.type)).removeprefix(self.cim) and pn not in data:
                     for o in self.graph.objects(subject=subject):
                         _rdf_type = self.graph.value(subject=o, predicate=RDF.type)
-                        if _rdf_type is not None and str(_rdf_type).split("#")[-1] == ref.id:
-                            data[pn] = f"{ref.id}::'{self.find_position_id(o, self.tokenized_paths[ref.id][-1]['position'], self.tokenized_paths[ref.id][-1]['position_secondary'])}'"
+                        if _rdf_type is not None and str(_rdf_type).removeprefix(self.cim) == ref.id:
+                            ref_mrid = str(self.find_position_id(o, self.tokenized_paths[ref.id][-1]["position"], self.tokenized_paths[ref.id][-1]["position_secondary"]))
+                            data[pn] = f"{ref.id}::'{ref_mrid}'"
 
+        # Check if mRID should be added and extract it properly from the URIRef
         if "IdentifiedObject.mRID" not in data.keys():
             if f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json" in self.schema.schemas and "IdentifiedObject.mRID" in self.schema.schemas[f"{self.schema.base_id_uri}/{data['Ravens.cimObjectType']}.json"]["properties"]:
-                data["IdentifiedObject.mRID"] = str(subject)
+                # Extract mRID by removing public_id prefix
+                subject_str = str(subject)
+                if subject_str.startswith(self.public_id):
+                    data["IdentifiedObject.mRID"] = subject_str.removeprefix(self.public_id)
+                else:
+                    data["IdentifiedObject.mRID"] = subject_str
 
         return data
 

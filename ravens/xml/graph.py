@@ -13,7 +13,7 @@ from ravens.data import _DEFAULT_CIM_NAMESPACE
 
 
 class RDFGraph(object):
-    def __init__(self, profile_path: str | pathlib.Path | None = None, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, public_id: str = "", uuid_format=None):
+    def __init__(self, profile_path: str | pathlib.Path | None = None, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, public_id: str = "#", uuid_format=None):
         if uuid_format is not None:
             self.uuid_format = uuid_format
         else:
@@ -33,16 +33,18 @@ class RDFGraph(object):
         self.graph.namespace_manager = nm
 
     def mRID(self) -> str:
-        return str(self.uuid_format(str(uuid4())))
+        return self.uuid_format(str(uuid4()))
 
     def build_cim_obj(self, rdf_type: str, mrid: str | None = None, name: str | None = None, skip_mrid: bool = False) -> URIRef:
         if mrid is None:
             mrid = self.mRID()
 
-        node = URIRef(mrid)
+        # URIRef always includes public_id prefix
+        node = URIRef(self.public_id + mrid)
 
         self.graph.add((node, RDF.type, self.cim[rdf_type]))
         if not skip_mrid:
+            # mRID property value never includes public_id prefix
             self.graph.add((node, self.cim["IdentifiedObject.mRID"], Literal(mrid)))
         if name is not None:
             self.graph.add((node, self.cim["IdentifiedObject.name"], Literal(name)))
