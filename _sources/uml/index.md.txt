@@ -7,11 +7,6 @@
 <img src="../_static/uml/EconomicDesign.EconomicProperties.svg" style="max-width: 100%; height: auto;" alt="EconomicProperties diagram">
 
 
-### Facilities
-
-<img src="../_static/uml/EconomicDesign.Facilities.svg" style="max-width: 100%; height: auto;" alt="Facilities diagram">
-
-
 ### FossilFuelCosts
 
 <img src="../_static/uml/EconomicDesign.FossilFuelCosts.svg" style="max-width: 100%; height: auto;" alt="FossilFuelCosts diagram">
@@ -25,6 +20,11 @@
 ### InfEquivalentNetwork
 
 <img src="../_static/uml/EconomicDesign.InfEquivalentNetwork.svg" style="max-width: 100%; height: auto;" alt="InfEquivalentNetwork diagram">
+
+
+### InfFacilities
+
+<img src="../_static/uml/EconomicDesign.InfFacilities.svg" style="max-width: 100%; height: auto;" alt="InfFacilities diagram">
 
 
 ### InverterControls
