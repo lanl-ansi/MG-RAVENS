@@ -1,4 +1,5 @@
 import pathlib
+import re
 
 from uuid import uuid4
 
@@ -31,6 +32,23 @@ class RDFGraph(object):
         nm.bind("rdf", RDF)
         nm.bind("cim", self.cim, override=True)
         self.graph.namespace_manager = nm
+
+    @staticmethod
+    def _transform_to_cyme_uri(match):
+        """
+        Transform URIs to CYME format: #uuid -> #_UUID
+        Match patterns like rdf:about="#uuid" or rdf:resource="#uuid"
+        """
+        prefix = match.group(1)  # rdf:about=" or rdf:resource="
+        hash_sign = match.group(2)  # # or empty
+        uuid = match.group(3)  # the UUID
+
+        # Transform: remove leading underscore if present, uppercase, add underscore
+        uuid_clean = uuid.lstrip('_')
+        uuid_transformed = f"_{uuid_clean.upper()}"
+
+        return f'{prefix}{hash_sign}{uuid_transformed}"'
+
 
     def mRID(self) -> str:
         return self.uuid_format(str(uuid4()))
@@ -82,8 +100,19 @@ class RDFGraph(object):
     def get_name(self, subject):
         return self.get(subject, self.cim["IdentifiedObject.name"], str(subject))
 
-    def save(self, path: pathlib.Path | str) -> None:
+    def save(self, path: pathlib.Path | str, make_cyme_compatible: bool = False) -> None:
         rdfxml = self.graph.serialize(max_depth=1, format="pretty-xml")
-        rdfxml = rdfxml.replace("rdf:about", "rdf:ID")
+
+        if make_cyme_compatible:
+            # Transform both rdf:about and rdf:resource attributes
+            rdfxml = re.sub(
+                r'(rdf:(?:about|resource)=")(#?)([a-fA-F0-9_-]+)"',
+                self._transform_to_cyme_uri,
+                rdfxml
+            )
+
+            # Change rdf:about to rdf:ID
+            rdfxml = rdfxml.replace("rdf:about", "rdf:ID")
+
         with open(path, "w") as f:
             f.write(rdfxml)
