@@ -16,7 +16,7 @@ material_resistivity = {"CYMEConductorMaterial.copper": 1.68e-8, "CYMEConductorM
 
 class CymeConverter(RDFGraph):
     def __init__(self, profile_path: pathlib.Path | str, cim_namespace: str = _DEFAULT_CYME_CIM_NAMESPACE, cyme_namespace: str = _DEFAULT_CYME_NAMESPACE, prune_remaining_cyme: bool = False):
-        super().__init__(profile_path=profile_path, cim_namespace=cim_namespace)
+        super().__init__(profile_path=profile_path, cim_namespace=cim_namespace, uuid_format=lambda x: "_" + x.upper())
 
         self.cyme = Namespace(cyme_namespace + "#")
         self.graph.bind("cyme", self.cyme, override=True)
@@ -91,16 +91,18 @@ class CymeConverter(RDFGraph):
         for s in self.graph.subjects(predicate=RDF.type, object=self.cim["CableInfo"]):
             cccn_ref = self.graph.value(subject=s, predicate=self.cyme["CYMECableConstruction.CableConcentricNeutrals"])
             if cccn_ref is not None:
-                node = self.build_cim_obj("ConcentricNeutralCableInfo", name=str(self.graph.value(subject=s, predicate=self.cim["IdentifiedObject.name"])))
+                # Extract the mRID without public_id prefix for naming
+                name = str(self.graph.value(subject=s, predicate=self.cim["IdentifiedObject.name"]))
+                node = self.build_cim_obj("ConcentricNeutralCableInfo", name=name, skip_mrid=True)
 
                 for p, o in self.graph.predicate_objects(subject=s):
                     self.to_remove.add((s, p, o))
                     if not str(p).startswith(str(self.cyme)) and p != RDF.type:
-                        self.add_triple(node, str(p).split("#", maxsplit=2)[-1], o)
+                        self.add_triple(node, str(p).removeprefix(self.cim), o)
 
                 neutral_radius = literal_eval(self.graph.value(subject=cccn_ref, predicate=self.cyme["CYMECableConcentricNeutrals.wireDiameter"]).value) / 2  # type: ignore
                 neutral_gmr = neutral_radius * 0.7788
-                rdc20 = material_resistivity.get(str(self.graph.value(subject=cccn_ref, predicate=self.cyme["CYMECableConcentricNeutrals.material"])).split("#")[-1], 2e-8) / (math.pi * neutral_radius**2)
+                rdc20 = material_resistivity.get(str(self.graph.value(subject=cccn_ref, predicate=self.cyme["CYMECableConcentricNeutrals.material"])).removeprefix(self.cyme), 2e-8) / (math.pi * neutral_radius**2)
                 neutral_count = literal_eval(self.graph.value(subject=cccn_ref, predicate=self.cyme["CYMECableConcentricNeutrals.numberOfWires"]).value)  # type: ignore
                 diameter_over_neutral = literal_eval(self.graph.value(subject=cccn_ref, predicate=self.cyme["CYMECableConcentricNeutrals.outerDiameter"]).value)  # type: ignore
 
@@ -125,7 +127,9 @@ class CymeConverter(RDFGraph):
     def convert_cyme_customer_class(self):
         for s in self.graph.subjects(predicate=RDF.type, object=self.cyme["CYMECustomerClass"]):
             self.to_remove.add((s, None, None))
-            node = self.build_cim_obj("LoadGroup", name=str(self.graph.value(subject=s, predicate=self.cim["IdentifiedObject.name"])))
+            name = str(self.graph.value(subject=s, predicate=self.cim["IdentifiedObject.name"]))
+            node = self.build_cim_obj("LoadGroup", name=name)
+
             for _s in self.graph.subjects(predicate=self.cyme["CYMECustomerLoad.CustomerClass"], object=s):
                 assert self.graph.value(subject=_s, predicate=RDF.type) == self.cyme["CYMECustomerLoad"]
                 ec_uri = self.graph.value(subject=_s, predicate=self.cyme["CYMECustomerLoad.EnergyConsumer"])
@@ -152,7 +156,7 @@ class CymeConverter(RDFGraph):
                 if v is not None:
                     self.add_triple(URIRef(str(ec_uri)), f"EnergyConsumer.{k}", v)
 
-            self.add_LoadResponseCharacteristic(URIRef(str(ec_uri)), str(self.graph.value(subject=s, predicate=self.cyme["CYMECustomerLoadValue.loadFormat"])).split("#")[-1])
+            self.add_LoadResponseCharacteristic(URIRef(str(ec_uri)), str(self.graph.value(subject=s, predicate=self.cyme["CYMECustomerLoadValue.loadFormat"])).removeprefix(self.cyme))
 
             self.to_remove.add((s, None, None))
 
@@ -160,7 +164,7 @@ class CymeConverter(RDFGraph):
         lrc_values = self.load_response_values.get(cyme_load_format, None)
         if lrc_values is not None:
             if cyme_load_format not in self.load_response_uris:
-                node = self.build_cim_obj("LoadResponseCharacteristic", name=lrc_values["name"])
+                node = self.build_cim_obj("LoadResponseCharacteristic", name=lrc_values["name"], skip_mrid=True)
                 for k, v in lrc_values["values"].items():
                     self.add_triple(node, f"LoadResponseCharacteristic.{k}", v)
 
@@ -184,7 +188,7 @@ class CymeConverter(RDFGraph):
     def convert_cimconductingequipment_structure_id(self):
         for s, p, o in self.graph.triples((None, self.cyme["CIMConductingEquipment.StructureID"], None)):
             if o not in self.equip_container_uris:
-                node = self.build_cim_obj("EquipmentContainer", name=str(o))
+                node = self.build_cim_obj("EquipmentContainer", name=str(o), skip_mrid=True)
                 self.equip_container_uris[o] = node
 
             self.add_triple(URIRef((str(s))), "Equipment.EquipmentContainer", self.equip_container_uris[o])
@@ -210,7 +214,7 @@ class CymeConverter(RDFGraph):
 
                 if self.graph.value(subject=s, predicate=self.cim["WireInfo.rDC20"]) is None:
                     if radius is not None and material is not None:
-                        self.add_triple(URIRef(str(s)), "WireInfo.rDC20", material_resistivity.get(str(material).split("#")[-1], 2e-8) / (math.pi * literal_eval(radius.value) ** 2))  # type: ignore
+                        self.add_triple(URIRef(str(s)), "WireInfo.rDC20", material_resistivity.get(str(material).removeprefix(self.cyme), 2e-8) / (math.pi * literal_eval(radius.value) ** 2))  # type: ignore
 
     def fix_Terminal(self):
         for s in self.graph.subjects(predicate=RDF.type, object=self.cim["Terminal"]):

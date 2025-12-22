@@ -104,7 +104,11 @@ class RavensData(object):
                     if name is None:
                         name = mrid
 
-                    self.unraveled[mrid] = self.paths[f"{cim_obj_type}::'{name}'"] = v
+                    self.unraveled[mrid] = v
+                    # Index by both name and mRID for reference resolution
+                    self.paths[f"{cim_obj_type}::'{name}'"] = v
+                    if name != mrid:
+                        self.paths[f"{cim_obj_type}::'{mrid}'"] = v
 
                 self._add_path(v)
             elif isinstance(v, list):
@@ -119,7 +123,11 @@ class RavensData(object):
                             if name is None:
                                 name = mrid
 
-                            self.unraveled[mrid] = self.paths[f"{cim_obj_type}::'{name}'"] = item
+                            self.unraveled[mrid] = item
+                            # Index by both name and mRID for reference resolution
+                            self.paths[f"{cim_obj_type}::'{name}'"] = item
+                            if name != mrid:
+                                self.paths[f"{cim_obj_type}::'{mrid}'"] = item
 
                         self._add_path(item)
 
@@ -223,8 +231,8 @@ class RavensData(object):
         return cls(importer.data)
 
     @classmethod
-    def import_cyme_cim(cls, network_profile):
-        corrected_cyme = CymeConverter(network_profile)
+    def import_cyme_cim(cls, network_profile, prune_remaining_cyme: bool = True):
+        corrected_cyme = CymeConverter(network_profile, prune_remaining_cyme=prune_remaining_cyme)
         importer = RavensImport(corrected_cyme)
 
         return cls(importer.data)
