@@ -16,18 +16,6 @@
       "description": "Pointer to OperationalLimitSet object",
       "pattern": "^OperationalLimitSet::'(.+)'$"
     },
-    "ConnectivityNode.SvVoltage": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvVoltage_Array.json"
-    },
-    "ConnectivityNode.SvInjection": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvInjection_Array.json"
-    },
-    "ConnectivityNode.BusVoltageObjective": {
-      "type": "string",
-      "title": "BusVoltageObjective_Pointer",
-      "description": "Pointer to BusVoltageObjective object",
-      "pattern": "^BusVoltageObjective::'(.+)'$"
-    },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",

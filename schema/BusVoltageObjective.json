@@ -1,6 +1,9 @@
 {
   "type": "object",
   "properties": {
+    "BusVoltageObjective.ConnectivityNodes": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNode_PointerArray.json"
+    },
     "BusVoltageObjective.vMinimum": {
       "title": "vMinimum",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",

@@ -10,6 +10,12 @@
       "description": "Pointer to TopologicalIsland object",
       "pattern": "^TopologicalIsland::'(.+)'$"
     },
+    "TopologicalNode.SvVoltage": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvVoltage_Array.json"
+    },
+    "TopologicalNode.SvInjection": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvInjection_Array.json"
+    },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",
