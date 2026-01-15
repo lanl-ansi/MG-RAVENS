@@ -34,7 +34,20 @@ unit_conversion: dict[str, float] = {"mi": 1609.3, "kft": 304.8, "km": 1000.0, "
 
 def interp_phasecode(phasecode: str) -> list[str]:
     _phases: set[str] = set([])
-    for p in ["A", "B", "C", "N", "s1", "s2", "s12"]:
+
+    # Check for s12 first (before checking s1 and s2)
+    if "s12" in phasecode:
+        _phases.add("s1")
+        _phases.add("s2")
+    else:
+        # Only check s1 and s2 if s12 wasn't found
+        if "s1" in phasecode:
+            _phases.add("s1")
+        if "s2" in phasecode:
+            _phases.add("s2")
+
+    # Check other phases
+    for p in ["A", "B", "C", "N"]:
         if p in phasecode:
             _phases.add(p)
 
