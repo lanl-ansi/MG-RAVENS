@@ -807,7 +807,11 @@ class DssExport(RDFGraph):
         else:
             raise Exception(f"Load.{load.Name}: unrecognized load connection '{load.Conn_str}'")
 
-        lrc_node = self._add_LoadResponseCharacteristic(load.Model)
+        zip_params = None
+        if load.Model == 8:
+            zip_params = load.ZIPV
+
+        lrc_node = self._add_LoadResponseCharacteristic(load.Model, zip_params)
         if lrc_node is not None:
             self.add_triple(node, "EnergyConsumer.LoadResponse", lrc_node)
 
@@ -842,8 +846,11 @@ class DssExport(RDFGraph):
                 self.add_triple(node, "EnergyConsumerPhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
                 self.add_triple(node, "EnergyConsumerPhase.EnergyConsumer", energy_consumer_uri)
 
-    def _add_LoadResponseCharacteristic(self, model: int):
-        if f"LoadResponseCharacteristic.{model}" not in self.uuid_map:
+    def _add_LoadResponseCharacteristic(self, model: int, zip_params: None | tuple[float, float, float, float, float, float, float] = None):
+        node = None
+        model_name = f"LoadResponseCharacteristic.{model}" if zip_params is None else f"LoadResponseCharacteristic.{model}.{zip_params}"
+
+        if model_name not in self.uuid_map:
             if model == 1:
                 node = self.build_cim_obj("LoadResponseCharacteristic", name="Constant kVA")
                 self.add_triple(node, "LoadResponseCharacteristic.pConstantPower", 100)
@@ -873,6 +880,19 @@ class DssExport(RDFGraph):
                 node = self.build_cim_obj("LoadResponseCharacteristic", name="Variable P, Fixed X")
                 self.add_triple(node, "LoadResponseCharacteristic.pConstantPower", 100)
                 self.add_triple(node, "LoadResponseCharacteristic.qConstantImpedance", 100)
+            elif model == 8 and zip_params is not None:
+                node = self.build_cim_obj("LoadResponseCharacteristic", name=f"ZIP {zip_params}")
+                self.add_triple(node, "LoadResponseCharacteristic.exponentModel", False)
+
+                self.add_triple(node, "LoadResponseCharacteristic.pConstantImpedance", obj=zip_params[0] * 100.0)
+                self.add_triple(node, "LoadResponseCharacteristic.pConstantCurrent", zip_params[1] * 100.0)
+                self.add_triple(node, "LoadResponseCharacteristic.pConstantCurrent", zip_params[2] * 100.0)
+
+                self.add_triple(node, "LoadResponseCharacteristic.qConstantImpedance", zip_params[3] * 100.0)
+                self.add_triple(node, "LoadResponseCharacteristic.qConstantCurrent", zip_params[4] * 100.0)
+                self.add_triple(node, "LoadResponseCharacteristic.qConstantPower", zip_params[5] * 100.0)
+
+                # Note: no support for Voltage cutoff
             else:
                 return None
 
