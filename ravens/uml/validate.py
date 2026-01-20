@@ -529,6 +529,35 @@ def write_validation_report(path, results, include_ok=False, summary_first=True)
     return summary_df
 
 
+def find_anyof_invariant_violations(schema: dict) -> list[str]:
+    """
+    Returns a list of human-readable violations for:
+      - anyOf wrapper has 'type'
+      - anyOf wrapper has 'properties'
+      - anyOf member is a container ($objectType == 'container')
+    """
+    violations: list[str] = []
+
+    def rec(node, path: str):
+        if isinstance(node, dict):
+            if "anyOf" in node and isinstance(node["anyOf"], list):
+                if "type" in node:
+                    violations.append(f"{path}: anyOf wrapper has forbidden key 'type'")
+                if "properties" in node:
+                    violations.append(f"{path}: anyOf wrapper has forbidden key 'properties'")
+                for i, m in enumerate(node["anyOf"]):
+                    if isinstance(m, dict) and m.get("$objectType") == "container":
+                        violations.append(f"{path}.anyOf[{i}]: container member in anyOf")
+            for k, v in node.items():
+                rec(v, f"{path}.{k}" if path else k)
+        elif isinstance(node, list):
+            for i, v in enumerate(node):
+                rec(v, f"{path}[{i}]")
+
+    rec(schema, "")
+    return violations
+
+
 def _find_root_obj(schema: dict, default_title: str = "Root") -> tuple[dict, str]:
     """Return (root_object, root_title)."""
     if isinstance(schema, dict):

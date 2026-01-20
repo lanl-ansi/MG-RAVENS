@@ -10,6 +10,7 @@ from ravens.uml import UMLData, graph, validate, clusions
 from importlib import reload
 from pprint import pprint
 from ravens.uml import template, updateea
+from ravens.data import _TEMPLATE_JSON_PATH, _TEMPLATE_AUTOJSON_PATH
 
 uml_data = UMLData().loadf()
 
@@ -23,10 +24,18 @@ tg = template.TemplateGenerator(H=ug.H, A=ug.A, root_name="Root")
 auto = tg.build()
 tg.save_auto_template(auto)
 
+from ravens.uml import dev_validate 
+reload(dev_validate)
+d = dev_validate.DevTemplateValidator(hand_path=_TEMPLATE_JSON_PATH, auto_path=_TEMPLATE_AUTOJSON_PATH)
+df = d.test_all()
+
+
+# Fixed: Groups, Location, OperationalLimitSet.OperationalLimitValue
+
 # fault has all the associations identified properly, but the emissions aren't quite the same
 # location
 
-name = 'Location'
+name = 'Versions'
 A = ug.A
 targets = [n for n, d in A.nodes(data=True) if d.get("Name") == name]
 if not targets:
@@ -49,6 +58,19 @@ for t in targets:
             rows.append({"node": n, "direction": "outgoing", **dict(A.nodes[n])})
 
 df = pd.DataFrame(rows)
+
+OperationalLimitSet.OperationalLimitValue - should be an anyof but all the substitutables are not even listed
+ConnectivityNode is missing some assoctiations; AUTO seems to be picking up the "backwards pointing" ones.
+
+OperationalLimitSet.OperationalLimitValue "unworked"
+Fault is anyOf but then has a properties (should not) - focus here to fix. Asset also has the same issue - properties below AnyOf
+anyOfs should have no type, but they're being put in. 
+
+Containers shouldn't show up in anyOf lists.
+
+
+AssetInfo/SwitchInfo is an edge case. Switchinfo should only be connected to switch (should not be an anyof)
+
 
 OperationalLimitSet and ProducerCostFunction are being handled well now.
 ACLineSegment is a good example of something I'm not understanding. The associations moving up the generalization chain through substitutables are pulled into the rootClass (ACLineSegment)'

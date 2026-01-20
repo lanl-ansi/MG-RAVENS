@@ -1,13 +1,15 @@
 from __future__ import annotations
 
 import json
+import copy
 from collections import deque
 from pathlib import Path
-from typing import Dict, List, Set, Tuple, Optional, Literal
+from typing import Any, Dict, List, Set, Tuple, Optional, Literal
 import networkx as nx
 
 from ravens.data import _TEMPLATE_JSON_PATH, _TEMPLATE_AUTOJSON_PATH
 
+STRUCTURAL_CONTAINERS = {"Root", "Group", "Groups", "Version", "Versions"}
 
 class TemplateGenerator:
     """
@@ -45,8 +47,6 @@ class TemplateGenerator:
                 raise ValueError(f"No node named '{self.root_name}' in A or H.")
 
             # simple name accessor that works off either graph
-            self._name = lambda nid: (self.A.nodes[nid].get("Name")
-                                    if nid in self.A else self.H.nodes[nid].get("Name")) or ""
 
             # Role map from node tags (only used to detect concrete)
             self.role_map: Dict[int, str] = {
@@ -62,23 +62,29 @@ class TemplateGenerator:
             self.EMIT_CROSS_REFS: bool = True
 
             self._FIELD_ORDER = {
-                            "schema": [
-                                "title", "$schema", "$id", "type",
-                                "$primaryObjectHash", "$secondaryObjectHash",
-                                "properties",
-                            ],
-                            "object": [
-                                "$objectType", "type", "$objectId",
-                                "$primaryObjectHash", "$secondaryObjectHash",
-                                "properties",
-                            ],
-                            "container": [
-                                "$objectType", "type", "description", "properties",
-                            ],
-                            "reference": [
-                                "$objectType", "type", "$objectId", "$referencePath", "properties",
-                            ],
-                        }
+                "schema": [
+                    "title", "$schema", "$id", "type",
+                    "$primaryObjectHash", "$secondaryObjectHash",
+                    "description",
+                    "anyOf", "properties",
+                ],
+                "object": [
+                    "$objectType", "type", "$objectId", "$arrayPosition",
+                    "$primaryObjectHash", "$secondaryObjectHash",
+                    "description",
+                    "anyOf", "properties",
+                ],
+                "container": [
+                    "$objectType", "type", "description",
+                    "anyOf", "properties",
+                ],
+                "reference": [
+                    "$objectType", "type", "$objectId", "$referencePath",
+                    "description",
+                    "anyOf", "properties",
+                ],
+            }
+
 
 
     # -------------------- basic helpers --------------------
@@ -91,7 +97,12 @@ class TemplateGenerator:
         return r in ("rootClass", "embeddedClass")
 
     def _name(self, n: int) -> str:
-        nm = (self.H.nodes[int(n)].get("Name") or "").strip()
+        n = int(n)
+        nm = ""
+        if isinstance(self.A, nx.Graph) and n in self.A:
+            nm = (self.A.nodes[n].get("Name") or "").strip()
+        if not nm and n in self.H:
+            nm = (self.H.nodes[n].get("Name") or "").strip()
         return nm.split(" (")[0]  # strip EA suffixes if present
 
     @staticmethod
@@ -162,35 +173,34 @@ class TemplateGenerator:
                     if n in self.A else self.H.nodes[n].get("Name")) or ""
         return sorted(nbrs, key=lambda n: _nm(n).casefold())
 
-    def _collect_polymorphic_variants(self, base: int) -> list[int]:
+    def _collect_polymorphic_variants(self, base_id: int) -> list[int]:
         """
-        Return [base, ...descendants...] to use as anyOf variants, excluding inheritOnly.
-        Includes the base if it isn't inheritOnly.
+        Return [base_id] + all descendants in the generalization graph (HR),
+        regardless of role. Role-based filtering happens at the call sites.
         """
-        def keep(n: int) -> bool:
-            return self._role(n) != "inheritOnlyClass"
+        base_id = int(base_id)
+        out: list[int] = [base_id]
+        if not hasattr(self, "HR") or self.HR is None:
+            return out
 
-        seen, out = set(), []
-        if keep(base):
-            out.append(base)
-            seen.add(base)
+        seen = {base_id}
+        q = deque([base_id])
 
-        from collections import deque
-        q = deque([base])
         while q:
             cur = q.popleft()
-            for ch in self.HR.successors(cur):
-                if ch in seen:
+            # HR edges: parent -> child (descendants)
+            for child in self.HR.successors(cur):
+                try:
+                    cid = int(child)
+                except Exception:
                     continue
-                seen.add(ch)
-                if keep(ch):
-                    out.append(ch)
-                q.append(ch)
+                if cid in seen:
+                    continue
+                seen.add(cid)
+                out.append(cid)
+                q.append(cid)
 
-        # sort by Name but keep base first if present
-        base_first = out[:1]
-        rest = sorted(out[1:], key=lambda n: self._name(n).casefold())
-        return base_first + rest
+        return out
 
     def _make_ref(self, target: int) -> dict | None:
         """Make a hand-style reference object to an already-defined target."""
@@ -206,329 +216,473 @@ class TemplateGenerator:
             "$referencePath": ref_path,
         }
 
+    def _merge_schema(self, existing: dict | None, incoming: dict | None) -> dict | None:
+        """
+        Merge two schema fragments conservatively:
+          - Preserve anyOf wrappers (never allow them to be downgraded to non-anyOf).
+          - Merge object 'properties' recursively.
+          - Merge array 'items' recursively.
+          - When unsure, keep the existing schema.
+        """
+        if existing is None:
+            return incoming
+        if incoming is None:
+            return existing
+
+        if not isinstance(existing, dict) or not isinstance(incoming, dict):
+            return existing
+
+        # anyOf handling: do not downgrade
+        ex_any = "anyOf" in existing
+        in_any = "anyOf" in incoming
+
+        if ex_any and not in_any:
+            return existing
+        if in_any and not ex_any:
+            return incoming
+
+        if ex_any and in_any:
+            out = dict(existing)
+            # wrapper invariants (we enforce these globally too, but keep it safe here)
+            out.pop("type", None)
+            out.pop("properties", None)
+
+            ex_list = out.get("anyOf", [])
+            in_list = incoming.get("anyOf", [])
+            if not isinstance(ex_list, list) or not isinstance(in_list, list):
+                return out
+
+            def _k(x: dict) -> tuple:
+                if not isinstance(x, dict):
+                    return ("<non-dict>", str(x))
+                return (
+                    x.get("$objectType"),
+                    x.get("$objectId"),
+                    x.get("$referencePath"),
+                    x.get("$arrayPosition"),
+                    x.get("type"),
+                )
+
+            seen = { _k(x): x for x in ex_list if isinstance(x, dict) }
+            merged_list: list = list(ex_list)
+
+            for x in in_list:
+                if not isinstance(x, dict):
+                    # keep weird entries stable
+                    if x not in merged_list:
+                        merged_list.append(x)
+                    continue
+
+                k = _k(x)
+                if k in seen and isinstance(seen[k], dict):
+                    # merge member schemas (e.g., member.properties)
+                    seen[k] = self._merge_schema(seen[k], x) or seen[k]
+                    # update the actual list element reference
+                    for i, y in enumerate(merged_list):
+                        if isinstance(y, dict) and _k(y) == k:
+                            merged_list[i] = seen[k]
+                            break
+                else:
+                    merged_list.append(x)
+                    seen[k] = x
+
+            out["anyOf"] = merged_list
+            return out
+
+        # array merge
+        if existing.get("type") == "array" and incoming.get("type") == "array":
+            out = dict(existing)
+            if "items" in existing and "items" in incoming:
+                out["items"] = self._merge_schema(existing.get("items"), incoming.get("items"))
+            # preserve any metadata we might be missing
+            for meta in ("$arrayPosition", "$objectType", "$objectId"):
+                if meta in incoming and meta not in out:
+                    out[meta] = incoming[meta]
+            return out
+
+        # object merge (properties)
+        if existing.get("type") == "object" and incoming.get("type") == "object":
+            out = dict(existing)
+
+            ex_props = existing.get("properties") if isinstance(existing.get("properties"), dict) else {}
+            in_props = incoming.get("properties") if isinstance(incoming.get("properties"), dict) else {}
+
+            if ex_props or in_props:
+                out_props = dict(ex_props)
+                for k, v in in_props.items():
+                    out_props[k] = self._merge_schema(out_props.get(k), v)
+                out["properties"] = out_props
+
+            # preserve metadata
+            for meta in (
+                "$objectType",
+                "$objectId",
+                "$primaryObjectHash",
+                "$secondaryObjectHash",
+                "$referencePath",
+                "$arrayPosition",
+            ):
+                if meta in incoming and meta not in out:
+                    out[meta] = incoming[meta]
+
+            return out
+
+        # default: keep existing
+        return existing
+
+    def _add_or_merge_property(self, obj_ptr: dict, prop_key: str, prop_schema: dict) -> None:
+        """
+        Add a property to obj_ptr['properties'] using merge semantics.
+        IMPORTANT: if obj_ptr is an anyOf wrapper, do NOT put properties on the wrapper.
+                  Instead, merge the property into each anyOf member (object members only).
+        """
+        if not isinstance(obj_ptr, dict):
+            return
+
+        if "anyOf" in obj_ptr and isinstance(obj_ptr.get("anyOf"), list):
+            # wrapper must not have properties; push into members
+            for member in obj_ptr["anyOf"]:
+                if not isinstance(member, dict):
+                    continue
+                # Only object members should receive properties
+                if member.get("$objectType") != "object":
+                    continue
+                mprops = member.setdefault("properties", {})
+                if not isinstance(mprops, dict):
+                    member["properties"] = {}
+                    mprops = member["properties"]
+                mprops[prop_key] = self._merge_schema(mprops.get(prop_key), prop_schema)
+            return
+
+        props = obj_ptr.setdefault("properties", {})
+        if not isinstance(props, dict):
+            obj_ptr["properties"] = {}
+            props = obj_ptr["properties"]
+
+        if prop_key in props:
+            props[prop_key] = self._merge_schema(props.get(prop_key), prop_schema)
+        else:
+            props[prop_key] = prop_schema
+
     def _emit_association_entries(self) -> None:
         """
-        Association catchers (A + H):
+        Emit dotted association-backed properties ONLY when there is a visible label
+        captured on the A edge (edge_data['label'] is a non-empty string).
 
-        For each Association/Aggregation/Composition edge in A, we add a dotted property
-        onto every *emitted* descendant of the declaring owner in the inheritance tree H.
-
-        Example:
-            ConductingEquipment --(Terminals 0..*)--> Terminal
-        becomes a property:
-            "ConductingEquipment.Terminals" : { ... }
-        on ACLineSegment (and every other descendant of ConductingEquipment that is emitted).
-
-        Key points:
-        • Property key always uses the *declaring* owner name (not the recipient name).
-        • Targets that are globally-referenceable become HAND-style references (optionally anyOf).
-        • Targets tagged embeddedClass/embeddedInheritOnlyClass are **inlined** as object schemas
-            (because they are not globally referenceable).
-        • Embedded targets get one extra pass: we pull their own association properties (and those
-            of their embedded descendants) into the embedded object's "properties" (depth-limited).
-        • No association entry carries $primaryObjectHash / $secondaryObjectHash.
+        NO fallback to target name. This prevents bogus properties like:
+            Versions.IEC61970CIMVersion
+        for unlabeled aggregations/compositions.
         """
         A = self.A
         if A is None or not isinstance(A, nx.MultiDiGraph):
             return
 
+        # Name -> node id (robust lookup)
+        name_to_id: dict[str, int] = {}
+        for G in (A, self.H):
+            if not isinstance(G, nx.Graph):
+                continue
+            for nid, data in G.nodes(data=True):
+                nm = (data.get("Name") or "").strip()
+                if not nm:
+                    continue
+                try:
+                    nid_i = int(nid)
+                except Exception:
+                    continue
+                name_to_id.setdefault(nm, nid_i)
+
         ASSOC_LIKE = {"Association", "Aggregation", "Composition"}
+
+        # Never generate dotted properties for these structural wiring nodes.
+        # (They are handled elsewhere: Root first-level placement, and your special-diagram logic.)
         STRUCTURAL_CONTAINERS = {"Root", "Group", "Groups", "Version", "Versions"}
 
-        def role_of(nid: int) -> str:
-            try:
-                return (self.role_map.get(int(nid)) or "").strip()
-            except Exception:
-                return ""
-
-        def is_embedded(nid: int) -> bool:
-            return role_of(nid) in ("embeddedClass", "embeddedInheritOnlyClass", "embeddedInheritOnly")
-
-        def is_inherit_only(nid: int) -> bool:
-            return role_of(nid) == "inheritOnlyClass"
-
-        def embedded_base_id(nid: int) -> int:
-            """
-            Pick the most-general embeddedClass ancestor in the chain.
-            If nid is not embedded, returns nid unchanged.
-            """
-            nid = int(nid)
-            if not is_embedded(nid):
-                return nid
-            best = nid
-            seen = {nid}
-            q = deque([nid])
-            while q:
-                cur = q.popleft()
-                for parent in self.H.successors(cur):  # H: child -> parent
-                    parent = int(parent)
-                    if parent in seen:
-                        continue
-                    seen.add(parent)
-                    if is_embedded(parent):
-                        best = parent
-                        q.append(parent)
-            return best
-
-        def family_members(base: int) -> list[int]:
-            """
-            base + all descendants in HR that are embedded-ish (exclude inheritOnly).
-            """
-            base = int(base)
-            out = [base]
-            try:
-                desc = nx.descendants(self.HR, base)
-            except Exception:
-                desc = set()
-            for d in desc:
-                d = int(d)
-                if d == base:
-                    continue
-                if is_inherit_only(d):
-                    continue
-                if is_embedded(d):
-                    out.append(d)
-            # keep base first, then name-sort rest
-            return out[:1] + sorted(out[1:], key=lambda n: (self._name(n) or "").casefold())
-
+        # Deduplicate by (ConnectorID, OwnerName, Label) so multiple diagram instances
+        # don’t generate identical properties. If you want *every* diagram-instance emitted,
+        # include InstanceID in the signature instead.
+        seen_props: set[tuple[int, str, str]] = set()
         def make_polymorphic_ref_schema(target_id: int) -> dict | None:
             """
-            HAND-style reference schema to target_id:
-            • if target participates in a polymorphic family (base + descendants, excluding inheritOnly),
-                return an outer reference wrapper with anyOf of inner refs.
-            • else return a single reference.
-            """
-            try:
-                variants = self._collect_polymorphic_variants(int(target_id))
-            except Exception:
-                variants = [int(target_id)]
-            variants = [int(v) for v in variants if v is not None]
+            Build schema for an association target.
 
-            # If we truly have a family, build the outer anyOf wrapper
-            if len(variants) >= 2:
-                items: list[dict] = []
-                for v in variants:
-                    ref = self._make_ref(v)
-                    if not isinstance(ref, dict):
-                        continue
-                    ref.pop("$primaryObjectHash", None)
-                    ref.pop("$secondaryObjectHash", None)
-                    items.append(ref)
-                if not items:
-                    return None
-                outer = {
-                    "$objectType": "reference",
-                    "$objectId": self._name(target_id),
-                    "anyOf": items,
-                }
-                outer.pop("$primaryObjectHash", None)
-                outer.pop("$secondaryObjectHash", None)
-                return outer
+            Preferred form (when targets are defined somewhere in the template):
+              - If target has >=2 variants (base+descendants), emit outer reference wrapper
+                {$objectType:"reference",$objectId:<base>, anyOf:[refs...]}.
+              - Else emit a single ref.
 
-            # Fallback: single reference
-            ref = self._make_ref(int(target_id))
-            if not isinstance(ref, dict):
-                return None
-            ref.pop("$primaryObjectHash", None)
-            ref.pop("$secondaryObjectHash", None)
-            return ref
-
-        def build_target_schema(target_id: int, *, want_array_items: bool, depth: int) -> dict | None:
-            """
-            Build the schema that goes on the association property.
-
-            - If target is embedded-ish: inline an object schema (and optionally populate its properties)
-            - Else: return a reference schema (possibly anyOf)
+            Fallback (critical for embedded-inherit-only bases like OperationalLimit):
+              - If we cannot build refs AND the *base* target is an inherit-only role,
+                emit an inline object wrapper with anyOf of substitutable variants.
+              - Inject base-owned *association-backed* dotted properties into each variant
+                (base-only), e.g. OperationalLimit.OperationalLimitType.
             """
             target_id = int(target_id)
 
-            # Embedded targets are inlined (not references)
-            if is_embedded(target_id):
-                base = embedded_base_id(target_id)
-                obj: dict = {
-                    "$objectType": "object",
-                    "$objectId": self._name(base),
-                    "type": "object",
-                    "properties": {},
-                }
-                if want_array_items:
-                    # We don't have a reliable generic $arrayPosition signal in A yet.
-                    # Keep it explicit and null (matches many HAND patterns).
-                    obj["$arrayPosition"] = None
+            # ---------- helper: reference or minimal fallback ----------
+            def _ref_or_minimal(tid: int) -> dict | None:
+                tid = int(tid)
+                ref = self._make_ref(tid)
+                if isinstance(ref, dict):
+                    ref.pop("$primaryObjectHash", None)
+                    ref.pop("$secondaryObjectHash", None)
+                    return ref
+                # Minimal fallback: still point somewhere stable by name
+                tname = self._name(tid)
+                if not tname:
+                    return None
+                return {"$objectType": "reference", "$referencePath": tname}
 
-                # Pull one level of association properties into the embedded object
-                if depth > 0:
-                    _populate_embedded_properties(obj, base, depth=depth)
-
-                obj.pop("$primaryObjectHash", None)
-                obj.pop("$secondaryObjectHash", None)
-                return obj
-
-            # Otherwise, emit references (possibly anyOf)
-            ref = make_polymorphic_ref_schema(target_id)
-            if not isinstance(ref, dict):
-                return None
-            return ref
-
-        def _populate_embedded_properties(obj_dict: dict, base_id: int, *, depth: int) -> None:
-            """
-            Mutate obj_dict["properties"] by adding association-like properties declared on:
-            - base_id itself
-            - embedded descendants of base_id (so ACDCTerminal.* shows up inside Terminal)
-            Depth-limited recursion for nested embedded objects.
-            """
-            if not isinstance(obj_dict, dict):
-                return
-            props = obj_dict.setdefault("properties", {})
-            if not isinstance(props, dict):
-                return
-
-            seen_local: set[tuple[int, str, str]] = set()  # (cid, owner_name, label)
-
-            for owner_id in family_members(base_id):
-                for _, tgt, key, ed in A.out_edges(owner_id, keys=True, data=True):
-                    ctype = str(ed.get("Connector_Type", "")).strip()
-                    if ctype not in ASSOC_LIKE:
-                        continue
-
-                    owner_name = (ed.get("Start_Object") or self._name(owner_id) or "").strip()
-                    target_name = (ed.get("End_Object") or self._name(tgt) or "").strip()
-                    if not owner_name or not target_name:
-                        continue
-                    if owner_name in STRUCTURAL_CONTAINERS or target_name in STRUCTURAL_CONTAINERS:
-                        continue
-
-                    label = (ed.get("label") or target_name).strip()
-                    mult = (ed.get("end_mult") or "").strip()
-                    mult_norm = mult.replace(" ", "")
-                    is_single = (mult_norm == "0..1" or mult_norm == "")
-
-                    cid_raw = ed.get("ConnectorID")
-                    try:
-                        cid = int(cid_raw)
-                    except Exception:
-                        cid = -1
-                    sig = (cid, owner_name, label)
-                    if sig in seen_local:
-                        continue
-                    seen_local.add(sig)
-
-                    prop_key = f"{owner_name}.{label}"
-
-                    if is_single:
-                        ts = build_target_schema(int(tgt), want_array_items=False, depth=depth-1)
-                        if not isinstance(ts, dict):
-                            continue
-                        ts.pop("$primaryObjectHash", None)
-                        ts.pop("$secondaryObjectHash", None)
-                        props[prop_key] = ts
-                    else:
-                        item = build_target_schema(int(tgt), want_array_items=True, depth=depth-1)
-                        if not isinstance(item, dict):
-                            continue
-                        item.pop("$primaryObjectHash", None)
-                        item.pop("$secondaryObjectHash", None)
-                        props[prop_key] = {
-                            "type": "array",
-                            "items": item,
-                        }
-
-        # -------------------- main catchers pass --------------------
-
-        def is_emitted_object(nid: int) -> bool:
-            ptr = self.def_ptr.get(int(nid))
-            return isinstance(ptr, dict) and ("properties" in ptr)
-
-        desc_cache: dict[int, set[int]] = {}
-
-        def recipients_for_owner(owner_id: int) -> set[int]:
-            """
-            All emitted nodes that should receive association properties declared on owner_id:
-            owner_id itself + all descendants in HR (excluding inheritOnly).
-            """
-            owner_id = int(owner_id)
-            if owner_id in desc_cache:
-                return desc_cache[owner_id]
-
-            recips = {owner_id}
+            # ---------- collect polymorphic variants ----------
             try:
-                recips |= {int(d) for d in nx.descendants(self.HR, owner_id)}
+                variants = self._collect_polymorphic_variants(target_id)
             except Exception:
-                pass
+                variants = [target_id]
+            variants = [int(v) for v in variants if v is not None]
 
-            recips = {r for r in recips if (not is_inherit_only(r)) and is_emitted_object(r)}
-            desc_cache[owner_id] = recips
-            return recips
+            # ---------- preferred: build refs ----------
 
-        seen_props_global: set[tuple[int, int, str]] = set()  # (recipient_id, cid, prop_key)
+
+            if len(variants) >= 2:
+
+
+                items: list[dict] = []
+
+
+                for v in variants:
+
+
+                    ref = self._make_ref(int(v))
+
+
+                    if isinstance(ref, dict):
+
+
+                        # association references never carry hashes
+
+
+                        ref.pop("$primaryObjectHash", None)
+
+
+                        ref.pop("$secondaryObjectHash", None)
+
+
+                        items.append(ref)
+
+
+
+                # Only return ref-wrapper if we actually have at least one usable ref
+
+
+                if items:
+
+
+                    base_name = self._name(target_id)
+
+
+                    out = {"$objectType": "reference", "$objectId": base_name, "anyOf": items}
+
+
+                    out.pop("$primaryObjectHash", None)
+
+
+                    out.pop("$secondaryObjectHash", None)
+
+
+                    return out
+
+            # Single target (or polymorphic but no refs found)
+            if len(variants) == 1:
+                tid = int(variants[0])
+
+                # Preferred: real ref to an already-defined target
+                ref = self._make_ref(tid)
+                if isinstance(ref, dict):
+                    ref.pop("$primaryObjectHash", None)
+                    ref.pop("$secondaryObjectHash", None)
+                    return ref
+
+                # If the target is an embeddedClass, emit an *inline object* stub
+                # (HAND pattern for e.g. Location.PositionPoints -> PositionPoint),
+                # rather than silently dropping the property.
+                t_role = (self._role(tid) or "").strip()
+                if t_role == "embeddedClass":
+                    tname = self._name(tid)
+                    if not tname:
+                        return None
+
+                    obj = {"$objectType": "object", "$objectId": tname, "type": "object", "properties": {}}
+
+                    # Optional array-position hints for embedded array members
+                    # (keep this tiny + explicit; add entries as we encounter them).
+                    EMBEDDED_ARRAY_POSITION = {
+                        "PositionPoint": "PositionPoint.sequenceNumber",
+                    }
+                    if tname in EMBEDDED_ARRAY_POSITION:
+                        obj["$arrayPosition"] = EMBEDDED_ARRAY_POSITION[tname]
+
+                    return obj
+
+                return None
+
+            # ---------- fallback for inherit-only base: inline anyOf ----------
+            INHERIT_ONLY = {
+                "inheritOnlyClass",
+                "substitutableInheritOnlyClass",
+                "containerInheritOnlyClass",
+                "embeddedInheritOnlyClass",
+            }
+            base_role = (self._role(target_id) or "").strip()
+            if base_role not in INHERIT_ONLY:
+                return None
+
+            # Build anyOf variant object stubs (excludes inherit-only roles internally)
+            anyof_variants = self._make_anyof_variants(target_id, drop_hashes=True)
+            if not anyof_variants:
+                return None
+
+            base_name = self._name(target_id)
+
+            # Collect *base-owned* association-backed dotted properties
+            # IMPORTANT: only include edges where base is the Start_Object (owner).
+            base_assoc_props: dict[str, dict] = {}
+            for uu, vv, kk, dd in A.edges(keys=True, data=True):
+                ctype2 = str(dd.get("Connector_Type", "")).strip()
+                if ctype2 not in ASSOC_LIKE:
+                    continue
+
+                owner2 = (dd.get("Start_Object") or "").strip()
+                targ2 = (dd.get("End_Object") or "").strip()
+                if not owner2 or not targ2:
+                    continue
+                if owner2 in STRUCTURAL_CONTAINERS or targ2 in STRUCTURAL_CONTAINERS:
+                    continue
+                if owner2 != base_name:
+                    continue
+
+                lab2 = (dd.get("label") or "").strip()
+                if not lab2:
+                    continue
+
+                tid2 = name_to_id.get(targ2)
+                if tid2 is None:
+                    continue
+
+                # Use simple reference emission for injected base-only props to avoid
+                # deep recursion / anchoring side effects.
+                ref2 = _ref_or_minimal(int(tid2))
+                if not isinstance(ref2, dict):
+                    continue
+
+                mult2 = (dd.get("end_mult") or "").strip().replace(" ", "")
+                is_single2 = (mult2 == "" or mult2 == "0..1")
+                prop2 = ref2 if is_single2 else {"type": "array", "items": ref2}
+
+                # never carry hashes on association entries
+                prop2.pop("$primaryObjectHash", None)
+                prop2.pop("$secondaryObjectHash", None)
+                if isinstance(prop2.get("items"), dict):
+                    prop2["items"].pop("$primaryObjectHash", None)
+                    prop2["items"].pop("$secondaryObjectHash", None)
+
+                pkey2 = f"{base_name}.{lab2}"
+                base_assoc_props[pkey2] = prop2
+
+            # Inject into each anyOf member (base-only)
+            for vobj in anyof_variants:
+                if not isinstance(vobj, dict):
+                    continue
+                vprops = vobj.setdefault("properties", {})
+                if not isinstance(vprops, dict):
+                    vprops = {}
+                    vobj["properties"] = vprops
+                for k2, sch2 in base_assoc_props.items():
+                    vprops[k2] = sch2
+
+            # Wrapper is an *object* with anyOf variants.
+            # DO NOT include $objectId for inherit-only bases (per policy).
+            return {"$objectType": "object", "type": "object", "$arrayPosition": None, "anyOf": anyof_variants}
 
         for u, v, key, data in A.edges(keys=True, data=True):
             ctype = str(data.get("Connector_Type", "")).strip()
             if ctype not in ASSOC_LIKE:
                 continue
 
-            owner_name = (data.get("Start_Object") or self._name(u) or "").strip()
-            target_name = (data.get("End_Object") or self._name(v) or "").strip()
+            owner_name = (data.get("Start_Object") or "").strip()
+            target_name = (data.get("End_Object") or "").strip()
             if not owner_name or not target_name:
                 continue
 
+            # Skip structural wiring here no matter what
             if owner_name in STRUCTURAL_CONTAINERS or target_name in STRUCTURAL_CONTAINERS:
                 continue
 
-            label = (data.get("label") or target_name).strip()
-            mult = (data.get("end_mult") or "").strip()
-            mult_norm = mult.replace(" ", "")
-            is_single = (mult_norm == "0..1" or mult_norm == "")
+            # CRITICAL: only emit if label is present (visible label)
+            label = (data.get("label") or "").strip()
+            if not label:
+                continue
 
-            cid_raw = data.get("ConnectorID")
-            try:
-                cid = int(cid_raw)
-            except Exception:
-                cid = -1
+            owner_id = name_to_id.get(owner_name)
+            target_id = name_to_id.get(target_name)
+            if owner_id is None or target_id is None:
+                continue
 
-            prop_key = f"{owner_name}.{label}"
+            owner_ptr = self.def_ptr.get(owner_id)
+            if not isinstance(owner_ptr, dict):
+                continue  # owner not emitted/defined
 
-            if is_single:
-                ts = build_target_schema(int(v), want_array_items=False, depth=1)
-                if not isinstance(ts, dict):
-                    continue
-                ts.pop("$primaryObjectHash", None)
-                ts.pop("$secondaryObjectHash", None)
-                prop_schema = ts
-            else:
-                item = build_target_schema(int(v), want_array_items=True, depth=1)
-                if not isinstance(item, dict):
-                    continue
-                item.pop("$primaryObjectHash", None)
-                item.pop("$secondaryObjectHash", None)
-                prop_schema = {"type": "array", "items": item}
+            ref_schema = make_polymorphic_ref_schema(target_id)
+            if not isinstance(ref_schema, dict):
+                continue
 
+            mult = (data.get("end_mult") or "").strip().replace(" ", "")
+            is_single = (mult == "" or mult == "0..1")
+
+            prop_schema = ref_schema if is_single else {"type": "array", "items": ref_schema}
+
+            # Ensure association entries never carry hashes
             prop_schema.pop("$primaryObjectHash", None)
             prop_schema.pop("$secondaryObjectHash", None)
             if isinstance(prop_schema.get("items"), dict):
                 prop_schema["items"].pop("$primaryObjectHash", None)
                 prop_schema["items"].pop("$secondaryObjectHash", None)
 
-            for recip in recipients_for_owner(int(u)):
-                recip_ptr = self.def_ptr.get(int(recip))
-                if not isinstance(recip_ptr, dict):
-                    continue
+            # Dedup
+            cid_raw = data.get("ConnectorID")
+            try:
+                cid = int(cid_raw)
+            except Exception:
+                cid = -1
+            sig = (cid, owner_name, label)
+            if sig in seen_props:
+                continue
+            seen_props.add(sig)
 
-                sig = (int(recip), cid, prop_key)
-                if sig in seen_props_global:
-                    continue
-                seen_props_global.add(sig)
+            prop_key = f"{owner_name}.{label}"
 
-                self._add_property(recip_ptr, prop_key, prop_schema)
-
-                anyof_list = recip_ptr.get("anyOf", [])
+            # HAND convention: if the owner is an object-anyOf wrapper (polymorphic rootClass),
+            # do NOT attach association-backed properties at the wrapper level. Instead,
+            # attach them to each anyOf member object.
+            if owner_id in getattr(self, "_object_anyof_nodes", set()):
+                anyof_list = owner_ptr.get("anyOf", [])
                 if isinstance(anyof_list, list):
                     for variant in anyof_list:
                         if not isinstance(variant, dict):
                             continue
-                        vprops = variant.setdefault("properties", {})
-                        if isinstance(vprops, dict) and prop_key not in vprops:
-                            vprops[prop_key] = prop_schema
+                        self._add_property(variant, prop_key, copy.deepcopy(prop_schema))
+                continue
+
+            # Default: add to owner
+            self._add_property(owner_ptr, prop_key, prop_schema)
+
+            # Also duplicate into each anyOf variant of the owner (if present)
+            anyof_list = owner_ptr.get("anyOf", [])
+            if isinstance(anyof_list, list):
+                for variant in anyof_list:
+                    if not isinstance(variant, dict):
+                        continue
+                    self._add_property(variant, prop_key, copy.deepcopy(prop_schema))
+
 
     # -------------------- anchor detection --------------------
     def _compute_anchors(self) -> Set[int]:
@@ -660,11 +814,21 @@ class TemplateGenerator:
         }
         self._add_property(at_ptr, label, ref)
 
-    def _apply_hashes_if_rootclass(self, node_id: int, obj: dict) -> None:
+    def _apply_hashes_if_rootclass(self, node_id: int, obj: dict, *, drop_hashes: bool = False) -> None:
         """
         If node_id is tagged rootClass, add the standard object hashes
         (mirrors hand template).
+
+        If drop_hashes=True, ensure hashes are NOT present (used for anyOf members).
         """
+        if not isinstance(obj, dict):
+            return
+
+        if drop_hashes:
+            obj.pop("$primaryObjectHash", None)
+            obj.pop("$secondaryObjectHash", None)
+            return
+
         if self._role(int(node_id)) == "rootClass":
             obj["$primaryObjectHash"] = "IdentifiedObject.name"
             obj["$secondaryObjectHash"] = "IdentifiedObject.mRID"
@@ -672,96 +836,123 @@ class TemplateGenerator:
     def _order_fields(self, kind: str, d: dict) -> dict:
         """
         Return a new dict whose keys follow the preferred order for `kind`,
-        with any extra keys appended in their existing order.
+        with any extra keys appended, and with `anyOf` + `properties` ALWAYS last.
         """
         if not isinstance(d, dict):
             return d
+
+        trailing = ("anyOf", "properties")
         order = self._FIELD_ORDER.get(kind, [])
+
         out = {}
-        # 1) keys we know, in fixed order
+
+        # 1) keys we know, in fixed order (excluding trailing; we'll force trailing later)
         for k in order:
+            if k in trailing:
+                continue
             if k in d:
                 out[k] = d[k]
-        # 2) any extras, in existing order
+
+        # 2) any extras (in existing order), excluding trailing
         for k in d:
-            if k not in out:
+            if k in out or k in trailing:
+                continue
+            out[k] = d[k]
+
+        # 3) trailing keys in fixed order
+        for k in trailing:
+            if k in d:
                 out[k] = d[k]
+
         return out
 
-    def _apply_field_order_recursively(self, node: dict) -> dict:
+    def _apply_field_order_recursively(self, node, *, is_root: bool = False):
         """
-        Walk the entire JSON and reorder keys according to _FIELD_ORDER.
+        Walk the entire JSON and reorder keys so that:
+        - Root schema uses 'schema' ordering (title/$schema/$id/... first)
+        - Objects/containers/references use their kind ordering
+        - `anyOf` and `properties` are ALWAYS last keys in any dict
         """
+        if isinstance(node, list):
+            return [self._apply_field_order_recursively(v) for v in node]
+
         if not isinstance(node, dict):
             return node
 
-        # Decide kind
-        if "anyOf" in node and isinstance(node["anyOf"], list):
-            # Recurse into anyOf entries (they are typically 'reference' objects)
-            node["anyOf"] = [self._apply_field_order_recursively(v) for v in node["anyOf"]]
-            # No special order for the wrapper; just return
-            return node
+        # Recurse into children first
+        new = {}
+        for k, v in node.items():
+            if isinstance(v, (dict, list)):
+                new[k] = self._apply_field_order_recursively(v)
+            else:
+                new[k] = v
 
-        kind = None
-        if node is getattr(self, "_root_schema_obj", None):
+        # Decide kind
+        if is_root:
             kind = "schema"
         else:
-            ot = node.get("$objectType")
+            ot = new.get("$objectType")
             if ot == "object":
                 kind = "object"
             elif ot == "container":
                 kind = "container"
             elif ot == "reference":
                 kind = "reference"
+            else:
+                kind = None
 
-        # Recurse into children first
-        props = node.get("properties")
-        if isinstance(props, dict):
-            node["properties"] = {
-                k: self._apply_field_order_recursively(v)
-                for k, v in props.items()
+        # Apply ordering
+        if kind:
+            return self._order_fields(kind, new)
+
+        # Fallback for “plain dicts” (e.g., properties-maps): still force trailing keys last if present
+        trailing = ("anyOf", "properties")
+        out = {k: new[k] for k in new if k not in trailing}
+        for k in trailing:
+            if k in new:
+                out[k] = new[k]
+        return out
+
+    def _make_anyof_variants(self, node_id: int, *, drop_hashes: bool = False) -> list[dict]:
+        import networkx as nx
+
+        INHERIT_ONLY = {
+            "inheritOnlyClass",
+            "substitutableInheritOnlyClass",
+            "containerInheritOnlyClass",
+            "embeddedInheritOnlyClass",
+        }
+        CONTAINERS = {"containerClass", "containerInheritOnlyClass"}
+
+        def keep(nid: int) -> bool:
+            r = self._role(int(nid))
+            if r in INHERIT_ONLY:
+                return False
+            if r in CONTAINERS:
+                return False
+            return True
+
+        node_id = int(node_id)
+        variants = [node_id] + sorted(list(nx.descendants(self.HR, node_id)), key=lambda x: self._name(int(x)))
+
+        out: list[dict] = []
+        for vid in variants:
+            vid = int(vid)
+            if not keep(vid):
+                continue
+
+            sch = {
+                "$objectType": "object",
+                "type": "object",
+                "$objectId": self._name(vid),
+                "properties": {},
             }
 
-        # Reorder this node’s keys if we know its kind
-        return self._order_fields(kind, node) if kind else node
+            # anyOf members should NOT carry hashes (parent/wrapper may carry them)
+            self._apply_hashes_if_rootclass(vid, sch, drop_hashes=drop_hashes)
+            out.append(sch)
 
-    def _make_anyof_variants(self, base_id: int, *, drop_hashes: bool = False) -> list[dict]:
-        """
-        Build object-anyOf variants for a polymorphic family:
-        • include the base (if not inheritOnlyClass)
-        • include ALL descendants except inheritOnlyClass
-
-        If drop_hashes=True, do NOT put $primaryObjectHash / $secondaryObjectHash
-        on any variant objects (the parent wrapper will carry identity).
-        """
-        def _variant(n: int) -> dict:
-            obj = {"$objectType": "object", "type": "object", "$objectId": self._name(n), "properties": {}}
-            if not drop_hashes:
-                self._apply_hashes_if_rootclass(n, obj)
-            return obj
-
-        keep = lambda nid: self._role(nid) != "inheritOnlyClass"
-
-        out, seen = [], set()
-        if keep(int(base_id)):
-            out.append(_variant(int(base_id)))
-            seen.add(self._name(int(base_id)))
-
-        from collections import deque
-        q = deque([int(base_id)])
-        while q:
-            cur = q.popleft()
-            for ch in self.HR.successors(cur):
-                q.append(ch)
-                if not keep(ch):
-                    continue
-                nm = self._name(ch)
-                if nm in seen:
-                    continue
-                out.append(_variant(ch))
-                seen.add(nm)
-
-        return out[:1] + sorted(out[1:], key=lambda d: d["$objectId"].casefold())
+        return out
     
     def _strip_hashes_inside_anyof_when_parent_has_hashes(self, node: dict) -> None:
         """
@@ -982,8 +1173,8 @@ class TemplateGenerator:
             Decide which node should own an anchor `a`.
 
             - If `a` has exactly one base class in H and that base is not Root,
-              we ensure the base is defined (as a container under Root) and
-              then use that base as the owner.
+            we ensure the base is defined (as a container under Root) and
+            then use that base as the owner.
             - Otherwise, fall back to Root.
 
             Debug prints are included to understand what happens for anchors
@@ -1145,6 +1336,14 @@ class TemplateGenerator:
                     # if cur wasn’t defined yet (shouldn’t happen for anchors), skip
                     continue
 
+
+                # Ensure every defined node also has a usable path. This is critical when
+                # we bind HR child nodes to inline anyOf-member dicts (substitution unions):
+                # those members are not created via ensure_defined(), so without a path_map
+                # entry, later calls that use force_owner=<cur> will fail.
+                if isinstance(owner_path, tuple) and cur not in self.path_map:
+                    self.path_map[cur] = owner_path
+
                 # Don’t add named children to an object that is represented as anyOf
                 skip_named_children = cur in getattr(self, "_object_anyof_nodes", set())
 
@@ -1155,6 +1354,30 @@ class TemplateGenerator:
                 for child in children:
                     rchild = role(child).strip()
                     cname = name(child)
+
+                    if skip_named_children:
+                        # `cur` is represented as an object-anyOf wrapper (substitution union).
+                        # HAND convention: do NOT create named properties for variants on the wrapper.
+                        # We still descend through the variant nodes so their embedded children can be emitted.
+                        if not isinstance(self.def_ptr.get(int(child)), dict):
+                            anyof_list = owner_ptr.get("anyOf", [])
+                            if isinstance(anyof_list, list):
+                                for member in anyof_list:
+                                    if not isinstance(member, dict):
+                                        continue
+                                    if member.get("$objectType") != "object":
+                                        continue
+                                    if (member.get("$objectId") or "").strip() == cname:
+                                        self.def_ptr[int(child)] = member
+                                        # Bind a stable path for this inline anyOf member so it can
+                                        # act as a force_owner target for its embedded children.
+                                        if isinstance(owner_path, tuple):
+                                            self.path_map[int(child)] = owner_path + (cname,)
+                                        break
+                        if rchild != "inheritOnlyClass":
+                            q.append((child, self.path_map.get(child, owner_path + (cname,))))
+                        continue
+
 
                     # Determine whether this child should be treated as a container “shelf”
                     is_container_like = (
@@ -1195,11 +1418,8 @@ class TemplateGenerator:
         # enforce: if a node has anyOf AND carries hashes, its anyOf entries must NOT have hashes
         self._strip_hashes_inside_anyof_when_parent_has_hashes(schema)
 
-        # keep your existing field-order step here (don’t duplicate if you already call it)
-        schema = self._apply_field_order_recursively(schema)
-
         # Enforce field order across the tree
-        schema = self._apply_field_order_recursively(schema)
+        schema = self._apply_field_order_recursively(schema, is_root=True)
         self._last_auto = schema
         return schema
 
