@@ -293,6 +293,9 @@ class DssExport(RDFGraph):
         self.raw_dss = odd
         self.raw_dss(f'redirect "{dss_file}"')
 
+        # Force Calcvoltagebases to initialize all buses
+        self.raw_dss.Text.Command("Calcvoltagebases")
+
         self.dss = self.raw_dss.to_altdss()
 
         self.uuid_map = {}
