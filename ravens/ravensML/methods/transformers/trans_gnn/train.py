@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch_geometric.loader import DataLoader
+from torch_geometric.utils import degree
 import matplotlib.pyplot as plt
 import random
 import pprint
@@ -23,13 +24,13 @@ torch.manual_seed(42)
 dataset = MGTransformerDataset(
     root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
     split="train",
-    size=10000,
+    size=500,
     error_kwargs={"deletion_prob": 0.01, 
                   "occurrence_prob": 0.55,
                   "mult_mean": 1,
-                  "mult_var": 1,
+                  "mult_var": 1.25,
                   "add_mean": 0,
-                  "add_var": 1,},
+                  "add_var": 1.25,},
 )
 
 
@@ -39,7 +40,7 @@ val_len   = len(dataset) - train_len
 train_set, val_set = torch.utils.data.random_split(dataset, [train_len, val_len])
 
 # data loaders
-batch_size = 32
+batch_size = 1 #MUST BE FIXED
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
 val_loader   = DataLoader(val_set,   batch_size=batch_size, shuffle=False)
 
@@ -50,19 +51,34 @@ edge_feat_dim = sample.edge_attr.shape[1]
 output_feat_dim = sample.y["edge_attr"].shape[1]
 
 
+# Compute the maximum in-degree in the training data.
+max_degree = -1
+for data in train_set:
+    d = degree(data.edge_index[1], num_nodes=data.num_nodes, dtype=torch.long)
+    max_degree = max(max_degree, int(d.max()))
+
+# Compute the in-degree histogram tensor
+deg = torch.zeros(max_degree + 1, dtype=torch.long)
+for data in train_set:
+    d = degree(data.edge_index[1], num_nodes=data.num_nodes, dtype=torch.long)
+    deg += torch.bincount(d, minlength=deg.numel())
+
+
 # model
-model = SimpleGNN(
-    node_in_channels=node_feat_dim,   
-    edge_in_channels=edge_feat_dim,
-    edge_out_channels=output_feat_dim 
+model = SimpleGNN(                 
+    node_features=node_feat_dim,
+    edge_features=edge_feat_dim,
+    degree=deg,
+    transport_distance=6
 ).to(device)
 
-print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)}")
+print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(edge_feat_dim)}")
 
 # Training Settings
 # loss_fn = nn.MSELoss()
 import custom_loss as cl
-loss_fn = cl.WeightedMSELoss(3,penalty_strength=5)
+# loss_fn = cl.WeightedMSELoss(3,penalty_strength=5) #NOTE: testing new method
+loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=0.2)
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
 epochs = 30

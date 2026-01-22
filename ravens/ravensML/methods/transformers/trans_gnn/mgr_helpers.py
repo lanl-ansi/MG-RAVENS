@@ -5,6 +5,7 @@ from data import MGTransformerDataset
 import json
 import re
 import torch
+import copy
 sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
 from framework.dataset import MGRavensDataset
 
@@ -12,7 +13,7 @@ from framework.dataset import MGRavensDataset
 
 def unpack_edge(edge_params,max_phases):
     mat_len = max_phases**2 
-    edge_params = edge_params.tolist()
+    # edge_params = edge_params.tolist()
     edge = { 
         "Phases":edge_params[0],
         "R":np.array(edge_params[1:mat_len+1]).reshape(max_phases,max_phases),
@@ -26,57 +27,101 @@ def unpack_edge(edge_params,max_phases):
     return edge
 
 def update_mgr(prediction,sample):
-    prediction = prediction.detach().clone().to("cpu")
-    sample = sample.detach().clone().to("cpu")
+    print("<DEBUG HEYYY>")
+    prediction = prediction.detach().to("cpu")
+    sample = sample.detach().to("cpu")
+    mgr = _to_python(sample.y["raw_mgr"])
+    input = _to_python(sample["edge_attr"])
 
-    mgr = sample.y["raw_mgr"]
-    input = sample["edge_attr"]    
+    # with open("ravens/ravensML/methods/transformers/trans_gnn/tmp.json","w") as f:
+    #     json.dump(mgr,f,indent=2)
+
     transformers = mgr["PowerSystemResource"]["Equipment"]["ConductingEquipment"]["PowerTransformer"]
     transformer_names = list(transformers.keys())
+    print(transformer_names)
     j = 0
+    print(len(prediction))
     for i in range(len(prediction)):
         input_e = unpack_edge(input[i],3)
         pred_e  = unpack_edge(prediction[i],3)
         if input_e["edge_type"] == 1:
             if int(j) ==j:
                 trans = transformers[transformer_names[int(j)]]
-                print(transformer_names[int(j)])
+                # print(transformer_names[int(j)])
                 R_mat = pred_e["R"]
                 X_mat = pred_e["X"]
                 G_mat = pred_e["G"]
                 B_mat = pred_e["B"]
-                ends = trans.get("PowerTransformer.PowerTransformerEnd",{})
+                ends = copy.deepcopy(trans.get("PowerTransformer.PowerTransformerEnd", {}))
                 for i, end in enumerate(ends):
+                    # print(end)#TODO: why is it duplicating into a list of lists --> tl;dr it was a batch issue
                     if "TransformerEnd.MeshImpedance" in end.keys():
                         del end["TransformerEnd.MeshImpedance"]
-                    TSI = end["TransformerEnd.StarImpedance"] = {}
-                    TSI["TransformerStarImpedance.r"] = R_mat[i,i].item()
-                    TSI["TransformerStarImpedance.x"] = X_mat[i,i].item()
-                    TCA = end["TransformerEnd.CoreAdmittance"] = {}
-                    TCA["TransformerCoreAdmittance.g"] = G_mat[i,i].item()
-                    TCA["TransformerCoreAdmittance.b"] = B_mat[i,i].item()
-                    print(type(TCA["TransformerCoreAdmittance.b"]))
-                    print(type(pred_e["B"]))
+                    end["TransformerEnd.StarImpedance"] = {
+                        "TransformerStarImpedance.r": R_mat[i,i].item(),
+                        "TransformerStarImpedance.x": X_mat[i,i].item()
+                    }
+                    end["TransformerEnd.CoreAdmittance"] = {
+                        "TransformerCoreAdmittance.g": G_mat[i,i].item(),
+                        "TransformerCoreAdmittance.b": B_mat[i,i].item()
+                    }
+                    # print(type(TCA["TransformerCoreAdmittance.b"]))
+                    # print(type(pred_e["B"]))
+                trans["PowerTransformer.PowerTransformerEnd"] = ends
             j+=.5
-    print(mgr)
-    mgr = _to_python(mgr)
-    print(mgr)
+    # print(mgr)
+    mgr = mgr
+    # print(mgr)
     return mgr
         
 def _to_python(o):
     """
     Recursively turn torch.Tensors (and other non‑JSON types) into
     JSON‑serialisable Python objects.
+    Collapses tensors with duplicate values into single Python values.
     """
     if isinstance(o, torch.Tensor):
-        # 0‑dim tensor -> Python scalar, otherwise -> list
-        print(o)
-        return o.item() if len(o) == 1 else o.tolist()
+        # Move tensor to CPU and detach from computation graph if needed
+        if o.requires_grad:
+            o = o.detach()
+        if o.device.type != 'cpu':
+            o = o.cpu()
+            
+        # 0-dim tensor -> Python scalar
+        if o.numel() == 1:
+            return o.item()
+        
+        # Check if all elements are identical
+        as_list = o.tolist()
+        if isinstance(as_list, list) and len(as_list) > 0:
+            # Sample first few elements to quickly check if they're the same
+            sample_size = min(10, len(as_list))
+            first_value = as_list[0]
+            potential_duplicates = all(as_list[i] == first_value for i in range(1, sample_size))
+            
+            # If sample check passed, verify all elements
+            if potential_duplicates and all(x == first_value for x in as_list):
+                return first_value
+        
+        return as_list
+    
     if isinstance(o, dict):
         return {k: _to_python(v) for k, v in o.items()}
+    
     if isinstance(o, (list, tuple)):
-        return [_to_python(v) for v in o]
-    return o   # already a JSON friendly type
+        converted = [_to_python(v) for v in o]
+        
+        # Check if all elements in the list are identical after conversion
+        if len(converted) > 0:
+            first_value = converted[0]
+            if all(x == first_value for x in converted):
+                return first_value
+        
+        return converted
+    
+    # Already a JSON-friendly type
+    return o
+
 
 
 def run_pf(mgr_grid):
@@ -103,6 +148,13 @@ def run_pf(mgr_grid):
         json.dump(mgr_grid, file, indent=2)
 
     Main.eval("eng = parse_file(\""+tmp_file+"\")")
+
+    Main.eval("""
+    open("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/methods/transformers/trans_gnn/tmp/debug_eng.json", "w") do f
+        JSON.print(f, eng)
+    end
+    """)
+    
     Main.eval("rav_model = instantiate_mc_model_ravens(eng, IVRUPowerModel, build_mc_pf)")
     Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>5, \"tol\"=>1e-6),solution_processors=Function[])")
     Main.eval("""
