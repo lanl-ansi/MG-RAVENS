@@ -6,7 +6,7 @@ authors = ["David M Fobes <dfobes@lanl.gov>"]
 license = "Apache-2"
 readme = "README.md"
 packages = [{include = "ravens"}]
-include = ["lib/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xmi", "lib/template.json"]
+include = ["lib/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xml", "lib/template.json", "lib/svgRender.js"]
 
 [tool.poetry.dependencies]
 python = ">=3.12, <3.14"
@@ -30,3 +30,12 @@ pytest-cov = "^6.0.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:rfc3986._mixin",
+]

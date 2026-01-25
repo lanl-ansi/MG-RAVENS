@@ -2,12 +2,15 @@ import glob
 import json
 import os
 import pathlib
+import sys
+
+sys.setrecursionlimit(10000)
 
 from ravens.schema import RavensSchema, generate_schema_docs
 from ravens.uml import UMLExclusions
 
 
-def modify_schema_docs_resource_paths(static_schema_dir: pathlib.PosixPath):
+def modify_schema_docs_resource_paths(static_schema_dir: pathlib.PosixPath | str):
     for file in glob.glob(os.path.join(static_schema_dir, "*.html")):
         with open(file, "r") as f:
             f_str = f.read()
@@ -19,7 +22,7 @@ def modify_schema_docs_resource_paths(static_schema_dir: pathlib.PosixPath):
             f.write(f_str)
 
 
-def build_markdown_file(schema_md_dir: pathlib.PosixPath, static_schema_dir: pathlib.PosixPath):
+def build_markdown_file(schema_md_dir: pathlib.PosixPath | str, static_schema_dir: pathlib.PosixPath | str):
     md_file = """# Schema Documentation
 
 ## Root Schema
@@ -44,12 +47,13 @@ def build_schema_docs():
     static_schema_dir = os.path.join(current_dir, "../_static/schema")
     schema_md_dir = os.path.join(current_dir, "../schema")
 
-    a = RavensSchema(uml_exclusions=UMLExclusions().exclude_by_name_startswith(["Mkt"]))
-
-    a.export_schemas(tmp_dir)
-
-    generate_schema_docs(tmp_dir, static_schema_dir)
-
-    modify_schema_docs_resource_paths(static_schema_dir)
-
-    build_markdown_file(schema_md_dir, static_schema_dir)
+    try:
+        a = RavensSchema(uml_exclusions=UMLExclusions().exclude_by_name_startswith(["Mkt"]))
+        a.export_schemas(tmp_dir)
+        generate_schema_docs(tmp_dir, static_schema_dir)
+        modify_schema_docs_resource_paths(static_schema_dir)
+        build_markdown_file(schema_md_dir, static_schema_dir)
+    except RecursionError as e:
+        print(f"RecursionError during schema generation: {e}")
+        print("Try increasing sys.setrecursionlimit or simplifying schema complexity")
+        raise

@@ -1,4 +1,5 @@
 import pathlib
+import re
 
 from uuid import uuid4
 
@@ -13,7 +14,7 @@ from ravens.data import _DEFAULT_CIM_NAMESPACE
 
 
 class RDFGraph(object):
-    def __init__(self, profile_path: str | pathlib.Path | None = None, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, public_id: str = "", uuid_format=None):
+    def __init__(self, profile_path: str | pathlib.Path | None = None, cim_namespace: str = _DEFAULT_CIM_NAMESPACE, public_id: str = "#", uuid_format=None):
         if uuid_format is not None:
             self.uuid_format = uuid_format
         else:
@@ -32,17 +33,36 @@ class RDFGraph(object):
         nm.bind("cim", self.cim, override=True)
         self.graph.namespace_manager = nm
 
+    @staticmethod
+    def _transform_to_cyme_uri(match):
+        """
+        Transform URIs to CYME format: #uuid -> #_UUID
+        Match patterns like rdf:about="#uuid" or rdf:resource="#uuid"
+        """
+        prefix = match.group(1)  # rdf:about=" or rdf:resource="
+        hash_sign = match.group(2)  # # or empty
+        uuid = match.group(3)  # the UUID
+
+        # Transform: remove leading underscore if present, uppercase, add underscore
+        uuid_clean = uuid.lstrip('_')
+        uuid_transformed = f"_{uuid_clean.upper()}"
+
+        return f'{prefix}{hash_sign}{uuid_transformed}"'
+
+
     def mRID(self) -> str:
-        return str(self.uuid_format(str(uuid4())))
+        return self.uuid_format(str(uuid4()))
 
     def build_cim_obj(self, rdf_type: str, mrid: str | None = None, name: str | None = None, skip_mrid: bool = False) -> URIRef:
         if mrid is None:
             mrid = self.mRID()
 
-        node = URIRef(mrid)
+        # URIRef always includes public_id prefix
+        node = URIRef(self.public_id + mrid)
 
         self.graph.add((node, RDF.type, self.cim[rdf_type]))
         if not skip_mrid:
+            # mRID property value never includes public_id prefix
             self.graph.add((node, self.cim["IdentifiedObject.mRID"], Literal(mrid)))
         if name is not None:
             self.graph.add((node, self.cim["IdentifiedObject.name"], Literal(name)))
@@ -70,8 +90,29 @@ class RDFGraph(object):
 
         nx.write_graphml(G, file_path, named_key_ids=True, edge_id_from_attribute="id")
 
-    def save(self, path: pathlib.Path | str) -> None:
+    def get(self, subject, predicate, default=None):
+        _v = self.graph.value(subject=subject, predicate=predicate)
+        if _v is None:
+            return default
+
+        return _v
+
+    def get_name(self, subject):
+        return self.get(subject, self.cim["IdentifiedObject.name"], str(subject))
+
+    def save(self, path: pathlib.Path | str, make_cyme_compatible: bool = False) -> None:
         rdfxml = self.graph.serialize(max_depth=1, format="pretty-xml")
-        # rdfxml = rdfxml.replace("rdf:about", "rdf:ID") #TODO: REVERT
+
+        if make_cyme_compatible:
+            # Transform both rdf:about and rdf:resource attributes
+            rdfxml = re.sub(
+                r'(rdf:(?:about|resource)=")(#?)([a-fA-F0-9_-]+)"',
+                self._transform_to_cyme_uri,
+                rdfxml
+            )
+
+            # Change rdf:about to rdf:ID
+            rdfxml = rdfxml.replace("rdf:about", "rdf:ID")
+
         with open(path, "w") as f:
             f.write(rdfxml)
