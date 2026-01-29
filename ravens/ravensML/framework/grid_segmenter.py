@@ -19,10 +19,10 @@ class grid_segmenter:
     - yield_graph(optional: MGR, min_nodes, max_nodes) --> yields a new subgraph segmented from either the passed MGRavens file, or the base graph with optional constraints on number of nodes
     """
 
-    def __init__(self, base_graph = None, OPF_Val = False):
+    def __init__(self, base_graph = None, PF_Val = False):
         self.base_graph = base_graph
         self.sub_template = None
-        self.OPF_Val = OPF_Val
+        self.PF_Val = PF_Val
         
     def set_base_graph(self, new_MGR):
         self.base_graph = new_MGR
@@ -85,7 +85,9 @@ class grid_segmenter:
 
 
             #validate w/ MGR
-            if self.OPF_Val:
+            if self.PF_Val:
+                warnings.warn("PMD-PF calculation currently has issues with multiple phase codes that frequently appear in the file")
+                warnings.warn("PF validation logic not implemented")
                 res = self._run_pf(Sub_MGR)
                 print(res.keys())
                 incomplete = False #should be based on results
@@ -365,7 +367,7 @@ if __name__ == "__main__":
     # DS.process_for_ML()
     # DS.visualize_graph()
 
-    GS = grid_segmenter()
+    GS = grid_segmenter(PF_Val=False)
     GS.load_from_file("ravens/ravensML/framework/segmenter_test_data/segmenter.json")
     GS.yield_graph(min_nodes = 67)
 
