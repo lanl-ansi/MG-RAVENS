@@ -27,7 +27,6 @@ def unpack_edge(edge_params,max_phases):
     return edge
 
 def update_mgr(prediction,sample):
-    print("<DEBUG HEYYY>")
     prediction = prediction.detach().to("cpu")
     sample = sample.detach().to("cpu")
     mgr = _to_python(sample.y["raw_mgr"])
