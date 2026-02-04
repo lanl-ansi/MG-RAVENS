@@ -1323,7 +1323,7 @@ class DssExport(RDFGraph):
             else:
                 self.add_triple(node, "PowerTransformerEnd.phaseAngleClock", 0)
 
-            j = i * tr.NumConductors() + tr.NumPhases() + 1
+            j = i * tr.NumConductors() + tr.NumPhases()
             self.raw_dss.Basic.SetActiveClass("Transformer")
             self.raw_dss.ActiveClass.First()
             while self.raw_dss.CktElement.Name() != f"Transformer.{tr.Name}":
