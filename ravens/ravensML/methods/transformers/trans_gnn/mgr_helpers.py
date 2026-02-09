@@ -29,17 +29,16 @@ def unpack_edge(edge_params,max_phases):
 def update_mgr(prediction,sample):
     prediction = prediction.detach().to("cpu")
     sample = sample.detach().to("cpu")
-    mgr = _to_python(sample.y["raw_mgr"])
+    with open(sample.y["raw_mgr"], "r") as f:
+        mgr = json.load(f)
     input = _to_python(sample["edge_attr"])
 
-    # with open("ravens/ravensML/methods/transformers/trans_gnn/tmp.json","w") as f:
-    #     json.dump(mgr,f,indent=2)
+    with open("ravens/ravensML/methods/transformers/trans_gnn/tmp.json","w") as f:
+        json.dump(mgr,f,indent=2)
 
     transformers = mgr["PowerSystemResource"]["Equipment"]["ConductingEquipment"]["PowerTransformer"]
     transformer_names = list(transformers.keys())
-    print(transformer_names)
     j = 0
-    print(len(prediction))
     for i in range(len(prediction)):
         input_e = unpack_edge(input[i],3)
         pred_e  = unpack_edge(prediction[i],3)
@@ -66,11 +65,9 @@ def update_mgr(prediction,sample):
                     }
                     # print(type(TCA["TransformerCoreAdmittance.b"]))
                     # print(type(pred_e["B"]))
+                    ends[i] = end
                 trans["PowerTransformer.PowerTransformerEnd"] = ends
             j+=.5
-    # print(mgr)
-    mgr = mgr
-    # print(mgr)
     return mgr
         
 def _to_python(o):
@@ -90,18 +87,7 @@ def _to_python(o):
         if o.numel() == 1:
             return o.item()
         
-        # Check if all elements are identical
-        as_list = o.tolist()
-        if isinstance(as_list, list) and len(as_list) > 0:
-            # Sample first few elements to quickly check if they're the same
-            sample_size = min(10, len(as_list))
-            first_value = as_list[0]
-            potential_duplicates = all(as_list[i] == first_value for i in range(1, sample_size))
-            
-            # If sample check passed, verify all elements
-            if potential_duplicates and all(x == first_value for x in as_list):
-                return first_value
-        
+        as_list = o.tolist()  
         return as_list
     
     if isinstance(o, dict):
@@ -113,7 +99,7 @@ def _to_python(o):
         # Check if all elements in the list are identical after conversion
         if len(converted) > 0:
             first_value = converted[0]
-            if all(x == first_value for x in converted):
+            if all(x == first_value for x in converted) and not isinstance(first_value,dict):
                 return first_value
         
         return converted
@@ -155,7 +141,7 @@ def run_pf(mgr_grid):
     """)
     
     Main.eval("rav_model = instantiate_mc_model_ravens(eng, IVRUPowerModel, build_mc_pf)")
-    Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>5, \"tol\"=>1e-6),solution_processors=Function[])")
+    Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>0, \"tol\"=>1e-6),solution_processors=Function[])")
     Main.eval("""
     open("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/methods/transformers/trans_gnn/tmp/pf_info.json", "w") do f
         JSON.print(f, result)

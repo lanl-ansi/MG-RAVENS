@@ -198,8 +198,7 @@ class MGTransformerDataset(InMemoryDataset):
         # ------------------------------------------------------------------
         # 1 Load the clean data
         # ------------------------------------------------------------------
-        mgr = MGRavensDataset(data_dir=str(self.root / "data/trans_test"))
-        mgr.load_data()
+        mgr = MGRavensDataset(data_dir=str(self.root / "data/seg_data"))
         mgr.process_for_ML()
 
         # ------------------------------------------------------------------
@@ -236,13 +235,19 @@ class MGTransformerDataset(InMemoryDataset):
             # Store as a tuple (corrupt, clean).  PyG expects a single object,
             # so we glue them together in the ``y`` field.
             # ``y`` will be a dict with ``x`` and ``edge_attr`` of the clean graph.
+            name, grid = clean_dict["file_name"], clean_dict["original_data"]
+            name = os.path.splitext(os.path.basename(name))[0]
+            mgr_path = f"ravens/ravensML/methods/transformers/trans_gnn/tmp/mgr_data_tmp/{name}.json"
+            with open(mgr_path, "w", encoding="utf-8") as f:
+                json.dump(grid, f, indent=2)
+
             corrupt_data.y = {
                 "x": clean_data.x,
                 "edge_attr": clean_data.edge_attr,
                 "edge_index": clean_data.edge_index, 
                 "max_phase": clean_data.max_phase,
                 "file_name": clean_copies[i][0],
-                "raw_mgr": clean_copies[i][1],
+                "raw_mgr": mgr_path,
             }
             data_list.append(corrupt_data)
 

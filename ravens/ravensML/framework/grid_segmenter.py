@@ -31,74 +31,127 @@ class grid_segmenter:
         with open(path, 'r') as f:
             self.base_graph = json.load(f)
 
-    def yield_graph(self, MGR = None, min_nodes = 0):
-        MGR = self.base_graph if MGR == None else MGR
-        if MGR == None:
-            raise Exception("No base graph specified through object init, set_base_graph, or this function call")
-        #NOTE: proposal 1: work up from a load, keeping all referenced info
-        
-        #Setup:
-        Sub_MGR = self._clean_mgr()
+    def yield_graph(
+        self,
+        MGR: dict | None = None,
+        min_nodes: int = 0,
+        output_path: str | None = None,
+    ) -> dict:
+        """
+        Produce a feasible sub‑grid (a “segment”) from ``MGR`` or from the
+        instance’s ``base_graph``.
 
-        #BFS to selected size
-        added_nodes = set()
-        added_edges = set()
-        seen = deque()
+        Parameters
+        ----------
+        MGR : dict, optional
+            A full MGRavens graph.  If omitted the object’s ``base_graph`` is used.
+        min_nodes : int, optional
+            Desired minimum number of nodes in the returned sub‑grid.
+        output_path : str, optional
+            Path to a JSON file where the resulting sub‑grid should be saved.
+            If ``None`` (default) the graph is **not** written to disk.
 
-        #Select a start Node and add to the new MGR
-        Node_path = ["ConnectivityNode"]
-        Nodes = list(self._get_item(Node_path).keys())
-        start_node = random.choice(Nodes)
-        Node_path.append(start_node)
-        seen.append((Node_path,[]))
-        
-        incomplete = True
-        while incomplete:
-            while len(added_nodes) < min_nodes and len(seen)>0:
-                #acquire new target to add from BFS
+        Returns
+        -------
+        dict
+            The sub‑grid as a Python dictionary.
+        """
+        # --------------------------------------------------------------
+        # Resolve the source graph and sanity‑check
+        # --------------------------------------------------------------
+        MGR = self.base_graph if MGR is None else MGR
+        if MGR is None:
+            raise RuntimeError(
+                "No source graph supplied – set a base graph, pass one via "
+                "`MGR`, or call `set_base_graph` first."
+            )
+
+        # --------------------------------------------------------------
+        # Begin the “search until a feasible graph is found” loop
+        # --------------------------------------------------------------
+        complete = False
+        while not complete:
+            # 1️⃣  Start from a clean template
+            Sub_MGR = self._clean_mgr()
+
+            # 2️⃣  BFS state containers
+            added_nodes: set[tuple] = set()
+            added_edges: set[tuple] = set()
+            seen: deque[tuple[list, list]] = deque()
+
+            # 3️⃣  Choose a random start node
+            node_path = ["ConnectivityNode"]
+            all_nodes = list(self._get_item(node_path).keys())
+            start_node = random.choice(all_nodes)
+            node_path.append(start_node)
+            seen.append((node_path, []))
+
+            # ----------------------------------------------------------
+            # Grow the sub‑grid until the node count constraint is met
+            # ----------------------------------------------------------
+            while len(added_nodes) < min_nodes and seen:
                 target_node, target_edge = seen.popleft()
 
-                #add to MGR structure (node and traversed AC power line)
-                self._copy_path(target_node,Sub_MGR)
-                self._copy_path(target_edge,Sub_MGR)
-                # print(f"<DEBUG> Adding: {target_node,target_edge}")
+                # copy the node and the edge that got us here
+                self._copy_path(target_node, Sub_MGR)
+                self._copy_path(target_edge, Sub_MGR)
 
-                #book keep addition (node and traversed AC power line)
                 added_nodes.add(tuple(target_node))
                 added_edges.add(tuple(target_edge))
-                
-                #iterate: search for new object paths to add
-                self._visit_neighbors(target_node,added_nodes,added_edges,seen)
 
-            #add a sourcebus
-            if ("ConnectivityNode","sourcebus") not in added_nodes:
-                replace = lambda d, old, new: {
-                    (re.sub(rf'(["\']){re.escape(old)}\1', r'\1'+new+r'\1', k) if isinstance(k, str) else k):
-                    (replace(v, old, new) if isinstance(v, dict) else
-                    (re.sub(rf'(["\']){re.escape(old)}\1', r'\1'+new+r'\1', v) if isinstance(v, str) else v))
-                    for k, v in d.items()
-                }
-                Sub_MGR = self._replace(Sub_MGR,start_node,"sourcebus")
-            
-            with open("ravens/ravensML/framework/tmp/results/sub_mgr.json","w") as f:
-                json.dump(Sub_MGR,f,indent=2)
+                # enqueue neighbours that are still unseen
+                self._visit_neighbors(
+                    target_node, added_nodes, added_edges, seen
+                )
 
+            # ----------------------------------------------------------
+            # Post‑processing fixes (source bus, phase codes, etc.)
+            # ----------------------------------------------------------
+            if ("ConnectivityNode", "sourcebus") not in added_nodes:
+                Sub_MGR = self._replace(Sub_MGR, start_node, "sourcebus")
 
-            #validate w/ MGR
+            # Normalise a few phase‑code strings that PowerModelsDistribution
+            # does not like.
+            for old, new in (
+                ("PhaseCode.s1N", "PhaseCode.ABCN"),
+                ("PhaseCode.Ns2", "PhaseCode.ABCN"),
+                ("SinglePhaseKind.s1", "SinglePhaseKind.A"),
+                ("SinglePhaseKind.s2", "SinglePhaseKind.B"),
+            ):
+                Sub_MGR = self._replace(Sub_MGR, old, new)
+
+            # ----------------------------------------------------------
+            # Optional power‑flow validation
+            # ----------------------------------------------------------
             if self.PF_Val:
-                warnings.warn("PMD-PF calculation currently has issues with multiple phase codes that frequently appear in the file")
+                warnings.warn(
+                    "PMD‑PF calculation currently has issues with multiple "
+                    "phase codes that frequently appear in the file"
+                )
                 warnings.warn("PF validation logic not implemented")
                 res = self._run_pf(Sub_MGR)
-                print(res.keys())
-                incomplete = False #should be based on results
+
+                print(res["primal_status"])
+                print(res["termination_status"])
+
+                # If the PF solved, we are done; otherwise relax the node
+                # count a little and try again.
+                complete = res["primal_status"] != "INFEASIBLE_POINT"
+                min_nodes = int(min_nodes * 1.05)
             else:
-                incomplete = False
+                complete = True
 
+        # --------------------------------------------------------------
+        # Write the result to disk only when a path was supplied
+        # --------------------------------------------------------------
+        if output_path is not None:
+            # Ensure the parent directory exists
+            os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+            with open(output_path, "w", encoding="utf-8") as f:
+                json.dump(Sub_MGR, f, indent=2)
 
-        #Return out
-        with open("ravens/ravensML/framework/tmp/results/sub_mgr.json","w") as f:
-            json.dump(Sub_MGR,f,indent=2)
         return Sub_MGR
+
         
     def _clean_mgr(self):
         if self.sub_template == None:
@@ -189,8 +242,6 @@ class grid_segmenter:
         return val
     
     def _visit_neighbors(self,target_node,added_nodes,added_edges,seen):
-        # print(f"<DEBUG> current node: {target_node}")
-        #TODO: write visit case for each "leaf" and account for incident edge 
         #NOTE: we should always treat objects as a path which is a list of keys --> this makes it easy to copy and search 
         if len(target_node) >= 2 and target_node[-2] == "ConnectivityNode":
             #Find all associated edges and the object they lead to (add these to the queue)
@@ -304,7 +355,7 @@ class grid_segmenter:
         """)
         
         Main.eval("rav_model = instantiate_mc_model_ravens(eng, IVRUPowerModel, build_mc_pf)")
-        Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>5, \"tol\"=>1e-6),solution_processors=Function[])")
+        Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>0, \"tol\"=>1e-6),solution_processors=Function[])")
         Main.eval("""
         open("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/framework/tmp/pf_info.json", "w") do f
             JSON.print(f, result)
@@ -369,7 +420,8 @@ if __name__ == "__main__":
 
     GS = grid_segmenter(PF_Val=False)
     GS.load_from_file("ravens/ravensML/framework/segmenter_test_data/segmenter.json")
-    GS.yield_graph(min_nodes = 67)
+    sub_MGR = GS.yield_graph(min_nodes=67,
+                         output_path="ravens/ravensML/framework/tmp/results/sub_mgr.json")
 
     DS = MGRavensDataset(data_dir="ravens/ravensML/framework/tmp/results")
     DS.process_for_ML()

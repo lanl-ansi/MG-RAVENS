@@ -64,7 +64,7 @@ class PI_WMSE_Loss(nn.Module):
         else:
             infeasibility_score = 0
 
-        print(f"<DEBUG> Calculated inf score: {infeasibility_score}")
+        # print(f"<DEBUG> Calculated inf score: {infeasibility_score}")
         #Calculate the combined loss output
         loss = torch.mean((weighted_diff) ** 2) + negative_score + infeasibility_score 
         return loss
@@ -130,7 +130,7 @@ class PI_WMSE_Loss(nn.Module):
         return infeasibility_metrics
 
     def inf_score(self, pred, target_grid):
-        print("<DEBUG> doing a random inf test")
+        # print("<DEBUG> doing a random inf test")
         new_mgr = update_mgr(pred,target_grid) 
         results = run_pf(new_mgr)
         branch_infeasibility = self.analyze_branch_infeasibility(results) #TODO: Implement Correctly --> propagate to iterative methods 
