@@ -19,6 +19,12 @@
       "description": "Pointer to PowerTransformerInfo object",
       "pattern": "^PowerTransformerInfo::'(.+)'$"
     },
+    "PowerSystemResource.Location": {
+      "type": "string",
+      "title": "Location_Pointer",
+      "description": "Pointer to Location object",
+      "pattern": "^Location::'(.+)'$"
+    },
     "Equipment.OperationalLimitSet": {
       "type": "string",
       "title": "OperationalLimitSet_Pointer",
