@@ -8,6 +8,8 @@ import torch
 import copy
 sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
 from framework.dataset import MGRavensDataset
+from warnings import warn
+warn("Deprecated: please use framework.tools.mgr_helpers rather than the this version")
 
 
 
@@ -29,7 +31,8 @@ def unpack_edge(edge_params,max_phases):
 def update_mgr(prediction,sample):
     prediction = prediction.detach().to("cpu")
     sample = sample.detach().to("cpu")
-    with open(sample.y["raw_mgr"], "r") as f:
+    file_name = sample.y["raw_mgr"][0]
+    with open(file_name, "r") as f:
         mgr = json.load(f)
     input = _to_python(sample["edge_attr"])
 

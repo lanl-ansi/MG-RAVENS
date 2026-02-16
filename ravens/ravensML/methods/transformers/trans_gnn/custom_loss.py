@@ -15,18 +15,23 @@ class WeightedMSELoss(nn.Module):
         )
         self.penalty_strength = penalty_strength
 
-    def forward(self, predictions, targets):        
+    def forward(self, prediction, target_grid):
+        try:
+            target = target_grid.y["edge_attr"]
+        except:
+            raise ValueError("Expects an input of a full data object rather than an edge attribute")     
+        
         # Ensure predictions and targets have the same shape
-        if predictions.shape != targets.shape:
-            raise ValueError(f"Predictions shape {predictions.shape} does not match targets shape {targets.shape}")
+        if prediction.shape != target.shape:
+            raise ValueError(f"Predictions shape {prediction.shape} does not match targets shape {target.shape}")
 
         # Expand weights to match batch size
-        weights = self.weights.to(predictions.device).expand(predictions.shape[0], -1)
+        weights = self.weights.to(prediction.device).expand(prediction.shape[0], -1)
 
-        negative_mask = predictions < 0 
-        negative_penalty = torch.sum(torch.abs(predictions[negative_mask])**2) * self.penalty_strength
+        negative_mask = prediction < 0 
+        negative_penalty = torch.sum(torch.abs(prediction[negative_mask])**2) * self.penalty_strength
         
-        weighted_diff = (predictions - targets) * weights
+        weighted_diff = (prediction - target) * weights
 
         loss = torch.mean((weighted_diff) ** 2) + negative_penalty
         return loss

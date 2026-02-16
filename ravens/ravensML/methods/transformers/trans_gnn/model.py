@@ -32,6 +32,12 @@ class SimpleGNN(nn.Module):
             nn.Linear(128, 128), # 128 --> 128
             nn.Dropout(0.1),
             nn.ReLU(),
+            nn.Linear(128, 512), # 128 --> 512
+            nn.Dropout(0.1),
+            nn.ReLU(),
+            nn.Linear(512, 128), # 512 --> 128
+            nn.Dropout(0.1),
+            nn.ReLU(),
             nn.Linear(128, 128), # 128 --> 128
             nn.Dropout(0.1),
             nn.ReLU(),
@@ -59,61 +65,11 @@ class SimpleGNN(nn.Module):
         return edge_pred
 
 
-
-from torch_geometric.nn import GATv2Conv
-from torch_geometric.nn import BatchNorm
-
-
-class MultiLayerAttentionGNN(nn.Module):
-    def __init__(self, node_features, edge_features, transport_distance=5):
-        super().__init__()
-        
-        # Message passing layers with edge features
-        self.convs = nn.ModuleList()
-        self.norms = nn.ModuleList()
-        
-        # Using GATv2Conv which supports edge features
-        for _ in range(transport_distance):
-            self.convs.append(
-                GATv2Conv(
-                    node_features, 
-                    node_features,
-                    heads=4, 
-                    edge_dim=edge_features, 
-                    concat=False,
-                    dropout=0.1
-                )
-            )
-            self.norms.append(BatchNorm(node_features))
-        
-        # Attention-based edge representation module
-        self.edge_attention = EdgeAttentionModule(
-            node_dim=node_features,
-            edge_dim=edge_features,
-            hidden_dim=128,
-            output_dim=40,
-            num_heads=4,
-            dropout=0.2
-        )
-
-    def forward(self, data):
-        x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
-        
-        # Message passing with edge features
-        for conv, bn in zip(self.convs, self.norms):
-            x = F.relu(bn(conv(x, edge_index, edge_attr)))
-        
-        # Use attention-based edge prediction module
-        edge_pred = self.edge_attention(x, edge_index, edge_attr)
-        
-        return edge_pred
-
-
 class EdgeAttentionModule(nn.Module):
-    def __init__(self, node_dim, edge_dim, hidden_dim, output_dim, num_heads=4, dropout=0.1):
+    def __init__(self, node_dim, edge_dim, hidden_dim, num_heads=4, dropout=0.1):
         super(EdgeAttentionModule, self).__init__()
-        
-        # Initial embedding of concatenated features
+
+        # Initial embedding of concatenated features for edge processing
         self.input_proj = nn.Linear(node_dim * 2 + edge_dim, hidden_dim)
         
         # Multi-head self-attention for edge representations
@@ -136,8 +92,8 @@ class EdgeAttentionModule(nn.Module):
             nn.Linear(hidden_dim * 2, hidden_dim)
         )
         
-        # Output MLP with residual connections and layer normalization
-        self.output_mlp = nn.Sequential(
+        # Output projection for edge features
+        self.edge_output = nn.Sequential(
             nn.Linear(hidden_dim, hidden_dim),
             nn.Dropout(dropout),
             nn.ReLU(),
@@ -148,13 +104,11 @@ class EdgeAttentionModule(nn.Module):
             nn.ReLU(),
             nn.LayerNorm(hidden_dim),
             
-            nn.Linear(hidden_dim, hidden_dim // 2),
-            nn.Dropout(dropout),
-            nn.ReLU(),
-            nn.LayerNorm(hidden_dim // 2),
-            
-            nn.Linear(hidden_dim // 2, output_dim)
+            nn.Linear(hidden_dim, edge_dim)  # Project back to original edge dimension
         )
+        
+        # Node feature update components
+        self.node_update = nn.Linear(hidden_dim + node_dim, node_dim)
         
     def forward(self, x, edge_index, edge_attr):
         # Build initial edge representations by concatenating source, target, and edge features
@@ -167,8 +121,6 @@ class EdgeAttentionModule(nn.Module):
         edge_rep = F.relu(edge_rep)
         
         # Self-attention over edge representations
-        # This allows edges to attend to each other, capturing global dependencies
-        # First reshape for batch processing if needed (depends on your batch size)
         batch_edge_rep = edge_rep.unsqueeze(0)  # [1, num_edges, hidden_dim]
         
         # Apply self-attention
@@ -182,7 +134,89 @@ class EdgeAttentionModule(nn.Module):
         ffn_out = self.ffn(edge_rep)
         edge_rep = self.norm2(edge_rep + ffn_out)
         
-        # Final MLP projection to output dimension
-        edge_pred = self.output_mlp(edge_rep)
+        # Process edge representations back to original dimension
+        updated_edge_attr = self.edge_output(edge_rep)
         
+        # Update node features using aggregated edge representations
+        # Aggregate edge information for each node
+        updated_x = x.clone()
+        
+        # For each node, aggregate information from its edges
+        for i in range(edge_index.size(1)):
+            source_idx = edge_index[0, i]
+            edge_info = edge_rep[i]
+            
+            # Combine current node features with edge representation
+            node_edge_combined = torch.cat([updated_x[source_idx], edge_info], dim=0)
+            
+            # Update node features
+            node_update = self.node_update(node_edge_combined)
+            updated_x[source_idx] = node_update
+            
+        return updated_x, edge_index, updated_edge_attr
+
+
+class AttnGNN(nn.Module):
+    def __init__(self, node_features, edge_features, degree, transport_distance=5):
+        super().__init__()
+        aggregators = ['mean', 'min', 'max', 'std']
+        scalers = ['identity', 'amplification', 'attenuation']
+
+        self.edge_attention = EdgeAttentionModule(
+            node_dim=node_features,
+            edge_dim=edge_features,
+            hidden_dim=128,
+            num_heads=4, 
+            dropout=0.1
+        )
+
+        self.convs = nn.ModuleList([
+            PNAConv(node_features, node_features,
+                    aggregators=aggregators,
+                    scalers=scalers,
+                    deg=degree,
+                    edge_dim=edge_features,
+                    towers=5, pre_layers=1, post_layers=1,
+                    divide_input=False) for _ in range(transport_distance)
+        ])
+        self.norms = nn.ModuleList([BatchNorm(node_features) for _ in range(transport_distance)])
+
+        # Edge‑wise MLP (takes node embeddings + edge_attr as input)
+        self.edge_mlp = nn.Sequential(
+            nn.Linear(node_features * 2 + edge_features, 64),
+            nn.ReLU(),
+            nn.Linear(64, 128),
+            nn.Dropout(0.2),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.Dropout(0.2),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.Dropout(0.2),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.Dropout(0.2),
+            nn.ReLU(),
+            nn.Linear(128, 64),
+            nn.Dropout(0.2),
+            nn.ReLU(),
+            nn.Linear(64, 40)
+        )
+
+    def forward(self, data):
+        x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
+
+        #TODO: play with attn/conv tradeoffs
+        #TODO: figure out how to get better val results
+        x, edge_index, edge_attr = self.edge_attention(x, edge_index, edge_attr)
+
+        for conv, bn in zip(self.convs, self.norms):
+            x = F.relu(bn(conv(x, edge_index, edge_attr)))
+
+        # Build edge representations: concatenate source/target node embeddings + edge_attr
+        src = x[edge_index[0]]
+        dst = x[edge_index[1]]
+        edge_rep = torch.cat([src, dst, edge_attr], dim=-1)
+
+        edge_pred = self.edge_mlp(edge_rep)
         return edge_pred

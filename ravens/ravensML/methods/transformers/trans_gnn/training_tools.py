@@ -1,4 +1,6 @@
 import torch
+from warnings import warn
+warn("Deprecated: please use framework.tools.training_tools rather than the this version")
 
 def train_epoch(model, loader, loss_fn, optimizer, device):
     model.train()
@@ -8,7 +10,6 @@ def train_epoch(model, loader, loss_fn, optimizer, device):
 
         optimizer.zero_grad()
         pred   = model(data)              
-        # target = data.y["edge_attr"]  #NOTE: changed for new loss function
         target = data         
         loss   = loss_fn(pred, target)
 
@@ -26,7 +27,6 @@ def validate(model, loader, loss_fn, device):
         for data in loader:
             data = data.to(device)
             pred   = model(data)
-            # target = data.y["edge_attr"] #NOTE: changed for new loss function
             target = data
             loss   = loss_fn(pred, target)
             total_loss += loss.item() * data.num_graphs

@@ -9,7 +9,7 @@ import pprint
 from mgr_helpers import unpack_edge
 
 from data import MGTransformerDataset
-from model import SimpleGNN, MultiLayerAttentionGNN
+from model import SimpleGNN, AttnGNN
 from training_tools import train_epoch, validate
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -23,8 +23,7 @@ torch.manual_seed(42)
 # -------------------------
 dataset = MGTransformerDataset(
     root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
-    split="train",
-    size=6700,
+    size=10000,
     error_kwargs={"deletion_prob": 0.01, 
                   "occurrence_prob": 0.55,
                   "mult_mean": 1,
@@ -72,21 +71,22 @@ model = SimpleGNN(
     transport_distance=30
 ).to(device)
 
-model = MultiLayerAttentionGNN(
-    node_features=node_feat_dim, 
+model = AttnGNN(
+    node_features=node_feat_dim,
     edge_features=edge_feat_dim,
-    transport_distance=30).to(device)
+    degree=deg,
+    transport_distance=7).to(device)
 
 print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(edge_feat_dim)}")
 
 # Training Settings
 # loss_fn = nn.MSELoss()
 import custom_loss as cl
-# loss_fn = cl.WeightedMSELoss(3,penalty_strength=5) #NOTE: testing new method
-loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=0)
+# loss_fn = cl.WeightedMSELoss(3,penalty_strength=5)
+loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=.001)
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 25
+epochs = 50
 
 # training parameters
 best_val = float('inf')
