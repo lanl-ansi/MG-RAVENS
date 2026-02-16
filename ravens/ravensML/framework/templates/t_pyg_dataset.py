@@ -23,7 +23,12 @@ def dict_to_pyg(data_dict: Dict[str, Any]) -> Data:
     # --------------------------------------------------------------
     # 1) Node features
     # --------------------------------------------------------------
-    x = torch.tensor(data_dict["node_features"], dtype=torch.float)
+    node_feat = data_dict["node_features"]
+    #NOTE: by default we parse all node features for the PyG Object
+        #you can feel free to prune out information from this by implementing:
+        #`node_feat = prune_features(node_feat)`
+    x = torch.tensor(node_feat, dtype=torch.float)
+
 
     # --------------------------------------------------------------
     # 2) Edge index – the dict already stores integer pairs
@@ -93,10 +98,9 @@ def dict_to_pyg(data_dict: Dict[str, Any]) -> Data:
         phases = int(feat["phases"])
 
         # Pad the four impedance/admittance matrices
-        R = _pad_matrix(feat.get("R", np.zeros((phases, phases))))
-        X = _pad_matrix(feat.get("X", np.zeros((phases, phases))))
-        G = _pad_matrix(feat.get("G", np.zeros((phases, phases))))
-        B = _pad_matrix(feat.get("B", np.zeros((phases, phases))))
+        TARGET_PARAM = _pad_matrix(feat.get(
+            #TODO: Insert target ravensML parameter
+        ))
 
         # Scalars that are always present (fill missing keys with defaults)
         edge_type = float(feat.get("Edge Type", 0.0))
@@ -107,14 +111,8 @@ def dict_to_pyg(data_dict: Dict[str, Any]) -> Data:
 
         # Flatten everything in a deterministic order
         flat_feat = [
-            float(phases),                     # 1
-            *R.ravel().tolist(),               # max_phase**2
-            *X.ravel().tolist(),               # max_phase**2
-            *G.ravel().tolist(),               # max_phase**2
-            *B.ravel().tolist(),               # max_phase**2
-            edge_type,                         # 1
-            tap,                               # 1
-            shift,                             # 1
+            float(phases),                     #NOTE: suggested for downstream parsing
+            *TARGET_PARAM.ravel().tolist(),
         ]
 
         # Two directions -> two identical rows
@@ -135,7 +133,7 @@ def dict_to_pyg(data_dict: Dict[str, Any]) -> Data:
 # ----------------------------------------------------------------------
 # InMemoryDataset that returns (corrupted, clean) pairs
 # ----------------------------------------------------------------------
-class MGTransformerDataset(InMemoryDataset):
+class t_MG_Dataset(InMemoryDataset):
     """
     PyG ``InMemoryDataset`` that yields a tuple ``(corrupted, clean)`` where
     both entries are ``torch_geometric.data.Data`` objects.
@@ -193,12 +191,14 @@ class MGTransformerDataset(InMemoryDataset):
         import sys
         sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
         from framework.dataset import MGRavensDataset
-        from methods.transformers.gen_trans_error import generate_trans_error
+        from framework.templates.t_synthetic_transform import t_generate_synthetic_transform
 
         # ------------------------------------------------------------------
         # 1 Load the clean data
         # ------------------------------------------------------------------
-        mgr = MGRavensDataset(data_dir=str(self.root / "data/seg_data"))
+        mgr = MGRavensDataset(data_dir=str(self.root 
+                                           #TODO: insert / "<PATH>"
+                                           ))
         mgr.process_for_ML()
 
         # ------------------------------------------------------------------
@@ -207,7 +207,7 @@ class MGTransformerDataset(InMemoryDataset):
         # If you want *exactly* `size` samples, ask the generator for that many,
         # otherwise generate for every raw graph.
         target_size = self.size
-        corrupted_mgr, clean_copies = generate_trans_error(
+        corrupted_mgr, clean_copies = t_generate_synthetic_transform(
             mgr,
             size = target_size,
             **self.error_kwargs,
@@ -237,7 +237,7 @@ class MGTransformerDataset(InMemoryDataset):
             # ``y`` will be a dict with ``x`` and ``edge_attr`` of the clean graph.
             name, grid = clean_dict["file_name"], clean_dict["original_data"]
             name = os.path.splitext(os.path.basename(name))[0]
-            mgr_path = f"ravens/ravensML/methods/transformers/trans_gnn/tmp/mgr_data_tmp/{name}.json"
+            mgr_path = f"ravens/ravensML/<INSERT PATH>/tmp/mgr_data_tmp/{name}.json" #TODO: Insert Path
             with open(mgr_path, "w", encoding="utf-8") as f:
                 json.dump(grid, f, indent=2)
 
