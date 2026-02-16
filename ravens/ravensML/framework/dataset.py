@@ -26,8 +26,12 @@ class MGRavensDataset:
         if self.data_dir:
             self.load_data()
     
-    def load_data(self) -> None:
+    def load_data(self,new_path = None) -> None:
         """Load all JSON files from the specified directory."""
+        #optionally set a new root path
+        if new_path != None:
+            self.data_dir = new_path
+
         self.raw_data = []
         path = Path(self.data_dir)
         
@@ -481,8 +485,8 @@ if __name__ == "__main__":
     MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")
     MGR.load_data()
     MGR.process_for_ML()
-    # print(MGR.ML_data[0].keys())
-    # print(MGR.ML_data[0]['node_features'])
+    print(MGR[0][2].keys())
+    print(MGR[0][2]['node_features'])
     MGR.visualize_graph(2)
     # MGR.save_data(0,"tmp/test_SL.json")
     
