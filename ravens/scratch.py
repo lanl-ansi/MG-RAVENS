@@ -26,44 +26,16 @@ tg.save_auto_template(auto)
 
 from ravens.uml import dev_validate 
 reload(dev_validate)
-d = dev_validate.DevTemplateValidator(hand_path=_TEMPLATE_JSON_PATH, auto_path=_TEMPLATE_AUTOJSON_PATH)
+names_in_H = {d.get("Name") for _, d in ug.H.nodes(data=True)}
+d = dev_validate.DevTemplateValidator(hand_path=_TEMPLATE_JSON_PATH, auto_path=_TEMPLATE_AUTOJSON_PATH, included_class_names=names_in_H)
 df = d.test_all()
 
 
-# Fixed: Groups, Location, OperationalLimitSet.OperationalLimitValue
+# Fixed: Group, Location, OperationalLimitSet.OperationalLimitValue, Fault, ProducerCostFunction
+# ConnectivityNode is missing some assoctiations in HAND
+# Asset has nothing under in HAND; tons of entries for the anyOf in AUTO - seems like an issue ignor Infs/Mkt? But they are being ignored (check that it's happening in association graph too, but that shouldn't define anyOf)
+# ActivityRecord->EnvironmentalEvent is array in HAND but object in AUTO - is labeling right here in the Outages diagram?
 
-# fault has all the associations identified properly, but the emissions aren't quite the same
-# location
-
-name = 'Versions'
-A = ug.A
-targets = [n for n, d in A.nodes(data=True) if d.get("Name") == name]
-if not targets:
-    raise ValueError('No node found with Name == "blah"')
-
-rows = []
-seen = set()  # (node, direction)
-
-for t in targets:
-    for n in A.predecessors(t):
-        key = (n, "incoming")
-        if key not in seen:
-            seen.add(key)
-            rows.append({"node": n, "direction": "incoming", **dict(A.nodes[n])})
-
-    for n in A.successors(t):
-        key = (n, "outgoing")
-        if key not in seen:
-            seen.add(key)
-            rows.append({"node": n, "direction": "outgoing", **dict(A.nodes[n])})
-
-df = pd.DataFrame(rows)
-
-OperationalLimitSet.OperationalLimitValue - should be an anyof but all the substitutables are not even listed
-ConnectivityNode is missing some assoctiations; AUTO seems to be picking up the "backwards pointing" ones.
-
-OperationalLimitSet.OperationalLimitValue "unworked"
-Fault is anyOf but then has a properties (should not) - focus here to fix. Asset also has the same issue - properties below AnyOf
 anyOfs should have no type, but they're being put in. 
 
 Containers shouldn't show up in anyOf lists.

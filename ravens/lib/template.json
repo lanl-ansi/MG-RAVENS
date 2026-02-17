@@ -11,24 +11,28 @@
       "properties": {
         "IEC61968CIMVersion": {
           "$objectType": "object",
+          "$objectId": "IEC61968CIMVersion",
           "type": "object",
           "$primaryObjectHash": null,
           "properties": {}
         },
         "IEC61970CIMVersion": {
           "$objectType": "object",
+          "$objectId": "IEC61970CIMVersion",
           "type": "object",
           "$primaryObjectHash": null,
           "properties": {}
         },
         "IEC62325CIMVersion": {
           "$objectType": "object",
+          "$objectId": "IEC62325CIMVersion",
           "type": "object",
           "$primaryObjectHash": null,
           "properties": {}
         },
         "RavensVersion": {
           "$objectType": "object",
+          "$objectId": "RavensVersion",
           "type": "object",
           "$primaryObjectHash": null,
           "properties": {}
@@ -59,32 +63,6 @@
           "$objectId": "OperationalLimitSet",
           "type": "string",
           "$referencePath": "OperationalLimitSet"
-        },
-        "ConnectivityNode.SvVoltage": {
-          "type": "array",
-          "items": {
-            "$objectId": "SvVoltage",
-            "$objectType": "object",
-            "type": "object",
-            "$arrayPosition": null,
-            "properties": {}
-          }
-        },
-        "ConnectivityNode.SvInjection": {
-          "type": "array",
-          "items": {
-            "$objectId": "SvInjection",
-            "$objectType": "object",
-            "type": "object",
-            "$arrayPosition": null,
-            "properties": {}
-          }
-        },
-        "ConnectivityNode.BusVoltageObjective": {
-          "$objectType": "reference",
-          "$objectId": "BusVoltageObjective",
-          "type": "string",
-          "$referencePath": "AlgorithmProperties/AlgorithmObjectives/BusVoltageObjective"
         }
       }
     },
@@ -99,6 +77,26 @@
           "$objectId": "TopologicalIsland",
           "type": "string",
           "$referencePath": "Group/TopologicalIsland"
+        },
+        "TopologicalNode.SvVoltage": {
+          "type": "array",
+          "items": {
+            "$objectId": "SvVoltage",
+            "$objectType": "object",
+            "type": "object",
+            "$arrayPosition": null,
+            "properties": {}
+          }
+        },
+        "TopologicalNode.SvInjection": {
+          "type": "array",
+          "items": {
+            "$objectId": "SvInjection",
+            "$objectType": "object",
+            "type": "object",
+            "$arrayPosition": null,
+            "properties": {}
+          }
         }
       }
     },
@@ -5325,6 +5323,12 @@
                       "$referencePath": "AssetInfo/PowerTransformerInfo",
                       "type": "string"
                     },
+                    "PowerSystemResource.Location": {
+                      "$objectType": "reference",
+                      "type": "string",
+                      "$objectId": "Location",
+                      "$referencePath": "Location"
+                    },
                     "Equipment.OperationalLimitSet": {
                       "type": "string",
                       "$objectType": "reference",
@@ -6888,7 +6892,6 @@
     },
     "FossilFuel": {
       "$objectType": "object",
-      "type": "object",
       "$objectId": "FossilFuel",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
@@ -7261,7 +7264,18 @@
           "$objectId": "BusVoltageObjective",
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
-          "properties": {}
+          "properties": {
+            "BusVoltageObjective.ConnectivityNodes": {
+              "type": "array",
+              "items": {
+                "$objectType": "reference",
+                "$objectId": "ConnectivityNode",
+                "$referencePath": "ConnectivityNode",
+                "$arrayPosition": null,
+                "type": "string"
+              }
+            }
+          }
         },
         {
           "$objectType": "object",

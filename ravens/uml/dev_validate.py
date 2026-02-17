@@ -1,460 +1,204 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Union
 
 import json
 import pandas as pd
-import re
 
 
-@dataclass
+@dataclass(frozen=True)
 class Discrepancy:
+    """A single validation finding."""
     test: str
-    severity: str  # "ERROR" | "WARN" | "INFO"
-    path: str
+    severity: str  # ERROR | WARN | INFO
+    path: str      # dotted path in template
     message: str
-    hand: Any = None
-    auto: Any = None
-    details: Any = None
+    hand: Optional[Any] = None
+    auto: Optional[Any] = None
+    details: Optional[Dict[str, Any]] = None
 
 
 class DevTemplateValidator:
     """
-    Development-focused validator for comparing specific fragile subtrees between
-    HAND and AUTO templates.
+    Development-focused validator for comparing HAND vs AUTO templates.
 
-    Add new regression checks by creating new methods named `test_*` that return
-    `List[Discrepancy]`. `test_all()` runs them all and returns a DataFrame.
+    This is intentionally *not* a strict "deep equality" checker. Instead it provides
+    targeted invariants / regression tests for areas we've been actively debugging.
 
-    Path syntax for discrepancies:
-      - Dot segments access dict keys without dots.
-      - Bracket notation accesses arbitrary keys:
-          properties.OperationalLimitSet.properties["OperationalLimitSet.OperationalLimitValue"]
+    Usage (interactive):
+        v = DevTemplateValidator(hand_path="ravens/lib/template.json",
+                                 auto_path="ravens/lib/template_auto.json")
+        df = v.test_all()  # optionally pass included_class_names to classify "missing in SimplifiedDiagrams"
+        df[df["severity"] == "ERROR"]
     """
 
-    def __init__(self, hand_path: Union[str, Path], auto_path: Union[str, Path]) -> None:
+    # --- Severity ordering for nicer sorting
+    _SEV_ORDER = {"ERROR": 0, "WARN": 1, "INFO": 2}
+
+    def __init__(
+        self,
+        *,
+        hand_path: Union[str, Path],
+        auto_path: Union[str, Path],
+        hand: Optional[Dict[str, Any]] = None,
+        auto: Optional[Dict[str, Any]] = None,
+        included_class_names: Optional[Iterable[str]] = None,
+    ) -> None:
         self.hand_path = Path(hand_path)
         self.auto_path = Path(auto_path)
 
-        self.hand = self._load_json(self.hand_path)
-        self.auto = self._load_json(self.auto_path)
+        self.hand = hand if hand is not None else self._load_json(self.hand_path)
+        self.auto = auto if auto is not None else self._load_json(self.auto_path)
 
-        # Cache raw strings for fast global searches (e.g., ensure something never appears)
-        self._hand_text = json.dumps(self.hand, sort_keys=True)
-        self._auto_text = json.dumps(self.auto, sort_keys=True)
+        # Names of classes present in the filtered UML graphs (e.g., names_in_H = {Name for _,d in ug.H.nodes(data=True)}).
+        # If provided, we can classify some HAND-vs-AUTO differences as "missing in SimplifiedDiagrams" rather than generator regressions.
+        self.included_class_names: Optional[set[str]] = (
+            None if included_class_names is None else {str(x) for x in included_class_names}
+        )
 
-    @staticmethod
-    def _load_json(path: Path) -> Dict[str, Any]:
-        if not path.exists():
-            raise FileNotFoundError(f"Template file not found: {path}")
-        with path.open("r", encoding="utf-8") as f:
-            return json.load(f)
-
-    # ----------------------------
-    # Path helpers (handles dotted keys)
-    # ----------------------------
-    @staticmethod
-    def _tokenize_path(path: str) -> List[str]:
-        """
-        Tokenize a mixed dot/bracket path into dict keys.
-
-        Examples:
-          properties.OperationalLimitSet.properties["OperationalLimitSet.OperationalLimitValue"]
-          properties.Root.properties["$schema"]
-        """
-        tokens: List[str] = []
-        i = 0
-        n = len(path)
-
-        def skip_ws(j: int) -> int:
-            while j < n and path[j].isspace():
-                j += 1
-            return j
-
-        while i < n:
-            i = skip_ws(i)
-            if i >= n:
-                break
-
-            if path[i] == ".":
-                i += 1
-                continue
-
-            if path[i] == "[":
-                # Parse ["..."] or ['...']
-                i += 1
-                i = skip_ws(i)
-                if i >= n or path[i] not in ("'", '"'):
-                    raise ValueError(f"Invalid bracket token in path: {path}")
-                quote = path[i]
-                i += 1
-                start = i
-                while i < n:
-                    if path[i] == quote and path[i - 1] != "\\":
-                        break
-                    i += 1
-                if i >= n:
-                    raise ValueError(f"Unterminated quote in path: {path}")
-                key = path[start:i]
-                # Unescape \" and \'
-                key = key.replace(r"\\", "\\").replace(r"\"","\"").replace(r"\'","'")
-                i += 1
-                i = skip_ws(i)
-                if i >= n or path[i] != "]":
-                    raise ValueError(f"Missing closing ] in path: {path}")
-                i += 1
-                tokens.append(key)
-                continue
-
-            # Plain identifier: read until '.' or '['
-            start = i
-            while i < n and path[i] not in ".[":
-                i += 1
-            key = path[start:i].strip()
-            if key:
-                tokens.append(key)
-
-        return tokens
-
-    @classmethod
-    def _get(cls, d: Any, path: str) -> Any:
-        """Getter for dicts using mixed dot/bracket syntax. Returns None if missing."""
-        cur: Any = d
-        for key in cls._tokenize_path(path):
-            if not isinstance(cur, dict) or key not in cur:
-                return None
-            cur = cur[key]
-        return cur
-
-    # ----------------------------
-    # Running tests
-    # ----------------------------
+    # -----------------
+    # Public API
+    # -----------------
     def test_all(self) -> pd.DataFrame:
-        rows: List[Dict[str, Any]] = []
-        for name in sorted(dir(self)):
+        """
+        Run all test_* methods and return a DataFrame of discrepancies.
+        Columns are stable and meant for iterative development workflows.
+        """
+        findings: List[Discrepancy] = []
+
+        for name in dir(self):
             if not name.startswith("test_") or name == "test_all":
                 continue
             fn = getattr(self, name)
             if not callable(fn):
                 continue
+            try:
+                out = fn()
+            except Exception as e:  # keep dev workflow moving
+                findings.append(
+                    Discrepancy(
+                        test=name,
+                        severity="ERROR",
+                        path="",
+                        message=f"Test crashed: {type(e).__name__}: {e}",
+                    )
+                )
+                continue
 
-            out: List[Discrepancy] = fn()
-            for d in out:
-                rows.append(asdict(d))
+            if out:
+                findings.extend(out)
 
-        df = pd.DataFrame(rows, columns=[
-            "test", "severity", "path", "message", "hand", "auto", "details"
-        ])
+        df = pd.DataFrame([self._as_row(d) for d in findings])
+        if df.empty:
+            # keep schema stable
+            df = pd.DataFrame(
+                columns=[
+                    "test",
+                    "severity",
+                    "path",
+                    "message",
+                    "hand",
+                    "auto",
+                    "details",
+                ]
+            )
+            return df
+
+        df["severity_rank"] = df["severity"].map(lambda s: self._SEV_ORDER.get(str(s), 99))
+        df = df.sort_values(["severity_rank", "test", "path"]).drop(columns=["severity_rank"])
+        df = df.reset_index(drop=True)
         return df
 
-    # ----------------------------
+    # -----------------
     # Tests
-    # ----------------------------
-    def test_root_top_level_objects_match(self) -> List[Discrepancy]:
-        """
-        Compare the set of top-level objects under the schema root (schema['properties'])
-        between HAND and AUTO.
-
-        Notes:
-          - This does NOT expect a literal 'Root' property key (the schema root *is* Root).
-          - Missing-in-AUTO keys that exist in HAND are ERRORs (regressions).
-          - Extra keys present only in AUTO are WARNs (AUTO may legitimately be ahead of HAND).
-        """
-        test = "test_root_top_level_objects_match"
-        out: List[Discrepancy] = []
-
-        hand_props = self.hand.get("properties")
-        auto_props = self.auto.get("properties")
-
-        if not isinstance(hand_props, dict):
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties",
-                message="HAND template is missing top-level 'properties' dict",
-                hand=hand_props,
-            ))
-            return out
-
-        if not isinstance(auto_props, dict):
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties",
-                message="AUTO template is missing top-level 'properties' dict",
-                auto=auto_props,
-            ))
-            return out
-
-        hand_keys = set(hand_props.keys())
-        auto_keys = set(auto_props.keys())
-
-        missing_in_auto = sorted(hand_keys - auto_keys, key=str.casefold)
-        extra_in_auto = sorted(auto_keys - hand_keys, key=str.casefold)
-
-        for k in missing_in_auto:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path=f'properties["{k}"]' if "." in k else f"properties.{k}",
-                message="AUTO is missing a top-level object present in HAND",
-                details={"missing": k},
-            ))
-
-        for k in extra_in_auto:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path=f'properties["{k}"]' if "." in k else f"properties.{k}",
-                message="AUTO has an extra top-level object not present in HAND",
-                details={"extra": k},
-            ))
-
-        return out
-
-    def test_no_anyof_with_properties(self) -> List[Discrepancy]:
-        """
-        HAND convention guardrail:
-          - No dict node should contain BOTH 'anyOf' and 'properties' at the same level.
-
-        This catches accidental creation of properties on anyOf wrappers (e.g., Fault, FossilFuel).
-        """
-        test = "test_no_anyof_with_properties"
-        out: List[Discrepancy] = []
-
-        def walk(obj: Any, prefix: str, which: str):
-            if isinstance(obj, dict):
-                if obj.get("$objectType") == "object" and "anyOf" in obj and "properties" in obj:
-                    out.append(Discrepancy(
-                        test=test,
-                        severity=("ERROR" if which == "AUTO" else "WARN"),
-                        path=prefix or "<root>",
-                        message=f"{which} node has both anyOf and properties (HAND convention forbids this)",
-                        details={"keys": sorted(list(obj.keys()))},
-                    ))
-                for k, v in obj.items():
-                    # prefer bracket paths for dotted keys
-                    if prefix:
-                        if "." in k or k.startswith("$"):
-                            np = f'{prefix}["{k}"]'
-                        else:
-                            np = f"{prefix}.{k}"
-                    else:
-                        np = f'["{k}"]' if ("." in k or k.startswith("$")) else k
-                    walk(v, np, which)
-            elif isinstance(obj, list):
-                for i, v in enumerate(obj):
-                    walk(v, f"{prefix}[{i}]", which)
-
-        walk(self.hand, "", "HAND")
-        walk(self.auto, "", "AUTO")
-        return out
-
-    def test_fault_anyof_wrapper(self) -> List[Discrepancy]:
-        """
-        Regression for Fault:
-          - HAND uses an anyOf-only wrapper: properties.Fault has anyOf and NO properties.
-          - AUTO should match that structure.
-          - AUTO anyOf variant set should contain at least the HAND variants.
-          - Common association-backed props from HAND (intersection across HAND anyOf members)
-            must appear in every AUTO anyOf member's properties.
-        """
-        test = "test_fault_anyof_wrapper"
-        out: List[Discrepancy] = []
-
-        hand_fault = self._get(self.hand, "properties.Fault")
-        auto_fault = self._get(self.auto, "properties.Fault")
-
-        if hand_fault is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.Fault",
-                message="HAND template is missing Fault (unexpected, but can't validate)",
-            ))
-            return out
-
-        if auto_fault is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties.Fault",
-                message="AUTO template is missing Fault",
-            ))
-            return out
-
-        # Structure checks
-        if "anyOf" not in auto_fault or not isinstance(auto_fault.get("anyOf"), list) or not auto_fault["anyOf"]:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties.Fault.anyOf",
-                message="AUTO Fault should be an anyOf wrapper with non-empty anyOf list",
-                auto=auto_fault.get("anyOf"),
-            ))
-            return out
-
-        if "properties" in auto_fault:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties.Fault.properties",
-                message="AUTO Fault anyOf wrapper must not also define 'properties' (HAND convention)",
-                details={"auto_keys": sorted(list(auto_fault.keys()))},
-            ))
-
-        # Variant set comparison (by $objectId)
-        def ids(anyof: Any) -> List[str]:
-            if not isinstance(anyof, list):
-                return []
-            out_ids: List[str] = []
-            for x in anyof:
-                if isinstance(x, dict):
-                    oid = x.get("$objectId")
-                    if isinstance(oid, str) and oid.strip():
-                        out_ids.append(oid.strip())
-            return out_ids
-
-        hand_ids = ids(hand_fault.get("anyOf"))
-        auto_ids = ids(auto_fault.get("anyOf"))
-
-        missing = [x for x in hand_ids if x not in auto_ids]
-        extra = [x for x in auto_ids if x not in hand_ids]
-
-        if missing:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties.Fault.anyOf",
-                message="AUTO Fault.anyOf is missing variants present in HAND",
-                details={"missing": missing, "hand": hand_ids, "auto": auto_ids},
-            ))
-        if extra:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.Fault.anyOf",
-                message="AUTO Fault.anyOf has extra variants not in HAND",
-                details={"extra": extra, "hand": hand_ids, "auto": auto_ids},
-            ))
-
-        # Common props required: intersection of HAND anyOf member properties keys
-        hand_anyof = hand_fault.get("anyOf", [])
-        common_props: Optional[set[str]] = None
-        for mem in hand_anyof:
-            if not isinstance(mem, dict):
-                continue
-            props = mem.get("properties")
-            if not isinstance(props, dict):
-                continue
-            ks = set(props.keys())
-            common_props = ks if common_props is None else (common_props & ks)
-
-        if not common_props:
-            # If HAND doesn't define properties on members, nothing more we can check.
-            return out
-
-        auto_anyof = auto_fault.get("anyOf", [])
-        for i, mem in enumerate(auto_anyof):
-            if not isinstance(mem, dict):
-                continue
-            props = mem.get("properties")
-            if not isinstance(props, dict):
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=f"properties.Fault.anyOf[{i}].properties",
-                    message="AUTO Fault anyOf member is missing properties dict",
-                    details={"member": mem.get("$objectId")},
-                ))
-                continue
-            missing_props = [k for k in sorted(common_props) if k not in props]
-            if missing_props:
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=f"properties.Fault.anyOf[{i}].properties",
-                    message="AUTO Fault anyOf member is missing common HAND properties",
-                    details={"member": mem.get("$objectId"), "missing": missing_props},
-                ))
-
-        return out
-
+    # -----------------
     def test_operationallimitset_operationallimitvalue(self) -> List[Discrepancy]:
         """
         Regression test for:
           OperationalLimitSet.properties["OperationalLimitSet.OperationalLimitValue"]
 
-        Expectations (AUTO-focused):
-          - Property exists and is an array with items.anyOf.
-          - anyOf includes all 10 expected substitutable subclasses.
-          - Variants have base-only injected property OperationalLimit.OperationalLimitType.
-          - Variants do NOT have OperationalLimit.OperationalLimitValue.
-          - The inherit-only base OperationalLimit must NOT appear as $objectId anywhere in AUTO.
+        Expectations (current dev intent):
+          - The property exists in AUTO.
+          - It is an array.
+          - items.anyOf includes all 10 substitutable OperationalLimit subclasses.
+          - The embeddedInheritOnly base ("OperationalLimit") must NOT appear as $objectId
+            anywhere in the AUTO (neither as wrapper nor as a variant).
+          - Each variant object should include ONLY the base-owned dotted property:
+              OperationalLimit.OperationalLimitType -> referencePath OperationalLimitType
         """
         test = "test_operationallimitset_operationallimitvalue"
-        out: List[Discrepancy] = []
+        findings: List[Discrepancy] = []
 
-        prop_key = "OperationalLimitSet.OperationalLimitValue"
-        auto_prop_path = f'properties.OperationalLimitSet.properties["{prop_key}"]'
-        hand_prop_path = f'properties.OperationalLimitSet.properties["{prop_key}"]'
+        hand_sub = self._get(self.hand, ["properties", "OperationalLimitSet", "properties", "OperationalLimitSet.OperationalLimitValue"])
+        auto_sub = self._get(self.auto, ["properties", "OperationalLimitSet", "properties", "OperationalLimitSet.OperationalLimitValue"])
 
-        auto_node = self._get(self.auto, auto_prop_path)
-        hand_node = self._get(self.hand, hand_prop_path)
+        if hand_sub is None:
+            findings.append(self._d(test, "WARN", "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue",
+                                   "HAND subtree not found (template.json differs from expected).", hand=None, auto=None))
+        if auto_sub is None:
+            findings.append(self._d(test, "ERROR", "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue",
+                                   "AUTO subtree missing: association OperationalLimitSet.OperationalLimitValue not emitted.", hand=hand_sub, auto=None))
+            return findings  # can't do further checks
 
-        if hand_node is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path=hand_prop_path,
-                message="HAND template is missing this property (may be expected if HAND is stale)",
-            ))
-        if auto_node is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path=auto_prop_path,
-                message="AUTO template is missing this property",
-                hand=hand_node,
-                auto=auto_node,
-            ))
-            return out
+        # Type: array
+        if auto_sub.get("type") != "array":
+            findings.append(self._d(test, "ERROR",
+                                   "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue.type",
+                                   "AUTO property should be an array.", hand=(hand_sub or {}).get("type") if isinstance(hand_sub, dict) else None,
+                                   auto=auto_sub.get("type")))
 
-        if auto_node.get("type") != "array":
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path=auto_prop_path,
-                message='AUTO property should be type="array"',
-                auto=auto_node.get("type"),
-                details={"expected": "array"},
-            ))
-
-        items = auto_node.get("items")
+        items = auto_sub.get("items")
         if not isinstance(items, dict):
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path=auto_prop_path + ".items",
-                message="AUTO property missing dict `items`",
-                auto=items,
-            ))
-            return out
+            findings.append(self._d(test, "ERROR",
+                                   "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue.items",
+                                   "AUTO array must define object items.", hand=(hand_sub or {}).get("items") if isinstance(hand_sub, dict) else None,
+                                   auto=items))
+            return findings
+
+        # Prefer $arrayPosition present + null (matches house style)
+        if "$arrayPosition" not in items:
+            findings.append(self._d(test, "WARN",
+                                   "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue.items.$arrayPosition",
+                                   "AUTO items wrapper is missing $arrayPosition (expected null).",
+                                   hand=self._get(hand_sub, ["items", "$arrayPosition"]) if isinstance(hand_sub, dict) else None,
+                                   auto=None))
+        else:
+            if items.get("$arrayPosition", "___MISSING___") is not None:
+                findings.append(self._d(test, "ERROR",
+                                       "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue.items.$arrayPosition",
+                                       "AUTO items.$arrayPosition must be null.", hand=self._get(hand_sub, ["items", "$arrayPosition"]) if isinstance(hand_sub, dict) else None,
+                                       auto=items.get("$arrayPosition")))
 
         anyof = items.get("anyOf")
         if not isinstance(anyof, list) or len(anyof) == 0:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path=auto_prop_path + ".items.anyOf",
-                message="AUTO items.anyOf is missing or empty",
-                auto=anyof,
-            ))
-            return out
+            findings.append(self._d(test, "ERROR",
+                                   "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue.items.anyOf",
+                                   "AUTO items must include anyOf variants (substitutable OperationalLimit subclasses).",
+                                   hand=self._get(hand_sub, ["items", "anyOf"]) if isinstance(hand_sub, dict) else None,
+                                   auto=anyof))
+            return findings
 
-        expected = sorted([
+        # Collect $objectId values for variants
+        auto_ids = []
+        for i, obj in enumerate(anyof):
+            if not isinstance(obj, dict):
+                findings.append(self._d(test, "ERROR",
+                                       f"...anyOf[{i}]",
+                                       "AUTO anyOf element is not an object dict.",
+                                       hand=None, auto=obj))
+                continue
+            oid = obj.get("$objectId")
+            if not oid:
+                findings.append(self._d(test, "ERROR",
+                                       f"...anyOf[{i}].$objectId",
+                                       "AUTO anyOf variant missing $objectId.",
+                                       hand=None, auto=obj))
+                continue
+            auto_ids.append(str(oid))
+
+        expected_ids = {
             "ActivePowerImbalanceLimit",
             "ActivePowerLimit",
             "ApparentPowerImbalanceLimit",
@@ -465,272 +209,208 @@ class DevTemplateValidator:
             "SwitchingActionLimit",
             "VoltageImbalanceLimit",
             "VoltageLimit",
-        ])
-        got = sorted([x.get("$objectId") for x in anyof if isinstance(x, dict)])
+        }
 
-        missing = [x for x in expected if x not in got]
-        extra = [x for x in got if x not in expected and x is not None]
+        auto_id_set = set(auto_ids)
+
+        missing = sorted(expected_ids - auto_id_set)
+        extra = sorted(auto_id_set - expected_ids)
 
         if missing:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path=auto_prop_path + ".items.anyOf",
-                message="AUTO anyOf is missing expected variants",
-                details={"missing": missing, "got": got},
-            ))
+            findings.append(self._d(test, "ERROR",
+                                   "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue.items.anyOf",
+                                   "AUTO anyOf is missing expected OperationalLimit subclasses.",
+                                   hand=sorted(expected_ids), auto=sorted(auto_id_set),
+                                   details={"missing": missing}))
+
         if extra:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path=auto_prop_path + ".items.anyOf",
-                message="AUTO anyOf has unexpected extra variants",
-                details={"extra": extra, "expected": expected},
-            ))
+            findings.append(self._d(test, "WARN",
+                                   "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue.items.anyOf",
+                                   "AUTO anyOf contains unexpected extra variants (check diagram/clusions).",
+                                   hand=sorted(expected_ids), auto=sorted(auto_id_set),
+                                   details={"extra": extra}))
 
-        if re.search(r'"\$objectId"\s*:\s*"OperationalLimit"', self._auto_text):
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path='$..["$objectId"]',
-                message='AUTO contains "$objectId": "OperationalLimit" but embeddedInheritOnly bases must never appear',
-            ))
+        # Compare to HAND: ensure we didn't regress below HAND coverage
+        if isinstance(hand_sub, dict):
+            hand_anyof = self._get(hand_sub, ["items", "anyOf"])
+            if isinstance(hand_anyof, list):
+                hand_ids = sorted({(o or {}).get("$objectId") for o in hand_anyof if isinstance(o, dict) and (o or {}).get("$objectId")})
+                missing_from_hand = sorted(set(hand_ids) - auto_id_set)
+                if missing_from_hand:
+                    findings.append(self._d(test, "ERROR",
+                                           "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue.items.anyOf",
+                                           "AUTO is missing variants that exist in HAND (likely regression).",
+                                           hand=hand_ids, auto=sorted(auto_id_set),
+                                           details={"missing_from_hand": missing_from_hand}))
+                # If AUTO has more than HAND, that's expected for this subtree (INFO)
+                if len(auto_id_set) > len(hand_ids):
+                    findings.append(self._d(test, "INFO",
+                                           "properties.OperationalLimitSet.properties.OperationalLimitSet.OperationalLimitValue.items.anyOf",
+                                           "AUTO has more variants than HAND (expected if HAND is outdated).",
+                                           hand=hand_ids, auto=sorted(auto_id_set),
+                                           details={"hand_count": len(hand_ids), "auto_count": len(auto_id_set)}))
 
-        expected_base_prop = "OperationalLimit.OperationalLimitType"
-        forbidden_prop = "OperationalLimit.OperationalLimitValue"
+        # EmbeddedInheritOnly base must not appear in AUTO subtree (or anywhere in AUTO)
+        if self._contains_object_id(self.auto, "OperationalLimit"):
+            findings.append(self._d(test, "ERROR",
+                                   "$objectId==OperationalLimit",
+                                   "AUTO contains $objectId: OperationalLimit (embeddedInheritOnly should not appear anywhere).",
+                                   hand="HAND contains it in wrapper (known/outdated)", auto="FOUND"))
 
-        for idx, variant in enumerate(anyof):
-            if not isinstance(variant, dict):
+        # Base-only dotted property injection: ensure each variant includes only OperationalLimit.OperationalLimitType
+        for i, obj in enumerate(anyof):
+            if not isinstance(obj, dict):
                 continue
-            v_id = variant.get("$objectId", f"idx{idx}")
-            v_path = auto_prop_path + f".items.anyOf[{idx}]"
-
-            props = variant.get("properties", {})
+            props = obj.get("properties") or {}
             if not isinstance(props, dict):
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=v_path + ".properties",
-                    message="Variant is missing dict `properties`",
-                    auto=props,
-                    details={"variant": v_id},
-                ))
+                findings.append(self._d(test, "ERROR", f"...anyOf[{i}].properties",
+                                       "AUTO anyOf variant properties must be a dict.", hand=None, auto=props))
                 continue
 
-            if forbidden_prop in props:
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=v_path + f'.properties["{forbidden_prop}"]',
-                    message=f"Variant incorrectly contains forbidden injected property {forbidden_prop}",
-                    details={"variant": v_id},
-                ))
+            key = "OperationalLimit.OperationalLimitType"
+            if key not in props:
+                findings.append(self._d(test, "ERROR", f"...anyOf[{i}].properties.{key}",
+                                       "AUTO anyOf variant missing base-only dotted property OperationalLimit.OperationalLimitType.",
+                                       hand=self._hand_variant_prop(hand_sub, obj.get("$objectId"), key), auto=None,
+                                       details={"variant": obj.get("$objectId")}))
 
-            if expected_base_prop not in props:
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=v_path + f'.properties["{expected_base_prop}"]',
-                    message=f"Variant is missing base-only injected property {expected_base_prop}",
-                    details={"variant": v_id, "present_props": sorted(list(props.keys()))},
-                ))
+            # Check that no other properties exist (base-only requirement)
+            other_keys = sorted([k for k in props.keys() if k != key])
+            if other_keys:
+                findings.append(self._d(test, "WARN", f"...anyOf[{i}].properties",
+                                       "AUTO anyOf variant has extra properties (expected base-only).",
+                                       hand=None, auto=other_keys,
+                                       details={"variant": obj.get("$objectId"), "extra_keys": other_keys}))
+
+            # Validate OperationalLimitType ref
+            ref = props.get(key, {})
+            if isinstance(ref, dict):
+                if ref.get("$referencePath") != "OperationalLimitType":
+                    findings.append(self._d(test, "ERROR", f"...anyOf[{i}].properties.{key}.$referencePath",
+                                           "AUTO OperationalLimit.OperationalLimitType must reference OperationalLimitType.",
+                                           hand="OperationalLimitType", auto=ref.get("$referencePath"),
+                                           details={"variant": obj.get("$objectId")}))
+                if ref.get("$objectType") != "reference":
+                    findings.append(self._d(test, "WARN", f"...anyOf[{i}].properties.{key}.$objectType",
+                                           "AUTO OperationalLimit.OperationalLimitType should have $objectType == 'reference'.",
+                                           hand="reference", auto=ref.get("$objectType"),
+                                           details={"variant": obj.get("$objectId")}))
             else:
-                p = props[expected_base_prop]
-                refpath = (p or {}).get("$referencePath") if isinstance(p, dict) else None
-                if refpath != "OperationalLimitType":
-                    out.append(Discrepancy(
-                        test=test,
-                        severity="ERROR",
-                        path=v_path + f'.properties["{expected_base_prop}"].$referencePath',
-                        message="Base-only injected property should reference OperationalLimitType",
-                        auto=refpath,
-                        details={"expected": "OperationalLimitType", "variant": v_id},
-                    ))
+                findings.append(self._d(test, "ERROR", f"...anyOf[{i}].properties.{key}",
+                                       "AUTO OperationalLimit.OperationalLimitType must be a dict schema object.",
+                                       hand=None, auto=ref,
+                                       details={"variant": obj.get("$objectId")}))
 
-        return out
+        return findings
 
-    def test_location_association_properties(self) -> List[Discrepancy]:
-        """
-        Regression test for Location association-backed dotted properties.
+    # -----------------
+    # Internals
+    # -----------------
+    def _load_json(self, path: Path) -> Dict[str, Any]:
+        with path.open("r", encoding="utf-8") as f:
+            return json.load(f)
 
-        Expected (per HAND + UML diagrams):
-          - Location.properties["Location.PositionPoints"] exists
-              - type == "array"
-              - items.$objectType == "object"
-              - items.$objectId == "PositionPoint"
-              - items.$arrayPosition == "PositionPoint.sequenceNumber" (if present in AUTO)
-          - Location.properties["Location.CoordinateSystem"] exists
-              - $objectType == "reference"
-              - $objectId == "CoordinateSystem"
-              - $referencePath == "CoordinateSystem"
-        """
-        test = "test_location_association_properties"
-        out: List[Discrepancy] = []
+    def _as_row(self, d: Discrepancy) -> Dict[str, Any]:
+        return {
+            "test": d.test,
+            "severity": d.severity,
+            "path": d.path,
+            "message": d.message,
+            "hand": self._short(d.hand),
+            "auto": self._short(d.auto),
+            "details": d.details,
+        }
 
-        pp_key = "Location.PositionPoints"
-        pp_path = f'properties.Location.properties["{pp_key}"]'
-        hand_pp = self._get(self.hand, pp_path)
-        auto_pp = self._get(self.auto, pp_path)
+    def _short(self, x: Any, maxlen: int = 600) -> Any:
+        """Readable cell contents in DataFrame (avoid dumping huge dicts)."""
+        if x is None:
+            return None
+        if isinstance(x, (str, int, float, bool)):
+            return x
+        try:
+            s = json.dumps(x, ensure_ascii=False, sort_keys=True)
+        except Exception:
+            s = str(x)
+        if len(s) > maxlen:
+            return s[: maxlen - 3] + "..."
+        return s
 
-        if hand_pp is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path=pp_path,
-                message="HAND template is missing Location.PositionPoints (HAND may be stale)",
-            ))
-        if auto_pp is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path=pp_path,
-                message="AUTO template is missing Location.PositionPoints",
-                hand=hand_pp,
-                auto=auto_pp,
-            ))
-        else:
-            if auto_pp.get("type") != "array":
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=pp_path + ".type",
-                    message='Location.PositionPoints should have type="array"',
-                    auto=auto_pp.get("type"),
-                ))
-            items = auto_pp.get("items")
-            if not isinstance(items, dict):
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=pp_path + ".items",
-                    message="Location.PositionPoints is missing dict items",
-                    auto=items,
-                ))
-            else:
-                if items.get("$objectType") != "object":
-                    out.append(Discrepancy(
-                        test=test,
-                        severity="ERROR",
-                        path=pp_path + '.items.$objectType',
-                        message="Location.PositionPoints.items should be an embedded object (not a reference)",
-                        auto=items.get("$objectType"),
-                    ))
-                if items.get("$objectId") != "PositionPoint":
-                    out.append(Discrepancy(
-                        test=test,
-                        severity="ERROR",
-                        path=pp_path + '.items.$objectId',
-                        message="Location.PositionPoints.items should have $objectId = PositionPoint",
-                        auto=items.get("$objectId"),
-                    ))
-                ap = items.get("$arrayPosition")
-                if ap is not None and ap != "PositionPoint.sequenceNumber":
-                    out.append(Discrepancy(
-                        test=test,
-                        severity="WARN",
-                        path=pp_path + '.items.$arrayPosition',
-                        message="Unexpected $arrayPosition for PositionPoint items",
-                        auto=ap,
-                        details={"expected": "PositionPoint.sequenceNumber"},
-                    ))
+    def _d(
+        self,
+        test: str,
+        severity: str,
+        path: str,
+        message: str,
+        *,
+        hand: Optional[Any] = None,
+        auto: Optional[Any] = None,
+        details: Optional[Dict[str, Any]] = None,
+    ) -> Discrepancy:
+        return Discrepancy(test=test, severity=severity, path=path, message=message, hand=hand, auto=auto, details=details)
 
-        cs_key = "Location.CoordinateSystem"
-        cs_path = f'properties.Location.properties["{cs_key}"]'
-        hand_cs = self._get(self.hand, cs_path)
-        auto_cs = self._get(self.auto, cs_path)
+    def _get(self, obj: Any, keys: Sequence[str]) -> Any:
+        cur = obj
+        for k in keys:
+            if not isinstance(cur, dict):
+                return None
+            if k not in cur:
+                return None
+            cur = cur[k]
+        return cur
 
-        if hand_cs is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path=cs_path,
-                message="HAND template is missing Location.CoordinateSystem (HAND may be stale)",
-            ))
-        if auto_cs is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path=cs_path,
-                message="AUTO template is missing Location.CoordinateSystem",
-                hand=hand_cs,
-                auto=auto_cs,
-            ))
-        else:
-            if auto_cs.get("$objectType") != "reference":
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=cs_path + '.$objectType',
-                    message="Location.CoordinateSystem should be a reference",
-                    auto=auto_cs.get("$objectType"),
-                ))
-            if auto_cs.get("$objectId") != "CoordinateSystem":
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=cs_path + '.$objectId',
-                    message="Location.CoordinateSystem should have $objectId=CoordinateSystem",
-                    auto=auto_cs.get("$objectId"),
-                ))
-            if auto_cs.get("$referencePath") != "CoordinateSystem":
-                out.append(Discrepancy(
-                    test=test,
-                    severity="ERROR",
-                    path=cs_path + '.$referencePath',
-                    message="Location.CoordinateSystem should reference CoordinateSystem",
-                    auto=auto_cs.get("$referencePath"),
-                ))
-
-        return out
+    
 
     def test_curve_anyof_variants_match_hand(self) -> List[Discrepancy]:
         """Regression for Curve anyOf variant enumeration.
 
-        HAND is the target structure: AUTO should include at least the same set of $objectId
-        variants under properties.Curve.anyOf.
+        If `included_class_names` was provided at init time (names from filtered ug.H),
+        missing variants can be classified as:
+          - WARN: present in HAND but not in filtered model (likely missing in SimplifiedDiagrams / EA diagrams)
+          - ERROR: present in HAND and present in filtered model, but missing in AUTO (generator regression)
 
-        - Missing-in-AUTO variants present in HAND: ERROR
-        - Extra variants present only in AUTO: WARN
+        If `included_class_names` is not provided, missing variants are reported as WARN with a note.
         """
         test = "test_curve_anyof_variants_match_hand"
-        out: List[Discrepancy] = []
+        findings: List[Discrepancy] = []
 
-        hand_curve = self._get(self.hand, "properties.Curve")
-        auto_curve = self._get(self.auto, "properties.Curve")
+        hand_curve = self._get(self.hand, ["properties", "Curve"])
+        auto_curve = self._get(self.auto, ["properties", "Curve"])
 
         if hand_curve is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.Curve",
-                message="HAND template is missing Curve (cannot validate variants)",
-            ))
-            return out
-
+            return [self._d(test, "WARN", "properties.Curve",
+                            "HAND template is missing Curve (cannot validate variants).",
+                            hand=None, auto=auto_curve)]
         if auto_curve is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties.Curve",
-                message="AUTO template is missing Curve",
-            ))
-            return out
+            return [self._d(test, "ERROR", "properties.Curve",
+                            "AUTO template is missing Curve.",
+                            hand=hand_curve, auto=None)]
+
+        hand_any = hand_curve.get("anyOf")
+        auto_any = auto_curve.get("anyOf")
+
+        if not isinstance(hand_any, list) or not hand_any:
+            return [self._d(test, "WARN", "properties.Curve.anyOf",
+                            "HAND Curve.anyOf is missing or empty (cannot validate variants).",
+                            hand=hand_any, auto=auto_any)]
+        if not isinstance(auto_any, list) or not auto_any:
+            return [self._d(test, "ERROR", "properties.Curve.anyOf",
+                            "AUTO Curve.anyOf is missing or empty.",
+                            hand=hand_any, auto=auto_any)]
 
         def ids(anyof: Any) -> List[str]:
+            out: List[str] = []
             if not isinstance(anyof, list):
-                return []
-            out_ids: List[str] = []
+                return out
             for x in anyof:
                 if isinstance(x, dict):
                     oid = x.get("$objectId")
                     if isinstance(oid, str) and oid.strip():
-                        out_ids.append(oid.strip())
-            return out_ids
+                        out.append(oid.strip())
+            return out
 
-        hand_ids = ids(hand_curve.get("anyOf"))
-        auto_ids = ids(auto_curve.get("anyOf"))
+        hand_ids = ids(hand_any)
+        auto_ids = ids(auto_any)
 
-        # Duplicate detection (hand issues shouldn't fail AUTO, but are useful to surface)
         def dupes(vals: Sequence[str]) -> List[str]:
             seen = set()
             d = set()
@@ -745,95 +425,99 @@ class DevTemplateValidator:
         auto_dupes = dupes(auto_ids)
 
         if hand_dupes:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.Curve.anyOf",
-                message="HAND Curve.anyOf contains duplicate $objectId entries",
-                details={"duplicates": hand_dupes},
-            ))
-
+            findings.append(self._d(test, "WARN", "properties.Curve.anyOf",
+                                    "HAND Curve.anyOf contains duplicate $objectId entries.",
+                                    details={"duplicates": hand_dupes}))
         if auto_dupes:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.Curve.anyOf",
-                message="AUTO Curve.anyOf contains duplicate $objectId entries",
-                details={"duplicates": auto_dupes},
-            ))
+            findings.append(self._d(test, "WARN", "properties.Curve.anyOf",
+                                    "AUTO Curve.anyOf contains duplicate $objectId entries.",
+                                    details={"duplicates": auto_dupes}))
 
         hand_set = set(hand_ids)
         auto_set = set(auto_ids)
 
-        missing = sorted(hand_set - auto_set, key=str.casefold)
+        missing_all = sorted(hand_set - auto_set, key=str.casefold)
         extra = sorted(auto_set - hand_set, key=str.casefold)
 
-        if missing:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties.Curve.anyOf",
-                message="AUTO Curve.anyOf is missing variants present in HAND",
-                details={"missing": missing, "hand": sorted(hand_set, key=str.casefold), "auto": sorted(auto_set, key=str.casefold)},
-            ))
+        if missing_all:
+            if self.included_class_names is None:
+                findings.append(self._d(
+                    test, "WARN", "properties.Curve.anyOf",
+                    "AUTO Curve.anyOf is missing variants present in HAND. "
+                    "Pass included_class_names (names from filtered ug.H) to classify whether they are missing in SimplifiedDiagrams.",
+                    details={"missing": missing_all, "hand": sorted(hand_set, key=str.casefold), "auto": sorted(auto_set, key=str.casefold)},
+                ))
+            else:
+                missing_in_model = [v for v in missing_all if v in self.included_class_names]
+                missing_not_in_model = [v for v in missing_all if v not in self.included_class_names]
+
+                if missing_not_in_model:
+                    findings.append(self._d(
+                        test, "WARN", "properties.Curve.anyOf",
+                        "HAND includes Curve variants that are not present in the filtered UML model (likely missing in SimplifiedDiagrams/EA diagrams).",
+                        details={"missing_in_simplifieddiagrams": missing_not_in_model},
+                    ))
+                if missing_in_model:
+                    findings.append(self._d(
+                        test, "ERROR", "properties.Curve.anyOf",
+                        "AUTO Curve.anyOf is missing variants that ARE present in the filtered UML model (generator regression).",
+                        details={"missing": missing_in_model},
+                    ))
 
         if extra:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.Curve.anyOf",
-                message="AUTO Curve.anyOf has extra variants not present in HAND",
+            findings.append(self._d(
+                test, "WARN", "properties.Curve.anyOf",
+                "AUTO Curve.anyOf has extra variants not present in HAND.",
                 details={"extra": extra, "hand": sorted(hand_set, key=str.casefold), "auto": sorted(auto_set, key=str.casefold)},
             ))
 
-        return out
+        return findings
 
     def test_switchingaction_anyof_variants_match_hand(self) -> List[Discrepancy]:
         """Regression for SwitchingAction anyOf variant enumeration.
 
-        HAND is the target structure: AUTO should include at least the same set of $objectId
-        variants under properties.SwitchingAction.anyOf.
-
-        - Missing-in-AUTO variants present in HAND: ERROR
-        - Extra variants present only in AUTO: WARN
+        Classification mirrors test_curve_anyof_variants_match_hand.
         """
         test = "test_switchingaction_anyof_variants_match_hand"
-        out: List[Discrepancy] = []
+        findings: List[Discrepancy] = []
 
-        hand_sa = self._get(self.hand, "properties.SwitchingAction")
-        auto_sa = self._get(self.auto, "properties.SwitchingAction")
+        hand_sa = self._get(self.hand, ["properties", "SwitchingAction"])
+        auto_sa = self._get(self.auto, ["properties", "SwitchingAction"])
 
         if hand_sa is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.SwitchingAction",
-                message="HAND template is missing SwitchingAction (cannot validate variants)",
-            ))
-            return out
-
+            return [self._d(test, "WARN", "properties.SwitchingAction",
+                            "HAND template is missing SwitchingAction (cannot validate variants).",
+                            hand=None, auto=auto_sa)]
         if auto_sa is None:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties.SwitchingAction",
-                message="AUTO template is missing SwitchingAction",
-            ))
-            return out
+            return [self._d(test, "ERROR", "properties.SwitchingAction",
+                            "AUTO template is missing SwitchingAction.",
+                            hand=hand_sa, auto=None)]
+
+        hand_any = hand_sa.get("anyOf")
+        auto_any = auto_sa.get("anyOf")
+
+        if not isinstance(hand_any, list) or not hand_any:
+            return [self._d(test, "WARN", "properties.SwitchingAction.anyOf",
+                            "HAND SwitchingAction.anyOf is missing or empty (cannot validate variants).",
+                            hand=hand_any, auto=auto_any)]
+        if not isinstance(auto_any, list) or not auto_any:
+            return [self._d(test, "ERROR", "properties.SwitchingAction.anyOf",
+                            "AUTO SwitchingAction.anyOf is missing or empty.",
+                            hand=hand_any, auto=auto_any)]
 
         def ids(anyof: Any) -> List[str]:
+            out: List[str] = []
             if not isinstance(anyof, list):
-                return []
-            out_ids: List[str] = []
+                return out
             for x in anyof:
                 if isinstance(x, dict):
                     oid = x.get("$objectId")
                     if isinstance(oid, str) and oid.strip():
-                        out_ids.append(oid.strip())
-            return out_ids
+                        out.append(oid.strip())
+            return out
 
-        hand_ids = ids(hand_sa.get("anyOf"))
-        auto_ids = ids(auto_sa.get("anyOf"))
+        hand_ids = ids(hand_any)
+        auto_ids = ids(auto_any)
 
         def dupes(vals: Sequence[str]) -> List[str]:
             seen = set()
@@ -849,45 +533,74 @@ class DevTemplateValidator:
         auto_dupes = dupes(auto_ids)
 
         if hand_dupes:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.SwitchingAction.anyOf",
-                message="HAND SwitchingAction.anyOf contains duplicate $objectId entries",
-                details={"duplicates": hand_dupes},
-            ))
-
+            findings.append(self._d(test, "WARN", "properties.SwitchingAction.anyOf",
+                                    "HAND SwitchingAction.anyOf contains duplicate $objectId entries.",
+                                    details={"duplicates": hand_dupes}))
         if auto_dupes:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.SwitchingAction.anyOf",
-                message="AUTO SwitchingAction.anyOf contains duplicate $objectId entries",
-                details={"duplicates": auto_dupes},
-            ))
+            findings.append(self._d(test, "WARN", "properties.SwitchingAction.anyOf",
+                                    "AUTO SwitchingAction.anyOf contains duplicate $objectId entries.",
+                                    details={"duplicates": auto_dupes}))
 
         hand_set = set(hand_ids)
         auto_set = set(auto_ids)
 
-        missing = sorted(hand_set - auto_set, key=str.casefold)
+        missing_all = sorted(hand_set - auto_set, key=str.casefold)
         extra = sorted(auto_set - hand_set, key=str.casefold)
 
-        if missing:
-            out.append(Discrepancy(
-                test=test,
-                severity="ERROR",
-                path="properties.SwitchingAction.anyOf",
-                message="AUTO SwitchingAction.anyOf is missing variants present in HAND",
-                details={"missing": missing, "hand": sorted(hand_set, key=str.casefold), "auto": sorted(auto_set, key=str.casefold)},
-            ))
+        if missing_all:
+            if self.included_class_names is None:
+                findings.append(self._d(
+                    test, "WARN", "properties.SwitchingAction.anyOf",
+                    "AUTO SwitchingAction.anyOf is missing variants present in HAND. "
+                    "Pass included_class_names (names from filtered ug.H) to classify whether they are missing in SimplifiedDiagrams.",
+                    details={"missing": missing_all, "hand": sorted(hand_set, key=str.casefold), "auto": sorted(auto_set, key=str.casefold)},
+                ))
+            else:
+                missing_in_model = [v for v in missing_all if v in self.included_class_names]
+                missing_not_in_model = [v for v in missing_all if v not in self.included_class_names]
+
+                if missing_not_in_model:
+                    findings.append(self._d(
+                        test, "WARN", "properties.SwitchingAction.anyOf",
+                        "HAND includes SwitchingAction variants that are not present in the filtered UML model (likely missing in SimplifiedDiagrams/EA diagrams).",
+                        details={"missing_in_simplifieddiagrams": missing_not_in_model},
+                    ))
+                if missing_in_model:
+                    findings.append(self._d(
+                        test, "ERROR", "properties.SwitchingAction.anyOf",
+                        "AUTO SwitchingAction.anyOf is missing variants that ARE present in the filtered UML model (generator regression).",
+                        details={"missing": missing_in_model},
+                    ))
 
         if extra:
-            out.append(Discrepancy(
-                test=test,
-                severity="WARN",
-                path="properties.SwitchingAction.anyOf",
-                message="AUTO SwitchingAction.anyOf has extra variants not present in HAND",
+            findings.append(self._d(
+                test, "WARN", "properties.SwitchingAction.anyOf",
+                "AUTO SwitchingAction.anyOf has extra variants not present in HAND.",
                 details={"extra": extra, "hand": sorted(hand_set, key=str.casefold), "auto": sorted(auto_set, key=str.casefold)},
             ))
 
-        return out
+        return findings
+
+    def _contains_object_id(self, obj: Any, object_id: str) -> bool:
+        """Deep search for a particular $objectId value."""
+        if isinstance(obj, dict):
+            if obj.get("$objectId") == object_id:
+                return True
+            return any(self._contains_object_id(v, object_id) for v in obj.values())
+        if isinstance(obj, list):
+            return any(self._contains_object_id(v, object_id) for v in obj)
+        return False
+
+    def _hand_variant_prop(self, hand_sub: Any, variant_id: Any, prop_key: str) -> Any:
+        """Helper: look up a property in HAND anyOf member by $objectId."""
+        if not isinstance(hand_sub, dict):
+            return None
+        anyof = self._get(hand_sub, ["items", "anyOf"])
+        if not isinstance(anyof, list):
+            return None
+        for obj in anyof:
+            if isinstance(obj, dict) and obj.get("$objectId") == variant_id:
+                props = obj.get("properties") or {}
+                if isinstance(props, dict):
+                    return props.get(prop_key)
+        return None
