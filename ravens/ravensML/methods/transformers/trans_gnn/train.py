@@ -23,13 +23,13 @@ torch.manual_seed(42)
 # -------------------------
 dataset = MGTransformerDataset(
     root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
-    size=10000,
+    size=20000,
     error_kwargs={"deletion_prob": 0.01, 
                   "occurrence_prob": 0.55,
                   "mult_mean": 1,
-                  "mult_var": 1.25,
+                  "mult_var": 2.25,
                   "add_mean": 0,
-                  "add_var": 1.25,},
+                  "add_var": 2.25,},
 )
 
 
@@ -86,7 +86,7 @@ import custom_loss as cl
 loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=.001)
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 50
+epochs = 60
 
 # training parameters
 best_val = float('inf')

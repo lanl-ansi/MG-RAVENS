@@ -74,12 +74,7 @@ class PI_WMSE_Loss(nn.Module):
         loss = torch.mean((weighted_diff) ** 2) + negative_score + infeasibility_score 
         return loss
     
-    def analyze_infeasibility(self,pf_res):
-        with open("tmp.json", "w") as f:
-            json.dump(pf_res, f, indent=2)
-        #TODO: unimport json when we get rid of this
-        #TODO:figure out if better method exists
-        return pf_res['objective']
+
     
     def analyze_branch_infeasibility(self, pmd_output):
         """

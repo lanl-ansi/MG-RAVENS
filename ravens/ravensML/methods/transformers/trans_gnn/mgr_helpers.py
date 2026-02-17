@@ -31,11 +31,15 @@ def unpack_edge(edge_params,max_phases):
 def update_mgr(prediction,sample):
     prediction = prediction.detach().to("cpu")
     sample = sample.detach().to("cpu")
-    file_name = sample.y["raw_mgr"][0]
+    file_name = sample.y["raw_mgr"]
+
+    if isinstance(file_name,list):
+        file_name = sample.y["raw_mgr"][0]
     with open(file_name, "r") as f:
         mgr = json.load(f)
-    input = _to_python(sample["edge_attr"])
+    print(f"PMD: last file processed: {file_name}")
 
+    input = _to_python(sample["edge_attr"])
     with open("ravens/ravensML/methods/transformers/trans_gnn/tmp.json","w") as f:
         json.dump(mgr,f,indent=2)
 

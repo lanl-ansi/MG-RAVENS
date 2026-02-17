@@ -165,9 +165,9 @@ class AttnGNN(nn.Module):
         self.edge_attention = EdgeAttentionModule(
             node_dim=node_features,
             edge_dim=edge_features,
-            hidden_dim=128,
-            num_heads=4, 
-            dropout=0.1
+            hidden_dim=128*2,
+            num_heads=1, 
+            dropout=0
         )
 
         self.convs = nn.ModuleList([
