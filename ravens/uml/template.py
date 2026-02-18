@@ -660,6 +660,55 @@ class TemplateGenerator:
 
             prop_key = f"{owner_name}.{label}"
 
+# If the owner is a container-like node in the emitted template, do NOT attach
+            # association-backed dotted properties at the container level. Instead, treat
+            # them as inherited and attach them to emitted descendant *objects*.
+            # This matches HAND convention and avoids container shelves accumulating associations.
+            def descendant_object_targets(base_id: int) -> list[dict]:
+                base_id = int(base_id)
+                out: list[dict] = []
+                seen_nodes: set[int] = {base_id}
+                seen_ptr: set[int] = set()
+                q2 = deque([base_id])
+                # H is child -> parent, so descendants are predecessors
+                while q2:
+                    cur2 = q2.popleft()
+                    for child2 in self.H.predecessors(cur2):
+                        try:
+                            cid2 = int(child2)
+                        except Exception:
+                            continue
+                        if cid2 in seen_nodes:
+                            continue
+                        seen_nodes.add(cid2)
+                        q2.append(cid2)
+                        ptr2 = self.def_ptr.get(cid2)
+                        if not isinstance(ptr2, dict):
+                            continue
+                        if ptr2.get("$objectType") != "object":
+                            continue
+                        pid = id(ptr2)
+                        if pid in seen_ptr:
+                            continue
+                        seen_ptr.add(pid)
+                        out.append(ptr2)
+                return out
+
+            is_container_owner = (
+                isinstance(owner_ptr, dict)
+                and owner_ptr.get("$objectType") == "container"
+                or (self._role(owner_id).strip() == "containerClass")
+            )
+
+            if is_container_owner:
+                targets = descendant_object_targets(owner_id)
+                if targets:
+                    for tptr in targets:
+                        self._add_property(tptr, prop_key, copy.deepcopy(prop_schema))
+                # If no targets, we intentionally drop the association property rather than
+                # attaching it to the container.
+                continue
+
             # HAND convention: if the owner is an object-anyOf wrapper (polymorphic rootClass),
             # do NOT attach association-backed properties at the wrapper level. Instead,
             # attach them to each anyOf member object.

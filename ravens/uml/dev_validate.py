@@ -604,3 +604,123 @@ class DevTemplateValidator:
                 if isinstance(props, dict):
                     return props.get(prop_key)
         return None
+
+
+    def test_no_dotted_props_on_containers(self) -> List[Discrepancy]:
+        """\
+        Policy A regression guard:
+
+        Container shelves (nodes emitted with $objectType == "container") must NOT define
+        dotted association-backed properties like "PowerSystemResource.GenericAction".
+
+        Those properties should be treated as inherited and attached to descendant *objects*.
+        """
+        test = "test_no_dotted_props_on_containers"
+        findings: List[Discrepancy] = []
+
+        bad: list[dict] = []
+
+        def walk(node: Any, path: str) -> None:
+            if isinstance(node, dict):
+                if node.get("$objectType") == "container":
+                    props = node.get("properties")
+                    if isinstance(props, dict):
+                        dotted = [k for k in props.keys() if isinstance(k, str) and "." in k]
+                        if dotted:
+                            bad.append({"path": path, "keys": sorted(dotted)})
+                for k, v in node.items():
+                    # Prefer stable template paths through properties
+                    if k == "properties" and isinstance(v, dict):
+                        for pk, pv in v.items():
+                            walk(pv, f"{path}.properties.{pk}" if path else f"properties.{pk}")
+                    elif k == "anyOf" and isinstance(v, list):
+                        for i, item in enumerate(v):
+                            walk(item, f"{path}.anyOf[{i}]" if path else f"anyOf[{i}]")
+                    elif k == "items":
+                        walk(v, f"{path}.items" if path else "items")
+                    else:
+                        if isinstance(v, (dict, list)):
+                            walk(v, f"{path}.{k}" if path else str(k))
+            elif isinstance(node, list):
+                for i, item in enumerate(node):
+                    walk(item, f"{path}[{i}]")
+
+        walk(self.auto, "")
+
+        for entry in bad:
+            p = entry.get("path") or ""
+            keys = entry.get("keys") or []
+            findings.append(
+                self._d(
+                    test,
+                    "ERROR",
+                    p,
+                    "AUTO container defines dotted properties; association-backed properties must be inherited to descendant objects (Policy A).",
+                    hand=None,
+                    auto=None,
+                    details={"bad_keys": keys, "count": len(keys)},
+                )
+            )
+
+        return findings
+
+    def test_powersystemresource_genericaction_inherited(self) -> List[Discrepancy]:
+        """\
+        Targeted check for mentor feedback:
+
+        The association label 'GenericAction' is drawn from PowerSystemResource, which is a container.
+        Policy A: the dotted property PowerSystemResource.GenericAction must NOT live on the
+        PowerSystemResource container itself, but it should exist on at least one descendant object.
+        """
+        test = "test_powersystemresource_genericaction_inherited"
+        findings: List[Discrepancy] = []
+
+        psr = self._get(self.auto, ["properties", "PowerSystemResource"])
+        if isinstance(psr, dict) and psr.get("$objectType") == "container":
+            props = psr.get("properties")
+            if isinstance(props, dict) and "PowerSystemResource.GenericAction" in props:
+                findings.append(
+                    self._d(
+                        test,
+                        "ERROR",
+                        "properties.PowerSystemResource.properties.PowerSystemResource.GenericAction",
+                        "AUTO incorrectly attaches PowerSystemResource.GenericAction to the PowerSystemResource container (Policy A requires inheritance to descendants).",
+                        hand=self._get(self.hand, ["properties", "PowerSystemResource", "properties", "PowerSystemResource.GenericAction"]),
+                        auto=props.get("PowerSystemResource.GenericAction"),
+                    )
+                )
+        # Ensure the key exists somewhere on an object (non-container)
+        found = False
+
+        def walk_find(node: Any) -> None:
+            nonlocal found
+            if found:
+                return
+            if isinstance(node, dict):
+                if node.get("$objectType") != "container":
+                    props = node.get("properties")
+                    if isinstance(props, dict) and "PowerSystemResource.GenericAction" in props:
+                        found = True
+                        return
+                for v in node.values():
+                    if isinstance(v, (dict, list)):
+                        walk_find(v)
+            elif isinstance(node, list):
+                for it in node:
+                    walk_find(it)
+
+        walk_find(self.auto)
+
+        if not found:
+            findings.append(
+                self._d(
+                    test,
+                    "WARN",
+                    "PowerSystemResource.GenericAction",
+                    "AUTO does not contain PowerSystemResource.GenericAction on any descendant object. If the association exists in the UML, Policy A expects it to be inherited somewhere.",
+                    hand=self._contains_object_id(self.hand, "PowerSystemResource"),
+                    auto=False,
+                )
+            )
+
+        return findings

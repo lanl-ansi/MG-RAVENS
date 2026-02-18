@@ -16,6 +16,7 @@ uml_data = UMLData().loadf()
 
 inc = clusions.UMLInclusions(uml_data=uml_data, 
                              packages=["SimplifiedDiagrams"],
+                             auto_apply=False,
                              drop_objects_without_visible_generalization=False)
 ug = graph.UMLGraphs(inclusions=inc)  # both H and A filtered
 
@@ -31,10 +32,17 @@ d = dev_validate.DevTemplateValidator(hand_path=_TEMPLATE_JSON_PATH, auto_path=_
 df = d.test_all()
 
 
-# Fixed: Group, Location, OperationalLimitSet.OperationalLimitValue, Fault, ProducerCostFunction
-# ConnectivityNode is missing some assoctiations in HAND
+# 3 Asset (doesn't really need anything) - this is likely in the Inf diagrams so not clear why it should be emitted
 # Asset has nothing under in HAND; tons of entries for the anyOf in AUTO - seems like an issue ignor Infs/Mkt? But they are being ignored (check that it's happening in association graph too, but that shouldn't define anyOf)
 # ActivityRecord->EnvironmentalEvent is array in HAND but object in AUTO - is labeling right here in the Outages diagram?
+
+# PowerTransformerInfo - TransformerEndInfo
+# Fixed: Group, Location, OperationalLimitSet.OperationalLimitValue, Fault, ProducerCostFunction
+# 1 ConnectivityNode is missing some assoctiations in HAND (check all for hidden assumptions)
+# 2 PowerSystemResource - containers, you wouldn't expect to have associations. If it's a container, don't bother
+# looking for associations. 
+# 4 EconomicProperty.Regions - reference is to wrong objectID in HAND I think (should be SubGeographicalRegion) - put in spreadsheet
+
 
 anyOfs should have no type, but they're being put in. 
 

@@ -160,6 +160,15 @@ class UMLInclusions:
             did = _colser(dia_df, "Diagram_ID", "DiagramID")
             pkg = _ser_numeric(dia_df.get("Package_ID", pd.Series(pd.NA, index=dia_df.index)))
             keep = pkg.isin(self.allowed_packages)
+
+            # Optional Inf*/Mkt* *diagram-name* exclusion.
+            # If enabled, diagrams whose diagram Name starts with Inf/Mkt are removed from
+            # allowed_diagrams and therefore contribute no objects/links/connectors.
+            # (This is distinct from the object-name exclusion below.)
+            if self.exclude_inf_mkt_initial:
+                dname = dia_df.get("Name", pd.Series("", index=dia_df.index)).astype(str)
+                keep &= ~dname.str.startswith(("Inf", "Mkt"), na=False)
+
             self.allowed_diagrams = set(int(x) for x in did.loc[keep].dropna().tolist())
         else:
             self.allowed_diagrams = set()
