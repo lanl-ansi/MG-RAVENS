@@ -94,7 +94,11 @@ class SchemaTemplate:
                         self.add_cimObjectType(data["properties"][k]["properties"], v.get("$objectId", k))
 
                 elif v.get("$objectType", "") == "reference":
-                    obj = self.uml_data.objects[(self.uml_data.objects["Name"] == v["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")].iloc[0]
+                    _obj = self.uml_data.objects[(self.uml_data.objects["Name"] == v["$objectId"]) & (self.uml_data.objects["Object_Type"] == "Class")]
+                    if _obj.empty:
+                        raise Exception(f"Missing object '{v['$objectId']}' in UML")
+                    else:
+                        obj = _obj.iloc[0]
                     if "title" not in v:
                         data["properties"][k]["title"] = html.unescape(str(obj.Name).strip()) + "_Pointer"
                     if "description" not in v and not self.omit_descr:

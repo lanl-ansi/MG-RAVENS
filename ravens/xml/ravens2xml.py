@@ -81,10 +81,11 @@ class RavensExport(RDFGraph):
         triple_to_delete = []
         for (p, o), (cim_type, obj_name) in po_to_update.items():
             target_subject = None
-            # TODO: how to handle if using IdentifiedObject.name vs IdentifiedObject.mRID?
+            # Try to find by name first
             try:
                 target_subject = self.graph.value(predicate=self.cim["IdentifiedObject.name"], object=Literal(obj_name), any=False)
             except UniquenessError as msg:
+                # Multiple objects with same name, filter by type
                 for s in self.graph.subjects(predicate=self.cim["IdentifiedObject.name"], object=Literal(obj_name)):
                     if self.graph.value(subject=s, predicate=RDF.type) == self.cim[f"{cim_type}"]:
                         target_subject = s
@@ -92,6 +93,25 @@ class RavensExport(RDFGraph):
 
                 if target_subject is None:
                     raise UniquenessError(msg)
+
+            # If not found by name, try by mRID
+            if target_subject is None:
+                try:
+                    target_subject = self.graph.value(predicate=self.cim["IdentifiedObject.mRID"], object=Literal(obj_name), any=False)
+                except UniquenessError:
+                    # Multiple objects with same mRID (shouldn't happen), filter by type
+                    for s in self.graph.subjects(predicate=self.cim["IdentifiedObject.mRID"], object=Literal(obj_name)):
+                        if self.graph.value(subject=s, predicate=RDF.type) == self.cim[f"{cim_type}"]:
+                            target_subject = s
+                            break
+
+            if target_subject is None:
+                from ravens.logging import logger
+                logger.error(f"Reference not found: {cim_type}::'{obj_name}' - skipping reference")
+                # Remove the invalid reference literal
+                for s in self.graph.subjects(predicate=p, object=o):
+                    triple_to_delete.append((s, p, o))
+                continue
 
             for s in self.graph.subjects(predicate=p, object=o):
                 self.graph.add((s, p, target_subject))
