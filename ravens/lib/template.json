@@ -5323,6 +5323,12 @@
                       "$referencePath": "AssetInfo/PowerTransformerInfo",
                       "type": "string"
                     },
+                    "PowerSystemResource.Location": {
+                      "$objectType": "reference",
+                      "type": "string",
+                      "$objectId": "Location",
+                      "$referencePath": "Location"
+                    },
                     "Equipment.OperationalLimitSet": {
                       "type": "string",
                       "$objectType": "reference",
