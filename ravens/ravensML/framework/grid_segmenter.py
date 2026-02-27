@@ -418,7 +418,7 @@ if __name__ == "__main__":
     # DS.process_for_ML()
     # DS.visualize_graph()
 
-    GS = grid_segmenter(PF_Val=False)
+    GS = grid_segmenter(PF_Val=True)
     GS.load_from_file("ravens/ravensML/framework/segmenter_test_data/segmenter.json")
     sub_MGR = GS.yield_graph(min_nodes=67,
                          output_path="ravens/ravensML/framework/tmp/results/sub_mgr.json")

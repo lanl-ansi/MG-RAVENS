@@ -38,16 +38,17 @@ class WeightedMSELoss(nn.Module):
     
 
 class PI_WMSE_Loss(nn.Module):
-    def __init__(self,max_phases,neg_penalty=0,inf_penalty=0,test_percentage=0.5):
+    def __init__(self,max_phases,neg_penalty=0,inf_penalty=0,test_percentage=0.5, branch_inf_mode = False):
         super(PI_WMSE_Loss, self).__init__()
         self.weights = torch.tensor(
-            [10] +
-            [3 * (i == j) + 1 * (1-(i == j)) for _ in range(4) for i in range(max_phases) for j in range(max_phases)] +
+            [5] +
+            [3 * (i == j) + 3 * (1-(i == j)) for _ in range(4) for i in range(max_phases) for j in range(max_phases)] +
             [1, 1, 1]
         )
         self.neg_penalty = neg_penalty
         self.inf_penalty = inf_penalty
         self.test_percentage = test_percentage
+        self.branch_inf_mode = branch_inf_mode
 
     def forward(self, prediction, target_grid):
         target_output = target_grid.y["edge_attr"]       
@@ -74,6 +75,56 @@ class PI_WMSE_Loss(nn.Module):
         loss = torch.mean((weighted_diff) ** 2) + negative_score + infeasibility_score 
         return loss
     
+    def system_demand_not_met(self,pmd_output):
+        total_generation = 0.0
+        total_load = 0.0
+        expected_losses = 0.0
+        pm_solution = pmd_output['solution']
+        
+        # Process generation - directly using 'gen' which we know exists
+        if "gen" in pm_solution:
+            for gen in pm_solution["gen"].values():
+                if "pg" in gen:
+                    pg_value = gen["pg"]
+                    if isinstance(pg_value, list):
+                        # Sum all elements if pg is a list
+                        total_generation += sum(float(val) for val in pg_value)
+                    else:
+                        # Handle single value case
+                        total_generation += float(pg_value)
+        
+        # Process load - directly using 'load' which we know exists
+        if "load" in pm_solution:
+            for load in pm_solution["load"].values():
+                if "pd" in load:
+                    pd_value = load["pd"]
+                    if isinstance(pd_value, list):
+                        # Sum all elements if pd is a list
+                        total_load += sum(float(val) for val in pd_value)
+                    else:
+                        # Handle single value case
+                        total_load += float(pd_value)
+        
+        # Calculate branch losses - directly using 'branch' which we know exists
+        if "branch" in pm_solution:
+            for branch in pm_solution["branch"].values():
+                if "pf" in branch and "pt" in branch:
+                    pf_value = branch["pf"]
+                    pt_value = branch["pt"]
+                    
+                    # Handle if these are lists
+                    if isinstance(pf_value, list) and isinstance(pt_value, list):
+                        for i in range(min(len(pf_value), len(pt_value))):
+                            expected_losses += abs(float(pf_value[i]) + float(pt_value[i]))
+                    else:
+                        expected_losses += abs(float(pf_value) + float(pt_value))
+        
+        # Generation should equal load plus losses
+        # Negative value means demand not met
+        power_balance = total_generation - (total_load + expected_losses)
+        return 100*max(0.0, -power_balance)  # In per unit, only return positive values
+    
+
 
     
     def analyze_branch_infeasibility(self, pmd_output):
@@ -133,8 +184,11 @@ class PI_WMSE_Loss(nn.Module):
         # print("<DEBUG> doing a random inf test")
         new_mgr = update_mgr(pred,target_grid) 
         results = run_pf(new_mgr)
-        branch_infeasibility = self.analyze_branch_infeasibility(results) #TODO: Implement Correctly --> propagate to iterative methods 
-        return sum(branch["total_infeasibility"] for branch in branch_infeasibility.values())
+        if self.branch_inf_mode:
+            branch_infeasibility = self.analyze_branch_infeasibility(results)
+            return sum(branch["total_infeasibility"] for branch in branch_infeasibility.values())
+        else:
+            return self.system_demand_not_met(results)
 
 
 
