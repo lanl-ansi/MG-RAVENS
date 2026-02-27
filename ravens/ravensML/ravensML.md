@@ -72,7 +72,7 @@ MGR.process_for_ML()
 
 #reference examples
 #first index [i] --> ith file
-#second index [0] --> name, [1] --> original, [2]--> ml object
+#second index [0] --> name, [1] --> original mgr dict, [2]--> ml object
 print(MGR[0][2].keys()) #print 0th file's ML object keys 
 print(MGR[0][2]['node_features']) #print 0th file's node features
 
@@ -97,15 +97,15 @@ from ravens.ravensML.framework.grid_segmenter import grid_segmenter
 
 gs = grid_segmenter(base_graph=None, PF_Val=False)
     #base_graph: An optional MG-RAVENS grid model dictionary to use as the base for segmentation. If not provided, the class will initialize with an empty template.
-    #PF_Val: A boolean flag to enable/disable power flow validation of the generated sub-grids. This is currently experimental and may have issues.
+    #PF_Val: A boolean flag to enable/disable power flow validation of the generated sub-grids. This will continue attempting to generate graphs naively until one satisfies the AC-PF constraints.
 
 #Load an MG-RAVENS grid model from a file
-gs.load_from_file("path/to/mgravens_file.json")
+gs.load_from_file("path/to/mgravens_file.json") #NOTE: this is called when `base_graph` is not set to None during object init
 
 #Generate a sub-grid with optional constraints
 sub_mgr = gs.yield_graph(
-    min_nodes=67,
-    output_path="path/to/output/sub_mgr.json"
+    min_nodes=67, #number of nodes to generate in graph
+    output_path="path/to/output/sub_mgr.json" #output file path and name
 )
 ```
 
@@ -182,4 +182,6 @@ Within the context of the ravensML framework, the usage of MG-RAVENS files shoul
 ### Training Tools
 
 - `tools.training_tools.train_epoch(model, loader, loss_fn, optimizer, device)`
+  - given the above inputs, this will run one full epoch of training.
 - `tools.training_tools.validate(model, loader, loss_fn, device)`
+  - given the above inputs, this will run one full epoch of validation without updating model parameters.
