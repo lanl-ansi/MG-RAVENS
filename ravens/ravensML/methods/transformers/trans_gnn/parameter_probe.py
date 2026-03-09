@@ -156,16 +156,27 @@ if __name__ == "__main__":
         deg += torch.bincount(d, minlength=deg.numel())
 
     # Define hyperparameter grid
+    # param_grid = {
+    #     'model_type': [SimpleGNN, AttnGNN],
+    #     'neg_penalty': [10],
+    #     'inf_penalty': [1, 5],
+    #     'test_percentage': [0, .001],
+    #     'branch_inf_mode': [False,True],
+    #     'lr': [1e-3],
+    #     'weight_decay': [1e-5],
+    #     'transport_distance': [0,7,14]
+    # }
     param_grid = {
-        'model_type': [SimpleGNN, AttnGNN],
+        'model_type': [SimpleGNN],
         'neg_penalty': [10],
-        'inf_penalty': [1, 5],
-        'test_percentage': [0, .001],
+        'inf_penalty': [5],
+        'test_percentage': [0, .01],
         'branch_inf_mode': [False,True],
         'lr': [1e-3],
         'weight_decay': [1e-5],
-        'transport_distance': [0,7,14]
+        'transport_distance': [3,7,14]
     }
+    EPOCHS = 35
 
     # Generate all combinations of parameters
     # For a smaller experiment, you may want to select fewer parameters or combinations
@@ -196,7 +207,7 @@ if __name__ == "__main__":
             neg_penalty, inf_penalty, test_percentage, branch_inf_mode,
             lr, weight_decay,
             'min', 0.5, 5,
-            20
+            EPOCHS
         )
         results.append(result)
     

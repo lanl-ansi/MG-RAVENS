@@ -23,7 +23,7 @@ torch.manual_seed(42)
 # -------------------------
 dataset = MGTransformerDataset(
     root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
-    size=20000,
+    size=80000,
     error_kwargs={"deletion_prob": 0.01, 
                   "occurrence_prob": 0.55,
                   "mult_mean": 1,
@@ -68,14 +68,14 @@ model = SimpleGNN(
     node_features=node_feat_dim,
     edge_features=edge_feat_dim,
     degree=deg,
-    transport_distance=7
+    transport_distance=10
 ).to(device)
 
 # model = AttnGNN(
 #     node_features=node_feat_dim,
 #     edge_features=edge_feat_dim,
 #     degree=deg,
-#     transport_distance=7).to(device)
+#     transport_distance=0).to(device)
 
 print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(edge_feat_dim)}")
 
@@ -83,10 +83,10 @@ print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output di
 # loss_fn = nn.MSELoss()
 import custom_loss as cl
 # loss_fn = cl.WeightedMSELoss(3,penalty_strength=5)
-loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=.001,branch_inf_mode=False)
+loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=0,branch_inf_mode=False)
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 20
+epochs = 120
 
 # training parameters
 best_val = float('inf')

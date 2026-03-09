@@ -27,25 +27,25 @@ class SimpleGNN(nn.Module):
             nn.Linear(node_features * 2 + edge_features, 64),
             nn.ReLU(),
             nn.Linear(64, 128), # 64 --> 128
-            nn.Dropout(0.1),
+            nn.Dropout(0.21),
             nn.ReLU(),
             nn.Linear(128, 128), # 128 --> 128
-            nn.Dropout(0.1),
+            nn.Dropout(0.2),
             nn.ReLU(),
             nn.Linear(128, 512), # 128 --> 512
-            nn.Dropout(0.1),
+            nn.Dropout(0.19),
             nn.ReLU(),
             nn.Linear(512, 128), # 512 --> 128
-            nn.Dropout(0.1),
+            nn.Dropout(0.18),
             nn.ReLU(),
             nn.Linear(128, 128), # 128 --> 128
-            nn.Dropout(0.1),
+            nn.Dropout(0.17),
             nn.ReLU(),
             nn.Linear(128, 128), # 128 --> 128
-            nn.Dropout(0.1),
+            nn.Dropout(0.16),
             nn.ReLU(),
             nn.Linear(128, 64), # 128 --> 64
-            nn.Dropout(0.1),
+            nn.Dropout(0.15),
             nn.ReLU(),
             nn.Linear(64, 40)          # output dim = 40
         )
@@ -166,7 +166,7 @@ class AttnGNN(nn.Module):
             node_dim=node_features,
             edge_dim=edge_features,
             hidden_dim=128*2,
-            num_heads=1, 
+            num_heads=8, 
             dropout=0
         )
 
