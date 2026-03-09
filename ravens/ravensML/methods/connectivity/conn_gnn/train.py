@@ -17,8 +17,8 @@ import sys
 sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
 # from mgr_helpers import unpack_edge
 
-from data import MGConnDataset
-from model import SimpleGNN, AttnGNN
+from methods.connectivity.conn_gnn.data import MGConnDataset
+from methods.connectivity.conn_gnn.model import SimpleGNN, AttnGNN
 from framework.tools.training_tools import train_epoch, validate
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

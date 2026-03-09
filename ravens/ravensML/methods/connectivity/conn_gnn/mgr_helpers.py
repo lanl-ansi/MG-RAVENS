@@ -4,7 +4,7 @@
 import os
 import sys
 import numpy as np
-from data import MGTransformerDataset
+from data import MG
 import json
 import re
 import torch
