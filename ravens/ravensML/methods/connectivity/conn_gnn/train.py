@@ -2,6 +2,8 @@
 # FIX Write Back
 # Implement PI
 # create unpack edge equivalent
+# better loss, maybe penalizes mean guess? maybe better tensor output? 
+# evaluate batch thing for loss function?
 
 
 import torch
@@ -32,9 +34,9 @@ torch.manual_seed(42)
 # -------------------------
 dataset = MGConnDataset(
         root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
-        size=20000,
+        size=5000,
         max_nodes=20,
-        error_kwargs={"rename_prob": 0.20},
+        error_kwargs={"rename_prob": 0.15},
 )
 
 
@@ -82,7 +84,7 @@ model = SimpleGNN(
 #     degree=deg,
 #     transport_distance=0).to(device)
 
-print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(edge_feat_dim)}")
+print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(20*20)}")
 
 # Training Settings
 # loss_fn = nn.MSELoss()
@@ -90,7 +92,7 @@ import custom_loss as cl
 loss_fn = cl.AdjMSELoss()
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 120
+epochs = 60
 
 # training parameters
 best_val = float('inf')
@@ -136,12 +138,10 @@ with torch.no_grad():
     sample = dataset[random.randint(0,len(dataset)-1)].to(device)     
     pred   = model(sample)
 
-    # print("Input:")
-    # pprint.pprint(unpack_edge(sample["edge_attr"][0],3))
-    # print("Predicted:")
-    # pprint.pprint(unpack_edge(pred[0],3))
-    # print("True:")
-    # pprint.pprint(unpack_edge(sample.y["edge_attr"][0],3))
+    print("Predicted:")
+    print(pred,3)
+    print("True:")
+    print(sample.y["missing_edges"])
     test_mse = loss_fn(pred, sample)
     print(f"\nTest MSE on this graph: {test_mse.item():.6f}")
 

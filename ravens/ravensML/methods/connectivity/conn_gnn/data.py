@@ -279,7 +279,10 @@ class MGConnDataset(InMemoryDataset):
 
             # Binary adjacency matrix of the missing edges (size 19×19 because
             # the maximum number of nodes in the dataset is 19).
-            missing_edges = np.zeros((self.max_nodes, self.max_nodes))
+            missing_edges = torch.zeros(
+                (self.max_nodes, self.max_nodes),   # shape
+                dtype=torch.float32                 # use float (or torch.bool)
+            )
             for src, dst in indexed_correction:
                 missing_edges[src, dst] = 1
                 missing_edges[dst, src] = 1
