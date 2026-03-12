@@ -27,13 +27,24 @@ class RavensSchema:
         omit_file_extension: bool = False,
         omit_license: bool = False,
         omit_descriptions: bool = False,
+        template_source: str = "hand",
     ):
         if uml_data is None:
             uml_data = UMLData()
 
         self.uml_data = uml_data
 
-        self.schema_template = SchemaTemplate(uml_data=uml_data, uml_graphs=uml_graphs, uml_exclusions=uml_exclusions, omit_descriptions=omit_descriptions) if schema_template is None else schema_template
+        self.schema_template = (
+            SchemaTemplate(
+                uml_data=uml_data,
+                uml_graphs=uml_graphs,
+                uml_exclusions=uml_exclusions,
+                omit_descriptions=omit_descriptions,
+                source=template_source,
+            )
+            if schema_template is None
+            else schema_template
+        )
 
         self.omit_descr = omit_descriptions
 
@@ -61,6 +72,9 @@ class RavensSchema:
         return "/".join(a for a in [self.base_id_uri, schema_id + (".json" if not self.omit_file_extension else "")] if a)
 
     def build_schema_from_map(self, schema_map: dict) -> dict:
+        def _title(s: str) -> str:
+            return s.split(".")[-1]
+
         schema: dict[str, Any] = {}
         for k, v in schema_map.items():
             if k.startswith("$"):
@@ -73,6 +87,8 @@ class RavensSchema:
                             if v.get("$primaryObjectHash", None) is None:
                                 schema[k] = self.build_schema_from_map(v)
                                 schema[k]["additionalProperties"] = False
+                                if "title" not in schema[k]:
+                                    schema[k]["title"] = _title(k)
                             else:
                                 schema[k] = {
                                     "type": "object",
@@ -92,6 +108,8 @@ class RavensSchema:
                         elif "anyOf" in v:
                             if v.get("$primaryObjectHash", None) is None:
                                 schema[k] = self.build_schema_from_map(v)
+                                if "title" not in schema[k]:
+                                    schema[k]["title"] = _title(k)
                             else:
                                 schema[k] = {
                                     "type": "object",
@@ -113,6 +131,8 @@ class RavensSchema:
                             **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "items"},
                             **{"items": self.build_schema_from_map(v["items"])},
                         }
+                        if "title" not in schema[k]:
+                            schema[k]["title"] = _title(k) + "_Array"
                     else:
                         schema[k] = self.build_schema_from_map(v)
                 else:
@@ -181,13 +201,18 @@ class RavensSchema:
                 _schema["additionalProperties"] = False
 
             title = _schema.get("title", None)
+            if title is None:
+                title = debug_key.split(".")[-1] if debug_key is not None else None
+                if title is None:
+                    logger.warning(f"When decomposing the schema, 'title' was not found on an object, only the following keys: {list(_schema.keys())}")
+                else:
+                    _schema["title"] = title
+
             if title is not None:
                 if "patternProperties" in _schema:
                     title = f"{title}_Container"
                 if "anyOf" in _schema:
                     title = f"{title}_anyOfContainer"
-            else:
-                logger.warning(f"When decomposing the schema, 'title' was not found on a {debug_key} object, only the following keys: {list(_schema.keys())}")
 
             _schema["$id"] = self.schema_path(title)
 

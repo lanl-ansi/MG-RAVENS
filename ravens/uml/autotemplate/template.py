@@ -1299,17 +1299,22 @@ class TemplateGenerator:
             if not isinstance(at_ptr, dict):
                 return
 
-            # If target participates in a polymorphic family (base + descendants),
-            # emit an anyOf of references; otherwise emit a single reference.
             variants = self._collect_polymorphic_variants(int(target))
-            # Only use anyOf if there are >= 2 viable variants
             if len(variants) >= 2:
                 items = [self._make_ref(v) for v in variants]
                 items = [x for x in items if isinstance(x, dict)]
-                self._add_property(at_ptr, self._name(target), {"anyOf": items})
+                if items:
+                    self._add_property(
+                        at_ptr,
+                        self._name(target),
+                        {
+                            "$objectType": "reference",
+                            "$objectId": self._name(target),
+                            "anyOf": items,
+                        },
+                    )
                 return
 
-            # fallback: single reference
             ref = self._make_ref(int(target))
             if ref:
                 self._add_property(at_ptr, self._name(target), ref)
