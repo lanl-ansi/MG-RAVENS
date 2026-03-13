@@ -1,17 +1,10 @@
-#TODO: 
-# FIX Write Back
-# Implement PI
-# create unpack edge equivalent
-# better loss, maybe penalizes mean guess? maybe better tensor output? 
-# evaluate batch thing for loss function?
-
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch_geometric.loader import DataLoader
 from torch_geometric.utils import degree
 import matplotlib.pyplot as plt
+import numpy as np
 import random
 import pprint
 import os
@@ -26,6 +19,8 @@ from framework.tools.training_tools import train_epoch, validate
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
+TEST_NAME = "PI_Small_"
+
 # reproducibility
 torch.manual_seed(42)
 
@@ -34,9 +29,9 @@ torch.manual_seed(42)
 # -------------------------
 dataset = MGConnDataset(
         root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
-        size=5000,
+        size=500,
         max_nodes=20,
-        error_kwargs={"rename_prob": 0.15},
+        error_kwargs={"del_e_prob": 0.15},
 )
 
 
@@ -89,7 +84,21 @@ print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output di
 # Training Settings
 # loss_fn = nn.MSELoss()
 import custom_loss as cl
-loss_fn = cl.AdjMSELoss()
+loss_fn =  cl.AdjMSELoss(
+    ignore_diagonal=False,
+    reduction='mean',
+    K=10.0,          # amplify the whole term if you combine it with other losses
+    pos_weight=10.0  # reward correct high scores more heavily
+)
+loss_fn =  cl.PIAdjMSELoss(
+    ignore_diagonal=False,
+    reduction='mean',
+    K=10.0,          
+    pos_weight=20.0,
+    inf_penalty=5,
+    test_percentage=1,
+    branch_inf_mode=False
+)
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
 epochs = 60
@@ -113,7 +122,7 @@ for epoch in range(1, epochs + 1):
     # checkpoint
     if va_loss < best_val:
         best_val = va_loss
-        torch.save(model.state_dict(), "ravens/ravensML/methods/transformers/trans_gnn/tmp/best_model.pth")
+        torch.save(model.state_dict(), f"ravens/ravensML/methods/connectivity/conn_gnn/tmp/{TEST_NAME}best_model.pth")
         print("  -> saved new best model")
 
 # -------------------------
@@ -127,7 +136,7 @@ plt.ylabel("MSE")
 plt.legend()
 plt.title("Training / Validation loss")
 plt.tight_layout()
-plt.savefig("ravens/ravensML/methods/transformers/trans_gnn/tmp/loss_plot.png")
+plt.savefig(f"ravens/ravensML/methods/connectivity/conn_gnn/tmp/{TEST_NAME}loss_plot.png")
 plt.close()
 
 # -------------------------
@@ -138,10 +147,15 @@ with torch.no_grad():
     sample = dataset[random.randint(0,len(dataset)-1)].to(device)     
     pred   = model(sample)
 
-    print("Predicted:")
-    print(pred,3)
-    print("True:")
-    print(sample.y["missing_edges"])
+    # ---- predicted matrices ----
+    print("\nPredicted:")
+    print(pred.detach().cpu().numpy())
+
+    # ---- ground‑truth matrix ----
+    print("\nTrue:")
+    true_np = sample.y["missing_edges"].detach().cpu().numpy()
+    print(true_np)
+
     test_mse = loss_fn(pred, sample)
     print(f"\nTest MSE on this graph: {test_mse.item():.6f}")
 

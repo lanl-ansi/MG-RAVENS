@@ -18,6 +18,7 @@ def gen_conn_error(
     *,
     rename_prob: float = 0.12,
     delete_prob: float = 0.05,
+    del_e_prob: float = 0,
     seed: int | None = None,
     size: int = 0
 ) -> MGRavensDataset:
@@ -42,13 +43,13 @@ def gen_conn_error(
     data_generated = 0
     while data_generated < size:
         data_generated += 1
-        ravens_data_prime = copy.deepcopy(random.choice(raw_data))
-        file_name,ravens_data=ravens_data_prime[0],ravens_data_prime[1]
+        ravens_data_prime = random.choice(raw_data)
+        file_name,ravens_data=copy.deepcopy(ravens_data_prime[0]),copy.deepcopy(ravens_data_prime[1])
         correction = {"Edges Needed":[],"Missing Nodes":[]}
 
         #rename line end
         branches = ravens_data['PowerSystemResource']['Equipment']['ConductingEquipment']['Conductor'].get('ACLineSegment', {})
-        for branch_id, branch_data in branches.items():
+        for branch_id, branch_data in list(branches.items()):
             if random.random() < rename_prob:
                 #store correct edge
                 correction['Edges Needed'].append((branch_data['ConductingEquipment.Terminals'][0]['Terminal.ConnectivityNode'].split("::")[-1].strip("\'"),
@@ -62,6 +63,11 @@ def gen_conn_error(
                 name_list[-1] = f"'{node_id}'"
                 edit_name = "::".join(name_list)
                 terminal['Terminal.ConnectivityNode'] = edit_name
+            elif random.random() < del_e_prob:
+                correction['Edges Needed'].append((branch_data['ConductingEquipment.Terminals'][0]['Terminal.ConnectivityNode'].split("::")[-1].strip("\'"),
+                                                    branch_data['ConductingEquipment.Terminals'][1]['Terminal.ConnectivityNode'].split("::")[-1].strip("\'")))
+                del branches[branch_id]
+                assert(branch_id not in branches.keys())
                 
 
         #delete nodes
@@ -71,7 +77,7 @@ def gen_conn_error(
                 correction["Missing Nodes"].append(bus_id)
                 ravens_data['ConnectivityNode'].pop(bus_id)
         
-        corrupted_mgr.raw_data.append([file_name,ravens_data])
+        corrupted_mgr.raw_data.append([file_name,ravens_data,ravens_data_prime[1]])
 
         corrections.append(correction)
     

@@ -244,6 +244,7 @@ class MGConnDataset(InMemoryDataset):
             mgr,
             size=target_size,
             delete_prob=0,
+            rename_prob=0,
             **self.error_kwargs,
         )
         corrupted_mgr.process_for_ML()
@@ -261,6 +262,7 @@ class MGConnDataset(InMemoryDataset):
         for i in range(target_size):
             # ----- corrupted graph ------------------------------------------------
             corrupted_raw_mgr = corrupted_mgr[i][1]      # raw dict of the corrupted graph
+            clean_raw_mgr = corrupted_mgr.raw_data[i][2]  
             corrupt_dict = corrupted_mgr[i][2]           # dict already in ML format
             corrupt_data = dict_to_pyg(corrupt_dict)
 
@@ -277,11 +279,10 @@ class MGConnDataset(InMemoryDataset):
             indexed_correction = [(find_index(a), find_index(b))
                                   for a, b in correction['Edges Needed']]
 
-            # Binary adjacency matrix of the missing edges (size 19×19 because
-            # the maximum number of nodes in the dataset is 19).
+            # Binary adjacency matrix of the missing edges.
             missing_edges = torch.zeros(
                 (self.max_nodes, self.max_nodes),   # shape
-                dtype=torch.float32                 # use float (or torch.bool)
+                dtype=torch.float32                 # use float 
             )
             for src, dst in indexed_correction:
                 missing_edges[src, dst] = 1
@@ -297,7 +298,7 @@ class MGConnDataset(InMemoryDataset):
                 f"mgr_data_tmp/{name}.json"
             )
             with open(mgr_path, "w", encoding="utf-8") as f:
-                json.dump(grid, f, indent=2)
+                json.dump(clean_raw_mgr, f, indent=2)#STORE THE CLEAN ORIGINAL
 
             # Attach the clean target to the corrupt graph.
             corrupt_data.y = {
