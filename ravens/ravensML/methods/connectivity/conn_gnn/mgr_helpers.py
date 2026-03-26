@@ -280,7 +280,7 @@ def run_pf(mgr_grid):
     with open(tmp_file, "w") as file:
         json.dump(mgr_grid, file, indent=2)
 
-    Main.eval("eng = parse_file(\""+tmp_file+"\")")   
+    Main.eval("eng = parse_file(\""+tmp_file.as_posix()+"\")")   
     Main.eval("rav_model = instantiate_mc_model_ravens(eng, IVRUPowerModel, build_mc_pf)")
     Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>0, \"tol\"=>1e-6),solution_processors=Function[])")
     info_path = (rML_ROOT/'methods/connectivity/conn_gnn/tmp/pf_info.json').as_posix()

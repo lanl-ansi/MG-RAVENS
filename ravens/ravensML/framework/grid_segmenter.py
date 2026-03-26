@@ -76,15 +76,15 @@ class grid_segmenter:
         # --------------------------------------------------------------
         complete = False
         while not complete:
-            # 1️⃣  Start from a clean template
+            # 1 Start from a clean template
             Sub_MGR = self._clean_mgr()
 
-            # 2️⃣  BFS state containers
+            # 2 BFS state containers
             added_nodes: set[tuple] = set()
             added_edges: set[tuple] = set()
             seen: deque[tuple[list, list]] = deque()
 
-            # 3️⃣  Choose a random start node
+            # 3 Choose a random start node
             node_path = ["ConnectivityNode"]
             all_nodes = list(self._get_item(node_path).keys())
             start_node = random.choice(all_nodes)
@@ -351,7 +351,7 @@ class grid_segmenter:
         with open(tmp_file, "w") as file:
             json.dump(mgr_grid, file, indent=2)
 
-        Main.eval("eng = parse_file(\""+tmp_file+"\")")
+        Main.eval("eng = parse_file(\""+tmp_file.as_posix()+"\")")
         Main.eval("rav_model = instantiate_mc_model_ravens(eng, IVRUPowerModel, build_mc_pf)")
         Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>0, \"tol\"=>1e-6),solution_processors=Function[])")
         info_path = (rML_ROOT/'framework/tmp/pf_info.json').as_posix()
@@ -403,7 +403,6 @@ class grid_segmenter:
 if __name__ == "__main__":
     import sys
     sys.path.append(rML_ROOT.resolve().parents[0])
-    print(rML_ROOT.resolve().parents[0])
     from ravens.xml.opendss2xml import DssExport
     from ravens.xml.xml2ravens import CrowsImport
     from ravens.ravensML.framework.dataset import MGRavensDataset
@@ -419,10 +418,10 @@ if __name__ == "__main__":
     # DS.visualize_graph()
 
     GS = grid_segmenter(PF_Val=True)
-    GS.load_from_file("ravens/ravensML/framework/segmenter_test_data/segmenter.json")
-    sub_MGR = GS.yield_graph(min_nodes=67,
-                         output_path="ravens/ravensML/framework/tmp/results/sub_mgr.json")
+    GS.load_from_file(rML_ROOT/"framework/segmenter_test_data/segmenter.json")
+    sub_MGR = GS.yield_graph(min_nodes=10,
+                         output_path=rML_ROOT/"framework/tmp/results/sub_mgr.json")
 
-    DS = MGRavensDataset(data_dir="ravens/ravensML/framework/tmp/results")
+    DS = MGRavensDataset(data_dir=rML_ROOT/"framework/tmp/results")
     DS.process_for_ML()
     DS.visualize_graph()
