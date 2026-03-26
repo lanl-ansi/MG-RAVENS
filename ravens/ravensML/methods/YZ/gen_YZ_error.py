@@ -3,7 +3,11 @@ import copy
 import random
 from typing import List, Sequence, Tuple, Any, Dict
 import numpy as np
-sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[2]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
 from framework.dataset import MGRavensDataset
 
 
@@ -78,7 +82,7 @@ def generate_yz_error(
 
 
 if __name__ == "__main__":
-    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")
+    MGR = MGRavensDataset(data_dir=rML_ROOT/'data'/'raw')
     MGR_CONN_TEST, Y = generate_yz_error(MGR,occurrence_prob=1,size=1)  
 
 

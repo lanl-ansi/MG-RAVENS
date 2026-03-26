@@ -2,7 +2,11 @@ import sys
 import copy
 import random
 from typing import List, Sequence, Tuple, Any, Dict
-sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[2]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
 from framework.dataset import MGRavensDataset
 
 

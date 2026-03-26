@@ -220,7 +220,11 @@ class MGConnDataset(InMemoryDataset):
         import sys
         # Append the location of the original RAVENS code so that the imports
         # below succeed in a stand‑alone environment.
-        sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+        from pathlib import Path
+        import sys, os
+        rML_ROOT = Path(__file__).resolve().parents[3]
+        if str(rML_ROOT) not in sys.path:
+            sys.path.insert(0, str(rML_ROOT))
         from framework.dataset import MGRavensDataset
         from methods.connectivity.gen_conn_error import gen_conn_error
 
@@ -293,10 +297,7 @@ class MGConnDataset(InMemoryDataset):
             # extraction, so we write it to a temporary location.
             name, grid = corrupt_dict["file_name"], corrupt_dict["original_data"]
             name = os.path.splitext(os.path.basename(name))[0]
-            mgr_path = (
-                f"ravens/ravensML/methods/connectivity/conn_gnn/tmp/"
-                f"mgr_data_tmp/{name}.json"
-            )
+            mgr_path = (f"{rML_ROOT.as_posix()}/methods/connectivity/conn_gnn/tmp/mgr_data_tmp/{name}.json")
             with open(mgr_path, "w", encoding="utf-8") as f:
                 json.dump(clean_raw_mgr, f, indent=2)#STORE THE CLEAN ORIGINAL
 
@@ -346,10 +347,15 @@ class MGConnDataset(InMemoryDataset):
 # Simple sanity‑check when the module is executed directly
 # ----------------------------------------------------------------------
 if __name__ == '__main__':
+    from pathlib import Path
+    import sys, os
+    rML_ROOT = Path(__file__).resolve().parents[3]
+    if str(rML_ROOT) not in sys.path:
+        sys.path.insert(0, str(rML_ROOT))
     dataset = MGConnDataset(
-        root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
+        root=rML_ROOT,
         size=20,
         max_nodes=20,
-        error_kwargs={"rename_prob": 0.20},
+        error_kwargs={"del_e_prob": 0.20},
     )
     print(dataset[1])

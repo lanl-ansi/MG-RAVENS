@@ -188,8 +188,11 @@ class t_MG_Dataset(InMemoryDataset):
     # Main processing pipeline
     # ------------------------------------------------------------------
     def process(self):
-        import sys
-        sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+        from pathlib import Path
+        import sys, os
+        rML_ROOT = Path(__file__).resolve().parents[2]
+        if str(rML_ROOT) not in sys.path:
+            sys.path.insert(0, str(rML_ROOT))
         from framework.dataset import MGRavensDataset
         from framework.templates.t_synthetic_transform import t_generate_synthetic_transform
 

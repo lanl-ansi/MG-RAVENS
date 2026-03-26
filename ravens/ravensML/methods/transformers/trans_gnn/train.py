@@ -15,6 +15,10 @@ from training_tools import train_epoch, validate
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[3]
+
 # reproducibility
 torch.manual_seed(42)
 
@@ -22,8 +26,8 @@ torch.manual_seed(42)
 #   Dataset
 # -------------------------
 dataset = MGTransformerDataset(
-    root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
-    size=80000,
+    root=rML_ROOT,
+    size=5,
     error_kwargs={"deletion_prob": 0.01, 
                   "occurrence_prob": 0.55,
                   "mult_mean": 1,
@@ -107,7 +111,7 @@ for epoch in range(1, epochs + 1):
     # checkpoint
     if va_loss < best_val:
         best_val = va_loss
-        torch.save(model.state_dict(), "ravens/ravensML/methods/transformers/trans_gnn/tmp/best_model.pth")
+        torch.save(model.state_dict(), rML_ROOT/"methods/transformers/trans_gnn/tmp/best_model.pth")
         print("  -> saved new best model")
 
 # -------------------------
@@ -121,7 +125,7 @@ plt.ylabel("MSE")
 plt.legend()
 plt.title("Training / Validation loss")
 plt.tight_layout()
-plt.savefig("ravens/ravensML/methods/transformers/trans_gnn/tmp/loss_plot.png")
+plt.savefig(rML_ROOT/"methods/transformers/trans_gnn/tmp/loss_plot.png")
 plt.close()
 
 # -------------------------

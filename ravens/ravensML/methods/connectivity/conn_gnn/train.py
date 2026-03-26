@@ -7,11 +7,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 import pprint
-import os
-import sys
-sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
-# from mgr_helpers import unpack_edge
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[3]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
 
+# from mgr_helpers import unpack_edge
 from methods.connectivity.conn_gnn.data import MGConnDataset
 from methods.connectivity.conn_gnn.model import SimpleGNN, AttnGNN
 from framework.tools.training_tools import train_epoch, validate
@@ -19,7 +21,7 @@ from framework.tools.training_tools import train_epoch, validate
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
-TEST_NAME = "PI_Small_"
+TEST_NAME = "PI_ATTN_"
 
 # reproducibility
 torch.manual_seed(42)
@@ -28,8 +30,8 @@ torch.manual_seed(42)
 #   Dataset
 # -------------------------
 dataset = MGConnDataset(
-        root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
-        size=500,
+        root=rML_ROOT,
+        size=1000,
         max_nodes=20,
         error_kwargs={"del_e_prob": 0.15},
 )
@@ -73,11 +75,12 @@ model = SimpleGNN(
     transport_distance=10
 ).to(device)
 
-# model = AttnGNN(
-#     node_features=node_feat_dim,
-#     edge_features=edge_feat_dim,
-#     degree=deg,
-#     transport_distance=0).to(device)
+model = AttnGNN(
+    node_features=node_feat_dim,
+    edge_features=edge_feat_dim,
+    degree=deg,
+    max_nodes = 20,
+    transport_distance=0).to(device)
 
 print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(20*20)}")
 
@@ -101,7 +104,7 @@ loss_fn =  cl.PIAdjMSELoss(
 )
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 60
+epochs = 400
 
 # training parameters
 best_val = float('inf')
@@ -122,7 +125,7 @@ for epoch in range(1, epochs + 1):
     # checkpoint
     if va_loss < best_val:
         best_val = va_loss
-        torch.save(model.state_dict(), f"ravens/ravensML/methods/connectivity/conn_gnn/tmp/{TEST_NAME}best_model.pth")
+        torch.save(model.state_dict(), rML_ROOT/f"methods/connectivity/conn_gnn/tmp/{TEST_NAME}best_model.pth")
         print("  -> saved new best model")
 
 # -------------------------
@@ -136,7 +139,7 @@ plt.ylabel("MSE")
 plt.legend()
 plt.title("Training / Validation loss")
 plt.tight_layout()
-plt.savefig(f"ravens/ravensML/methods/connectivity/conn_gnn/tmp/{TEST_NAME}loss_plot.png")
+plt.savefig(rML_ROOT/f"methods/connectivity/conn_gnn/tmp/{TEST_NAME}loss_plot.png")
 plt.close()
 
 # -------------------------

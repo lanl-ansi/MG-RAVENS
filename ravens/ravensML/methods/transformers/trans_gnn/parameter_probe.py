@@ -9,9 +9,16 @@ import pprint
 import itertools
 from mgr_helpers import unpack_edge
 
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[3]
+
 from data import MGTransformerDataset
 from model import SimpleGNN, AttnGNN
 from training_tools import train_epoch, validate
+
+
+
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
@@ -117,7 +124,7 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
 if __name__ == "__main__":
     # Setup Dataset
     dataset = MGTransformerDataset(
-        root="/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML",
+        root=rML_ROOT,
         size=20000,
         error_kwargs={"deletion_prob": 0.01, 
                     "occurrence_prob": 0.55,

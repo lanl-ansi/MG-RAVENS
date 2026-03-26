@@ -190,8 +190,11 @@ class MGTransformerDataset(InMemoryDataset):
     # Main processing pipeline
     # ------------------------------------------------------------------
     def process(self):
-        import sys
-        sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+        from pathlib import Path
+        import sys, os
+        rML_ROOT = Path(__file__).resolve().parents[3]
+        if str(rML_ROOT) not in sys.path:
+            sys.path.insert(0, str(rML_ROOT))
         from framework.dataset import MGRavensDataset
         from methods.transformers.gen_trans_error import generate_trans_error
 
@@ -237,7 +240,7 @@ class MGTransformerDataset(InMemoryDataset):
             # ``y`` will be a dict with ``x`` and ``edge_attr`` of the clean graph.
             name, grid = clean_dict["file_name"], clean_dict["original_data"]
             name = os.path.splitext(os.path.basename(name))[0]
-            mgr_path = f"ravens/ravensML/methods/transformers/trans_gnn/tmp/mgr_data_tmp/{name}.json"
+            mgr_path = f"{rML_ROOT.as_posix()}/methods/transformers/trans_gnn/tmp/mgr_data_tmp/{name}.json"
             with open(mgr_path, "w", encoding="utf-8") as f:
                 json.dump(grid, f, indent=2)
 
@@ -277,3 +280,15 @@ class MGTransformerDataset(InMemoryDataset):
     def __getitem__(self, idx):
         # Returns a single Data object whose .y holds the clean target
         return super().__getitem__(idx)
+
+if __name__ == '__main__':
+    from pathlib import Path
+    import sys, os
+    rML_ROOT = Path(__file__).resolve().parents[3]
+    if str(rML_ROOT) not in sys.path:
+        sys.path.insert(0, str(rML_ROOT))
+    dataset = MGTransformerDataset(
+        root=rML_ROOT,
+        size=20,
+    )
+    print(dataset[1])

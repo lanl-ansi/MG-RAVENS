@@ -3,7 +3,11 @@ import copy
 import random
 from typing import List, Sequence, Tuple, Any, Dict
 import numpy as np
-sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[2]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
 from framework.dataset import MGRavensDataset
 
 
@@ -67,7 +71,7 @@ def t_generate_synthetic_transform(
 
 
 if __name__ == "__main__":
-    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/trans_test")
+    MGR = MGRavensDataset(data_dir=rML_ROOT/'data/trans_test')
     MGR_TEST, Y = t_generate_synthetic_transform(MGR,syth_data_param_0=1,size=1)  
     
 

@@ -1,13 +1,17 @@
 import os
 import sys
 import numpy as np
-from data import MGTransformerDataset
 import json
 import re
 import torch
 import copy
-sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[3]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
 from framework.dataset import MGRavensDataset
+from methods.transformers.trans_gnn.data import MGTransformerDataset
 from warnings import warn
 warn("Deprecated: please use framework.tools.mgr_helpers rather than the this version")
 
@@ -122,7 +126,8 @@ def run_pf(mgr_grid):
     """
     # Initialize Julia once at the beginning
     from julia.api import Julia
-    jl = Julia(runtime="/Users/oreed/.juliaup/bin/julia", compiled_modules=False)
+    julia_path = rML_ROOT.parents[4]/'.juliaup/bin/julia' #NOTE: juliaup should be installed in the user directory
+    jl = Julia(runtime=julia_path, compiled_modules=False)
 
     # Import Julia modules through PyJulia
     from julia import PowerModelsDistribution as PMD
@@ -133,29 +138,23 @@ def run_pf(mgr_grid):
     Main.eval("import JSON")
     Main.eval("using Ipopt")
     Main.eval("using PowerModelsDistribution")
-    os.makedirs("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/methods/transformers/trans_gnn/tmp", exist_ok=True)
+    os.makedirs(rML_ROOT/'methods/transformers/trans_gnn/tmp', exist_ok=True)
     
-    tmp_file = "/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/methods/transformers/trans_gnn/tmp/tmp_pf.json"
+    tmp_file = rML_ROOT/'methods/transformers/trans_gnn/tmp/tmp_pf.json'
     with open(tmp_file, "w") as file:
         json.dump(mgr_grid, file, indent=2)
 
-    Main.eval("eng = parse_file(\""+tmp_file+"\")")
-
-    Main.eval("""
-    open("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/methods/transformers/trans_gnn/tmp/debug_eng.json", "w") do f
-        JSON.print(f, eng)
-    end
-    """)
-    
+    Main.eval("eng = parse_file(\""+tmp_file+"\")")    
     Main.eval("rav_model = instantiate_mc_model_ravens(eng, IVRUPowerModel, build_mc_pf)")
     Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>0, \"tol\"=>1e-6),solution_processors=Function[])")
-    Main.eval("""
-    open("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/methods/transformers/trans_gnn/tmp/pf_info.json", "w") do f
-        JSON.print(f, result)
-    end
-    """)
+    info_path = (rML_ROOT/'methods/transformers/trans_gnn/tmp/pf_info.json').as_posix()
+    Main.eval(f'''
+        open("{info_path}", "w") do f
+            JSON.print(f, result)
+        end
+        ''')
 
-    with open("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/methods/transformers/trans_gnn/tmp/pf_info.json", 'r') as file:
+    with open(info_path, 'r') as file:
         file_content = json.load(file)
 
     return file_content

@@ -5,6 +5,11 @@ import random
 from collections import deque
 import os
 import re
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[1]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
 
 class grid_segmenter:
     """
@@ -329,8 +334,8 @@ class grid_segmenter:
         """
         # Initialize Julia once at the beginning
         from julia.api import Julia
-        jl = Julia(runtime="/Users/oreed/.juliaup/bin/julia", compiled_modules=False)
-
+        julia_path = rML_ROOT.parents[4]/'.juliaup/bin/julia' #NOTE: juliaup should be installed in the user directory
+        jl = Julia(runtime=julia_path, compiled_modules=False)
         # Import Julia modules through PyJulia
         from julia import PowerModelsDistribution as PMD
         from julia import Ipopt
@@ -340,29 +345,23 @@ class grid_segmenter:
         Main.eval("import JSON")
         Main.eval("using Ipopt")
         Main.eval("using PowerModelsDistribution")
-        os.makedirs("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/framework/tmp", exist_ok=True)
+        os.makedirs(rML_ROOT/'framework/tmp', exist_ok=True)
         
-        tmp_file = "/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/framework/tmp/tmp_pf.json"
+        tmp_file = rML_ROOT/'framework/tmp/tmp_pf.json'
         with open(tmp_file, "w") as file:
             json.dump(mgr_grid, file, indent=2)
 
         Main.eval("eng = parse_file(\""+tmp_file+"\")")
-
-        Main.eval("""
-        open("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/framework/tmp/debug_eng.json", "w") do f
-            JSON.print(f, eng)
-        end
-        """)
-        
         Main.eval("rav_model = instantiate_mc_model_ravens(eng, IVRUPowerModel, build_mc_pf)")
         Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>0, \"tol\"=>1e-6),solution_processors=Function[])")
-        Main.eval("""
-        open("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/framework/tmp/pf_info.json", "w") do f
-            JSON.print(f, result)
-        end
-        """)
+        info_path = (rML_ROOT/'framework/tmp/pf_info.json').as_posix()
+        Main.eval(f'''
+            open("{info_path}", "w") do f
+                JSON.print(f, result)
+            end
+            ''')
 
-        with open("/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML/framework/tmp/pf_info.json", 'r') as file:
+        with open(info_path, 'r') as file:
             file_content = json.load(file)
 
         return file_content
@@ -403,10 +402,11 @@ class grid_segmenter:
 
 if __name__ == "__main__":
     import sys
-    sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/')
-    # from ravens.xml.opendss2xml import DssExport
-    # from ravens.xml.xml2ravens import CrowsImport
-    from ravensML.framework.dataset import MGRavensDataset
+    sys.path.append(rML_ROOT.resolve().parents[0])
+    print(rML_ROOT.resolve().parents[0])
+    from ravens.xml.opendss2xml import DssExport
+    from ravens.xml.xml2ravens import CrowsImport
+    from ravens.ravensML.framework.dataset import MGRavensDataset
 
     # d = DssExport("ravens/ravensML/data/IEEE8500/Master.dss")
     # d.save("ravens/ravensML/framework/tmp/segmenter.xml")

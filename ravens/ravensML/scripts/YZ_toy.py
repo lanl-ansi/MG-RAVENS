@@ -5,7 +5,11 @@ import networkx as nx
 import numpy as np
 from collections import Counter
 from typing import List, Sequence, Tuple, Any, Dict, Set
-sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[1]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
 from framework.dataset import MGRavensDataset
 from methods.YZ.trivial_solution.YZ_IterativeOpti import YZ_Iterative_Optimizer
 from methods.YZ.gen_YZ_error import generate_yz_error

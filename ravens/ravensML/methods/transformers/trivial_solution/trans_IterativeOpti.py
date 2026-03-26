@@ -8,18 +8,27 @@ import json
 import numpy as np
 import copy
 
+
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[3]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
+
+
 # Initialize Julia once at the beginning
 from julia.api import Julia
-jl = Julia(runtime="/Users/oreed/.juliaup/bin/julia", compiled_modules=False)
+julia_path = rML_ROOT.parents[4]/'.juliaup/bin/julia' #NOTE: juliaup should be installed in the user directory
+jl = Julia(runtime=julia_path, compiled_modules=False)
 
 # Import Julia modules through PyJulia
 from julia import PowerModelsDistribution as PMD
 from julia import Ipopt
 from julia import Main
 
-sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+
 from framework.dataset import MGRavensDataset
-DEBUG = "ravens/ravensML/methods/transformers/trivial_solution/tmp/log.txt"
+DEBUG = rML_ROOT/'methods/transformers/trivial_solution/tmp/log.txt'
 class Trans_Iterative_Optimizer(object):
     def __init__(self,max_iter=10):
         self.input_dataset = None
@@ -275,20 +284,21 @@ class Trans_Iterative_Optimizer(object):
         """
         os.makedirs("tmp", exist_ok=True)
         
-        tmp_file = "ravens/ravensML/methods/transformers/trivial_solution/tmp/tmp_pf.json"
+        tmp_file = rML_ROOT/'methods/transformers/trivial_solution/tmp/tmp_pf.json'
         with open(tmp_file, "w") as file:
             json.dump(mgr_grid, file, indent=2)
  
-        Main.eval("eng = parse_file(\""+tmp_file+"\")")
+        Main.eval("eng = parse_file(\""+tmp_file.as_posix()+"\")")
         Main.eval("rav_model = instantiate_mc_model_ravens(eng, IVRUPowerModel, build_mc_pf)")
-        Main.eval("""
-        open("ravens/ravensML/methods/transformers/trivial_solution/tmp/mc_info.json", "w") do f
-            JSON.print(f, rav_model, 2)
-        end
-        """)
+        output_path = (rML_ROOT / 'methods/transformers/trivial_solution/tmp/mc_info.json').as_posix()
+        Main.eval(f'''
+            open("{output_path}", "w") do f
+                JSON.print(f, rav_model, 2)
+            end
+            ''')
         
         #process branch map between Ravens and Power Models Distribution
-        with open("ravens/ravensML/methods/transformers/trivial_solution/tmp/mc_info.json", 'r') as file:
+        with open(rML_ROOT/'methods/transformers/trivial_solution/tmp/mc_info.json', 'r') as file:
             rav_model = json.load(file)
         rav_model_branches = rav_model["data"]["branch"]
 
@@ -301,13 +311,14 @@ class Trans_Iterative_Optimizer(object):
         self.P2R = {str(b["index"]):clean(b["name"]) for b in rav_model_branches.values()}
         
         Main.eval("result = optimize_model!(rav_model,relax_integrality=false,optimizer=optimizer_with_attributes(Ipopt.Optimizer, \"print_level\"=>0, \"tol\"=>1e-6),solution_processors=Function[])")
-        Main.eval("""
-        open("ravens/ravensML/methods/transformers/trivial_solution/tmp/pf_info.json", "w") do f
-            JSON.print(f, result)
-        end
-        """)
+        info_path = (rML_ROOT / 'methods/transformers/trivial_solution/tmp/pf_info.json').as_posix()
+        Main.eval(f'''
+            open("{info_path}", "w") do f
+                JSON.print(f, result)
+            end
+            ''')
     
-        with open("ravens/ravensML/methods/transformers/trivial_solution/tmp/pf_info.json", 'r') as file:
+        with open(rML_ROOT/'methods/transformers/trivial_solution/tmp/pf_info.json', 'r') as file:
             file_content = json.load(file)
 
         return file_content
@@ -421,7 +432,7 @@ class Trans_Iterative_Optimizer(object):
 
 if __name__ == "__main__":
     from methods.transformers.gen_trans_error import generate_trans_error
-    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/proposed_trans_test")
+    MGR = MGRavensDataset(data_dir=rML_ROOT/'data/trans_test')
     MGR_Trans, Y = generate_trans_error(MGR, occurrence_prob=0,
                                     deletion_prob=0,
                                     mult_mean = 1,

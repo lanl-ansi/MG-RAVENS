@@ -4,7 +4,11 @@ import re
 import networkx as nx
 from collections import Counter
 from typing import List, Sequence, Tuple, Any, Dict, Set
-sys.path.append('/Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/ravens/ravensML')
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[1]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
 from framework.dataset import MGRavensDataset
 from methods.connectivity.trivial_solution.graph_search_connectivity import GraphSearchConnectivity
 from methods.connectivity.gen_conn_error import gen_conn_error
