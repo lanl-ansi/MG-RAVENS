@@ -176,8 +176,17 @@ Within the context of the ravensML framework, the usage of MG-RAVENS files shoul
   - `sample` - correct y value pytorch object
   - outputs: MG-Ravens grid object with updated parameters
 - `tools.mgr_helpers.run_pf(mgr_grid)`
-  - `mgr_grid` - MG-Ravens grid object 
+  - `mgr_grid` - MG-Ravens grid object
   - outputs: result of running a power flow computation on the given grid using `PowerModelsDistribution.jl`
+
+**Note:** In order to use the `PowerModelsDistribution.jl` enabled `run_pf` function or any other `PMD` reliant function you need to install the `juliaup` package.
+This may require you to modify the following path line in the code in whatever files it appears.
+
+```python
+julia_path = rML_ROOT.parents[4]/'.juliaup/bin/julia'
+```
+
+The current implementation assumes the `.juliaup` directory exists in a directory that is the parent of the parent of MG-RAVENS. This is a work in progress.
 
 ### Training Tools
 
