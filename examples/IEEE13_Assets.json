@@ -11,8 +11,7 @@
           "IdentifiedObject.name": "OpLimI_230.0_345.0_Emerg",
           "CurrentLimit.value": 345.0,
           "CurrentLimit.normalValue": 230.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/94f2980c-863f-4b41-a3ae-e30e79f05d3a"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -20,8 +19,7 @@
           "IdentifiedObject.name": "OpLimI_230.0_345.0_Norm",
           "CurrentLimit.value": 230.0,
           "CurrentLimit.normalValue": 230.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/94f2980c-863f-4b41-a3ae-e30e79f05d3a"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         }
       ]
     },
@@ -36,8 +34,7 @@
           "IdentifiedObject.name": "OpLimI_730.0_1095.0_Emerg",
           "CurrentLimit.value": 1095.0,
           "CurrentLimit.normalValue": 730.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/28cd47ae-10a7-4368-bd95-0a0a056c1784"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -45,8 +42,7 @@
           "IdentifiedObject.name": "OpLimI_730.0_1095.0_Norm",
           "CurrentLimit.value": 730.0,
           "CurrentLimit.normalValue": 730.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/28cd47ae-10a7-4368-bd95-0a0a056c1784"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         }
       ]
     },
@@ -61,8 +57,7 @@
           "IdentifiedObject.name": "OpLimI_340.0_510.0_Emerg",
           "CurrentLimit.value": 510.0,
           "CurrentLimit.normalValue": 340.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/99347b2d-6606-48b7-ae22-b9471776f949"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -70,8 +65,7 @@
           "IdentifiedObject.name": "OpLimI_340.0_510.0_Norm",
           "CurrentLimit.value": 340.0,
           "CurrentLimit.normalValue": 340.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/99347b2d-6606-48b7-ae22-b9471776f949"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         }
       ]
     },
@@ -86,8 +80,7 @@
           "IdentifiedObject.name": "OpLimI_112.41675914509538_149.88901219346053_Norm",
           "CurrentLimit.value": 112.41675914509538,
           "CurrentLimit.normalValue": 112.41675914509538,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/470c945a-f703-4c39-9b87-e67ea293e278"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -95,8 +88,7 @@
           "IdentifiedObject.name": "OpLimI_112.41675914509538_149.88901219346053_Emerg",
           "CurrentLimit.value": 149.88901219346053,
           "CurrentLimit.normalValue": 112.41675914509538,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/470c945a-f703-4c39-9b87-e67ea293e278"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         }
       ]
     },
@@ -111,8 +103,7 @@
           "IdentifiedObject.name": "OpLimI_165.0_247.5_Norm",
           "CurrentLimit.value": 165.0,
           "CurrentLimit.normalValue": 165.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/24bc4aa1-d405-4561-b74e-6f5f56adedf6"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -120,8 +111,7 @@
           "IdentifiedObject.name": "OpLimI_165.0_247.5_Emerg",
           "CurrentLimit.value": 247.5,
           "CurrentLimit.normalValue": 165.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/24bc4aa1-d405-4561-b74e-6f5f56adedf6"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         }
       ]
     },
@@ -136,8 +126,7 @@
           "IdentifiedObject.name": "OpLimI_76.33236732074378_104.08959180101425_Norm",
           "CurrentLimit.value": 76.33236732074378,
           "CurrentLimit.normalValue": 76.33236732074378,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/46abf171-4551-41cd-889d-81ec620b981a"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -145,8 +134,7 @@
           "IdentifiedObject.name": "OpLimI_76.33236732074378_104.08959180101425_Emerg",
           "CurrentLimit.value": 104.08959180101425,
           "CurrentLimit.normalValue": 76.33236732074378,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/46abf171-4551-41cd-889d-81ec620b981a"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         }
       ]
     },
@@ -161,8 +149,7 @@
           "IdentifiedObject.name": "OpLimI_260.0_390.0_Norm",
           "CurrentLimit.value": 260.0,
           "CurrentLimit.normalValue": 260.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/9719d317-c879-442f-a535-6fd84ffb0266"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -170,8 +157,7 @@
           "IdentifiedObject.name": "OpLimI_260.0_390.0_Emerg",
           "CurrentLimit.value": 390.0,
           "CurrentLimit.normalValue": 260.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/9719d317-c879-442f-a535-6fd84ffb0266"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         }
       ]
     },
@@ -186,8 +172,7 @@
           "IdentifiedObject.name": "OpLimI_56.25000000000001_75.00000000000001_Norm",
           "CurrentLimit.value": 56.25000000000001,
           "CurrentLimit.normalValue": 56.25000000000001,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/af06d374-bb75-4371-af8b-4a2825116d63"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -195,8 +180,7 @@
           "IdentifiedObject.name": "OpLimI_56.25000000000001_75.00000000000001_Emerg",
           "CurrentLimit.value": 75.00000000000001,
           "CurrentLimit.normalValue": 56.25000000000001,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/af06d374-bb75-4371-af8b-4a2825116d63"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         }
       ]
     },
@@ -211,8 +195,7 @@
           "IdentifiedObject.name": "OpLimI_763.5833333333334_1041.25_Emerg",
           "CurrentLimit.value": 1041.25,
           "CurrentLimit.normalValue": 763.5833333333334,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/3496bd7b-f0f2-4a0c-80fc-fa59a8802422"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -220,8 +203,7 @@
           "IdentifiedObject.name": "OpLimI_763.5833333333334_1041.25_Norm",
           "CurrentLimit.value": 763.5833333333334,
           "CurrentLimit.normalValue": 763.5833333333334,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/3496bd7b-f0f2-4a0c-80fc-fa59a8802422"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         }
       ]
     },
@@ -236,8 +218,7 @@
           "IdentifiedObject.name": "OpLimI_230.0_600.0_Norm",
           "CurrentLimit.value": 230.0,
           "CurrentLimit.normalValue": 230.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f17f65ee-3228-4b35-a696-721de8186f04"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -245,8 +226,7 @@
           "IdentifiedObject.name": "OpLimI_230.0_600.0_Emerg",
           "CurrentLimit.value": 600.0,
           "CurrentLimit.normalValue": 230.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f17f65ee-3228-4b35-a696-721de8186f04"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         }
       ]
     },
@@ -261,8 +241,7 @@
           "IdentifiedObject.name": "OpLimI_27.61240417863427_37.65327842541037_Norm",
           "CurrentLimit.value": 27.61240417863427,
           "CurrentLimit.normalValue": 27.61240417863427,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/79e89760-8608-4908-a75f-583b29e8780c"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
         },
         {
           "Ravens.cimObjectType": "CurrentLimit",
@@ -270,8 +249,7 @@
           "IdentifiedObject.name": "OpLimI_27.61240417863427_37.65327842541037_Emerg",
           "CurrentLimit.value": 37.65327842541037,
           "CurrentLimit.normalValue": 27.61240417863427,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/79e89760-8608-4908-a75f-583b29e8780c"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
         }
       ]
     },
@@ -286,8 +264,7 @@
           "IdentifiedObject.name": "OpLimV_455.99999999999994-504.0_RangeAlow",
           "VoltageLimit.value": 455.99999999999994,
           "VoltageLimit.normalValue": 480.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'lowType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/165f7801-563b-482e-acd7-294bc8f41ce7"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'lowType_5000000000.0s'"
         },
         {
           "Ravens.cimObjectType": "VoltageLimit",
@@ -295,8 +272,7 @@
           "IdentifiedObject.name": "OpLimV_455.99999999999994-504.0_RangeAhigh",
           "VoltageLimit.value": 504.0,
           "VoltageLimit.normalValue": 480.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'highType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/165f7801-563b-482e-acd7-294bc8f41ce7"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'highType_5000000000.0s'"
         }
       ]
     },
@@ -311,8 +287,7 @@
           "IdentifiedObject.name": "OpLimV_3952.0-4368.0_RangeAlow",
           "VoltageLimit.value": 3952.0,
           "VoltageLimit.normalValue": 4160.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'lowType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/84a77a01-b5e8-4487-8263-ce2a3195a44b"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'lowType_5000000000.0s'"
         },
         {
           "Ravens.cimObjectType": "VoltageLimit",
@@ -320,8 +295,7 @@
           "IdentifiedObject.name": "OpLimV_3952.0-4368.0_RangeAhigh",
           "VoltageLimit.value": 4368.0,
           "VoltageLimit.normalValue": 4160.0,
-          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'highType_5000000000.0s'",
-          "OperationalLimit.OperationalLimitSet": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/84a77a01-b5e8-4487-8263-ce2a3195a44b"
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'highType_5000000000.0s'"
         }
       ]
     }
@@ -350,7 +324,6 @@
                   "IdentifiedObject.name": "645_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.B",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/fa4d9ecb-ebc1-42f8-89d8-66d2ab5b543d",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'645'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -362,8 +335,7 @@
                   "IdentifiedObject.name": "645_B",
                   "EnergyConsumerPhase.p": 170000.0,
                   "EnergyConsumerPhase.q": 125000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/fa4d9ecb-ebc1-42f8-89d8-66d2ab5b543d"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B"
                 }
               ]
             },
@@ -386,7 +358,6 @@
                   "IdentifiedObject.name": "692_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.C",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c39fa5da-2941-4951-821e-fbf9746e3c0c",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'692'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -398,8 +369,7 @@
                   "IdentifiedObject.name": "692_C",
                   "EnergyConsumerPhase.p": 170000.0,
                   "EnergyConsumerPhase.q": 151000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c39fa5da-2941-4951-821e-fbf9746e3c0c"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C"
                 }
               ]
             },
@@ -422,7 +392,6 @@
                   "IdentifiedObject.name": "670b_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.B",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f0ec8acb-5dd8-4661-ae46-b111d303cd85",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'670'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -434,8 +403,7 @@
                   "IdentifiedObject.name": "670b_B",
                   "EnergyConsumerPhase.p": 66000.0,
                   "EnergyConsumerPhase.q": 38000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f0ec8acb-5dd8-4661-ae46-b111d303cd85"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B"
                 }
               ]
             },
@@ -458,7 +426,6 @@
                   "IdentifiedObject.name": "675b_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.B",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/83f90562-462d-4a4f-be21-10182eaa7f31",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'675'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -470,8 +437,7 @@
                   "IdentifiedObject.name": "675b_B",
                   "EnergyConsumerPhase.p": 68000.0,
                   "EnergyConsumerPhase.q": 60000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/83f90562-462d-4a4f-be21-10182eaa7f31"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B"
                 }
               ]
             },
@@ -494,7 +460,6 @@
                   "IdentifiedObject.name": "634b_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.B",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/4c7b49a2-96eb-46cb-b53a-d4803453043a",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'634'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_455.99999999999994-504.0'"
                 }
@@ -506,8 +471,7 @@
                   "IdentifiedObject.name": "634b_B",
                   "EnergyConsumerPhase.p": 120000.0,
                   "EnergyConsumerPhase.q": 90000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/4c7b49a2-96eb-46cb-b53a-d4803453043a"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B"
                 }
               ]
             },
@@ -530,7 +494,6 @@
                   "IdentifiedObject.name": "634a_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.A",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/0800f817-e3f6-4799-a489-a4332720f0ca",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'634'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_455.99999999999994-504.0'"
                 }
@@ -542,8 +505,7 @@
                   "IdentifiedObject.name": "634a_A",
                   "EnergyConsumerPhase.p": 160000.0,
                   "EnergyConsumerPhase.q": 110000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.A",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/0800f817-e3f6-4799-a489-a4332720f0ca"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.A"
                 }
               ]
             },
@@ -566,7 +528,6 @@
                   "IdentifiedObject.name": "671_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/9b6c92a0-17d2-43b5-b2a9-23bb813718bc",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'671'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -591,7 +552,6 @@
                   "IdentifiedObject.name": "646_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.B",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/d58b8cdc-628e-4419-89d8-006796042807",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'646'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -603,8 +563,7 @@
                   "IdentifiedObject.name": "646_B",
                   "EnergyConsumerPhase.p": 230000.0,
                   "EnergyConsumerPhase.q": 132000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/d58b8cdc-628e-4419-89d8-006796042807"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.B"
                 }
               ]
             },
@@ -627,7 +586,6 @@
                   "IdentifiedObject.name": "652_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.A",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/09bb984f-09c8-4b7c-a75a-ceea7e4eae82",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'652'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -639,8 +597,7 @@
                   "IdentifiedObject.name": "652_A",
                   "EnergyConsumerPhase.p": 128000.0,
                   "EnergyConsumerPhase.q": 86000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.A",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/09bb984f-09c8-4b7c-a75a-ceea7e4eae82"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.A"
                 }
               ]
             },
@@ -663,7 +620,6 @@
                   "IdentifiedObject.name": "675a_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.A",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/dc7ec964-7df2-4fe9-a352-612999fed0cd",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'675'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -675,8 +631,7 @@
                   "IdentifiedObject.name": "675a_A",
                   "EnergyConsumerPhase.p": 485000.0,
                   "EnergyConsumerPhase.q": 190000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.A",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/dc7ec964-7df2-4fe9-a352-612999fed0cd"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.A"
                 }
               ]
             },
@@ -699,7 +654,6 @@
                   "IdentifiedObject.name": "611_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.C",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/64774c3f-2c4b-43c3-840c-488052889933",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'611'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -711,8 +665,7 @@
                   "IdentifiedObject.name": "611_C",
                   "EnergyConsumerPhase.p": 170000.0,
                   "EnergyConsumerPhase.q": 80000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/64774c3f-2c4b-43c3-840c-488052889933"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C"
                 }
               ]
             },
@@ -735,7 +688,6 @@
                   "IdentifiedObject.name": "634c_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.C",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bb97a148-7b49-4f04-b26c-bb5f0f8babfb",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'634'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_455.99999999999994-504.0'"
                 }
@@ -747,8 +699,7 @@
                   "IdentifiedObject.name": "634c_C",
                   "EnergyConsumerPhase.p": 120000.0,
                   "EnergyConsumerPhase.q": 90000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bb97a148-7b49-4f04-b26c-bb5f0f8babfb"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C"
                 }
               ]
             },
@@ -771,7 +722,6 @@
                   "IdentifiedObject.name": "675c_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.C",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/5bdb71ef-dda9-466a-939c-cbe7a92b5e3b",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'675'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -783,8 +733,7 @@
                   "IdentifiedObject.name": "675c_C",
                   "EnergyConsumerPhase.p": 290000.0,
                   "EnergyConsumerPhase.q": 212000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/5bdb71ef-dda9-466a-939c-cbe7a92b5e3b"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C"
                 }
               ]
             },
@@ -807,7 +756,6 @@
                   "IdentifiedObject.name": "670c_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.C",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8f715450-3553-4e6e-bfd9-f6a5760cb51e",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'670'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -819,8 +767,7 @@
                   "IdentifiedObject.name": "670c_C",
                   "EnergyConsumerPhase.p": 117000.0,
                   "EnergyConsumerPhase.q": 68000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8f715450-3553-4e6e-bfd9-f6a5760cb51e"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.C"
                 }
               ]
             },
@@ -843,7 +790,6 @@
                   "IdentifiedObject.name": "670a_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.A",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/25185587-49f4-47a4-aa1a-e5ea439e1c71",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'670'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_3952.0-4368.0'"
                 }
@@ -855,8 +801,7 @@
                   "IdentifiedObject.name": "670a_A",
                   "EnergyConsumerPhase.p": 17000.0,
                   "EnergyConsumerPhase.q": 10000.0,
-                  "EnergyConsumerPhase.phase": "SinglePhaseKind.A",
-                  "EnergyConsumerPhase.EnergyConsumer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/25185587-49f4-47a4-aa1a-e5ea439e1c71"
+                  "EnergyConsumerPhase.phase": "SinglePhaseKind.A"
                 }
               ]
             }
@@ -887,7 +832,6 @@
                     "IdentifiedObject.name": "cap2_T1",
                     "ACDCTerminal.sequenceNumber": 1,
                     "Terminal.phases": "PhaseCode.C",
-                    "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2c2a712b-d614-4be1-bcf5-ba91053130ad",
                     "Terminal.ConnectivityNode": "ConnectivityNode::'611'",
                     "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_56.25000000000001_75.00000000000001'"
                   }
@@ -917,7 +861,6 @@
                     "IdentifiedObject.name": "cap1_T1",
                     "ACDCTerminal.sequenceNumber": 1,
                     "Terminal.phases": "PhaseCode.ABC",
-                    "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/db28cd21-4874-44fc-a099-607cf22ba6f3",
                     "Terminal.ConnectivityNode": "ConnectivityNode::'675'",
                     "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_112.41675914509538_149.88901219346053'"
                   }
@@ -946,7 +889,6 @@
                   "IdentifiedObject.name": "source_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b4534f2b-f205-45ba-82e3-f6a71eb43d58",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'sourcebus'"
                 }
               ]
@@ -969,7 +911,6 @@
                 "IdentifiedObject.name": "671692_T1",
                 "ACDCTerminal.sequenceNumber": 1,
                 "Terminal.phases": "PhaseCode.ABC",
-                "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/23efe4f7-a063-4a3a-b40e-77a22d1fbc61",
                 "Terminal.ConnectivityNode": "ConnectivityNode::'671'"
               },
               {
@@ -978,7 +919,6 @@
                 "IdentifiedObject.name": "671692_T2",
                 "ACDCTerminal.sequenceNumber": 2,
                 "Terminal.phases": "PhaseCode.ABC",
-                "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/23efe4f7-a063-4a3a-b40e-77a22d1fbc61",
                 "Terminal.ConnectivityNode": "ConnectivityNode::'692'"
               }
             ],
@@ -988,24 +928,21 @@
                 "IdentifiedObject.mRID": "cd63deb4-5b92-400d-ad95-65935a214cba",
                 "IdentifiedObject.name": "671692_CC",
                 "SwitchPhase.phaseSide1": "SinglePhaseKind.C",
-                "SwitchPhase.phaseSide2": "SinglePhaseKind.C",
-                "SwitchPhase.Switch": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/23efe4f7-a063-4a3a-b40e-77a22d1fbc61"
+                "SwitchPhase.phaseSide2": "SinglePhaseKind.C"
               },
               {
                 "Ravens.cimObjectType": "SwitchPhase",
                 "IdentifiedObject.mRID": "63996955-b8c9-447d-91b0-7761572d141a",
                 "IdentifiedObject.name": "671692_AA",
                 "SwitchPhase.phaseSide1": "SinglePhaseKind.A",
-                "SwitchPhase.phaseSide2": "SinglePhaseKind.A",
-                "SwitchPhase.Switch": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/23efe4f7-a063-4a3a-b40e-77a22d1fbc61"
+                "SwitchPhase.phaseSide2": "SinglePhaseKind.A"
               },
               {
                 "Ravens.cimObjectType": "SwitchPhase",
                 "IdentifiedObject.mRID": "7f2aca55-a74f-4c0a-bd44-00d79bbf26cc",
                 "IdentifiedObject.name": "671692_BB",
                 "SwitchPhase.phaseSide1": "SinglePhaseKind.B",
-                "SwitchPhase.phaseSide2": "SinglePhaseKind.B",
-                "SwitchPhase.Switch": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/23efe4f7-a063-4a3a-b40e-77a22d1fbc61"
+                "SwitchPhase.phaseSide2": "SinglePhaseKind.B"
               }
             ]
           }
@@ -1023,7 +960,6 @@
                 "IdentifiedObject.name": "xfm1_T1",
                 "ACDCTerminal.sequenceNumber": 1,
                 "Terminal.phases": "PhaseCode.ABCN",
-                "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/0f7ed080-9d8f-4256-a1b7-4c178b580b44",
                 "Terminal.ConnectivityNode": "ConnectivityNode::'633'",
                 "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_76.33236732074378_104.08959180101425'"
               },
@@ -1033,7 +969,6 @@
                 "IdentifiedObject.name": "xfm1_T2",
                 "ACDCTerminal.sequenceNumber": 2,
                 "Terminal.phases": "PhaseCode.ABCN",
-                "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/0f7ed080-9d8f-4256-a1b7-4c178b580b44",
                 "Terminal.ConnectivityNode": "ConnectivityNode::'634'"
               }
             ],
@@ -1042,8 +977,6 @@
                 "Ravens.cimObjectType": "TransformerTank",
                 "IdentifiedObject.mRID": "c7a517d8-9d56-4b95-b6bd-797331168d28",
                 "IdentifiedObject.name": "xfm1",
-                "TransformerTank.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/6e5ad64a-5f87-446c-8136-bebb3bf37fa8",
-                "TransformerTank.PowerTransformer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/0f7ed080-9d8f-4256-a1b7-4c178b580b44",
                 "PowerSystemResource.AssetDatasheet": "TransformerTankInfo::'fdrxfmr'",
                 "TransformerTank.TransformerTankEnd": [
                   {
@@ -1054,7 +987,6 @@
                     "TransformerEnd.rground": 0.0,
                     "TransformerEnd.xground": 0.0,
                     "TransformerTankEnd.phases": "PhaseCode.ABCN",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c7a517d8-9d56-4b95-b6bd-797331168d28",
                     "TransformerEnd.endNumber": 1,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.16'"
                   },
@@ -1066,7 +998,6 @@
                     "TransformerEnd.rground": 0.0,
                     "TransformerEnd.xground": 0.0,
                     "TransformerTankEnd.phases": "PhaseCode.ABCN",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c7a517d8-9d56-4b95-b6bd-797331168d28",
                     "TransformerEnd.endNumber": 2,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_0.48'"
                   }
@@ -1087,8 +1018,7 @@
                 "ACDCTerminal.sequenceNumber": 1,
                 "Terminal.phases": "PhaseCode.ABCN",
                 "Terminal.ConnectivityNode": "ConnectivityNode::'650'",
-                "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_763.5833333333334_1041.25'",
-                "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e91ba028-4a1c-4880-b0e7-4b827deb31cb"
+                "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_763.5833333333334_1041.25'"
               },
               {
                 "Ravens.cimObjectType": "Terminal",
@@ -1096,8 +1026,7 @@
                 "IdentifiedObject.name": "Reg_T2",
                 "ACDCTerminal.sequenceNumber": 2,
                 "Terminal.phases": "PhaseCode.ABCN",
-                "Terminal.ConnectivityNode": "ConnectivityNode::'rg60'",
-                "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e91ba028-4a1c-4880-b0e7-4b827deb31cb"
+                "Terminal.ConnectivityNode": "ConnectivityNode::'rg60'"
               }
             ],
             "PowerTransformer.TransformerTank": [
@@ -1105,8 +1034,6 @@
                 "Ravens.cimObjectType": "TransformerTank",
                 "IdentifiedObject.mRID": "5ea196e3-4b4c-4c5f-97f5-7df15fcade99",
                 "IdentifiedObject.name": "reg3",
-                "TransformerTank.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/dce3313b-5cab-4717-8931-6a96b1c0df2a",
-                "TransformerTank.PowerTransformer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e91ba028-4a1c-4880-b0e7-4b827deb31cb",
                 "PowerSystemResource.AssetDatasheet": "TransformerTankInfo::'regleg'",
                 "TransformerTank.TransformerTankEnd": [
                   {
@@ -1117,7 +1044,6 @@
                     "TransformerEnd.rground": 0.0,
                     "TransformerEnd.xground": 0.0,
                     "TransformerTankEnd.phases": "PhaseCode.CN",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/5ea196e3-4b4c-4c5f-97f5-7df15fcade99",
                     "TransformerEnd.endNumber": 1,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.16'"
                   },
@@ -1129,7 +1055,6 @@
                     "TransformerEnd.rground": 0.0,
                     "TransformerEnd.xground": 0.0,
                     "TransformerTankEnd.phases": "PhaseCode.CN",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/5ea196e3-4b4c-4c5f-97f5-7df15fcade99",
                     "TransformerEnd.endNumber": 2,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.16'",
                     "TransformerEnd.RatioTapChanger": "RatioTapChanger::'reg3'"
@@ -1140,8 +1065,6 @@
                 "Ravens.cimObjectType": "TransformerTank",
                 "IdentifiedObject.mRID": "5a9d4d98-55bf-4841-8f76-cda1413dc068",
                 "IdentifiedObject.name": "reg2",
-                "TransformerTank.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/dce3313b-5cab-4717-8931-6a96b1c0df2a",
-                "TransformerTank.PowerTransformer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e91ba028-4a1c-4880-b0e7-4b827deb31cb",
                 "PowerSystemResource.AssetDatasheet": "TransformerTankInfo::'regleg'",
                 "TransformerTank.TransformerTankEnd": [
                   {
@@ -1152,7 +1075,6 @@
                     "TransformerEnd.rground": 0.0,
                     "TransformerEnd.xground": 0.0,
                     "TransformerTankEnd.phases": "PhaseCode.BN",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/5a9d4d98-55bf-4841-8f76-cda1413dc068",
                     "TransformerEnd.endNumber": 1,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.16'"
                   },
@@ -1164,7 +1086,6 @@
                     "TransformerEnd.rground": 0.0,
                     "TransformerEnd.xground": 0.0,
                     "TransformerTankEnd.phases": "PhaseCode.BN",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/5a9d4d98-55bf-4841-8f76-cda1413dc068",
                     "TransformerEnd.endNumber": 2,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.16'",
                     "TransformerEnd.RatioTapChanger": "RatioTapChanger::'reg2'"
@@ -1175,8 +1096,6 @@
                 "Ravens.cimObjectType": "TransformerTank",
                 "IdentifiedObject.mRID": "bf55d910-4517-44e5-b27c-545d3a87f5a5",
                 "IdentifiedObject.name": "reg1",
-                "TransformerTank.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/dce3313b-5cab-4717-8931-6a96b1c0df2a",
-                "TransformerTank.PowerTransformer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e91ba028-4a1c-4880-b0e7-4b827deb31cb",
                 "PowerSystemResource.AssetDatasheet": "TransformerTankInfo::'regleg'",
                 "TransformerTank.TransformerTankEnd": [
                   {
@@ -1187,7 +1106,6 @@
                     "TransformerEnd.rground": 0.0,
                     "TransformerEnd.xground": 0.0,
                     "TransformerTankEnd.phases": "PhaseCode.AN",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bf55d910-4517-44e5-b27c-545d3a87f5a5",
                     "TransformerEnd.endNumber": 1,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.16'"
                   },
@@ -1199,7 +1117,6 @@
                     "TransformerEnd.rground": 0.0,
                     "TransformerEnd.xground": 0.0,
                     "TransformerTankEnd.phases": "PhaseCode.AN",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bf55d910-4517-44e5-b27c-545d3a87f5a5",
                     "TransformerEnd.endNumber": 2,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.16'",
                     "TransformerEnd.RatioTapChanger": "RatioTapChanger::'reg1'"
@@ -1220,7 +1137,6 @@
                 "IdentifiedObject.name": "sub_T1",
                 "ACDCTerminal.sequenceNumber": 1,
                 "Terminal.phases": "PhaseCode.ABC",
-                "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c3cebca3-4f1e-43fe-a22e-f954bf5621e1",
                 "Terminal.ConnectivityNode": "ConnectivityNode::'sourcebus'",
                 "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_27.61240417863427_37.65327842541037'"
               },
@@ -1230,7 +1146,6 @@
                 "IdentifiedObject.name": "sub_T2",
                 "ACDCTerminal.sequenceNumber": 2,
                 "Terminal.phases": "PhaseCode.ABCN",
-                "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c3cebca3-4f1e-43fe-a22e-f954bf5621e1",
                 "Terminal.ConnectivityNode": "ConnectivityNode::'650'"
               }
             ],
@@ -1239,8 +1154,6 @@
                 "Ravens.cimObjectType": "TransformerTank",
                 "IdentifiedObject.mRID": "9f2cb9c4-cb43-494b-bd8c-c4177f3c81a2",
                 "IdentifiedObject.name": "sub",
-                "TransformerTank.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/84a66106-2ca8-47ef-8b75-d882fdab7db5",
-                "TransformerTank.PowerTransformer": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c3cebca3-4f1e-43fe-a22e-f954bf5621e1",
                 "PowerSystemResource.AssetDatasheet": "TransformerTankInfo::'subxfmr'",
                 "TransformerTank.TransformerTankEnd": [
                   {
@@ -1249,7 +1162,6 @@
                     "IdentifiedObject.name": "sub_End_1",
                     "TransformerEnd.grounded": false,
                     "TransformerTankEnd.phases": "PhaseCode.ABC",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/9f2cb9c4-cb43-494b-bd8c-c4177f3c81a2",
                     "TransformerEnd.endNumber": 1,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_115.00000000000001'"
                   },
@@ -1261,7 +1173,6 @@
                     "TransformerEnd.rground": 0.0,
                     "TransformerEnd.xground": 0.0,
                     "TransformerTankEnd.phases": "PhaseCode.ABCN",
-                    "TranformerTankEnd.TransformerTank": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/9f2cb9c4-cb43-494b-bd8c-c4177f3c81a2",
                     "TransformerEnd.endNumber": 2,
                     "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.16'"
                   }
@@ -1288,7 +1199,6 @@
                   "IdentifiedObject.name": "684652_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.A",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/68cc7152-2308-4a83-9e6d-249a96f9f3ea",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'684'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_165.0_247.5'"
                 },
@@ -1298,7 +1208,6 @@
                   "IdentifiedObject.name": "684652_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.A",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/68cc7152-2308-4a83-9e6d-249a96f9f3ea",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'652'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_165.0_247.5'"
                 }
@@ -1310,8 +1219,7 @@
                   "IdentifiedObject.name": "684652_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/68cc7152-2308-4a83-9e6d-249a96f9f3ea",
-                  "PowerSystemResource.AssetDatasheet": "TapeShieldCableInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bc2357c5-7e67-4c85-a844-6149233ae67d'"
+                  "PowerSystemResource.AssetDatasheet": "TapeShieldCableInfo::'bc2357c5-7e67-4c85-a844-6149233ae67d'"
                 }
               ]
             },
@@ -1331,7 +1239,6 @@
                   "IdentifiedObject.name": "632645_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.BC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f261d8ae-8fbf-43e4-b547-548c0bc6ecc1",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'632'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_230.0_345.0'"
                 },
@@ -1341,7 +1248,6 @@
                   "IdentifiedObject.name": "632645_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.BC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f261d8ae-8fbf-43e4-b547-548c0bc6ecc1",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'645'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_230.0_345.0'"
                 }
@@ -1353,8 +1259,7 @@
                   "IdentifiedObject.name": "632645_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f261d8ae-8fbf-43e4-b547-548c0bc6ecc1",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b7848d02-51de-466c-9ebe-ac89f0b8eafa'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'b7848d02-51de-466c-9ebe-ac89f0b8eafa'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1362,8 +1267,7 @@
                   "IdentifiedObject.name": "632645_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
                   "ACLineSegmentPhase.sequenceNumber": 2,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f261d8ae-8fbf-43e4-b547-548c0bc6ecc1",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/a4cfa3a2-00d2-4f72-892a-d6c20f735b40'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'a4cfa3a2-00d2-4f72-892a-d6c20f735b40'"
                 }
               ]
             },
@@ -1383,7 +1287,6 @@
                   "IdentifiedObject.name": "632633_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8498b841-26c3-44f8-bb99-e247651c7e2f",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'632'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_340.0_510.0'"
                 },
@@ -1393,7 +1296,6 @@
                   "IdentifiedObject.name": "632633_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8498b841-26c3-44f8-bb99-e247651c7e2f",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'633'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_340.0_510.0'"
                 }
@@ -1405,8 +1307,7 @@
                   "IdentifiedObject.name": "632633_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8498b841-26c3-44f8-bb99-e247651c7e2f",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/89c8b129-6c29-455d-a3b5-118a9ab6cdc1'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'89c8b129-6c29-455d-a3b5-118a9ab6cdc1'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1414,8 +1315,7 @@
                   "IdentifiedObject.name": "632633_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
                   "ACLineSegmentPhase.sequenceNumber": 2,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8498b841-26c3-44f8-bb99-e247651c7e2f",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/a74b22ca-7b4d-46bb-8780-68c844f7cc96'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'a74b22ca-7b4d-46bb-8780-68c844f7cc96'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1423,8 +1323,7 @@
                   "IdentifiedObject.name": "632633_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
                   "ACLineSegmentPhase.sequenceNumber": 3,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8498b841-26c3-44f8-bb99-e247651c7e2f",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/fc0d1905-e143-4101-88a4-efe35144dba2'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'fc0d1905-e143-4101-88a4-efe35144dba2'"
                 }
               ]
             },
@@ -1444,7 +1343,6 @@
                   "IdentifiedObject.name": "684611_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.C",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b228183d-bf27-467d-8699-a04027fa3593",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'684'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_230.0_345.0'"
                 },
@@ -1454,7 +1352,6 @@
                   "IdentifiedObject.name": "684611_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.C",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b228183d-bf27-467d-8699-a04027fa3593",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'611'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_230.0_345.0'"
                 }
@@ -1466,8 +1363,7 @@
                   "IdentifiedObject.name": "684611_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b228183d-bf27-467d-8699-a04027fa3593",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2be12ec1-12c8-4dd2-81a0-228325bc7525'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'2be12ec1-12c8-4dd2-81a0-228325bc7525'"
                 }
               ]
             },
@@ -1486,7 +1382,6 @@
                   "IdentifiedObject.name": "645646_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.BC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/656914b0-4466-4836-b133-e9eeefaccff6",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'645'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_230.0_600.0'"
                 },
@@ -1496,7 +1391,6 @@
                   "IdentifiedObject.name": "645646_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.BC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/656914b0-4466-4836-b133-e9eeefaccff6",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'646'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_230.0_600.0'"
                 }
@@ -1507,16 +1401,14 @@
                   "IdentifiedObject.mRID": "c6f9437f-636c-4497-871b-b4ff178cd043",
                   "IdentifiedObject.name": "645646_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
-                  "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/656914b0-4466-4836-b133-e9eeefaccff6"
+                  "ACLineSegmentPhase.sequenceNumber": 1
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
                   "IdentifiedObject.mRID": "4cfd330a-b408-414d-adac-e0aab14b3b22",
                   "IdentifiedObject.name": "645646_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
-                  "ACLineSegmentPhase.sequenceNumber": 2,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/656914b0-4466-4836-b133-e9eeefaccff6"
+                  "ACLineSegmentPhase.sequenceNumber": 2
                 }
               ]
             },
@@ -1536,7 +1428,6 @@
                   "IdentifiedObject.name": "671684_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.AC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f74aeca7-ba0d-4c06-bd24-8e294f2329a1",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'671'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_230.0_345.0'"
                 },
@@ -1546,7 +1437,6 @@
                   "IdentifiedObject.name": "671684_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.AC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f74aeca7-ba0d-4c06-bd24-8e294f2329a1",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'684'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_230.0_345.0'"
                 }
@@ -1558,8 +1448,7 @@
                   "IdentifiedObject.name": "671684_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f74aeca7-ba0d-4c06-bd24-8e294f2329a1",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/998025a5-f389-45c7-a736-25863c21d7ef'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'998025a5-f389-45c7-a736-25863c21d7ef'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1567,8 +1456,7 @@
                   "IdentifiedObject.name": "671684_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
                   "ACLineSegmentPhase.sequenceNumber": 2,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f74aeca7-ba0d-4c06-bd24-8e294f2329a1",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b7a248d3-c790-43ee-85fc-021677b79395'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'b7a248d3-c790-43ee-85fc-021677b79395'"
                 }
               ]
             },
@@ -1588,7 +1476,6 @@
                   "IdentifiedObject.name": "650632_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c33682b6-6bff-46b3-90de-7b5f8a8423c5",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'rg60'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
                 },
@@ -1598,7 +1485,6 @@
                   "IdentifiedObject.name": "650632_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c33682b6-6bff-46b3-90de-7b5f8a8423c5",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'632'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
                 }
@@ -1610,8 +1496,7 @@
                   "IdentifiedObject.name": "650632_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c33682b6-6bff-46b3-90de-7b5f8a8423c5",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/439616ab-0e46-4364-aa34-e6bec354b97a'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'439616ab-0e46-4364-aa34-e6bec354b97a'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1619,8 +1504,7 @@
                   "IdentifiedObject.name": "650632_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
                   "ACLineSegmentPhase.sequenceNumber": 2,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c33682b6-6bff-46b3-90de-7b5f8a8423c5",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/058a2f3f-f73e-4244-9140-66219ca064f8'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'058a2f3f-f73e-4244-9140-66219ca064f8'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1628,8 +1512,7 @@
                   "IdentifiedObject.name": "650632_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
                   "ACLineSegmentPhase.sequenceNumber": 3,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c33682b6-6bff-46b3-90de-7b5f8a8423c5",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/621379a5-8ae1-49cb-920c-5abbc26e2911'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'621379a5-8ae1-49cb-920c-5abbc26e2911'"
                 }
               ]
             },
@@ -1649,7 +1532,6 @@
                   "IdentifiedObject.name": "632670_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f7108fd5-5b65-463a-a5e9-9d7eaa91b0af",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'632'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
                 },
@@ -1659,7 +1541,6 @@
                   "IdentifiedObject.name": "632670_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f7108fd5-5b65-463a-a5e9-9d7eaa91b0af",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'670'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
                 }
@@ -1671,8 +1552,7 @@
                   "IdentifiedObject.name": "632670_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f7108fd5-5b65-463a-a5e9-9d7eaa91b0af",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/462faeaa-6e14-49f5-954f-588f2bc4ee11'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'462faeaa-6e14-49f5-954f-588f2bc4ee11'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1680,8 +1560,7 @@
                   "IdentifiedObject.name": "632670_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
                   "ACLineSegmentPhase.sequenceNumber": 2,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f7108fd5-5b65-463a-a5e9-9d7eaa91b0af",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8f1690fc-22a4-43c6-9d8a-1dcb53efefe1'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'8f1690fc-22a4-43c6-9d8a-1dcb53efefe1'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1689,8 +1568,7 @@
                   "IdentifiedObject.name": "632670_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
                   "ACLineSegmentPhase.sequenceNumber": 3,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f7108fd5-5b65-463a-a5e9-9d7eaa91b0af",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/222c812c-8a3d-4c50-90c4-b2ec1234260a'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'222c812c-8a3d-4c50-90c4-b2ec1234260a'"
                 }
               ]
             },
@@ -1710,7 +1588,6 @@
                   "IdentifiedObject.name": "692675_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f55f823c-935e-428c-9561-d1f067cd4406",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'692'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_260.0_390.0'"
                 },
@@ -1720,7 +1597,6 @@
                   "IdentifiedObject.name": "692675_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f55f823c-935e-428c-9561-d1f067cd4406",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'675'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_260.0_390.0'"
                 }
@@ -1732,8 +1608,7 @@
                   "IdentifiedObject.name": "692675_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f55f823c-935e-428c-9561-d1f067cd4406",
-                  "PowerSystemResource.AssetDatasheet": "ConcentricNeutralCableInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c84871c1-d03d-4c48-9c7a-6748adc92342'"
+                  "PowerSystemResource.AssetDatasheet": "ConcentricNeutralCableInfo::'c84871c1-d03d-4c48-9c7a-6748adc92342'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1741,8 +1616,7 @@
                   "IdentifiedObject.name": "692675_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
                   "ACLineSegmentPhase.sequenceNumber": 2,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f55f823c-935e-428c-9561-d1f067cd4406",
-                  "PowerSystemResource.AssetDatasheet": "ConcentricNeutralCableInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b7ff2cd9-5a6b-42ad-834f-3d92384b1e0d'"
+                  "PowerSystemResource.AssetDatasheet": "ConcentricNeutralCableInfo::'b7ff2cd9-5a6b-42ad-834f-3d92384b1e0d'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1750,8 +1624,7 @@
                   "IdentifiedObject.name": "692675_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
                   "ACLineSegmentPhase.sequenceNumber": 3,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f55f823c-935e-428c-9561-d1f067cd4406",
-                  "PowerSystemResource.AssetDatasheet": "ConcentricNeutralCableInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/55657fb9-38fd-4298-b7e7-ad34da7a9a08'"
+                  "PowerSystemResource.AssetDatasheet": "ConcentricNeutralCableInfo::'55657fb9-38fd-4298-b7e7-ad34da7a9a08'"
                 }
               ]
             },
@@ -1771,7 +1644,6 @@
                   "IdentifiedObject.name": "671680_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/327ed3b1-e6c0-4eb3-9f1f-98b294a73684",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'671'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
                 },
@@ -1781,7 +1653,6 @@
                   "IdentifiedObject.name": "671680_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/327ed3b1-e6c0-4eb3-9f1f-98b294a73684",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'680'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
                 }
@@ -1793,8 +1664,7 @@
                   "IdentifiedObject.name": "671680_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/327ed3b1-e6c0-4eb3-9f1f-98b294a73684",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/09089a3b-7246-4a9a-a575-4c01545a5c21'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'09089a3b-7246-4a9a-a575-4c01545a5c21'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1802,8 +1672,7 @@
                   "IdentifiedObject.name": "671680_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
                   "ACLineSegmentPhase.sequenceNumber": 2,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/327ed3b1-e6c0-4eb3-9f1f-98b294a73684",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b7e25daa-7688-460c-aae1-1f3d1aa1a2c9'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'b7e25daa-7688-460c-aae1-1f3d1aa1a2c9'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1811,8 +1680,7 @@
                   "IdentifiedObject.name": "671680_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
                   "ACLineSegmentPhase.sequenceNumber": 3,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/327ed3b1-e6c0-4eb3-9f1f-98b294a73684",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/5a0671b1-adf2-4f18-8ac1-5d9ace028005'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'5a0671b1-adf2-4f18-8ac1-5d9ace028005'"
                 }
               ]
             },
@@ -1832,7 +1700,6 @@
                   "IdentifiedObject.name": "670671_T1",
                   "ACDCTerminal.sequenceNumber": 1,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/706fbf9d-adae-4709-9cf9-641271a65264",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'670'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
                 },
@@ -1842,7 +1709,6 @@
                   "IdentifiedObject.name": "670671_T2",
                   "ACDCTerminal.sequenceNumber": 2,
                   "Terminal.phases": "PhaseCode.ABC",
-                  "Terminal.ConductingEquipment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/706fbf9d-adae-4709-9cf9-641271a65264",
                   "Terminal.ConnectivityNode": "ConnectivityNode::'671'",
                   "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
                 }
@@ -1854,8 +1720,7 @@
                   "IdentifiedObject.name": "670671_A",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
                   "ACLineSegmentPhase.sequenceNumber": 1,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/706fbf9d-adae-4709-9cf9-641271a65264",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/760b8b6a-b9e6-45fe-b07f-c749843ac1ee'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'760b8b6a-b9e6-45fe-b07f-c749843ac1ee'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1863,8 +1728,7 @@
                   "IdentifiedObject.name": "670671_B",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
                   "ACLineSegmentPhase.sequenceNumber": 2,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/706fbf9d-adae-4709-9cf9-641271a65264",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/0d1370ad-e8ca-49ff-9a31-9a8b7c4a9bc7'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'0d1370ad-e8ca-49ff-9a31-9a8b7c4a9bc7'"
                 },
                 {
                   "Ravens.cimObjectType": "ACLineSegmentPhase",
@@ -1872,8 +1736,7 @@
                   "IdentifiedObject.name": "670671_C",
                   "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
                   "ACLineSegmentPhase.sequenceNumber": 3,
-                  "ACLineSegmentPhase.ACLineSegment": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/706fbf9d-adae-4709-9cf9-641271a65264",
-                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/ee202cc5-04c1-4779-90d6-eb84af466430'"
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'ee202cc5-04c1-4779-90d6-eb84af466430'"
                 }
               ]
             }
@@ -1887,24 +1750,6 @@
           "Ravens.cimObjectType": "RatioTapChanger",
           "IdentifiedObject.mRID": "4edd1651-61c0-49d7-b79a-799849d5d610",
           "IdentifiedObject.name": "reg3",
-          "RatioTapChanger.TransformerEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/afbd1835-5f6e-49a7-b088-e210ff803ac1",
-          "TapChanger.TapChangerControl": {
-            "Ravens.cimObjectType": "TapChangerControl",
-            "IdentifiedObject.mRID": "838d7e5d-920c-4af7-87e3-b8976c6002c0",
-            "IdentifiedObject.name": "reg3_Ctrl",
-            "RegulatingControl.mode": "RegulatingControlModeKind.voltage",
-            "RegulatingControl.Terminal": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/90a30eb1-ee82-45f2-9a67-153a297e5340",
-            "RegulatingControl.enabled": true,
-            "RegulatingControl.discrete": true,
-            "RegulatingControl.targetValue": 122.0,
-            "RegulatingControl.targetDeadband": 2.0,
-            "TapChangerControl.lineDropCompensation": false,
-            "TapChangerControl.lineDropR": 3.0,
-            "TapChangerControl.lineDropX": 9.0,
-            "TapChangerControl.reversible": "false",
-            "TapChangerControl.maxLimitVoltage": "0.132",
-            "TapChangerControl.minLimitVoltage": "0.108"
-          },
           "RatioTapChanger.stepVoltageIncrement": 106.87500000000001,
           "TapChanger.highStep": 16,
           "TapChanger.lowStep": -16,
@@ -1918,19 +1763,12 @@
           "TapChanger.step": 1.06875,
           "TapChanger.ptRatio": "20.0",
           "TapChanger.ctRatio": "3500.0",
-          "TapChanger.ctRating": "700.0"
-        },
-        "reg2": {
-          "Ravens.cimObjectType": "RatioTapChanger",
-          "IdentifiedObject.mRID": "74815aa7-23d0-4775-8813-35d6853fe03e",
-          "IdentifiedObject.name": "reg2",
-          "RatioTapChanger.TransformerEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/93ea2a1b-ddd6-43ae-84f9-ec5e5a268a16",
+          "TapChanger.ctRating": "700.0",
           "TapChanger.TapChangerControl": {
             "Ravens.cimObjectType": "TapChangerControl",
-            "IdentifiedObject.mRID": "f3ceb7f9-3cf0-451c-9d1b-442714657ecc",
-            "IdentifiedObject.name": "reg2_Ctrl",
+            "IdentifiedObject.mRID": "838d7e5d-920c-4af7-87e3-b8976c6002c0",
+            "IdentifiedObject.name": "reg3_Ctrl",
             "RegulatingControl.mode": "RegulatingControlModeKind.voltage",
-            "RegulatingControl.Terminal": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b98da45f-ef68-44e0-afc6-919df35853a0",
             "RegulatingControl.enabled": true,
             "RegulatingControl.discrete": true,
             "RegulatingControl.targetValue": 122.0,
@@ -1941,7 +1779,12 @@
             "TapChangerControl.reversible": "false",
             "TapChangerControl.maxLimitVoltage": "0.132",
             "TapChangerControl.minLimitVoltage": "0.108"
-          },
+          }
+        },
+        "reg2": {
+          "Ravens.cimObjectType": "RatioTapChanger",
+          "IdentifiedObject.mRID": "74815aa7-23d0-4775-8813-35d6853fe03e",
+          "IdentifiedObject.name": "reg2",
           "RatioTapChanger.stepVoltageIncrement": 105.0,
           "TapChanger.highStep": 16,
           "TapChanger.lowStep": -16,
@@ -1955,19 +1798,12 @@
           "TapChanger.step": 1.05,
           "TapChanger.ptRatio": "20.0",
           "TapChanger.ctRatio": "3500.0",
-          "TapChanger.ctRating": "700.0"
-        },
-        "reg1": {
-          "Ravens.cimObjectType": "RatioTapChanger",
-          "IdentifiedObject.mRID": "14353474-1706-45ca-9e4a-35a4ace822b3",
-          "IdentifiedObject.name": "reg1",
-          "RatioTapChanger.TransformerEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c70641ef-4b06-4408-b5c4-5d971e5fda0c",
+          "TapChanger.ctRating": "700.0",
           "TapChanger.TapChangerControl": {
             "Ravens.cimObjectType": "TapChangerControl",
-            "IdentifiedObject.mRID": "476396a8-d5b5-455d-a95e-619710cefef2",
-            "IdentifiedObject.name": "reg1_Ctrl",
+            "IdentifiedObject.mRID": "f3ceb7f9-3cf0-451c-9d1b-442714657ecc",
+            "IdentifiedObject.name": "reg2_Ctrl",
             "RegulatingControl.mode": "RegulatingControlModeKind.voltage",
-            "RegulatingControl.Terminal": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bde0796f-a6ab-4058-b680-7a0ba76aa8fb",
             "RegulatingControl.enabled": true,
             "RegulatingControl.discrete": true,
             "RegulatingControl.targetValue": 122.0,
@@ -1978,7 +1814,12 @@
             "TapChangerControl.reversible": "false",
             "TapChangerControl.maxLimitVoltage": "0.132",
             "TapChangerControl.minLimitVoltage": "0.108"
-          },
+          }
+        },
+        "reg1": {
+          "Ravens.cimObjectType": "RatioTapChanger",
+          "IdentifiedObject.mRID": "14353474-1706-45ca-9e4a-35a4ace822b3",
+          "IdentifiedObject.name": "reg1",
           "RatioTapChanger.stepVoltageIncrement": 106.25,
           "TapChanger.highStep": 16,
           "TapChanger.lowStep": -16,
@@ -1992,7 +1833,23 @@
           "TapChanger.step": 1.0625,
           "TapChanger.ptRatio": "20.0",
           "TapChanger.ctRatio": "3500.0",
-          "TapChanger.ctRating": "700.0"
+          "TapChanger.ctRating": "700.0",
+          "TapChanger.TapChangerControl": {
+            "Ravens.cimObjectType": "TapChangerControl",
+            "IdentifiedObject.mRID": "476396a8-d5b5-455d-a95e-619710cefef2",
+            "IdentifiedObject.name": "reg1_Ctrl",
+            "RegulatingControl.mode": "RegulatingControlModeKind.voltage",
+            "RegulatingControl.enabled": true,
+            "RegulatingControl.discrete": true,
+            "RegulatingControl.targetValue": 122.0,
+            "RegulatingControl.targetDeadband": 2.0,
+            "TapChangerControl.lineDropCompensation": false,
+            "TapChangerControl.lineDropR": 3.0,
+            "TapChangerControl.lineDropX": 9.0,
+            "TapChangerControl.reversible": "false",
+            "TapChangerControl.maxLimitVoltage": "0.132",
+            "TapChangerControl.minLimitVoltage": "0.108"
+          }
         }
       }
     },
@@ -2001,8 +1858,6 @@
         "Ravens.cimObjectType": "RegulatingControl",
         "IdentifiedObject.mRID": "ee8eab0e-de11-4e3b-a555-edac7060ec77",
         "IdentifiedObject.name": "cap2",
-        "RegulatingControl.RegulatingCondEq": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2c2a712b-d614-4be1-bcf5-ba91053130ad",
-        "RegulatingControl.Terminal": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2a53fb17-e8fd-4ec8-88e6-c35b8f273a46",
         "RegulatingControl.monitoredPhase": "PhaseCode.C",
         "RegulatingControl.mode": "RegulatingControlModeKind.voltage",
         "RegulatingControl.discrete": true,
@@ -2014,8 +1869,6 @@
         "Ravens.cimObjectType": "RegulatingControl",
         "IdentifiedObject.mRID": "b40f3170-fc07-42e4-bc4a-dfce5cce0185",
         "IdentifiedObject.name": "cap1",
-        "RegulatingControl.RegulatingCondEq": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/db28cd21-4874-44fc-a099-607cf22ba6f3",
-        "RegulatingControl.Terminal": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bdd088ab-e8fb-44b9-9b24-f110fe778675",
         "RegulatingControl.monitoredPhase": "PhaseCode.A",
         "RegulatingControl.mode": "RegulatingControlModeKind.timeScheduled",
         "RegulatingControl.discrete": true,
@@ -2040,7 +1893,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "07294cad-0bf5-4315-872a-9e66116c1646",
             "IdentifiedObject.name": "WP_604_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/197c0149-f546-4f01-8990-876811692a0f",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": 0.9144000000000001,
             "WirePosition.yCoord": 8.5344
@@ -2049,7 +1901,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "9d19a529-a8ef-4fa3-b2c5-b5ab6444155d",
             "IdentifiedObject.name": "WP_604_3",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/197c0149-f546-4f01-8990-876811692a0f",
             "WirePosition.sequenceNumber": 3,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": 7.315200000000001
@@ -2058,7 +1909,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "e56e5f1a-0604-4f1a-b9df-e36b5369cd5e",
             "IdentifiedObject.name": "WP_604_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/197c0149-f546-4f01-8990-876811692a0f",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": -1.2192,
             "WirePosition.yCoord": 8.5344
@@ -2078,7 +1928,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "4a2369ec-9048-4c44-8c15-adfa5daef9b3",
             "IdentifiedObject.name": "WP_601_3",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2b90ba6b-40b1-4511-8ff9-b9d7563e2c96",
             "WirePosition.sequenceNumber": 3,
             "WirePosition.xCoord": 0.9144000000000001,
             "WirePosition.yCoord": 8.5344
@@ -2087,7 +1936,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "7035fbf0-5d60-48fa-92ad-3baf7ce56b16",
             "IdentifiedObject.name": "WP_601_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2b90ba6b-40b1-4511-8ff9-b9d7563e2c96",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": -0.3048,
             "WirePosition.yCoord": 8.5344
@@ -2096,7 +1944,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "df8659f0-5135-4ad2-9e06-a3f6b6f386c8",
             "IdentifiedObject.name": "WP_601_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e7df6a62-e3cc-4cab-8b3b-ff6ad9b8aeef",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": -0.3048,
             "WirePosition.yCoord": 8.5344
@@ -2105,7 +1952,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "38de94c9-dd27-42fb-ac17-46a081eb3b24",
             "IdentifiedObject.name": "WP_601_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/ed9b98b0-4caa-4e4a-bb63-6d88273d5040",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": -0.3048,
             "WirePosition.yCoord": 8.5344
@@ -2114,7 +1960,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "dac41818-7323-4503-b3c2-c916edd19af0",
             "IdentifiedObject.name": "WP_601_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bc73b8a0-a4ed-4f71-acaa-826553c00987",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": -1.2192,
             "WirePosition.yCoord": 8.5344
@@ -2123,7 +1968,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "928f4a43-6b0c-477f-a904-d3b93ce54613",
             "IdentifiedObject.name": "WP_601_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e7df6a62-e3cc-4cab-8b3b-ff6ad9b8aeef",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": -1.2192,
             "WirePosition.yCoord": 8.5344
@@ -2132,7 +1976,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "af2a7559-e7fc-4f49-983d-3374f08557ca",
             "IdentifiedObject.name": "WP_601_4",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2b90ba6b-40b1-4511-8ff9-b9d7563e2c96",
             "WirePosition.sequenceNumber": 4,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": 7.315200000000001
@@ -2141,7 +1984,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "ed47a396-afb9-4941-9e3a-08852f421263",
             "IdentifiedObject.name": "WP_601_4",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e7df6a62-e3cc-4cab-8b3b-ff6ad9b8aeef",
             "WirePosition.sequenceNumber": 4,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": 7.315200000000001
@@ -2150,7 +1992,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "86d631e0-54ca-41c3-b912-e903aec6e8cc",
             "IdentifiedObject.name": "WP_601_3",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bc73b8a0-a4ed-4f71-acaa-826553c00987",
             "WirePosition.sequenceNumber": 3,
             "WirePosition.xCoord": 0.9144000000000001,
             "WirePosition.yCoord": 8.5344
@@ -2159,7 +2000,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "03cdd9ec-7ef4-4d7a-a1ac-dc9ce8dc6b7b",
             "IdentifiedObject.name": "WP_601_3",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e7df6a62-e3cc-4cab-8b3b-ff6ad9b8aeef",
             "WirePosition.sequenceNumber": 3,
             "WirePosition.xCoord": 0.9144000000000001,
             "WirePosition.yCoord": 8.5344
@@ -2168,7 +2008,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "3b997585-c35d-4536-b46c-7f0bac3c671d",
             "IdentifiedObject.name": "WP_601_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2b90ba6b-40b1-4511-8ff9-b9d7563e2c96",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": -1.2192,
             "WirePosition.yCoord": 8.5344
@@ -2177,7 +2016,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "3abc403f-ba0e-45fc-ab80-e56dde11e68b",
             "IdentifiedObject.name": "WP_601_4",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bc73b8a0-a4ed-4f71-acaa-826553c00987",
             "WirePosition.sequenceNumber": 4,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": 7.315200000000001
@@ -2186,7 +2024,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "c7a4bf70-fb3e-4a55-a2e6-f303369ef2b5",
             "IdentifiedObject.name": "WP_601_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/ed9b98b0-4caa-4e4a-bb63-6d88273d5040",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": -1.2192,
             "WirePosition.yCoord": 8.5344
@@ -2195,7 +2032,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "30073d04-165b-4dbf-8074-6548ceff085a",
             "IdentifiedObject.name": "WP_601_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bc73b8a0-a4ed-4f71-acaa-826553c00987",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": -0.3048,
             "WirePosition.yCoord": 8.5344
@@ -2204,7 +2040,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "de372818-3fb2-4891-a2f5-8abdc70405d0",
             "IdentifiedObject.name": "WP_601_4",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/ed9b98b0-4caa-4e4a-bb63-6d88273d5040",
             "WirePosition.sequenceNumber": 4,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": 7.315200000000001
@@ -2213,7 +2048,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "7f45fbcc-0bd3-4aad-b21d-f6ac19abe51d",
             "IdentifiedObject.name": "WP_601_3",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/ed9b98b0-4caa-4e4a-bb63-6d88273d5040",
             "WirePosition.sequenceNumber": 3,
             "WirePosition.xCoord": 0.9144000000000001,
             "WirePosition.yCoord": 8.5344
@@ -2233,7 +2067,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "add34b71-5c55-432a-9ec5-5faf4081da77",
             "IdentifiedObject.name": "WP_606_3",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/33e80831-2278-45d8-bfb3-c2d0fc675f6f",
             "WirePosition.sequenceNumber": 3,
             "WirePosition.xCoord": 0.1524,
             "WirePosition.yCoord": -1.2192
@@ -2242,7 +2075,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "6a3df1f2-95ae-41cf-a4f6-2590609da5e6",
             "IdentifiedObject.name": "WP_606_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/33e80831-2278-45d8-bfb3-c2d0fc675f6f",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": -1.2192
@@ -2251,7 +2083,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "b5a7451e-ec3f-40a7-8e45-8ee476c227a9",
             "IdentifiedObject.name": "WP_606_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/33e80831-2278-45d8-bfb3-c2d0fc675f6f",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": -0.1524,
             "WirePosition.yCoord": -1.2192
@@ -2271,7 +2102,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "034e68f4-78a0-4ff3-aa7a-e9a03807ae08",
             "IdentifiedObject.name": "WP_607_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/58a73fc5-e63c-4c6c-b779-f72364a68213",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": -1.2192
@@ -2280,7 +2110,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "2c589ea6-9526-42ec-9bf7-905e124f47fc",
             "IdentifiedObject.name": "WP_607_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/58a73fc5-e63c-4c6c-b779-f72364a68213",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": 0.0762,
             "WirePosition.yCoord": -1.2192
@@ -2300,7 +2129,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "60ee26b6-d120-4a25-8bc7-e853c934f6c6",
             "IdentifiedObject.name": "WP_603_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b8b6a46e-3a34-4cc0-99fd-396e9791279e",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": 0.9144000000000001,
             "WirePosition.yCoord": 8.5344
@@ -2309,7 +2137,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "9c222f9c-0f9a-4f32-a5b4-10441e6be7e7",
             "IdentifiedObject.name": "WP_603_3",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b8b6a46e-3a34-4cc0-99fd-396e9791279e",
             "WirePosition.sequenceNumber": 3,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": 7.315200000000001
@@ -2318,7 +2145,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "8793af4f-8bf0-42a4-8fdc-1de3713c1510",
             "IdentifiedObject.name": "WP_603_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b8b6a46e-3a34-4cc0-99fd-396e9791279e",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": -1.2192,
             "WirePosition.yCoord": 8.5344
@@ -2338,7 +2164,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "324eead2-d373-4244-bdc0-da9e330978ec",
             "IdentifiedObject.name": "WP_602_4",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c94c55e9-7a75-4281-8f70-458b38736d94",
             "WirePosition.sequenceNumber": 4,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": 7.315200000000001
@@ -2347,7 +2172,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "1d3acbec-04aa-4a30-995b-70c0e7c709d4",
             "IdentifiedObject.name": "WP_602_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c94c55e9-7a75-4281-8f70-458b38736d94",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": -0.3048,
             "WirePosition.yCoord": 8.5344
@@ -2356,7 +2180,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "8a05da14-bfbc-4db6-a9f0-c5999c597501",
             "IdentifiedObject.name": "WP_602_3",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c94c55e9-7a75-4281-8f70-458b38736d94",
             "WirePosition.sequenceNumber": 3,
             "WirePosition.xCoord": 0.9144000000000001,
             "WirePosition.yCoord": 8.5344
@@ -2365,7 +2188,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "38244b05-166c-4e46-a187-722ca5215306",
             "IdentifiedObject.name": "WP_602_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c94c55e9-7a75-4281-8f70-458b38736d94",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": -1.2192,
             "WirePosition.yCoord": 8.5344
@@ -2385,7 +2207,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "622bcf8c-ffa3-42a7-a3ef-3d0e18dbaa42",
             "IdentifiedObject.name": "WP_510_2",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/326adc71-47d9-44de-9a82-741cb2f5908c",
             "WirePosition.sequenceNumber": 2,
             "WirePosition.xCoord": 0.0,
             "WirePosition.yCoord": 7.315200000000001
@@ -2394,7 +2215,6 @@
             "Ravens.cimObjectType": "WirePosition",
             "IdentifiedObject.mRID": "b729a1d8-4848-4688-83d8-e25b1f53424b",
             "IdentifiedObject.name": "WP_510_1",
-            "WirePosition.WireSpacingInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/326adc71-47d9-44de-9a82-741cb2f5908c",
             "WirePosition.sequenceNumber": 1,
             "WirePosition.xCoord": 0.1524,
             "WirePosition.yCoord": 8.8392
@@ -2414,7 +2234,6 @@
                 "Ravens.cimObjectType": "TransformerEndInfo",
                 "IdentifiedObject.mRID": "c4f8b720-eff4-41a6-8c4e-6ad6e64b1314",
                 "IdentifiedObject.name": "subxfmr_1",
-                "TransformerEndInfo.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/84a66106-2ca8-47ef-8b75-d882fdab7db5",
                 "TransformerEndInfo.endNumber": 1,
                 "TransformerEndInfo.connectionKind": "WindingConnection.D",
                 "TransformerEndInfo.phaseAngleClock": 0,
@@ -2429,8 +2248,6 @@
                     "Ravens.cimObjectType": "ShortCircuitTest",
                     "IdentifiedObject.mRID": "778a96ca-81a9-421a-8dc6-f175376c6861",
                     "IdentifiedObject.name": "subxfmr_1_shortcircuit",
-                    "ShortCircuitTest.EnergisedEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c4f8b720-eff4-41a6-8c4e-6ad6e64b1314",
-                    "ShortCircuitTest.GroundedEnds": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e695dc88-3257-45ac-99e1-1cf3048cf871",
                     "ShortCircuitTest.energisedEndStep": 1,
                     "ShortCircuitTest.groundedEndStep": 1,
                     "ShortCircuitTest.leakageImpedance": 21.324671744249663,
@@ -2444,7 +2261,6 @@
                     "Ravens.cimObjectType": "NoLoadTest",
                     "IdentifiedObject.mRID": "8b89fe85-833b-4595-bd71-74d1cc4c6bc6",
                     "IdentifiedObject.name": "subxfmr_1_noload",
-                    "NoLoadTest.EnergisedEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c4f8b720-eff4-41a6-8c4e-6ad6e64b1314",
                     "NoLoadTest.energisedEndVoltage": 115000.0,
                     "NoLoadTest.excitingCurrent": 0.0,
                     "NoLoadTest.excitingCurrentZero": 0.0,
@@ -2459,7 +2275,6 @@
                 "Ravens.cimObjectType": "TransformerEndInfo",
                 "IdentifiedObject.mRID": "e695dc88-3257-45ac-99e1-1cf3048cf871",
                 "IdentifiedObject.name": "subxfmr_2",
-                "TransformerEndInfo.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/84a66106-2ca8-47ef-8b75-d882fdab7db5",
                 "TransformerEndInfo.endNumber": 2,
                 "TransformerEndInfo.connectionKind": "WindingConnection.Y",
                 "TransformerEndInfo.phaseAngleClock": 1,
@@ -2474,8 +2289,6 @@
                     "Ravens.cimObjectType": "ShortCircuitTest",
                     "IdentifiedObject.mRID": "778a96ca-81a9-421a-8dc6-f175376c6861",
                     "IdentifiedObject.name": "subxfmr_1_shortcircuit",
-                    "ShortCircuitTest.EnergisedEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c4f8b720-eff4-41a6-8c4e-6ad6e64b1314",
-                    "ShortCircuitTest.GroundedEnds": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e695dc88-3257-45ac-99e1-1cf3048cf871",
                     "ShortCircuitTest.energisedEndStep": 1,
                     "ShortCircuitTest.groundedEndStep": 1,
                     "ShortCircuitTest.leakageImpedance": 21.324671744249663,
@@ -2500,7 +2313,6 @@
                 "Ravens.cimObjectType": "TransformerEndInfo",
                 "IdentifiedObject.mRID": "26dbee9c-33df-4313-9970-e71c942f47ad",
                 "IdentifiedObject.name": "fdrxfmr_1",
-                "TransformerEndInfo.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/6e5ad64a-5f87-446c-8136-bebb3bf37fa8",
                 "TransformerEndInfo.endNumber": 1,
                 "TransformerEndInfo.connectionKind": "WindingConnection.Y",
                 "TransformerEndInfo.phaseAngleClock": 0,
@@ -2515,8 +2327,6 @@
                     "Ravens.cimObjectType": "ShortCircuitTest",
                     "IdentifiedObject.mRID": "7da4debd-6c57-403a-a87f-f56c1324676f",
                     "IdentifiedObject.name": "fdrxfmr_1_shortcircuit",
-                    "ShortCircuitTest.EnergisedEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/26dbee9c-33df-4313-9970-e71c942f47ad",
-                    "ShortCircuitTest.GroundedEnds": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b89ced8e-3503-47db-9196-953b743596b6",
                     "ShortCircuitTest.energisedEndStep": 1,
                     "ShortCircuitTest.groundedEndStep": 1,
                     "ShortCircuitTest.leakageImpedance": 79.00153297210379,
@@ -2530,7 +2340,6 @@
                     "Ravens.cimObjectType": "NoLoadTest",
                     "IdentifiedObject.mRID": "32be32bf-868c-42f5-90af-730170b86cd7",
                     "IdentifiedObject.name": "fdrxfmr_1_noload",
-                    "NoLoadTest.EnergisedEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/26dbee9c-33df-4313-9970-e71c942f47ad",
                     "NoLoadTest.energisedEndVoltage": 4160.0,
                     "NoLoadTest.excitingCurrent": 1.252996408614167,
                     "NoLoadTest.excitingCurrentZero": 1.252996408614167,
@@ -2545,7 +2354,6 @@
                 "Ravens.cimObjectType": "TransformerEndInfo",
                 "IdentifiedObject.mRID": "b89ced8e-3503-47db-9196-953b743596b6",
                 "IdentifiedObject.name": "fdrxfmr_2",
-                "TransformerEndInfo.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/6e5ad64a-5f87-446c-8136-bebb3bf37fa8",
                 "TransformerEndInfo.endNumber": 2,
                 "TransformerEndInfo.connectionKind": "WindingConnection.Y",
                 "TransformerEndInfo.phaseAngleClock": 0,
@@ -2560,8 +2368,6 @@
                     "Ravens.cimObjectType": "ShortCircuitTest",
                     "IdentifiedObject.mRID": "7da4debd-6c57-403a-a87f-f56c1324676f",
                     "IdentifiedObject.name": "fdrxfmr_1_shortcircuit",
-                    "ShortCircuitTest.EnergisedEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/26dbee9c-33df-4313-9970-e71c942f47ad",
-                    "ShortCircuitTest.GroundedEnds": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b89ced8e-3503-47db-9196-953b743596b6",
                     "ShortCircuitTest.energisedEndStep": 1,
                     "ShortCircuitTest.groundedEndStep": 1,
                     "ShortCircuitTest.leakageImpedance": 79.00153297210379,
@@ -2586,7 +2392,6 @@
                 "Ravens.cimObjectType": "TransformerEndInfo",
                 "IdentifiedObject.mRID": "f2650ea9-9a83-4e74-93ab-00486318bbd7",
                 "IdentifiedObject.name": "regleg_1",
-                "TransformerEndInfo.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/dce3313b-5cab-4717-8931-6a96b1c0df2a",
                 "TransformerEndInfo.endNumber": 1,
                 "TransformerEndInfo.connectionKind": "WindingConnection.I",
                 "TransformerEndInfo.phaseAngleClock": 0,
@@ -2601,8 +2406,6 @@
                     "Ravens.cimObjectType": "ShortCircuitTest",
                     "IdentifiedObject.mRID": "99f7dbe7-b290-4da3-bbc2-846b4e7430b1",
                     "IdentifiedObject.name": "regleg_1_shortcircuit",
-                    "ShortCircuitTest.EnergisedEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f2650ea9-9a83-4e74-93ab-00486318bbd7",
-                    "ShortCircuitTest.GroundedEnds": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b4ba727e-ea4f-4167-9836-b59475194c71",
                     "ShortCircuitTest.energisedEndStep": 1,
                     "ShortCircuitTest.groundedEndStep": 1,
                     "ShortCircuitTest.leakageImpedance": 0.04889477862706499,
@@ -2616,7 +2419,6 @@
                     "Ravens.cimObjectType": "NoLoadTest",
                     "IdentifiedObject.mRID": "fa1df1d4-a596-49c8-b4cd-4cfd7a8c8826",
                     "IdentifiedObject.name": "regleg_1_noload",
-                    "NoLoadTest.EnergisedEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f2650ea9-9a83-4e74-93ab-00486318bbd7",
                     "NoLoadTest.energisedEndVoltage": 2400.0,
                     "NoLoadTest.excitingCurrent": 0.0,
                     "NoLoadTest.excitingCurrentZero": 0.0,
@@ -2631,7 +2433,6 @@
                 "Ravens.cimObjectType": "TransformerEndInfo",
                 "IdentifiedObject.mRID": "b4ba727e-ea4f-4167-9836-b59475194c71",
                 "IdentifiedObject.name": "regleg_2",
-                "TransformerEndInfo.TransformerTankInfo": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/dce3313b-5cab-4717-8931-6a96b1c0df2a",
                 "TransformerEndInfo.endNumber": 2,
                 "TransformerEndInfo.connectionKind": "WindingConnection.I",
                 "TransformerEndInfo.phaseAngleClock": 0,
@@ -2646,8 +2447,6 @@
                     "Ravens.cimObjectType": "ShortCircuitTest",
                     "IdentifiedObject.mRID": "99f7dbe7-b290-4da3-bbc2-846b4e7430b1",
                     "IdentifiedObject.name": "regleg_1_shortcircuit",
-                    "ShortCircuitTest.EnergisedEnd": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/f2650ea9-9a83-4e74-93ab-00486318bbd7",
-                    "ShortCircuitTest.GroundedEnds": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b4ba727e-ea4f-4167-9836-b59475194c71",
                     "ShortCircuitTest.energisedEndStep": 1,
                     "ShortCircuitTest.groundedEndStep": 1,
                     "ShortCircuitTest.leakageImpedance": 0.04889477862706499,
@@ -2663,7 +2462,7 @@
       }
     },
     "WireInfo": {
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c84871c1-d03d-4c48-9c7a-6748adc92342": {
+      "c84871c1-d03d-4c48-9c7a-6748adc92342": {
         "Ravens.cimObjectType": "ConcentricNeutralCableInfo",
         "IdentifiedObject.mRID": "c84871c1-d03d-4c48-9c7a-6748adc92342",
         "WireInfo.sizeDescription": "cn_250",
@@ -2696,7 +2495,7 @@
         "ConcentricNeutralCableInfo.neutralStrandRDC20": 0.009241409308394954,
         "ConcentricNeutralCableInfo.neutralStrandCount": 13
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b7ff2cd9-5a6b-42ad-834f-3d92384b1e0d": {
+      "b7ff2cd9-5a6b-42ad-834f-3d92384b1e0d": {
         "Ravens.cimObjectType": "ConcentricNeutralCableInfo",
         "IdentifiedObject.mRID": "b7ff2cd9-5a6b-42ad-834f-3d92384b1e0d",
         "WireInfo.sizeDescription": "cn_250",
@@ -2729,7 +2528,7 @@
         "ConcentricNeutralCableInfo.neutralStrandRDC20": 0.009241409308394954,
         "ConcentricNeutralCableInfo.neutralStrandCount": 13
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/55657fb9-38fd-4298-b7e7-ad34da7a9a08": {
+      "55657fb9-38fd-4298-b7e7-ad34da7a9a08": {
         "Ravens.cimObjectType": "ConcentricNeutralCableInfo",
         "IdentifiedObject.mRID": "55657fb9-38fd-4298-b7e7-ad34da7a9a08",
         "WireInfo.sizeDescription": "cn_250",
@@ -2762,7 +2561,7 @@
         "ConcentricNeutralCableInfo.neutralStrandRDC20": 0.009241409308394954,
         "ConcentricNeutralCableInfo.neutralStrandCount": 13
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/462faeaa-6e14-49f5-954f-588f2bc4ee11": {
+      "462faeaa-6e14-49f5-954f-588f2bc4ee11": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "462faeaa-6e14-49f5-954f-588f2bc4ee11",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -2778,7 +2577,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b7848d02-51de-466c-9ebe-ac89f0b8eafa": {
+      "b7848d02-51de-466c-9ebe-ac89f0b8eafa": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "b7848d02-51de-466c-9ebe-ac89f0b8eafa",
         "WireInfo.sizeDescription": "acsr_1/0",
@@ -2794,7 +2593,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/09089a3b-7246-4a9a-a575-4c01545a5c21": {
+      "09089a3b-7246-4a9a-a575-4c01545a5c21": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "09089a3b-7246-4a9a-a575-4c01545a5c21",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -2810,7 +2609,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8f1690fc-22a4-43c6-9d8a-1dcb53efefe1": {
+      "8f1690fc-22a4-43c6-9d8a-1dcb53efefe1": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "8f1690fc-22a4-43c6-9d8a-1dcb53efefe1",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -2826,7 +2625,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/998025a5-f389-45c7-a736-25863c21d7ef": {
+      "998025a5-f389-45c7-a736-25863c21d7ef": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "998025a5-f389-45c7-a736-25863c21d7ef",
         "WireInfo.sizeDescription": "acsr_1/0",
@@ -2842,7 +2641,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/a4cfa3a2-00d2-4f72-892a-d6c20f735b40": {
+      "a4cfa3a2-00d2-4f72-892a-d6c20f735b40": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "a4cfa3a2-00d2-4f72-892a-d6c20f735b40",
         "WireInfo.sizeDescription": "acsr_1/0",
@@ -2858,7 +2657,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2be12ec1-12c8-4dd2-81a0-228325bc7525": {
+      "2be12ec1-12c8-4dd2-81a0-228325bc7525": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "2be12ec1-12c8-4dd2-81a0-228325bc7525",
         "WireInfo.sizeDescription": "acsr_1/0",
@@ -2874,7 +2673,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/0d1370ad-e8ca-49ff-9a31-9a8b7c4a9bc7": {
+      "0d1370ad-e8ca-49ff-9a31-9a8b7c4a9bc7": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "0d1370ad-e8ca-49ff-9a31-9a8b7c4a9bc7",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -2890,7 +2689,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/439616ab-0e46-4364-aa34-e6bec354b97a": {
+      "439616ab-0e46-4364-aa34-e6bec354b97a": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "439616ab-0e46-4364-aa34-e6bec354b97a",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -2906,7 +2705,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/222c812c-8a3d-4c50-90c4-b2ec1234260a": {
+      "222c812c-8a3d-4c50-90c4-b2ec1234260a": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "222c812c-8a3d-4c50-90c4-b2ec1234260a",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -2922,7 +2721,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b7a248d3-c790-43ee-85fc-021677b79395": {
+      "b7a248d3-c790-43ee-85fc-021677b79395": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "b7a248d3-c790-43ee-85fc-021677b79395",
         "WireInfo.sizeDescription": "acsr_1/0",
@@ -2938,7 +2737,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/a74b22ca-7b4d-46bb-8780-68c844f7cc96": {
+      "a74b22ca-7b4d-46bb-8780-68c844f7cc96": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "a74b22ca-7b4d-46bb-8780-68c844f7cc96",
         "WireInfo.sizeDescription": "acsr_4/0",
@@ -2954,7 +2753,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/058a2f3f-f73e-4244-9140-66219ca064f8": {
+      "058a2f3f-f73e-4244-9140-66219ca064f8": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "058a2f3f-f73e-4244-9140-66219ca064f8",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -2970,7 +2769,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/ee202cc5-04c1-4779-90d6-eb84af466430": {
+      "ee202cc5-04c1-4779-90d6-eb84af466430": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "ee202cc5-04c1-4779-90d6-eb84af466430",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -2986,7 +2785,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/760b8b6a-b9e6-45fe-b07f-c749843ac1ee": {
+      "760b8b6a-b9e6-45fe-b07f-c749843ac1ee": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "760b8b6a-b9e6-45fe-b07f-c749843ac1ee",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -3002,7 +2801,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/621379a5-8ae1-49cb-920c-5abbc26e2911": {
+      "621379a5-8ae1-49cb-920c-5abbc26e2911": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "621379a5-8ae1-49cb-920c-5abbc26e2911",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -3018,7 +2817,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/5a0671b1-adf2-4f18-8ac1-5d9ace028005": {
+      "5a0671b1-adf2-4f18-8ac1-5d9ace028005": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "5a0671b1-adf2-4f18-8ac1-5d9ace028005",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -3034,7 +2833,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/89c8b129-6c29-455d-a3b5-118a9ab6cdc1": {
+      "89c8b129-6c29-455d-a3b5-118a9ab6cdc1": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "89c8b129-6c29-455d-a3b5-118a9ab6cdc1",
         "WireInfo.sizeDescription": "acsr_4/0",
@@ -3050,7 +2849,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b7e25daa-7688-460c-aae1-1f3d1aa1a2c9": {
+      "b7e25daa-7688-460c-aae1-1f3d1aa1a2c9": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "b7e25daa-7688-460c-aae1-1f3d1aa1a2c9",
         "WireInfo.sizeDescription": "acsr_556_5",
@@ -3066,7 +2865,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/fc0d1905-e143-4101-88a4-efe35144dba2": {
+      "fc0d1905-e143-4101-88a4-efe35144dba2": {
         "Ravens.cimObjectType": "OverheadWireInfo",
         "IdentifiedObject.mRID": "fc0d1905-e143-4101-88a4-efe35144dba2",
         "WireInfo.sizeDescription": "acsr_4/0",
@@ -3082,7 +2881,7 @@
         "WireInfo.coreStrandCount": 0,
         "WireInfo.coreRadius": 0.0
       },
-      "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/bc2357c5-7e67-4c85-a844-6149233ae67d": {
+      "bc2357c5-7e67-4c85-a844-6149233ae67d": {
         "Ravens.cimObjectType": "TapeShieldCableInfo",
         "IdentifiedObject.mRID": "bc2357c5-7e67-4c85-a844-6149233ae67d",
         "WireInfo.sizeDescription": "ts_1/0",
@@ -3135,8 +2934,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/02fc754c-a211-4f87-a4e4-b251aa6433ef"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3149,8 +2947,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/fff75ea9-f283-4594-937c-ad74d01fd1c6"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3163,8 +2960,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8e62db52-cf48-4a56-a8fe-43c39b459b03"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3177,8 +2973,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/b0e7f493-16d6-4100-a232-42ec9cbde3a4"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3191,8 +2986,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8de91945-9ab1-4fe5-8aa6-60cf33776294"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3205,8 +2999,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/a42e4163-6fd8-4afd-b327-fed8630c3aaf"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3219,8 +3012,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/d880a133-5567-4d9f-be63-cae42b3840e7"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3233,8 +3025,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/1e81df53-3181-4299-95f9-b7aede73a553"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3247,8 +3038,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/e91e2649-fc25-4a1e-8d54-c19d69035403"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3261,8 +3051,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/c42d7f1b-6541-494b-9e1e-c895f6e81a35"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3275,8 +3064,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/92b6ed70-7cc8-425c-ae09-abe841832bc8"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3289,8 +3077,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8a5946aa-37c9-4aab-b0ec-724eb2b695ec"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3303,8 +3090,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/00d833f4-e613-4088-8910-c9451e765816"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3317,8 +3103,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/62f9a46e-9a82-4569-b505-4415d40f0c34"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3331,8 +3116,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/badd11cf-887f-4137-866d-00b1527060d2"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     },
@@ -3345,8 +3129,7 @@
           "Ravens.cimObjectType": "PositionPoint",
           "PositionPoint.sequenceNumber": 0,
           "PositionPoint.xPosition": "0.0",
-          "PositionPoint.yPosition": "0.0",
-          "PositionPoint.Location": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2eff0dba-3dc8-42e8-b584-a20d8bba4f99"
+          "PositionPoint.yPosition": "0.0"
         }
       ]
     }
@@ -3366,8 +3149,7 @@
               "PhaseImpedanceData.column": 2,
               "PhaseImpedanceData.r": 0.0008260734480830174,
               "PhaseImpedanceData.x": 0.0008370720188902007,
-              "PhaseImpedanceData.b": 6.559219111453243e-10,
-              "PhaseImpedanceData.PhaseImpedance": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2be4ef5e-b283-4628-8d41-db35492d39db"
+              "PhaseImpedanceData.b": 6.559219111453243e-10
             },
             {
               "Ravens.cimObjectType": "PhaseImpedanceData",
@@ -3375,8 +3157,7 @@
               "PhaseImpedanceData.column": 1,
               "PhaseImpedanceData.r": 0.00012837879823525758,
               "PhaseImpedanceData.x": 0.00028527931398744796,
-              "PhaseImpedanceData.b": -1.405546952454266e-10,
-              "PhaseImpedanceData.PhaseImpedance": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2be4ef5e-b283-4628-8d41-db35492d39db"
+              "PhaseImpedanceData.b": -1.405546952454266e-10
             },
             {
               "Ravens.cimObjectType": "PhaseImpedanceData",
@@ -3384,8 +3165,7 @@
               "PhaseImpedanceData.column": 1,
               "PhaseImpedanceData.r": 0.0008225936742683155,
               "PhaseImpedanceData.x": 0.0008431616230659293,
-              "PhaseImpedanceData.b": 6.559219111453243e-10,
-              "PhaseImpedanceData.PhaseImpedance": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/2be4ef5e-b283-4628-8d41-db35492d39db"
+              "PhaseImpedanceData.b": 6.559219111453243e-10
             }
           ]
         }
@@ -3397,8 +3177,7 @@
       "Ravens.cimObjectType": "EnergyConnectionProfile",
       "IdentifiedObject.mRID": "a47c085f-67ab-4017-a7cd-0d29663a1f65",
       "IdentifiedObject.name": "Load::::::defaultload",
-      "EnergyConnectionProfile.dssSpectrum": "defaultload",
-      "EnergyConnectionProfile.EnergyConnections": "file:///Users/oreed/Desktop/LANL-ANSI/MG-RAVENS/examples/8f715450-3553-4e6e-bfd9-f6a5760cb51e"
+      "EnergyConnectionProfile.dssSpectrum": "defaultload"
     }
   },
   "Versions": {
@@ -3409,7 +3188,7 @@
     },
     "RavensVersion": {
       "Ravens.cimObjectType": "RavensVersion",
-      "RavensVersion.date": "2025-09-24",
+      "RavensVersion.date": "2025-04-11",
       "RavensVersion.version": "RAVENSv0.3.0-dev"
     }
   },
