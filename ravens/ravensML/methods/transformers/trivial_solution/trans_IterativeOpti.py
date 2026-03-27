@@ -28,7 +28,6 @@ from julia import Main
 
 
 from framework.dataset import MGRavensDataset
-DEBUG = rML_ROOT/'methods/transformers/trivial_solution/tmp/log.txt'
 class Trans_Iterative_Optimizer(object):
     def __init__(self,max_iter=10):
         self.input_dataset = None
