@@ -13,6 +13,7 @@ ravens/ravensML/processed/
 ravens/ravensML/framework/tmp
 ravens/ravensML/methods/transformers/trans_gnn/tmp/
 ravens/ravensML/methods/transformers/trivial_solution/tmp/
+ravens/ravensML/methods/YZ/trivial_solution/tmp
 ravens/ravensML/methods/connectivity/conn_gnn/tmp/
 tmp.json
 

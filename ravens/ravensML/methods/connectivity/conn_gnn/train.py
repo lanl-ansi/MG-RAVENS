@@ -31,7 +31,7 @@ torch.manual_seed(42)
 # -------------------------
 dataset = MGConnDataset(
         root=rML_ROOT,
-        size=1000,
+        size=10000,
         max_nodes=20,
         error_kwargs={"del_e_prob": 0.15},
 )
