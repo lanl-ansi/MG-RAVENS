@@ -242,9 +242,11 @@ if __name__ == "__main__":
 
     # Creation of MG-RAVENS File from xml 
     d = RavensImport(MGR_ROOT+"/examples/IEEE13_Assets.xml")
+    d.dump(MGR_ROOT+"/examples/Regenerated_IEEE13_Assets.json", indent=2)
 
     #Creation of Simplified MG-RAVENS File from xml
     d2 = CrowsImport(MGR_ROOT+"/examples/IEEE13_Assets.xml")
+    d2.dump(MGR_ROOT+"/examples/Regenerated_Assets_simplified.json", indent=2)
     assert(d2.is_simplified())
     d2.restore_ravens()
     assert(not d2.is_simplified())
