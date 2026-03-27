@@ -734,4 +734,3 @@ class RavensImport(RDFGraph):
 
 if __name__ == "__main__":
     d = RavensImport("examples/IEEE13_Assets.xml")
-    d.dump("examples/IEEE13_Assets.json", indent=2)
