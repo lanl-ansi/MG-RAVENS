@@ -107,7 +107,7 @@ def clean_end(end):
 
 
 if __name__ == "__main__":
-    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/trans_test")
+    MGR = MGRavensDataset(data_dir=rML_ROOT/"data/trans_test")
     MGR_TEST, Y = generate_trans_error(MGR,occurrence_prob=1,size=1)  
     print(MGR_TEST.raw_data[0][1].get("PowerSystemResource",{}).get("Equipment",{}).get("ConductingEquipment",{}).get("PowerTransformer",{}))
 

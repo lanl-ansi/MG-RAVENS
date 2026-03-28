@@ -70,7 +70,7 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
         # checkpoint
         if va_loss < best_val:
             best_val = va_loss
-            torch.save(model.state_dict(), f"ravens/ravensML/methods/transformers/trans_gnn/tmp/probe_data/{Pass_ID}_best_model.pth")
+            torch.save(model.state_dict(), rML_ROOT/f"methods/transformers/trans_gnn/tmp/probe_data/{Pass_ID}_best_model.pth")
             print(f"  -> saved new best model for {Pass_ID}")
 
     # Plot losses
@@ -82,7 +82,7 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
     plt.legend()
     plt.title(f"Training / Validation loss for {Pass_ID}")
     plt.tight_layout()
-    plt.savefig(f"ravens/ravensML/methods/transformers/trans_gnn/tmp/probe_data/{Pass_ID}_loss_plot.png")
+    plt.savefig(rML_ROOT/f"methods/transformers/trans_gnn/tmp/probe_data/{Pass_ID}_loss_plot.png")
     plt.close()
 
     # Quick sanity check on a single graph
@@ -177,13 +177,13 @@ if __name__ == "__main__":
         'model_type': [SimpleGNN],
         'neg_penalty': [10],
         'inf_penalty': [5],
-        'test_percentage': [0, .01],
+        'test_percentage': [0, 1],
         'branch_inf_mode': [False,True],
         'lr': [1e-3],
         'weight_decay': [1e-5],
-        'transport_distance': [3,7,14]
+        'transport_distance': [7,14]
     }
-    EPOCHS = 35
+    EPOCHS = 100
 
     # Generate all combinations of parameters
     # For a smaller experiment, you may want to select fewer parameters or combinations

@@ -21,7 +21,7 @@ from methods.transformers.gen_trans_error import generate_trans_error
 def test_trans_optimizer():
     print("Loading dataset...")
     # Load the dataset
-    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/trans_test")
+    MGR = MGRavensDataset(data_dir=rML_ROOT/"data/trans_test")
     
     print("Generating trans errors...")
     # Generate trans errors

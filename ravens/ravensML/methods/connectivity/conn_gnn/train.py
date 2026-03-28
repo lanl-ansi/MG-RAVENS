@@ -21,7 +21,8 @@ from framework.tools.training_tools import train_epoch, validate
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
-TEST_NAME = "PI_ATTN_"
+TEST_NAME = "PI_STD_"
+#NOTE:setup the PI_STD currently running PI CONN
 
 # reproducibility
 torch.manual_seed(42)
@@ -75,12 +76,12 @@ model = SimpleGNN(
     transport_distance=10
 ).to(device)
 
-model = AttnGNN(
-    node_features=node_feat_dim,
-    edge_features=edge_feat_dim,
-    degree=deg,
-    max_nodes = 20,
-    transport_distance=0).to(device)
+# model = AttnGNN(
+#     node_features=node_feat_dim,
+#     edge_features=edge_feat_dim,
+#     degree=deg,
+#     max_nodes = 20,
+#     transport_distance=0).to(device)
 
 print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(20*20)}")
 

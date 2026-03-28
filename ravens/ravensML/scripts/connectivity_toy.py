@@ -79,7 +79,7 @@ def exact_match(true_edges, pred_edges, true_nodes, pred_nodes) -> bool:
 # --------------------------------------------------------------
 # 1 Load data & generate predictions (your original code)
 # --------------------------------------------------------------
-MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")
+MGR = MGRavensDataset(data_dir=rML_ROOT/"data/raw")
 MGR_CONN_TEST, Y = gen_conn_error(MGR,rename_prob=0.25,delete_prob=0.15,size=10000)          # Y = ground‑truth dict
 MGR_CONN_TEST.process_for_ML()
 

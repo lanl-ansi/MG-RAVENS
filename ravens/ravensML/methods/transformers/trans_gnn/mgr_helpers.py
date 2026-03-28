@@ -44,7 +44,7 @@ def update_mgr(prediction,sample):
     print(f"PMD: last file processed: {file_name}")
 
     input = _to_python(sample["edge_attr"])
-    with open("ravens/ravensML/methods/transformers/trans_gnn/tmp.json","w") as f:
+    with open(rML_ROOT/"methods/transformers/trans_gnn/tmp.json","w") as f:
         json.dump(mgr,f,indent=2)
 
     transformers = mgr["PowerSystemResource"]["Equipment"]["ConductingEquipment"]["PowerTransformer"]

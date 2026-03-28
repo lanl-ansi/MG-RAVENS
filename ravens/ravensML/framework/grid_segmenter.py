@@ -407,13 +407,13 @@ if __name__ == "__main__":
     from ravens.xml.xml2ravens import CrowsImport
     from ravens.ravensML.framework.dataset import MGRavensDataset
 
-    # d = DssExport("ravens/ravensML/data/IEEE8500/Master.dss")
-    # d.save("ravens/ravensML/framework/tmp/segmenter.xml")
+    # d = DssExport(rML_ROOT/"data/IEEE8500/Master.dss")
+    # d.save(rML_ROOT/"framework/tmp/segmenter.xml")
 
-    # MGR = CrowsImport("ravens/ravensML/framework/tmp/segmenter.xml")
-    # MGR.dump("ravens/ravensML/framework/segmenter_test_data/segmenter.json", indent=2)
+    # MGR = CrowsImport(rML_ROOT/"framework/tmp/segmenter.xml")
+    # MGR.dump(rML_ROOT/"framework/segmenter_test_data/segmenter.json", indent=2)
 
-    # DS = MGRavensDataset(data_dir="ravens/ravensML/framework/segmenter_test_data")
+    # DS = MGRavensDataset(data_dir=rML_ROOT/"framework/segmenter_test_data")
     # DS.process_for_ML()
     # DS.visualize_graph()
 

@@ -240,7 +240,7 @@ class t_MG_Dataset(InMemoryDataset):
             # ``y`` will be a dict with ``x`` and ``edge_attr`` of the clean graph.
             name, grid = clean_dict["file_name"], clean_dict["original_data"]
             name = os.path.splitext(os.path.basename(name))[0]
-            mgr_path = f"ravens/ravensML/<INSERT PATH>/tmp/mgr_data_tmp/{name}.json" #TODO: Insert Path
+            mgr_path = rML_ROOT/"<INSERT PATH>/tmp/mgr_data_tmp/{name}.json" #TODO: Insert Path
             with open(mgr_path, "w", encoding="utf-8") as f:
                 json.dump(grid, f, indent=2)
 

@@ -398,7 +398,7 @@ class GraphSearchConnectivity(object):
 # Driver code 
 # ----------------------------------------------------------------------
 if __name__ == "__main__":
-    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")
+    MGR = MGRavensDataset(data_dir=rML_ROOT/"data/raw")
     MGR.process_for_ML()
     # MGR.visualize_graph(1)
     # MGR.visualize_graph(2)

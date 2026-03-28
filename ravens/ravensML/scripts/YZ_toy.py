@@ -21,7 +21,7 @@ from methods.YZ.gen_YZ_error import generate_yz_error
 def test_yz_optimizer():
     print("Loading dataset...")
     # Load the dataset
-    MGR = MGRavensDataset(data_dir="ravens/ravensML/data/YZ_test")
+    MGR = MGRavensDataset(data_dir=rML_ROOT/"data/YZ_test")
     
     print("Generating YZ errors...")
     # Generate YZ errors

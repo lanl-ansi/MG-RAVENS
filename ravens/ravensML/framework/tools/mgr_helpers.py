@@ -37,7 +37,7 @@ def update_mgr(prediction,sample):
         mgr = json.load(f)
     input = _to_python(sample["edge_attr"])
 
-    with open("ravens/ravensML/framework/tools/tmp.json","w") as f:
+    with open(rML_ROOT/"framework/tools/tmp.json","w") as f:
         json.dump(mgr,f,indent=2)
 
     transformers = mgr["PowerSystemResource"]["Equipment"]["ConductingEquipment"]["PowerTransformer"]
