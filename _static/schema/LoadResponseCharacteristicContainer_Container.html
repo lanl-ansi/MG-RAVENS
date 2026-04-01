@@ -58,10 +58,10 @@
 If LoadResponseCharacteristic.exponentModel is True, the exponential voltage or frequency dependent models are specified and used as to calculate active and reactive power components of the load model.<br />
 The equations to calculate active and reactive power components of the load model are internal to the power flow calculation, hence they use different quantities depending on the use case of the data exchange.<br />
 The equations for exponential voltage dependent load model injected power are:<br />
-pInjection= Pnominal* (Voltage/cim:BaseVoltage.nominalVoltage) <em>* cim:LoadResponseCharacteristic.pVoltageExponent<br />
-qInjection= Qnominal</em> (Voltage/cim:BaseVoltage.nominalVoltage) <em>* cim:LoadResponseCharacteristic.qVoltageExponent<br />
+pInjection= Pnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.pVoltageExponent<br />
+qInjection= Qnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.qVoltageExponent<br />
 Where:<br />
-1) * means "multiply" and *</em> is "raised to power of";<br />
+1) * means "multiply" and ** is "raised to power of";<br />
 2) Pnominal and Qnominal represent the active power and reactive power at nominal voltage as any load described by the voltage exponential model shall be given at nominal voltage.  This means that EnergyConsumer.p and EnergyConsumer.q  are at nominal voltage.<br />
 3) After power flow is solved:<br />
 -pInjection and qInjection correspond to SvPowerflow.p and SvPowerflow.q respectively.<br />
@@ -769,6 +769,6 @@ The sum of qConstantImpedance, qConstantCurrent and qConstantPower shall equal 1
 </div>
 
     <footer>
-        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2026-02-10 at 16:28:45 +0000</p>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2026-04-01 at 22:32:39 +0000</p>
     </footer></body>
 </html>
