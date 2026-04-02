@@ -148,6 +148,7 @@ class SimpleGNN(nn.Module):
         adj = (adj + adj.t()) / 2
 
         return adj
+    
 class EdgeAttentionModule(nn.Module):
     def __init__(self, node_dim, edge_dim, hidden_dim, num_heads=4, dropout=0.1):
         super(EdgeAttentionModule, self).__init__()
