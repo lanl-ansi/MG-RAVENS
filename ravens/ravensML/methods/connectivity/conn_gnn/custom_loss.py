@@ -123,6 +123,9 @@ class PIAdjMSELoss(nn.Module):
         self.inf_penalty = inf_penalty
         self.test_percentage = test_percentage
         self.branch_inf_mode = branch_inf_mode
+        from warnings import warn
+        warn("inf_score() is currently non-differentiable in Pytorch. Treat this as a placeholder for a soon to be released" \
+        "differentiable approximation.")
 
 
     def _mask_diagonal(self, tensor: torch.Tensor) -> torch.Tensor:
