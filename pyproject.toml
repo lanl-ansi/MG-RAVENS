@@ -19,6 +19,7 @@ lxml = "^5.3.0"
 opendssdirect-py = {extras = ["extras"], version = "^0.9.4"}
 jschon= {extras = ["requests"], version = "^0.11.1"}
 openpyxl = "^3.1.5"
+grg-mpdata = "^0.1.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
