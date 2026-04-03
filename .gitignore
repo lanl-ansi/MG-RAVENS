@@ -1,10 +1,22 @@
 *.vscode
 node_modules/
 
+tests/tmp/
 out/
 cimpy-1.0.2/
 test_env
 tests_fixes
+
+
+ravens/ravensML/data/
+ravens/ravensML/processed/
+ravens/ravensML/framework/tmp
+ravens/ravensML/methods/transformers/trans_gnn/tmp/
+ravens/ravensML/methods/transformers/trivial_solution/tmp/
+ravens/ravensML/methods/YZ/trivial_solution/tmp/
+ravens/ravensML/methods/connectivity/conn_gnn/tmp/
+tmp.json
+
 
 deprecated.*
 test.*
@@ -19,3 +31,4 @@ debug/
 __pycache__/
 *.pyc
 .env
+.DS_store
