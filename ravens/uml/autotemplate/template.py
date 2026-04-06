@@ -32,7 +32,15 @@ class TemplateGenerator:
     (we only read 'rootClass'/'embeddedClass' to know what is "concrete").
     """
 
-    def __init__(self, *, H: nx.DiGraph, A: Optional[nx.MultiDiGraph] = None, root_name: str = "Root", debug: bool = False):
+    def __init__(
+        self,
+        *,
+        H: nx.DiGraph,
+        A: Optional[nx.MultiDiGraph] = None,
+        root_name: str = "Root",
+        debug: bool = False,
+        capture_diagnostics: bool = False,
+    ):
            
             if not isinstance(H, nx.DiGraph):
                 raise TypeError("H must be a networkx.DiGraph oriented child -> parent.")
@@ -40,6 +48,7 @@ class TemplateGenerator:
             self.HR: nx.DiGraph = H.reverse(copy=False)
             self.A = A 
             self.debug = bool(debug)
+            self.capture_diagnostics = bool(capture_diagnostics)
             self.root_name = root_name
 
             # Find Root in either graph by Name
@@ -65,6 +74,8 @@ class TemplateGenerator:
 
             # Cross-refs ON by default
             self.EMIT_CROSS_REFS: bool = True
+            self._analysis_variable_events: list[dict[str, Any]] = []
+            self._analysis_variable_event_keys: set[str] = set()
 
             self._FIELD_ORDER = {
                 "schema": [
@@ -89,6 +100,23 @@ class TemplateGenerator:
                     "anyOf", "properties",
                 ],
             }
+
+    def _add_analysis_variable_event(self, event: str, **details: Any) -> None:
+        if not self.capture_diagnostics:
+            return
+
+        payload = {"event": event, **details}
+        event_key = json.dumps(payload, sort_keys=True, default=str)
+        if event_key in self._analysis_variable_event_keys:
+            return
+        self._analysis_variable_event_keys.add(event_key)
+        self._analysis_variable_events.append(payload)
+
+    def analysis_variable_diagnostics_payload(self) -> dict[str, Any]:
+        return {
+            "event_count": len(self._analysis_variable_events),
+            "analysis_variable_events": self._analysis_variable_events,
+        }
 
 
 
@@ -397,6 +425,42 @@ class TemplateGenerator:
                     continue
                 name_to_id.setdefault(nm, nid_i)
 
+        analysis_variable_family_id = name_to_id.get("AnalysisVariable")
+        operations_variable_family_id = name_to_id.get("OperationsVariable")
+
+        def _ptr_name(ptr: dict | None) -> str:
+            if not isinstance(ptr, dict):
+                return ""
+            return (ptr.get("$objectId") or "").strip()
+
+        def _schema_summary(schema: dict | None) -> dict[str, Any]:
+            if not isinstance(schema, dict):
+                return {"kind": "none"}
+            return {
+                "object_id": (schema.get("$objectId") or "").strip() or None,
+                "object_type": (schema.get("$objectType") or "").strip() or None,
+                "type": (schema.get("type") or "").strip() or None,
+                "has_anyof": isinstance(schema.get("anyOf"), list),
+                "anyof_size": len(schema.get("anyOf", [])) if isinstance(schema.get("anyOf"), list) else 0,
+            }
+
+        def _should_trace_family(family_id: int | None) -> bool:
+            if analysis_variable_family_id is None or family_id is None:
+                return False
+            try:
+                return int(family_id) == int(analysis_variable_family_id)
+            except Exception:
+                return False
+
+        INHERIT_ONLY = {
+            "inheritOnlyClass",
+            "substitutableInheritOnlyClass",
+            "containerInheritOnlyClass",
+            "embeddedInheritOnlyClass",
+        }
+        CONTAINERS = {"containerClass", "containerInheritOnlyClass"}
+        NON_SELECTABLE_FAMILY_ROLES = INHERIT_ONLY | CONTAINERS
+
         ASSOC_LIKE = {"Association", "Aggregation", "Composition"}
 
         # Never generate dotted properties for these structural wiring nodes.
@@ -582,14 +646,6 @@ class TemplateGenerator:
 
                 return None
 
-            INHERIT_ONLY = {
-                "inheritOnlyClass",
-                "substitutableInheritOnlyClass",
-                "containerInheritOnlyClass",
-                "embeddedInheritOnlyClass",
-            }
-            CONTAINERS = {"containerClass", "containerInheritOnlyClass"}
-
             def _keep_variant(nid: int) -> bool:
                 r = self._role(int(nid))
                 if r in INHERIT_ONLY:
@@ -660,6 +716,25 @@ class TemplateGenerator:
             anyof_variants = self._make_anyof_variants(target_id, drop_hashes=True)
             if not anyof_variants:
                 return None
+
+            if _should_trace_family(target_id):
+                self._add_analysis_variable_event(
+                    "family_wrapper_emitted",
+                    target_id=int(target_id),
+                    base_name=self._name(target_id),
+                    base_role=base_role,
+                    variant_names=[
+                        (variant.get("$objectId") or "").strip()
+                        for variant in anyof_variants
+                        if isinstance(variant, dict) and (variant.get("$objectId") or "").strip()
+                    ],
+                    variant_roles={
+                        (variant.get("$objectId") or "").strip(): self._role(name_to_id[(variant.get("$objectId") or "").strip()])
+                        for variant in anyof_variants
+                        if isinstance(variant, dict)
+                        and (variant.get("$objectId") or "").strip() in name_to_id
+                    },
+                )
 
             base_name = self._name(target_id)
 
@@ -762,6 +837,7 @@ class TemplateGenerator:
             self._association_resolution_contexts = resolution_contexts
 
         family_stem_cache: dict[int, dict[int, str]] = {}
+        family_selectable_variant_cache: dict[int, list[int]] = {}
         analysis_result_family_id = name_to_id.get("AnalysisResult")
         analysis_result_data_family_id = name_to_id.get("AnalysisResultData")
 
@@ -813,6 +889,72 @@ class TemplateGenerator:
                     break
             return prefix
 
+        def _family_selectable_variant_ids(family_root_id: int | None) -> list[int]:
+            if family_root_id is None:
+                return []
+            try:
+                fid = int(family_root_id)
+            except Exception:
+                return []
+
+            cached = family_selectable_variant_cache.get(fid)
+            if cached is not None:
+                return cached
+
+            candidate_ids: list[int] = []
+            excluded_variants: list[dict[str, Any]] = []
+            raw_variant_ids: list[int] = []
+
+            for variant_id in self._collect_polymorphic_variants(fid):
+                try:
+                    vid = int(variant_id)
+                except Exception:
+                    continue
+                raw_variant_ids.append(vid)
+                vrole = (self._role(vid) or "").strip()
+                if vrole in NON_SELECTABLE_FAMILY_ROLES or not vrole:
+                    if _should_trace_family(fid):
+                        excluded_variants.append(
+                            {
+                                "variant_name": self._name(vid) or None,
+                                "variant_role": vrole or None,
+                                "reason": "role_filtered" if vrole in NON_SELECTABLE_FAMILY_ROLES else "missing_role",
+                            }
+                        )
+                    continue
+                candidate_ids.append(vid)
+
+            candidate_set = set(candidate_ids)
+            terminal_ids: list[int] = []
+            for vid in candidate_ids:
+                has_candidate_descendant = any(
+                    int(descendant_id) in candidate_set for descendant_id in nx.descendants(self.HR, vid)
+                )
+                if not has_candidate_descendant:
+                    terminal_ids.append(vid)
+
+            selectable_ids = terminal_ids or candidate_ids
+            family_selectable_variant_cache[fid] = selectable_ids
+
+            if _should_trace_family(fid):
+                self._add_analysis_variable_event(
+                    "family_stem_catalog",
+                    family_id=fid,
+                    family_name=self._name(fid),
+                    eligible_variants=[
+                        {
+                            "variant_name": self._name(vid) or None,
+                            "variant_role": self._role(vid) or None,
+                            "terminal": vid in set(terminal_ids),
+                        }
+                        for vid in selectable_ids
+                    ],
+                    excluded_variants=excluded_variants,
+                    raw_variant_names=[self._name(vid) or None for vid in raw_variant_ids],
+                )
+
+            return selectable_ids
+
         def _family_relative_stem(node_id: int | None, family_root_id: int | None) -> str:
             if node_id is None or family_root_id is None:
                 return ""
@@ -824,25 +966,7 @@ class TemplateGenerator:
 
             stems = family_stem_cache.get(fid)
             if stems is None:
-                variant_ids: list[int] = []
-                for variant_id in self._collect_polymorphic_variants(fid):
-                    try:
-                        vid = int(variant_id)
-                    except Exception:
-                        continue
-                    if not self._is_concrete(vid):
-                        continue
-                    vrole = (self._role(vid) or "").strip()
-                    if vrole in {
-                        "inheritOnlyClass",
-                        "substitutableInheritOnlyClass",
-                        "containerInheritOnlyClass",
-                        "embeddedInheritOnlyClass",
-                        "containerClass",
-                    }:
-                        continue
-                    variant_ids.append(vid)
-
+                variant_ids = _family_selectable_variant_ids(fid)
                 variant_names = [self._name(vid) for vid in variant_ids if self._name(vid)]
                 prefix = _longest_common_prefix(variant_names)
                 stems = {}
@@ -852,6 +976,16 @@ class TemplateGenerator:
                         continue
                     stems[vid] = vname[len(prefix) :] if prefix and len(prefix) < len(vname) else vname
                 family_stem_cache[fid] = stems
+                if _should_trace_family(fid):
+                    self._add_analysis_variable_event(
+                        "family_stem_values",
+                        family_id=fid,
+                        family_name=self._name(fid),
+                        stems={
+                            self._name(vid) or str(vid): stem or None
+                            for vid, stem in stems.items()
+                        },
+                    )
 
             return stems.get(nid, "")
 
@@ -878,6 +1012,13 @@ class TemplateGenerator:
             if key is None or not variant_name or not isinstance(ptr, dict):
                 return
             _get_resolution_context(ptr)[key] = str(variant_name)
+            if _should_trace_family(key):
+                self._add_analysis_variable_event(
+                    "context_choice_recorded",
+                    ptr_object_id=_ptr_name(ptr) or None,
+                    ptr_object_type=(ptr.get("$objectType") or "").strip() or None,
+                    chosen_variant=str(variant_name),
+                )
 
         def _inherit_resolution_context(dst_ptr: dict | None, src_ptr: dict | None) -> None:
             if not isinstance(dst_ptr, dict) or not isinstance(src_ptr, dict):
@@ -1055,13 +1196,80 @@ class TemplateGenerator:
 
             return out
 
-        def _upsert_assoc_property(parent_obj: dict, key: str, prop: dict) -> tuple[bool, dict | None]:
+        def _family_schema_leaf(schema: dict | None) -> dict | None:
+            if not isinstance(schema, dict):
+                return None
+            if schema.get("type") == "array":
+                items = schema.get("items")
+                return items if isinstance(items, dict) else None
+            return schema
+
+        def _family_concrete_object_id(schema: dict | None) -> str:
+            leaf = _family_schema_leaf(schema)
+            if not isinstance(leaf, dict):
+                return ""
+            if leaf.get("$objectType") != "object":
+                return ""
+            if isinstance(leaf.get("anyOf"), list):
+                return ""
+            return (leaf.get("$objectId") or "").strip()
+
+        def _is_unresolved_family_wrapper(schema: dict | None) -> bool:
+            leaf = _family_schema_leaf(schema)
+            if not isinstance(leaf, dict):
+                return False
+            if leaf.get("$objectType") != "object":
+                return False
+            if (leaf.get("$objectId") or "").strip():
+                return False
+            return isinstance(leaf.get("anyOf"), list)
+
+        def _upsert_assoc_property(
+            parent_obj: dict,
+            key: str,
+            prop: dict,
+            *,
+            family_id: int | None = None,
+            chosen_variant_name: str | None = None,
+        ) -> tuple[bool, dict | None]:
             props = parent_obj.setdefault("properties", {})
             existing = props.get(key)
+            family_key = _context_key(family_id)
 
             if existing is None:
                 props[key] = prop
                 return True, props[key]
+
+            if family_key is not None:
+                existing_oid = _family_concrete_object_id(existing if isinstance(existing, dict) else None)
+                incoming_oid = _family_concrete_object_id(prop)
+                existing_is_wrapper = _is_unresolved_family_wrapper(existing if isinstance(existing, dict) else None)
+                incoming_is_wrapper = _is_unresolved_family_wrapper(prop)
+
+                if existing_is_wrapper and incoming_oid:
+                    props[key] = prop
+                    if _should_trace_family(family_key):
+                        self._add_analysis_variable_event(
+                            "assoc_property_replaced_wrapper",
+                            parent_object_id=_ptr_name(parent_obj) or None,
+                            property_key=key,
+                            chosen_name=chosen_variant_name or incoming_oid,
+                            existing_schema=_schema_summary(existing if isinstance(existing, dict) else None),
+                            incoming_schema=_schema_summary(prop),
+                        )
+                    return True, props[key]
+
+                if existing_oid and incoming_is_wrapper:
+                    if _should_trace_family(family_key):
+                        self._add_analysis_variable_event(
+                            "assoc_property_preserved_concrete",
+                            parent_object_id=_ptr_name(parent_obj) or None,
+                            property_key=key,
+                            chosen_name=existing_oid,
+                            existing_schema=_schema_summary(existing if isinstance(existing, dict) else None),
+                            incoming_schema=_schema_summary(prop),
+                        )
+                    return False, existing if isinstance(existing, dict) else None
 
             merged = self._merge_schema(existing, prop)
             if merged != existing:
@@ -1111,19 +1319,51 @@ class TemplateGenerator:
                 return None
 
             fam_key = _context_key(family_id)
+            recipient_name = _ptr_name(recipient_ptr)
+            recipient_id = name_to_id.get(recipient_name) if recipient_name else None
+            recipient_role = self._role(recipient_id) if recipient_id is not None else ""
+            variant_keys = sorted(str(k) for k in variant_schemas.keys())
+            context_hits: list[dict[str, Any]] = []
+
             if fam_key is not None and isinstance(recipient_ptr, dict):
                 for ctx_ptr in _iter_context_ptrs(recipient_ptr):
                     ctx = resolution_contexts.get(id(ctx_ptr))
                     chosen_name = ctx.get(fam_key) if isinstance(ctx, dict) else None
+                    if _should_trace_family(fam_key) and chosen_name:
+                        context_hits.append(
+                            {
+                                "context_object_id": _ptr_name(ctx_ptr) or None,
+                                "choice": str(chosen_name),
+                            }
+                        )
                     if chosen_name in variant_schemas:
+                        if _should_trace_family(fam_key):
+                            self._add_analysis_variable_event(
+                                "resolve_variant_name",
+                                recipient_object_id=recipient_name or None,
+                                recipient_role=recipient_role or None,
+                                family_id=int(fam_key),
+                                family_name=self._name(fam_key),
+                                variant_keys=variant_keys,
+                                context_hits=context_hits,
+                                chosen_name=str(chosen_name),
+                                reason="context",
+                            )
                         return str(chosen_name)
 
-            recipient_name = ""
-            recipient_id: int | None = None
-            if isinstance(recipient_ptr, dict):
-                recipient_name = (recipient_ptr.get("$objectId") or "").strip()
-                recipient_id = name_to_id.get(recipient_name)
             if recipient_name in variant_schemas:
+                if _should_trace_family(fam_key):
+                    self._add_analysis_variable_event(
+                        "resolve_variant_name",
+                        recipient_object_id=recipient_name or None,
+                        recipient_role=recipient_role or None,
+                        family_id=int(fam_key),
+                        family_name=self._name(fam_key),
+                        variant_keys=variant_keys,
+                        context_hits=context_hits,
+                        chosen_name=recipient_name,
+                        reason="direct_object_id",
+                    )
                 return recipient_name
 
             if recipient_id is not None and fam_key is not None:
@@ -1139,20 +1379,85 @@ class TemplateGenerator:
                         continue
 
                     matches: list[str] = []
+                    candidate_stems: dict[str, str | None] = {}
                     for candidate_name in variant_schemas:
                         candidate_id = name_to_id.get(candidate_name)
                         candidate_stem = _family_relative_stem(candidate_id, fam_key)
+                        if _should_trace_family(fam_key):
+                            candidate_stems[str(candidate_name)] = candidate_stem or None
                         if candidate_stem and candidate_stem == recipient_stem:
                             matches.append(candidate_name)
 
                     if len(matches) == 1:
+                        if _should_trace_family(fam_key):
+                            self._add_analysis_variable_event(
+                                "resolve_variant_name",
+                                recipient_object_id=recipient_name or None,
+                                recipient_role=recipient_role or None,
+                                family_id=int(fam_key),
+                                family_name=self._name(fam_key),
+                                variant_keys=variant_keys,
+                                context_hits=context_hits,
+                                recipient_family=self._name(recipient_family_id),
+                                recipient_stem=recipient_stem,
+                                candidate_stems=candidate_stems,
+                                chosen_name=matches[0],
+                                reason="family_stem",
+                            )
                         return matches[0]
+                    if _should_trace_family(fam_key):
+                        self._add_analysis_variable_event(
+                            "family_stem_attempt",
+                            recipient_object_id=recipient_name or None,
+                            recipient_role=recipient_role or None,
+                            family_id=int(fam_key),
+                            family_name=self._name(fam_key),
+                            recipient_family=self._name(recipient_family_id),
+                            recipient_stem=recipient_stem or None,
+                            candidate_stems=candidate_stems,
+                            matches=matches,
+                        )
 
             chosen_schema = _resolve_variant_schema_for_owner(recipient_name, variant_schemas)
             if not isinstance(chosen_schema, dict):
+                if _should_trace_family(fam_key):
+                    recipient_parent_names = []
+                    if recipient_id is not None:
+                        try:
+                            recipient_parent_names = [self._name(int(parent_id)) for parent_id in self.H.successors(int(recipient_id))]
+                        except Exception:
+                            recipient_parent_names = []
+                    self._add_analysis_variable_event(
+                        "resolve_variant_name",
+                        recipient_object_id=recipient_name or None,
+                        recipient_role=recipient_role or None,
+                        family_id=int(fam_key),
+                        family_name=self._name(fam_key),
+                        family_role=self._role(fam_key),
+                        variant_keys=variant_keys,
+                        context_hits=context_hits,
+                        recipient_parents=recipient_parent_names,
+                        operations_variable_family=(
+                            self._name(operations_variable_family_id) if operations_variable_family_id is not None else None
+                        ),
+                        chosen_name=None,
+                        reason="no_match",
+                    )
                 return None
             for candidate_name, candidate_schema in variant_schemas.items():
                 if candidate_schema is chosen_schema or candidate_schema == chosen_schema:
+                    if _should_trace_family(fam_key):
+                        self._add_analysis_variable_event(
+                            "resolve_variant_name",
+                            recipient_object_id=recipient_name or None,
+                            recipient_role=recipient_role or None,
+                            family_id=int(fam_key),
+                            family_name=self._name(fam_key),
+                            variant_keys=variant_keys,
+                            context_hits=context_hits,
+                            chosen_name=str(candidate_name),
+                            reason="owner_schema_match",
+                        )
                     return str(candidate_name)
             return None
 
@@ -1166,8 +1471,37 @@ class TemplateGenerator:
             if chosen_name and isinstance(variant_schemas, dict):
                 chosen = variant_schemas.get(chosen_name)
                 if isinstance(chosen, dict):
+                    if _should_trace_family(family_id):
+                        self._add_analysis_variable_event(
+                            "schema_for_recipient",
+                            recipient_object_id=_ptr_name(recipient_ptr) or None,
+                            family_id=int(_context_key(family_id)),
+                            family_name=self._name(int(_context_key(family_id))),
+                            chosen_name=chosen_name,
+                            used_default=False,
+                            chosen_schema=_schema_summary(chosen),
+                        )
                     return chosen, chosen_name
             if isinstance(default_schema, dict):
+                if _should_trace_family(family_id):
+                    self._add_analysis_variable_event(
+                        "schema_fallback_to_default",
+                        recipient_object_id=_ptr_name(recipient_ptr) or None,
+                        family_id=int(_context_key(family_id)),
+                        family_name=self._name(int(_context_key(family_id))),
+                        default_schema=_schema_summary(default_schema),
+                        variant_keys=sorted(str(k) for k in (variant_schemas or {}).keys()),
+                    )
+                    self._add_analysis_variable_event(
+                        "schema_for_recipient",
+                        recipient_object_id=_ptr_name(recipient_ptr) or None,
+                        family_id=int(_context_key(family_id)),
+                        family_name=self._name(int(_context_key(family_id))),
+                        chosen_name=None,
+                        used_default=True,
+                        default_schema=_schema_summary(default_schema),
+                        variant_keys=sorted(str(k) for k in (variant_schemas or {}).keys()),
+                    )
                 return default_schema, None
             return None, None
 
@@ -1283,7 +1617,13 @@ class TemplateGenerator:
                                 if not isinstance(chosen_schema, dict):
                                     continue
                                 _record_resolution_choice(tptr, context_family_id, chosen_variant_name)
-                                changed, stored_schema = _upsert_assoc_property(tptr, prop_key, copy.deepcopy(chosen_schema))
+                                changed, stored_schema = _upsert_assoc_property(
+                                    tptr,
+                                    prop_key,
+                                    copy.deepcopy(chosen_schema),
+                                    family_id=context_family_id,
+                                    chosen_variant_name=chosen_variant_name,
+                                )
                                 pass_changed |= changed
                                 pass_changed |= _register_inline_targets_from_schema(
                                     target_id,
@@ -1309,7 +1649,13 @@ class TemplateGenerator:
                                 if not isinstance(chosen_schema, dict):
                                     continue
                                 _record_resolution_choice(variant, context_family_id, chosen_variant_name)
-                                changed, stored_schema = _upsert_assoc_property(variant, prop_key, copy.deepcopy(chosen_schema))
+                                changed, stored_schema = _upsert_assoc_property(
+                                    variant,
+                                    prop_key,
+                                    copy.deepcopy(chosen_schema),
+                                    family_id=context_family_id,
+                                    chosen_variant_name=chosen_variant_name,
+                                )
                                 pass_changed |= changed
                                 pass_changed |= _register_inline_targets_from_schema(
                                     target_id,
@@ -1324,7 +1670,13 @@ class TemplateGenerator:
                     chosen_for_owner, chosen_variant_name = _schema_for_recipient(owner_ptr, prop_schema, variant_prop_schemas, context_family_id)
                     if isinstance(chosen_for_owner, dict):
                         _record_resolution_choice(owner_ptr, context_family_id, chosen_variant_name)
-                        changed, stored_schema = _upsert_assoc_property(owner_ptr, prop_key, copy.deepcopy(chosen_for_owner))
+                        changed, stored_schema = _upsert_assoc_property(
+                            owner_ptr,
+                            prop_key,
+                            copy.deepcopy(chosen_for_owner),
+                            family_id=context_family_id,
+                            chosen_variant_name=chosen_variant_name,
+                        )
                         pass_changed |= changed
                         pass_changed |= _register_inline_targets_from_schema(
                             target_id,
@@ -1344,7 +1696,13 @@ class TemplateGenerator:
                             if not isinstance(chosen_schema, dict):
                                 continue
                             _record_resolution_choice(variant, context_family_id, chosen_variant_name)
-                            changed, stored_schema = _upsert_assoc_property(variant, prop_key, copy.deepcopy(chosen_schema))
+                            changed, stored_schema = _upsert_assoc_property(
+                                variant,
+                                prop_key,
+                                copy.deepcopy(chosen_schema),
+                                family_id=context_family_id,
+                                chosen_variant_name=chosen_variant_name,
+                            )
                             pass_changed |= changed
                             pass_changed |= _register_inline_targets_from_schema(
                                 target_id,
@@ -1360,7 +1718,13 @@ class TemplateGenerator:
                         if not isinstance(chosen_schema, dict):
                             continue
                         _record_resolution_choice(descendant_ptr, context_family_id, chosen_variant_name)
-                        changed, stored_schema = _upsert_assoc_property(descendant_ptr, prop_key, copy.deepcopy(chosen_schema))
+                        changed, stored_schema = _upsert_assoc_property(
+                            descendant_ptr,
+                            prop_key,
+                            copy.deepcopy(chosen_schema),
+                            family_id=context_family_id,
+                            chosen_variant_name=chosen_variant_name,
+                        )
                         pass_changed |= changed
                         pass_changed |= _register_inline_targets_from_schema(
                             target_id,
