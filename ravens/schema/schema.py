@@ -71,6 +71,47 @@ class RavensSchema:
     def schema_path(self, schema_id):
         return "/".join(a for a in [self.base_id_uri, schema_id + (".json" if not self.omit_file_extension else "")] if a)
 
+    @staticmethod
+    def _strip_presentation_fields(value: Any) -> Any:
+        if isinstance(value, dict):
+            return {
+                k: RavensSchema._strip_presentation_fields(v)
+                for k, v in value.items()
+                if k not in {"title", "description"}
+            }
+        if isinstance(value, list):
+            return [RavensSchema._strip_presentation_fields(item) for item in value]
+        return value
+
+    @staticmethod
+    def _dedupe_anyof_members(anyof: list[Any]) -> list[Any]:
+        unique: list[Any] = []
+        seen: set[str] = set()
+
+        for item in anyof:
+            signature = json.dumps(RavensSchema._strip_presentation_fields(item), sort_keys=True)
+            if signature in seen:
+                continue
+            seen.add(signature)
+            unique.append(item)
+
+        return unique
+
+    @staticmethod
+    def _collapse_pure_anyof_wrapper(schema: dict[str, Any]) -> dict[str, Any]:
+        if "anyOf" not in schema or not isinstance(schema["anyOf"], list):
+            return schema
+
+        schema["anyOf"] = RavensSchema._dedupe_anyof_members(schema["anyOf"])
+
+        structural_keys = {k for k in schema if k not in {"title", "description"}}
+        if structural_keys == {"anyOf"} and len(schema["anyOf"]) == 1:
+            only = schema["anyOf"][0]
+            if isinstance(only, dict):
+                return only
+
+        return schema
+
     def build_schema_from_map(self, schema_map: dict) -> dict:
         def _title(s: str) -> str:
             return s.split(".")[-1]
@@ -144,7 +185,7 @@ class RavensSchema:
             else:
                 schema[k] = v
 
-        return schema
+        return self._collapse_pure_anyof_wrapper(schema)
 
     def build_definitions(self, uml_data: UMLData) -> dict:
         defs = {}
