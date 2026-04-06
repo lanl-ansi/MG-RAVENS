@@ -188,6 +188,10 @@ julia_path = rML_ROOT.parents[4]/'.juliaup/bin/julia'
 
 The current implementation assumes the `.juliaup` directory exists in a directory that is the parent of the parent of MG-RAVENS. This is a work in progress.
 
+### Physics Informed Components
+
+The easiest way to implement physics informed constraints is to train a Pytorch GNN on the results of a `PowerModelsDistribution.jl` computation. One such method is provided in `framework.tools.pf_inf_approx` and is helpful for adding a differentiable loss term that should help the model learn to produce demand feasible outputs. This is used in both the transformer and connectivity example methods. 
+
 ### Training Tools
 
 - `tools.training_tools.train_epoch(model, loader, loss_fn, optimizer, device)`

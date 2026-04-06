@@ -145,12 +145,10 @@ Both models share the following pipeline:
   scaling factor $K$ are supported.  
 * **PIAdjMSELoss** – extends `AdjMSELoss` with a *penalty term* that evaluates
   the physical feasibility of the corrected grid:  
-  * With probability `test_percentage` the method runs a power‑flow simulation
-    (via `run_pf`) on the predicted grid.  
-  * If the simulation fails, a large penalty (`inf_penalty`) or a demand‑gap
-    metric (`system_demand_not_met`) is added to the loss.  
-  * Branch‑level infeasibility can be enabled (`branch_inf_mode`) to penalise
-    transformer parameter violations.
+  * With probability `test_percentage` the method uses a NN to predict the results amount of system demand
+    not met when solving power flow via `run_pf` and `system_demand_not_met`.
+  * A penalty multiplier (`inf_penalty`) will be applied to the predicted infeasibility
+    and added to the loss to yield a differentiable physics informed loss component.  
 
 Both losses are fully differentiable; the infeasibility term is a scalar that
 does not back‑propagate through the Julia solver, but its magnitude still

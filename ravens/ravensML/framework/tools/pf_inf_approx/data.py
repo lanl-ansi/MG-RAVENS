@@ -179,7 +179,7 @@ class MG_Inf_Dataset(InMemoryDataset):
     @property
     def raw_file_names(self):
         # all json files in raw/
-        return [p.name for p in (self.root / "raw").glob("*.json")]
+        return [p.name for p in (self.root / "data/seg_data").glob("*.json")]
 
     @property
     def processed_file_names(self):
@@ -201,9 +201,7 @@ class MG_Inf_Dataset(InMemoryDataset):
         # ------------------------------------------------------------------
         # 1 Load the clean data
         # ------------------------------------------------------------------
-        mgr = MGRavensDataset(data_dir=str(self.root 
-                                           #TODO: insert / "<PATH>"
-                                           ))
+        mgr = MGRavensDataset(data_dir=str(self.root/"data/seg_data"))
         mgr.process_for_ML()
 
         # ------------------------------------------------------------------
@@ -237,9 +235,9 @@ class MG_Inf_Dataset(InMemoryDataset):
             # Store as a tuple (corrupt, clean).  PyG expects a single object,
             # so we glue them together in the ``y`` field.
             # ``y`` will be a dict with ``x`` and ``edge_attr`` of the clean graph.
-            name, grid = X_dict["file_name"]+str(i), X_dict["original_data"]
-            name = os.path.splitext(os.path.basename(name))[0]
-            mgr_path = rML_ROOT/"framework/tools/pf_inf_approx/inf_model_data/tmp/mgr_data_tmp/{name}.json" #TODO: Insert Path
+            name, grid = X_dict["file_name"], X_dict["original_data"]
+            name = os.path.splitext(os.path.basename(name))[0]+str(i)
+            mgr_path = rML_ROOT/f"framework/tools/pf_inf_approx/inf_model_data/{name}.json"
             with open(mgr_path, "w", encoding="utf-8") as f:
                 json.dump(grid, f, indent=2)
 
@@ -274,6 +272,7 @@ class MG_Inf_Dataset(InMemoryDataset):
         return super().__getitem__(idx)
 
 if __name__ == '__main__':
+    import time
     from pathlib import Path
     import sys, os
     rML_ROOT = Path(__file__).resolve().parents[3]
@@ -284,4 +283,5 @@ if __name__ == '__main__':
         size=20,
         error_kwargs={"mean": 0.0,"std": 0.5},
     )
+    time.sleep(5)
     print(dataset[1])

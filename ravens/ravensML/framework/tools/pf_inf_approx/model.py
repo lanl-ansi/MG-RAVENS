@@ -133,17 +133,8 @@ class SimpleGNN(nn.Module):
         edge_logits = self.edge_mlp(edge_rep)                # (E, max_nodes²)
 
         # --------------------------------------------------------------
-        # Aggregate over edges → a single vector per graph.
+        # Aggregate over edges → a single value per graph.
         # --------------------------------------------------------------
-        graph_logits = edge_logits.mean(dim=0)               # (max_nodes²,)
-
-        # --------------------------------------------------------------
-        # Reshape → square matrix and squash to [0, 1] with sigmoid.
-        # --------------------------------------------------------------
-        adj = graph_logits.view(self.max_nodes, self.max_nodes)   # (max_nodes, max_nodes)
-        adj = torch.sigmoid(adj)                                 # now in [0, 1]
-
-        # optional: make symmetric for an undirected adjacency matrix
-        adj = (adj + adj.t()) / 2
+        adj = edge_logits.mean(dim=0)
 
         return adj

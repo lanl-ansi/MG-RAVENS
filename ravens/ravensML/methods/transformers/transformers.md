@@ -139,10 +139,15 @@ training the clean graph is accessed through the `y` field.
 
 ### Loss Functions
 
-| Loss | Description |
-|------|-------------|
-| **WeightedMSELoss** | Computes a weighted mean‑squared error where diagonal resistance/reactance entries receive higher weight (`3`) and off‑diagonal entries a lower weight (`1`).  A small penalty on negative predictions can be added (`penalty_strength`). |
-| **PI_WMSE_Loss** | Extends `WeightedMSELoss` with two extra components: <br>1. **Negative‑value penalty** (`neg_penalty`). <br>2. **Infeasibility penalty** (`inf_penalty`).  With probability `test_percentage` a power‑flow is executed on the predicted grid; the resulting feasibility score (`inf_score`) is multiplied by `inf_penalty` and added to the loss.  The flag `branch_inf_mode` switches between a demand‑gap metric and a sum of transformer‑specific infeasibility terms. |
+* **WeightedMSELoss**
+  * Computes a weighted mean‑squared error.  
+  * Diagonal resistance/reactance entries receive a higher weight (`3`); off‑diagonal entries receive a lower weight (`1`).  
+  * An optional small penalty on negative predictions can be added via `penalty_strength`.
+
+* **PI_WMSE_Loss**  
+  * Extends **WeightedMSELoss** by adding a physics‑informed penalty term.  
+  * With probability `test_percentage`, a neural network predicts the amount of system demand that is not met after running a power‑flow simulation (`run_pf` → `system_demand_not_met`).  
+  * The predicted infeasibility is multiplied by `inf_penalty` and added to the loss, producing a differentiable, physics‑aware component.
 
 Both losses expect the full `Data` object (`target_grid`) so they can fetch the
 clean edge attributes from `target_grid.y["edge_attr"]`.  They raise a clear
