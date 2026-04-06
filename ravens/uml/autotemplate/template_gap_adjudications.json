@@ -29,17 +29,26 @@
       "note": "The remaining hand-only EnergyArea pointer array is driven by EnergyAreaConnector.EnergyAreas, but EnergyAreaConnector only appears on InfFacilities, so that relationship is outside the current valid simplified-diagram scope.",
       "future_followup": "If parity is still desired later, add EnergyAreaConnector.EnergyAreas to a valid simplified diagram or narrow the hand template away from the unsupported EnergyArea pointer-array case."
     },
+    "GeographicalRegion_PointerArray": {
+      "source": "user_verified_2026-04-06",
+      "review_status": "verified_hand_relationship_not_present_in_valid_diagrams",
+      "override_actionability": "verified_hand_beyond_current_valid_diagrams",
+      "note": "User verified that the valid simplified diagrams consistently point EconomicProperty.Regions, CapacityPrices.Regions, LocationalMarginalPrices.Regions, ProposedSiteLocation.Region, and GeographicalRegion.Regions to SubGeographicalRegion. There is no supported direct GeographicalRegion pointer-array target in those cases.",
+      "future_followup": "If parity is still desired later, either narrow the hand template to SubGeographicalRegion for these relationships or expand the UML diagrams so direct GeographicalRegion pointer-array cases are explicitly modeled."
+    },
     "GeographicalRegion_anyOfPointer_anyOfContainer": {
       "source": "user_verified_2026-04-06",
-      "review_status": "mixed_manual_review",
-      "note": "User verified that ProposedSiteLocation.Region has a valid labeled association only to SubGeographicalRegion on Groups; there is no Region connection on ProposedAssetOptions. Keep builder review open for GeographicalRegion.Regions / SubGeographicalRegion.Region, but do not keep chasing the hand-only GeographicalRegion|SubGeographicalRegion union for ProposedSiteLocation without UML support.",
-      "future_followup": "Split this mixed row into relationship-level tracking so Supported: SubGeographicalRegion.Region can stay on the builder queue while Hand-only: ProposedSiteLocation.Region anyOf can be treated as out-of-scope until the UML is expanded."
+      "review_status": "verified_hand_relationship_not_present_in_valid_diagrams",
+      "override_actionability": "verified_hand_beyond_current_valid_diagrams",
+      "note": "User verified that the kept simplified diagrams do not show a supported GeographicalRegion|SubGeographicalRegion union. ProposedSiteLocation.Region points to SubGeographicalRegion, the economic/price region links point to SubGeographicalRegion, GeographicalRegion.Regions points to SubGeographicalRegion, and there is no visible labeled SubGeographicalRegion.Region association in the needed direction.",
+      "future_followup": "If parity is still desired later, either narrow the hand template away from the GeographicalRegion|SubGeographicalRegion union or add explicit valid-diagram support for that union and/or the reverse SubGeographicalRegion.Region relationship."
     },
     "Location_anyOfPointer_anyOfContainer": {
       "source": "user_verified_2026-04-06",
-      "review_status": "mixed_manual_review",
-      "note": "User verified that PredictedEmissions only appears in Root. That means the hand Location|ProposedSiteLocation union is not justified by current valid diagrams, even though many regular PowerSystemResource.Location references remain valid builder targets.",
-      "future_followup": "Split this mixed row into relationship-level tracking so the hand-only PredictedEmissions union does not mask valid Location reference coverage elsewhere."
+      "review_status": "verified_hand_relationship_not_present_in_valid_diagrams",
+      "override_actionability": "verified_hand_beyond_current_valid_diagrams",
+      "note": "User verified that no valid simplified diagram shows Location in a context where ProposedSiteLocation also appears as an alternative target. The hand Location|ProposedSiteLocation union therefore goes beyond the current valid-diagram support.",
+      "future_followup": "If parity is still desired later, either narrow the hand template away from the Location|ProposedSiteLocation union or add a valid simplified-diagram relationship that explicitly supports ProposedSiteLocation as an alternative location target."
     },
     "TapChanger_anyOfPointer_anyOfContainer": {
       "source": "user_verified_2026-04-06",
