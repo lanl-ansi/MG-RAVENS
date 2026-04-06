@@ -216,6 +216,16 @@ class RavensSchema:
 
             _schema["$id"] = self.schema_path(title)
 
+            def _decompose_anyof_members() -> None:
+                _anyOf = []
+                for item in _schema.get("anyOf", []):
+                    ref_id = self.decompose_schema(item, debug_key=debug_key)
+                    if ref_id is not None:
+                        _anyOf.append({"$ref": ref_id})
+                    else:
+                        _anyOf.append(item)
+                _schema["anyOf"] = _anyOf
+
             if _schema.get("type", None) == "object":
                 for n in ["properties", "patternProperties"]:
                     if n in _schema:
@@ -223,20 +233,14 @@ class RavensSchema:
                             ref_id = self.decompose_schema(v, debug_key=k)
                             if ref_id is not None:
                                 _schema[n][k] = {"$ref": ref_id}
+                if "anyOf" in _schema:
+                    _decompose_anyof_members()
             elif _schema.get("type", None) == "array":
                 ref_id = self.decompose_schema(_schema["items"], debug_key=debug_key)
                 if ref_id is not None:
                     _schema["items"] = {"$ref": ref_id}
             elif "anyOf" in _schema:
-                _anyOf = []
-                for item in _schema["anyOf"]:
-                    ref_id = self.decompose_schema(item, debug_key=debug_key)
-                    if ref_id is not None:
-                        _anyOf.append({"$ref": ref_id})
-                    else:
-                        _anyOf.append(item)
-
-                _schema["anyOf"] = _anyOf
+                _decompose_anyof_members()
 
             else:
                 return None
@@ -368,4 +372,3 @@ if __name__ == "__main__":
     schema.export_schemas("out/schema/separate/")
 
     generate_schema_docs("out/schema/separate", "out/schema/docs")
-
