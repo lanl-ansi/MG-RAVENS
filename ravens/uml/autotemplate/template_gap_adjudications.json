@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "entries": {
+    "ConformLoad_PointerArray": {
+      "source": "user_verified_2026-04-06",
+      "review_status": "verified_hand_relationship_not_present_in_valid_diagrams",
+      "override_actionability": "verified_hand_beyond_current_valid_diagrams",
+      "note": "Hand expects ConformLoadGroup.EnergyConsumers, but ConformLoadGroup only appears on Groups with a generalization to LoadGroup and no visible labeled relation to ConformLoad in valid diagrams.",
+      "future_followup": "If parity is still desired later, add a visible labeled association from ConformLoadGroup to ConformLoad on a valid simplified diagram, or narrow the hand template away from the hand-only pointer array."
+    },
+    "NonConformLoad_PointerArray": {
+      "source": "user_verified_2026-04-06",
+      "review_status": "verified_hand_relationship_not_present_in_valid_diagrams",
+      "override_actionability": "verified_hand_beyond_current_valid_diagrams",
+      "note": "Hand expects NonConformLoadGroup.EnergyConsumers, but NonConformLoadGroup only appears on Groups with a generalization to LoadGroup and no visible labeled relation to NonConformLoad in valid diagrams.",
+      "future_followup": "If parity is still desired later, add a visible labeled association from NonConformLoadGroup to NonConformLoad on a valid simplified diagram, or narrow the hand template away from the hand-only pointer array."
+    },
+    "EnvironmentalEvent_Array": {
+      "source": "user_verified_2026-04-06",
+      "review_status": "verified_hand_relationship_not_present_in_valid_diagrams",
+      "override_actionability": "verified_hand_beyond_current_valid_diagrams",
+      "note": "Hand expects ActivityRecord.EnvironmentalEvent, but ActivityRecord only appears on Outages and its connection to EnvironmentalEvent is unlabeled/generalization-style rather than a visible labeled association in valid diagrams.",
+      "future_followup": "If the array should be preserved, add a visible labeled association between ActivityRecord and EnvironmentalEvent on a valid simplified diagram, or update the hand template to stop modeling it as a supported array."
+    },
+    "GeographicalRegion_anyOfPointer_anyOfContainer": {
+      "source": "user_verified_2026-04-06",
+      "review_status": "mixed_manual_review",
+      "note": "User verified that ProposedSiteLocation.Region has a valid labeled association only to SubGeographicalRegion on Groups; there is no Region connection on ProposedAssetOptions. Keep builder review open for GeographicalRegion.Regions / SubGeographicalRegion.Region, but do not keep chasing the hand-only GeographicalRegion|SubGeographicalRegion union for ProposedSiteLocation without UML support.",
+      "future_followup": "Split this mixed row into relationship-level tracking so Supported: SubGeographicalRegion.Region can stay on the builder queue while Hand-only: ProposedSiteLocation.Region anyOf can be treated as out-of-scope until the UML is expanded."
+    },
+    "Location_anyOfPointer_anyOfContainer": {
+      "source": "user_verified_2026-04-06",
+      "review_status": "mixed_manual_review",
+      "note": "User verified that PredictedEmissions only appears in Root. That means the hand Location|ProposedSiteLocation union is not justified by current valid diagrams, even though many regular PowerSystemResource.Location references remain valid builder targets.",
+      "future_followup": "Split this mixed row into relationship-level tracking so the hand-only PredictedEmissions union does not mask valid Location reference coverage elsewhere."
+    },
+    "TapChanger_anyOfPointer_anyOfContainer": {
+      "source": "user_verified_2026-04-06",
+      "review_status": "verified_supported_base_but_hand_variants_outside_valid_diagrams",
+      "override_actionability": "verified_hand_beyond_current_valid_diagrams",
+      "note": "User verified that ArTapStep has a visible labeled TapChanger association in AnalysisResults, but RatioTapChanger and PhaseTapChanger are not on valid simplified diagrams. Current UML therefore supports TapChanger, not the hand RatioTapChanger|PhaseTapChanger union.",
+      "future_followup": "If parity is still desired later, bring RatioTapChanger and PhaseTapChanger into valid diagrams or intentionally narrow the hand template to the base TapChanger reference."
+    },
+    "InverterController_anyOfContainer": {
+      "source": "user_verified_2026-04-06",
+      "review_status": "verified_hand_variants_outside_valid_diagrams",
+      "override_actionability": "verified_hand_beyond_current_valid_diagrams",
+      "note": "User verified that ProposedBatteryUnitOption appears on ProposedAssetOptions with no associations, InverterController is not on that valid diagram, and the expected control-mode variants live on InverterControls outside SimplifiedDiagrams.",
+      "future_followup": "If parity is still desired later, add InverterController plus the control-mode variants to valid simplified diagrams with visible associations, or narrow the hand template away from the unsupported polymorphic wrapper."
+    }
+  }
+}

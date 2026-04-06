@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from copy import deepcopy
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 import pandas as pd
@@ -350,6 +351,51 @@ class SchemaComparator:
     def _schema_path_by_name(self, schema: RavensSchema, name: str) -> str:
         return schema.schema_path(name)
 
+    @staticmethod
+    def _manual_gap_adjudications_path() -> Path:
+        return Path(__file__).with_name("template_gap_adjudications.json")
+
+    @classmethod
+    def _load_manual_gap_adjudications(cls) -> dict[str, dict[str, Any]]:
+        path = cls._manual_gap_adjudications_path()
+        if not path.exists():
+            return {}
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+
+        entries = payload.get("entries", payload)
+        if not isinstance(entries, dict):
+            return {}
+        return {
+            str(key): value
+            for key, value in entries.items()
+            if isinstance(value, dict)
+        }
+
+    @staticmethod
+    def _manual_gap_annotation(
+        hand_name: str,
+        actionability: str,
+        adjudication: dict[str, Any] | None,
+    ) -> dict[str, Any]:
+        entry = adjudication if isinstance(adjudication, dict) else {}
+        override_actionability = entry.get("override_actionability")
+        effective_actionability = (
+            str(override_actionability)
+            if isinstance(override_actionability, str) and override_actionability.strip()
+            else actionability
+        )
+        return {
+            "manual_review_status": str(entry.get("review_status") or "") or None,
+            "manual_review_source": str(entry.get("source") or "") or None,
+            "manual_review_note": str(entry.get("note") or "") or None,
+            "manual_future_followup": str(entry.get("future_followup") or "") or None,
+            "manual_override_actionability": str(override_actionability or "") or None,
+            "effective_actionability": effective_actionability,
+        }
+
     def _find_class_occurrences_in_schema(self, schema: Any, class_name: str) -> dict[str, list[str]]:
         hits: dict[str, list[str]] = {
             "title_root": [],
@@ -638,6 +684,7 @@ class SchemaComparator:
 
         hand_raw = self.hand_schema.schema_template.raw_template
         auto_raw = self.auto_schema.schema_template.raw_template
+        adjudications = self._load_manual_gap_adjudications()
 
         rows = []
         for row in missing.itertuples(index=False):
@@ -658,6 +705,7 @@ class SchemaComparator:
                 auto_counts,
                 auto_hit_count=len(auto_hits),
             )
+            manual = self._manual_gap_annotation(hand_name, actionability, adjudications.get(hand_name))
 
             rows.append(
                 {
@@ -679,6 +727,7 @@ class SchemaComparator:
                     "auto_shape_counts": json.dumps(auto_counts, sort_keys=True),
                     "hand_example_paths": json.dumps([hit["path"] for hit in hand_hits[:5]]),
                     "auto_example_paths": json.dumps([hit["path"] for hit in auto_hits[:5]]),
+                    **manual,
                 }
             )
 
@@ -701,6 +750,12 @@ class SchemaComparator:
             "auto_shape_counts",
             "hand_example_paths",
             "auto_example_paths",
+            "manual_review_status",
+            "manual_review_source",
+            "manual_review_note",
+            "manual_future_followup",
+            "manual_override_actionability",
+            "effective_actionability",
         ]
         return pd.DataFrame(rows, columns=cols)
 

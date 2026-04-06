@@ -465,6 +465,8 @@ def main() -> int:
     summary["missing_classification_counts"] = _count_status(missing_class_df, column="classification_detail")
     summary["present_missing_appearance_counts"] = _count_status(present_missing_df, column="appearance_classification")
     summary["template_gap_actionability_counts"] = _count_status(template_gap_df, column="actionability")
+    summary["template_gap_effective_actionability_counts"] = _count_status(template_gap_df, column="effective_actionability")
+    summary["template_gap_manual_status_counts"] = _count_status(template_gap_df, column="manual_review_status")
     summary["template_gap_scope_counts"] = _count_status(template_gap_df, column="scope_status")
     summary["template_gap_mismatch_counts"] = _count_status(template_gap_df, column="shape_mismatch_kind")
 
