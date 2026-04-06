@@ -45,3 +45,59 @@ def test_inherit_only_producer_cost_parameter_wrapper_keeps_family_object_id(raw
     assert items["$objectType"] == "object"
     assert items["$objectId"] == "ProducerCostParameter"
     assert isinstance(items.get("anyOf"), list)
+
+
+def test_rotating_machine_generating_unit_preserves_polymorphic_wrapper(raw_auto_template):
+    rotating_machine = _get_nested(
+        raw_auto_template,
+        "properties",
+        "PowerSystemResource",
+        "properties",
+        "Equipment",
+        "properties",
+        "ConductingEquipment",
+        "properties",
+        "EnergyConnection",
+        "properties",
+        "RegulatingCondEq",
+        "properties",
+        "RotatingMachine",
+    )
+
+    base_variant = next(
+        variant
+        for variant in rotating_machine["anyOf"]
+        if isinstance(variant, dict) and variant.get("$objectId") == "RotatingMachine"
+    )
+    generating_unit = base_variant["properties"]["RotatingMachine.GeneratingUnit"]
+
+    assert generating_unit["$objectType"] == "object"
+    assert generating_unit["$objectId"] == "GeneratingUnit"
+    assert isinstance(generating_unit.get("anyOf"), list)
+    assert {item.get("$objectId") for item in generating_unit["anyOf"] if isinstance(item, dict)} >= {
+        "GeneratingUnit",
+        "HydroGeneratingUnit",
+        "ThermalGeneratingUnit",
+    }
+
+
+def test_load_area_subloadareas_emits_family_pointer_array(raw_auto_template):
+    energy_area = _get_nested(
+        raw_auto_template,
+        "properties",
+        "Group",
+        "properties",
+        "EnergyArea",
+    )
+
+    load_area_variant = next(
+        variant
+        for variant in energy_area["anyOf"]
+        if isinstance(variant, dict) and variant.get("$objectId") == "LoadArea"
+    )
+    subload_areas = load_area_variant["properties"]["LoadArea.SubLoadAreas"]
+
+    assert subload_areas["type"] == "array"
+    assert subload_areas["items"]["$objectType"] == "reference"
+    assert subload_areas["items"]["$objectId"] == "LoadArea"
+    assert subload_areas["items"]["$referencePath"] == "Group/EnergyArea"

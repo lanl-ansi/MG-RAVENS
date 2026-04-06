@@ -641,6 +641,43 @@ class TemplateGenerator:
                         for parent_id in self.H.successors(tid):
                             if (self._role(int(parent_id)) or "").strip() == "embeddedClass":
                                 return _make_inline_embedded_stub(tid)
+
+                        # Inline anyOf-member families under a rootClass wrapper do not
+                        # have their own stable reference paths. When a labeled association
+                        # targets one of those inline members, point back at the family
+                        # wrapper path while preserving member-specific $objectId values so
+                        # recipient resolution can choose the appropriate family variant.
+                        for parent_id in self.H.successors(tid):
+                            parent_ident = int(parent_id)
+                            if (self._role(parent_ident) or "").strip() != "rootClass":
+                                continue
+                            base_ref = self._make_ref(parent_ident)
+                            if not isinstance(base_ref, dict):
+                                continue
+
+                            variant_refs: dict[str, dict] = {}
+                            for family_variant in self._collect_polymorphic_variants(parent_ident):
+                                try:
+                                    family_variant_id = int(family_variant)
+                                except Exception:
+                                    continue
+                                family_variant_name = (self._name(family_variant_id) or "").strip()
+                                family_variant_role = (self._role(family_variant_id) or "").strip()
+                                if not family_variant_name or family_variant_role in INHERIT_ONLY or family_variant_role in CONTAINERS:
+                                    continue
+
+                                vref = copy.deepcopy(base_ref)
+                                vref["$objectId"] = family_variant_name
+                                variant_refs[family_variant_name] = vref
+
+                            if variant_refs:
+                                default_ref = copy.deepcopy(base_ref)
+                                default_ref["$objectId"] = (self._name(tid) or "").strip() or default_ref.get("$objectId")
+                                return {
+                                    "__variantSchemas__": variant_refs,
+                                    "__defaultSchema__": default_ref,
+                                    "__contextFamilyId__": parent_ident,
+                                }
                     except Exception:
                         pass
 
@@ -669,6 +706,14 @@ class TemplateGenerator:
                 if not embedded_variants:
                     return None
 
+                generic_wrapper = {
+                    "$objectType": "object",
+                    "$objectId": self._name(target_id),
+                    "type": "object",
+                    "$arrayPosition": None,
+                    "anyOf": copy.deepcopy(embedded_variants),
+                }
+
                 # If the owner is an object-anyOf wrapper, try to align each owner variant
                 # to a corresponding embedded target variant by replacing the owner's base
                 # name with the target base name. This captures patterns like:
@@ -688,25 +733,23 @@ class TemplateGenerator:
                             if not owner_variant_name:
                                 continue
 
-                            if owner_variant_name == owner_base_name:
-                                candidate_name = target_base_name
-                            elif owner_base_name in owner_variant_name:
+                            if owner_variant_name != owner_base_name and owner_base_name in owner_variant_name:
                                 candidate_name = owner_variant_name.replace(owner_base_name, target_base_name)
                             else:
                                 candidate_name = ""
 
-                            chosen = embedded_by_name.get(candidate_name) or embedded_by_name.get(target_base_name)
+                            chosen = embedded_by_name.get(candidate_name)
                             if isinstance(chosen, dict):
                                 variant_schemas[owner_variant_name] = copy.deepcopy(chosen)
 
                         if variant_schemas:
                             return {
                                 "__variantSchemas__": variant_schemas,
-                                "__defaultSchema__": copy.deepcopy(embedded_by_name.get(target_base_name)),
+                                "__defaultSchema__": copy.deepcopy(generic_wrapper),
                                 "__contextFamilyId__": int(target_id),
                             }
 
-                return {"$objectType": "object", "type": "object", "$arrayPosition": None, "anyOf": embedded_variants}
+                return generic_wrapper
 
             # ---------- fallback for inherit-only base: inline anyOf ----------
             if base_role not in INHERIT_ONLY:
@@ -1200,6 +1243,20 @@ class TemplateGenerator:
                     continue
                 seen_ptr.add(pid)
                 out.append(ptr)
+
+            member_name = (self._name(owner_id) or "").strip()
+            if member_name:
+                for member_lookup in getattr(self, "_object_anyof_member_ptrs", {}).values():
+                    if not isinstance(member_lookup, dict):
+                        continue
+                    ptr = member_lookup.get(member_name)
+                    if not isinstance(ptr, dict):
+                        continue
+                    pid = id(ptr)
+                    if pid in seen_ptr:
+                        continue
+                    seen_ptr.add(pid)
+                    out.append(ptr)
 
             return out
 

@@ -22,6 +22,13 @@
       "note": "Hand expects ActivityRecord.EnvironmentalEvent, but ActivityRecord only appears on Outages and its connection to EnvironmentalEvent is unlabeled/generalization-style rather than a visible labeled association in valid diagrams.",
       "future_followup": "If the array should be preserved, add a visible labeled association between ActivityRecord and EnvironmentalEvent on a valid simplified diagram, or update the hand template to stop modeling it as a supported array."
     },
+    "EnergyArea_PointerArray": {
+      "source": "user_verified_2026-04-06",
+      "review_status": "verified_hand_relationship_not_present_in_valid_diagrams",
+      "override_actionability": "verified_hand_beyond_current_valid_diagrams",
+      "note": "The remaining hand-only EnergyArea pointer array is driven by EnergyAreaConnector.EnergyAreas, but EnergyAreaConnector only appears on InfFacilities, so that relationship is outside the current valid simplified-diagram scope.",
+      "future_followup": "If parity is still desired later, add EnergyAreaConnector.EnergyAreas to a valid simplified diagram or narrow the hand template away from the unsupported EnergyArea pointer-array case."
+    },
     "GeographicalRegion_anyOfPointer_anyOfContainer": {
       "source": "user_verified_2026-04-06",
       "review_status": "mixed_manual_review",
