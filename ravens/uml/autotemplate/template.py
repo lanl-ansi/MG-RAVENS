@@ -761,6 +761,100 @@ class TemplateGenerator:
             resolution_contexts = {}
             self._association_resolution_contexts = resolution_contexts
 
+        family_stem_cache: dict[int, dict[int, str]] = {}
+        analysis_result_family_id = name_to_id.get("AnalysisResult")
+        analysis_result_data_family_id = name_to_id.get("AnalysisResultData")
+
+        def _normalize_mult(raw: Any) -> str:
+            if raw is None:
+                return ""
+            text = str(raw).strip().replace(" ", "")
+            return "" if text.casefold() == "nan" else text
+
+        def _is_self_or_descendant(node_id: int | None, ancestor_id: int | None) -> bool:
+            if node_id is None or ancestor_id is None:
+                return False
+            try:
+                cur = int(node_id)
+                anc = int(ancestor_id)
+            except Exception:
+                return False
+            if cur == anc:
+                return True
+            seen: set[int] = set()
+            stack = [cur]
+            while stack:
+                cur_id = stack.pop()
+                if cur_id in seen:
+                    continue
+                seen.add(cur_id)
+                for parent_id in self.H.successors(cur_id):
+                    try:
+                        pid = int(parent_id)
+                    except Exception:
+                        continue
+                    if pid == anc:
+                        return True
+                    if pid not in seen:
+                        stack.append(pid)
+            return False
+
+        def _longest_common_prefix(names: list[str]) -> str:
+            if not names:
+                return ""
+            prefix = names[0]
+            for name in names[1:]:
+                limit = min(len(prefix), len(name))
+                idx = 0
+                while idx < limit and prefix[idx] == name[idx]:
+                    idx += 1
+                prefix = prefix[:idx]
+                if not prefix:
+                    break
+            return prefix
+
+        def _family_relative_stem(node_id: int | None, family_root_id: int | None) -> str:
+            if node_id is None or family_root_id is None:
+                return ""
+            try:
+                nid = int(node_id)
+                fid = int(family_root_id)
+            except Exception:
+                return ""
+
+            stems = family_stem_cache.get(fid)
+            if stems is None:
+                variant_ids: list[int] = []
+                for variant_id in self._collect_polymorphic_variants(fid):
+                    try:
+                        vid = int(variant_id)
+                    except Exception:
+                        continue
+                    if not self._is_concrete(vid):
+                        continue
+                    vrole = (self._role(vid) or "").strip()
+                    if vrole in {
+                        "inheritOnlyClass",
+                        "substitutableInheritOnlyClass",
+                        "containerInheritOnlyClass",
+                        "embeddedInheritOnlyClass",
+                        "containerClass",
+                    }:
+                        continue
+                    variant_ids.append(vid)
+
+                variant_names = [self._name(vid) for vid in variant_ids if self._name(vid)]
+                prefix = _longest_common_prefix(variant_names)
+                stems = {}
+                for vid in variant_ids:
+                    vname = self._name(vid)
+                    if not vname:
+                        continue
+                    stems[vid] = vname[len(prefix) :] if prefix and len(prefix) < len(vname) else vname
+                family_stem_cache[fid] = stems
+
+            return stems.get(nid, "")
+
         def _context_key(family_id: int | None) -> int | None:
             if family_id is None:
                 return None
@@ -1025,10 +1119,34 @@ class TemplateGenerator:
                         return str(chosen_name)
 
             recipient_name = ""
+            recipient_id: int | None = None
             if isinstance(recipient_ptr, dict):
                 recipient_name = (recipient_ptr.get("$objectId") or "").strip()
+                recipient_id = name_to_id.get(recipient_name)
             if recipient_name in variant_schemas:
                 return recipient_name
+
+            if recipient_id is not None and fam_key is not None:
+                recipient_parent_ids: list[int] = []
+                try:
+                    recipient_parent_ids = [int(parent_id) for parent_id in self.H.successors(int(recipient_id))]
+                except Exception:
+                    recipient_parent_ids = []
+
+                for recipient_family_id in recipient_parent_ids:
+                    recipient_stem = _family_relative_stem(recipient_id, recipient_family_id)
+                    if not recipient_stem:
+                        continue
+
+                    matches: list[str] = []
+                    for candidate_name in variant_schemas:
+                        candidate_id = name_to_id.get(candidate_name)
+                        candidate_stem = _family_relative_stem(candidate_id, fam_key)
+                        if candidate_stem and candidate_stem == recipient_stem:
+                            matches.append(candidate_name)
+
+                    if len(matches) == 1:
+                        return matches[0]
 
             chosen_schema = _resolve_variant_schema_for_owner(recipient_name, variant_schemas)
             if not isinstance(chosen_schema, dict):
@@ -1094,7 +1212,11 @@ class TemplateGenerator:
                 if not isinstance(ref_schema, dict):
                     continue
 
-                mult = (data.get("end_mult") or "").strip().replace(" ", "")
+                mult = _normalize_mult(data.get("end_mult"))
+                if not mult and _is_self_or_descendant(owner_id, analysis_result_family_id) and _is_self_or_descendant(
+                    target_id, analysis_result_data_family_id
+                ):
+                    mult = "0..*"
                 is_single = (mult == "" or mult == "0..1")
 
                 variant_prop_schemas: dict[str, dict] | None = None
@@ -1620,6 +1742,8 @@ class TemplateGenerator:
         self.def_ptr = {}
         self.path_map = {}
         self._object_anyof_nodes = set()
+        self._object_anyof_member_ptrs = {}
+        self._object_anyof_member_owner = {}
         self._inline_owner_ptrs = {}
 
         role = lambda n: (self.A.nodes[n].get("ravensRole")
@@ -1716,6 +1840,11 @@ class TemplateGenerator:
                     self._apply_hashes_if_rootclass(n, node_obj)     # hashes live on the wrapper
                     _override_versions_object(owner_path, node_obj)  # keep the Versions tweak
                     self._object_anyof_nodes.add(n)                  # remember to suppress named children later
+                    self._object_anyof_member_ptrs[n] = {
+                        (member.get("$objectId") or "").strip(): member
+                        for member in variants
+                        if isinstance(member, dict) and (member.get("$objectId") or "").strip()
+                    }
                 else:
                     node_obj = {"$objectType": "object", "$objectId": nm, "type": "object", "properties": {}}
                     self._apply_hashes_if_rootclass(n, node_obj)
@@ -1735,6 +1864,36 @@ class TemplateGenerator:
             self._add_property(owner_ptr, nm, node_obj)
             self.path_map[n] = owner_path + (nm,)
             self.def_ptr[n] = node_obj
+
+        def bind_anyof_member(wrapper_id: int, member_id: int, *, wrapper_path: tuple | None = None) -> bool:
+            wrapper_id = int(wrapper_id)
+            member_id = int(member_id)
+            member_name = name(member_id)
+            wrapper_ptr = self.def_ptr.get(wrapper_id)
+            if not isinstance(wrapper_ptr, dict):
+                return False
+
+            member_lookup = getattr(self, "_object_anyof_member_ptrs", {}).get(wrapper_id, {})
+            member_ptr = member_lookup.get(member_name)
+            if not isinstance(member_ptr, dict):
+                anyof_list = wrapper_ptr.get("anyOf", [])
+                if isinstance(anyof_list, list):
+                    for candidate in anyof_list:
+                        if not isinstance(candidate, dict):
+                            continue
+                        if candidate.get("$objectType") != "object":
+                            continue
+                        if (candidate.get("$objectId") or "").strip() == member_name:
+                            member_ptr = candidate
+                            break
+            if not isinstance(member_ptr, dict):
+                return False
+
+            self.def_ptr[member_id] = member_ptr
+            if isinstance(wrapper_path, tuple):
+                self.path_map[member_id] = wrapper_path + (member_name,)
+            self._object_anyof_member_owner[member_id] = wrapper_id
+            return True
 
         # For anchors, prefer the unique base-class owner when possible.
         def preferred_anchor_owner(a: int) -> int:
@@ -1937,21 +2096,17 @@ class TemplateGenerator:
                         # `cur` is represented as an object-anyOf wrapper (substitution union).
                         # HAND convention: do NOT create named properties for variants on the wrapper.
                         # We still descend through the variant nodes so their embedded children can be emitted.
-                        if not isinstance(self.def_ptr.get(int(child)), dict):
-                            anyof_list = owner_ptr.get("anyOf", [])
-                            if isinstance(anyof_list, list):
-                                for member in anyof_list:
-                                    if not isinstance(member, dict):
-                                        continue
-                                    if member.get("$objectType") != "object":
-                                        continue
-                                    if (member.get("$objectId") or "").strip() == cname:
-                                        self.def_ptr[int(child)] = member
-                                        # Bind a stable path for this inline anyOf member so it can
-                                        # act as a force_owner target for its embedded children.
-                                        if isinstance(owner_path, tuple):
-                                            self.path_map[int(child)] = owner_path + (cname,)
-                                        break
+                        bind_anyof_member(cur, child, wrapper_path=owner_path)
+                        if rchild != "inheritOnlyClass":
+                            q.append((child, self.path_map.get(child, owner_path + (cname,))))
+                        continue
+
+                    wrapper_owner = getattr(self, "_object_anyof_member_owner", {}).get(int(cur))
+                    if wrapper_owner is not None and bind_anyof_member(
+                        wrapper_owner,
+                        child,
+                        wrapper_path=self.path_map.get(wrapper_owner, owner_path),
+                    ):
                         if rchild != "inheritOnlyClass":
                             q.append((child, self.path_map.get(child, owner_path + (cname,))))
                         continue
@@ -2199,4 +2354,3 @@ class TemplateCompare:
 
     def __str__(self) -> str:
         return self.report()
-
