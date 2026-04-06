@@ -407,7 +407,89 @@ class TemplateGenerator:
         # don’t generate identical properties. If you want *every* diagram-instance emitted,
         # include InstanceID in the signature instead.
         seen_props: set[tuple[int, str, str]] = set()
-        def make_polymorphic_ref_schema(target_id: int) -> dict | None:
+
+        def _make_inline_embedded_stub(tid: int) -> dict | None:
+            """
+            Build a minimal inline object stub for an embedded target.
+            """
+            tid = int(tid)
+            tname = self._name(tid)
+            if not tname:
+                return None
+
+            obj = {
+                "$objectType": "object",
+                "$objectId": tname,
+                "type": "object",
+                "$arrayPosition": None,
+                "properties": {},
+            }
+
+            # Optional array-position hints for embedded array members
+            # (keep this tiny + explicit; add entries as we encounter them).
+            EMBEDDED_ARRAY_POSITION = {
+                "PositionPoint": "PositionPoint.sequenceNumber",
+                "TransformerEnd": "TransformerEnd.endNumber",
+                "PowerTransformerEnd": "TransformerEnd.endNumber",
+                "TransformerTankEnd": "TransformerEnd.endNumber",
+            }
+            EMBEDDED_ARRAY_POSITION_BY_PARENT = {
+                "TransformerEnd": "TransformerEnd.endNumber",
+            }
+
+            if tname in EMBEDDED_ARRAY_POSITION:
+                obj["$arrayPosition"] = EMBEDDED_ARRAY_POSITION[tname]
+            else:
+                try:
+                    for parent_id in self.H.successors(tid):
+                        pname = self._name(int(parent_id))
+                        if pname in EMBEDDED_ARRAY_POSITION_BY_PARENT:
+                            obj["$arrayPosition"] = EMBEDDED_ARRAY_POSITION_BY_PARENT[pname]
+                            break
+                except Exception:
+                    pass
+
+            return obj
+
+        def _strip_assoc_hashes(node: Any) -> None:
+            if not isinstance(node, dict):
+                return
+            node.pop("$primaryObjectHash", None)
+            node.pop("$secondaryObjectHash", None)
+            items = node.get("items")
+            if isinstance(items, dict):
+                _strip_assoc_hashes(items)
+            props = node.get("properties")
+            if isinstance(props, dict):
+                for child in props.values():
+                    if isinstance(child, dict):
+                        _strip_assoc_hashes(child)
+            anyof = node.get("anyOf")
+            if isinstance(anyof, list):
+                for ent in anyof:
+                    if isinstance(ent, dict):
+                        _strip_assoc_hashes(ent)
+
+        def _clone_defined_object_schema(tid: int) -> dict | None:
+            tid = int(tid)
+            ptr = self.def_ptr.get(tid)
+            if isinstance(ptr, dict) and ptr.get("$objectType") in {"object", "container"}:
+                cloned = copy.deepcopy(ptr)
+                _strip_assoc_hashes(cloned)
+                return cloned
+            return _make_inline_embedded_stub(tid)
+
+        def _resolve_variant_schema_for_owner(owner_variant_name: str, variant_schemas: dict[str, dict] | None) -> dict | None:
+            """
+            Only resolve by exact concrete class identity, never by string similarity.
+            Generic reuse across nested inline subtrees is handled by family-resolution
+            context, not by matching class-name suffixes.
+            """
+            if not owner_variant_name or not isinstance(variant_schemas, dict) or not variant_schemas:
+                return None
+            return variant_schemas.get(owner_variant_name)
+
+        def make_polymorphic_ref_schema(target_id: int, *, owner_id: int | None = None) -> dict | None:
             """
             Build schema for an association target.
 
@@ -416,11 +498,13 @@ class TemplateGenerator:
                 {$objectType:"reference",$objectId:<base>, anyOf:[refs...]}.
               - Else emit a single ref.
 
-            Fallback (critical for embedded-inherit-only bases like OperationalLimit):
+            Fallbacks:
               - If we cannot build refs AND the *base* target is an inherit-only role,
                 emit an inline object wrapper with anyOf of substitutable variants.
-              - Inject base-owned *association-backed* dotted properties into each variant
-                (base-only), e.g. OperationalLimit.OperationalLimitType.
+              - If we cannot build refs AND the *base* target is an embeddedClass with
+                polymorphic descendants, emit inline embedded stubs instead of dropping
+                the property. For object-anyOf owners, return a per-owner-variant mapping
+                when we can align owner/target variant families by name.
             """
             target_id = int(target_id)
 
@@ -445,60 +529,37 @@ class TemplateGenerator:
                 variants = [target_id]
             variants = [int(v) for v in variants if v is not None]
 
+            base_role = (self._role(target_id) or "").strip()
+
             # ---------- preferred: build refs ----------
-
-
-            if len(variants) >= 2:
-
-
+            if len(variants) >= 2 and base_role != "embeddedClass":
                 items: list[dict] = []
-
-
                 for v in variants:
-
-
                     ref = self._make_ref(int(v))
-
-
                     if isinstance(ref, dict):
-
-
                         # association references never carry hashes
-
-
                         ref.pop("$primaryObjectHash", None)
-
-
                         ref.pop("$secondaryObjectHash", None)
-
-
                         items.append(ref)
 
-
-
                 # Only return ref-wrapper if we actually have at least one usable ref
-
-
                 if items:
-
-
                     base_name = self._name(target_id)
-
-
                     out = {"$objectType": "reference", "$objectId": base_name, "anyOf": items}
-
-
                     out.pop("$primaryObjectHash", None)
-
-
                     out.pop("$secondaryObjectHash", None)
-
-
                     return out
 
             # Single target (or polymorphic but no refs found)
             if len(variants) == 1:
                 tid = int(variants[0])
+
+                t_role = (self._role(tid) or "").strip()
+
+                # Embedded association targets should stay inline even when the
+                # class is also defined elsewhere in the template.
+                if t_role == "embeddedClass":
+                    return _clone_defined_object_schema(tid)
 
                 # Preferred: real ref to an already-defined target
                 ref = self._make_ref(tid)
@@ -507,37 +568,91 @@ class TemplateGenerator:
                     ref.pop("$secondaryObjectHash", None)
                     return ref
 
-                # If the target is an embeddedClass, emit an *inline object* stub
-                # (HAND pattern for e.g. Location.PositionPoints -> PositionPoint),
-                # rather than silently dropping the property.
-                t_role = (self._role(tid) or "").strip()
-                if t_role == "embeddedClass":
-                    tname = self._name(tid)
-                    if not tname:
-                        return None
-
-                    obj = {"$objectType": "object", "$objectId": tname, "type": "object", "properties": {}}
-
-                    # Optional array-position hints for embedded array members
-                    # (keep this tiny + explicit; add entries as we encounter them).
-                    EMBEDDED_ARRAY_POSITION = {
-                        "PositionPoint": "PositionPoint.sequenceNumber",
-                    }
-                    if tname in EMBEDDED_ARRAY_POSITION:
-                        obj["$arrayPosition"] = EMBEDDED_ARRAY_POSITION[tname]
-
-                    return obj
+                # Power-transformer style case:
+                # a terminal substitutable leaf whose nearest visible parent is embedded.
+                # These do not exist elsewhere as named ref targets, so emit inline stubs
+                # instead of dropping the association entirely.
+                if t_role == "substitutableClass":
+                    try:
+                        for parent_id in self.H.successors(tid):
+                            if (self._role(int(parent_id)) or "").strip() == "embeddedClass":
+                                return _make_inline_embedded_stub(tid)
+                    except Exception:
+                        pass
 
                 return None
 
-            # ---------- fallback for inherit-only base: inline anyOf ----------
             INHERIT_ONLY = {
                 "inheritOnlyClass",
                 "substitutableInheritOnlyClass",
                 "containerInheritOnlyClass",
                 "embeddedInheritOnlyClass",
             }
-            base_role = (self._role(target_id) or "").strip()
+            CONTAINERS = {"containerClass", "containerInheritOnlyClass"}
+
+            def _keep_variant(nid: int) -> bool:
+                r = self._role(int(nid))
+                if r in INHERIT_ONLY:
+                    return False
+                if r in CONTAINERS:
+                    return False
+                return True
+
+            # ---------- fallback for polymorphic embedded base: inline stubs ----------
+            if base_role == "embeddedClass":
+                kept_variants = [int(v) for v in variants if _keep_variant(v)]
+                embedded_variants = []
+                embedded_by_name: dict[str, dict] = {}
+                for v in kept_variants:
+                    stub = _clone_defined_object_schema(v)
+                    if not isinstance(stub, dict):
+                        continue
+                    embedded_variants.append(copy.deepcopy(stub))
+                    embedded_by_name[self._name(v)] = copy.deepcopy(stub)
+
+                if not embedded_variants:
+                    return None
+
+                # If the owner is an object-anyOf wrapper, try to align each owner variant
+                # to a corresponding embedded target variant by replacing the owner's base
+                # name with the target base name. This captures patterns like:
+                #   ShuntCompensator -> ShuntCompensatorPhase
+                #   LinearShuntCompensator -> LinearShuntCompensatorPhase
+                if owner_id is not None and int(owner_id) in getattr(self, "_object_anyof_nodes", set()):
+                    owner_base_name = self._name(int(owner_id))
+                    target_base_name = self._name(target_id)
+                    owner_ptr = self.def_ptr.get(int(owner_id))
+                    owner_anyof = owner_ptr.get("anyOf", []) if isinstance(owner_ptr, dict) else []
+                    if owner_base_name and target_base_name and isinstance(owner_anyof, list):
+                        variant_schemas: dict[str, dict] = {}
+                        for owner_variant in owner_anyof:
+                            if not isinstance(owner_variant, dict):
+                                continue
+                            owner_variant_name = (owner_variant.get("$objectId") or "").strip()
+                            if not owner_variant_name:
+                                continue
+
+                            if owner_variant_name == owner_base_name:
+                                candidate_name = target_base_name
+                            elif owner_base_name in owner_variant_name:
+                                candidate_name = owner_variant_name.replace(owner_base_name, target_base_name)
+                            else:
+                                candidate_name = ""
+
+                            chosen = embedded_by_name.get(candidate_name) or embedded_by_name.get(target_base_name)
+                            if isinstance(chosen, dict):
+                                variant_schemas[owner_variant_name] = copy.deepcopy(chosen)
+
+                        if variant_schemas:
+                            return {
+                                "__variantSchemas__": variant_schemas,
+                                "__defaultSchema__": copy.deepcopy(embedded_by_name.get(target_base_name)),
+                                "__contextFamilyId__": int(target_id),
+                            }
+
+                return {"$objectType": "object", "type": "object", "$arrayPosition": None, "anyOf": embedded_variants}
+
+            # ---------- fallback for inherit-only base: inline anyOf ----------
             if base_role not in INHERIT_ONLY:
                 return None
 
@@ -606,88 +721,282 @@ class TemplateGenerator:
 
             # Wrapper is an *object* with anyOf variants.
             # DO NOT include $objectId for inherit-only bases (per policy).
-            return {"$objectType": "object", "type": "object", "$arrayPosition": None, "anyOf": anyof_variants}
+            return {
+                "__variantSchemas__": {
+                    str(v.get("$objectId")): copy.deepcopy(v)
+                    for v in anyof_variants
+                    if isinstance(v, dict) and (v.get("$objectId") or "")
+                },
+                "__defaultSchema__": {"$objectType": "object", "type": "object", "$arrayPosition": None, "anyOf": copy.deepcopy(anyof_variants)},
+                "__contextFamilyId__": int(target_id),
+            }
 
-        for u, v, key, data in A.edges(keys=True, data=True):
-            ctype = str(data.get("Connector_Type", "")).strip()
-            if ctype not in ASSOC_LIKE:
-                continue
+        inline_owner_ptrs = getattr(self, "_inline_owner_ptrs", None)
+        if not isinstance(inline_owner_ptrs, dict):
+            inline_owner_ptrs = {}
+            self._inline_owner_ptrs = inline_owner_ptrs
 
-            owner_name = (data.get("Start_Object") or "").strip()
-            target_name = (data.get("End_Object") or "").strip()
-            if not owner_name or not target_name:
-                continue
+        inline_owner_ptr_ids = getattr(self, "_inline_owner_ptr_ids", None)
+        if not isinstance(inline_owner_ptr_ids, dict):
+            inline_owner_ptr_ids = {}
+            self._inline_owner_ptr_ids = inline_owner_ptr_ids
 
-            # Skip structural wiring here no matter what
-            if owner_name in STRUCTURAL_CONTAINERS or target_name in STRUCTURAL_CONTAINERS:
-                continue
+        inline_registration_seen_nodes = getattr(self, "_inline_registration_seen_nodes", None)
+        if not isinstance(inline_registration_seen_nodes, set):
+            inline_registration_seen_nodes = set()
+            self._inline_registration_seen_nodes = inline_registration_seen_nodes
 
-            # CRITICAL: only emit if label is present (visible label)
-            label = (data.get("label") or "").strip()
-            if not label:
-                continue
+        inline_parent_ptr_ids = getattr(self, "_inline_parent_ptr_ids", None)
+        if not isinstance(inline_parent_ptr_ids, dict):
+            inline_parent_ptr_ids = {}
+            self._inline_parent_ptr_ids = inline_parent_ptr_ids
 
-            owner_id = name_to_id.get(owner_name)
-            target_id = name_to_id.get(target_name)
-            if owner_id is None or target_id is None:
-                continue
+        inline_ptr_registry = getattr(self, "_inline_ptr_registry", None)
+        if not isinstance(inline_ptr_registry, dict):
+            inline_ptr_registry = {}
+            self._inline_ptr_registry = inline_ptr_registry
 
-            owner_ptr = self.def_ptr.get(owner_id)
-            if not isinstance(owner_ptr, dict):
-                continue  # owner not emitted/defined
+        resolution_contexts = getattr(self, "_association_resolution_contexts", None)
+        if not isinstance(resolution_contexts, dict):
+            resolution_contexts = {}
+            self._association_resolution_contexts = resolution_contexts
 
-            ref_schema = make_polymorphic_ref_schema(target_id)
-            if not isinstance(ref_schema, dict):
-                continue
-
-            mult = (data.get("end_mult") or "").strip().replace(" ", "")
-            is_single = (mult == "" or mult == "0..1")
-
-            prop_schema = ref_schema if is_single else {"type": "array", "items": ref_schema}
-
-            # Ensure association entries never carry hashes
-            prop_schema.pop("$primaryObjectHash", None)
-            prop_schema.pop("$secondaryObjectHash", None)
-            if isinstance(prop_schema.get("items"), dict):
-                prop_schema["items"].pop("$primaryObjectHash", None)
-                prop_schema["items"].pop("$secondaryObjectHash", None)
-
-            # Dedup
-            cid_raw = data.get("ConnectorID")
+        def _context_key(family_id: int | None) -> int | None:
+            if family_id is None:
+                return None
             try:
-                cid = int(cid_raw)
+                return int(family_id)
             except Exception:
-                cid = -1
-            sig = (cid, owner_name, label)
-            if sig in seen_props:
-                continue
-            seen_props.add(sig)
+                return None
 
-            prop_key = f"{owner_name}.{label}"
+        def _remember_ptr(ptr: dict | None) -> None:
+            if isinstance(ptr, dict):
+                inline_ptr_registry[id(ptr)] = ptr
 
-# If the owner is a container-like node in the emitted template, do NOT attach
-            # association-backed dotted properties at the container level. Instead, treat
-            # them as inherited and attach them to emitted descendant *objects*.
-            # This matches HAND convention and avoids container shelves accumulating associations.
-            def descendant_object_targets(base_id: int) -> list[dict]:
-                base_id = int(base_id)
-                out: list[dict] = []
-                seen_nodes: set[int] = {base_id}
-                seen_ptr: set[int] = set()
-                q2 = deque([base_id])
-                # H is child -> parent, so descendants are predecessors
-                while q2:
-                    cur2 = q2.popleft()
-                    for child2 in self.H.predecessors(cur2):
-                        try:
-                            cid2 = int(child2)
-                        except Exception:
-                            continue
-                        if cid2 in seen_nodes:
-                            continue
-                        seen_nodes.add(cid2)
-                        q2.append(cid2)
-                        ptr2 = self.def_ptr.get(cid2)
+        def _get_resolution_context(ptr: dict | None) -> dict[int, str]:
+            if not isinstance(ptr, dict):
+                return {}
+            _remember_ptr(ptr)
+            return resolution_contexts.setdefault(id(ptr), {})
+
+        def _record_resolution_choice(ptr: dict | None, family_id: int | None, variant_name: str | None) -> None:
+            key = _context_key(family_id)
+            if key is None or not variant_name or not isinstance(ptr, dict):
+                return
+            _get_resolution_context(ptr)[key] = str(variant_name)
+
+        def _inherit_resolution_context(dst_ptr: dict | None, src_ptr: dict | None) -> None:
+            if not isinstance(dst_ptr, dict) or not isinstance(src_ptr, dict):
+                return
+            _remember_ptr(dst_ptr)
+            _remember_ptr(src_ptr)
+            src = resolution_contexts.get(id(src_ptr))
+            if not isinstance(src, dict) or not src:
+                return
+            dst = _get_resolution_context(dst_ptr)
+            for fam_key, variant_name in src.items():
+                dst.setdefault(int(fam_key), str(variant_name))
+
+        def _remember_inline_parent(child_ptr: dict | None, parent_ptr: dict | None) -> None:
+            if not isinstance(child_ptr, dict) or not isinstance(parent_ptr, dict):
+                return
+            child_ident = id(child_ptr)
+            parent_ident = id(parent_ptr)
+            if child_ident == parent_ident:
+                return
+            _remember_ptr(child_ptr)
+            _remember_ptr(parent_ptr)
+            parents = inline_parent_ptr_ids.setdefault(child_ident, [])
+            if parent_ident not in parents:
+                parents.append(parent_ident)
+
+        def _iter_context_ptrs(ptr: dict | None):
+            if not isinstance(ptr, dict):
+                return
+            stack = [id(ptr)]
+            seen_ids: set[int] = set()
+            while stack:
+                cur_ident = stack.pop()
+                if cur_ident in seen_ids:
+                    continue
+                seen_ids.add(cur_ident)
+                cur_ptr = inline_ptr_registry.get(cur_ident)
+                if isinstance(cur_ptr, dict):
+                    yield cur_ptr
+                for parent_ident in inline_parent_ptr_ids.get(cur_ident, []):
+                    if parent_ident not in seen_ids:
+                        stack.append(parent_ident)
+
+        def _register_inline_owner(
+            target_id: int,
+            ptr: dict,
+            *,
+            source_ptr: dict | None = None,
+            family_id: int | None = None,
+            variant_name: str | None = None,
+        ) -> bool:
+            if not isinstance(ptr, dict):
+                return False
+            if ptr.get("$objectType") != "object":
+                return False
+
+            _remember_ptr(ptr)
+            _remember_inline_parent(ptr, source_ptr)
+            _inherit_resolution_context(ptr, source_ptr)
+            _record_resolution_choice(ptr, family_id, variant_name)
+
+            alias_ids: list[int] = [int(target_id)]
+            try:
+                for parent_id in self.H.successors(int(target_id)):
+                    alias_ids.append(int(parent_id))
+            except Exception:
+                pass
+
+            ptr_ident = id(ptr)
+            changed = False
+            for alias_id in alias_ids:
+                alias_key = int(alias_id)
+                seen_ids = inline_owner_ptr_ids.setdefault(alias_key, set())
+                if ptr_ident in seen_ids:
+                    continue
+                seen_ids.add(ptr_ident)
+                bucket = inline_owner_ptrs.setdefault(alias_key, [])
+                bucket.append(ptr)
+                changed = True
+            return changed
+
+        def _register_inline_targets_from_schema(
+            target_id: int,
+            schema: dict | None,
+            *,
+            source_ptr: dict | None = None,
+            family_id: int | None = None,
+            variant_name: str | None = None,
+        ) -> bool:
+            if not isinstance(schema, dict):
+                return False
+
+            def _schema_node_id(node: dict, fallback_id: int) -> int:
+                obj_id = (node.get("$objectId") or "").strip()
+                node_id = name_to_id.get(obj_id)
+                try:
+                    return int(node_id) if node_id is not None else int(fallback_id)
+                except Exception:
+                    return int(fallback_id)
+
+            changed = False
+            seen_walk: set[int] = set()
+            root_ident = id(schema)
+
+            def _walk(node: Any, inherited_ptr: dict | None) -> None:
+                nonlocal changed
+                if not isinstance(node, dict):
+                    return
+                node_ident = id(node)
+                if node_ident in seen_walk:
+                    return
+                seen_walk.add(node_ident)
+
+                next_inherited_ptr = inherited_ptr
+                should_descend = (node_ident == root_ident)
+
+                if node.get("$objectType") == "object":
+                    node_target_id = _schema_node_id(node, target_id)
+                    newly_registered = _register_inline_owner(
+                        node_target_id,
+                        node,
+                        source_ptr=inherited_ptr,
+                        family_id=family_id,
+                        variant_name=variant_name,
+                    )
+                    changed |= newly_registered
+                    next_inherited_ptr = node
+
+                    if node_ident not in inline_registration_seen_nodes:
+                        inline_registration_seen_nodes.add(node_ident)
+                        should_descend = True
+                    elif newly_registered:
+                        should_descend = True
+
+                if not should_descend:
+                    return
+
+                items = node.get("items")
+                if isinstance(items, dict):
+                    _walk(items, next_inherited_ptr)
+
+                anyof = node.get("anyOf")
+                if isinstance(anyof, list):
+                    for ent in anyof:
+                        if isinstance(ent, dict):
+                            _walk(ent, next_inherited_ptr)
+
+                props = node.get("properties")
+                if isinstance(props, dict):
+                    for child in props.values():
+                        if isinstance(child, dict):
+                            _walk(child, next_inherited_ptr)
+
+            _walk(schema, source_ptr)
+            return changed
+
+        def _owner_targets(owner_id: int) -> list[dict]:
+            owner_id = int(owner_id)
+            out: list[dict] = []
+            seen_ptr: set[int] = set()
+
+            ptr = self.def_ptr.get(owner_id)
+            if isinstance(ptr, dict):
+                out.append(ptr)
+                seen_ptr.add(id(ptr))
+
+            for ptr in inline_owner_ptrs.get(owner_id, []):
+                if not isinstance(ptr, dict):
+                    continue
+                pid = id(ptr)
+                if pid in seen_ptr:
+                    continue
+                seen_ptr.add(pid)
+                out.append(ptr)
+
+            return out
+
+        def _upsert_assoc_property(parent_obj: dict, key: str, prop: dict) -> tuple[bool, dict | None]:
+            props = parent_obj.setdefault("properties", {})
+            existing = props.get(key)
+
+            if existing is None:
+                props[key] = prop
+                return True, props[key]
+
+            merged = self._merge_schema(existing, prop)
+            if merged != existing:
+                props[key] = merged
+                return True, props[key]
+
+            return False, existing if isinstance(existing, dict) else None
+
+        def descendant_object_targets(base_id: int) -> list[dict]:
+            base_id = int(base_id)
+            out: list[dict] = []
+            seen_nodes: set[int] = {base_id}
+            seen_ptr: set[int] = set()
+            q2 = deque([base_id])
+
+            # H is child -> parent, so descendants are predecessors
+            while q2:
+                cur2 = q2.popleft()
+                for child2 in self.H.predecessors(cur2):
+                    try:
+                        cid2 = int(child2)
+                    except Exception:
+                        continue
+                    if cid2 in seen_nodes:
+                        continue
+                    seen_nodes.add(cid2)
+                    q2.append(cid2)
+
+                    for ptr2 in _owner_targets(cid2):
                         if not isinstance(ptr2, dict):
                             continue
                         if ptr2.get("$objectType") != "object":
@@ -697,45 +1006,250 @@ class TemplateGenerator:
                             continue
                         seen_ptr.add(pid)
                         out.append(ptr2)
-                return out
+            return out
 
-            is_container_owner = (
-                isinstance(owner_ptr, dict)
-                and owner_ptr.get("$objectType") == "container"
-                or (self._role(owner_id).strip() == "containerClass")
-            )
+        def _resolve_variant_name_for_recipient(
+            recipient_ptr: dict | None,
+            variant_schemas: dict[str, dict] | None,
+            family_id: int | None,
+        ) -> str | None:
+            if not isinstance(variant_schemas, dict) or not variant_schemas:
+                return None
 
-            if is_container_owner:
-                targets = descendant_object_targets(owner_id)
-                if targets:
-                    for tptr in targets:
-                        self._add_property(tptr, prop_key, copy.deepcopy(prop_schema))
-                # If no targets, we intentionally drop the association property rather than
-                # attaching it to the container.
-                continue
+            fam_key = _context_key(family_id)
+            if fam_key is not None and isinstance(recipient_ptr, dict):
+                for ctx_ptr in _iter_context_ptrs(recipient_ptr):
+                    ctx = resolution_contexts.get(id(ctx_ptr))
+                    chosen_name = ctx.get(fam_key) if isinstance(ctx, dict) else None
+                    if chosen_name in variant_schemas:
+                        return str(chosen_name)
 
-            # HAND convention: if the owner is an object-anyOf wrapper (polymorphic rootClass),
-            # do NOT attach association-backed properties at the wrapper level. Instead,
-            # attach them to each anyOf member object.
-            if owner_id in getattr(self, "_object_anyof_nodes", set()):
-                anyof_list = owner_ptr.get("anyOf", [])
-                if isinstance(anyof_list, list):
-                    for variant in anyof_list:
-                        if not isinstance(variant, dict):
+            recipient_name = ""
+            if isinstance(recipient_ptr, dict):
+                recipient_name = (recipient_ptr.get("$objectId") or "").strip()
+            if recipient_name in variant_schemas:
+                return recipient_name
+
+            chosen_schema = _resolve_variant_schema_for_owner(recipient_name, variant_schemas)
+            if not isinstance(chosen_schema, dict):
+                return None
+            for candidate_name, candidate_schema in variant_schemas.items():
+                if candidate_schema is chosen_schema or candidate_schema == chosen_schema:
+                    return str(candidate_name)
+            return None
+
+        def _schema_for_recipient(
+            recipient_ptr: dict,
+            default_schema: dict | None,
+            variant_schemas: dict[str, dict] | None,
+            family_id: int | None,
+        ) -> tuple[dict | None, str | None]:
+            chosen_name = _resolve_variant_name_for_recipient(recipient_ptr, variant_schemas, family_id)
+            if chosen_name and isinstance(variant_schemas, dict):
+                chosen = variant_schemas.get(chosen_name)
+                if isinstance(chosen, dict):
+                    return chosen, chosen_name
+            if isinstance(default_schema, dict):
+                return default_schema, None
+            return None, None
+
+        # Associations can reveal new inline owners that themselves own more
+        # associations. Iterate to a fixpoint so nested inline stubs (for example
+        # PowerTransformer -> TransformerTank -> TransformerTankEnd) are fully
+        # populated even when the input edge order is unfavorable.
+        max_passes = 4
+        for _assoc_pass in range(max_passes):
+            pass_changed = False
+            seen_props: set[tuple[int, str, str]] = set()
+
+            for u, v, key, data in A.edges(keys=True, data=True):
+                ctype = str(data.get("Connector_Type", "")).strip()
+                if ctype not in ASSOC_LIKE:
+                    continue
+
+                owner_name = (data.get("Start_Object") or "").strip()
+                target_name = (data.get("End_Object") or "").strip()
+                if not owner_name or not target_name:
+                    continue
+
+                # Skip structural wiring here no matter what
+                if owner_name in STRUCTURAL_CONTAINERS or target_name in STRUCTURAL_CONTAINERS:
+                    continue
+
+                # CRITICAL: only emit if label is present (visible label)
+                label = (data.get("label") or "").strip()
+                if not label:
+                    continue
+
+                owner_id = name_to_id.get(owner_name)
+                target_id = name_to_id.get(target_name)
+                if owner_id is None or target_id is None:
+                    continue
+
+                owner_targets = _owner_targets(owner_id)
+                if not owner_targets:
+                    continue  # owner not emitted/defined anywhere
+
+                ref_schema = make_polymorphic_ref_schema(target_id, owner_id=owner_id)
+                if not isinstance(ref_schema, dict):
+                    continue
+
+                mult = (data.get("end_mult") or "").strip().replace(" ", "")
+                is_single = (mult == "" or mult == "0..1")
+
+                variant_prop_schemas: dict[str, dict] | None = None
+                prop_schema: dict | None
+                context_family_id = ref_schema.get("__contextFamilyId__") if isinstance(ref_schema, dict) else None
+
+                if "__variantSchemas__" in ref_schema:
+                    variant_prop_schemas = {}
+                    for vname, vschema in (ref_schema.get("__variantSchemas__") or {}).items():
+                        if not isinstance(vschema, dict):
                             continue
-                        self._add_property(variant, prop_key, copy.deepcopy(prop_schema))
-                continue
+                        pschema = copy.deepcopy(vschema) if is_single else {"type": "array", "items": copy.deepcopy(vschema)}
+                        pschema.pop("$primaryObjectHash", None)
+                        pschema.pop("$secondaryObjectHash", None)
+                        if isinstance(pschema.get("items"), dict):
+                            pschema["items"].pop("$primaryObjectHash", None)
+                            pschema["items"].pop("$secondaryObjectHash", None)
+                        variant_prop_schemas[str(vname)] = pschema
 
-            # Default: add to owner
-            self._add_property(owner_ptr, prop_key, prop_schema)
+                    default_schema = ref_schema.get("__defaultSchema__")
+                    if isinstance(default_schema, dict):
+                        prop_schema = copy.deepcopy(default_schema) if is_single else {"type": "array", "items": copy.deepcopy(default_schema)}
+                        prop_schema.pop("$primaryObjectHash", None)
+                        prop_schema.pop("$secondaryObjectHash", None)
+                        if isinstance(prop_schema.get("items"), dict):
+                            prop_schema["items"].pop("$primaryObjectHash", None)
+                            prop_schema["items"].pop("$secondaryObjectHash", None)
+                    else:
+                        prop_schema = None
+                else:
+                    prop_schema = ref_schema if is_single else {"type": "array", "items": ref_schema}
 
-            # Also duplicate into each anyOf variant of the owner (if present)
-            anyof_list = owner_ptr.get("anyOf", [])
-            if isinstance(anyof_list, list):
-                for variant in anyof_list:
-                    if not isinstance(variant, dict):
+                    # Ensure association entries never carry hashes
+                    prop_schema.pop("$primaryObjectHash", None)
+                    prop_schema.pop("$secondaryObjectHash", None)
+                    if isinstance(prop_schema.get("items"), dict):
+                        prop_schema["items"].pop("$primaryObjectHash", None)
+                        prop_schema["items"].pop("$secondaryObjectHash", None)
+
+                # Dedup
+                cid_raw = data.get("ConnectorID")
+                try:
+                    cid = int(cid_raw)
+                except Exception:
+                    cid = -1
+                sig = (cid, owner_name, label)
+                if sig in seen_props:
+                    continue
+                seen_props.add(sig)
+
+                prop_key = f"{owner_name}.{label}"
+
+                for owner_ptr in owner_targets:
+                    is_container_owner = (
+                        (isinstance(owner_ptr, dict) and owner_ptr.get("$objectType") == "container")
+                        or (self._role(owner_id).strip() == "containerClass")
+                    )
+
+                    if is_container_owner:
+                        targets = descendant_object_targets(owner_id)
+                        if targets:
+                            for tptr in targets:
+                                chosen_schema, chosen_variant_name = _schema_for_recipient(tptr, prop_schema, variant_prop_schemas, context_family_id)
+                                if not isinstance(chosen_schema, dict):
+                                    continue
+                                _record_resolution_choice(tptr, context_family_id, chosen_variant_name)
+                                changed, stored_schema = _upsert_assoc_property(tptr, prop_key, copy.deepcopy(chosen_schema))
+                                pass_changed |= changed
+                                pass_changed |= _register_inline_targets_from_schema(
+                                    target_id,
+                                    stored_schema,
+                                    source_ptr=tptr,
+                                    family_id=context_family_id,
+                                    variant_name=chosen_variant_name,
+                                )
+                        # If no targets, we intentionally drop the association property rather
+                        # than attaching it to the container.
                         continue
-                    self._add_property(variant, prop_key, copy.deepcopy(prop_schema))
+
+                    # HAND convention: if the owner is an object-anyOf wrapper (polymorphic rootClass),
+                    # do NOT attach association-backed properties at the wrapper level. Instead,
+                    # attach them to each anyOf member object.
+                    if owner_id in getattr(self, "_object_anyof_nodes", set()) and owner_ptr is self.def_ptr.get(owner_id):
+                        anyof_list = owner_ptr.get("anyOf", [])
+                        if isinstance(anyof_list, list):
+                            for variant in anyof_list:
+                                if not isinstance(variant, dict):
+                                    continue
+                                chosen_schema, chosen_variant_name = _schema_for_recipient(variant, prop_schema, variant_prop_schemas, context_family_id)
+                                if not isinstance(chosen_schema, dict):
+                                    continue
+                                _record_resolution_choice(variant, context_family_id, chosen_variant_name)
+                                changed, stored_schema = _upsert_assoc_property(variant, prop_key, copy.deepcopy(chosen_schema))
+                                pass_changed |= changed
+                                pass_changed |= _register_inline_targets_from_schema(
+                                    target_id,
+                                    stored_schema,
+                                    source_ptr=variant,
+                                    family_id=context_family_id,
+                                    variant_name=chosen_variant_name,
+                                )
+                        continue
+
+                    # Default: add to owner
+                    chosen_for_owner, chosen_variant_name = _schema_for_recipient(owner_ptr, prop_schema, variant_prop_schemas, context_family_id)
+                    if isinstance(chosen_for_owner, dict):
+                        _record_resolution_choice(owner_ptr, context_family_id, chosen_variant_name)
+                        changed, stored_schema = _upsert_assoc_property(owner_ptr, prop_key, copy.deepcopy(chosen_for_owner))
+                        pass_changed |= changed
+                        pass_changed |= _register_inline_targets_from_schema(
+                            target_id,
+                            stored_schema,
+                            source_ptr=owner_ptr,
+                            family_id=context_family_id,
+                            variant_name=chosen_variant_name,
+                        )
+
+                    # Also duplicate into each anyOf variant of the owner (if present)
+                    anyof_list = owner_ptr.get("anyOf", [])
+                    if isinstance(anyof_list, list):
+                        for variant in anyof_list:
+                            if not isinstance(variant, dict):
+                                continue
+                            chosen_schema, chosen_variant_name = _schema_for_recipient(variant, prop_schema, variant_prop_schemas, context_family_id)
+                            if not isinstance(chosen_schema, dict):
+                                continue
+                            _record_resolution_choice(variant, context_family_id, chosen_variant_name)
+                            changed, stored_schema = _upsert_assoc_property(variant, prop_key, copy.deepcopy(chosen_schema))
+                            pass_changed |= changed
+                            pass_changed |= _register_inline_targets_from_schema(
+                                target_id,
+                                stored_schema,
+                                source_ptr=variant,
+                                family_id=context_family_id,
+                                variant_name=chosen_variant_name,
+                            )
+
+                    # Apply inherited associations to emitted descendant owners too.
+                    for descendant_ptr in descendant_object_targets(owner_id):
+                        chosen_schema, chosen_variant_name = _schema_for_recipient(descendant_ptr, prop_schema, variant_prop_schemas, context_family_id)
+                        if not isinstance(chosen_schema, dict):
+                            continue
+                        _record_resolution_choice(descendant_ptr, context_family_id, chosen_variant_name)
+                        changed, stored_schema = _upsert_assoc_property(descendant_ptr, prop_key, copy.deepcopy(chosen_schema))
+                        pass_changed |= changed
+                        pass_changed |= _register_inline_targets_from_schema(
+                            target_id,
+                            stored_schema,
+                            source_ptr=descendant_ptr,
+                            family_id=context_family_id,
+                            variant_name=chosen_variant_name,
+                        )
+
+            if not pass_changed:
+                break
 
 
     # -------------------- anchor detection --------------------
@@ -1106,6 +1620,7 @@ class TemplateGenerator:
         self.def_ptr = {}
         self.path_map = {}
         self._object_anyof_nodes = set()
+        self._inline_owner_ptrs = {}
 
         role = lambda n: (self.A.nodes[n].get("ravensRole")
                         if isinstance(self.A, nx.Graph) and n in self.A else self.H.nodes[n].get("ravensRole")) or ""
