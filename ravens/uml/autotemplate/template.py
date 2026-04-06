@@ -795,14 +795,21 @@ class TemplateGenerator:
                     vprops[k2] = sch2
 
             # Wrapper is an *object* with anyOf variants.
-            # DO NOT include $objectId for inherit-only bases (per policy).
+            # Keep the base $objectId so downstream schema decomposition can
+            # preserve a stable family identity for wrapper-backed arrays.
             return {
                 "__variantSchemas__": {
                     str(v.get("$objectId")): copy.deepcopy(v)
                     for v in anyof_variants
                     if isinstance(v, dict) and (v.get("$objectId") or "")
                 },
-                "__defaultSchema__": {"$objectType": "object", "type": "object", "$arrayPosition": None, "anyOf": copy.deepcopy(anyof_variants)},
+                "__defaultSchema__": {
+                    "$objectType": "object",
+                    "$objectId": base_name,
+                    "type": "object",
+                    "$arrayPosition": None,
+                    "anyOf": copy.deepcopy(anyof_variants),
+                },
                 "__contextFamilyId__": int(target_id),
             }
 
@@ -1219,8 +1226,6 @@ class TemplateGenerator:
             if not isinstance(leaf, dict):
                 return False
             if leaf.get("$objectType") != "object":
-                return False
-            if (leaf.get("$objectId") or "").strip():
                 return False
             return isinstance(leaf.get("anyOf"), list)
 
