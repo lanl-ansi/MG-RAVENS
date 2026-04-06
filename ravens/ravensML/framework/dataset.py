@@ -26,7 +26,7 @@ class MGRavensDataset:
         if self.data_dir:
             self.load_data()
     
-    def load_data(self,new_path = None) -> None:
+    def load_data(self,new_path = None, verbose=False) -> None:
         """Load all JSON files from the specified directory."""
         #optionally set a new root path
         if new_path != None:
@@ -48,7 +48,8 @@ class MGRavensDataset:
             except Exception as e:
                 print(f"Error loading {file_path}: {e}")
         
-        print(f"Loaded {len(self.raw_data)} MG-RAVENS grid files")
+        if verbose:
+            print(f"Loaded {len(self.raw_data)} MG-RAVENS grid files")
     
     def process_for_ML(self, custom_processor: Optional[Callable] = None) -> None:
         """

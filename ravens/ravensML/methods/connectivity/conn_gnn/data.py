@@ -174,7 +174,7 @@ class MGConnDataset(InMemoryDataset):
     def __init__(
         self,
         root: str,
-        split: str = "train",
+        split: str = "full",
         size: int | None = None,
         error_kwargs: dict | None = None,
         transform=None,
@@ -319,6 +319,8 @@ class MGConnDataset(InMemoryDataset):
             data_slice = data_list[: int(0.7 * n)]
         elif self.split == "val":
             data_slice = data_list[int(0.7 * n) : int(0.85 * n)]
+        elif self.split == "full":
+            data_slice = data_list
         else:  # test
             data_slice = data_list[int(0.85 * n) :]
 

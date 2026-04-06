@@ -190,7 +190,7 @@ def update_mgr(prediction,sample):
 
     mgr = purge_edges(mgr,removed_edges_adj,num_nodes)
 
-    print(f"PMD: last file processed: {file_name}")
+    # print(f"PMD: last file processed: {file_name}")
 
     #NEED TO REMOVE EDITED EDGES
 

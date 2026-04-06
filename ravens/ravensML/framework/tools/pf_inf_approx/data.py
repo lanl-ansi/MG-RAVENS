@@ -11,6 +11,15 @@ from typing import List, Tuple, Dict, Any
 import networkx as nx
 from torch_geometric.data import InMemoryDataset, Data, download_url
 from torch_geometric.utils import from_networkx, to_networkx
+from torch_geometric.data import Batch
+
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[3]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
+from framework.dataset import MGRavensDataset
+from framework.tools.pf_inf_approx.inf_data_gen import inf_data_gen
 
 # ----------------------------------------------------------------------
 # Helper: convert the dict you already produce (MGRavensDataset.ravens_to_ML)
@@ -168,13 +177,14 @@ class MG_Inf_Dataset(InMemoryDataset):
         self.size = size
         super().__init__(self.root, transform, pre_transform)
 
-        #load dataset
-        self.process()
 
-        # ------------------------------------------------------------------
-        # Keep separate lists for easy indexing: (corrupt, clean)
-        # ------------------------------------------------------------------
-        self.pair_idxs = list(range(len(self)))  # each entry already a pair
+        if self.size != 0:
+            #load dataset
+            self.process()
+            # ------------------------------------------------------------------
+            # Keep separate lists for easy indexing: (corrupt, clean)
+            # ------------------------------------------------------------------
+            self.pair_idxs = list(range(len(self)))  # each entry already a pair
 
     @property
     def raw_file_names(self):
@@ -190,13 +200,6 @@ class MG_Inf_Dataset(InMemoryDataset):
     # Main processing pipeline
     # ------------------------------------------------------------------
     def process(self):
-        from pathlib import Path
-        import sys, os
-        rML_ROOT = Path(__file__).resolve().parents[3]
-        if str(rML_ROOT) not in sys.path:
-            sys.path.insert(0, str(rML_ROOT))
-        from framework.dataset import MGRavensDataset
-        from framework.tools.pf_inf_approx.inf_data_gen import inf_data_gen
 
         # ------------------------------------------------------------------
         # 1 Load the clean data
@@ -260,6 +263,15 @@ class MG_Inf_Dataset(InMemoryDataset):
         data, slices = self.collate(data_slice)
         torch.save((data, slices), self.processed_paths[0])
         self.data, self.slices = data, slices
+
+    def convert_input(self,MGR_grid,device):
+        mgr_path = self.root/"framework/tools/pf_inf_approx/tmp/tmp_test_input/tmp.json"
+        with open(mgr_path, "w", encoding="utf-8") as f:
+                json.dump(MGR_grid, f, indent=2)
+        MGD = MGRavensDataset(data_dir=str(self.root/"framework/tools/pf_inf_approx/tmp/tmp_test_input"))
+        rML_obj = MGD[0][2]
+        output = dict_to_pyg(rML_obj).to(device)
+        return output
 
     # ------------------------------------------------------------------
     # Convenience getters

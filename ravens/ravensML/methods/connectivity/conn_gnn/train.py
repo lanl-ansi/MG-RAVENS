@@ -21,8 +21,8 @@ from framework.tools.training_tools import train_epoch, validate
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
-TEST_NAME = "PI_STD_"
-#NOTE:setup the PI_STD currently running PI CONN
+TEST_NAME = "PI_STD"
+MAX_NODES = 20
 
 # reproducibility
 torch.manual_seed(42)
@@ -32,8 +32,8 @@ torch.manual_seed(42)
 # -------------------------
 dataset = MGConnDataset(
         root=rML_ROOT,
-        size=10000,
-        max_nodes=20,
+        size=20000,
+        max_nodes=MAX_NODES,
         error_kwargs={"del_e_prob": 0.15},
 )
 
@@ -72,7 +72,7 @@ model = SimpleGNN(
     node_features=node_feat_dim,
     edge_features=edge_feat_dim,
     degree=deg,
-    max_nodes = 20,
+    max_nodes = MAX_NODES,
     transport_distance=10
 ).to(device)
 
@@ -80,10 +80,10 @@ model = SimpleGNN(
 #     node_features=node_feat_dim,
 #     edge_features=edge_feat_dim,
 #     degree=deg,
-#     max_nodes = 20,
+#     max_nodes = MAX_NODES,
 #     transport_distance=0).to(device)
 
-print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(20*20)}")
+print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(MAX_NODES*MAX_NODES)}")
 
 # Training Settings
 # loss_fn = nn.MSELoss()
@@ -105,15 +105,15 @@ loss_fn =  cl.PIAdjMSELoss(
 )
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 400
+epochs = 20
 
 # training parameters
 best_val = float('inf')
 train_losses, val_losses = [], []
 
 for epoch in range(1, epochs + 1):
-    tr_loss = train_epoch(model, train_loader, loss_fn, optimizer, device)
-    va_loss = validate(model, val_loader, loss_fn, device)
+    tr_loss = train_epoch(model, train_loader, loss_fn, optimizer, device,MAX_NODES)
+    va_loss = validate(model, val_loader, loss_fn, device,MAX_NODES)
 
     train_losses.append(tr_loss)
     val_losses.append(va_loss)

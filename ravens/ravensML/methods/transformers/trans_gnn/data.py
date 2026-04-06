@@ -155,7 +155,7 @@ class MGTransformerDataset(InMemoryDataset):
     def __init__(
         self,
         root: str,
-        split: str = "train",
+        split: str = "full",
         size: int | None = None,
         error_kwargs: dict | None = None,
         transform=None,
@@ -263,6 +263,8 @@ class MGTransformerDataset(InMemoryDataset):
             data_slice = data_list[: int(0.7 * n)]
         elif self.split == "val":
             data_slice = data_list[int(0.7 * n) : int(0.85 * n)]
+        elif self.split == "full":
+            data_slice = data_list
         else:  # test
             data_slice = data_list[int(0.85 * n) :]
 
@@ -270,6 +272,8 @@ class MGTransformerDataset(InMemoryDataset):
         data, slices = self.collate(data_slice)
         torch.save((data, slices), self.processed_paths[0])
         self.data, self.slices = data, slices
+
+    
 
     # ------------------------------------------------------------------
     # Convenience getters

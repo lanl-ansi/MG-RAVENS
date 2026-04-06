@@ -34,12 +34,10 @@ def _get_flat_target(batch, max_nodes):
     #   batch.y["missing_edges"]   (see train.py)
     # --------------------------------------------------------------
     if isinstance(batch.y, dict):
-        target = batch.y.get("missing_edges") or batch.y.get("adjacency")
+        return batch
     else:
-        target = batch.y
+        target = batch.y.to(batch.x.device).float().view(-1)
 
-    # Move to the same device, ensure float, flatten to (max_nodes**2,)
-    target = target.to(batch.x.device).float().view(-1)   # (max_nodes**2,)
     return target
 
 

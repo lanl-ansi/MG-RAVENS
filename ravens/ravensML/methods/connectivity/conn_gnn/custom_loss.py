@@ -1,9 +1,18 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch_geometric.utils import degree
 from warnings import warn
 from random import random
-from methods.connectivity.conn_gnn.mgr_helpers import update_mgr, run_pf
+from pathlib import Path
+import sys, os
+rML_ROOT = Path(__file__).resolve().parents[3]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
+from methods.connectivity.conn_gnn.mgr_helpers import update_mgr
+from methods.connectivity.conn_gnn.data import MGConnDataset
+from framework.tools.pf_inf_approx.model import SimpleGNN
+from framework.tools.pf_inf_approx.data import MG_Inf_Dataset
 
 class AdjMSELoss(nn.Module):
     """
@@ -123,6 +132,21 @@ class PIAdjMSELoss(nn.Module):
         self.inf_penalty = inf_penalty
         self.test_percentage = test_percentage
         self.branch_inf_mode = branch_inf_mode
+        self.device = None
+
+        self.model = self.init_model()
+        state_dict = torch.load(
+            rML_ROOT/"framework/tools/pf_inf_approx/tmp/DEV_InfApprox_best_model.pth",
+            map_location=self.device,
+        )
+        self.model.load_state_dict(state_dict) 
+        self.check_feas = MG_Inf_Dataset(
+            root=rML_ROOT,
+            size=0,
+            error_kwargs={"mean": 0.0,"std": 0.0},
+        )
+
+        #TODO: Remove        
         from warnings import warn
         warn("inf_score() is currently non-differentiable in Pytorch. Treat this as a placeholder for a soon to be released" \
         "differentiable approximation.")
@@ -164,126 +188,44 @@ class PIAdjMSELoss(nn.Module):
         loss = loss * self.K 
 
         return loss
-    
-    def system_demand_not_met(self,pmd_output):
-        total_generation = 0.0
-        total_load = 0.0
-        expected_losses = 0.0
-        pm_solution = pmd_output['solution']
-        
-        # Process generation - directly using 'gen' which we know exists
-        if "gen" in pm_solution:
-            for gen in pm_solution["gen"].values():
-                if "pg" in gen:
-                    pg_value = gen["pg"]
-                    if isinstance(pg_value, list):
-                        # Sum all elements if pg is a list
-                        total_generation += sum(float(val) for val in pg_value)
-                    else:
-                        # Handle single value case
-                        total_generation += float(pg_value)
-        
-        # Process load - directly using 'load' which we know exists
-        if "load" in pm_solution:
-            for load in pm_solution["load"].values():
-                if "pd" in load:
-                    pd_value = load["pd"]
-                    if isinstance(pd_value, list):
-                        # Sum all elements if pd is a list
-                        total_load += sum(float(val) for val in pd_value)
-                    else:
-                        # Handle single value case
-                        total_load += float(pd_value)
-        
-        # Calculate branch losses - directly using 'branch' which we know exists
-        if "branch" in pm_solution:
-            for branch in pm_solution["branch"].values():
-                if "pf" in branch and "pt" in branch:
-                    pf_value = branch["pf"]
-                    pt_value = branch["pt"]
-                    
-                    # Handle if these are lists
-                    if isinstance(pf_value, list) and isinstance(pt_value, list):
-                        for i in range(min(len(pf_value), len(pt_value))):
-                            expected_losses += abs(float(pf_value[i]) + float(pt_value[i]))
-                    else:
-                        expected_losses += abs(float(pf_value) + float(pt_value))
-        
-        # Generation should equal load plus losses
-        # Negative value means demand not met
-        power_balance = total_generation - (total_load + expected_losses)
-        return 100*max(0.0, -power_balance)  # In per unit, only return positive values
-    
-
-
-    
-    def analyze_branch_infeasibility(self, pmd_output):
-        """
-        Analyzes the infeasibility of transformer parameters from PowerModelsDistribution output.
-        
-        Args:
-            pmd_output (dict): The PowerModelsDistribution output dictionary
-        
-        Returns:
-            dict: A dictionary mapping branch/transformer names to their infeasibility metrics
-        """
-        if 'solution' not in pmd_output or 'branch' not in pmd_output['solution']:
-            return {"error": "No branch/transformer data found in the solution"}
-        
-        branch_data = pmd_output['solution']['branch']
-        infeasibility_metrics = {}
-        
-        for branch_id, branch in branch_data.items():
-            # For transformers, we need different metrics than for lines
-            
-            # Calculate star impedance r infeasibility
-            r_infeasibility = 0
-            if 'cr_fr' in branch and 'cr_to' in branch:
-                # For transformers, these would be related to winding resistance
-                for i in range(min(len(branch['cr_fr']), len(branch['cr_to']))):
-                    r_infeasibility += abs(branch['cr_fr'][i] + branch['cr_to'][i])
-            
-            # Calculate star impedance x infeasibility
-            x_infeasibility = 0
-            if 'ci_fr' in branch and 'ci_to' in branch:
-                # For transformers, these would be related to leakage reactance
-                for i in range(min(len(branch['ci_fr']), len(branch['ci_to']))):
-                    x_infeasibility += abs(branch['ci_fr'][i] + branch['ci_to'][i])
-            
-            # Calculate core admittance g and b infeasibility
-            b_infeasibility = 0
-            g_infeasibility = 0
-            if 'csr_fr' in branch and 'csi_fr' in branch:
-                # For transformers, these relate to magnetizing current
-                for i in range(min(len(branch['csr_fr']), len(branch['csi_fr']))):
-                    g_infeasibility += abs(branch['csr_fr'][i])
-                    b_infeasibility += abs(branch['csi_fr'][i])
-            
-            # Store the metrics
-            infeasibility_metrics[branch_id] = {
-                "r_infeasibility": r_infeasibility,
-                "x_infeasibility": x_infeasibility,
-                "g_infeasibility": g_infeasibility,
-                "b_infeasibility": b_infeasibility,
-                "total_infeasibility": r_infeasibility + x_infeasibility + g_infeasibility + b_infeasibility
-            }
-        
-        return infeasibility_metrics
 
     def inf_score(self, pred, target_grid):
         new_mgr = update_mgr(pred,target_grid)
-        try:  
-            results = run_pf(new_mgr)
-            if self.branch_inf_mode:
-                branch_infeasibility = self.analyze_branch_infeasibility(results)
-                return sum(branch["total_infeasibility"] for branch in branch_infeasibility.values())
-            else:
-                return self.system_demand_not_met(results)
-        except Exception as e1:
-            try:
-                run_pf(target_grid)
-            except Exception as e2:
-                warn(f"PMD PF errors on the base and updated grids with the following error: \n'{e2}'.\nContinuing without penalty.")
-                return 0
-            warn(f"PMD PF fails only on the updated grid with the following error: \n'{e1}'.\nContinuing with penalty of 1000.")
-            return 100 #TODO:refine error
+        tensor_input = self.check_feas.convert_input(new_mgr,self.device)
+        output = self.model(tensor_input).squeeze() 
+        return output
+    
+    def init_model(self):
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        dataset = MGConnDataset(
+            root=rML_ROOT,
+            max_nodes=20,
+            size=1,
+            error_kwargs={"del_e_prob": 0.15},
+        )
+
+        # input / output dimensions 
+        sample = dataset[0]
+        node_feat_dim = sample.x.shape[1]
+        edge_feat_dim = sample.edge_attr.shape[1]
+
+        # Compute the maximum in-degree in the training data.
+        max_degree = -1
+        for data in dataset:
+            d = degree(data.edge_index[1], num_nodes=data.num_nodes, dtype=torch.long)
+            max_degree = max(max_degree, int(d.max()))
+
+        # Compute the in-degree histogram tensor
+        deg = torch.zeros(max_degree + 1, dtype=torch.long)
+        for data in dataset:
+            d = degree(data.edge_index[1], num_nodes=data.num_nodes, dtype=torch.long)
+            deg += torch.bincount(d, minlength=deg.numel())
+
+        model = SimpleGNN(
+            node_features=node_feat_dim,
+            edge_features=edge_feat_dim,
+            degree=deg,
+            max_nodes=20,
+            transport_distance=17,
+        ).to(self.device)
+        return model

@@ -41,7 +41,7 @@ def update_mgr(prediction,sample):
         file_name = sample.y["raw_mgr"][0]
     with open(file_name, "r") as f:
         mgr = json.load(f)
-    print(f"PMD: last file processed: {file_name}")
+    # print(f"PMD: last file processed: {file_name}")
 
     input = _to_python(sample["edge_attr"])
     with open(rML_ROOT/"methods/transformers/trans_gnn/tmp.json","w") as f:
