@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any
@@ -106,6 +107,8 @@ class SchemaComparator:
                 "diagram_names": [],
                 "excluded_diagram_names": [],
                 "kept_diagram_names": [],
+                "root_diagram_names": [],
+                "kept_nonroot_diagram_names": [],
                 "global_diagram_names": [],
                 "global_excluded_diagram_names": [],
                 "global_kept_diagram_names": [],
@@ -120,6 +123,8 @@ class SchemaComparator:
                 "diagram_names": [],
                 "excluded_diagram_names": [],
                 "kept_diagram_names": [],
+                "root_diagram_names": [],
+                "kept_nonroot_diagram_names": [],
                 "global_diagram_names": [],
                 "global_excluded_diagram_names": [],
                 "global_kept_diagram_names": [],
@@ -152,9 +157,13 @@ class SchemaComparator:
             status = "not_on_any_simplified_diagram"
             excluded = []
             kept = []
+            root_names = []
+            kept_nonroot = []
         else:
             excluded = [n for n in names if n.startswith(("Inf", "Mkt"))]
             kept = [n for n in names if not n.startswith(("Inf", "Mkt"))]
+            root_names = [n for n in names if n == "Root"]
+            kept_nonroot = [n for n in kept if n != "Root"]
             if excluded and not kept:
                 status = "excluded_by_inf_mkt_diagram_only"
             elif excluded and kept:
@@ -167,10 +176,176 @@ class SchemaComparator:
             "diagram_names": names,
             "excluded_diagram_names": excluded,
             "kept_diagram_names": kept,
+            "root_diagram_names": root_names,
+            "kept_nonroot_diagram_names": kept_nonroot,
             "global_diagram_names": global_names,
             "global_excluded_diagram_names": global_excluded,
             "global_kept_diagram_names": global_kept,
         }
+
+    @staticmethod
+    def _base_template_name(schema_name: str) -> str:
+        base = schema_name
+        for suffix in (
+            "_anyOfPointer_anyOfContainer",
+            "_Pointer_anyOfContainer",
+            "_anyOfContainer",
+            "_PointerArray",
+            "_Pointer",
+            "_Container",
+            "_Array",
+        ):
+            if base.endswith(suffix):
+                return base[: -len(suffix)]
+        return base
+
+    @staticmethod
+    def _template_scope_status(diag: dict[str, Any]) -> str:
+        if diag["kept_nonroot_diagram_names"]:
+            return "kept_nonroot_present"
+        if diag["root_diagram_names"] and diag["excluded_diagram_names"]:
+            return "root_and_excluded_only"
+        if diag["root_diagram_names"]:
+            return "root_only"
+        if diag["excluded_diagram_names"]:
+            return "excluded_only"
+        if diag["diagram_exclusion_status"] == "not_on_any_simplified_diagram":
+            return "not_on_any_simplified_diagram"
+        if diag["diagram_exclusion_status"] == "not_on_any_diagram":
+            return "not_on_any_diagram"
+        if diag["diagram_exclusion_status"] == "not_in_uml":
+            return "not_in_uml"
+        if diag["diagram_names"]:
+            return "other_simplified_only"
+        return "unknown"
+
+    @staticmethod
+    def _template_actionability(scope_status: str) -> str:
+        if scope_status in {"kept_nonroot_present", "other_simplified_only"}:
+            return "candidate_builder_gap"
+        if scope_status in {"root_only", "excluded_only", "root_and_excluded_only"}:
+            return "likely_hand_beyond_simplified_scope"
+        if scope_status in {"not_on_any_simplified_diagram", "not_on_any_diagram", "not_in_uml"}:
+            return "likely_out_of_scope_for_current_diagrams"
+        return "needs_manual_triage"
+
+    @staticmethod
+    def _collect_template_object_hits(template: Any, *, object_id: str) -> list[dict[str, Any]]:
+        hits: list[dict[str, Any]] = []
+
+        def visit(node: Any, path: str = "$", context: str = "root") -> None:
+            if isinstance(node, dict):
+                if node.get("$objectId") == object_id:
+                    hits.append(
+                        {
+                            "path": path,
+                            "context": context,
+                            "object_type": node.get("$objectType"),
+                            "type": node.get("type"),
+                            "has_anyOf": isinstance(node.get("anyOf"), list),
+                            "has_properties": isinstance(node.get("properties"), dict),
+                        }
+                    )
+
+                for key, value in node.items():
+                    if key == "properties" and isinstance(value, dict):
+                        for child_key, child_value in value.items():
+                            visit(child_value, f"{path}.properties['{child_key}']", "properties")
+                    elif key == "patternProperties" and isinstance(value, dict):
+                        for child_key, child_value in value.items():
+                            visit(child_value, f"{path}.patternProperties['{child_key}']", "patternProperties")
+                    elif key == "items":
+                        visit(value, f"{path}.items", "items")
+                    elif key == "anyOf" and isinstance(value, list):
+                        for idx, child_value in enumerate(value):
+                            visit(child_value, f"{path}.anyOf[{idx}]", "anyOf")
+                    elif key not in {"properties", "patternProperties", "items", "anyOf"}:
+                        visit(value, f"{path}.{key}", context)
+            elif isinstance(node, list):
+                for idx, item in enumerate(node):
+                    visit(item, f"{path}[{idx}]", context)
+
+        visit(template)
+        return hits
+
+    @staticmethod
+    def _shape_label_for_hit(hit: dict[str, Any]) -> str:
+        context = hit["context"]
+        context_label = {
+            "root": "root",
+            "properties": "property",
+            "patternProperties": "pattern",
+            "items": "array_item",
+            "anyOf": "anyof_variant",
+        }.get(context, context)
+
+        object_type = hit["object_type"]
+        if object_type == "object":
+            if hit["has_anyOf"] and hit["has_properties"]:
+                core = "object_anyof_with_properties"
+            elif hit["has_anyOf"]:
+                core = "object_anyof"
+            elif hit["has_properties"]:
+                core = "object_properties"
+            else:
+                core = "object_other"
+        elif object_type == "reference":
+            if hit["has_anyOf"]:
+                core = "reference_anyof"
+            elif hit["type"] == "string":
+                core = "reference_string"
+            else:
+                core = "reference_other"
+        else:
+            core = f"{object_type or 'unknown'}_{hit['type'] or 'unknown'}"
+
+        return f"{context_label}:{core}"
+
+    @classmethod
+    def _shape_counts_for_hits(cls, hits: list[dict[str, Any]]) -> dict[str, int]:
+        counts: dict[str, int] = {}
+        for hit in hits:
+            key = cls._shape_label_for_hit(hit)
+            counts[key] = counts.get(key, 0) + 1
+        return dict(sorted(counts.items()))
+
+    @staticmethod
+    def _template_shape_mismatch_kind(
+        classification: str,
+        hand_counts: dict[str, int],
+        auto_counts: dict[str, int],
+        *,
+        auto_hit_count: int,
+    ) -> str:
+        if auto_hit_count == 0:
+            return "missing_from_auto_raw_template"
+
+        def has(counts: dict[str, int], needle: str) -> bool:
+            return counts.get(needle, 0) > 0
+
+        if classification == "synthetic_anyof_container":
+            if has(hand_counts, "root:object_anyof") and has(auto_counts, "root:object_properties"):
+                return "hand_anyof_object_collapsed_to_concrete_object"
+            if has(hand_counts, "property:object_anyof") and has(auto_counts, "property:object_properties"):
+                return "hand_anyof_property_collapsed_to_concrete_object"
+        if classification == "synthetic_anyof_pointer":
+            if has(hand_counts, "property:reference_anyof") and has(auto_counts, "property:reference_string"):
+                return "hand_anyof_reference_narrowed_to_single_reference"
+            if has(hand_counts, "property:reference_anyof") and has(auto_counts, "property:object_properties"):
+                return "hand_anyof_reference_replaced_by_object"
+        if classification == "synthetic_array":
+            if has(hand_counts, "array_item:object_properties") and has(auto_counts, "property:object_properties"):
+                return "hand_array_of_objects_collapsed_to_single_object"
+            if has(hand_counts, "array_item:object_anyof") and has(auto_counts, "property:object_properties"):
+                return "hand_array_of_polymorphic_objects_collapsed_to_single_object"
+        if classification == "synthetic_pointer_array":
+            if has(hand_counts, "array_item:reference_string") and not has(auto_counts, "array_item:reference_string"):
+                return "hand_pointer_array_missing_array_context_in_auto"
+        if classification == "synthetic_container":
+            return "hand_container_schema_missing_from_auto"
+        if classification.startswith("real_class_absent"):
+            return "real_class_absent_from_auto_template"
+        return "shape_mismatch_unclassified"
 
     def _schema_path_by_name(self, schema: RavensSchema, name: str) -> str:
         return schema.schema_path(name)
@@ -425,6 +600,8 @@ class SchemaComparator:
                     "diagram_names": diag["diagram_names"],
                     "excluded_diagram_names": diag["excluded_diagram_names"],
                     "kept_diagram_names": diag["kept_diagram_names"],
+                    "root_diagram_names": diag["root_diagram_names"],
+                    "kept_nonroot_diagram_names": diag["kept_nonroot_diagram_names"],
                     "status": row.status,
                 }
             )
@@ -448,7 +625,82 @@ class SchemaComparator:
             "diagram_names",
             "excluded_diagram_names",
             "kept_diagram_names",
+            "root_diagram_names",
+            "kept_nonroot_diagram_names",
             "status",
+        ]
+        return pd.DataFrame(rows, columns=cols)
+
+    def classify_template_shape_gaps(self) -> pd.DataFrame:
+        missing = self.classify_missing_schema_keys().copy()
+        if missing.empty:
+            return missing
+
+        hand_raw = self.hand_schema.schema_template.raw_template
+        auto_raw = self.auto_schema.schema_template.raw_template
+
+        rows = []
+        for row in missing.itertuples(index=False):
+            hand_name = str(row.hand_name)
+            base_name = self._base_template_name(hand_name)
+            diag_name = hand_name if row.is_real_class else row.tail_name if row.tail_is_real_class else base_name
+            diag = self._diagram_status(diag_name)
+            scope_status = self._template_scope_status(diag)
+            actionability = self._template_actionability(scope_status)
+
+            hand_hits = self._collect_template_object_hits(hand_raw, object_id=base_name)
+            auto_hits = self._collect_template_object_hits(auto_raw, object_id=base_name)
+            hand_counts = self._shape_counts_for_hits(hand_hits)
+            auto_counts = self._shape_counts_for_hits(auto_hits)
+            mismatch_kind = self._template_shape_mismatch_kind(
+                row.classification,
+                hand_counts,
+                auto_counts,
+                auto_hit_count=len(auto_hits),
+            )
+
+            rows.append(
+                {
+                    "hand_name": hand_name,
+                    "base_name": base_name,
+                    "classification": row.classification,
+                    "classification_detail": row.classification_detail,
+                    "shape_mismatch_kind": mismatch_kind,
+                    "scope_status": scope_status,
+                    "actionability": actionability,
+                    "diagram_exclusion_status": diag["diagram_exclusion_status"],
+                    "diagram_names": diag["diagram_names"],
+                    "root_diagram_names": diag["root_diagram_names"],
+                    "excluded_diagram_names": diag["excluded_diagram_names"],
+                    "kept_nonroot_diagram_names": diag["kept_nonroot_diagram_names"],
+                    "hand_raw_hit_count": len(hand_hits),
+                    "auto_raw_hit_count": len(auto_hits),
+                    "hand_shape_counts": json.dumps(hand_counts, sort_keys=True),
+                    "auto_shape_counts": json.dumps(auto_counts, sort_keys=True),
+                    "hand_example_paths": json.dumps([hit["path"] for hit in hand_hits[:5]]),
+                    "auto_example_paths": json.dumps([hit["path"] for hit in auto_hits[:5]]),
+                }
+            )
+
+        cols = [
+            "hand_name",
+            "base_name",
+            "classification",
+            "classification_detail",
+            "shape_mismatch_kind",
+            "scope_status",
+            "actionability",
+            "diagram_exclusion_status",
+            "diagram_names",
+            "root_diagram_names",
+            "excluded_diagram_names",
+            "kept_nonroot_diagram_names",
+            "hand_raw_hit_count",
+            "auto_raw_hit_count",
+            "hand_shape_counts",
+            "auto_shape_counts",
+            "hand_example_paths",
+            "auto_example_paths",
         ]
         return pd.DataFrame(rows, columns=cols)
 
