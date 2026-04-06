@@ -120,7 +120,6 @@ class PIAdjMSELoss(nn.Module):
         pos_weight: float | torch.Tensor = 4.0,
         inf_penalty: float | torch.Tensor = 0,
         test_percentage: float | torch.Tensor = 0.5, 
-        branch_inf_mode:bool = False
     ):
         super().__init__()
         self.ignore_diagonal = ignore_diagonal
@@ -131,7 +130,6 @@ class PIAdjMSELoss(nn.Module):
         self.register_buffer("beta", torch.tensor(float(pos_weight)))
         self.inf_penalty = inf_penalty
         self.test_percentage = test_percentage
-        self.branch_inf_mode = branch_inf_mode
         self.device = None
 
         self.model = self.init_model()
@@ -146,10 +144,6 @@ class PIAdjMSELoss(nn.Module):
             error_kwargs={"mean": 0.0,"std": 0.0},
         )
 
-        #TODO: Remove        
-        from warnings import warn
-        warn("inf_score() is currently non-differentiable in Pytorch. Treat this as a placeholder for a soon to be released" \
-        "differentiable approximation.")
 
 
     def _mask_diagonal(self, tensor: torch.Tensor) -> torch.Tensor:

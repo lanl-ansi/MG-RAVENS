@@ -101,7 +101,6 @@ loss_fn =  cl.PIAdjMSELoss(
     pos_weight=20.0,
     inf_penalty=5,
     test_percentage=1,
-    branch_inf_mode=False
 )
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)

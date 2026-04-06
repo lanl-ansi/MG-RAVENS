@@ -87,7 +87,7 @@ print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output di
 # loss_fn = nn.MSELoss()
 import custom_loss as cl
 # loss_fn = cl.WeightedMSELoss(3,penalty_strength=5)
-loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=1,branch_inf_mode=False)
+loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=1)
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
 epochs = 120

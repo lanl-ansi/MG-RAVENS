@@ -48,7 +48,7 @@ class WeightedMSELoss(nn.Module):
     
 
 class PI_WMSE_Loss(nn.Module):
-    def __init__(self,max_phases,neg_penalty=0,inf_penalty=0,test_percentage=0.5, branch_inf_mode = False):
+    def __init__(self,max_phases,neg_penalty=0,inf_penalty=0,test_percentage=0.5):
         super(PI_WMSE_Loss, self).__init__()
         self.weights = torch.tensor(
             [5] +
@@ -58,7 +58,6 @@ class PI_WMSE_Loss(nn.Module):
         self.neg_penalty = neg_penalty
         self.inf_penalty = inf_penalty
         self.test_percentage = test_percentage
-        self.branch_inf_mode = branch_inf_mode
         self.device = None
 
         self.model = self.init_model()
