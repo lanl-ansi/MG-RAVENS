@@ -153,6 +153,109 @@ def _discussion_question_only_auto(name: str) -> str:
     return "Should the hand template gain this wrapper, or should auto collapse it to match hand behavior?"
 
 
+def _problem_class_missing(row: pd.Series) -> str:
+    name = str(row.get("hand_name") or "")
+    return _base_name(name)
+
+
+def _problem_class_only_auto(name: str) -> str:
+    return _base_name(name)
+
+
+def _problem_type_missing(row: pd.Series) -> str:
+    detail = str(row.get("classification_detail") or "")
+    return {
+        "real_class_absent_from_auto_template": "Hand has a class that auto does not build",
+        "real_class_absent_expected_inf_mkt_exclusion": "Hand has a class that auto excludes by policy",
+        "synthetic_anyof_container": "Hand has a polymorphic wrapper that auto does not build",
+        "synthetic_anyof_pointer": "Hand has a pointer union that auto does not build",
+        "synthetic_pointer_array": "Hand has an array-of-pointers wrapper that auto does not build",
+        "synthetic_array": "Hand has an array wrapper that auto does not build",
+        "synthetic_container": "Hand has a container wrapper that auto does not build",
+        "synthetic_special": "Hand has a special wrapper that auto does not build",
+    }.get(detail, "Hand/auto mismatch")
+
+
+def _problem_type_only_auto(name: str) -> str:
+    kind = _only_auto_kind(name)
+    return {
+        "Polymorphic wrapper": "Auto builds a polymorphic wrapper that hand does not have",
+        "Pointer union": "Auto builds a pointer union that hand does not have",
+        "Array of pointers": "Auto builds an array-of-pointers wrapper that hand does not have",
+        "Array wrapper": "Auto builds an array wrapper that hand does not have",
+        "Container wrapper": "Auto builds a container wrapper that hand does not have",
+        "Real class or special schema": "Auto builds a class or special schema that hand does not have",
+    }[kind]
+
+
+def _approach_to_fix_missing(row: pd.Series) -> str:
+    detail = str(row.get("classification_detail") or "")
+    effective = str(row.get("effective_actionability") or "")
+    if detail == "real_class_absent_expected_inf_mkt_exclusion":
+        return "Decide whether to keep Inf/Mkt diagrams out of scope. If yes, narrow the hand template. If no, bring those diagrams back into scope for auto."
+    if effective in {
+        "verified_hand_beyond_current_valid_diagrams",
+        "likely_hand_beyond_simplified_scope",
+        "likely_out_of_scope_for_current_diagrams",
+    }:
+        return "Treat this as a scope decision: either narrow the hand template to the current valid UML diagrams, or expand the UML/diagram scope if this behavior is still required."
+    if detail == "real_class_absent_from_auto_template":
+        return "If this class should really exist, add it to the valid UML/template pipeline. Otherwise remove or narrow it in the hand template."
+    return "Either add the missing wrapper/shape to auto, or simplify the hand template if the wrapper is no longer wanted."
+
+
+def _approach_to_fix_only_auto(name: str) -> str:
+    kind = _only_auto_kind(name)
+    if kind == "Real class or special schema":
+        return "Decide whether the hand template should gain this schema, or whether auto should be narrowed so it no longer emits it."
+    return "Decide whether to teach the hand template to keep this wrapper, or teach auto/schema composition to collapse it."
+
+
+def _build_action_list(
+    *,
+    missing_review: pd.DataFrame,
+    only_auto: pd.DataFrame,
+) -> pd.DataFrame:
+    missing_actions = pd.DataFrame(
+        {
+            "Problem Class": missing_review["Schema Name"].map(_base_name),
+            "Schema Name": missing_review["Schema Name"],
+            "Mismatch Direction": "Hand has it, auto is missing it",
+            "Problem Type": missing_review.apply(_problem_type_missing, axis=1),
+            "Suspected Problem": missing_review["Plain English"],
+            "Best Current Read": missing_review["Current Read"],
+            "Approach To Fix": missing_review.apply(_approach_to_fix_missing, axis=1),
+            "Discussion Prompt": missing_review["Discuss With Mentor"],
+            "Tracker Status": missing_review["Tracker Status"],
+            "Diagrams": missing_review["Diagrams"],
+            "Manual Note": missing_review["Manual Note"],
+        }
+    )
+
+    only_auto_actions = pd.DataFrame(
+        {
+            "Problem Class": only_auto["Schema Name"].map(_problem_class_only_auto),
+            "Schema Name": only_auto["Schema Name"],
+            "Mismatch Direction": "Auto has it, hand is missing it",
+            "Problem Type": only_auto["Schema Name"].map(_problem_type_only_auto),
+            "Suspected Problem": only_auto["Plain English"],
+            "Best Current Read": only_auto["Current Read"],
+            "Approach To Fix": only_auto["Schema Name"].map(_approach_to_fix_only_auto),
+            "Discussion Prompt": only_auto["Discuss With Mentor"],
+            "Tracker Status": "Needs parity decision",
+            "Diagrams": "",
+            "Manual Note": "",
+        }
+    )
+
+    action_list = pd.concat([missing_actions, only_auto_actions], ignore_index=True)
+    action_list = action_list.sort_values(
+        ["Tracker Status", "Problem Class", "Mismatch Direction", "Schema Name"],
+        na_position="last",
+    )
+    return action_list
+
+
 def _style_workbook(path: Path) -> None:
     wb = load_workbook(path)
     header_fill = PatternFill("solid", fgColor="1F4E78")
@@ -193,6 +296,7 @@ def _style_workbook(path: Path) -> None:
 def build_workbook(outdir: Path = DEFAULT_OUTDIR, workbook_path: Path = DEFAULT_WORKBOOK) -> Path:
     outdir = Path(outdir)
     workbook_path = Path(workbook_path)
+    temp_workbook_path = workbook_path.with_name(f"{workbook_path.stem}.__tmp__{workbook_path.suffix}")
 
     summary = json.loads((outdir / "summary.json").read_text())
     missing = pd.read_csv(outdir / "missing_classification.csv")
@@ -292,6 +396,7 @@ def build_workbook(outdir: Path = DEFAULT_OUTDIR, workbook_path: Path = DEFAULT_
 
     only_auto_counts = only_auto["Kind"].value_counts().rename_axis("Kind").reset_index(name="Count")
     missing_counts = missing_review["Kind"].value_counts().rename_axis("Kind").reset_index(name="Count")
+    action_list = _build_action_list(missing_review=missing_review, only_auto=only_auto)
 
     summary_rows = [
         ("Hand schemas", summary["hand_schema_count"]),
@@ -308,16 +413,25 @@ def build_workbook(outdir: Path = DEFAULT_OUTDIR, workbook_path: Path = DEFAULT_
     summary_df = pd.DataFrame(summary_rows, columns=["Metric", "Value"])
 
     workbook_path.parent.mkdir(parents=True, exist_ok=True)
-    with pd.ExcelWriter(workbook_path, engine="openpyxl") as writer:
+    with pd.ExcelWriter(temp_workbook_path, engine="openpyxl") as writer:
         summary_df.to_excel(writer, sheet_name="Summary", index=False)
+        action_list.to_excel(writer, sheet_name="Action_List", index=False)
         missing_counts.to_excel(writer, sheet_name="Missing_Counts", index=False)
         only_auto_counts.to_excel(writer, sheet_name="Only_Auto_Counts", index=False)
         missing_review.to_excel(writer, sheet_name="Missing_in_Auto", index=False)
         only_auto.to_excel(writer, sheet_name="Only_in_Auto", index=False)
         manual.to_excel(writer, sheet_name="Manual_Rulings", index=False)
 
-    _style_workbook(workbook_path)
-    return workbook_path
+    _style_workbook(temp_workbook_path)
+    try:
+        temp_workbook_path.replace(workbook_path)
+        return workbook_path
+    except PermissionError:
+        fallback_workbook_path = workbook_path.with_name(f"{workbook_path.stem}_updated{workbook_path.suffix}")
+        if fallback_workbook_path.exists():
+            fallback_workbook_path.unlink()
+        temp_workbook_path.replace(fallback_workbook_path)
+        return fallback_workbook_path
 
 
 def main() -> None:

@@ -135,12 +135,6 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
-            "SubGeographicalRegion.Region": {
-              "$objectType": "reference",
-              "$objectId": "GeographicalRegion",
-              "type": "string",
-              "$referencePath": "Group/GeographicalRegion"
-            },
             "SubGeographicalRegion.EconomicProperty": {
               "$objectType": "reference",
               "type": "string",
@@ -844,15 +838,6 @@
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "$objectId": "ConformLoadGroup",
               "properties": {
-                "ConformLoadGroup.EnergyConsumers": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "$objectType": "reference",
-                    "$objectId": "ConformLoad",
-                    "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
-                  }
-                },
                 "ConformLoadGroup.ConformLoadSchedules": {
                   "type": "string",
                   "$objectType": "reference",
@@ -868,15 +853,6 @@
               "$secondaryObjectHash": "IdentifiedObject.mRID",
               "$objectId": "NonConformLoadGroup",
               "properties": {
-                "NonConformLoadGroup.EnergyConsumers": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "$objectType": "reference",
-                    "$objectId": "NonConformLoad",
-                    "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
-                  }
-                },
                 "NonConformLoadGroup.NonConformLoadSchedules": {
                   "type": "string",
                   "$objectType": "reference",
@@ -895,10 +871,28 @@
                 "LoadGroup.EnergyConsumers": {
                   "type": "array",
                   "items": {
-                    "type": "string",
                     "$objectType": "reference",
                     "$objectId": "EnergyConsumer",
-                    "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                    "anyOf": [
+                      {
+                        "$objectType": "reference",
+                        "type": "string",
+                        "$objectId": "EnergyConsumer",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "type": "string",
+                        "$objectId": "ConformLoad",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer/ConformLoad"
+                      },
+                      {
+                        "$objectType": "reference",
+                        "type": "string",
+                        "$objectId": "NonConformLoad",
+                        "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer/NonConformLoad"
+                      }
+                    ]
                   }
                 }
               }
@@ -3050,24 +3044,6 @@
                   "$objectType": "container",
                   "type": "object",
                   "properties": {
-                    "EnergyAreaConnector": {
-                      "type": "object",
-                      "$objectType": "object",
-                      "$objectId": "EnergyAreaConnector",
-                      "$primaryObjectHash": "IdentifiedObject.name",
-                      "$secondaryObjectHash": "IdentifiedObject.mRID",
-                      "properties": {
-                        "EnergyAreaConnector.EnergyAreas": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "$objectType": "reference",
-                            "$objectId": "EnergyArea",
-                            "$referencePath": "Group/EnergyArea"
-                          }
-                        }
-                      }
-                    },
                     "EquivalentInjection": {
                       "$objectType": "object",
                       "type": "object",
@@ -6435,29 +6411,18 @@
       "type": "object",
       "properties": {
         "EnvironmentalEvent": {
-          "type": "array",
-          "items": {
-            "$objectType": "object",
-            "type": "object",
-            "$objectId": "EnvironmentalEvent",
-            "$arrayPosition": null,
-            "properties": {
-              "EnvironmentalEvent.EnvironmentalInformation": {
-                "type": "array",
-                "items": {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "EnvironmentalInformation",
-                  "$arrayPosition": null,
-                  "properties": {
-                    "EnvironmentalInformation.EnvironmentalPhenomenon": {
-                      "$objectType": "reference",
-                      "$objectId": "EnvironmentalPhenomenon",
-                      "$referencePath": "EnvironmentalPhenomenon",
-                      "type": "string"
-                    }
-                  }
-                }
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "EnvironmentalEvent",
+          "properties": {
+            "EnvironmentalEvent.EnvironmentalInformation": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "type": "object",
+                "$objectId": "EnvironmentalInformation",
+                "$arrayPosition": null,
+                "properties": {}
               }
             }
           }
@@ -6863,21 +6828,9 @@
         },
         "ProposedSiteLocation.Region": {
           "$objectType": "reference",
-          "$objectId": "GeographicalRegion",
-          "anyOf": [
-            {
-              "$objectType": "reference",
-              "$objectId": "GeographicalRegion",
-              "type": "string",
-              "$referencePath": "Group/GeographicalRegion"
-            },
-            {
-              "$objectType": "reference",
-              "$objectId": "SubGeographicalRegion",
-              "type": "string",
-              "$referencePath": "Group/SubGeographicalRegion"
-            }
-          ]
+          "type": "string",
+          "$objectId": "SubGeographicalRegion",
+          "$referencePath": "Group/SubGeographicalRegion"
         },
         "ProposedSiteLocation.LoadGroups": {
           "type": "array",
@@ -6917,122 +6870,10 @@
     "CommunityFacility": {
       "$objectType": "object",
       "$objectId": "CommunityFacility",
+      "type": "object",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "anyOf": [
-        {
-          "$objectType": "object",
-          "$objectId": "GridFacility",
-          "type": "object",
-          "properties": {
-            "CommunityFacility.Location": {
-              "$objectType": "reference",
-              "type": "string",
-              "$objectId": "Location",
-              "$referencePath": "Location"
-            },
-            "CommunityFacility.OutageScenario": {
-              "$objectType": "reference",
-              "type": "string",
-              "$objectId": "OutageScenario",
-              "$referencePath": "OutageSpecification/OutageScenario"
-            },
-            "CommunityFacility.Category": {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "FacilityCategory",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {
-                "FacilityCategory.Services": {
-                  "type": "array",
-                  "items": {
-                    "$objectType": "object",
-                    "type": "object",
-                    "$objectId": "FacilityService",
-                    "$arrayPosition": null,
-                    "properties": {
-                      "FacilityService.ServiceLevel": {
-                        "$objectType": "object",
-                        "type": "object",
-                        "$primaryObjectHash": null,
-                        "$objectId": "FacilityServiceLevel",
-                        "properties": {}
-                      },
-                      "FacilityService.ServiceType": {
-                        "$objectType": "object",
-                        "type": "object",
-                        "$primaryObjectHash": null,
-                        "$objectId": "FacilityServiceType",
-                        "properties": {}
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "GridFacility.FacilityPowerLine": {
-              "$objectType": "reference",
-              "$objectId": "EquivalentBranch",
-              "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EquivalentBranch",
-              "type": "string"
-            }
-          }
-        },
-        {
-          "$objectType": "object",
-          "$objectId": "NonGridFacility",
-          "type": "object",
-          "properties": {
-            "CommunityFacility.Location": {
-              "$objectType": "reference",
-              "type": "string",
-              "$objectId": "Location",
-              "$referencePath": "Location"
-            },
-            "CommunityFacility.OutageScenario": {
-              "$objectType": "reference",
-              "type": "string",
-              "$objectId": "OutageScenario",
-              "$referencePath": "OutageSpecification/OutageScenario"
-            },
-            "CommunityFacility.Category": {
-              "$objectType": "object",
-              "type": "object",
-              "$objectId": "FacilityCategory",
-              "$primaryObjectHash": "IdentifiedObject.name",
-              "$secondaryObjectHash": "IdentifiedObject.mRID",
-              "properties": {
-                "FacilityCategory.Services": {
-                  "type": "array",
-                  "items": {
-                    "$objectType": "object",
-                    "type": "object",
-                    "$objectId": "FacilityService",
-                    "$arrayPosition": null,
-                    "properties": {
-                      "FacilityService.ServiceLevel": {
-                        "$objectType": "object",
-                        "type": "object",
-                        "$primaryObjectHash": null,
-                        "$objectId": "FacilityServiceLevel",
-                        "properties": {}
-                      },
-                      "FacilityService.ServiceType": {
-                        "$objectType": "object",
-                        "type": "object",
-                        "$primaryObjectHash": null,
-                        "$objectId": "FacilityServiceType",
-                        "properties": {}
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ]
+      "properties": {}
     },
     "EconomicProperty": {
       "$objectType": "object",
@@ -7046,8 +6887,8 @@
           "items": {
             "type": "string",
             "$objectType": "reference",
-            "$objectId": "GeographicalRegion",
-            "$referencePath": "Group/GeographicalRegion"
+            "$objectId": "SubGeographicalRegion",
+            "$referencePath": "Group/SubGeographicalRegion"
           }
         }
       }
@@ -7064,12 +6905,12 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
-            "EnergyPrices.Regions": {
+            "LocationalMarginalPrices.Regions": {
               "type": "array",
               "items": {
                 "$objectType": "reference",
-                "$objectId": "GeographicalRegion",
-                "$referencePath": "Group/GeographicalRegion",
+                "$objectId": "SubGeographicalRegion",
+                "$referencePath": "Group/SubGeographicalRegion",
                 "type": "string"
               }
             },
@@ -7109,12 +6950,12 @@
           "$primaryObjectHash": "IdentifiedObject.name",
           "$secondaryObjectHash": "IdentifiedObject.mRID",
           "properties": {
-            "EnergyPrices.Regions": {
+            "CapacityPrices.Regions": {
               "type": "array",
               "items": {
                 "$objectType": "reference",
-                "$objectId": "GeographicalRegion",
-                "$referencePath": "Group/GeographicalRegion",
+                "$objectId": "SubGeographicalRegion",
+                "$referencePath": "Group/SubGeographicalRegion",
                 "type": "string"
               }
             },
@@ -7182,32 +7023,7 @@
       "$objectId": "PredictedEmissions",
       "$primaryObjectHash": "IdentifiedObject.name",
       "$secondaryObjectHash": "IdentifiedObject.mRID",
-      "properties": {
-        "PredictedEmissions.Location": {
-          "$objectId": "Location",
-          "anyOf": [
-            {
-              "$objectType": "reference",
-              "$objectId": "Location",
-              "$referencePath": "Location",
-              "type": "string"
-            },
-            {
-              "$objectType": "reference",
-              "$objectId": "ProposedSiteLocation",
-              "$referencePath": "ProposedSiteLocation",
-              "type": "string"
-            }
-          ],
-          "$objectType": "reference"
-        },
-        "PredictedEmissions.DesignAlgorithmProperties": {
-          "type": "string",
-          "$objectType": "reference",
-          "$objectId": "DesignAlgorithmProperties",
-          "$referencePath": "ApplicationSettings"
-        }
-      }
+      "properties": {}
     },
     "ApplicationSettings": {
       "$objectType": "object",
@@ -7390,82 +7206,6 @@
                     "$objectId": "ConnectivityNode",
                     "$referencePath": "ConnectivityNode"
                   }
-                },
-                "ProposedBatteryUnitOption.InverterController": {
-                  "$objectType": "object",
-                  "$objectId": "InverterController",
-                  "anyOf": [
-                    {
-                      "type": "object",
-                      "$objectType": "object",
-                      "$objectId": "InverterController",
-                      "properties": {}
-                    },
-                    {
-                      "type": "object",
-                      "$objectType": "object",
-                      "$objectId": "VarWattControlMode",
-                      "properties": {
-                        "VarWattControlMode.VarWattControlCurve": {
-                          "$objectType": "reference",
-                          "type": "string",
-                          "$objectId": "Curve",
-                          "$referencePath": "Curve"
-                        }
-                      }
-                    },
-                    {
-                      "type": "object",
-                      "$objectType": "object",
-                      "$objectId": "VoltVarWattControlMode",
-                      "properties": {
-                        "VoltVarWattControlMode.VoltVarWattControlCurve": {
-                          "$objectType": "reference",
-                          "type": "string",
-                          "$objectId": "Curve",
-                          "$referencePath": "Curve"
-                        }
-                      }
-                    },
-                    {
-                      "type": "object",
-                      "$objectType": "object",
-                      "$objectId": "VoltWattControlMode",
-                      "properties": {
-                        "VoltWattControlMode.VoltWattControlCurve": {
-                          "$objectType": "reference",
-                          "type": "string",
-                          "$objectId": "Curve",
-                          "$referencePath": "Curve"
-                        }
-                      }
-                    },
-                    {
-                      "type": "object",
-                      "$objectType": "object",
-                      "$objectId": "VoltVarControlMode",
-                      "properties": {
-                        "VoltVarControlMode.VoltVarControlCurve": {
-                          "$objectType": "reference",
-                          "type": "string",
-                          "$objectId": "Curve",
-                          "$referencePath": "Curve"
-                        }
-                      }
-                    },
-                    {
-                      "type": "object",
-                      "$objectType": "object",
-                      "$objectId": "DroopControlMode",
-                      "properties": {}
-                    },
-                    {
-                      "type": "object",
-                      "$objectType": "object",
-                      "$objectId": "ConstantPFControlMode",
-                      "properties": {}
-                    }
-                  ]
                 },
                 "ProposedAssetOption.ProposedLocations": {
                   "type": "array",
@@ -7970,89 +7710,12 @@
       }
     },
     "Message": {
-      "type": "array",
-      "items": {
-        "$objectId": "Message",
-        "$objectType": "object",
-        "anyOf": [
-          {
-            "type": "object",
-            "$objectType": "object",
-            "$objectId": "Error",
-            "properties": {
-              "Message.Application": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Application",
-                "$referencePath": "Application"
-              },
-              "Message.Algorithm": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Algorithm",
-                "$referencePath": "Algorithm"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "$objectType": "object",
-            "$objectId": "Warning",
-            "properties": {
-              "Message.Application": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Application",
-                "$referencePath": "Application"
-              },
-              "Message.Algorithm": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Algorithm",
-                "$referencePath": "Algorithm"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "$objectType": "object",
-            "$objectId": "Info",
-            "properties": {
-              "Message.Application": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Application",
-                "$referencePath": "Application"
-              },
-              "Message.Algorithm": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Algorithm",
-                "$referencePath": "Algorithm"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "$objectType": "object",
-            "$objectId": "Debug",
-            "properties": {
-              "Message.Application": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Application",
-                "$referencePath": "Application"
-              },
-              "Message.Algorithm": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Algorithm",
-                "$referencePath": "Algorithm"
-              }
-            }
-          }
-        ]
-      }
+      "$objectType": "object",
+      "type": "object",
+      "$objectId": "Message",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "properties": {}
     },
     "BasicIntervalSchedule": {
       "$objectType": "object",
@@ -8650,21 +8313,9 @@
                 "properties": {
                   "ArTapStep.TapChanger": {
                     "$objectType": "reference",
+                    "type": "string",
                     "$objectId": "TapChanger",
-                    "anyOf": [
-                      {
-                        "$objectType": "reference",
-                        "$objectId": "RatioTapChanger",
-                        "type": "string",
-                        "$referencePath": "PowerSystemResource/Equipment/TapChanger/RatioTapChanger"
-                      },
-                      {
-                        "$objectType": "reference",
-                        "$objectId": "PhaseTapChanger",
-                        "type": "string",
-                        "$referencePath": "PowerSystemResource/Equipment/TapChanger/PhaseTapChanger"
-                      }
-                    ]
+                    "$referencePath": "PowerSystemResource/TapChanger"
                   },
                   "AnalysisResultData.DataValues": {
                     "$objectType": "object",
