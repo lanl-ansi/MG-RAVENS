@@ -7,15 +7,18 @@ import matplotlib.pyplot as plt
 import random
 import pprint
 import itertools
-from mgr_helpers import unpack_edge
+import numpy as np
+
 
 from pathlib import Path
 import sys, os
 rML_ROOT = Path(__file__).resolve().parents[3]
+if str(rML_ROOT) not in sys.path:
+    sys.path.insert(0, str(rML_ROOT))
 
-from data import MGTransformerDataset
-from model import SimpleGNN, AttnGNN
-from training_tools import train_epoch, validate
+from methods.connectivity.conn_gnn.data import MGConnDataset
+from methods.connectivity.conn_gnn.model import SimpleGNN, AttnGNN
+from framework.tools.training_tools import train_epoch, validate
 
 
 
@@ -26,10 +29,12 @@ print(f"Using device: {device}")
 # reproducibility
 torch.manual_seed(42)
 
+MAX_NODES = 20
+
 
 def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
                       MODEL_TYPE, NFD, EFD, DEG, TD,      # Model Spec
-                      NP, IP, TP,                    # Loss Spec
+                      ID, K, PW, IP, TP,                  # Loss Spec
                       LR, WD,                             # optimizer
                       M, F, P,                            # scheduler
                       E,                                  # epochs
@@ -39,6 +44,7 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
         node_features=NFD,
         edge_features=EFD,
         degree=DEG,
+        max_nodes = MAX_NODES,
         transport_distance=TD
     ).to(device)
 
@@ -46,7 +52,14 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
 
     # Training Settings
     import custom_loss as cl
-    loss_fn = cl.PI_WMSE_Loss(3, neg_penalty=NP, inf_penalty=IP, test_percentage=TP)
+    loss_fn = cl.PIAdjMSELoss(
+        ignore_diagonal=ID,
+        reduction='mean',
+        K=K,          
+        pos_weight=PW,
+        inf_penalty=IP,
+        test_percentage=TP,
+    )
     optimizer = optim.Adam(model.parameters(), lr=LR, weight_decay=WD)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode=M, factor=F, patience=P)
     epochs = E
@@ -56,8 +69,8 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
     train_losses, val_losses = [], []
 
     for epoch in range(1, epochs + 1):
-        tr_loss = train_epoch(model, train_loader, loss_fn, optimizer, device)
-        va_loss = validate(model, val_loader, loss_fn, device)
+        tr_loss = train_epoch(model, train_loader, loss_fn, optimizer, device, MAX_NODES)
+        va_loss = validate(model, val_loader, loss_fn, device, MAX_NODES)
 
         train_losses.append(tr_loss)
         val_losses.append(va_loss)
@@ -70,7 +83,7 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
         # checkpoint
         if va_loss < best_val:
             best_val = va_loss
-            torch.save(model.state_dict(), rML_ROOT/f"methods/transformers/trans_gnn/tmp/probe_data/{Pass_ID}_best_model.pth")
+            torch.save(model.state_dict(), rML_ROOT/f"methods/connectivity/conn_gnn/tmp/probe_data/{Pass_ID}_best_model.pth")
             print(f"  -> saved new best model for {Pass_ID}")
 
     # Plot losses
@@ -82,7 +95,7 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
     plt.legend()
     plt.title(f"Training / Validation loss for {Pass_ID}")
     plt.tight_layout()
-    plt.savefig(rML_ROOT/f"methods/transformers/trans_gnn/tmp/probe_data/{Pass_ID}_loss_plot.png")
+    plt.savefig(rML_ROOT/f"methods/connectivity/conn_gnn/tmp/probe_data/{Pass_ID}_loss_plot.png")
     plt.close()
 
     # Quick sanity check on a single graph
@@ -91,13 +104,20 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
         sample = dataset[random.randint(0, len(dataset)-1)].to(device)     
         pred = model(sample)
 
-        print(f"Sample check for {Pass_ID}:")
-        print("Input:")
-        pprint.pprint(unpack_edge(sample["edge_attr"][0], 3))
-        print("Predicted:")
-        pprint.pprint(unpack_edge(pred[0], 3))
-        print("True:")
-        pprint.pprint(unpack_edge(sample.y["edge_attr"][0], 3))
+        # ---- make NumPy print everything (no truncation) ----
+        np.set_printoptions(threshold=np.inf, linewidth=200, suppress=False)
+
+        # ---- predicted matrices ----
+        print("\nPredicted:")
+        print(pred.detach().cpu().numpy())
+
+        # ---- ground‑truth matrix ----
+        print("\nTrue:")
+        true_np = sample.y["missing_edges"].detach().cpu().numpy()
+        print(true_np)
+
+
+        # ---- loss ----
         test_mse = loss_fn(pred, sample)
         print(f"\nTest MSE on this graph: {test_mse.item():.6f}")
 
@@ -110,7 +130,9 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
         'best_val_loss': best_val,
         'model_type': MODEL_TYPE.__name__,
         'hyperparams': {
-            'neg_penalty': NP,
+            'ignore_diagonal': ID,
+            'K': K,
+            'pos_weight': PW,
             'inf_penalty': IP,
             'test_percentage': TP,
             'lr': LR,
@@ -122,15 +144,11 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
 
 if __name__ == "__main__":
     # Setup Dataset
-    dataset = MGTransformerDataset(
+    dataset = MGConnDataset(
         root=rML_ROOT,
         size=10000,
-        error_kwargs={"deletion_prob": 0.01, 
-                    "occurrence_prob": 0.55,
-                    "mult_mean": 1,
-                    "mult_var": 2.25,
-                    "add_mean": 0,
-                    "add_var": 2.25,},
+        max_nodes=MAX_NODES,
+        error_kwargs={"del_e_prob": 0.20},
     )
 
     # split
@@ -139,7 +157,7 @@ if __name__ == "__main__":
     train_set, val_set = torch.utils.data.random_split(dataset, [train_len, val_len])
 
     # data loaders
-    batch_size = 120  
+    batch_size = 1
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False)
 
@@ -147,7 +165,7 @@ if __name__ == "__main__":
     sample = dataset[0]
     node_feat_dim = sample.x.shape[1]
     edge_feat_dim = sample.edge_attr.shape[1]
-    output_feat_dim = sample.y["edge_attr"].shape[1]
+    output_feat_dim = sample.y["missing_edges"].shape[1]
 
     # Compute the maximum in-degree in the training data.
     max_degree = -1
@@ -164,7 +182,9 @@ if __name__ == "__main__":
     # Define hyperparameter grid
     param_grid = {
         'model_type': [AttnGNN],
-        'neg_penalty': [10],
+        'ignore_diagonal': [False],
+        'K': [10],
+        'pos_weight': [10],
         'inf_penalty': [5],
         'test_percentage': [0],
         'lr': [1e-4],
@@ -173,7 +193,9 @@ if __name__ == "__main__":
     }
     # param_grid = {
     #     'model_type': [SimpleGNN],
-    #     'neg_penalty': [10],
+    #     'ignore_diagonal': [False],
+    #     'K': [10],
+    #     'pos_weight': [10],
     #     'inf_penalty': [5],
     #     'test_percentage': [0],
     #     'lr': [1e-4],
@@ -186,7 +208,9 @@ if __name__ == "__main__":
     # For a smaller experiment, you may want to select fewer parameters or combinations
     param_combinations = list(itertools.product(
         param_grid['model_type'],
-        param_grid['neg_penalty'],
+        param_grid['ignore_diagonal'],
+        param_grid['K'],
+        param_grid['pos_weight'],
         param_grid['inf_penalty'],
         param_grid['test_percentage'],
         param_grid['lr'],
@@ -198,7 +222,7 @@ if __name__ == "__main__":
     
     # Run experiments
     for i, params in enumerate(param_combinations):
-        model_type, neg_penalty, inf_penalty, test_percentage, lr, weight_decay, transport_distance = params
+        model_type, ignore_diagonal, K, pos_weight, inf_penalty, test_percentage, lr, weight_decay, transport_distance = params
         
         pass_id = f"exp_{i}_model_{model_type.__name__}_td{transport_distance}_tp{test_percentage}_ip{inf_penalty}"
         print(f"\n\n{'='*80}\nStarting experiment {pass_id}\n{'='*80}\n")
@@ -207,7 +231,7 @@ if __name__ == "__main__":
             pass_id,
             train_loader, val_loader,
             model_type, node_feat_dim, edge_feat_dim, deg, transport_distance,
-            neg_penalty, inf_penalty, test_percentage,
+            ignore_diagonal, K, pos_weight, inf_penalty, test_percentage,
             lr, weight_decay,
             'min', 0.5, 5,
             EPOCHS
@@ -227,6 +251,6 @@ if __name__ == "__main__":
         print(f"   Model: {result['model_type']}")
         print(f"   Best Val Loss: {result['best_val_loss']:.6f}")
         print(f"   Final Train/Val: {result['final_train_loss']:.6f} / {result['final_val_loss']:.6f}")
-        print(f"   Hyperparams: NP={result['hyperparams']['neg_penalty']}, IP={result['hyperparams']['inf_penalty']}, "
+        print(f"   Hyperparams: NP={result['hyperparams']['pos_weight']}, IP={result['hyperparams']['inf_penalty']}, "
               f"TP={result['hyperparams']['test_percentage']}, "
               f"LR={result['hyperparams']['lr']}, WD={result['hyperparams']['weight_decay']},  TD={result['hyperparams']['transport_distance']}")

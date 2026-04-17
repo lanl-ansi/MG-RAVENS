@@ -64,9 +64,13 @@ def inf_data_gen(
 
     return (X_mgr, Y_inf)
 
-def inf_score(target_grid):
+def inf_score(target_grid, branch_inf = False):
     results = run_pf(target_grid)
-    return system_demand_not_met(results)
+    if branch_inf:
+        branch_infeasibility = analyze_branch_infeasibility(results)
+        return sum(branch["total_infeasibility"] for branch in branch_infeasibility.values())
+    else:
+        return system_demand_not_met(results)
 
 def system_demand_not_met(pmd_output):
     total_generation = 0.0
@@ -117,6 +121,60 @@ def system_demand_not_met(pmd_output):
     power_balance = total_generation - (total_load + expected_losses)
     return 100*max(0.0, -power_balance)  # In per unit, only return positive values
     
+
+def analyze_branch_infeasibility(pmd_output):
+        """
+        Analyzes the infeasibility of transformer parameters from PowerModelsDistribution output.
+        
+        Args:
+            pmd_output (dict): The PowerModelsDistribution output dictionary
+        
+        Returns:
+            dict: A dictionary mapping branch/transformer names to their infeasibility metrics
+        """
+        if 'solution' not in pmd_output or 'branch' not in pmd_output['solution']:
+            return {"error": "No branch/transformer data found in the solution"}
+        
+        branch_data = pmd_output['solution']['branch']
+        infeasibility_metrics = {}
+        
+        for branch_id, branch in branch_data.items():
+            # For transformers, we need different metrics than for lines
+            
+            # Calculate star impedance r infeasibility
+            r_infeasibility = 0
+            if 'cr_fr' in branch and 'cr_to' in branch:
+                # For transformers, these would be related to winding resistance
+                for i in range(min(len(branch['cr_fr']), len(branch['cr_to']))):
+                    r_infeasibility += abs(branch['cr_fr'][i] + branch['cr_to'][i])
+            
+            # Calculate star impedance x infeasibility
+            x_infeasibility = 0
+            if 'ci_fr' in branch and 'ci_to' in branch:
+                # For transformers, these would be related to leakage reactance
+                for i in range(min(len(branch['ci_fr']), len(branch['ci_to']))):
+                    x_infeasibility += abs(branch['ci_fr'][i] + branch['ci_to'][i])
+            
+            # Calculate core admittance g and b infeasibility
+            b_infeasibility = 0
+            g_infeasibility = 0
+            if 'csr_fr' in branch and 'csi_fr' in branch:
+                # For transformers, these relate to magnetizing current
+                for i in range(min(len(branch['csr_fr']), len(branch['csi_fr']))):
+                    g_infeasibility += abs(branch['csr_fr'][i])
+                    b_infeasibility += abs(branch['csi_fr'][i])
+            
+            # Store the metrics
+            infeasibility_metrics[branch_id] = {
+                "r_infeasibility": r_infeasibility,
+                "x_infeasibility": x_infeasibility,
+                "g_infeasibility": g_infeasibility,
+                "b_infeasibility": b_infeasibility,
+                "total_infeasibility": r_infeasibility + x_infeasibility + g_infeasibility + b_infeasibility
+            }
+        
+        return infeasibility_metrics
+
     
 
 

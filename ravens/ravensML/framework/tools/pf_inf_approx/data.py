@@ -97,9 +97,6 @@ def dict_to_pyg(data_dict: Dict[str, Any]) -> Data:
     # --------------------------------------------------------------
     edge_attrs: list[list[float]] = []
 
-    # The order of ``edge_attrs`` must match the order of ``edge_index``.
-    # For each branch we have stored both directions in ``edge_index``,
-    # therefore we append the flattened feature *twice*.
     for _branch_id, feat in data_dict["edge_features"].items():
         phases = int(feat["phases"])
 
@@ -159,7 +156,7 @@ class MG_Inf_Dataset(InMemoryDataset):
     size : int, optional
         Number of *corrupted* samples to generate (default = all raw graphs).
     error_kwargs : dict
-        Keyword arguments forwarded to ``generate_trans_error``.
+        Keyword arguments forwarded to ``generate_inf_error``.
     """
     def __init__(
         self,

@@ -21,7 +21,7 @@ from framework.tools.training_tools import train_epoch, validate
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
-TEST_NAME = "InfApprox_"
+TEST_NAME = "InfApprox2_"
 
 # reproducibility
 torch.manual_seed(42)
@@ -32,7 +32,7 @@ torch.manual_seed(42)
 dataset = MG_Inf_Dataset(
     root=rML_ROOT,
     size=20000,
-    error_kwargs={"mean": 0.0,"std": 100},
+    error_kwargs={"mean": 0.25,"std": 1.25},
 )
 
 
@@ -42,7 +42,7 @@ val_len   = len(dataset) - train_len
 train_set, val_set = torch.utils.data.random_split(dataset, [train_len, val_len])
 
 # data loaders
-batch_size = 1 #TODO: cannot properly handle larger batches 
+batch_size = 500 
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
 val_loader   = DataLoader(val_set,   batch_size=batch_size, shuffle=False)
 
@@ -71,7 +71,7 @@ model = SimpleGNN(
     edge_features=edge_feat_dim,
     degree=deg,
     max_nodes = 20,
-    transport_distance=17
+    transport_distance=12
 ).to(device)
 
 print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(1)}")
@@ -80,7 +80,7 @@ print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output di
 loss_fn = nn.MSELoss()
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 200
+epochs = 150
 
 # training parameters
 best_val = float('inf')

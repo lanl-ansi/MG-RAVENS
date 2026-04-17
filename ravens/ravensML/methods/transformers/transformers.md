@@ -179,23 +179,23 @@ file from the predicted tensor:
 
 ---
 
-### Results \[TBD\]
+### Results
 
-The experimental section will report:
+**Dataset:** 20,000 20-node subsets of IEEE8500  
+**Training:** 100 epochs  
+**Metric:** Validation MSE
 
-* **Regression performance** – RMSE, MAE, and weighted‑MSE for each parameter
-  across train/val/test splits.  
-* **Physical feasibility** – percentage of grids that become feasible after
-  applying the neural‑network predictions, average demand‑gap, and average
-  total transformer infeasibility.  
-* **Comparison with the deterministic optimizer** – number of iterations,
-  final violation score, and runtime (CPU vs. GPU).  
-* **Ablation studies** – effect of the attention module, the number of PNA
-  rounds, and the impact of the infeasibility penalty weight (`λ`).  
-* **Qualitative case studies** – visualisation of original vs. corrected
-  transformer parameter matrices for selected grids.
+| Model Architecture | Validation MSE |
+|-------------------|----------------|
+| Fully Connected MLP Head | 672.21 |
+| 7× PNA Convolutions w/ MLP Head | 114.80 |
+| 14× PNA Convolutions w/ MLP Head | 91.98 |
+| 18× PNA Convolutions w/ MLP Head | 94.30 |
+| 20× PNA Convolutions w/ MLP Head | 100.84 |
+| 1x Edge Attention w/ MLP Head | 213.16 |
+| 2x Edge Attention w/ MLP Head | 134.14 |
+| 3x Edge Attention w/ MLP Head | 86.56 |
+| 4x Edge Attention w/ MLP Head | 240.59 |
 
-All tables, plots, and discussion will be added once the experiments are
-completed.
 
 ---

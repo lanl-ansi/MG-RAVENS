@@ -172,19 +172,23 @@ guides the optimizer toward physically plausible reconstructions.
 
 ---
 
-### Results \[TBD\]
+### Results
 
-The experimental section will contain:
+**Dataset:** 20,000 20-node subsets of IEEE8500  
+**Training:** 100 epochs  
+**Metric:** Validation MSE
 
-* **Quantitative metrics** – edge‑wise precision/recall, node‑wise F1, and the
-  weighted MSE loss values for each model.  
-* **Physical feasibility** – number of cases where the power‑flow solver
-  converges, average demand‑gap, and branch‑infeasibility scores.  
-* **Runtime comparison** – graph‑search (milliseconds per grid) vs. GNN
-  inference (GPU‑accelerated, sub‑second per batch).  
-* **Ablation study** – effect of the attention module, number of transport steps,
-  and the infeasibility penalty weight.
+| Model Architecture | Validation MSE |
+|-------------------|----------------|
+| Fully Connected MLP Head | 1.026791 |
+| 7× PNA Convolutions w/ MLP Head | 1.001263 |
+| 14× PNA Convolutions w/ MLP Head | 1.023394 |
+| 18× PNA Convolutions w/ MLP Head | 1.018607 |
+| 20× PNA Convolutions w/ MLP Head | 1.020473 |
+| 1x Edge Attention w/ MLP Head |  1.017812 |
+| 2x Edge Attention w/ MLP Head | 1.163918  |
+| 3x Edge Attention w/ MLP Head | 0.987771 |
+| 4x Edge Attention w/ MLP Head | 0.958742 |
 
-All tables and plots will be inserted here after experiments are completed.
 
 ---

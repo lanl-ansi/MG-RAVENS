@@ -27,7 +27,7 @@ torch.manual_seed(42)
 # -------------------------
 dataset = MGTransformerDataset(
     root=rML_ROOT,
-    size=5,
+    size=20000,
     error_kwargs={"deletion_prob": 0.01, 
                   "occurrence_prob": 0.55,
                   "mult_mean": 1,
@@ -43,7 +43,7 @@ val_len   = len(dataset) - train_len
 train_set, val_set = torch.utils.data.random_split(dataset, [train_len, val_len])
 
 # data loaders
-batch_size = 1 #TODO: cannot properly handle larger batches 
+batch_size = 20 #TODO: cannot properly handle larger batches 
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
 val_loader   = DataLoader(val_set,   batch_size=batch_size, shuffle=False)
 
@@ -72,7 +72,7 @@ model = SimpleGNN(
     node_features=node_feat_dim,
     edge_features=edge_feat_dim,
     degree=deg,
-    transport_distance=10
+    transport_distance=0
 ).to(device)
 
 # model = AttnGNN(
@@ -87,10 +87,10 @@ print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output di
 # loss_fn = nn.MSELoss()
 import custom_loss as cl
 # loss_fn = cl.WeightedMSELoss(3,penalty_strength=5)
-loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=1)
+loss_fn = cl.PI_WMSE_Loss(3,neg_penalty=5,inf_penalty=5,test_percentage=0)
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 120
+epochs = 100
 
 # training parameters
 best_val = float('inf')
