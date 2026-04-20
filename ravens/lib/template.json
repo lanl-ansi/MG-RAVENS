@@ -4435,6 +4435,114 @@
                       "type": "object",
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
+                      "$objectId": "DisconnectingCircuitBreaker",
+                      "properties": {
+                        "PowerSystemResource.Location": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "Location",
+                          "$referencePath": "Location"
+                        },
+                        "PowerSystemResource.GenericAction": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "SwitchingAction",
+                          "$referencePath": "SwitchingAction"
+                        },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
+                        },
+                        "Switch.SwitchAction": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "SwitchingAction",
+                          "$referencePath": "SwitchingAction"
+                        },
+                        "ConductingEquipment.Terminals": {
+                          "type": "array",
+                          "items": {
+                            "$objectId": "Terminal",
+                            "$objectType": "object",
+                            "type": "object",
+                            "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                            "properties": {
+                              "Terminal.ConnectivityNode": {
+                                "$objectId": "ConnectivityNode",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "ConnectivityNode"
+                              },
+                              "Terminal.SvPowerFlow": {
+                                "type": "array",
+                                "items": {
+                                  "$objectId": "SvPowerFlow",
+                                  "$objectType": "object",
+                                  "type": "object",
+                                  "$arrayPosition": null,
+                                  "properties": {}
+                                }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
+                              }
+                            }
+                          }
+                        },
+                        "Switch.SvSwitch": {
+                          "type": "array",
+                          "items": {
+                            "$objectType": "object",
+                            "$objectId": "SvSwitch",
+                            "type": "object",
+                            "$arrayPosition": null,
+                            "properties": {}
+                          }
+                        },
+                        "PowerSystemResource.AssetDatasheet": {
+                          "$objectType": "reference",
+                          "$objectId": "SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
+                          "type": "string"
+                        },
+                        "ConductingEquipment.BaseVoltage": {
+                          "$objectType": "reference",
+                          "$objectId": "BaseVoltage",
+                          "type": "string",
+                          "$referencePath": "BaseVoltage"
+                        },
+                        "Switch.SwitchPhase": {
+                          "type": "array",
+                          "items": {
+                            "$objectType": "object",
+                            "$objectId": "SwitchPhase",
+                            "type": "object",
+                            "$arrayPosition": null,
+                            "properties": {}
+                          }
+                        },
+                        "ConductingEquipment.SvStatus": {
+                          "type": "array",
+                          "items": {
+                            "$objectType": "object",
+                            "type": "object",
+                            "$objectId": "SvStatus",
+                            "$arrayPosition": null,
+                            "properties": {}
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$primaryObjectHash": "IdentifiedObject.name",
+                      "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "$objectId": "LoadBreakSwitch",
                       "properties": {
                         "PowerSystemResource.Location": {
@@ -4868,6 +4976,114 @@
                       "$primaryObjectHash": "IdentifiedObject.name",
                       "$secondaryObjectHash": "IdentifiedObject.mRID",
                       "$objectId": "Fuse",
+                      "properties": {
+                        "PowerSystemResource.Location": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "Location",
+                          "$referencePath": "Location"
+                        },
+                        "PowerSystemResource.GenericAction": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "SwitchingAction",
+                          "$referencePath": "SwitchingAction"
+                        },
+                        "Equipment.OperationalLimitSet": {
+                          "type": "string",
+                          "$objectType": "reference",
+                          "$objectId": "OperationalLimitSet",
+                          "$referencePath": "/OperationalLimitSet"
+                        },
+                        "Switch.SwitchAction": {
+                          "$objectType": "reference",
+                          "type": "string",
+                          "$objectId": "SwitchingAction",
+                          "$referencePath": "SwitchingAction"
+                        },
+                        "ConductingEquipment.Terminals": {
+                          "type": "array",
+                          "items": {
+                            "$objectId": "Terminal",
+                            "$objectType": "object",
+                            "type": "object",
+                            "$arrayPosition": "ACDCTerminal.sequenceNumber",
+                            "properties": {
+                              "Terminal.ConnectivityNode": {
+                                "$objectId": "ConnectivityNode",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "ConnectivityNode"
+                              },
+                              "Terminal.SvPowerFlow": {
+                                "type": "array",
+                                "items": {
+                                  "$objectId": "SvPowerFlow",
+                                  "$objectType": "object",
+                                  "type": "object",
+                                  "$arrayPosition": null,
+                                  "properties": {}
+                                }
+                              },
+                              "ACDCTerminal.OperationalLimitSet": {
+                                "$objectId": "OperationalLimitSet",
+                                "$objectType": "reference",
+                                "type": "string",
+                                "$referencePath": "OperationalLimitSet"
+                              }
+                            }
+                          }
+                        },
+                        "Switch.SvSwitch": {
+                          "type": "array",
+                          "items": {
+                            "$objectType": "object",
+                            "$objectId": "SvSwitch",
+                            "type": "object",
+                            "$arrayPosition": null,
+                            "properties": {}
+                          }
+                        },
+                        "PowerSystemResource.AssetDatasheet": {
+                          "$objectType": "reference",
+                          "$objectId": "SwitchInfo",
+                          "$referencePath": "AssetInfo/SwitchInfo",
+                          "type": "string"
+                        },
+                        "ConductingEquipment.BaseVoltage": {
+                          "$objectType": "reference",
+                          "$objectId": "BaseVoltage",
+                          "type": "string",
+                          "$referencePath": "BaseVoltage"
+                        },
+                        "Switch.SwitchPhase": {
+                          "type": "array",
+                          "items": {
+                            "$objectType": "object",
+                            "$objectId": "SwitchPhase",
+                            "type": "object",
+                            "$arrayPosition": null,
+                            "properties": {}
+                          }
+                        },
+                        "ConductingEquipment.SvStatus": {
+                          "type": "array",
+                          "items": {
+                            "$objectType": "object",
+                            "type": "object",
+                            "$objectId": "SvStatus",
+                            "$arrayPosition": null,
+                            "properties": {}
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "$objectType": "object",
+                      "type": "object",
+                      "$primaryObjectHash": "IdentifiedObject.name",
+                      "$secondaryObjectHash": "IdentifiedObject.mRID",
+                      "$objectId": "Disconnector",
                       "properties": {
                         "PowerSystemResource.Location": {
                           "$objectType": "reference",
@@ -5632,6 +5848,84 @@
               {
                 "$objectType": "object",
                 "$objectId": "ApparentPowerLimit",
+                "type": "object",
+                "properties": {
+                  "OperationalLimit.OperationalLimitType": {
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
+                  }
+                }
+              },
+              {
+                "$objectType": "object",
+                "$objectId": "ActivePowerImbalanceLimit",
+                "type": "object",
+                "properties": {
+                  "OperationalLimit.OperationalLimitType": {
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
+                  }
+                }
+              },
+              {
+                "$objectType": "object",
+                "$objectId": "ApparentPowerImbalanceLimit",
+                "type": "object",
+                "properties": {
+                  "OperationalLimit.OperationalLimitType": {
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
+                  }
+                }
+              },
+              {
+                "$objectType": "object",
+                "$objectId": "ReactivePowerImbalanceLimit",
+                "type": "object",
+                "properties": {
+                  "OperationalLimit.OperationalLimitType": {
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
+                  }
+                }
+              },
+              {
+                "$objectType": "object",
+                "$objectId": "ReactivePowerLimit",
+                "type": "object",
+                "properties": {
+                  "OperationalLimit.OperationalLimitType": {
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
+                  }
+                }
+              },
+              {
+                "$objectType": "object",
+                "$objectId": "SwitchingActionLimit",
+                "type": "object",
+                "properties": {
+                  "OperationalLimit.OperationalLimitType": {
+                    "$objectType": "reference",
+                    "type": "string",
+                    "$referencePath": "OperationalLimitType",
+                    "$objectId": "OperationalLimitType"
+                  }
+                }
+              },
+              {
+                "$objectType": "object",
+                "$objectId": "VoltageImbalanceLimit",
                 "type": "object",
                 "properties": {
                   "OperationalLimit.OperationalLimitType": {
@@ -7233,6 +7527,12 @@
           "$objectType": "object",
           "type": "object",
           "$objectId": "AlgorithmProperties",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "AlgorithmObjectives",
           "properties": {}
         },
         {

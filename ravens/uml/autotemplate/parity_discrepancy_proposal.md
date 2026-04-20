@@ -15,34 +15,156 @@ It is based on:
 
 ## Current Snapshot
 
-### Baseline Parity
+### Baseline Parity (Raw)
 
-These numbers compare the original hand template against the current auto template.
+These numbers compare the original hand template against the current auto template before filtering anything out of scope.
 
 | Metric | Count | Meaning |
 | --- | ---: | --- |
-| Shared exact schemas | 855 | Hand and auto already agree exactly here. |
+| Shared exact schemas | 864 | Hand and auto already agree exactly here. |
 | Missing in auto | 85 | Hand expects these schemas, but auto does not currently reproduce them. |
-| Only in auto | 98 | Auto produces these schemas, but hand does not currently include them. |
-| Hand schema count | 940 | Total schemas produced from the original hand template. |
+| Only in auto | 89 | Auto produces these schemas, but hand does not currently include them. |
+| Hand schema count | 949 | Total schemas produced from the original hand template. |
 | Auto schema count | 953 | Total schemas produced from the current auto template. |
 | Targeted builder regressions | 0 / 188 | The current remaining problem is no longer the targeted builder logic. |
+
+### Planning Snapshot (Excluding `Inf*` / `Mkt*`-Driven Problems)
+
+For current planning, `Inf*` / `Mkt*`-driven mismatches are treated as out of scope. In practice, this removes:
+
+- `17` `missing_in_auto` schema rows tied directly to excluded `Inf*` content or to hand expectations that currently depend on `Inf*` diagrams
+- `1` `only_in_auto` schema row tied to mixed `Root` / `Inf*` scope (`CommunityFacility`)
+
+Using that filtered view, the working comparison is:
+
+| Metric | Count | Meaning |
+| --- | ---: | --- |
+| Shared exact schemas | 864 | Hand and auto already agree exactly here. |
+| Missing in auto, excluding `Inf*` / `Mkt*` scope | 68 | Hand still expects these schemas, and they are not explained away by `Inf*` / `Mkt*` scope. |
+| Only in auto, excluding `Inf*` / `Mkt*` scope | 88 | Auto still produces these schemas, and they are not explained away by `Inf*` / `Mkt*` scope. |
+| In-scope disagreement total | 156 | These are the remaining rows worth prioritizing after removing `Inf*` / `Mkt*` scope issues. |
+| Targeted builder regressions | 0 / 188 | The current remaining problem is no longer the targeted builder logic. |
+
+For prioritization, this filtered table is the one to use.
 
 A large share of the remaining disagreement is no longer “the template builder is still broken.” Instead, we have:
 
 - hand expectations that are broader than the current kept UML diagrams
-- classes or relationships that only live on `Root`, `Inf*`, or `Mkt*` diagrams
+- classes or relationships that only live on `Root` diagrams, or are not explicit enough on the kept diagrams
 - hand-only unions or reverse relationships that are not explicitly modeled in the kept simplified diagrams
+
+## Highlights / To Discuss
+
+This section is meant to be the quick meeting agenda. It pulls together the main questions that came up during the latest review pass.
+
+### Quick Status
+
+- The `auto-builder` currently looks stable for the issues we were actively debugging: targeted regressions are `0 / 188`.
+- The hand template already picked up three clear additive updates:
+  - `ApplicationSettings` -> added `AlgorithmObjectives`
+  - `Switch` -> added `Disconnector` and `DisconnectingCircuitBreaker`
+  - `OperationalLimitSet.OperationalLimitValue` -> added the six missing operational-limit variants
+- The remaining high-value questions are now mostly about whether the hand template, the UML diagrams, or both should change.
+
+### Priority Discussion Topics
+
+| Priority | Topic | Current Read | Decision Needed |
+| --- | --- | --- | --- |
+| 1 | `PowerSystemResource.AssetDatasheet` | This does not look like a simple missing-hand-variants problem. Hand narrows datasheet targets by equipment context, while auto broadens many `AssetDatasheet` references to the whole `AssetInfo` family. The transformer diagrams support the hand-style narrowing pretty well. | Decide whether the UML is supposed to allow broad `AssetInfo` references everywhere, or whether `AssetDatasheet` should narrow by equipment context. If narrowing is desired, decide whether that should be expressed in UML or taught to the `auto-builder`. |
+| 2 | `ProposedAssetSet.ProposedAssets[]` | Under the current UML, the `auto-builder` looks reasonable. One diagram shows `ProposedAssetSet.ProposedAssets -> ProposedAsset`, and another shows the specialized subclasses under `ProposedAsset`. Auto is merging those facts. | Decide whether `ProposedAssetSet.ProposedAssets` is supposed to allow base `ProposedAsset`, or only the specialized subclasses. Also review whether the floating `ProposedAsset` / `ProposedAssetSet` pair on the `Groups` diagram is a UML error or diagram-cleanup issue. |
+| 3 | `ACLineSegment.PerLengthImpedance` | Hand already models `PerLengthImpedance` as the family/container and already includes `PerLengthSequenceImpedance` and `PerLengthPhaseImpedance`. The remaining difference is that auto also treats `PerLengthImpedance` itself as a selectable target. | Decide whether `PerLengthImpedance` itself should be selectable at this path, or whether hand is intentionally correct to list only the more specific choices. |
+| 4 | Hand-only narrowings already documented | Several remaining hand-vs-UML mismatches still look like hand is broader than the kept diagrams: `ProposedBatteryUnitOption.InverterController`, `GeographicalRegion` vs `SubGeographicalRegion`, `ConformLoadGroup` / `NonConformLoadGroup` energy-consumer ownership, `PredictedEmissions.Location`, `ArTapStep.TapChanger`, and `ActivityRecord.EnvironmentalEvent`. | Decide which of these should eventually become UML updates, and which should remain documented hand-only expectations. No immediate hand removals are assumed. |
+| 5 | `ApplicationSettings` inherited-property propagation | Auto propagates `ApplicationSettings.Application` and `ApplicationSettings.Settings` into each variant. Hand currently keeps a lighter raw-template representation, but this is not causing schema-level mismatches. | Decide whether hand should be manually updated for raw-template consistency, or whether this can stay as-is since schema parity is already fine. |
+
+### Suggested Meeting Order
+
+1. Confirm that the `auto-builder` is no longer the main blocker.
+2. Decide the rule for `PowerSystemResource.AssetDatasheet`.
+3. Decide the rule for `ProposedAssetSet.ProposedAssets[]`.
+4. Decide whether `ACLineSegment.PerLengthImpedance` is intentionally selective in hand.
+5. Review the documented hand-broader-than-UML cases and decide which should become UML work items.
+
+### Documented Hand-Narrowing Candidates
+
+These are still worth keeping in the proposal because they explain several obvious disagreements between hand and the kept UML.
+
+However, they should currently be treated as discussion items, not as immediate edits to the hand template. The present working assumption is:
+
+- keep the current hand structure in place for now
+- document the obvious hand-narrowing candidates clearly
+- review them before making any removals or simplifications
+
+With that framing, the practical discussion order is:
+
+| Priority | Family / Issue | Why It Is A Good Discussion Candidate | Potential Hand Change To Discuss | Likely Payoff If Adopted |
+| --- | --- | --- | --- | --- |
+| 1 | `ProposedBatteryUnitOption.InverterController` and its control-mode variants | The kept diagrams do not currently support this structure, and the hand template is carrying a whole unsupported polymorphic family here | Remove or narrow the hand `InverterController` branch under `ProposedBatteryUnitOption` | High; this should remove `7` current missing rows in one family |
+| 2 | `GeographicalRegion` vs `SubGeographicalRegion` unions and broader targets | We already verified that the kept diagrams consistently point these relationships to `SubGeographicalRegion`, not a broader union | Narrow the hand template from `GeographicalRegion` or `GeographicalRegion | SubGeographicalRegion` to `SubGeographicalRegion` where the kept diagrams already say that | Medium-high; this should clean up the region-family mismatches, including the `CoincidentPeakPrices` case |
+| 3 | `ConformLoadGroup.EnergyConsumers` and `NonConformLoadGroup.EnergyConsumers` | The kept diagrams support the shared `LoadGroup` relationship, but not the subtype-owned versions the hand template currently models | Remove the subtype-owned arrays and keep the shared `LoadGroup.EnergyConsumers` modeling instead | Medium; this should remove `2` hand-only pointer-array mismatches with fairly contained edits |
+| 4 | `PredictedEmissions.Location` | The kept diagrams do not currently support `ProposedSiteLocation` as an alternative target in this context | Narrow the hand reference from `Location | ProposedSiteLocation` to the supported target | Low-medium; likely resolves `1` clean union mismatch |
+| 5 | `ArTapStep.TapChanger` subtype union | The kept diagrams support `TapChanger`, but not the `RatioTapChanger | PhaseTapChanger` union the hand template expects | Narrow the hand reference to base `TapChanger` | Low-medium; likely resolves `1` clean union mismatch |
+| 6 | `ActivityRecord.EnvironmentalEvent` | The hand template currently assumes array/object structure that the kept UML does not clearly support | Remove the unsupported array structure or reshape it to the simpler supported form | Low-medium; likely resolves `1` mismatch, but the edit is a little less obvious than the union narrowings above |
+
+These rows should be read as “documented potential simplifications,” not “approved hand edits.”
+
+### What Is Not An Easy Hand Fix
+
+These should not be the first hand edits:
+
+| Bucket | Why To Defer |
+| --- | --- |
+| Real auto-only classes already supported by kept UML | These require hand growth, not hand narrowing, so they are more manual and easier to get wrong without a clear curation decision |
+| Most synthetic auto-only schemas | These are downstream artifacts and often disappear only after the real class-level decisions are settled |
+| Large Type B families such as curve subclasses, switching-action subclasses, and tap-changer support classes | These are much more naturally UML-side decisions than quick hand-template edits |
+| `Root`-only families such as `Message` | These are still a scope decision, not yet an “obvious” hand correction under the current rules |
+
+### Missing Variants Already In Auto
+
+This is a better place to start if the current strategy is “add to hand first, remove nothing for now.”
+
+I compared the raw `anyOf` variant sets in [template.json](/mnt/x/research/ravens/repo/mg-ravens/ravens/lib/template.json) and [template_auto.json](/mnt/x/research/ravens/repo/mg-ravens/ravens/lib/template_auto.json), then pulled out the cases where auto is a strict superset of hand at the same path.
+
+After the recent manual additions, there are now only `3` path-level strict-superset cases left:
+
+| Priority | Family / Path Pattern | Variants Present In Auto But Missing In Hand | Why This Is A Good Starting Point |
+| --- | --- | --- | --- |
+| 1 | `PowerSystemResource.AssetDatasheet` under conductor/equipment paths | `AssetInfo`, `PowerTransformerInfo`, `ShuntCompensatorInfo`, `SwitchInfo`, `TapChangerInfo`, `TransformerEndInfo`, `TransformerTankInfo`, `WireAssemblyInfo` | Review before editing. This no longer looks like a simple “missing variants in hand” case. It looks more like a question about whether the UML is supposed to allow broad `AssetInfo` references everywhere, or whether those references should narrow by equipment context. |
+| 2 | `ProposedAssetSet.ProposedAssets[]` | `ProposedAsset`, `ProposedBatteryUnit`, `ProposedBranch`, `ProposedEnergyProducerAsset` | Review before editing. Under the current UML, the auto-builder looks reasonable here. The remaining question is whether the UML and hand are supposed to allow base `ProposedAsset` at this path, or whether the diagrams should be changed to restrict it to specialized subclasses. |
+| 3 | `ACLineSegment.PerLengthImpedance` | `PerLengthImpedance` | Review before editing. Hand already models `PerLengthImpedance` as the family/container, so the remaining difference is not as obviously a missing business variant. |
+
+At this point, none of the remaining `3` path-level strict-superset cases look like obvious hand edits. All three are better treated as review/discussion items before changing hand.
+
+#### Additive Cases To Review Before Editing
+
+| Family / Path Pattern | Why It Is Not As Obvious As The Earlier Additions | Current Recommendation |
+| --- | --- | --- |
+| `PowerSystemResource.AssetDatasheet` under conductor/equipment paths | The individual info classes are already aligned at schema level, so this is not really about whether classes like `PowerTransformerInfo`, `TransformerTankInfo`, `TransformerEndInfo`, `TapChangerInfo`, or `WireAssemblyInfo` exist. The real disagreement is path-specific: hand narrows `AssetDatasheet` by equipment context, while auto broadens many `PowerSystemResource.AssetDatasheet` references to the whole `AssetInfo` family. The transformer diagrams support the hand-style interpretation pretty well, so this currently looks more like a question about what the UML is supposed to allow, or whether the auto-builder should learn to narrow these references by context, than a missing hand-variant problem. | Keep this on the discussion list. Do not bulk-add the broad auto union into hand without first deciding whether `AssetDatasheet` should stay broad or narrow by equipment context. |
+| `ProposedAssetSet.ProposedAssets[]` | The current UML gives two signals: the `ProposedAssets` diagram shows the subtype family under `ProposedAsset`, and the `Groups` diagram separately shows a direct `ProposedAssetSet.ProposedAssets -> ProposedAsset` association. The auto-builder is merging those two facts, which makes its inclusion of base `ProposedAsset` look reasonable. At the same time, the `Groups` diagram presents `ProposedAsset` and `ProposedAssetSet` as a disconnected floating pair, which may itself be a UML error or at least a diagram that needs cleanup. | Keep this on the discussion list. Treat the auto-builder as reasonable under the current UML, and decide instead whether the UML and hand should allow base `ProposedAsset` here or whether the diagrams should be tightened to specialized subclasses only. |
+| `ACLineSegment.PerLengthImpedance` | Hand already includes `PerLengthImpedance` as the owning family/container and already carries `PerLengthSequenceImpedance` / `PerLengthPhaseImpedance` beneath it. The remaining auto-side difference is that auto also treats `PerLengthImpedance` itself as a selectable reference target. Given the UML coloring/role here, this may be intentional rather than an omission in hand. | Keep this on the discussion list for now rather than editing hand immediately. |
+
+#### Applied Manual Hand Additions
+
+| Family | Change Made | Notes |
+| --- | --- | --- |
+| `ApplicationSettings` | Added `AlgorithmObjectives` as a hand `anyOf` variant | This matches the UML/auto presence of `AlgorithmObjectives` as an intermediate class under `AlgorithmProperties` and before `BusVoltageObjective`. |
+| `Switch` | Added `Disconnector` and `DisconnectingCircuitBreaker` as hand `anyOf` variants | This matches the UML/auto switch-family variants and cleanly closed two auto-only class mismatches without affecting targeted checks. |
+| `OperationalLimitSet.OperationalLimitValue` | Added `ActivePowerImbalanceLimit`, `ApparentPowerImbalanceLimit`, `ReactivePowerImbalanceLimit`, `ReactivePowerLimit`, `SwitchingActionLimit`, and `VoltageImbalanceLimit` as hand `anyOf` variants | This matches the UML/auto operational-limit family and cleanly closed six auto-only class mismatches without affecting targeted checks. |
+
+#### Open Question To Review
+
+- `ApplicationSettings` in auto propagates inherited `ApplicationSettings.Application` and `ApplicationSettings.Settings` properties into each variant, while hand currently keeps a lighter representation for those variants. This looks consistent with prior guidance that auto is correct here, but it is still a manual-followup question whether hand should be edited to propagate those inherited properties as well.
 
 ## High-Level Read
 
 The disagreement now breaks into four main types:
 
+The type counts below are left in their raw form for traceability. For current prioritization, the filtered planning snapshot above is the metric to use.
+
 | Type | Count | Direction | Typical Cause | Usual Resolution |
 | --- | ---: | --- | --- | --- |
 | Hand expects content that is not currently supported by valid simplified diagrams | 23 | Hand -> Auto | Root-only, excluded-diagram-only, or already-verified hand-beyond-diagram expectations | Decide whether to promote that content into kept UML diagrams, or explicitly keep it out of scope |
 | Hand expects content that is absent from the current kept diagrams or not represented clearly enough | 62 | Hand -> Auto | Classes, variants, or relationships are not on kept simplified diagrams, or are not explicit enough to drive generation | Add classes, labels, or associations to kept UML diagrams if the hand behavior is intended |
-| Auto contains real UML-supported classes that hand does not currently include | 37 | Auto -> Hand | Hand coverage is narrower than what the kept UML diagrams already support | Manual curation decision; this is usually not a UML problem |
+| Auto contains real UML-supported classes that hand does not currently include | 28 | Auto -> Hand | Hand coverage is narrower than what the kept UML diagrams already support | Manual curation decision; this is usually not a UML problem |
 | Auto contains synthetic schema helpers that hand does not currently include | 61 | Auto -> Hand | These are schema decomposition artifacts such as containers, arrays, and polymorphic helper schemas | Usually defer until the real class-level decisions are settled |
 
 ## Type A: Hand Expects Content That Is Not Currently Supported By Valid Simplified Diagrams
@@ -102,7 +224,7 @@ This is probably the most important project-priority discussion, because it is t
 
 This bucket is different. These are not obvious UML problems. They are mostly curation decisions about whether the hand template should grow to match content that the kept diagrams already support.
 
-There are `37` real auto-only classes or root objects.
+There are `28` real auto-only classes or root objects.
 
 ### C1. Real Auto-Only Classes On Kept Non-Root Diagrams
 
@@ -110,10 +232,10 @@ These are the strongest candidates for review, because the UML already supports 
 
 | Domain | Example Classes Already In Auto | Why They Matter | Likely Resolution |
 | --- | --- | --- | --- |
-| Operational limits | `OperationalLimitSet`, `ActivePowerImbalanceLimit`, `ApparentPowerImbalanceLimit`, `ReactivePowerImbalanceLimit`, `ReactivePowerLimit`, `SwitchingActionLimit`, `VoltageImbalanceLimit` | These are already on kept operational-limit diagrams | Decide whether hand should add them |
-| Conductors / switching / equipment | `ACLineSegment`, `WireSegment`, `PerLengthPhaseImpedance`, `PerLengthSequenceImpedance`, `EarthFaultCompensator`, `Ground`, `GroundingImpedance`, `Disconnector`, `DisconnectingCircuitBreaker`, `SeriesCompensator` | These are valid kept-diagram classes already making it into auto | Usually a hand-coverage decision, not a UML fix |
+| Operational limits | `OperationalLimitSet` | The operational-limit variants are now aligned, but the kept UML still produces the root set object itself | Decide whether hand should add the root set object |
+| Conductors / switching / equipment | `ACLineSegment`, `WireSegment`, `PerLengthPhaseImpedance`, `PerLengthSequenceImpedance`, `EarthFaultCompensator`, `Ground`, `GroundingImpedance`, `SeriesCompensator` | These are valid kept-diagram classes already making it into auto | Usually a hand-coverage decision, not a UML fix |
 | Groups / locations / topology | `GeographicalRegion`, `SubGeographicalRegion`, `Location`, `PopulationGroup`, `ConnectivityNode`, `TopologicalNode`, `BaseVoltage`, `DCLine` | These are core kept-diagram classes that auto already emits | Good candidates for “should hand expand here?” review |
-| Energy producers / controls / settings | `PowerElectronicsConnection`, `PowerElectronicsUnit`, `EnergySource`, `StaticVarCompensator`, `RegulatingControl`, `AnalysisResultData`, `AlgorithmObjectives`, `BasicIntervalSchedule` | These are already supported by kept diagrams | Manual hand-curation decision |
+| Energy producers / controls / settings | `PowerElectronicsConnection`, `PowerElectronicsUnit`, `EnergySource`, `StaticVarCompensator`, `RegulatingControl`, `AnalysisResultData`, `BasicIntervalSchedule` | These are already supported by kept diagrams | Manual hand-curation decision |
 
 ### C2. Real Auto-Only Classes That Are Root-Only Or Mixed-Scope
 
