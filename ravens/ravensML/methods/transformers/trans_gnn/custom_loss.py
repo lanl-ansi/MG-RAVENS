@@ -88,7 +88,11 @@ class PI_WMSE_Loss(nn.Module):
 
         #Calculate Output Infeasibility
         if random() < self.test_percentage:
-            infeasibility_score = self.inf_score(prediction,target_grid)* self.inf_penalty
+            #NOTE: batch size must be 1
+            try:
+                infeasibility_score = self.inf_score(prediction,target_grid)* self.inf_penalty
+            except:
+                infeasibility_score = 1000
         else:
             infeasibility_score = 0
 

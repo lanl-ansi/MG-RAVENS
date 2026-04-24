@@ -155,7 +155,7 @@ if __name__ == "__main__":
             'model_type': hyperparams['model_type'].__name__,
             'transport_distance': hyperparams['transport_distance'],
             'inf_penalty': hyperparams['inf_penalty'],
-            'test_percentage': hyperparams['test_percentage'],
+            'test_percentage': 0,#hyperparams['test_percentage'],
             'avg_loss': avg_loss
         })
     

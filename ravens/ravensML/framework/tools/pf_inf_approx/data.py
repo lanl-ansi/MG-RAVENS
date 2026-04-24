@@ -172,6 +172,7 @@ class MG_Inf_Dataset(InMemoryDataset):
         self.split = split
         self.error_kwargs = error_kwargs or {}
         self.size = size
+        self.signature = int(10000*random.random())
         super().__init__(self.root, transform, pre_transform)
 
 
@@ -262,10 +263,11 @@ class MG_Inf_Dataset(InMemoryDataset):
         self.data, self.slices = data, slices
 
     def convert_input(self,MGR_grid,device):
-        mgr_path = self.root/"framework/tools/pf_inf_approx/tmp/tmp_test_input/tmp.json"
+        mgr_path = self.root/f"framework/tools/pf_inf_approx/tmp/tmp_test_input/{str(self.signature)}tmp.json"
         with open(mgr_path, "w", encoding="utf-8") as f:
-                json.dump(MGR_grid, f, indent=2)
-        MGD = MGRavensDataset(data_dir=str(self.root/"framework/tools/pf_inf_approx/tmp/tmp_test_input"))
+            json.dump(MGR_grid, f, indent=2)
+        MGD = MGRavensDataset(data_dir=str(self.root/f"framework/tools/pf_inf_approx/tmp/tmp_test_input/{str(self.signature)}tmp.json"))
+        MGD.process_for_ML()
         rML_obj = MGD[0][2]
         output = dict_to_pyg(rML_obj).to(device)
         return output

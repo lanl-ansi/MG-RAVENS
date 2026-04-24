@@ -54,9 +54,8 @@ def update_mgr(prediction,sample):
         input_e = unpack_edge(input[i],3)
         pred_e  = unpack_edge(prediction[i],3)
         if input_e["edge_type"] == 1:
-            if int(j) ==j:
+            if int(j) == j:
                 trans = transformers[transformer_names[int(j)]]
-                # print(transformer_names[int(j)])
                 R_mat = pred_e["R"]
                 X_mat = pred_e["X"]
                 G_mat = pred_e["G"]

@@ -36,7 +36,11 @@ class MGRavensDataset:
         path = Path(self.data_dir)
         
         # Find all JSON files in the directory
-        json_files = list(path.glob("*.json"))
+        if path.is_file() and path.suffix == '.json':
+            json_files = [path]
+        else:
+            # Find all JSON files in the directory
+            json_files = list(path.glob("*.json"))
         
         id_num = 0
         for file_path in json_files:

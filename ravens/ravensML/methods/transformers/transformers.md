@@ -197,5 +197,18 @@ file from the predicted tensor:
 | 3x Edge Attention w/ MLP Head | 86.56 |
 | 4x Edge Attention w/ MLP Head | 240.59 |
 
-
 ---
+
+VALIDATION RESULTS ON FRESH DATASET
+| #  | Model     | TD | IP | TP  | Loss       |
+|----|-----------|----|----|-----|------------|
+| 1  | SimpleGNN | 14 | 5  | 0.0 | 73.476521  |
+| 2  | SimpleGNN | 18 | 5  | 0.0 | 82.780338  |
+| 3  | SimpleGNN | 20 | 5  | 0.0 | 90.976347  |
+| 4  | AttnGNN   | 3  | 5  | 0.0 | 110.999518 |
+| 5  | SimpleGNN | 7  | 5  | 0.0 | 111.451487 |
+| 6  | AttnGNN   | 2  | 5  | 0.0 | 178.891453 |
+| 7  | AttnGNN   | 3  | 5  | 1.0 | 215.723340 |
+| 8  | AttnGNN   | 1  | 5  | 0.0 | 221.067478 |
+| 9  | AttnGNN   | 4  | 5  | 0.0 | 237.509754 |
+| 10 | SimpleGNN | 0  | 5  | 0.0 | 671.897062 |

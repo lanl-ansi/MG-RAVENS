@@ -186,10 +186,10 @@ if __name__ == "__main__":
         'K': [10],
         'pos_weight': [10],
         'inf_penalty': [5],
-        'test_percentage': [0],
+        'test_percentage': [1],
         'lr': [1e-4],
         'weight_decay': [1e-5],
-        'transport_distance': [1,2,3,4]
+        'transport_distance': [4]
     }
     # param_grid = {
     #     'model_type': [SimpleGNN],

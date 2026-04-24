@@ -139,7 +139,7 @@ if __name__ == "__main__":
     train_set, val_set = torch.utils.data.random_split(dataset, [train_len, val_len])
 
     # data loaders
-    batch_size = 120  
+    batch_size = 1  #TODO: 120
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False)
 
@@ -166,10 +166,10 @@ if __name__ == "__main__":
         'model_type': [AttnGNN],
         'neg_penalty': [10],
         'inf_penalty': [5],
-        'test_percentage': [0],
+        'test_percentage': [1],
         'lr': [1e-4],
         'weight_decay': [1e-5],
-        'transport_distance': [1,2,3,4]
+        'transport_distance': [3]
     }
     # param_grid = {
     #     'model_type': [SimpleGNN],
