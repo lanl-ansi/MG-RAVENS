@@ -264,7 +264,6 @@ class CymeConverter(RDFGraph):
             
             
             #Validate Sequences are in an acceptable format
-            
             #ignore empty phase impedances
             if len(sequence_numbers) == 0: 
                 continue
@@ -282,7 +281,6 @@ class CymeConverter(RDFGraph):
 
             
             #handle supported matrix specification methods
-
             rows = []
             cols = []
             if len(sequence_numbers) == conductor_count*(conductor_count+1)/2: #handle triangular specification
@@ -290,21 +288,20 @@ class CymeConverter(RDFGraph):
                     sn -= conductor_count
                     rows.append(r := (math.isqrt(8 * (sn-1) + 1) - 1) // 2 + 1)
                     cols.append((sn-1) - (r-1) * r // 2 + 1)
-                    print(sn,cols[-1],rows[-1])
             elif len(sequence_numbers) == conductor_count**2: #handle full matrix specification
                 for sn in sequence_numbers:
                     cols.append((sn - (conductor_count+1))%conductor_count)
                     rows.append((sn - (conductor_count+1) - cols[-1])/conductor_count + 1)
                     cols[-1] += 1
-
             else:  
                 raise ValueError("Initial Phase Impedance sequenceNumber is not of a known acceptable format.")
                 
 
             #Apply Corrected Row/Cols
             for i, phase_info in enumerate(self.graph.subjects(predicate=self.cim["PhaseImpedanceData.PhaseImpedance"], object=PLPI)):
-                self.graph.add((phase_info, self.cim["PhaseImpedanceData.column"], Literal(int(cols[i]))))
                 self.graph.add((phase_info, self.cim["PhaseImpedanceData.row"], Literal(int(rows[i]))))
+                self.graph.add((phase_info, self.cim["PhaseImpedanceData.column"], Literal(int(cols[i]))))
+
 
                 
                 
@@ -314,3 +311,4 @@ class CymeConverter(RDFGraph):
 if __name__ == "__main__":
 
     # TODO: need synthetic feeder exported from CYME for example
+
