@@ -265,7 +265,7 @@ class CymeConverter(RDFGraph):
             
             #Validate Sequences are in an acceptable format
             #ignore empty phase impedances
-            if len(sequence_numbers) == 0: 
+            if len(sequence_numbers) == 0 or (all(has_row) and all(has_col)): 
                 continue
 
             #ensure that sequence numbers are continuous
