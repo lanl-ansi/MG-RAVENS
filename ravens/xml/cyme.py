@@ -271,10 +271,17 @@ class CymeConverter(RDFGraph):
             #ensure that sequence numbers are continuous
             s_sn = sorted(sequence_numbers) 
             if not all(s_sn[i+1] - s_sn[i] == 1 for i in range(len(s_sn) - 1)):
-                raise ValueError("Phase Sequence Numbers are non-continuous")
-            
+                # Create mapping from old sequence numbers to new contiguous ones
+                seq_mapping = {}
+                for i, old_seq in enumerate(s_sn):
+                    new_seq = s_sn[0] + i  # Start from first value, add index
+                    seq_mapping[old_seq] = new_seq
+                
+                # Update sequence_numbers array with corrected values
+                sequence_numbers = [seq_mapping[seq] for seq in sequence_numbers]
+
             #correct sequence numbers to obey second row indexing
-            seq_jump = s_sn != conductor_count+1 #check to see if sequence starts at conductor count + 1 or if it starts at 1
+            seq_jump = s_sn[0] != conductor_count+1 #check to see if sequence starts at conductor count + 1 or if it starts at 1
             sequence_numbers = [s+(conductor_count)*seq_jump for s in sequence_numbers]
             if min(sequence_numbers) != conductor_count+1:
                 raise ValueError("Initial Phase Impedance sequenceNumber is not of a known acceptable format.")
@@ -309,6 +316,8 @@ class CymeConverter(RDFGraph):
 
 
 if __name__ == "__main__":
-
     # TODO: need synthetic feeder exported from CYME for example
-
+    from ravens import RavensData
+    file_path = "../extern_data/Delaware_Feeder_161_v7_BESS.xml"
+    d = RavensData().import_cyme_cim(file_path)
+    d.dump("../extern_data/tmp.json",indent=2)
