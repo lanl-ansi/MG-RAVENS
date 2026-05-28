@@ -246,7 +246,7 @@ class CymeConverter(RDFGraph):
     def fix_Per_Length_Phase_Impedance_indices(self):
         """
         Expects `Phase Impedance Data` of following format:
-        - Continuous Sequence Numbers
+        - Increasing Sequence Numbers
         - Either specifies triangular matrix, or full matrix
         - First sequence number either starts at 1 or connector_count + 1
         """
