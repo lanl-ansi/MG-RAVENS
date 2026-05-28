@@ -317,7 +317,4 @@ class CymeConverter(RDFGraph):
 
 if __name__ == "__main__":
     # TODO: need synthetic feeder exported from CYME for example
-    from ravens import RavensData
-    file_path = "../extern_data/Delaware_Feeder_161_v7_BESS.xml"
-    d = RavensData().import_cyme_cim(file_path)
-    d.dump("../extern_data/tmp.json",indent=2)
+    pass
