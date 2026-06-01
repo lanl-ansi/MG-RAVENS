@@ -247,7 +247,7 @@ class CymeConverter(RDFGraph):
         """
         Expects `Phase Impedance Data` of following format:
         - Increasing Sequence Numbers
-        - Either specifies triangular matrix, or full matrix
+        - Either specifies upper triangular matrix, or full matrix
         - First sequence number either starts at 1 or connector_count + 1
         """
         for PLPI in self.graph.subjects(predicate=RDF.type, object=self.cim["PerLengthPhaseImpedance"]): 
@@ -261,7 +261,6 @@ class CymeConverter(RDFGraph):
                 sequence_numbers.append(int(self.graph.value(subject=phase_info, predicate=self.cim["PhaseImpedanceData.sequenceNumber"]).value))
                 has_row.append(1 if self.graph.value(subject=phase_info, predicate=self.cim["PhaseImpedanceData.row"]) is not None else 0)
                 has_col.append(1 if self.graph.value(subject=phase_info, predicate=self.cim["PhaseImpedanceData.column"]) is not None else 0)
-            
             
             #Validate Sequences are in an acceptable format
             #ignore empty phase impedances
@@ -291,10 +290,14 @@ class CymeConverter(RDFGraph):
             rows = []
             cols = []
             if len(sequence_numbers) == conductor_count*(conductor_count+1)/2: #handle triangular specification
-                for sn in sequence_numbers:
-                    sn -= conductor_count
-                    rows.append(r := (math.isqrt(8 * (sn-1) + 1) - 1) // 2 + 1)
-                    cols.append((sn-1) - (r-1) * r // 2 + 1)
+                r = c = 1
+                for i in range(len(sequence_numbers)):
+                    if c > conductor_count:
+                        r +=1
+                        c = r
+                    rows.append(r)
+                    cols.append(c)
+                    c+=1
             elif len(sequence_numbers) == conductor_count**2: #handle full matrix specification
                 for sn in sequence_numbers:
                     cols.append((sn - (conductor_count+1))%conductor_count)
