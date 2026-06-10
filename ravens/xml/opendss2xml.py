@@ -1479,7 +1479,7 @@ class DssExport(RDFGraph):
             if phases == "s1":
                 phase_kind = "s1N"
             elif phases == "s2":
-                phase_kind = "Ns2"
+                phase_kind = "s2N" 
             elif reverse_ground:
                 phase_kind = "N" + phases
             elif wye_ground:
