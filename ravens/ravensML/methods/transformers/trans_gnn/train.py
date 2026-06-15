@@ -27,8 +27,9 @@ torch.manual_seed(42)
 # -------------------------
 dataset = MGTransformerDataset(
     root=rML_ROOT,
+    path = "data/seg_data",
     size=20000,
-    error_kwargs={"deletion_prob": 0.01, 
+    synth_kwargs={"deletion_prob": 0.01, 
                   "occurrence_prob": 0.55,
                   "mult_mean": 1,
                   "mult_var": 2.25,

@@ -25,7 +25,7 @@ if str(rML_ROOT) not in sys.path:
     sys.path.insert(0, str(rML_ROOT))
 
 # Error parameters (identical to training)
-ERROR_KWARGS = {
+synth_kwargs = {
     "deletion_prob": 0.01,
     "occurrence_prob": 0.55,
     "mult_mean": 1.0,
@@ -78,8 +78,9 @@ if __name__ == "__main__":
     # Generate temporary training set (size=20000) to compute DEG
     temp_dataset = MGTransformerDataset(
         root=rML_ROOT,
+        path = "data/seg_data",
         size=20000,
-        error_kwargs=ERROR_KWARGS,
+        synth_kwargs=synth_kwargs,
         split="full"
     )
     train_len = int(0.8 * len(temp_dataset))
@@ -93,8 +94,9 @@ if __name__ == "__main__":
     # ==== STEP 2: Generate fresh validation dataset (named 'validate') ====
     validate = MGTransformerDataset(
         root=rML_ROOT,
+        path = "data/seg_data",
         size=VALIDATION_SIZE,
-        error_kwargs=ERROR_KWARGS,
+        synth_kwargs=synth_kwargs,
         split="full"
     )
     

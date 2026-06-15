@@ -10,7 +10,7 @@ import custom_loss as cl
 from methods.connectivity.conn_gnn.model import SimpleGNN, AttnGNN
 from methods.connectivity.conn_gnn.data import MGConnDataset
 
-# ======================= CONFIGURATION =======================
+# CONFIGURATION 
 # Set seeds for reproducibility (matches training)
 SEED = 42
 random.seed(SEED)
@@ -26,13 +26,13 @@ if str(rML_ROOT) not in sys.path:
 
 # Constants from training code
 MAX_NODES = 20
-ERROR_KWARGS = {"del_e_prob": 0.20}
+synth_kwargs = {"del_e_prob": 0.20}
 VALIDATION_SIZE = 1000  # Fresh validation set size
 
 # Model directory (where training code saved models)
 MODEL_DIR = rML_ROOT / "methods" / "connectivity" / "conn_gnn" / "tmp" / "probe_data"
 
-# ======================= HELPER FUNCTIONS =======================
+# HELPER FUNCTIONS 
 def compute_deg_from_dataset(dataset):
     """Compute in-degree histogram tensor from a dataset"""
     max_degree = -1
@@ -59,19 +59,20 @@ def parse_pass_id(pass_id):
         'inf_penalty': int(ip_str)
     }
 
-# ======================= MAIN EXECUTION =======================
+# MAIN EXECUTION 
 if __name__ == "__main__":
     # Initialize device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Using device: {device}")
     
-    # ==== STEP 1: Compute fixed statistics (DEG) from training set ====
+    # STEP 1: Compute fixed statistics (DEG) from training set 
     # Generate temporary training set (size=20) to compute DEG
     temp_dataset = MGConnDataset(
         root=rML_ROOT,
+        path = "data/seg_data",
         size=20,
         max_nodes=MAX_NODES,
-        error_kwargs=ERROR_KWARGS,
+        synth_kwargs=synth_kwargs,
     )
     train_len = int(0.8 * len(temp_dataset))
     train_set, _ = torch.utils.data.random_split(
@@ -81,12 +82,13 @@ if __name__ == "__main__":
     )
     DEG = compute_deg_from_dataset(train_set)
     
-    # ==== STEP 2: Generate fresh validation dataset (named 'validate') ====
+    # STEP 2: Generate fresh validation dataset (named 'validate') 
     validate = MGConnDataset(
         root=rML_ROOT,
+        path = "data/seg_data",
         size=VALIDATION_SIZE,
         max_nodes=MAX_NODES,
-        error_kwargs=ERROR_KWARGS,
+        synth_kwargs=synth_kwargs,
         split="full"
     )
     
@@ -95,7 +97,7 @@ if __name__ == "__main__":
     NODE_FEAT_DIM = sample.x.shape[1]
     EDGE_FEAT_DIM = sample.edge_attr.shape[1]
     
-    # ==== STEP 3: Evaluate all trained models ====
+    # STEP 3: Evaluate all trained models 
     # Find all saved model files
     model_files = [f for f in MODEL_DIR.glob("*_best_model.pth") if f.is_file()]
     if not model_files:
@@ -159,7 +161,7 @@ if __name__ == "__main__":
             'avg_loss': avg_loss
         })
     
-    # ==== STEP 4: Output clean results ====
+    # STEP 4: Output clean results 
     # Sort by validation loss (ascending)
     results.sort(key=lambda x: x['avg_loss'])
     

@@ -89,7 +89,7 @@ def generate_trans_error(
                     TCA["TransformerCoreAdmittance.b"] = abs(next(m)*TCA["TransformerCoreAdmittance.b"] + next(a)) if (random.random() < occurrence_prob) else TCA["TransformerCoreAdmittance.b"] 
 
         #store errored input X
-        corrupted_mgr.raw_data.append([file_name,ravens_data])            
+        corrupted_mgr.raw_data.append([file_name,ravens_data,ravens_data_prime[1]])            
 
     return (corrupted_mgr, corrected_mgr)
 

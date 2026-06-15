@@ -1,4 +1,5 @@
 import torch
+import torch.nn.functional as F
 import torch.nn as nn
 import torch.optim as optim
 from torch_geometric.loader import DataLoader
@@ -14,25 +15,29 @@ if str(rML_ROOT) not in sys.path:
     sys.path.insert(0, str(rML_ROOT))
 
 # from mgr_helpers import unpack_edge
-from framework.tools.pf_inf_approx.data import MG_Inf_Dataset
-from framework.tools.pf_inf_approx.model import SimpleGNN
+from methods.edge_type.et_gnn.data import MGEdgeTypeDataset
+from methods.edge_type.et_gnn.model import SimpleGNN
 from framework.tools.training_tools import train_epoch, validate
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
-TEST_NAME = "InfApprox2_"
+TEST_NAME = "DEBUGv2"
+MAX_NODES = 122
 
 # reproducibility
 torch.manual_seed(42)
 
-# Dataset
-dataset = MG_Inf_Dataset(
-    root=rML_ROOT,
-    path = "data/seg_data",
-    size=20000,
-    synth_kwargs={"mean": 0.25,"std": 1.25},
+# -------------------------
+#   Dataset
+# -------------------------
+dataset = MGEdgeTypeDataset(
+        root=rML_ROOT,
+        path = "data/BIG_seg_data",
+        size=10000,
+        synth_kwargs={"change_prob": 0.00, "enforce_PE":True,},
 )
+
 
 
 # split
@@ -41,7 +46,7 @@ val_len   = len(dataset) - train_len
 train_set, val_set = torch.utils.data.random_split(dataset, [train_len, val_len])
 
 # data loaders
-batch_size = 500 
+batch_size = 1 #TODO: cannot properly handle larger batches 
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
 val_loader   = DataLoader(val_set,   batch_size=batch_size, shuffle=False)
 
@@ -69,25 +74,30 @@ model = SimpleGNN(
     node_features=node_feat_dim,
     edge_features=edge_feat_dim,
     degree=deg,
-    max_nodes = 20,
-    transport_distance=12
+    max_nodes = MAX_NODES,
+    transport_distance=10
 ).to(device)
 
-print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(1)}")
+
+print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(MAX_NODES*MAX_NODES)}")
 
 # Training Settings
-loss_fn = nn.MSELoss()
+import custom_loss as cl
+#TODO: fix weight tensor --> then will this output non trivial outputs
+loss_fn = cl.EdgeClassificationLoss(weight=torch.tensor([1,70,70,70,70],dtype=torch.float32)) 
+
+
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 150
+epochs = 60
 
 # training parameters
 best_val = float('inf')
 train_losses, val_losses = [], []
 
 for epoch in range(1, epochs + 1):
-    tr_loss = train_epoch(model, train_loader, loss_fn, optimizer, device, 20)
-    va_loss = validate(model, val_loader, loss_fn, device, 20)
+    tr_loss = train_epoch(model, train_loader, loss_fn, optimizer, device, MAX_NODES)
+    va_loss = validate(model, val_loader, loss_fn, device, MAX_NODES)
 
     train_losses.append(tr_loss)
     val_losses.append(va_loss)
@@ -100,10 +110,12 @@ for epoch in range(1, epochs + 1):
     # checkpoint
     if va_loss < best_val:
         best_val = va_loss
-        torch.save(model.state_dict(), rML_ROOT/f"framework/tools/pf_inf_approx/tmp/{TEST_NAME}best_model.pth")
+        torch.save(model.state_dict(), rML_ROOT/f"methods/edge_type/et_gnn/tmp/{TEST_NAME}best_model.pth")
         print("  -> saved new best model")
 
-# Plot Losses
+# -------------------------
+#   Plot losses
+# -------------------------
 plt.figure(figsize=(10, 5))
 plt.plot(train_losses, label="train")
 plt.plot(val_losses, label="val")
@@ -112,21 +124,44 @@ plt.ylabel("MSE")
 plt.legend()
 plt.title("Training / Validation loss")
 plt.tight_layout()
-plt.savefig(rML_ROOT/f"framework/tools/pf_inf_approx/tmp/{TEST_NAME}loss_plot.png")
+plt.savefig(rML_ROOT/f"methods/edge_type/et_gnn/tmp/{TEST_NAME}loss_plot.png")
 plt.close()
 
+# -------------------------
+#   Quick sanity check on a single graph
+# -------------------------
 model.eval()
 with torch.no_grad():
     sample = dataset[random.randint(0,len(dataset)-1)].to(device)     
     pred   = model(sample)
 
-    # ---- predicted inf ----
+    # ---- predicted matrices ----
     print("\nPredicted:")
-    print(pred.detach().cpu().numpy())
+    pred_cpu = pred.detach().cpu()
+    pred_idx = torch.argmax(pred_cpu, dim=-1)
+    print(pred_idx.numpy()-1)
 
-    # ---- ground-truth inf ----
+    # ---- ground-truth matrix ----
     print("\nTrue:")
-    true_np = sample.y.detach().cpu().numpy()
+    true_np = sample.y["edge_labels"].detach().cpu().numpy()
     print(true_np)
+
+    test_mse = loss_fn(pred, sample)
+    print(f"\nTest MSE on this graph: {test_mse[0].item():.6f}")
+
+    print("\n Diff Matrix")
+    diff = np.abs(true_np-(pred_idx.numpy()-1))
+    print(diff)
+
+    with open(rML_ROOT/f"methods/edge_type/et_gnn/tmp/full_output.txt", "w") as f:
+
+        np.set_printoptions(threshold=np.inf)
+        f.write("Predicted:\n")
+        f.write(str(pred_idx.numpy()-1) + "\n")
+        f.write("True:\n")
+        f.write(str(true_np) + "\n")
+        f.write("Diff:\n")
+        f.write(str(diff) + "\n")
+        np.set_printoptions(threshold=1000)
 
 print("\nTraining finished!")

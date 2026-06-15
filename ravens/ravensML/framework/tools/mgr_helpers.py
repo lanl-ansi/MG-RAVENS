@@ -76,8 +76,8 @@ def update_mgr(prediction,sample):
         
 def _to_python(o):
     """
-    Recursively turn torch.Tensors (and other non‑JSON types) into
-    JSON‑serialisable Python objects.
+    Recursively turn torch.Tensors (and other non-JSON types) into
+    JSON-serialisable Python objects.
     Collapses tensors with duplicate values into single Python values.
     """
     if isinstance(o, torch.Tensor):
@@ -130,7 +130,9 @@ def run_pf(mgr_grid):
     Main.eval("import JuMP")
     Main.eval("import JSON")
     Main.eval("using Ipopt")
+    Main.eval("import Logging")
     Main.eval("using PowerModelsDistribution")
+    Main.eval("Logging.disable_logging(Logging.Warn)")
     os.makedirs(rML_ROOT/'framework/tools/tmp', exist_ok=True)
     
     tmp_file = rML_ROOT/'framework/tools/tmp/tmp_pf.json'

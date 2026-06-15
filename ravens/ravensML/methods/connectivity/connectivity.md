@@ -2,24 +2,24 @@
 
 ## Problem Premise
 
-Often, when working with large‑scale power‑grid models we encounter errors in the
+Often, when working with large-scale power-grid models we encounter errors in the
 grid topology that arise from user mistakes during data entry, conversion, or
-transfer, or from the way different groups choose to model real‑world grids.
-When such models are converted into **MG‑RAVENS**, the errors appear as
+transfer, or from the way different groups choose to model real-world grids.
+When such models are converted into **MG-RAVENS**, the errors appear as
 
 * **Missing nodes** – a `ConnectivityNode` entry is deleted.  
 * **Misspecified terminals** – the `Terminal.ConnectivityNode` string of an
-  `ACLineSegment` is corrupted (character substitution, off‑by‑one typo, etc.).  
+  `ACLineSegment` is corrupted (character substitution, off-by-one typo, etc.).  
 * **Deleted edges** – whole line segments are removed.
 
-A downstream power‑flow solver (PowerModelsDistribution) can process these
+A downstream power-flow solver (PowerModelsDistribution) can process these
 files, but the errors often lead to physically implausible results that differ
 substantially from true operation.  For simplicity we focus only on edge
 errors: either an edge is missing or it references an invalid terminal.
 
 The task is to **recover the original topology**: given a corrupted grid file,
 produce a list of *edges that must be added* and insert them back into the
-MG‑RAVENS file.
+MG-RAVENS file.
 
 ---
 
@@ -35,12 +35,12 @@ Let
 
 The correction problem is to infer the set $E_{\text{missing}}$.
 
-In a machine‑learning setting we treat this as a **binary‑matrix reconstruction**
+In a machine-learning setting we treat this as a **binary-matrix reconstruction**
 problem.  Define the adjacency matrix of the true graph
 $\mathbf{A}\in\{0,1\}^{N\times N}$ with $N = |V|$.
 The corrupted adjacency $\mathbf{A}'$ is obtained from $\mathbf{A}$ by
 zeroing entries that correspond to missing edges or by swapping node
-identifiers through a string‑level typo.
+identifiers through a string-level typo.
 
 The learning objective is to predict a matrix $\hat{\mathbf{A}}$ such that  
 
@@ -67,7 +67,7 @@ where $\tau$ is a threshold chosen during inference.
 | `rename_prob` | Probability that a terminal name is corrupted (typo). |
 | `delete_prob` | Probability that a `ConnectivityNode` entry is removed. |
 | `del_e_prob` | Probability that an entire line segment is deleted. |
-| `corrections` | List of dictionaries `{"Edges Needed": [...], "Missing Nodes": [...]}` that store the ground‑truth error for each generated sample. |
+| `corrections` | List of dictionaries `{"Edges Needed": [...], "Missing Nodes": [...]}` that store the ground-truth error for each generated sample. |
 | `y_pred` (output) | Dictionary `{'Edges Needed': [...], 'Missing Nodes': [...]}` used as the learning target. |
 
 The helper function `gen_conn_error` creates a **synthetic dataset** by
@@ -80,13 +80,13 @@ graph for supervision.
 
 ### Graph Search Method
 
-`GraphSearchConnectivity` implements a deterministic, rule‑based pipeline:
+`GraphSearchConnectivity` implements a deterministic, rule-based pipeline:
 
-1. **Connected‑component analysis** – uses NetworkX’s `connected_components`.  
-2. **Dead‑node detection** – any node that appears only in an edges data without being specified in the 
+1. **Connected-component analysis** – uses NetworkX’s `connected_components`.  
+2. **Dead-node detection** – any node that appears only in an edges data without being specified in the 
     ravens file is labelled a *dead node*, indicating a missing node or a misspecified incident edge.  
-3. **Errored‑edge collection** – edges that touch at least one dead node are
-   gathered; a per‑node reference count is stored (`node_ref_counts`).  
+3. **Errored-edge collection** – edges that touch at least one dead node are
+   gathered; a per-node reference count is stored (`node_ref_counts`).  
 4. **Candidate generation** – under the assumption that misspecification stems
    from a corrupted name, the algorithm computes the Levenshtein edit distance
    between each dead node and every *alive* node, selects the `k = 3` nearest
@@ -97,8 +97,8 @@ graph for supervision.
      change resolves a disconnected segment).  
 5. **Selection** – the candidate that *strictly reduces* the component count is
    kept; otherwise the dead node is reported as truly missing.  
-6. **Report generation** – a human‑readable multi‑line string summarises
-   component statistics, dead‑node reference counts, distinct errored edges,
+6. **Report generation** – a human-readable multi-line string summarises
+   component statistics, dead-node reference counts, distinct errored edges,
    proposed rewiring, and a final list of missing nodes that could not be
    resolved.
 
@@ -107,41 +107,41 @@ functions used by the GNN models, enabling a direct performance comparison.
 
 **Key Implementation Highlights**
 
-* Edit distance is computed by a dynamic‑programming routine (`_levenshtein`),
+* Edit distance is computed by a dynamic-programming routine (`_levenshtein`),
   wrapped in `edit_distance` to produce the full
   $|V_{\text{dead}}| \times |V_{\text{alive}}|$ matrix.  
 * Candidate evaluation uses a temporary copy of the graph (`_evaluate_candidate`);
   the original structure remains unchanged.  
 * The final report is built by `_build_report`, which formats the information
-  using plain hyphens only (no em‑dashes).
+  using plain hyphens only (no em-dashes).
 
 ---
 
 ### GNN Method
 
-Two message‑passing architectures are provided:
+Two message-passing architectures are provided:
 
 | Model | Description |
 |-------|-------------|
-| **SimpleGNN** | Stacks `transport_distance` PNA convolutions, followed by a deep edge‑wise MLP that outputs a flat vector of size `max_nodes²`. After reshaping and a sigmoid, the result is a probabilistic adjacency matrix. |
-| **AttnGNN** | Same PNA backbone, but precedes it with an **EdgeAttentionModule** that performs multi‑head self‑attention over edge representations. The attention‑enhanced edge attributes are then fed to the same MLP head as SimpleGNN. |
+| **SimpleGNN** | Stacks `transport_distance` PNA convolutions, followed by a deep edge-wise MLP that outputs a flat vector of size `max_nodes^2`. After reshaping and a sigmoid, the result is a probabilistic adjacency matrix. |
+| **AttnGNN** | Same PNA backbone, but precedes it with an **EdgeAttentionModule** that performs multi-head self-attention over edge representations. The attention-enhanced edge attributes are then fed to the same MLP head as SimpleGNN. |
 
 Both models share the following pipeline:
 
 1. **Node / edge feature extraction** – supplied by the `MGRavensDataset` loader.  
-2. **Optional edge‑attention preprocessing** – only in `AttnGNN`.  
+2. **Optional edge-attention preprocessing** – only in `AttnGNN`.  
 3. **`transport_distance` rounds of PNA message passing** with BatchNorm.  
 4. **Edge representation** – concatenation of source node embedding, destination node embedding, and original edge attributes.  
 5. **Deep MLP** – 10+ linear layers with ReLU, dropout, and progressive dimensionality reduction, ending in a $(\text{max\_nodes} \times \text{max\_nodes})$ logit vector.  
-6. **Aggregation** – average over all edges to obtain a single graph‑level vector,
+6. **Aggregation** – average over all edges to obtain a single graph-level vector,
    reshaped to `max_nodes × max_nodes` and squashed via `sigmoid`.  
    Symmetrisation $(A + A^{\top})/2$ enforces undirectedness.
 
 #### Loss Functions
 
-* **AdjMSELoss** – weighted mean‑squared error between predicted adjacency
-  $\hat{\mathbf{A}}$ and the ground‑truth mask `missing_edges`.  
-  Optional diagonal masking, a positive‑edge weight $\beta$, and a global
+* **AdjMSELoss** – weighted mean-squared error between predicted adjacency
+  $\hat{\mathbf{A}}$ and the ground-truth mask `missing_edges`.  
+  Optional diagonal masking, a positive-edge weight $\beta$, and a global
   scaling factor $K$ are supported.  
 * **PIAdjMSELoss** – extends `AdjMSELoss` with a *penalty term* that evaluates
   the physical feasibility of the corrected grid:  
@@ -151,7 +151,7 @@ Both models share the following pipeline:
     and added to the loss to yield a differentiable physics informed loss component.  
 
 Both losses are fully differentiable; the infeasibility term is a scalar that
-does not back‑propagate through the Julia solver, but its magnitude still
+does not back-propagate through the Julia solver, but its magnitude still
 guides the optimizer toward physically plausible reconstructions.
 
 #### Data Flow
@@ -163,11 +163,11 @@ guides the optimizer toward physically plausible reconstructions.
    PyTorch Geometric `Data` object containing `x` (node features), `edge_index`,
    `edge_attr`, and the supervision tensors.  
 3. **Training** – the GNN receives batches of `Data`, produces $\hat{\mathbf{A}}$,
-   and the loss (`AdjMSELoss` or `PIAdjMSELoss`) is back‑propagated.  
+   and the loss (`AdjMSELoss` or `PIAdjMSELoss`) is back-propagated.  
 4. **Inference** – after training, `define_edges` thresholds the predicted
-   adjacency (default $\tau = 0.5$), creates CIM‑compliant line objects from the
+   adjacency (default $\tau = 0.5$), creates CIM-compliant line objects from the
    `DEFAULT_LINE` template, and inserts them into the original JSON file via
-   `update_mgr`.  The resulting grid can be handed to the power‑flow routine for
+   `update_mgr`.  The resulting grid can be handed to the power-flow routine for
    validation.
 
 ---

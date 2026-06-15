@@ -111,7 +111,7 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
         print("\nPredicted:")
         print(pred.detach().cpu().numpy())
 
-        # ---- ground‑truth matrix ----
+        # ---- ground-truth matrix ----
         print("\nTrue:")
         true_np = sample.y["missing_edges"].detach().cpu().numpy()
         print(true_np)
@@ -144,11 +144,14 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
 
 if __name__ == "__main__":
     # Setup Dataset
+    EPE = False #Enforce Permutation Equivalence
     dataset = MGConnDataset(
         root=rML_ROOT,
+        path = "data/seg_data",
         size=10000,
         max_nodes=MAX_NODES,
-        error_kwargs={"del_e_prob": 0.20},
+        enforce_PE=EPE,
+        synth_kwargs={"del_e_prob": 0.03},
     )
 
     # split
@@ -181,15 +184,15 @@ if __name__ == "__main__":
 
     # Define hyperparameter grid
     param_grid = {
-        'model_type': [AttnGNN],
+        'model_type': [AttnGNN,SimpleGNN],
         'ignore_diagonal': [False],
         'K': [10],
         'pos_weight': [10],
         'inf_penalty': [5],
-        'test_percentage': [1],
+        'test_percentage': [0],
         'lr': [1e-4],
         'weight_decay': [1e-5],
-        'transport_distance': [4]
+        'transport_distance': [4,14]
     }
     # param_grid = {
     #     'model_type': [SimpleGNN],
@@ -202,7 +205,7 @@ if __name__ == "__main__":
     #     'weight_decay': [1e-5],
     #     'transport_distance': [0,7,14,18,20]
     # }
-    EPOCHS = 100
+    EPOCHS = 50
 
     # Generate all combinations of parameters
     # For a smaller experiment, you may want to select fewer parameters or combinations
@@ -224,7 +227,7 @@ if __name__ == "__main__":
     for i, params in enumerate(param_combinations):
         model_type, ignore_diagonal, K, pos_weight, inf_penalty, test_percentage, lr, weight_decay, transport_distance = params
         
-        pass_id = f"exp_{i}_model_{model_type.__name__}_td{transport_distance}_tp{test_percentage}_ip{inf_penalty}"
+        pass_id = f"exp_{i}_model_{model_type.__name__}_td{transport_distance}_tp{test_percentage}_ip{inf_penalty}_pe{EPE}"
         print(f"\n\n{'='*80}\nStarting experiment {pass_id}\n{'='*80}\n")
         
         result = run_training_pass(

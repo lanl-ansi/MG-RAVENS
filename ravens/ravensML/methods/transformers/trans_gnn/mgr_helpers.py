@@ -82,8 +82,8 @@ def update_mgr(prediction,sample):
         
 def _to_python(o):
     """
-    Recursively turn torch.Tensors (and other non‑JSON types) into
-    JSON‑serialisable Python objects.
+    Recursively turn torch.Tensors (and other non-JSON types) into
+    JSON-serialisable Python objects.
     Collapses tensors with duplicate values into single Python values.
     """
     if isinstance(o, torch.Tensor):

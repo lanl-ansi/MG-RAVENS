@@ -27,7 +27,7 @@ def _get_flat_target(batch, max_nodes):
     Returns
     -------
     torch.Tensor
-        1‑D tensor of shape (max_nodes**2,) on the same device as the batch.
+        1-D tensor of shape (max_nodes**2,) on the same device as the batch.
     """
     # --------------------------------------------------------------
     # In your dataset you store the clean adjacency matrix inside
@@ -62,10 +62,12 @@ def train_epoch(model, loader, loss_fn, optimizer, device, max_nodes):
 
         optimizer.zero_grad()
         pred = model(batch)                     # (max_nodes**2,)
-
+        
         target = _get_flat_target(batch, max_nodes)   # (max_nodes**2,)
         loss = loss_fn(pred, target)
-
+        if (isinstance(loss, tuple) and len(loss) == 2 and all(isinstance(l, torch.Tensor) for l in loss)):
+            loss = loss[0]
+            
         loss.backward()
         optimizer.step()
 
@@ -94,6 +96,9 @@ def validate(model, loader, loss_fn, device, max_nodes):
             pred = model(batch)
             target = _get_flat_target(batch, max_nodes)
             loss = loss_fn(pred, target)
+
+            if (isinstance(loss, tuple) and len(loss) == 2 and all(isinstance(l, torch.Tensor) for l in loss)):
+                loss = loss[0]
 
             total_loss += loss.item() * batch.num_graphs
 

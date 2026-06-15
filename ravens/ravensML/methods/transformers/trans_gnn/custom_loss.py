@@ -68,8 +68,9 @@ class PI_WMSE_Loss(nn.Module):
         self.model.load_state_dict(state_dict) 
         self.check_feas = MG_Inf_Dataset(
             root=rML_ROOT,
+            path = "data/seg_data",
             size=0,
-            error_kwargs={"mean": 0.0,"std": 0.0},
+            synth_kwargs={"mean": 0.0,"std": 0.0},
         )
 
     def forward(self, prediction, target_grid):
@@ -111,8 +112,9 @@ class PI_WMSE_Loss(nn.Module):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         dataset = MGTransformerDataset(
             root=rML_ROOT,
+            path = "data/seg_data",
             size=1,
-            error_kwargs={"deletion_prob": 0.01, 
+            synth_kwargs={"deletion_prob": 0.01, 
                         "occurrence_prob": 0.55,
                         "mult_mean": 1,
                         "mult_var": 2.25,

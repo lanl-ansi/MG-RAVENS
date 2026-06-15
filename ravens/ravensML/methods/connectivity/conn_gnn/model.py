@@ -1,6 +1,3 @@
-# --------------------------------------------------------------
-#  SimpleGNN  –  edge‑wise MLP returns a 2‑D matrix with values in [0, 1]
-# --------------------------------------------------------------
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -10,7 +7,7 @@ from torch_geometric.nn import BatchNorm, PNAConv
 class SimpleGNN(nn.Module):
     """
     Parameters
-    ----------
+    --
     node_features : int
         Dimensionality of node feature vectors.
     edge_features : int
@@ -20,7 +17,7 @@ class SimpleGNN(nn.Module):
     max_nodes : int
         Upper bound on the number of nodes a graph can have.
     transport_distance : int, default 5
-        Number of successive PNA message‑passing steps.
+        Number of successive PNA message-passing steps.
     """
 
     def __init__(
@@ -33,18 +30,14 @@ class SimpleGNN(nn.Module):
     ):
         super().__init__()
 
-        # ------------------------------------------------------------------
         # Cast to plain Python ints – safeguards against tensors/np scalars.
-        # ------------------------------------------------------------------
         self.degree = degree
         self.max_nodes = int(max_nodes)
 
         aggregators = ["mean", "min", "max", "std"]
         scalers = ["identity", "amplification", "attenuation"]
 
-        # ------------------------------------------------------------------
         # PNA graph convolutions (unchanged)
-        # ------------------------------------------------------------------
         self.convs = nn.ModuleList(
             [
                 PNAConv(
@@ -66,9 +59,8 @@ class SimpleGNN(nn.Module):
             [BatchNorm(node_features) for _ in range(transport_distance)]
         )
 
-        # ------------------------------------------------------------------
-        # Edge‑wise MLP – final head outputs `max_nodes ** 2` logits.
-        # ------------------------------------------------------------------
+        
+        # Edge-wise MLP – final head outputs `max_nodes ** 2` logits.
         self.edge_mlp = nn.Sequential(
             nn.Linear(node_features * 2 + edge_features, 64),
             nn.ReLU(),
@@ -99,52 +91,46 @@ class SimpleGNN(nn.Module):
             nn.Linear(128, 64),
             nn.Dropout(0.15),
             nn.ReLU(),
-            # final projection – raw scores for a square matrix of size max_nodes²
+            # final projection – raw scores for a square matrix of size max_nodes^2
             nn.Linear(64, self.max_nodes * self.max_nodes),
         )
 
-    # ------------------------------------------------------------------
+    
     # Forward pass
-    # ------------------------------------------------------------------
+    
     def forward(self, data):
         """
         Returns
-        -------
+        ---
         adj : Tensor of shape (max_nodes, max_nodes)
-              Values are squeezed into [0, 1] (no soft‑max).
+              Values are squeezed into [0, 1] (no soft-max).
         """
         x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
 
-        # --------------------------------------------------------------
+        
         # Graph convolutions
-        # --------------------------------------------------------------
         for conv, bn in zip(self.convs, self.norms):
             x = F.relu(bn(conv(x, edge_index, edge_attr)))
 
-        # --------------------------------------------------------------
+        
         # Edge representation: concat(src_node, dst_node, edge_attr)
-        # --------------------------------------------------------------
         src = x[edge_index[0]]
         dst = x[edge_index[1]]
         edge_rep = torch.cat([src, dst, edge_attr], dim=-1)   # (E, 2*F + edge_features)
 
-        # --------------------------------------------------------------
-        # Deep MLP → (E, max_nodes²) logits
-        # --------------------------------------------------------------
-        edge_logits = self.edge_mlp(edge_rep)                # (E, max_nodes²)
+        
+        # Deep MLP --> (E, max_nodes^2) logits
+        edge_logits = self.edge_mlp(edge_rep)                # (E, max_nodes^2)
 
-        # --------------------------------------------------------------
-        # Aggregate over edges → a single vector per graph.
-        # --------------------------------------------------------------
-        graph_logits = edge_logits.mean(dim=0)               # (max_nodes²,)
+        
+        # Aggregate over edges --> a single vector per graph.
+        graph_logits = edge_logits.mean(dim=0)               # (max_nodes^2,)
 
-        # --------------------------------------------------------------
-        # Reshape → square matrix and squash to [0, 1] with sigmoid.
-        # --------------------------------------------------------------
+        
+        # Reshape --> square matrix and squash to [0, 1] with sigmoid.
         adj = graph_logits.view(self.max_nodes, self.max_nodes)   # (max_nodes, max_nodes)
         adj = torch.sigmoid(adj)                                 # now in [0, 1]
 
-        # optional: make symmetric for an undirected adjacency matrix
         adj = (adj + adj.t()) / 2
 
         return adj
@@ -239,9 +225,9 @@ class EdgeAttentionModule(nn.Module):
             
         return updated_x, edge_index, updated_edge_attr 
 
-# --------------------------------------------------------------
-#  AttnGNN – edge‑wise MLP returns a single 20×20 matrix in [0,1]
-# --------------------------------------------------------------
+
+#  AttnGNN – edge-wise MLP returns a single 20×20 matrix in [0,1]
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -305,7 +291,7 @@ class EdgeAttentionModule(nn.Module):
 
         updated_edge_attr = self.edge_output(edge_rep)
 
-        # ---- Node update (unchanged) ----
+        #  Node update (unchanged) 
         updated_x = x.clone()
         for i in range(edge_index.size(1)):
             src_idx = edge_index[0, i]
@@ -324,9 +310,9 @@ class AttnGNN(nn.Module):
 
         self.max_nodes = int(max_nodes)          # needed for reshaping later
 
-        # ------------------------------------------------------------------
-        # Edge‑attention module (unchanged)
-        # ------------------------------------------------------------------
+        
+        # Edge-attention module (unchanged)
+        
         self.edge_attention = EdgeAttentionModule(
             node_dim=node_features,
             edge_dim=edge_features,
@@ -335,9 +321,9 @@ class AttnGNN(nn.Module):
             dropout=0,
         )
 
-        # ------------------------------------------------------------------
+        
         # PNA convolutions (unchanged)
-        # ------------------------------------------------------------------
+        
         self.convs = nn.ModuleList([
             PNAConv(
                 node_features,
@@ -355,9 +341,9 @@ class AttnGNN(nn.Module):
         ])
         self.norms = nn.ModuleList([BatchNorm(node_features) for _ in range(transport_distance)])
 
-        # ------------------------------------------------------------------
-        # Edge‑wise MLP – final head outputs max_nodes**2 logits
-        # ------------------------------------------------------------------
+        
+        # Edge-wise MLP – final head outputs max_nodes**2 logits
+        
         self.edge_mlp = nn.Sequential(
             nn.Linear(node_features * 2 + edge_features, 64),
             nn.ReLU(),
@@ -383,43 +369,43 @@ class AttnGNN(nn.Module):
     def forward(self, data):
         """
         Returns
-        -------
+        ---
         adj : Tensor of shape (max_nodes, max_nodes)
-              Values are forced into the interval [0, 1] (no soft‑max).
+              Values are forced into the interval [0, 1] (no soft-max).
         """
         x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
 
-        # ------------------------------------------------------------------
-        # Edge‑attention preprocessing
-        # ------------------------------------------------------------------
+        
+        # Edge-attention preprocessing
+        
         x, edge_index, edge_attr = self.edge_attention(x, edge_index, edge_attr)
 
-        # ------------------------------------------------------------------
+        
         # Graph convolutions
-        # ------------------------------------------------------------------
+        
         for conv, bn in zip(self.convs, self.norms):
             x = F.relu(bn(conv(x, edge_index, edge_attr)))
 
-        # ------------------------------------------------------------------
+        
         # Build edge representations
-        # ------------------------------------------------------------------
+        
         src = x[edge_index[0]]
         dst = x[edge_index[1]]
         edge_rep = torch.cat([src, dst, edge_attr], dim=-1)
 
-        # ------------------------------------------------------------------
-        # Deep MLP → (E, max_nodes²) logits
-        # ------------------------------------------------------------------
-        edge_logits = self.edge_mlp(edge_rep)          # (E, max_nodes²)
+        
+        # Deep MLP --> (E, max_nodes^2) logits
+        
+        edge_logits = self.edge_mlp(edge_rep)          # (E, max_nodes^2)
 
-        # ------------------------------------------------------------------
-        # Aggregate across edges → one vector per graph
-        # ------------------------------------------------------------------
-        graph_logits = edge_logits.mean(dim=0)         # (max_nodes²,)
+        
+        # Aggregate across edges --> one vector per graph
+        
+        graph_logits = edge_logits.mean(dim=0)         # (max_nodes^2,)
 
-        # ------------------------------------------------------------------
+        
         # Reshape + sigmoid to squeeze into [0, 1]
-        # ------------------------------------------------------------------
+        
         adj = graph_logits.view(self.max_nodes, self.max_nodes)   # (max_nodes, max_nodes)
         adj = torch.sigmoid(adj)                                 # now in [0, 1]
 

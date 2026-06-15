@@ -21,25 +21,22 @@ def inf_data_gen(
     seed: int | None = None,
     size: int = 0
 ) -> MGRavensDataset:
-    # ------------------------------------------------------------------
+
     # 0  Initialise RNG (optional reproducibility)
-    # ------------------------------------------------------------------
     if seed is not None:
         random.seed(seed)
 
 
-    # ------------------------------------------------------------------
+
     # 1  setup new dataset so the original stays pristine.
-    # ------------------------------------------------------------------
     X_mgr = copy.deepcopy(mgr)
     raw_data = copy.deepcopy(X_mgr.raw_data)
     X_mgr.raw_data = [] #X data for learning
     Y_inf = [] #infeasibility values for target
 
 
-    # ------------------------------------------------------------------
+
     # 2  Create Errors in the data 
-    # ------------------------------------------------------------------
     data_generated = 0
     rng = np.random.default_rng()
     while data_generated < size: 
@@ -57,7 +54,7 @@ def inf_data_gen(
                 target_object[source_name]["EnergyConsumer.q"] = source_data.get("EnergyConsumer.q")*rng.normal(loc=mean, scale=std)
 
         #store modified input X
-        X_mgr.raw_data.append([file_name,ravens_data])    
+        X_mgr.raw_data.append([file_name,ravens_data, ravens_data_prime[1]])
 
         #store resulting output Y 
         Y_inf.append(inf_score(ravens_data))
@@ -78,7 +75,7 @@ def system_demand_not_met(pmd_output):
     expected_losses = 0.0
     pm_solution = pmd_output['solution']
     
-    # Process generation - directly using 'gen' which we know exists
+    # Process generation 
     if "gen" in pm_solution:
         for gen in pm_solution["gen"].values():
             if "pg" in gen:
@@ -90,7 +87,7 @@ def system_demand_not_met(pmd_output):
                     # Handle single value case
                     total_generation += float(pg_value)
     
-    # Process load - directly using 'load' which we know exists
+    # Process load
     if "load" in pm_solution:
         for load in pm_solution["load"].values():
             if "pd" in load:
@@ -102,7 +99,7 @@ def system_demand_not_met(pmd_output):
                     # Handle single value case
                     total_load += float(pd_value)
     
-    # Calculate branch losses - directly using 'branch' which we know exists
+    # Calculate branch losses
     if "branch" in pm_solution:
         for branch in pm_solution["branch"].values():
             if "pf" in branch and "pt" in branch:
@@ -123,15 +120,6 @@ def system_demand_not_met(pmd_output):
     
 
 def analyze_branch_infeasibility(pmd_output):
-        """
-        Analyzes the infeasibility of transformer parameters from PowerModelsDistribution output.
-        
-        Args:
-            pmd_output (dict): The PowerModelsDistribution output dictionary
-        
-        Returns:
-            dict: A dictionary mapping branch/transformer names to their infeasibility metrics
-        """
         if 'solution' not in pmd_output or 'branch' not in pmd_output['solution']:
             return {"error": "No branch/transformer data found in the solution"}
         
@@ -139,8 +127,6 @@ def analyze_branch_infeasibility(pmd_output):
         infeasibility_metrics = {}
         
         for branch_id, branch in branch_data.items():
-            # For transformers, we need different metrics than for lines
-            
             # Calculate star impedance r infeasibility
             r_infeasibility = 0
             if 'cr_fr' in branch and 'cr_to' in branch:

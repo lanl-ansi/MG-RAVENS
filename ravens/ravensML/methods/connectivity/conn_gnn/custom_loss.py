@@ -16,11 +16,11 @@ from framework.tools.pf_inf_approx.data import MG_Inf_Dataset
 
 class AdjMSELoss(nn.Module):
     """
-    Weighted mean‑squared‑error between a predicted adjacency matrix and the
+    Weighted mean-squared-error between a predicted adjacency matrix and the
     target matrix stored in ``target.y["missing_edges"]``.
 
     The loss can optionally:
-      * ignore the diagonal (self‑loops),
+      * ignore the diagonal (self-loops),
       * amplify the contribution of *positive* edges via ``pos_weight`` (β),
       * be multiplied by a global scaling factor ``K`` (useful when the loss
         is combined with other objectives).
@@ -31,7 +31,7 @@ class AdjMSELoss(nn.Module):
         If ``True`` the diagonal entries are masked out before the loss is
         computed.
     reduction : str, default='mean'
-        Reduction mode passed to ``torch.nn.functional.mse_loss`` – can be
+        Reduction mode passed to ``torch.nn.functional.mse_loss`` - can be
         ``'mean'``, ``'sum'`` or ``'none'``.
     K : float | torch.Tensor, default=1.0
         Positive scaling factor applied **after** the reduction.
@@ -88,11 +88,11 @@ class AdjMSELoss(nn.Module):
 
 class PIAdjMSELoss(nn.Module):
     """
-    Weighted mean‑squared‑error between a predicted adjacency matrix and the
+    Weighted mean-squared-error between a predicted adjacency matrix and the
     target matrix stored in ``target.y["missing_edges"]``.
 
     The loss can optionally:
-      * ignore the diagonal (self‑loops),
+      * ignore the diagonal (self-loops),
       * amplify the contribution of *positive* edges via ``pos_weight`` (β),
       * be multiplied by a global scaling factor ``K`` (useful when the loss
         is combined with other objectives).
@@ -103,7 +103,7 @@ class PIAdjMSELoss(nn.Module):
         If ``True`` the diagonal entries are masked out before the loss is
         computed.
     reduction : str, default='mean'
-        Reduction mode passed to ``torch.nn.functional.mse_loss`` – can be
+        Reduction mode passed to ``torch.nn.functional.mse_loss`` - can be
         ``'mean'``, ``'sum'`` or ``'none'``.
     K : float | torch.Tensor, default=1.0
         Positive scaling factor applied **after** the reduction.
@@ -140,8 +140,9 @@ class PIAdjMSELoss(nn.Module):
         self.model.load_state_dict(state_dict) 
         self.check_feas = MG_Inf_Dataset(
             root=rML_ROOT,
+            path = "data/seg_data",
             size=0,
-            error_kwargs={"mean": 0.0,"std": 0.0},
+            synth_kwargs={"mean": 0.0,"std": 0.0},
         )
 
 
@@ -193,9 +194,10 @@ class PIAdjMSELoss(nn.Module):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         dataset = MGConnDataset(
             root=rML_ROOT,
+            path = "data/seg_data",
             max_nodes=20,
-            size=1,
-            error_kwargs={"del_e_prob": 0.15},
+            size=2,
+            synth_kwargs={"del_e_prob": 0.15},
         )
 
         # input / output dimensions 

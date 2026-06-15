@@ -292,7 +292,6 @@ class MGRavensDataset:
                         # Add transformer as an edge with transformer-specific attributes
                         G.add_edge(from_bus, to_bus, 
                                     key=xfmr_id,
-                                    type='transformer',
                                     id=xfmr_id,
                                     R=R_mat,
                                     X=X_mat,
@@ -340,7 +339,15 @@ class MGRavensDataset:
             edge_indices[branch_id].append([v_idx, u_idx])  # Bidirectional
             
             # Edge features
-            edge_type = 1.0 if data.get('edge_type') == 'transformer' else 0.0  # Edge type feature (0=line, 1=transformer)
+            edge_type = data.get('edge_type')
+            if edge_type == "line":
+                edge_type = 0
+            elif edge_type == "switch":
+                edge_type = 1
+            elif edge_type == "transformer":
+                edge_type = 2
+            else: #all others
+                edge_type = 3
             
             features = {
                 "name": data.get('name',"NO_NAME"),
@@ -349,12 +356,11 @@ class MGRavensDataset:
                 "X": data.get('X', [0.0]),
                 "G": data.get('G', [0.0]),
                 "B": data.get('B', [0.0]),
-                "Edge Type": edge_type, #1 = Transformer, 0 = Other Edge
                 # "Rated_S": data.get('RS', [0.0]), #Transformer Rated S (if applicable)
                 # "Rated_U": data.get('RU', [0.0]), #Transformer Rated U (if applicable)
                 "Tap": data.get('tap', 1.0) if edge_type else 0.0,  # Transformer tap ratio (if applicable)
                 "Shift": data.get('shift', 0.0) if edge_type else 0.0,  # Phase shift angle (if applicable)
-                "edge_type": edge_type  # Store the edge type as a string
+                "edge_type": edge_type 
             }
             edge_features[branch_id] = features
         
@@ -404,8 +410,10 @@ class MGRavensDataset:
         # Prepare edge colors based on edge type
         edge_colors = []
         for u, v, data in G.edges(data=True):
-            if data.get('type') == 'transformer':
+            if data.get('edge_type') == 'transformer':
                 edge_colors.append('orange')  # Transformers
+            elif data.get('edge_type') == 'switch':
+                edge_colors.append('red')     # Switches
             else:
                 edge_colors.append('black')   # Lines
         
@@ -421,7 +429,8 @@ class MGRavensDataset:
             Line2D([0], [0], marker='o', color='w', markerfacecolor='red', markersize=10, label='Load'),
             Line2D([0], [0], marker='o', color='w', markerfacecolor='blue', markersize=10, label='Bus'),
             Line2D([0], [0], color='black', lw=2, label='Line'),
-            Line2D([0], [0], color='orange', lw=2, label='Transformer')
+            Line2D([0], [0], color='orange', lw=2, label='Transformer'),
+            Line2D([0], [0], color='red', lw=2, label='Switch')
         ]
         plt.legend(handles=legend_elements, loc='upper right')
         
@@ -446,9 +455,7 @@ class MGRavensDataset:
 
 
     def read_data(self,file_path):
-        # ------------------------------------------------------------------
         # 1 Load the raw JSON
-        # ------------------------------------------------------------------
         path = Path(file_path)
         if not path.is_file():
             raise FileNotFoundError(f"Unable to locate JSON file: {file_path}")
@@ -456,9 +463,7 @@ class MGRavensDataset:
         with path.open("r") as f:
             raw = json.load(f)
 
-        # ------------------------------------------------------------------
-        # 2 Re‑create the NetworkX graph from the stored lists
-        # ------------------------------------------------------------------
+        # 2 Re-create the NetworkX graph from the stored lists
         graph_info = raw.get("graph")
         if graph_info is None:
             raise ValueError("JSON does not contain a 'graph' entry.")

@@ -1,11 +1,11 @@
 # ravensML
 
-## Leveraging Pytorch ML tools on MG-RAVENS grids
+## Leveraging PyTorch ML Tools on MG-RAVENS Grids
 
-**Workflow:**
+**Workflow:** 
 
 ```txt
-DSS --> XML --> MG-RAVENS --> ravensML --> Pytorch-PyGraph -> GNN Frameworks
+DSS --> XML --> MG-RAVENS --> ravensML --> Pytorch-PyGeometric -> GNN Frameworks
                                 |               └─> PI-GNN Frameworks supported by PMD
                                 └─> Custom Methods
 ```
@@ -67,7 +67,7 @@ MGR = MGRavensDataset(data_dir="ravens/ravensML/data/raw")
 #optionally reload from a new data path
 MGR.load_data("ravens/ravensML/data/raw")
 
-#runs the conversation of MG-Ravens data to ravensML objects
+#runs the conversion of MG-Ravens data to ravensML objects
 MGR.process_for_ML()
 
 #reference examples
@@ -76,7 +76,7 @@ MGR.process_for_ML()
 print(MGR[0][2].keys()) #print 0th file's ML object keys 
 print(MGR[0][2]['node_features']) #print 0th file's node features
 
-#visualize the 2nd file using networkx and and matplotlib
+#visualize the 2nd file using networkx and matplotlib
 MGR.visualize_graph(2)
 
 #save a json representation of the graph in a json object
@@ -92,7 +92,7 @@ The `grid_segmenter` class in `ravens/ravensML/framework/grid_segmenter.py` prov
 **Usage:**
 
 ```python
-#Initialize the `grid_segmenter` class with an optional base graph
+#initialize the `grid_segmenter` class with an optional base graph
 from ravens.ravensML.framework.grid_segmenter import grid_segmenter
 
 gs = grid_segmenter(base_graph=None, PF_Val=False)
@@ -163,7 +163,39 @@ The `dict_to_pyg` function in `data.py` converts the dictionary produced by `MGR
 4. Build a uniform edge feature matrix `edge_attr` by padding the impedance/admittance matrices to the maximum phase count.
 5. Return the `torch_geometric.data.Data` object with the computed tensors.
 
-We have also included a template class `MGTransformerDataset` in `ravens/ravensML/framework/templates/t_pyg_dataset.py` that provides a PyG `InMemoryDataset` wrapper around the MG-RAVENS data.
+### PyTorch Dataset Wrapper Template
+
+ravensML provides a template class for many of the above steps needed to convert MG-RAVENS data to ravensML and then to a PyTorch dataset. All that is left to the user is to implement the `_get_target()` method and optionally implement the `_apply_synth_transform()` method.
+
+`_get_target()` is the method through which the user designates the associated `y` value to serve as the target being predicted by the ML method for every input grid.
+
+`_apply_synth_transform()` allows the user to generate a series of synthetic datapoints given the provided directory of MG-RAVENS files yielding the following data pipeline.
+
+$$
+X \rightarrow [\text{Optional: }X_{synth} ] \rightarrow \text{NN} \rightarrow y
+$$
+
+In this case, `get_target()` pulls the pre-calculated network power flow shortfall and sets it as the Y value for datapoint `i` without need for further calculation. 
+
+`_apply_synth_transform()` calls `inf_data_gen()`, which performs the following operations:
+
+1. Selects `target_size` files from the input `mgr` dataset without replacement
+2. Applies Gaussian noise with mean and standard deviation specified at instantiation through `error_kwargs = {"mean": 0.0, "std": 0.5}`
+3. Runs a power flow computation through PowerModelsDistribution
+4. Stores the results
+
+```Python
+class Implemented_MG_Dataset(t_MG_Dataset):
+    def _get_target(self, i, mgr_path, corrupt_dict, corrupt_data, aux):
+        return #TODO: return target y value from input parameters
+    
+    def _apply_synth_transform(self,mgr,target_size):
+        from framework.tools.pf_inf_approx.inf_data_gen import inf_data_gen
+        (modified_X, corresponding_Y) = inf_data_gen()
+        modified_X.process_for_ML()
+        aux = {"Processed Y Output": corresponding_Y} #stores the results of the transform in an auxiliary data dictionary.
+        return modified_X, aux
+```
 
 ## Developer Guide
 
@@ -186,11 +218,11 @@ This may require you to modify the following path line in the code in whatever f
 julia_path = rML_ROOT.parents[4]/'.juliaup/bin/julia'
 ```
 
-The current implementation assumes the `.juliaup` directory exists in a directory that is the parent of the parent of MG-RAVENS. This is a work in progress.
+The current implementation assumes the `.juliaup` directory exists in a directory that is the parent of the parent of MG-RAVENS.
 
 ### Physics Informed Components
 
-The easiest way to implement physics informed constraints is to train a Pytorch GNN on the results of a `PowerModelsDistribution.jl` computation. One such method is provided in `framework.tools.pf_inf_approx` and is helpful for adding a differentiable loss term that should help the model learn to produce demand feasible outputs. This is used in both the transformer and connectivity example methods. 
+The easiest way to implement physics informed constraints is to train a Pytorch GNN on the results of a `PowerModelsDistribution.jl` computation. One such method is provided in `framework.tools.pf_inf_approx` and is helpful for adding a differentiable loss term that should help the model learn to produce demand feasible outputs. This is used in both the transformer and connectivity example methods.
 
 ### Training Tools
 

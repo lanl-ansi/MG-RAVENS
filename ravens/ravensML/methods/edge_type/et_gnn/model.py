@@ -1,23 +1,19 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch_geometric.nn import BatchNorm, PNAConv
+from torch_geometric.nn import PNAConv, BatchNorm
 
 
 class SimpleGNN(nn.Module):
     """
-    Parameters
-    ----------
-    node_features : int
-        Dimensionality of node feature vectors.
-    edge_features : int
-        Dimensionality of edge feature vectors.
-    degree : int
-        Maximum node degree in the training graphs (required by PNA).
-    max_nodes : int
-        Upper bound on the number of nodes a graph can have.
-    transport_distance : int, default 5
-        Number of successive PNA message-passing steps.
+    Graph-Neural-Network that predicts, for every possible edge (i, j),
+    a categorical distribution over the five classes  [-1, 0, 1, 2, 3].
+
+    Returns
+    -------
+    probs : Tensor of shape (max_nodes, max_nodes, 5)
+            probs[i, j, c] = P(class == class_list[c] | graph)
+            The three last dimensions sum to 1 for each (i, j).
     """
 
     def __init__(
@@ -29,17 +25,15 @@ class SimpleGNN(nn.Module):
         transport_distance: int = 5,
     ):
         super().__init__()
-
-    
-        # Cast to plain Python ints – safeguards against tensors/np scalars.
+        #basic parameters
         self.degree = degree
         self.max_nodes = int(max_nodes)
-
+        self.num_classes = 5                     # [-1, 0, 1, 2, 3]
         aggregators = ["mean", "min", "max", "std"]
         scalers = ["identity", "amplification", "attenuation"]
 
-    
-        # PNA graph convolutions (unchanged)
+
+        # PNA graph convolutions
         self.convs = nn.ModuleList(
             [
                 PNAConv(
@@ -61,8 +55,8 @@ class SimpleGNN(nn.Module):
             [BatchNorm(node_features) for _ in range(transport_distance)]
         )
 
-    
-        # Edge-wise MLP – final head outputs `max_nodes ** 2` logits.
+
+        # Edge-wise MLP
         self.edge_mlp = nn.Sequential(
             nn.Linear(node_features * 2 + edge_features, 64),
             nn.ReLU(),
@@ -93,28 +87,47 @@ class SimpleGNN(nn.Module):
             nn.Linear(128, 64),
             nn.Dropout(0.15),
             nn.ReLU(),
-            nn.Linear(64, 1),
+            nn.Linear(64, self.max_nodes * self.max_nodes * self.num_classes),
         )
 
-
-    # Forward pass
-
     def forward(self, data):
+        """
+        Parameters
+        ----------
+        data : torch_geometric.data.Data
+               Must contain ``x`` (node features), ``edge_index`` and ``edge_attr``.
+
+        Returns
+        -------
+        probs : Tensor (max_nodes, max_nodes, 5)
+                Probability distribution per (i, j) pair.
+        """
         x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
 
-        # Graph convolutions
+        #  Graph convolutions 
         for conv, bn in zip(self.convs, self.norms):
             x = F.relu(bn(conv(x, edge_index, edge_attr)))
 
-        # Edge representation: concat(src_node, dst_node, edge_attr)
+        #  Edge representation 
         src = x[edge_index[0]]
         dst = x[edge_index[1]]
-        edge_rep = torch.cat([src, dst, edge_attr], dim=-1)   # (E, 2*F + edge_features)
+        edge_rep = torch.cat([src, dst, edge_attr], dim=-1)      # (E, 2*F + edge_features)
 
-        # Deep MLP --> (E, max_nodes^2) logits
-        edge_logits = self.edge_mlp(edge_rep)                 # (E, max_nodes^2)
+        #  Deep MLP (E, max_nodes^2 * C) 
+        edge_logits = self.edge_mlp(edge_rep)                    # (E, max_nodes*max_nodes*C)
 
-        # Aggregate over edges --> a single value per graph.
-        adj = edge_logits.mean(dim=0)
+        #  Aggregate over all edges 
+        graph_logits = edge_logits.mean(dim=0)                    # (max_nodes*max_nodes*C,)
 
-        return adj
+        #  Reshape to (max_nodes, max_nodes, C) ---
+        logits = graph_logits.view(self.max_nodes,
+                                   self.max_nodes,
+                                   self.num_classes)       # (N, N, C)
+
+        # enforce symmetry 
+        logits = (logits + logits.transpose(0, 1)) / 2
+
+        # Convert to probabilities 
+        probs = F.softmax(logits, dim=-1) 
+
+        return probs
