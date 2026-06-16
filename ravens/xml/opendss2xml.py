@@ -923,7 +923,7 @@ class DssExport(RDFGraph):
                     else:
                         self.add_triple(node, f"EnergyConnectionProfile.dss{attr}", obj.Name)
                         if attr in ["Daily", "Yearly", "Duty", "CVRCurve"]:
-                            loadshape_uris.append(self._add_EnergyConsumerSchedule(subject_uri, obj))
+                            loadshape_uris.append(self._add_EnergyConsumerSchedule(subject_uri, loadshape=obj))
             self.uuid_map[f"EnergyConnectionProfile.{ecp_name}"] = str(node)
         else:
             for attr in ["Daily", "Duty", "Yearly", "CVRCurve"]:
@@ -1105,10 +1105,50 @@ class DssExport(RDFGraph):
                 self.add_triple(node, "PowerElectronicsConnectionPhase.phase", self.cim[f"SinglePhaseKind.{ph}"])
                 self.add_triple(node, "PowerElectronicsConnectionPhase.PowerElectronicsConnection", subject_uri)
 
+    def _add_CurveData(self, subject_uri: URIRef, sequence: int, value1: float, value2: float):
+        node = self.build_cim_obj("CurveData", skip_mrid=True)
+        self.add_triple(node, "CurveData.xvalue", sequence + 1)  # adjust/shift sequence number from 0 to 1.
+        self.add_triple(node, "CurveData.y1value", value1)
+        self.add_triple(node, "CurveData.y2value", value2)
+        self.add_triple(node, "CurveData.Curve", subject_uri)
+
+    def _add_Curve(self, subject_uri: URIRef, loadshape: altdss.LoadShape):
+        if f"Curve.{loadshape.Name}" not in self.uuid_map:
+            node = self.build_cim_obj("Curve", name=loadshape.Name)
+
+            pmult = loadshape.PMult
+            qmult = loadshape.QMult
+
+            if loadshape.UseActual:
+                self.add_triple(node, "Curve.y1Unit", "UnitSymbol.W")
+                self.add_triple(node, "Curve.y2Unit", "UnitSymbol.VAr")
+                pmult *= 1000
+                qmult *= 1000
+            else:
+                self.add_triple(node, "Curve.y1Unit", "UnitSymbol.none")
+                self.add_triple(node, "Curve.y2Unit", "UnitSymbol.none")
+
+            if qmult.size == 0:
+                qmult = pmult
+
+            for i, (p, q) in enumerate(zip(pmult, qmult)):
+                self._add_CurveData(node, i, p, q)
+
+            self.uuid_map[f"Curve.{loadshape.Name}"] = str(node)
+
+        return URIRef(self.uuid_map[f"Curve.{loadshape.Name}"])
+
+    def _add_PhotoVoltaicUnit_GenerationProfile(self, subject_uri: URIRef, solar: altdss.PVSystem):
+        profile = getattr(solar, "Daily")
+        if profile is not None:
+            node = self._add_Curve(subject_uri, profile)
+            self.add_triple(subject_uri, "PhotoVoltaicUnit.GenerationProfile", node)
+
     def _add_PhotoVoltaicUnit(self, subject_uri: URIRef, solar: altdss.PVSystem):
         node = self.build_cim_obj("PhotoVoltaicUnit", name=f"{solar.Name}_PVPanels")
         self.add_triple(node, "PowerElectronicsUnit.minP", min(solar.pctCutIn, solar.pctCutOut) / 100.0 * solar.kVA * 1000.0)
         self.add_triple(node, "PowerElectronicsUnit.maxP", solar.Pmpp * 1000.0)
+        self._add_PhotoVoltaicUnit_GenerationProfile(node, solar)
 
         self.add_triple(subject_uri, "PowerElectronicsConnection.PowerElectronicsUnit", node)
 
