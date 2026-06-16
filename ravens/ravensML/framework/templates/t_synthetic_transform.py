@@ -20,16 +20,13 @@ def t_generate_synthetic_transform(
     seed: int | None = None,
     size: int = 0
 ) -> MGRavensDataset:
-    # ------------------------------------------------------------------
     # 0  Initialise RNG (optional reproducibility)
-    # ------------------------------------------------------------------
     if seed is not None:
         random.seed(seed)
 
 
-    # ------------------------------------------------------------------
+
     # 1  setup new dataset so the original stays pristine.
-    # ------------------------------------------------------------------
     corrupted_mgr = copy.deepcopy(mgr)
     corrected_mgr = copy.deepcopy(mgr)
     raw_data = copy.deepcopy(corrupted_mgr.raw_data)
@@ -37,13 +34,12 @@ def t_generate_synthetic_transform(
     corrected_mgr.raw_data = [] #Y data for learning
 
 
-    # ------------------------------------------------------------------
-    # 2  Create Errors in the data 
-    # ------------------------------------------------------------------
+
+    # 2  Create Perturbations in the data 
     data_generated = 0
     #NOTE: generates a number of datapoints equal to `size`
     while data_generated < size: 
-        #generate clean data to modify to create errored input
+        #generate clean data to modify to create perturbed input
         data_generated += 1
         ravens_data_prime = copy.deepcopy(random.choice(raw_data))
         file_name,ravens_data=ravens_data_prime[0],ravens_data_prime[1]
@@ -51,7 +47,7 @@ def t_generate_synthetic_transform(
         #store correct output Y 
         corrected_mgr.raw_data.append([file_name,copy.deepcopy(ravens_data)]) 
 
-        #produce errored input X
+        #produce perturbed input X
         target_object = ravens_data.get(
             # TODO: DEFINE RAVENS ITEM
         )
@@ -62,7 +58,7 @@ def t_generate_synthetic_transform(
             #TODO: add math to modify parameter
             parameter = None #TODO: new value
 
-        #store errored input X
+        #store perturbed input X
         corrupted_mgr.raw_data.append([file_name,ravens_data])            
 
     return (corrupted_mgr, corrected_mgr)

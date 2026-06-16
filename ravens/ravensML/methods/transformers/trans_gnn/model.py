@@ -22,7 +22,7 @@ class SimpleGNN(nn.Module):
         ])
         self.norms = nn.ModuleList([BatchNorm(node_features) for _ in range(transport_distance)])
 
-        # Edge‑wise MLP (takes node embeddings + edge_attr as input)
+        # Edge-wise MLP (takes node embeddings + edge_attr as input)
         self.edge_mlp = nn.Sequential(
             nn.Linear(node_features * 2 + edge_features, 64),
             nn.ReLU(),
@@ -181,7 +181,7 @@ class AttnGNN(nn.Module):
         ])
         self.norms = nn.ModuleList([BatchNorm(node_features) for _ in range(transport_distance)])
 
-        # Edge‑wise MLP (takes node embeddings + edge_attr as input)
+        # Edge-wise MLP (takes node embeddings + edge_attr as input)
         self.edge_mlp = nn.Sequential(
             nn.Linear(node_features * 2 + edge_features, 64),
             nn.ReLU(),

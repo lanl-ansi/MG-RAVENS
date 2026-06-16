@@ -20,9 +20,9 @@ class GraphSearchConnectivity(object):
         2. Detect dead nodes (names starting with NOT_FOUND_).
         3. Gather edges that involve at least one dead node -> errored edges.
         4. Count, per dead node, how many distinct errored edges reference it.
-        5. Propose replacement edges for every dead node (k‑nearest by edit distance,
+        5. Propose replacement edges for every dead node (k-nearest by edit distance,
            then choose the candidate that minimises the number of connected components).
-        6. Produce a **single, pretty‑printed report** that contains all of the
+        6. Produce a **single, pretty-printed report** that contains all of the
            above information, including the proposed edges.
     """
 
@@ -48,7 +48,7 @@ class GraphSearchConnectivity(object):
                 if re.match(r'^NOT_FOUND_', node)
             ]
 
-            # 3  Collect errored edges and per‑node reference counts
+            # 3  Collect errored edges and per-node reference counts
             errored_edges, node_ref_counts = self._collect_errored_edges(
                 new_grid["graph"], dead_nodes
             )
@@ -58,7 +58,7 @@ class GraphSearchConnectivity(object):
             targets = [node for node in new_grid["graph"].nodes
                     if node not in dead_nodes]
 
-            # full edit‑distance matrix (NxM)
+            # full edit-distance matrix (NxM)
             edm = self.edit_distance(corrected_dead_nodes, targets)
 
             k = 3                                   # how many candidates per dead node
@@ -129,7 +129,7 @@ class GraphSearchConnectivity(object):
                             if repl is None:                     # no replacement -> truly missing
                                 clean_name = dead.replace("NOT_FOUND_", "")
                                 missing_nodes.append(clean_name)
-                            # If a replacement *was* found we already plan to re‑wire,
+                            # If a replacement *was* found we already plan to re-wire,
                             # so we ignore the edge here.
                             break
             else:
@@ -143,7 +143,7 @@ class GraphSearchConnectivity(object):
                             if repl is None:                     # no replacement -> truly missing
                                 clean_name = dead.replace("NOT_FOUND_", "")
                                 missing_nodes.append(clean_name)
-                            # If a replacement *was* found we already plan to re‑wire,
+                            # If a replacement *was* found we already plan to re-wire,
                             # so we ignore the edge here.
                             break
 
@@ -169,7 +169,7 @@ class GraphSearchConnectivity(object):
             new_grid["y_pred"] = {'Edges Needed':missing_edges,'Missing Nodes':missing_nodes}
 
             # ------------------------------------------------------
-            # Final pretty‑print
+            # Final pretty-print
             # ------------------------------------------------------
             # print(new_grid["connectivity_report"])
             self.output_data.append(new_grid)
@@ -186,11 +186,11 @@ class GraphSearchConnectivity(object):
         return list(nx.connected_components(grid["graph"]))
 
     # ------------------------------------------------------------------
-    # Helper: collect errored edges and per‑node counts 
+    # Helper: collect errored edges and per-node counts 
     # ------------------------------------------------------------------
     @staticmethod
     def _collect_errored_edges(G, dead_nodes):
-        dead_set = set(dead_nodes)                 # O(1) look‑ups
+        dead_set = set(dead_nodes)                 # O(1) look-ups
         errored_edges = set()                      # store as unordered frozenset
         node_ref_counts = Counter()
 
@@ -229,7 +229,7 @@ class GraphSearchConnectivity(object):
 
 
     # ------------------------------------------------------------------
-    # Helper: build the human‑readable report (now also prints proposals)
+    # Helper: build the human-readable report (now also prints proposals)
     # ------------------------------------------------------------------
     @staticmethod
     def _build_report(
@@ -241,7 +241,7 @@ class GraphSearchConnectivity(object):
         missing_nodes: List
     ) -> str:
         """
-        Assemble a multi‑line string that mirrors the original layout **and**
+        Assemble a multi-line string that mirrors the original layout **and**
         adds a section with the chosen replacement edges.
         """
         lines = []
@@ -254,7 +254,7 @@ class GraphSearchConnectivity(object):
         lines.append(f"Distinct Errored Edges     : {len(errored_edges)}")
         lines.append("")
 
-        # ---- Dead‑node reference counts -----------------------------
+        # ---- Dead-node reference counts -----------------------------
         if dead_nodes:
             lines.append("Dead Node Reference Counts:")
             for node in sorted(dead_nodes):
@@ -300,7 +300,7 @@ class GraphSearchConnectivity(object):
                 lines.append(f"  {dead_node!r} -> replace with {repl!r}")
 
                 if new_edges:
-                    # pretty‑print the edge list
+                    # pretty-print the edge list
                     edge_str = ", ".join(
                         f"({a!r}, {b!r})" for a, b in new_edges
                     )
@@ -347,7 +347,7 @@ class GraphSearchConnectivity(object):
         return previous[-1]
 
     # ------------------------------------------------------------------
-    # Full NxM edit‑distance matrix 
+    # Full NxM edit-distance matrix 
     # ------------------------------------------------------------------
     def edit_distance(self, src: Sequence[str], targets: Sequence[str]) -> List[List[int]]:
         src = list(src)

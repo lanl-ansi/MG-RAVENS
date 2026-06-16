@@ -29,7 +29,7 @@ torch.manual_seed(42)
 
 def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
                       MODEL_TYPE, NFD, EFD, DEG, TD,      # Model Spec
-                      NP, IP, TP, BFI,                    # Loss Spec
+                      NP, IP, TP,                    # Loss Spec
                       LR, WD,                             # optimizer
                       M, F, P,                            # scheduler
                       E,                                  # epochs
@@ -46,7 +46,7 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
 
     # Training Settings
     import custom_loss as cl
-    loss_fn = cl.PI_WMSE_Loss(3, neg_penalty=NP, inf_penalty=IP, test_percentage=TP, branch_inf_mode=BFI)
+    loss_fn = cl.PI_WMSE_Loss(3, neg_penalty=NP, inf_penalty=IP, test_percentage=TP)
     optimizer = optim.Adam(model.parameters(), lr=LR, weight_decay=WD)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode=M, factor=F, patience=P)
     epochs = E
@@ -113,7 +113,6 @@ def run_training_pass(Pass_ID, train_loader, val_loader,  # Base Parameters
             'neg_penalty': NP,
             'inf_penalty': IP,
             'test_percentage': TP,
-            'branch_inf_mode': BFI,
             'lr': LR,
             'weight_decay': WD,
             'transport_distance':TD
@@ -125,8 +124,9 @@ if __name__ == "__main__":
     # Setup Dataset
     dataset = MGTransformerDataset(
         root=rML_ROOT,
-        size=20000,
-        error_kwargs={"deletion_prob": 0.01, 
+        path = "data/seg_data",
+        size=10000,
+        synth_kwargs={"deletion_prob": 0.01, 
                     "occurrence_prob": 0.55,
                     "mult_mean": 1,
                     "mult_var": 2.25,
@@ -140,7 +140,7 @@ if __name__ == "__main__":
     train_set, val_set = torch.utils.data.random_split(dataset, [train_len, val_len])
 
     # data loaders
-    batch_size = 1  
+    batch_size = 1  #TODO: 120
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False)
 
@@ -163,26 +163,24 @@ if __name__ == "__main__":
         deg += torch.bincount(d, minlength=deg.numel())
 
     # Define hyperparameter grid
-    # param_grid = {
-    #     'model_type': [SimpleGNN, AttnGNN],
-    #     'neg_penalty': [10],
-    #     'inf_penalty': [1, 5],
-    #     'test_percentage': [0, .001],
-    #     'branch_inf_mode': [False,True],
-    #     'lr': [1e-3],
-    #     'weight_decay': [1e-5],
-    #     'transport_distance': [0,7,14]
-    # }
     param_grid = {
-        'model_type': [SimpleGNN],
+        'model_type': [AttnGNN],
         'neg_penalty': [10],
         'inf_penalty': [5],
-        'test_percentage': [0, 1],
-        'branch_inf_mode': [False,True],
-        'lr': [1e-3],
+        'test_percentage': [1],
+        'lr': [1e-4],
         'weight_decay': [1e-5],
-        'transport_distance': [7,14]
+        'transport_distance': [3]
     }
+    # param_grid = {
+    #     'model_type': [SimpleGNN],
+    #     'neg_penalty': [10],
+    #     'inf_penalty': [5],
+    #     'test_percentage': [0],
+    #     'lr': [1e-4],
+    #     'weight_decay': [1e-5],
+    #     'transport_distance': [0,7,14,18,20]
+    # }
     EPOCHS = 100
 
     # Generate all combinations of parameters
@@ -192,7 +190,6 @@ if __name__ == "__main__":
         param_grid['neg_penalty'],
         param_grid['inf_penalty'],
         param_grid['test_percentage'],
-        param_grid['branch_inf_mode'],
         param_grid['lr'],
         param_grid['weight_decay'],
         param_grid['transport_distance']
@@ -202,16 +199,16 @@ if __name__ == "__main__":
     
     # Run experiments
     for i, params in enumerate(param_combinations):
-        model_type, neg_penalty, inf_penalty, test_percentage, branch_inf_mode, lr, weight_decay, transport_distance = params
+        model_type, neg_penalty, inf_penalty, test_percentage, lr, weight_decay, transport_distance = params
         
-        pass_id = f"exp_{i}_model_{model_type.__name__}_td{transport_distance}_tp{test_percentage}_ip{inf_penalty}_bfi{branch_inf_mode}"
+        pass_id = f"exp_{i}_model_{model_type.__name__}_td{transport_distance}_tp{test_percentage}_ip{inf_penalty}"
         print(f"\n\n{'='*80}\nStarting experiment {pass_id}\n{'='*80}\n")
         
         result = run_training_pass(
             pass_id,
             train_loader, val_loader,
             model_type, node_feat_dim, edge_feat_dim, deg, transport_distance,
-            neg_penalty, inf_penalty, test_percentage, branch_inf_mode,
+            neg_penalty, inf_penalty, test_percentage,
             lr, weight_decay,
             'min', 0.5, 5,
             EPOCHS
@@ -232,5 +229,5 @@ if __name__ == "__main__":
         print(f"   Best Val Loss: {result['best_val_loss']:.6f}")
         print(f"   Final Train/Val: {result['final_train_loss']:.6f} / {result['final_val_loss']:.6f}")
         print(f"   Hyperparams: NP={result['hyperparams']['neg_penalty']}, IP={result['hyperparams']['inf_penalty']}, "
-              f"TP={result['hyperparams']['test_percentage']}, BFI={result['hyperparams']['branch_inf_mode']}, "
+              f"TP={result['hyperparams']['test_percentage']}, "
               f"LR={result['hyperparams']['lr']}, WD={result['hyperparams']['weight_decay']},  TD={result['hyperparams']['transport_distance']}")

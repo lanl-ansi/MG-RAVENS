@@ -24,7 +24,8 @@ def gen_conn_error(
     delete_prob: float = 0.05,
     del_e_prob: float = 0,
     seed: int | None = None,
-    size: int = 0
+    size: int = 0,
+    enforce_PE: bool = False
 ) -> MGRavensDataset:
     
     # ------------------------------------------------------------------
@@ -48,6 +49,9 @@ def gen_conn_error(
     while data_generated < size:
         data_generated += 1
         ravens_data_prime = random.choice(raw_data)
+        if enforce_PE:
+            ravens_data_prime = (ravens_data_prime[0],perm_equivar(ravens_data_prime[1]))
+
         file_name,ravens_data=copy.deepcopy(ravens_data_prime[0]),copy.deepcopy(ravens_data_prime[1])
         correction = {"Edges Needed":[],"Missing Nodes":[]}
 
@@ -86,3 +90,23 @@ def gen_conn_error(
         corrections.append(correction)
     
     return (corrupted_mgr,corrections)
+
+
+
+def perm_equivar(ravens):
+    pe_ravens = copy.deepcopy(ravens)
+    #Pop the Current List of Nodes and Edges
+    # print(pe_ravens)
+    node_list = list(pe_ravens["ConnectivityNode"].items())
+    edge_list = list(pe_ravens["PowerSystemResource"]["Equipment"]["ConductingEquipment"]["Conductor"]["ACLineSegment"].items())
+    pe_ravens["PowerSystemResource"]["Equipment"]["ConductingEquipment"]["Conductor"]["ACLineSegment"] = {}
+    pe_ravens["ConnectivityNode"] = {}
+    #Re-Insert under permutation
+    for i in range(len(node_list)):
+        candidate = node_list.pop(random.randrange(len(node_list)))
+        pe_ravens["ConnectivityNode"][candidate[0]] = candidate[1]
+    for i in range(len(edge_list)):
+        candidate = edge_list.pop(random.randrange(len(edge_list)))
+        pe_ravens["PowerSystemResource"]["Equipment"]["ConductingEquipment"]["Conductor"]["ACLineSegment"][candidate[0]] = candidate[1]
+    return pe_ravens
+

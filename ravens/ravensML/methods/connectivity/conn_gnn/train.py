@@ -21,20 +21,19 @@ from framework.tools.training_tools import train_epoch, validate
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
-TEST_NAME = "PI_STD_"
-#NOTE:setup the PI_STD currently running PI CONN
+TEST_NAME = "PI_STD_PE"
+MAX_NODES = 20
 
 # reproducibility
 torch.manual_seed(42)
 
-# -------------------------
-#   Dataset
-# -------------------------
+# Dataset
 dataset = MGConnDataset(
         root=rML_ROOT,
+        path = "data/seg_data",
         size=10000,
-        max_nodes=20,
-        error_kwargs={"del_e_prob": 0.15},
+        max_nodes=MAX_NODES,
+        synth_kwargs={"del_e_prob": 0.15,"enforce_PE":True},
 )
 
 
@@ -72,7 +71,7 @@ model = SimpleGNN(
     node_features=node_feat_dim,
     edge_features=edge_feat_dim,
     degree=deg,
-    max_nodes = 20,
+    max_nodes = MAX_NODES,
     transport_distance=10
 ).to(device)
 
@@ -80,10 +79,10 @@ model = SimpleGNN(
 #     node_features=node_feat_dim,
 #     edge_features=edge_feat_dim,
 #     degree=deg,
-#     max_nodes = 20,
+#     max_nodes = MAX_NODES,
 #     transport_distance=0).to(device)
 
-print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(20*20)}")
+print(f"Model initialized -> input dim {(node_feat_dim,edge_feat_dim)} output dim {(MAX_NODES*MAX_NODES)}")
 
 # Training Settings
 # loss_fn = nn.MSELoss()
@@ -101,19 +100,18 @@ loss_fn =  cl.PIAdjMSELoss(
     pos_weight=20.0,
     inf_penalty=5,
     test_percentage=1,
-    branch_inf_mode=False
 )
 optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-epochs = 400
+epochs = 20
 
 # training parameters
 best_val = float('inf')
 train_losses, val_losses = [], []
 
 for epoch in range(1, epochs + 1):
-    tr_loss = train_epoch(model, train_loader, loss_fn, optimizer, device)
-    va_loss = validate(model, val_loader, loss_fn, device)
+    tr_loss = train_epoch(model, train_loader, loss_fn, optimizer, device,MAX_NODES)
+    va_loss = validate(model, val_loader, loss_fn, device,MAX_NODES)
 
     train_losses.append(tr_loss)
     val_losses.append(va_loss)
@@ -129,9 +127,7 @@ for epoch in range(1, epochs + 1):
         torch.save(model.state_dict(), rML_ROOT/f"methods/connectivity/conn_gnn/tmp/{TEST_NAME}best_model.pth")
         print("  -> saved new best model")
 
-# -------------------------
 #   Plot losses
-# -------------------------
 plt.figure(figsize=(10, 5))
 plt.plot(train_losses, label="train")
 plt.plot(val_losses, label="val")
@@ -143,9 +139,6 @@ plt.tight_layout()
 plt.savefig(rML_ROOT/f"methods/connectivity/conn_gnn/tmp/{TEST_NAME}loss_plot.png")
 plt.close()
 
-# -------------------------
-#   Quick sanity check on a single graph
-# -------------------------
 model.eval()
 with torch.no_grad():
     sample = dataset[random.randint(0,len(dataset)-1)].to(device)     
@@ -155,7 +148,7 @@ with torch.no_grad():
     print("\nPredicted:")
     print(pred.detach().cpu().numpy())
 
-    # ---- ground‑truth matrix ----
+    # ---- ground-truth matrix ----
     print("\nTrue:")
     true_np = sample.y["missing_edges"].detach().cpu().numpy()
     print(true_np)

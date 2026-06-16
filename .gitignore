@@ -15,6 +15,11 @@ ravens/ravensML/methods/transformers/trans_gnn/tmp/
 ravens/ravensML/methods/transformers/trivial_solution/tmp/
 ravens/ravensML/methods/YZ/trivial_solution/tmp/
 ravens/ravensML/methods/connectivity/conn_gnn/tmp/
+ravens/ravensML/methods/edge_type/et_gnn/tmp/
+ravens/ravensML/framework/tools/pf_inf_approx/tmp/
+ravens/ravensML/framework/tools/tmp/
+ravens/ravensML/framework/tools/pf_inf_approx/inf_model_data/
+todo
 tmp.json
 
 

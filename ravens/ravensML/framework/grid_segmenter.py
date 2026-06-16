@@ -43,7 +43,7 @@ class grid_segmenter:
         output_path: str | None = None,
     ) -> dict:
         """
-        Produce a feasible sub‑grid (a “segment”) from ``MGR`` or from the
+        Produce a feasible sub-grid (a “segment”) from ``MGR`` or from the
         instance’s ``base_graph``.
 
         Parameters
@@ -51,18 +51,18 @@ class grid_segmenter:
         MGR : dict, optional
             A full MGRavens graph.  If omitted the object’s ``base_graph`` is used.
         min_nodes : int, optional
-            Desired minimum number of nodes in the returned sub‑grid.
+            Desired minimum number of nodes in the returned sub-grid.
         output_path : str, optional
-            Path to a JSON file where the resulting sub‑grid should be saved.
+            Path to a JSON file where the resulting sub-grid should be saved.
             If ``None`` (default) the graph is **not** written to disk.
 
         Returns
         -------
         dict
-            The sub‑grid as a Python dictionary.
+            The sub-grid as a Python dictionary.
         """
         # --------------------------------------------------------------
-        # Resolve the source graph and sanity‑check
+        # Resolve the source graph and sanity-check
         # --------------------------------------------------------------
         MGR = self.base_graph if MGR is None else MGR
         if MGR is None:
@@ -71,9 +71,7 @@ class grid_segmenter:
                 "`MGR`, or call `set_base_graph` first."
             )
 
-        # --------------------------------------------------------------
         # Begin the “search until a feasible graph is found” loop
-        # --------------------------------------------------------------
         complete = False
         while not complete:
             # 1 Start from a clean template
@@ -91,9 +89,7 @@ class grid_segmenter:
             node_path.append(start_node)
             seen.append((node_path, []))
 
-            # ----------------------------------------------------------
-            # Grow the sub‑grid until the node count constraint is met
-            # ----------------------------------------------------------
+            # Grow the sub-grid until the node count constraint is met
             while len(added_nodes) < min_nodes and seen:
                 target_node, target_edge = seen.popleft()
 
@@ -109,13 +105,11 @@ class grid_segmenter:
                     target_node, added_nodes, added_edges, seen
                 )
 
-            # ----------------------------------------------------------
-            # Post‑processing fixes (source bus, phase codes, etc.)
-            # ----------------------------------------------------------
+            # Post-processing fixes (source bus, phase codes, etc.)
             if ("ConnectivityNode", "sourcebus") not in added_nodes:
                 Sub_MGR = self._replace(Sub_MGR, start_node, "sourcebus")
 
-            # Normalise a few phase‑code strings that PowerModelsDistribution
+            # Normalise a few phase-code strings that PowerModelsDistribution
             # does not like.
             for old, new in (
                 ("PhaseCode.s1N", "PhaseCode.ABCN"),
@@ -125,12 +119,10 @@ class grid_segmenter:
             ):
                 Sub_MGR = self._replace(Sub_MGR, old, new)
 
-            # ----------------------------------------------------------
-            # Optional power‑flow validation
-            # ----------------------------------------------------------
+            # Optional power-flow validation
             if self.PF_Val:
                 warnings.warn(
-                    "PMD‑PF calculation currently has issues with multiple "
+                    "PMD-PF calculation currently has issues with multiple "
                     "phase codes that frequently appear in the file"
                 )
                 warnings.warn("PF validation logic not implemented")
@@ -146,9 +138,7 @@ class grid_segmenter:
             else:
                 complete = True
 
-        # --------------------------------------------------------------
         # Write the result to disk only when a path was supplied
-        # --------------------------------------------------------------
         if output_path is not None:
             # Ensure the parent directory exists
             os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
@@ -270,6 +260,12 @@ class grid_segmenter:
                         connected_names = [name for name in connected_names if name != f"ConnectivityNode::'{target_node[-1]}'"]
                         target_name = connected_names[0].split("'")[1] 
                         adj_node_path = self._find_obj_containing(target_name)[0]
+                    elif target_edge_path[-2] == "Switch":
+                        edge = self._get_item(target_edge_path)
+                        connected_names = [edge["ConductingEquipment.Terminals"][i]["Terminal.ConnectivityNode"] for i in range(len(edge["ConductingEquipment.Terminals"]))]
+                        connected_names = [name for name in connected_names if name != f"ConnectivityNode::'{target_node[-1]}'"]
+                        target_name = connected_names[0].split("'")[1] 
+                        adj_node_path = self._find_obj_containing(target_name)[0]
                     elif target_edge_path[-2] == "EnergyConsumer":
                         edge = self._get_item(target_edge_path)
                         adj_node_path = [] #Energy Consumers are edges without a second node
@@ -297,13 +293,13 @@ class grid_segmenter:
         leaf_set = set([
             "ACLineSegment", "ConnectivityNode", "PowerTransformer",
             "EnergyConsumer", "ShuntCompensator", "EnergySource",
-            "RatioTapChanger",
+            "RatioTapChanger","Switch"
         ])
 
         found_paths = set()
 
         def _walk(node, path):
-            """Recursive depth‑first walk through dicts / lists."""
+            """Recursive depth-first walk through dicts / lists."""
             if isinstance(node, dict):
                 for k, v in node.items():
                     _walk(v, path + [k])
@@ -313,7 +309,7 @@ class grid_segmenter:
             else:
                 # leaf value – compare with the target string
                 if node == search_target:
-                    # climb back until we hit a leaf‑type key
+                    # climb back until we hit a leaf-type key
                     for i in range(len(path) - 1, -1, -1):
                         key = path[i]
                         if isinstance(key, str) and key in leaf_set:
@@ -325,7 +321,7 @@ class grid_segmenter:
 
         _walk(self.base_graph, [])
 
-        # convert back to list‑of‑lists for the public API
+        # convert back to list-of-lists for the public API
         return [list(p) for p in found_paths]
     
     def _run_pf(self,mgr_grid):
@@ -373,7 +369,7 @@ class grid_segmenter:
             if isinstance(item, dict):
                 new_dict = {}
                 for k, v in item.items():
-                    # key: only replace when it is a string; otherwise keep as‑is
+                    # key: only replace when it is a string; otherwise keep as-is
                     new_key = pattern.sub(new, k) if isinstance(k, str) else k
                     # value: recurse
                     new_dict[new_key] = _walk(v)
@@ -393,9 +389,6 @@ class grid_segmenter:
 
             return item
 
-        # ------------------------------------------------------------------
-        # Kick‑off the recursion
-        # ------------------------------------------------------------------
         return _walk(d)
 
 
@@ -404,7 +397,7 @@ if __name__ == "__main__":
     import sys
     sys.path.append(rML_ROOT.resolve().parents[0])
     from ravens.xml.opendss2xml import DssExport
-    from ravens.xml.xml2ravens import CrowsImport
+    from ravens.xml.xml2crows import CrowsImport
     from ravens.ravensML.framework.dataset import MGRavensDataset
 
     # d = DssExport(rML_ROOT/"data/IEEE8500/Master.dss")
@@ -417,9 +410,9 @@ if __name__ == "__main__":
     # DS.process_for_ML()
     # DS.visualize_graph()
 
-    GS = grid_segmenter(PF_Val=True)
+    GS = grid_segmenter(PF_Val=False)
     GS.load_from_file(rML_ROOT/"framework/segmenter_test_data/segmenter.json")
-    sub_MGR = GS.yield_graph(min_nodes=10,
+    sub_MGR = GS.yield_graph(min_nodes=100,
                          output_path=rML_ROOT/"framework/tmp/results/sub_mgr.json")
 
     DS = MGRavensDataset(data_dir=rML_ROOT/"framework/tmp/results")

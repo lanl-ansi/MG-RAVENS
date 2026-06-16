@@ -1,6 +1,3 @@
-# --------------------------------------------------------------
-#  SimpleGNN  –  edge‑wise MLP returns a 2‑D matrix with values in [0, 1]
-# --------------------------------------------------------------
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -20,7 +17,7 @@ class SimpleGNN(nn.Module):
     max_nodes : int
         Upper bound on the number of nodes a graph can have.
     transport_distance : int, default 5
-        Number of successive PNA message‑passing steps.
+        Number of successive PNA message-passing steps.
     """
 
     def __init__(
@@ -33,18 +30,16 @@ class SimpleGNN(nn.Module):
     ):
         super().__init__()
 
-        # ------------------------------------------------------------------
+    
         # Cast to plain Python ints – safeguards against tensors/np scalars.
-        # ------------------------------------------------------------------
         self.degree = degree
         self.max_nodes = int(max_nodes)
 
         aggregators = ["mean", "min", "max", "std"]
         scalers = ["identity", "amplification", "attenuation"]
 
-        # ------------------------------------------------------------------
+    
         # PNA graph convolutions (unchanged)
-        # ------------------------------------------------------------------
         self.convs = nn.ModuleList(
             [
                 PNAConv(
@@ -66,9 +61,8 @@ class SimpleGNN(nn.Module):
             [BatchNorm(node_features) for _ in range(transport_distance)]
         )
 
-        # ------------------------------------------------------------------
-        # Edge‑wise MLP – final head outputs `max_nodes ** 2` logits.
-        # ------------------------------------------------------------------
+    
+        # Edge-wise MLP – final head outputs `max_nodes ** 2` logits.
         self.edge_mlp = nn.Sequential(
             nn.Linear(node_features * 2 + edge_features, 64),
             nn.ReLU(),
@@ -102,48 +96,25 @@ class SimpleGNN(nn.Module):
             nn.Linear(64, 1),
         )
 
-    # ------------------------------------------------------------------
+
     # Forward pass
-    # ------------------------------------------------------------------
+
     def forward(self, data):
-        """
-        Returns
-        -------
-        adj : Tensor of shape (max_nodes, max_nodes, params)
-              Values are squeezed into [0, 1] (no soft‑max).
-        """
         x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
 
-        # --------------------------------------------------------------
         # Graph convolutions
-        # --------------------------------------------------------------
         for conv, bn in zip(self.convs, self.norms):
             x = F.relu(bn(conv(x, edge_index, edge_attr)))
 
-        # --------------------------------------------------------------
         # Edge representation: concat(src_node, dst_node, edge_attr)
-        # --------------------------------------------------------------
         src = x[edge_index[0]]
         dst = x[edge_index[1]]
         edge_rep = torch.cat([src, dst, edge_attr], dim=-1)   # (E, 2*F + edge_features)
 
-        # --------------------------------------------------------------
-        # Deep MLP → (E, max_nodes²) logits
-        # --------------------------------------------------------------
-        edge_logits = self.edge_mlp(edge_rep)                # (E, max_nodes²)
+        # Deep MLP --> (E, max_nodes^2) logits
+        edge_logits = self.edge_mlp(edge_rep)                 # (E, max_nodes^2)
 
-        # --------------------------------------------------------------
-        # Aggregate over edges → a single vector per graph.
-        # --------------------------------------------------------------
-        graph_logits = edge_logits.mean(dim=0)               # (max_nodes²,)
-
-        # --------------------------------------------------------------
-        # Reshape → square matrix and squash to [0, 1] with sigmoid.
-        # --------------------------------------------------------------
-        adj = graph_logits.view(self.max_nodes, self.max_nodes)   # (max_nodes, max_nodes)
-        adj = torch.sigmoid(adj)                                 # now in [0, 1]
-
-        # optional: make symmetric for an undirected adjacency matrix
-        adj = (adj + adj.t()) / 2
+        # Aggregate over edges --> a single value per graph.
+        adj = edge_logits.mean(dim=0)
 
         return adj
