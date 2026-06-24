@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from copy import deepcopy
 from dataclasses import dataclass
 from pathlib import Path
@@ -9,6 +10,13 @@ from typing import Any
 import pandas as pd
 
 from ravens.schema import RavensSchema
+
+
+_INF_MKT_EXCLUDE_RX = re.compile(r"^(?:Inf[A-Z]|Mkt[A-Z])")
+
+
+def _is_inf_mkt_excluded_name(name: str) -> bool:
+    return bool(_INF_MKT_EXCLUDE_RX.match(str(name)))
 
 
 @dataclass(frozen=True)
@@ -140,8 +148,8 @@ class SchemaComparator:
                 .tolist()
             )
         )
-        global_excluded = [n for n in global_names if n.startswith(("Inf", "Mkt"))]
-        global_kept = [n for n in global_names if not n.startswith(("Inf", "Mkt"))]
+        global_excluded = [n for n in global_names if _is_inf_mkt_excluded_name(n)]
+        global_kept = [n for n in global_names if not _is_inf_mkt_excluded_name(n)]
 
         simp_pkg_ids = self._simplified_package_ids()
         sdgms = dgms[dgms["Package_ID"].isin(simp_pkg_ids)] if simp_pkg_ids else dgms.iloc[0:0]
@@ -161,8 +169,8 @@ class SchemaComparator:
             root_names = []
             kept_nonroot = []
         else:
-            excluded = [n for n in names if n.startswith(("Inf", "Mkt"))]
-            kept = [n for n in names if not n.startswith(("Inf", "Mkt"))]
+            excluded = [n for n in names if _is_inf_mkt_excluded_name(n)]
+            kept = [n for n in names if not _is_inf_mkt_excluded_name(n)]
             root_names = [n for n in names if n == "Root"]
             kept_nonroot = [n for n in kept if n != "Root"]
             if excluded and not kept:

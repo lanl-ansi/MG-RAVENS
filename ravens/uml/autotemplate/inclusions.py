@@ -5,6 +5,9 @@ import pandas as pd
 from ravens.uml import UMLData
 
 
+_NAME_EXCLUDE_RX = re.compile(r"^(?:Inf[A-Z]|Mkt[A-Z])")
+
+
 class UMLInclusions:
     def __init__(
         self,
@@ -125,7 +128,7 @@ class UMLInclusions:
 
             if self.exclude_inf_mkt_initial:
                 dname = dia_df.get("Name", pd.Series("", index=dia_df.index)).astype(str)
-                keep &= ~dname.str.startswith(("Inf", "Mkt"), na=False)
+                keep &= ~dname.str.match(_NAME_EXCLUDE_RX.pattern, na=False)
 
             self.allowed_diagrams = set(int(x) for x in did.loc[keep].dropna().tolist())
         else:
@@ -164,7 +167,7 @@ class UMLInclusions:
 
             if self.exclude_inf_mkt_initial:
                 name_ser = obj_df.get("Name", pd.Series("", index=obj_df.index)).astype(str)
-                keep_names = ~(name_ser.str.startswith(("Inf", "Mkt"), na=False))
+                keep_names = ~(name_ser.str.match(_NAME_EXCLUDE_RX.pattern, na=False))
                 kept_ids = set(int(x) for x in _colser(obj_df.loc[keep_names], "Object_ID").dropna().tolist())
                 allowed &= kept_ids
 

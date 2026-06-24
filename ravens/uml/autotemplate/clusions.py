@@ -8,7 +8,8 @@ import pandas as pd
 
 from ravens.uml.data import UMLData
 
-# EA package/name prefixes you often exclude
+# EA package/name prefixes you often exclude. Only treat Inf/Mkt as excluded
+# scope when the prefix is followed by an uppercase family marker, so Info stays.
 _NAME_EXCLUDE_RX = re.compile(r"^(?:Inf[A-Z]|Mkt[A-Z])")
 
 
@@ -162,12 +163,13 @@ class UMLInclusions:
             keep = pkg.isin(self.allowed_packages)
 
             # Optional Inf*/Mkt* *diagram-name* exclusion.
-            # If enabled, diagrams whose diagram Name starts with Inf/Mkt are removed from
+            # If enabled, diagrams whose diagram Name starts with Inf/Mkt followed
+            # by an uppercase family marker are removed from
             # allowed_diagrams and therefore contribute no objects/links/connectors.
             # (This is distinct from the object-name exclusion below.)
             if self.exclude_inf_mkt_initial:
                 dname = dia_df.get("Name", pd.Series("", index=dia_df.index)).astype(str)
-                keep &= ~dname.str.startswith(("Inf", "Mkt"), na=False)
+                keep &= ~dname.str.match(_NAME_EXCLUDE_RX.pattern, na=False)
 
             self.allowed_diagrams = set(int(x) for x in did.loc[keep].dropna().tolist())
         else:
@@ -207,7 +209,7 @@ class UMLInclusions:
             # Optional Inf*/Mkt* exclusion
             if self.exclude_inf_mkt_initial:
                 name_ser = obj_df.get("Name", pd.Series("", index=obj_df.index)).astype(str)
-                keep_names = ~(name_ser.str.startswith(("Inf", "Mkt"), na=False))
+                keep_names = ~(name_ser.str.match(_NAME_EXCLUDE_RX.pattern, na=False))
                 kept_ids = set(int(x) for x in _colser(obj_df.loc[keep_names], "Object_ID").dropna().tolist())
                 allowed &= kept_ids
 

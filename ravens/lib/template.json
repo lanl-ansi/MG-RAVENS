@@ -1830,11 +1830,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -1855,11 +1854,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -1880,11 +1878,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -1905,11 +1902,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -1930,11 +1926,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -1955,11 +1950,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2086,11 +2080,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2111,11 +2104,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2136,11 +2128,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2161,11 +2152,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2186,11 +2176,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2211,11 +2200,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2332,11 +2320,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2357,11 +2344,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2382,11 +2368,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2407,11 +2392,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2432,11 +2416,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -2457,11 +2440,10 @@
                                         "GeneratingUnit.GenUnitOpCostCurves": {
                                           "type": "array",
                                           "items": {
-                                            "type": "object",
-                                            "$arrayPosition": null,
-                                            "$objectType": "object",
+                                            "$objectType": "reference",
+                                            "type": "string",
                                             "$objectId": "GenUnitOpCostCurve",
-                                            "properties": {}
+                                            "$referencePath": "Curve/GenUnitOpCostCurve"
                                           }
                                         }
                                       }
@@ -5613,14 +5595,11 @@
                   "$referencePath": "AssetInfo/TapChangerInfo"
                 },
                 "TapChanger.SvTapStep": {
-                  "type": "array",
-                  "items": {
-                    "$objectType": "object",
-                    "$objectId": "SvTapStep",
-                    "type": "object",
-                    "$arrayPosition": null,
-                    "properties": {}
-                  }
+                  "$objectType": "object",
+                  "$objectId": "SvTapStep",
+                  "type": "object",
+                  "$arrayPosition": null,
+                  "properties": {}
                 },
                 "TapChanger.TapChangerControl": {
                   "$objectType": "object",
@@ -5663,14 +5642,11 @@
                   "$referencePath": "AssetInfo/TapChangerInfo"
                 },
                 "TapChanger.SvTapStep": {
-                  "type": "array",
-                  "items": {
-                    "$objectId": "SvTapStep",
-                    "$objectType": "object",
-                    "type": "object",
-                    "$arrayPosition": null,
-                    "properties": {}
-                  }
+                  "$objectId": "SvTapStep",
+                  "$objectType": "object",
+                  "type": "object",
+                  "$arrayPosition": null,
+                  "properties": {}
                 },
                 "TapChanger.TapChangerControl": {
                   "$objectType": "object",
@@ -6725,38 +6701,36 @@
       }
     },
     "ActivityRecord": {
-      "$objectType": "container",
+      "$objectType": "object",
       "type": "object",
-      "properties": {
-        "EnvironmentalEvent": {
-          "type": "array",
-          "items": {
-            "$objectType": "object",
-            "type": "object",
-            "$objectId": "EnvironmentalEvent",
-            "$arrayPosition": null,
-            "properties": {
-              "EnvironmentalEvent.EnvironmentalInformation": {
-                "type": "array",
-                "items": {
-                  "$objectType": "object",
-                  "type": "object",
-                  "$objectId": "EnvironmentalInformation",
-                  "$arrayPosition": null,
-                  "properties": {
-                    "EnvironmentalInformation.EnvironmentalPhenomenon": {
-                      "$objectType": "reference",
-                      "$objectId": "EnvironmentalPhenomenon",
-                      "$referencePath": "EnvironmentalPhenomenon",
-                      "type": "string"
-                    }
-                  }
-                }
+      "$objectId": "ActivityRecord",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "ActivityRecord",
+          "properties": {}
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "EnvironmentalEvent",
+          "properties": {
+            "EnvironmentalEvent.EnvironmentalInformation": {
+              "type": "array",
+              "items": {
+                "$objectType": "object",
+                "type": "object",
+                "$objectId": "EnvironmentalInformation",
+                "$arrayPosition": null,
+                "properties": {}
               }
             }
           }
         }
-      }
+      ]
     },
     "EnvironmentalPhenomenon": {
       "$objectType": "object",
@@ -7157,21 +7131,9 @@
         },
         "ProposedSiteLocation.Region": {
           "$objectType": "reference",
-          "$objectId": "GeographicalRegion",
-          "anyOf": [
-            {
-              "$objectType": "reference",
-              "$objectId": "GeographicalRegion",
-              "type": "string",
-              "$referencePath": "Group/GeographicalRegion"
-            },
-            {
-              "$objectType": "reference",
-              "$objectId": "SubGeographicalRegion",
-              "type": "string",
-              "$referencePath": "Group/SubGeographicalRegion"
-            }
-          ]
+          "$objectId": "SubGeographicalRegion",
+          "type": "string",
+          "$referencePath": "Group/SubGeographicalRegion"
         },
         "ProposedSiteLocation.LoadGroups": {
           "type": "array",
@@ -7340,8 +7302,8 @@
           "items": {
             "type": "string",
             "$objectType": "reference",
-            "$objectId": "GeographicalRegion",
-            "$referencePath": "Group/GeographicalRegion"
+            "$objectId": "SubGeographicalRegion",
+            "$referencePath": "Group/SubGeographicalRegion"
           }
         }
       }
@@ -7362,8 +7324,8 @@
               "type": "array",
               "items": {
                 "$objectType": "reference",
-                "$objectId": "GeographicalRegion",
-                "$referencePath": "Group/GeographicalRegion",
+                "$objectId": "SubGeographicalRegion",
+                "$referencePath": "Group/SubGeographicalRegion",
                 "type": "string"
               }
             },
@@ -7407,8 +7369,8 @@
               "type": "array",
               "items": {
                 "$objectType": "reference",
-                "$objectId": "GeographicalRegion",
-                "$referencePath": "Group/GeographicalRegion",
+                "$objectId": "SubGeographicalRegion",
+                "$referencePath": "Group/SubGeographicalRegion",
                 "type": "string"
               }
             },
@@ -7443,8 +7405,8 @@
               "type": "array",
               "items": {
                 "$objectType": "reference",
-                "$objectId": "GeographicalRegion",
-                "$referencePath": "Group/GeographicalRegion",
+                "$objectId": "SubGeographicalRegion",
+                "$referencePath": "Group/SubGeographicalRegion",
                 "type": "string"
               }
             },
@@ -8270,89 +8232,108 @@
       }
     },
     "Message": {
-      "type": "array",
-      "items": {
-        "$objectId": "Message",
-        "$objectType": "object",
-        "anyOf": [
-          {
-            "type": "object",
-            "$objectType": "object",
-            "$objectId": "Error",
-            "properties": {
-              "Message.Application": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Application",
-                "$referencePath": "Application"
-              },
-              "Message.Algorithm": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Algorithm",
-                "$referencePath": "Algorithm"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "$objectType": "object",
-            "$objectId": "Warning",
-            "properties": {
-              "Message.Application": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Application",
-                "$referencePath": "Application"
-              },
-              "Message.Algorithm": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Algorithm",
-                "$referencePath": "Algorithm"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "$objectType": "object",
-            "$objectId": "Info",
-            "properties": {
-              "Message.Application": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Application",
-                "$referencePath": "Application"
-              },
-              "Message.Algorithm": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Algorithm",
-                "$referencePath": "Algorithm"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "$objectType": "object",
-            "$objectId": "Debug",
-            "properties": {
-              "Message.Application": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Application",
-                "$referencePath": "Application"
-              },
-              "Message.Algorithm": {
-                "$objectType": "reference",
-                "type": "string",
-                "$objectId": "Algorithm",
-                "$referencePath": "Algorithm"
-              }
+      "$objectType": "object",
+      "type": "object",
+      "$objectId": "Message",
+      "$primaryObjectHash": "IdentifiedObject.name",
+      "$secondaryObjectHash": "IdentifiedObject.mRID",
+      "anyOf": [
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Message",
+          "properties": {
+            "Message.Algorithm": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
+            },
+            "Message.Application": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Application",
+              "$referencePath": "Application"
             }
           }
-        ]
-      }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Debug",
+          "properties": {
+            "Message.Algorithm": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
+            },
+            "Message.Application": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Application",
+              "$referencePath": "Application"
+            }
+          }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Error",
+          "properties": {
+            "Message.Algorithm": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
+            },
+            "Message.Application": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Application",
+              "$referencePath": "Application"
+            }
+          }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Info",
+          "properties": {
+            "Message.Algorithm": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
+            },
+            "Message.Application": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Application",
+              "$referencePath": "Application"
+            }
+          }
+        },
+        {
+          "$objectType": "object",
+          "type": "object",
+          "$objectId": "Warning",
+          "properties": {
+            "Message.Algorithm": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Algorithm",
+              "$referencePath": "Algorithm"
+            },
+            "Message.Application": {
+              "$objectType": "reference",
+              "type": "string",
+              "$objectId": "Application",
+              "$referencePath": "Application"
+            }
+          }
+        }
+      ]
     },
     "BasicIntervalSchedule": {
       "$objectType": "object",
