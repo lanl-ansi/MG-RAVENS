@@ -213,13 +213,21 @@ def get_ac_line_parameters(g: Graph, subj: URIRef, length: float, freq: float) -
                 f" r0={r0:6g} x0={x0:6g} c0={c0:6g}")
     return ""
 
+def get_mat_idx(nphases: int, row: int, col: int) -> int:
+    """Convert (row, col) to linear index for lower triangular matrix storage"""
+    if row < col:
+        row, col = col, row
+    return row * (row + 1) // 2 + col
 
-def get_impedance_matrix(g: Graph, pt_name: URIRef, pt_count: URIRef, subj: URIRef) -> str:
+def get_impedance_matrix(g: Graph, pt_name: URIRef, pt_count: URIRef, subj: URIRef, freq: float) -> str:
     pt_data = CIM["PhaseImpedanceData.PhaseImpedance"]
-    pt_seq  = CIM["PhaseImpedanceData.sequenceNumber"]
+    pt_row  = CIM["PhaseImpedanceData.row"]
+    pt_col  = CIM["PhaseImpedanceData.column"]
     pt_r    = CIM["PhaseImpedanceData.r"]
     pt_x    = CIM["PhaseImpedanceData.x"]
     pt_b    = CIM["PhaseImpedanceData.b"]
+
+    omega = 2.0 * 3.141592653589793 * freq  # Angular frequency
 
     nphases = safe_int(g, subj, pt_count, 0)
     size = sum(nphases - j for j in range(nphases))
@@ -229,13 +237,22 @@ def get_impedance_matrix(g: Graph, pt_name: URIRef, pt_count: URIRef, subj: URIR
     c_mat = [0.0] * size
 
     for r_data in g.subjects(pt_data, subj):
-        seq = safe_int(g, r_data, pt_seq, 1) - 1  # zero-based
+        row = safe_int(g, r_data, pt_row, 1) - 1  # convert to zero-based
+        col = safe_int(g, r_data, pt_col, 1) - 1  # convert to zero-based
+        
+        # Calculate linear index for lower triangular storage
+        # Ensure row >= col (lower triangle)
+        if row < col:
+            row, col = col, row
+        
+        seq = get_mat_idx(nphases, row, col)
+        
         if get_property_value(g, r_data, pt_r) is not None:
             r_mat[seq] = safe_double(g, r_data, pt_r, 0)
         if get_property_value(g, r_data, pt_x) is not None:
             x_mat[seq] = safe_double(g, r_data, pt_x, 0)
         if get_property_value(g, r_data, pt_b) is not None:
-            c_mat[seq] = safe_double(g, r_data, pt_b, 0) * 1.0e9 / 377.0
+            c_mat[seq] = safe_double(g, r_data, pt_b, 0) * 1.0e9 / omega
 
     buf  = f"nphases={nphases}"
     r_buf = " rmatrix=["
@@ -254,7 +271,6 @@ def get_impedance_matrix(g: Graph, pt_name: URIRef, pt_count: URIRef, subj: URIR
             c_buf += "| "
 
     return buf + r_buf + "]" + x_buf + "]" + c_buf + "]"
-
 
 # ---------------------------------------------------------------------------
 # Phase string helpers
@@ -1321,8 +1337,8 @@ def main():
         # ------------------------------------------------------------------
         total_load_kw = 0.0
         out.write("\n")
-        pt_p           = CIM["EnergyConsumer.pfixed"]
-        pt_q           = CIM["EnergyConsumer.qfixed"]
+        pt_p           = CIM["EnergyConsumer.p"]
+        pt_q           = CIM["EnergyConsumer.q"]
         pt_cust        = CIM["EnergyConsumer.customerCount"]
         pt_phs_load1   = CIM["EnergyConsumerPhase.EnergyConsumer"]
         pt_phs_load2   = CIM["EnergyConsumerPhase.phase"]
@@ -1515,7 +1531,7 @@ def main():
             name  = dss_name(safe_property(g, res, pt_name, ""))
             z_mat = "nphases=3 r0=0 r1=0 x0=0.001 x1=0.001 c0=0 c1=0"
             if get_property_value(g, res, pt_count) is not None:
-                z_mat = get_impedance_matrix(g, pt_name, pt_count, res)
+                z_mat = get_impedance_matrix(g, pt_name, pt_count, res, freq)
             out.write(f"new LineCode.{name} {z_mat}\n")
             out_guid.write(f"LineCode.{name}\t{dss_guid(lc_id)}\n")
 
