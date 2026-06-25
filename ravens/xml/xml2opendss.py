@@ -3,7 +3,7 @@ xml2opendss.py
 
 Python translation of CDPSM_to_DSS.java (originally Copyright 2009-2011 MelTran, Inc.)
 
-Converts a CIM16 RDF/XML file to OpenDSS input files.
+Converts a CIM100 RDF/XML file to OpenDSS input files.
 
 Dependencies:
     pip install rdflib
