@@ -1502,10 +1502,25 @@ class DssExport(RDFGraph):
             self.transformer_terminal_uris[f"Transformer={tr.Name}={i+1}"] = terminal_uri
             self.transformer_end_uris[f"Transformer={tr.Name}={i+1}"] = node
 
-    def _add_TransformerEndInfo(self, i: int, xfmrcode: altdss.XfmrCode, subject_uri: URIRef, ratShort: float, ratEmerg: float, Zbase: float):
+    def _add_TransformerEndInfo(self, i: int, xfmrcode: altdss.XfmrCode, subject_uri: URIRef, ratShort: float, ratEmerg: float):
+        """
+        Add TransformerEndInfo for a specific winding.
+        
+        Parameters:
+            i: Winding index (0-based)
+            xfmrcode: The transformer code object from altdss
+            subject_uri: URI of the parent TransformerTankInfo
+            ratShort: Short-term overload rating multiplier
+            ratEmerg: Emergency overload rating multiplier
+        """
+        # Calculate Zbase using THIS winding's own kV and kVA ratings
+        # Zbase = kV^2 / kVA (in ohms, with kV in kV and kVA in kVA)
+        Zbase = (xfmrcode.kVs[i] ** 2) / xfmrcode.kVAs[i]
+        
         node = self.build_cim_obj("TransformerEndInfo", name=f"{xfmrcode.Name}_{i+1}")
         self.add_triple(node, "TransformerEndInfo.TransformerTankInfo", subject_uri)
         self.add_triple(node, "TransformerEndInfo.endNumber", i + 1)
+        
         if xfmrcode.Phases < 3:
             self.add_triple(node, "TransformerEndInfo.connectionKind", self.cim["WindingConnection.I"])
 
@@ -1533,6 +1548,25 @@ class DssExport(RDFGraph):
         self.add_triple(node, "TransformerEndInfo.emergencyS", xfmrcode.kVAs[i] * 1000 * ratEmerg)
         self.add_triple(node, "TransformerEndInfo.r", xfmrcode.pctR[i] / 100.0 * Zbase)
         self.add_triple(node, "TransformerEndInfo.insulationU", 0.0)
+
+        return node
+
+    def _add_TransformerTankInfo(self, xfmrcode: altdss.XfmrCode, xfmrcode_name: str | None = None):
+        node = self.build_cim_obj("TransformerTankInfo", name=xfmrcode_name if xfmrcode_name is not None else xfmrcode.Name)
+        ratShort = xfmrcode.NormHkVA / xfmrcode.kVAs[0]
+        ratEmerg = xfmrcode.EmergHkVA / xfmrcode.kVAs[0]
+        transformer_ends = []
+        for i in range(xfmrcode.Windings):
+            Zbase = xfmrcode.kVs[i] ** 2 * 1000 / xfmrcode.kVAs[0]
+            transformer_ends.append(self._add_TransformerEndInfo(i, xfmrcode, node, ratShort, ratEmerg))
+
+        self._add_NoLoadTest(xfmrcode, transformer_ends[0], 1)
+
+        seq = 0
+        for i in range(xfmrcode.Windings):
+            for j in range(i + 1, xfmrcode.Windings):
+                seq += 1
+                self._add_ShortCircuitTest(xfmrcode, transformer_ends, seq, i, j)
 
         return node
 
