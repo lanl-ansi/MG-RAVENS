@@ -3,7 +3,7 @@ import pytest
 
 from ravens.schema import RavensValidator, RavensSchema
 
-validator = RavensValidator(schema=RavensSchema())
+validator = RavensValidator(schema=RavensSchema(template_source="hand"))
 
 @pytest.mark.parametrize("file", glob.glob("examples/schema/*.json"))
 def test_example(file):
