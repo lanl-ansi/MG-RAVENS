@@ -18,7 +18,7 @@ class SchemaTemplate:
         uml_graphs: UMLGraphs | None = None,
         uml_exclusions: UMLExclusions | None = None,
         omit_descriptions: bool = False,
-        source: str = "hand",
+        source: str = "auto",
     ) -> None:
         _uml_data: UMLData = UMLData() if uml_data is None else uml_data
 

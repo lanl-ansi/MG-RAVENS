@@ -27,7 +27,7 @@ class RavensSchema:
         omit_file_extension: bool = False,
         omit_license: bool = False,
         omit_descriptions: bool = False,
-        template_source: str = "hand",
+        template_source: str = "auto",
     ):
         if uml_data is None:
             uml_data = UMLData()
