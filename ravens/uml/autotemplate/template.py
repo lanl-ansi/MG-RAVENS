@@ -1,16 +1,12 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 import copy
 from collections import deque
-from pathlib import Path
-from typing import Any, Dict, List, Set, Tuple, Optional, Literal
+from typing import Any, Dict, List, Set, Tuple, Optional
 import networkx as nx
 
 
-
-def _default_template_auto_path() -> Path:
-    return Path(__file__).resolve().parents[2] / "lib" / "template_auto.json"
 
 STRUCTURAL_CONTAINERS = {"Root", "Group", "Groups", "Version", "Versions"}
 
@@ -2581,83 +2577,8 @@ class TemplateGenerator:
         self._last_auto = schema
         return schema
 
-    def _sort_properties(
-        self,
-        node: dict,
-        *,
-        template: dict | None = None,
-        mode: Literal["hand", "alpha", "none"] = "hand",
-    ) -> dict:
-        """
-        Reorder every nested `properties` dict.
-
-        mode="hand":  follow the hand template's property order; append extras Aâ€“Z
-        mode="alpha": sort all properties Aâ€“Z (no template needed)
-        mode="none":  leave insertion order as-is (no changes)
-
-        Returns the *same* dict (mutates in place).
-        """
-        if not isinstance(node, dict) or mode == "none":
-            return node
-
-        def recur(src: dict, tmpl: dict | None) -> dict:
-            if not isinstance(src, dict):
-                return src
-
-            # Recurse into children first so nested structures are sorted too
-            props = src.get("properties")
-            if isinstance(props, dict):
-                if mode == "hand" and isinstance(tmpl, dict):
-                    tmpl_props = tmpl.get("properties", {}) if isinstance(tmpl, dict) else {}
-                    # 1) keys in hand order; 2) extras Aâ€“Z
-                    ordered_keys = list(tmpl_props) + sorted(k for k in props if k not in tmpl_props)
-                elif mode == "alpha":
-                    ordered_keys = sorted(props)
-                    tmpl_props = {}
-                else:  # mode == "hand" but no template provided
-                    ordered_keys = sorted(props)
-                    tmpl_props = {}
-
-                new_props = {}
-                for k in ordered_keys:
-                    if k not in props:
-                        continue
-                    child_tmpl = tmpl_props.get(k, {}) if isinstance(tmpl_props, dict) else {}
-                    new_props[k] = recur(props[k], child_tmpl)
-                src["properties"] = new_props
-
-            # Keep anyOf stable (or sort by label if you prefer):
-            if isinstance(src.get("anyOf"), list):
-                # keep current order; if you want alpha, uncomment:
-                # src["anyOf"] = sorted(src["anyOf"], key=lambda d: (d.get("$objectId") or "").casefold())
-                pass
-
-            # Recurse into any other dict fields
-            for k, v in list(src.items()):
-                if k == "properties":
-                    continue
-                if isinstance(v, dict):
-                    tmpl_child = template.get(k, {}) if (mode == "hand" and isinstance(template, dict)) else None
-                    src[k] = recur(v, tmpl_child)
-
-            return src
-
-        return recur(node, template)
-    
     def _order_props_like_hand(self, props: dict) -> dict:
         if not isinstance(props, dict):
             return props
         return {k: props[k] for k in sorted(props, key=str.casefold)}
-
-
-    # -------------------- save helpers --------------------
-    def save_auto_template(self, auto_template: Optional[dict] = None) -> None:
-        """
-        Write the auto template JSON. If `auto_template` is not provided, use the
-        most recent `build()` result cached on this instance.
-        """
-        data = auto_template or getattr(self, "_last_auto", None)
-        if not isinstance(data, dict):
-            raise ValueError("No auto template provided and nothing cached from build().")
-        _default_template_auto_path().write_text(json.dumps(data, indent=2), encoding="utf-8")
 
