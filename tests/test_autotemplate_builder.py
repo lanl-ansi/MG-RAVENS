@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from ravens.uml.autotemplate.builder import AutoTemplateBuilder
@@ -101,3 +103,13 @@ def test_load_area_subloadareas_emits_family_pointer_array(raw_auto_template):
     assert subload_areas["items"]["$objectType"] == "reference"
     assert subload_areas["items"]["$objectId"] == "LoadArea"
     assert subload_areas["items"]["$referencePath"] == "Group/EnergyArea"
+
+
+def test_builder_save_writes_explicit_template(raw_auto_template, tmp_path):
+    out_path = tmp_path / "template_auto.json"
+    saved_path = AutoTemplateBuilder().save(out_path, data=raw_auto_template)
+
+    assert saved_path == out_path
+    saved = json.loads(out_path.read_text())
+    assert saved["title"] == "Root"
+    assert saved["properties"]
