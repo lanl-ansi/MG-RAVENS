@@ -27,13 +27,24 @@ class RavensSchema:
         omit_file_extension: bool = False,
         omit_license: bool = False,
         omit_descriptions: bool = False,
+        template_source: str = "hand",
     ):
         if uml_data is None:
             uml_data = UMLData()
 
         self.uml_data = uml_data
 
-        self.schema_template = SchemaTemplate(uml_data=uml_data, uml_graphs=uml_graphs, uml_exclusions=uml_exclusions, omit_descriptions=omit_descriptions) if schema_template is None else schema_template
+        self.schema_template = (
+            SchemaTemplate(
+                uml_data=uml_data,
+                uml_graphs=uml_graphs,
+                uml_exclusions=uml_exclusions,
+                omit_descriptions=omit_descriptions,
+                source=template_source,
+            )
+            if schema_template is None
+            else schema_template
+        )
 
         self.omit_descr = omit_descriptions
 
