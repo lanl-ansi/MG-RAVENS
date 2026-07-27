@@ -4,12 +4,21 @@ import pandas as pd
 import networkx as nx
 
 from ravens.uml.graph import UMLGraphs as BaseUMLGraphs
+from ravens.uml.selection import UMLSelection
 
 
 class UMLGraphs(BaseUMLGraphs):
-    def __init__(self, uml_data=None, inclusions=None):
-        super().__init__(uml_data=uml_data, inclusions=inclusions)
-        if inclusions is None:
+    def __init__(self, uml_data=None, selection=None, inclusions=None):
+        if selection is None:
+            selection = inclusions
+        super().__init__(uml_data=uml_data, selection=selection)
+        if selection is None:
+            self.selection = UMLSelection(
+                uml_data=self.uml_data,
+                packages=None,
+                exclude_inf_mkt_initial=False,
+                drop_objects_without_visible_generalization=False,
+            )
             self._build_autotemplate_graphs()
 
     def walk(

@@ -1,7 +1,7 @@
 import networkx as nx
 import pandas as pd
 
-from ravens.uml import UMLExclusions
+from ravens.uml import UMLExclusions, UMLSelection
 from ravens.uml.autotemplate.builder import UMLGraphs as BuilderGraphs
 from ravens.uml.autotemplate.clusions import UMLExclusions as AutoTemplateExclusions
 from ravens.uml.autotemplate.clusions import UMLInclusions
@@ -142,6 +142,7 @@ def _uml_data():
 
 def test_autotemplate_uses_shared_exclusions():
     assert AutoTemplateExclusions is UMLExclusions
+    assert UMLInclusions is UMLSelection
 
 
 def test_autotemplate_uses_shared_graphs():
@@ -183,19 +184,18 @@ def test_legacy_graph_interface():
 
 def test_autotemplate_graph_interface():
     uml_data = _uml_data()
-    inclusions = UMLInclusions(
+    selection = UMLSelection(
         uml_data=uml_data,
         packages=('SimplifiedDiagrams',),
-        auto_apply=False,
         exclude_inf_mkt_initial=False,
         exclude_hidden_links=True,
         drop_objects_without_visible_generalization=False,
     )
-    auto_graphs = AutoTemplateGraphs(uml_data=uml_data, inclusions=inclusions)
+    auto_graphs = AutoTemplateGraphs(uml_data=uml_data, selection=selection)
     graphs = UMLGraphs(
         uml_data=uml_data,
         exclusions=UMLExclusions(uml_data=uml_data),
-        inclusions=inclusions,
+        selection=selection,
     )
 
     assert nx.utils.graphs_equal(graphs.H, auto_graphs.H)
@@ -216,30 +216,39 @@ def test_autotemplate_graph_interface():
 
 def test_autotemplate_selection_uses_diagram_scope():
     uml_data = _uml_data()
-    inclusions = UMLInclusions(
+    selection = UMLSelection(
         uml_data=uml_data,
         packages=('SimplifiedDiagrams',),
-        auto_apply=False,
         exclude_inf_mkt_initial=False,
         drop_objects_without_visible_generalization=False,
     )
 
-    assert 10 in inclusions.allowed_packages
-    assert 11 not in inclusions.allowed_packages
-    assert {2, 3}.issubset(inclusions.allowed_objects)
+    assert 10 in selection.allowed_packages
+    assert 11 not in selection.allowed_packages
+    assert {2, 3}.issubset(selection.allowed_objects)
 
 
 def test_autotemplate_name_and_visibility_filters():
     uml_data = _uml_data()
-    inclusions = UMLInclusions(
+    selection = UMLSelection(
         uml_data=uml_data,
         packages=('SimplifiedDiagrams',),
-        auto_apply=False,
         drop_objects_without_visible_generalization=False,
     )
-    graphs = UMLGraphs(uml_data=uml_data, inclusions=inclusions)
+    graphs = UMLGraphs(uml_data=uml_data, selection=selection)
 
-    assert 5 in inclusions.allowed_objects
-    assert 6 not in inclusions.allowed_objects
-    assert 104 in inclusions.allowed_connectors
+    assert 5 in selection.allowed_objects
+    assert 6 not in selection.allowed_objects
+    assert 104 in selection.allowed_connectors
     assert any(data['ConnectorID'] == 104 for _, _, data in graphs.A.edges(data=True))
+
+
+def test_inf_mkt_exclusions_keep_info():
+    uml_data = _uml_data()
+    exclusions = UMLExclusions(uml_data=uml_data).exclude_by_name_startswith(['Inf', 'Mkt'])
+    graphs = UMLGraphs(uml_data=uml_data, exclusions=exclusions)
+
+    assert 5 not in exclusions.object_ids
+    assert 6 in exclusions.object_ids
+    assert 5 in graphs.gen_graph
+    assert 6 not in graphs.gen_graph

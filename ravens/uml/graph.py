@@ -8,40 +8,30 @@ import pandas as pd
 from . import common
 from .data import UMLData
 from .exclusions import UMLExclusions
-
-
-def _hidden_connector_ids_from_diagramlinks(uml_data, path_contains: str | None = "SimplifiedDiagrams") -> set[int]:
-    import re
-
-    dl = getattr(uml_data, "diagramlinks", None)
-    if dl is None or getattr(dl, "empty", True):
-        return set()
-    if "ConnectorID" not in dl.columns or "Hidden" not in dl.columns:
-        return set()
-
-    mask = dl["Hidden"] == True
-    if path_contains and "Path" in dl.columns:
-        mask &= dl["Path"].astype(str).str.contains(re.escape(path_contains), na=False)
-
-    return {int(x) for x in dl.loc[mask, "ConnectorID"].dropna().unique().tolist()}
+from .selection import UMLSelection
 
 
 class UMLGraphs:
-    def __init__(self, uml_data: UMLData | None = None, exclusions: UMLExclusions | None = None, schema_template=None, inclusions=None):
-        if inclusions is not None and getattr(inclusions, "filtered_uml_data", None) is not None:
-            uml_data = inclusions.filtered_uml_data
-            self.inclusions = None
-        else:
-            if uml_data is None:
-                uml_data = UMLData()
-            self.inclusions = inclusions
+    def __init__(
+        self,
+        uml_data: UMLData | None = None,
+        exclusions: UMLExclusions | None = None,
+        schema_template=None,
+        selection: UMLSelection | None = None,
+        inclusions=None,
+    ):
+        if selection is None:
+            selection = inclusions
+        build_autotemplate_graphs = selection is not None
+        if uml_data is None:
+            uml_data = selection.uml_data if selection is not None else UMLData()
 
         self.uml_data = uml_data
-
-        self.exclusions = UMLExclusions() if exclusions is None else exclusions
+        self.exclusions = UMLExclusions(uml_data=uml_data) if exclusions is None else exclusions
+        self.selection = selection or UMLSelection.from_exclusions(uml_data, self.exclusions)
         self.subgraphs = {}
 
-        if inclusions is None:
+        if not build_autotemplate_graphs:
             self.gen_graph = self.build_generalization_graph()
             self.attr_graph = self.build_attribute_graph()
             self.assoc_graph = self.build_association_graph()
@@ -95,7 +85,7 @@ class UMLGraphs:
                     },
                 )
                 for obj in self.uml_data.objects[self.uml_data.objects["Object_Type"] == "Class"].itertuples()
-                if pd.isnull(obj.Stereotype) and obj.Package_ID not in self.exclusions.package_ids and obj.Index not in self.exclusions.object_ids
+                if pd.isnull(obj.Stereotype) and self._allow("object", obj.Index)
             ]
         )
 
@@ -108,12 +98,11 @@ class UMLGraphs:
             if (
                 self.uml_data.objects.loc[c.Start_Object_ID]["Object_Type"] == "Class"
                 and self.uml_data.objects.loc[c.End_Object_ID]["Object_Type"] == "Class"
-                and self.uml_data.objects.loc[c.Start_Object_ID]["Package_ID"] not in self.exclusions.package_ids
-                and self.uml_data.objects.loc[c.End_Object_ID]["Package_ID"] not in self.exclusions.package_ids
                 and pd.isnull(self.uml_data.objects.loc[c.Start_Object_ID]["Stereotype"])
                 and pd.isnull(self.uml_data.objects.loc[c.End_Object_ID]["Stereotype"])
-                and c.Start_Object_ID not in self.exclusions.object_ids
-                and c.End_Object_ID not in self.exclusions.object_ids
+                and self._allow("object", c.Start_Object_ID)
+                and self._allow("object", c.End_Object_ID)
+                and self._allow("connector", c.Index)
             ):
                 GG.add_edge(
                     c.Start_Object_ID,
@@ -144,12 +133,11 @@ class UMLGraphs:
             if (
                 self.uml_data.objects.loc[c.Start_Object_ID]["Object_Type"] == "Class"
                 and self.uml_data.objects.loc[c.End_Object_ID]["Object_Type"] == "Class"
-                and self.uml_data.objects.loc[c.Start_Object_ID]["Package_ID"] not in self.exclusions.package_ids
-                and self.uml_data.objects.loc[c.End_Object_ID]["Package_ID"] not in self.exclusions.package_ids
                 and pd.isnull(self.uml_data.objects.loc[c.Start_Object_ID]["Stereotype"])
                 and pd.isnull(self.uml_data.objects.loc[c.End_Object_ID]["Stereotype"])
-                and c.Start_Object_ID not in self.exclusions.object_ids
-                and c.End_Object_ID not in self.exclusions.object_ids
+                and self._allow("object", c.Start_Object_ID)
+                and self._allow("object", c.End_Object_ID)
+                and self._allow("connector", c.Index)
             ):
                 AG.add_edge(
                     c.End_Object_ID,
@@ -182,27 +170,12 @@ class UMLGraphs:
         return AG
 
     def _allow(self, kind: str, id_value: int) -> bool:
-        inc = getattr(self, "inclusions", None)
-        if inc is None:
-            return True
-        if hasattr(inc, "allow") and callable(getattr(inc, "allow")):
-            return inc.allow(kind, int(id_value))
-        # (fallback to dict-shaped behavior if you still support it)
-        key_map = {
-            "object":        "Object_ID",
-            "connector":     "Connector_ID",
-            "package":       "Package_ID",
-            "diagram":       "Diagram_ID",
-            "link_instance": "link_Instance_ID",
-            "obj_instance":  "obj_Instance_ID",
-        }
-        vals = set(inc.get(key_map.get(kind), set()) or set())
-        return (len(vals) == 0) or (int(id_value) in {int(v) for v in vals})
+        return self.selection.allow(kind, id_value)
 
 
     def build_H(self) -> nx.DiGraph:
         """
-        Generalization H (child -> parent). If inclusions is provided,
+        Generalization H (child -> parent). If a selection is provided,
         nodes/edges are filtered via _allow().
         """
         H = nx.DiGraph()
@@ -245,9 +218,6 @@ class UMLGraphs:
         gen_mask = con[c_type].astype(str).str.strip().str.casefold() == "generalization"
         gen_rows = con.loc[gen_mask]
 
-        # hidden labels
-        hidden_cids = _hidden_connector_ids_from_diagramlinks(self.uml_data)
-
         for idx, crow in gen_rows.iterrows():
             # connector id: prefer column, else fall back to index
             cid_val = pd.to_numeric(crow.get(c_id), errors="coerce") if c_id is not None else pd.NA
@@ -256,9 +226,6 @@ class UMLGraphs:
             if pd.isna(cid_val):
                 continue
             cid = int(cid_val)
-
-            if cid in hidden_cids:
-                continue  # skip hidden generalizations globally
 
             if not self._allow("connector", cid):
                 continue
@@ -278,7 +245,7 @@ class UMLGraphs:
     # -------------------- A: associations --------------------
     def build_A(self) -> nx.MultiDiGraph:
         """
-        Association/Aggregation/Composition graph; honors inclusions via:
+        Association/Aggregation/Composition graph; honors the selection via:
           - nodes: 'object'
           - edges: 'connector'
           - link instances: 'link_instance'
@@ -301,9 +268,6 @@ class UMLGraphs:
 
         dl = getattr(self.uml_data, "diagramlinks", None)
 
-        # hidden connectors
-        hidden_cids = _hidden_connector_ids_from_diagramlinks(self.uml_data)
-
         if not isinstance(dl, pd.DataFrame) or dl.empty:
             return A
 
@@ -315,10 +279,6 @@ class UMLGraphs:
             return A
 
         for cid, crow in self.uml_data.connectors.iterrows():
-            # skip hidden associations
-            if cid in hidden_cids:
-                continue
-
             ctype = str(crow.get("Connector_Type", ""))
             if ctype not in ASSOCIATION_TYPES:
                 continue
@@ -334,9 +294,6 @@ class UMLGraphs:
                 continue
 
             for iid, irow in rows.iterrows():
-                # skip this connector instance if it's hidden on this diagram
-                if bool(irow.get("Hidden", False)):
-                    continue
                 if not self._allow("link_instance", int(iid)):
                     continue
                 did = int(irow[did_col])
