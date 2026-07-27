@@ -1,6 +1,7 @@
 import pandas as pd
 
 from ravens.uml import UMLExclusions
+from ravens.uml.autotemplate.clusions import UMLExclusions as AutoTemplateExclusions
 from ravens.uml.autotemplate.clusions import UMLInclusions
 from ravens.uml.autotemplate.graph import UMLGraphs as AutoTemplateGraphs
 from ravens.uml.data import UMLData
@@ -107,6 +108,10 @@ def _uml_data():
     uml_data.xrefs = pd.DataFrame()
 
     return uml_data
+
+
+def test_autotemplate_uses_shared_exclusions():
+    assert AutoTemplateExclusions is UMLExclusions
 
 
 def test_legacy_graph_interface():
