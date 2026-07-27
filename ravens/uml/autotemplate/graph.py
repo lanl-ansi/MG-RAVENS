@@ -4,8 +4,8 @@ import pandas as pd
 import networkx as nx
 
 from .clusions import UMLInclusions
+from ravens.uml import common
 from ravens.uml.data import UMLData
-from . import helpers as jps
 
 
 def _col(df, *cands):
@@ -231,13 +231,13 @@ class UMLGraphs:
                     "Connector_Type": ctype,
                 }
 
-                label_info = jps.parse_connector_label_info(irow, crow)
-                mult_info = jps.parse_multiplicity(label_info)
+                label_info = common.parse_connector_label_info(irow, crow)
+                mult_info = common.parse_multiplicity(label_info)
                 start_mult = mult_info.get("start_mult", "")
                 end_mult = mult_info.get("end_mult", "")
 
                 try:
-                    edges_w_dir = jps.connector_directionality_from_labels(
+                    edges_w_dir = common.connector_directionality_from_labels(
                         label_info, connector_type=ctype, s_id=s_id, e_id=e_id
                     )
                 except Exception:
@@ -246,7 +246,7 @@ class UMLGraphs:
                 for u, v, lbl in edges_w_dir:
                     if u not in A or v not in A:
                         continue
-                    oriented = jps.orient_edge_attrs_for_direction(
+                    oriented = common.orient_edge_attrs_for_direction(
                         edge_attrs.copy(),
                         u=u,
                         v=v,
