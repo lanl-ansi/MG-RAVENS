@@ -1,3 +1,4 @@
+import networkx as nx
 import pandas as pd
 
 from ravens.uml import UMLExclusions
@@ -149,7 +150,15 @@ def test_autotemplate_graph_interface():
         exclude_hidden_links=True,
         drop_objects_without_visible_generalization=False,
     )
-    graphs = AutoTemplateGraphs(uml_data=uml_data, inclusions=inclusions)
+    auto_graphs = AutoTemplateGraphs(uml_data=uml_data, inclusions=inclusions)
+    graphs = UMLGraphs(
+        uml_data=uml_data,
+        exclusions=UMLExclusions(uml_data=uml_data),
+        inclusions=inclusions,
+    )
+
+    assert nx.utils.graphs_equal(graphs.H, auto_graphs.H)
+    assert nx.utils.graphs_equal(graphs.A, auto_graphs.A)
 
     assert set(graphs.H.edges()) == {(2, 1)}
     assert set(graphs.HR.edges()) == {(1, 2)}
