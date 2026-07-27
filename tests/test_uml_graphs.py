@@ -2,6 +2,7 @@ import networkx as nx
 import pandas as pd
 
 from ravens.uml import UMLExclusions
+from ravens.uml.autotemplate.builder import UMLGraphs as BuilderGraphs
 from ravens.uml.autotemplate.clusions import UMLExclusions as AutoTemplateExclusions
 from ravens.uml.autotemplate.clusions import UMLInclusions
 from ravens.uml.autotemplate.graph import UMLGraphs as AutoTemplateGraphs
@@ -113,6 +114,18 @@ def _uml_data():
 
 def test_autotemplate_uses_shared_exclusions():
     assert AutoTemplateExclusions is UMLExclusions
+
+
+def test_autotemplate_uses_shared_graphs():
+    assert BuilderGraphs is UMLGraphs
+    assert issubclass(AutoTemplateGraphs, UMLGraphs)
+
+
+def test_autotemplate_diagnostics_build_without_inclusions():
+    graphs = AutoTemplateGraphs(uml_data=_uml_data())
+
+    assert set(graphs.H.edges()) == {(2, 1)}
+    assert list(graphs.A.edges()) == [(2, 3)]
 
 
 def test_legacy_graph_interface():

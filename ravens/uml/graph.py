@@ -39,18 +39,16 @@ class UMLGraphs:
         self.uml_data = uml_data
 
         self.exclusions = UMLExclusions() if exclusions is None else exclusions
-
-        self.gen_graph = self.build_generalization_graph()
-        self.attr_graph = self.build_attribute_graph()
-        self.assoc_graph = self.build_association_graph()
-
-        self.graph = nx.compose_all([self.gen_graph, self.attr_graph, self.assoc_graph])
-
         self.subgraphs = {}
-        if schema_template is not None:
-            self._build_subgraphs_from_template(schema_template)
 
-        if inclusions is not None:
+        if inclusions is None:
+            self.gen_graph = self.build_generalization_graph()
+            self.attr_graph = self.build_attribute_graph()
+            self.assoc_graph = self.build_association_graph()
+            self.graph = nx.compose_all([self.gen_graph, self.attr_graph, self.assoc_graph])
+            if schema_template is not None:
+                self._build_subgraphs_from_template(schema_template)
+        else:
             self._build_autotemplate_graphs()
 
     def _build_autotemplate_graphs(self):
