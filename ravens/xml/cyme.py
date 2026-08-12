@@ -16,7 +16,7 @@ material_resistivity = {"CYMEConductorMaterial.copper": 1.68e-8, "CYMEConductorM
 
 
 class CymeConverter(RDFGraph):
-    def __init__(self, profile_path: pathlib.Path | str, cim_namespace: str = _DEFAULT_CYME_CIM_NAMESPACE, cyme_namespace: str = _DEFAULT_CYME_NAMESPACE, prune_remaining_cyme: bool = False):
+    def __init__(self, profile_path: pathlib.Path | str, cim_namespace: str = _DEFAULT_CYME_CIM_NAMESPACE, cyme_namespace: str = _DEFAULT_CYME_NAMESPACE, prune_remaining_cyme: bool = False, PEC_corrections:dict[str, str|list]={}):
         super().__init__(profile_path=profile_path, cim_namespace=cim_namespace, uuid_format=lambda x: "_" + x.upper())
 
         self.cyme = Namespace(cyme_namespace + "#")
@@ -37,6 +37,15 @@ class CymeConverter(RDFGraph):
         self.convert_cyme_structure()
         self.convert_cyme_connection_status()
         self.convert_cimconductingequipment_structure_id()
+
+        unit_type,pv_set,wind_set = None, set(), set()
+        if "unit_type" in PEC_corrections.keys():
+            unit_type = PEC_corrections["unit_type"]
+        if "pv" in PEC_corrections.keys():
+            pv_set = set(PEC_corrections["pv"])
+        if "wind" in PEC_corrections.keys():
+            wind_set = set(PEC_corrections["wind"])       
+        self.replace_rotatingmachine_with_powerelectronicsconnection(unit_type,pv_set,wind_set)
 
         self.fix_EnergyConsumerPhase()
         self.fix_WireInfo()
@@ -196,6 +205,85 @@ class CymeConverter(RDFGraph):
             self.add_triple(URIRef((str(s))), "Equipment.EquipmentContainer", self.equip_container_uris[o])
             self.to_remove.add((s, p, o))
 
+    def replace_rotatingmachine_with_powerelectronicsconnection(self,unit_type:str|None=None,pv_set:set=set(),wind_set:set=set()):
+        #Replace RotatingMachine objects with PowerElectronicsConnection objects.
+        rotating_machines_to_replace = []
+        _float = lambda x,default = 0.0: float(x) if x != None else float(default) 
+        _bool = lambda x,default = True: bool(x) if x != None else bool(default) 
+
+        rotating_machine_types = ["AsynchronousMachine","SynchronousMachine"]
+        
+        # Find all RotatingMachine objects
+        for rm_type in rotating_machine_types:
+            for rm in self.graph.subjects(predicate=RDF.type, object=self.cim[rm_type]):
+                # Get properties from RotatingMachine
+                try:
+                    name = str(self.graph.value(subject=rm, predicate=self.cim["IdentifiedObject.name"]))
+                    rated_s = _float(self.graph.value(subject=rm, predicate=self.cim["RotatingMachine.ratedS"]),None)
+                    rated_u = _float(self.graph.value(subject=rm, predicate=self.cim["RotatingMachine.ratedU"]),None)
+                    rated_pf = _float(self.graph.value(subject=rm, predicate=self.cim["RotatingMachine.ratedPowerFactor"]),1.0)
+                    p_value = _float(self.graph.value(subject=rm, predicate=self.cim["RotatingMachine.p"]),0.0)
+                    in_service = _bool(self.graph.value(subject=rm, predicate=self.cim["Equipment.inService"]),True)
+                except:
+                    logger.warning(f"RotatingMachine '{name or "unknown name"}' is missing input parameters, skipping conversion")
+                
+                # Determine unit type based 
+                if (unit_type == "pv" or name in pv_set) and name not in wind_set:
+                    peu_type, peu_name = "PhotoVoltaicUnit", f"{name}_PVPanels"
+                elif (unit_type == "wind" or name in wind_set) and name not in pv_set:
+                    peu_type, peu_name = "PowerElectronicsWindUnit", f"{name}_WindUnit"
+                else:
+                    continue
+                
+                
+                # Calculate reactive power
+                q_value = rated_s * (1.0 - rated_pf)
+                
+                # Calculate max/min Q
+                max_q = math.sqrt((p_value / rated_pf) ** 2 - p_value ** 2)
+                min_q = -max_q
+                
+                # Create PowerElectronicsConnection
+                pec_node = self.build_cim_obj("PowerElectronicsConnection", name=name)
+                
+                # Set PowerElectronicsConnection properties
+                self.add_triple(pec_node, "PowerElectronicsConnection.maxIFault", 1.0 / 0.707)
+                self.add_triple(pec_node, "PowerElectronicsConnection.p", p_value)
+                self.add_triple(pec_node, "PowerElectronicsConnection.q", q_value)
+                self.add_triple(pec_node, "PowerElectronicsConnection.ratedS", rated_s)
+                self.add_triple(pec_node, "PowerElectronicsConnection.ratedU", rated_u)
+                self.add_triple(pec_node, "PowerElectronicsConnection.maxQ", max_q)
+                self.add_triple(pec_node, "PowerElectronicsConnection.minQ", min_q)
+                self.add_triple(pec_node, "Equipment.inService", in_service)
+
+                
+
+                terminals = list(self.graph.subjects(object=rm, predicate=self.cim["Terminal.ConductingEquipment"]))
+                for terminal in terminals:
+                    # REMOVE old triple: Terminal -> ConductingEquipment -> RotatingMachine
+                    self.graph.remove((terminal, self.cim["Terminal.ConductingEquipment"], rm))
+                    # ADD new triple: Terminal -> ConductingEquipment -> PowerElectronicsConnection
+                    self.graph.add((terminal, self.cim["Terminal.ConductingEquipment"], pec_node))
+    
+                
+                # Create PowerElectronicsUnit
+                peu_node = self.build_cim_obj(peu_type, name=peu_name)
+                self.add_triple(peu_node, "PowerElectronicsUnit.minP", 0.0)
+                self.add_triple(peu_node, "PowerElectronicsUnit.maxP", rated_s * rated_pf)
+                
+                # Link PEU to PEC
+                self.graph.add((peu_node, self.cim["PowerElectronicsConnection.PowerElectronicsUnit"], pec_node))
+                
+                # Mark RotatingMachine for removal
+                rotating_machines_to_replace.append(rm)
+                
+                logger.info(f"Converted RotatingMachine '{name}' to PowerElectronicsConnection with {peu_type}")
+            
+        # Remove all RotatingMachine objects
+        for rm in rotating_machines_to_replace:
+            self.to_remove.add((rm, None, None))
+
+
     def fix_EnergyConsumerPhase(self):
         for s in self.graph.subjects(predicate=RDF.type, object=self.cim["EnergyConsumerPhase"]):
             for k in ["p", "q"]:
@@ -242,6 +330,7 @@ class CymeConverter(RDFGraph):
                     seq_num = int(self.graph.value(subject=term, predicate=self.cim["ACDCTerminal.sequenceNumber"]).value)  # type: ignore
                     self.graph.remove((term, self.cim["Terminal.phases"], None))
                     self.graph.add((term, self.cim["Terminal.phases"], combined_phases[seq_num]))
+                    
 
     def fix_Per_Length_Phase_Impedance_indices(self):
         """
@@ -321,3 +410,4 @@ class CymeConverter(RDFGraph):
 if __name__ == "__main__":
     # TODO: need synthetic feeder exported from CYME for example
     pass
+  
