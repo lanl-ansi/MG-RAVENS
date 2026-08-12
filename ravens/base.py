@@ -91,6 +91,8 @@ class RavensData(object):
 
         if isinstance(network_profile, dict):
             self.data = network_profile.copy()
+        elif isinstance(network_profile, RavensData):
+            self.data = network_profile.data.copy()
         elif isinstance(network_profile, pathlib.Path) or isinstance(network_profile, str):
             self.load(network_profile)
 
