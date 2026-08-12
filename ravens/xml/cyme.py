@@ -5,6 +5,7 @@ from ast import literal_eval
 
 from rdflib.namespace import Namespace, RDF
 from rdflib.term import URIRef
+from rdflib import Literal
 
 from ravens.logging import logger
 from ravens.data import _DEFAULT_CYME_CIM_NAMESPACE, _DEFAULT_CYME_NAMESPACE
@@ -50,6 +51,7 @@ class CymeConverter(RDFGraph):
         self.fix_WireInfo()
         self.fix_Terminal()
         self.fix_Transformer_Terminal_phases()
+        self.fix_Per_Length_Phase_Impedance_indices()
 
         if prune_remaining_cyme:
             self.remove_cyme_objects()
@@ -330,10 +332,82 @@ class CymeConverter(RDFGraph):
                     self.graph.add((term, self.cim["Terminal.phases"], combined_phases[seq_num]))
                     
 
+    def fix_Per_Length_Phase_Impedance_indices(self):
+        """
+        Expects `Phase Impedance Data` of following format:
+        - Increasing Sequence Numbers
+        - Either specifies upper triangular matrix, or full matrix
+        - First sequence number either starts at 1 or connector_count + 1
+        """
+        for PLPI in self.graph.subjects(predicate=RDF.type, object=self.cim["PerLengthPhaseImpedance"]): 
+            conductor_count = int(self.graph.value(subject=PLPI, predicate=self.cim["PerLengthPhaseImpedance.conductorCount"]).value)
+
+            #Scan Sequence List
+            sequence_numbers = []
+            has_row = []
+            has_col = []
+            for phase_info in self.graph.subjects(predicate=self.cim["PhaseImpedanceData.PhaseImpedance"], object=PLPI):
+                sequence_numbers.append(int(self.graph.value(subject=phase_info, predicate=self.cim["PhaseImpedanceData.sequenceNumber"]).value))
+                has_row.append(1 if self.graph.value(subject=phase_info, predicate=self.cim["PhaseImpedanceData.row"]) is not None else 0)
+                has_col.append(1 if self.graph.value(subject=phase_info, predicate=self.cim["PhaseImpedanceData.column"]) is not None else 0)
+            
+            #Validate Sequences are in an acceptable format
+            #ignore empty phase impedances
+            if len(sequence_numbers) == 0 or (all(has_row) and all(has_col)): 
+                continue
+
+            #ensure that sequence numbers are continuous
+            s_sn = sorted(sequence_numbers) 
+            if not all(s_sn[i+1] - s_sn[i] == 1 for i in range(len(s_sn) - 1)):
+                # Create mapping from old sequence numbers to new contiguous ones
+                seq_mapping = {}
+                for i, old_seq in enumerate(s_sn):
+                    new_seq = s_sn[0] + i  # Start from first value, add index
+                    seq_mapping[old_seq] = new_seq
+                
+                # Update sequence_numbers array with corrected values
+                sequence_numbers = [seq_mapping[seq] for seq in sequence_numbers]
+
+            #correct sequence numbers to obey second row indexing
+            seq_jump = s_sn[0] != conductor_count+1 #check to see if sequence starts at conductor count + 1 or if it starts at 1
+            sequence_numbers = [s+(conductor_count)*seq_jump for s in sequence_numbers]
+            if min(sequence_numbers) != conductor_count+1:
+                raise ValueError("Initial Phase Impedance sequenceNumber is not of a known acceptable format.")
+
+            
+            #handle supported matrix specification methods
+            rows = []
+            cols = []
+            if len(sequence_numbers) == conductor_count*(conductor_count+1)/2: #handle triangular specification
+                r = c = 1
+                for i in range(len(sequence_numbers)):
+                    if c > conductor_count:
+                        r +=1
+                        c = r
+                    rows.append(r)
+                    cols.append(c)
+                    c+=1
+            elif len(sequence_numbers) == conductor_count**2: #handle full matrix specification
+                for sn in sequence_numbers:
+                    cols.append((sn - (conductor_count+1))%conductor_count)
+                    rows.append((sn - (conductor_count+1) - cols[-1])/conductor_count + 1)
+                    cols[-1] += 1
+            else:  
+                raise ValueError("Initial Phase Impedance sequenceNumber is not of a known acceptable format.")
+                
+
+            #Apply Corrected Row/Cols
+            for i, phase_info in enumerate(self.graph.subjects(predicate=self.cim["PhaseImpedanceData.PhaseImpedance"], object=PLPI)):
+                self.graph.add((phase_info, self.cim["PhaseImpedanceData.row"], Literal(int(rows[i]))))
+                self.graph.add((phase_info, self.cim["PhaseImpedanceData.column"], Literal(int(cols[i]))))
+
+
+                
+                
+                
+
 
 if __name__ == "__main__":
     # TODO: need synthetic feeder exported from CYME for example
-    from ravens import RavensData
-    file_path = None
-    d = RavensData().import_cyme_cim(file_path,PEC_corrections={"unit_type":"pv"})
-    d.dump("extern_data/tmp.json",indent=2)
+    pass
+  
