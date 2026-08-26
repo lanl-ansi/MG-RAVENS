@@ -1,4 +1,5 @@
 from ravens.uml import UMLData
+from ravens.uml.selection import matches_name_prefix
 
 
 class UMLExclusions:
@@ -11,7 +12,7 @@ class UMLExclusions:
         self.object_ids = []
 
     def exclude_by_name_startswith(self, exclusions: list, skip_object_exclusion: bool = False, skip_package_exclusion: bool = False):
-        lambda_func = lambda x: any(str(x.Name).startswith(k) for k in exclusions)
+        lambda_func = lambda x: any(matches_name_prefix(x.Name, k) for k in exclusions)
 
         return self.exclude_by_lambda_function(lambda_func, skip_object_exclusion=skip_object_exclusion, skip_package_exclusion=skip_package_exclusion)
 

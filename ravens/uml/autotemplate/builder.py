@@ -6,6 +6,8 @@ from typing import Iterable, Optional
 
 
 from ravens.uml.data import UMLData
+from ravens.uml.graph import UMLGraphs
+from ravens.uml.selection import UMLSelection
 
 
 def _default_template_auto_path() -> Path:
@@ -15,8 +17,6 @@ def _default_template_auto_path() -> Path:
 def _default_analysis_variable_diagnostics_path() -> Path:
     return Path(__file__).resolve().parents[3] / "out" / "analysis_variable_diagnostics.json"
 
-from .clusions import UMLInclusions
-from .graph import UMLGraphs
 from .template import TemplateGenerator
 
 
@@ -50,7 +50,7 @@ class AutoTemplateBuilder:
         self.debug = bool(debug)
         self.capture_diagnostics = bool(capture_diagnostics)
 
-        self.inclusions: UMLInclusions | None = None
+        self.selection: UMLSelection | None = None
         self.graphs: UMLGraphs | None = None
         self.generator: TemplateGenerator | None = None
         self.raw_template: dict | None = None
@@ -60,16 +60,15 @@ class AutoTemplateBuilder:
 
     def build(self) -> dict:
         uml_data = self._get_uml_data()
-        self.inclusions = UMLInclusions(
+        self.selection = UMLSelection(
             uml_data=uml_data,
             packages=self.packages,
-            auto_apply=True,
             exclude_inf_mkt_initial=self.exclude_inf_mkt_initial,
             exclude_hidden_links=self.exclude_hidden_links,
             hidden_scope_path=self.hidden_scope_path,
             drop_objects_without_visible_generalization=self.drop_objects_without_visible_generalization,
         )
-        self.graphs = UMLGraphs(inclusions=self.inclusions)
+        self.graphs = UMLGraphs(selection=self.selection)
         self.generator = TemplateGenerator(
             H=self.graphs.H,
             A=self.graphs.A,

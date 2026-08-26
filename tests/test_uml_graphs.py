@@ -1,7 +1,7 @@
 import networkx as nx
 import pandas as pd
 
-from ravens.uml import UMLExclusions
+from ravens.uml import UMLExclusions, UMLSelection
 from ravens.uml.autotemplate.builder import UMLGraphs as BuilderGraphs
 from ravens.uml.autotemplate.clusions import UMLExclusions as AutoTemplateExclusions
 from ravens.uml.autotemplate.clusions import UMLInclusions
@@ -14,17 +14,25 @@ def _uml_data():
     uml_data = object.__new__(UMLData)
 
     uml_data.packages = pd.DataFrame(
-        [{'Package_ID': 10, 'Name': 'SimplifiedDiagrams', 'Path': 'Model/SimplifiedDiagrams'}]
+        [
+            {'Package_ID': 10, 'Name': 'SimplifiedDiagrams', 'Path': 'Model/SimplifiedDiagrams'},
+            {'Package_ID': 11, 'Name': 'Core', 'Path': 'Model/IEC61970/Core'},
+        ]
     ).set_index('Package_ID')
     uml_data.diagrams = pd.DataFrame(
-        [{'Diagram_ID': 20, 'Package_ID': 10, 'Name': 'Fixture'}]
+        [
+            {'Diagram_ID': 20, 'Package_ID': 10, 'Name': 'Fixture'},
+            {'Diagram_ID': 21, 'Package_ID': 10, 'Name': 'MixedVisibility'},
+        ]
     ).set_index('Diagram_ID')
     uml_data.objects = pd.DataFrame(
         [
             {'Object_ID': 1, 'Object_Type': 'Class', 'Name': 'Root', 'Package_ID': 10, 'Stereotype': None, 'Note': None},
-            {'Object_ID': 2, 'Object_Type': 'Class', 'Name': 'Child', 'Package_ID': 10, 'Stereotype': None, 'Note': None},
-            {'Object_ID': 3, 'Object_Type': 'Class', 'Name': 'Related', 'Package_ID': 10, 'Stereotype': None, 'Note': None},
+            {'Object_ID': 2, 'Object_Type': 'Class', 'Name': 'Child', 'Package_ID': 11, 'Stereotype': None, 'Note': None},
+            {'Object_ID': 3, 'Object_Type': 'Class', 'Name': 'Related', 'Package_ID': 11, 'Stereotype': None, 'Note': None},
             {'Object_ID': 4, 'Object_Type': 'Class', 'Name': 'HiddenChild', 'Package_ID': 10, 'Stereotype': None, 'Note': None},
+            {'Object_ID': 5, 'Object_Type': 'Class', 'Name': 'Info', 'Package_ID': 11, 'Stereotype': None, 'Note': None},
+            {'Object_ID': 6, 'Object_Type': 'Class', 'Name': 'InfFacility', 'Package_ID': 11, 'Stereotype': None, 'Note': None},
         ]
     ).set_index('Object_ID')
     uml_data.attributes = pd.DataFrame(
@@ -80,6 +88,18 @@ def _uml_data():
                 'Name': '',
                 'Stereotype': '',
             },
+            {
+                'Connector_ID': 104,
+                'Connector_Type': 'Association',
+                'Start_Object_ID': 1,
+                'End_Object_ID': 3,
+                'SourceRole': '',
+                'DestRole': 'MixedObjects',
+                'SourceCard': '0..*',
+                'DestCard': '1',
+                'Name': '',
+                'Stereotype': '',
+            },
         ]
     ).set_index('Connector_ID')
     uml_data.diagramobjects = pd.DataFrame(
@@ -88,14 +108,20 @@ def _uml_data():
             {'Instance_ID': 301, 'Diagram_ID': 20, 'Object_ID': 2},
             {'Instance_ID': 302, 'Diagram_ID': 20, 'Object_ID': 3},
             {'Instance_ID': 303, 'Diagram_ID': 20, 'Object_ID': 4},
+            {'Instance_ID': 304, 'Diagram_ID': 20, 'Object_ID': 5},
+            {'Instance_ID': 305, 'Diagram_ID': 20, 'Object_ID': 6},
+            {'Instance_ID': 306, 'Diagram_ID': 21, 'Object_ID': 1},
+            {'Instance_ID': 307, 'Diagram_ID': 21, 'Object_ID': 3},
         ]
     ).set_index('Instance_ID')
     uml_data.diagramlinks = pd.DataFrame(
         [
-            {'Instance_ID': 400, 'DiagramID': 20, 'ConnectorID': 100, 'Hidden': False, 'Geometry': '', 'Style': ''},
-            {'Instance_ID': 401, 'DiagramID': 20, 'ConnectorID': 101, 'Hidden': False, 'Geometry': '', 'Style': ''},
-            {'Instance_ID': 402, 'DiagramID': 20, 'ConnectorID': 102, 'Hidden': True, 'Geometry': '', 'Style': ''},
-            {'Instance_ID': 403, 'DiagramID': 20, 'ConnectorID': 103, 'Hidden': True, 'Geometry': '', 'Style': ''},
+            {'Instance_ID': 400, 'DiagramID': 20, 'ConnectorID': 100, 'Hidden': False, 'Geometry': '', 'Style': '', 'Path': None},
+            {'Instance_ID': 401, 'DiagramID': 20, 'ConnectorID': 101, 'Hidden': False, 'Geometry': '', 'Style': '', 'Path': None},
+            {'Instance_ID': 402, 'DiagramID': 20, 'ConnectorID': 102, 'Hidden': True, 'Geometry': '', 'Style': '', 'Path': 'SimplifiedDiagrams'},
+            {'Instance_ID': 403, 'DiagramID': 20, 'ConnectorID': 103, 'Hidden': True, 'Geometry': '', 'Style': '', 'Path': 'SimplifiedDiagrams'},
+            {'Instance_ID': 404, 'DiagramID': 20, 'ConnectorID': 104, 'Hidden': False, 'Geometry': '', 'Style': '', 'Path': None},
+            {'Instance_ID': 405, 'DiagramID': 21, 'ConnectorID': 104, 'Hidden': True, 'Geometry': '', 'Style': '', 'Path': None},
         ]
     ).set_index('Instance_ID')
     uml_data.objectproperties = pd.DataFrame(
@@ -104,6 +130,8 @@ def _uml_data():
             {'PropertyID': 501, 'Object_ID': 2, 'Property': 'ravensRole', 'Value': 'substitutableClass'},
             {'PropertyID': 502, 'Object_ID': 3, 'Property': 'ravensRole', 'Value': 'embeddedClass'},
             {'PropertyID': 503, 'Object_ID': 4, 'Property': 'ravensRole', 'Value': 'inheritOnlyClass'},
+            {'PropertyID': 504, 'Object_ID': 5, 'Property': 'ravensRole', 'Value': 'substitutableClass'},
+            {'PropertyID': 505, 'Object_ID': 6, 'Property': 'ravensRole', 'Value': 'substitutableClass'},
         ]
     ).set_index('PropertyID')
     uml_data.connectortags = pd.DataFrame()
@@ -114,6 +142,7 @@ def _uml_data():
 
 def test_autotemplate_uses_shared_exclusions():
     assert AutoTemplateExclusions is UMLExclusions
+    assert UMLInclusions is UMLSelection
 
 
 def test_autotemplate_uses_shared_graphs():
@@ -125,7 +154,7 @@ def test_autotemplate_diagnostics_build_without_inclusions():
     graphs = AutoTemplateGraphs(uml_data=_uml_data())
 
     assert set(graphs.H.edges()) == {(2, 1)}
-    assert list(graphs.A.edges()) == [(2, 3)]
+    assert set(graphs.A.edges()) == {(1, 3), (2, 3)}
 
 
 def test_legacy_graph_interface():
@@ -155,19 +184,18 @@ def test_legacy_graph_interface():
 
 def test_autotemplate_graph_interface():
     uml_data = _uml_data()
-    inclusions = UMLInclusions(
+    selection = UMLSelection(
         uml_data=uml_data,
         packages=('SimplifiedDiagrams',),
-        auto_apply=False,
         exclude_inf_mkt_initial=False,
         exclude_hidden_links=True,
         drop_objects_without_visible_generalization=False,
     )
-    auto_graphs = AutoTemplateGraphs(uml_data=uml_data, inclusions=inclusions)
+    auto_graphs = AutoTemplateGraphs(uml_data=uml_data, selection=selection)
     graphs = UMLGraphs(
         uml_data=uml_data,
         exclusions=UMLExclusions(uml_data=uml_data),
-        inclusions=inclusions,
+        selection=selection,
     )
 
     assert nx.utils.graphs_equal(graphs.H, auto_graphs.H)
@@ -178,9 +206,49 @@ def test_autotemplate_graph_interface():
     assert graphs.H.nodes[1]['ravensRole'] == 'rootClass'
     assert graphs.H.nodes[2]['ravensRole'] == 'substitutableClass'
 
-    assert list(graphs.A.edges()) == [(2, 3)]
+    assert set(graphs.A.edges()) == {(1, 3), (2, 3)}
     edge = next(iter(graphs.A.get_edge_data(2, 3).values()))
     assert edge['label'] == 'RelatedObjects'
     assert edge['start_mult'] == '0..*'
     assert edge['end_mult'] == '1'
     assert edge['Diagram'] == 'Fixture'
+
+
+def test_autotemplate_selection_uses_diagram_scope():
+    uml_data = _uml_data()
+    selection = UMLSelection(
+        uml_data=uml_data,
+        packages=('SimplifiedDiagrams',),
+        exclude_inf_mkt_initial=False,
+        drop_objects_without_visible_generalization=False,
+    )
+
+    assert 10 in selection.allowed_packages
+    assert 11 not in selection.allowed_packages
+    assert {2, 3}.issubset(selection.allowed_objects)
+
+
+def test_autotemplate_name_and_visibility_filters():
+    uml_data = _uml_data()
+    selection = UMLSelection(
+        uml_data=uml_data,
+        packages=('SimplifiedDiagrams',),
+        drop_objects_without_visible_generalization=False,
+    )
+    graphs = UMLGraphs(uml_data=uml_data, selection=selection)
+
+    assert 5 in selection.allowed_objects
+    assert 6 not in selection.allowed_objects
+    assert 104 in selection.allowed_connectors
+    assert any(data['ConnectorID'] == 104 for _, _, data in graphs.A.edges(data=True))
+
+
+def test_inf_mkt_exclusions_keep_info():
+    uml_data = _uml_data()
+    exclusions = UMLExclusions(uml_data=uml_data).exclude_by_name_startswith(['Inf', 'Mkt'])
+    graphs = UMLGraphs(uml_data=uml_data, exclusions=exclusions)
+
+    assert 5 not in exclusions.object_ids
+    assert 6 in exclusions.object_ids
+    assert 5 in graphs.gen_graph
+    assert 6 not in graphs.gen_graph
