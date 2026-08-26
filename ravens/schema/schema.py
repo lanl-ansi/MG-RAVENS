@@ -27,13 +27,24 @@ class RavensSchema:
         omit_file_extension: bool = False,
         omit_license: bool = False,
         omit_descriptions: bool = False,
+        template_source: str = "auto",
     ):
         if uml_data is None:
             uml_data = UMLData()
 
         self.uml_data = uml_data
 
-        self.schema_template = SchemaTemplate(uml_data=uml_data, uml_graphs=uml_graphs, uml_exclusions=uml_exclusions, omit_descriptions=omit_descriptions) if schema_template is None else schema_template
+        self.schema_template = (
+            SchemaTemplate(
+                uml_data=uml_data,
+                uml_graphs=uml_graphs,
+                uml_exclusions=uml_exclusions,
+                omit_descriptions=omit_descriptions,
+                source=template_source,
+            )
+            if schema_template is None
+            else schema_template
+        )
 
         self.omit_descr = omit_descriptions
 
@@ -60,7 +71,51 @@ class RavensSchema:
     def schema_path(self, schema_id):
         return "/".join(a for a in [self.base_id_uri, schema_id + (".json" if not self.omit_file_extension else "")] if a)
 
+    @staticmethod
+    def _strip_presentation_fields(value: Any) -> Any:
+        if isinstance(value, dict):
+            return {
+                k: RavensSchema._strip_presentation_fields(v)
+                for k, v in value.items()
+                if k not in {"title", "description"}
+            }
+        if isinstance(value, list):
+            return [RavensSchema._strip_presentation_fields(item) for item in value]
+        return value
+
+    @staticmethod
+    def _dedupe_anyof_members(anyof: list[Any]) -> list[Any]:
+        unique: list[Any] = []
+        seen: set[str] = set()
+
+        for item in anyof:
+            signature = json.dumps(RavensSchema._strip_presentation_fields(item), sort_keys=True)
+            if signature in seen:
+                continue
+            seen.add(signature)
+            unique.append(item)
+
+        return unique
+
+    @staticmethod
+    def _collapse_pure_anyof_wrapper(schema: dict[str, Any]) -> dict[str, Any]:
+        if "anyOf" not in schema or not isinstance(schema["anyOf"], list):
+            return schema
+
+        schema["anyOf"] = RavensSchema._dedupe_anyof_members(schema["anyOf"])
+
+        structural_keys = {k for k in schema if k not in {"title", "description"}}
+        if structural_keys == {"anyOf"} and len(schema["anyOf"]) == 1:
+            only = schema["anyOf"][0]
+            if isinstance(only, dict):
+                return only
+
+        return schema
+
     def build_schema_from_map(self, schema_map: dict) -> dict:
+        def _title(s: str) -> str:
+            return s.split(".")[-1]
+
         schema: dict[str, Any] = {}
         for k, v in schema_map.items():
             if k.startswith("$"):
@@ -73,6 +128,8 @@ class RavensSchema:
                             if v.get("$primaryObjectHash", None) is None:
                                 schema[k] = self.build_schema_from_map(v)
                                 schema[k]["additionalProperties"] = False
+                                if "title" not in schema[k]:
+                                    schema[k]["title"] = _title(k)
                             else:
                                 schema[k] = {
                                     "type": "object",
@@ -92,6 +149,8 @@ class RavensSchema:
                         elif "anyOf" in v:
                             if v.get("$primaryObjectHash", None) is None:
                                 schema[k] = self.build_schema_from_map(v)
+                                if "title" not in schema[k]:
+                                    schema[k]["title"] = _title(k)
                             else:
                                 schema[k] = {
                                     "type": "object",
@@ -113,6 +172,8 @@ class RavensSchema:
                             **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "items"},
                             **{"items": self.build_schema_from_map(v["items"])},
                         }
+                        if "title" not in schema[k]:
+                            schema[k]["title"] = _title(k) + "_Array"
                     else:
                         schema[k] = self.build_schema_from_map(v)
                 else:
@@ -124,7 +185,7 @@ class RavensSchema:
             else:
                 schema[k] = v
 
-        return schema
+        return self._collapse_pure_anyof_wrapper(schema)
 
     def build_definitions(self, uml_data: UMLData) -> dict:
         defs = {}
@@ -181,15 +242,42 @@ class RavensSchema:
                 _schema["additionalProperties"] = False
 
             title = _schema.get("title", None)
+            if title is None:
+                title = debug_key.split(".")[-1] if debug_key is not None else None
+                if title is None:
+                    logger.warning(f"When decomposing the schema, 'title' was not found on an object, only the following keys: {list(_schema.keys())}")
+                else:
+                    _schema["title"] = title
+
             if title is not None:
+                base_title = title
                 if "patternProperties" in _schema:
                     title = f"{title}_Container"
                 if "anyOf" in _schema:
                     title = f"{title}_anyOfContainer"
             else:
-                logger.warning(f"When decomposing the schema, 'title' was not found on a {debug_key} object, only the following keys: {list(_schema.keys())}")
+                base_title = None
+
+            skip_anonymous_artifact = (
+                (base_title == "+$" and debug_key == "^.+$")
+                or (
+                    base_title == "Container"
+                    and _schema.get("description") == "Hash table of  objects"
+                    and "patternProperties" in _schema
+                )
+            )
 
             _schema["$id"] = self.schema_path(title)
+
+            def _decompose_anyof_members() -> None:
+                _anyOf = []
+                for item in _schema.get("anyOf", []):
+                    ref_id = self.decompose_schema(item, debug_key=debug_key)
+                    if ref_id is not None:
+                        _anyOf.append({"$ref": ref_id})
+                    else:
+                        _anyOf.append(item)
+                _schema["anyOf"] = _anyOf
 
             if _schema.get("type", None) == "object":
                 for n in ["properties", "patternProperties"]:
@@ -198,22 +286,19 @@ class RavensSchema:
                             ref_id = self.decompose_schema(v, debug_key=k)
                             if ref_id is not None:
                                 _schema[n][k] = {"$ref": ref_id}
+                if "anyOf" in _schema:
+                    _decompose_anyof_members()
             elif _schema.get("type", None) == "array":
                 ref_id = self.decompose_schema(_schema["items"], debug_key=debug_key)
                 if ref_id is not None:
                     _schema["items"] = {"$ref": ref_id}
             elif "anyOf" in _schema:
-                _anyOf = []
-                for item in _schema["anyOf"]:
-                    ref_id = self.decompose_schema(item, debug_key=debug_key)
-                    if ref_id is not None:
-                        _anyOf.append({"$ref": ref_id})
-                    else:
-                        _anyOf.append(item)
-
-                _schema["anyOf"] = _anyOf
+                _decompose_anyof_members()
 
             else:
+                return None
+
+            if skip_anonymous_artifact:
                 return None
 
             self.schemas[_schema["$id"]] = {**self.schemas.get(_schema["$id"], {}), **_schema}
@@ -343,4 +428,3 @@ if __name__ == "__main__":
     schema.export_schemas("out/schema/separate/")
 
     generate_schema_docs("out/schema/separate", "out/schema/docs")
-
