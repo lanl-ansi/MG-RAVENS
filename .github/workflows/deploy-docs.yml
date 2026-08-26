@@ -12,150 +12,154 @@ jobs:
   build-docs:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        lfs: true
-    - name: Checkout LFS objects
-      run: git lfs checkout
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.13'
-    - name: Install mdbtools
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y mdbtools
-    - name: Install Poetry
-      run: |
-        curl -sSL https://install.python-poetry.org | python3 -
-        echo "export PATH=$HOME/.local/bin:\$PATH" >> $GITHUB_ENV
-    - name: Cache Poetry dependencies
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/pypoetry
-        key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-poetry-
-    - name: Install Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-    - name: Cache Node.js dependencies
-      uses: actions/cache@v4
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Install Node.js dependencies
-      run: |
-        npm install
-    - name: Install dependencies
-      run: |
-        poetry install
-    - name: Build Sphinx documentation
-      run: |
-        poetry run sphinx-build -b html docs/source docs/build/html
-    - name: Upload documentation as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: docs
-        path: docs/build/html
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install mdbtools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mdbtools
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "export PATH=$HOME/.local/bin:\$PATH" >> $GITHUB_ENV
+      - name: Cache Poetry dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install Node.js dependencies
+        run: |
+          npm install
+      - name: Install dependencies
+        run: |
+          poetry install
+      - name: Build Sphinx documentation
+        run: |
+          poetry run sphinx-build -b html docs/source docs/build/html
+      - name: Compress Root.html schema doc
+        run: |
+          gzip -kf docs/build/html/_static/schema/Root.html
+          cp docs/source/scripts/Root.html docs/build/html/_static/schema/Root.html
+      - name: Upload documentation as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs
+          path: docs/build/html
 
   deploy-docs:
     needs: build-docs
     if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
-    - name: Download documentation artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: docs
-        path: docs/build/html
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs/build/html
+      - name: Download documentation artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docs
+          path: docs/build/html
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build/html
 
   build-schema:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        lfs: true
-    - name: Checkout LFS objects
-      run: git lfs checkout
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.13'
-    - name: Install mdbtools
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y mdbtools
-    - name: Install Poetry
-      run: |
-        curl -sSL https://install.python-poetry.org | python3 -
-        echo "export PATH=$HOME/.local/bin:\$PATH" >> $GITHUB_ENV
-    - name: Cache Poetry dependencies
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/pypoetry
-        key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-poetry-
-    - name: Install dependencies
-      run: |
-        poetry install
-    - name: Build Schema
-      run: |
-        poetry run python schema/build_schema.py
-    - name: Upload Schema as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: schema
-        path: schema
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install mdbtools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mdbtools
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "export PATH=$HOME/.local/bin:\$PATH" >> $GITHUB_ENV
+      - name: Cache Poetry dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+      - name: Install dependencies
+        run: |
+          poetry install
+      - name: Build Schema
+        run: |
+          poetry run python schema/build_schema.py
+      - name: Upload Schema as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: schema
+          path: schema
 
   deploy-schema:
     needs: build-schema
     if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        lfs: true
-    - name: Download Schema artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: schema
-        path: schema_new
-    - name: Set up Git user
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-    - name: Fetch and create schema branch if it doesn't exist
-      run: |
-        git fetch origin schema || git checkout --orphan schema
-        git switch schema || git checkout -b schema
-        if [ "$(git rev-parse --abbrev-ref HEAD)" != "schema" ]; then
-          git switch -c schema
-          rm -rf ./*
-          mkdir -p schema
-          touch schema/.gitkeep
-          git add schema/.gitkeep
-          git commit -m "Initialize schema branch with schema folder"
-          git push -u origin schema
-        fi
-    - name: Copy schema artifact to schema folder
-      run: |
-        rm -rf schema/*  # Clear existing files in schema folder
-        cp -R schema_new/* schema/  # Copy new schema files to schema folder
-    - name: Commit and push schema updates
-      run: |
-        git add schema
-        git commit -m "Update schema files" || echo "No changes to commit"
-        git push origin schema
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Download Schema artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: schema
+          path: schema_new
+      - name: Set up Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Fetch and create schema branch if it doesn't exist
+        run: |
+          git fetch origin schema || git checkout --orphan schema
+          git switch schema || git checkout -b schema
+          if [ "$(git rev-parse --abbrev-ref HEAD)" != "schema" ]; then
+            git switch -c schema
+            rm -rf ./*
+            mkdir -p schema
+            touch schema/.gitkeep
+            git add schema/.gitkeep
+            git commit -m "Initialize schema branch with schema folder"
+            git push -u origin schema
+          fi
+      - name: Copy schema artifact to schema folder
+        run: |
+          rm -rf schema/*  # Clear existing files in schema folder
+          cp -R schema_new/* schema/  # Copy new schema files to schema folder
+      - name: Commit and push schema updates
+        run: |
+          git add schema
+          git commit -m "Update schema files" || echo "No changes to commit"
+          git push origin schema

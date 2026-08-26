@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Loading schema documentation…</title>
+  </head>
+  <body>
+    <p id="status">Loading schema documentation…</p>
+    <script type="module">
+      try {
+        const response = await fetch("./Root.html.gz");
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        if (!("DecompressionStream" in window)) {
+          throw new Error(
+            "This browser does not support gzip decompression in JavaScript.",
+          );
+        }
+        const decompressed = response.body.pipeThrough(
+          new DecompressionStream("gzip"),
+        );
+        const html = await new Response(decompressed).text();
+        document.open("text/html", "replace");
+        document.write(html);
+        document.close();
+      } catch (error) {
+        document.querySelector("#status").textContent =
+          `Unable to load schema documentation: ${error.message}`;
+      }
+    </script>
+  </body>
+</html>
