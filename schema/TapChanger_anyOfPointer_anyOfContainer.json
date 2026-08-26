@@ -2,6 +2,12 @@
   "anyOf": [
     {
       "type": "string",
+      "title": "TapChanger_Pointer",
+      "description": "Pointer to TapChanger object",
+      "pattern": "^TapChanger::'(.+)'$"
+    },
+    {
+      "type": "string",
       "title": "RatioTapChanger_Pointer",
       "description": "Pointer to RatioTapChanger object",
       "pattern": "^RatioTapChanger::'(.+)'$"

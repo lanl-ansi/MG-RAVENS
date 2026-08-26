@@ -1,12 +1,19 @@
 {
+  "type": "object",
   "description": "Schedule of values at points in time.",
   "title": "BasicIntervalSchedule",
   "anyOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerSchedule.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BasicIntervalSchedule.json"
     },
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConformLoadSchedule.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerSchedule.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenUnitOpSchedule.json"
     }
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",

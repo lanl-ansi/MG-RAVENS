@@ -2,6 +2,9 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "EnvironmentalPhenomenon.EnvironmentalInformation": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnvironmentalInformation.json"
+    },
     "EnvironmentalPhenomenon.timeInterval": {
       "title": "timeInterval",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DateTimeInterval.json",

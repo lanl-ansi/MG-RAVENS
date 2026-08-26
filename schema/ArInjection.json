@@ -7,11 +7,11 @@
       "description": "Pointer to ConnectivityNode object",
       "pattern": "^ConnectivityNode::'(.+)'$"
     },
-    "AnalysisResultData.DataValues": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AvInjection.json"
-    },
     "AnalysisResultData.Curve": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultCurve.json"
+    },
+    "AnalysisResultData.DataValues": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AvInjection.json"
     },
     "AnalysisResultData.sequenceNumber": {
       "title": "sequenceNumber",

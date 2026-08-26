@@ -2,116 +2,128 @@
   "title": "Root",
   "type": "object",
   "properties": {
-    "Versions": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Versions.json"
-    },
-    "BaseVoltage": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BaseVoltageContainer_Container.json"
-    },
-    "ConnectivityNode": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodeContainer_Container.json"
-    },
-    "TopologicalNode": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TopologicalNodeContainer_Container.json"
-    },
-    "CoordinateSystem": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CoordinateSystemContainer_Container.json"
-    },
-    "Group": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Group.json"
-    },
-    "PowerSystemResource": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerSystemResource.json"
-    },
-    "LoadResponseCharacteristic": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadResponseCharacteristicContainer_Container.json"
-    },
-    "PerLengthLineParameter": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerLengthLineParameter.json"
-    },
-    "OperationalLimitType": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitTypeContainer_Container.json"
-    },
-    "OperationalLimitSet": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitSetContainer_Container.json"
-    },
-    "Curve": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurveContainer_Container.json"
-    },
-    "SwitchingAction": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SwitchingActionContainer_Container.json"
-    },
-    "Fault": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FaultContainer_Container.json"
-    },
-    "Location": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LocationContainer_Container.json"
-    },
-    "Document": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Document.json"
-    },
     "ActivityRecord": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivityRecord.json"
-    },
-    "EnvironmentalPhenomenon": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnvironmentalPhenomenonContainer_Container.json"
-    },
-    "AssetInfo": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo.json"
-    },
-    "Asset": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetContainer_Container.json"
-    },
-    "ProposedSiteLocation": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocationContainer_Container.json"
-    },
-    "FossilFuel": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FossilFuelContainer_Container.json"
-    },
-    "CommunityFacility": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CommunityFacilityContainer_Container.json"
-    },
-    "EconomicProperty": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EconomicPropertyContainer_Container.json"
-    },
-    "EnergyPrices": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyPrices.json"
-    },
-    "PredictedEmissions": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PredictedEmissionsContainer_Container.json"
-    },
-    "ApplicationSettings": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApplicationSettings_anyOfContainer.json"
-    },
-    "ProposedAssetOption": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetOption.json"
-    },
-    "ProposedAsset": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetContainer_Container.json"
-    },
-    "EstimatedCost": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EstimatedCostContainer_Container.json"
-    },
-    "Application": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApplicationContainer_Container.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivityRecordContainer_Container.json"
     },
     "Algorithm": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AlgorithmContainer_Container.json"
     },
-    "Message": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Message_Array.json"
+    "AnalysisResult": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultContainer_Container.json"
+    },
+    "AnalysisResultData": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultData.json"
+    },
+    "Application": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApplicationContainer_Container.json"
+    },
+    "ApplicationSettings": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ApplicationSettingsContainer_Container.json"
+    },
+    "Asset": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetContainer_Container.json"
+    },
+    "AssetInfo": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo.json"
+    },
+    "BaseVoltage": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BaseVoltageContainer_Container.json"
     },
     "BasicIntervalSchedule": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BasicIntervalScheduleContainer_Container.json"
     },
+    "CoincidentPeakPrices": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CoincidentPeakPricesContainer_Container.json"
+    },
+    "CommunityFacility": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CommunityFacilityContainer_Container.json"
+    },
+    "ConnectivityNode": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodeContainer_Container.json"
+    },
+    "CoordinateSystem": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CoordinateSystemContainer_Container.json"
+    },
+    "Curve": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurveContainer_Container.json"
+    },
+    "Document": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Document.json"
+    },
+    "DynamicsFunctionBlock": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DynamicsFunctionBlockContainer_Container.json"
+    },
+    "EconomicProperty": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EconomicPropertyContainer_Container.json"
+    },
     "EnergyConnectionProfile": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConnectionProfileContainer_Container.json"
     },
-    "AnalysisResult": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultContainer_Container.json"
+    "EnergyPrices": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyPrices.json"
+    },
+    "EnvironmentalPhenomenon": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnvironmentalPhenomenonContainer_Container.json"
+    },
+    "EquivalentBranch": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EquivalentBranchContainer_Container.json"
+    },
+    "EstimatedCost": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EstimatedCostContainer_Container.json"
+    },
+    "Fault": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FaultContainer_Container.json"
+    },
+    "FossilFuel": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FossilFuelContainer_Container.json"
+    },
+    "Group": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Group.json"
+    },
+    "LoadResponseCharacteristic": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadResponseCharacteristicContainer_Container.json"
+    },
+    "Location": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LocationContainer_Container.json"
+    },
+    "Message": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/MessageContainer_Container.json"
+    },
+    "OperationalLimitSet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitSetContainer_Container.json"
+    },
+    "OperationalLimitType": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitTypeContainer_Container.json"
+    },
+    "PerLengthLineParameter": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerLengthLineParameter.json"
+    },
+    "PowerSystemResource": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerSystemResource.json"
+    },
+    "PredictedEmissions": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PredictedEmissionsContainer_Container.json"
     },
     "ProducerCostFunction": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProducerCostFunctionContainer_Container.json"
+    },
+    "ProposedAsset": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetContainer_Container.json"
+    },
+    "ProposedAssetOption": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetOption.json"
+    },
+    "ProposedSiteLocation": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocationContainer_Container.json"
+    },
+    "SwitchingAction": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SwitchingActionContainer_Container.json"
+    },
+    "TopologicalNode": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TopologicalNodeContainer_Container.json"
+    },
+    "Versions": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Versions.json"
     }
   },
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Root.json",

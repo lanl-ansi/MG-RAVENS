@@ -1,38 +1,26 @@
 {
   "type": "object",
   "properties": {
-    "ConductingEquipment.BaseVoltage": {
-      "type": "string",
-      "title": "BaseVoltage_Pointer",
-      "description": "Pointer to BaseVoltage object",
-      "pattern": "^BaseVoltage::'(.+)'$"
+    "TransformerEnd.FromMeshImpedance": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerMeshImpedance_Array.json"
     },
-    "Equipment.OperationalLimitSet": {
-      "type": "string",
-      "title": "OperationalLimitSet_Pointer",
-      "description": "Pointer to OperationalLimitSet object",
-      "pattern": "^OperationalLimitSet::'(.+)'$"
-    },
-    "TransformerEnd.RatioTapChanger": {
-      "type": "string",
-      "title": "RatioTapChanger_Pointer",
-      "description": "Pointer to RatioTapChanger object",
-      "pattern": "^RatioTapChanger::'(.+)'$"
-    },
-    "TransformerEnd.PhaseTapChanger": {
-      "type": "string",
-      "title": "PhaseTapChanger_Pointer",
-      "description": "Pointer to PhaseTapChanger object",
-      "pattern": "^PhaseTapChanger::'(.+)'$"
-    },
-    "TransformerEnd.MeshImpedance": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerMeshImpedance.json"
+    "TransformerEnd.ToMeshImpedance": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerMeshImpedance_Array.json"
     },
     "TransformerEnd.StarImpedance": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerStarImpedance.json"
     },
+    "TransformerEnd.Terminal": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal.json"
+    },
     "TransformerEnd.CoreAdmittance": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerCoreAdmittance.json"
+    },
+    "TransformerEnd.BaseVoltage": {
+      "type": "string",
+      "title": "BaseVoltage_Pointer",
+      "description": "Pointer to BaseVoltage object",
+      "pattern": "^BaseVoltage::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

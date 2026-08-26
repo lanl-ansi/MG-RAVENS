@@ -1,17 +1,8 @@
 {
   "type": "object",
   "properties": {
-    "TransformerTank.TransformerTankEnd": {
+    "TransformerTank.TransformerTankEnds": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerTankEnd_Array.json"
-    },
-    "ConductingEquipment.SvStatus": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatus_Array.json"
-    },
-    "PowerSystemResource.AssetDatasheet": {
-      "type": "string",
-      "title": "TransformerTankInfo_Pointer",
-      "description": "Pointer to TransformerTankInfo object",
-      "pattern": "^TransformerTankInfo::'(.+)'$"
     },
     "Equipment.aggregate": {
       "title": "aggregate",

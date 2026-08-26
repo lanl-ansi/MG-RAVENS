@@ -2,6 +2,12 @@
   "anyOf": [
     {
       "type": "string",
+      "title": "ProposedAssetOption_Pointer",
+      "description": "Pointer to ProposedAssetOption object",
+      "pattern": "^ProposedAssetOption::'(.+)'$"
+    },
+    {
+      "type": "string",
       "title": "ProposedConductorOption_Pointer",
       "description": "Pointer to ProposedConductorOption object",
       "pattern": "^ProposedConductorOption::'(.+)'$"
@@ -20,21 +26,27 @@
     },
     {
       "type": "string",
-      "title": "ProposedBatteryUnitOption_Pointer",
-      "description": "Pointer to ProposedBatteryUnitOption object",
-      "pattern": "^ProposedBatteryUnitOption::'(.+)'$"
-    },
-    {
-      "type": "string",
       "title": "ProposedPhotoVoltaicUnitOption_Pointer",
       "description": "Pointer to ProposedPhotoVoltaicUnitOption object",
       "pattern": "^ProposedPhotoVoltaicUnitOption::'(.+)'$"
     },
     {
       "type": "string",
+      "title": "ProposedGeneratingUnitOption_Pointer",
+      "description": "Pointer to ProposedGeneratingUnitOption object",
+      "pattern": "^ProposedGeneratingUnitOption::'(.+)'$"
+    },
+    {
+      "type": "string",
       "title": "ProposedWindUnitOption_Pointer",
       "description": "Pointer to ProposedWindUnitOption object",
       "pattern": "^ProposedWindUnitOption::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "ProposedBatteryUnitOption_Pointer",
+      "description": "Pointer to ProposedBatteryUnitOption object",
+      "pattern": "^ProposedBatteryUnitOption::'(.+)'$"
     }
   ],
   "title": "ProposedAssetOption_anyOfPointer",

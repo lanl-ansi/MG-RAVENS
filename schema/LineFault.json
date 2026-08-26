@@ -2,14 +2,11 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
-    "Fault.Location": {
-      "type": "string",
-      "title": "Location_Pointer",
-      "description": "Pointer to Location object",
-      "pattern": "^Location::'(.+)'$"
-    },
     "Fault.FaultyEquipment": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Equipment_anyOfPointer_anyOfContainer.json"
+    },
+    "Fault.Location": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
     },
     "Fault.occurredDateTime": {
       "title": "occurredDateTime",

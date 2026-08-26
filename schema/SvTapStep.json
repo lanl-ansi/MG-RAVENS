@@ -1,5 +1,8 @@
 {
+  "$objectType": "object",
   "type": "object",
+  "$objectId": "SvTapStep",
+  "$arrayPosition": null,
   "properties": {
     "SvTapStep.position": {
       "title": "position",
@@ -15,8 +18,8 @@
       ]
     }
   },
-  "title": "SvTapStep",
   "description": "State variable for transformer tap step.",
+  "title": "SvTapStep",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvTapStep.json",

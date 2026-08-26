@@ -2,6 +2,9 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "WireInfo.WirePhaseInfo": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WirePhaseInfo_Array.json"
+    },
     "CableInfo.isStrandFill": {
       "title": "isStrandFill",
       "type": "boolean",

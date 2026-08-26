@@ -4,7 +4,7 @@
   "title": "EnergyConsumer_PointerArray",
   "items": {
     "type": "string",
-    "title": "EnergyConsumer_Pointer",
+    "title": "EnergyConsumerPointer",
     "description": "Pointer to EnergyConsumer object"
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",

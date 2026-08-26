@@ -5,6 +5,9 @@
     "AnalysisResult.Generics": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArGeneric_Array.json"
     },
+    "AnalysisResult.ResultDatas": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultData_PointerArray.json"
+    },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",

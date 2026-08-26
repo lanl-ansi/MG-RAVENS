@@ -8,39 +8,15 @@
     },
     {
       "type": "string",
-      "title": "ProtectedSwitch_Pointer",
-      "description": "Pointer to ProtectedSwitch object",
-      "pattern": "^ProtectedSwitch::'(.+)'$"
+      "title": "Disconnector_Pointer",
+      "description": "Pointer to Disconnector object",
+      "pattern": "^Disconnector::'(.+)'$"
     },
     {
       "type": "string",
-      "title": "Breaker_Pointer",
-      "description": "Pointer to Breaker object",
-      "pattern": "^Breaker::'(.+)'$"
-    },
-    {
-      "type": "string",
-      "title": "LoadBreakSwitch_Pointer",
-      "description": "Pointer to LoadBreakSwitch object",
-      "pattern": "^LoadBreakSwitch::'(.+)'$"
-    },
-    {
-      "type": "string",
-      "title": "Recloser_Pointer",
-      "description": "Pointer to Recloser object",
-      "pattern": "^Recloser::'(.+)'$"
-    },
-    {
-      "type": "string",
-      "title": "Cut_Pointer",
-      "description": "Pointer to Cut object",
-      "pattern": "^Cut::'(.+)'$"
-    },
-    {
-      "type": "string",
-      "title": "Sectionaliser_Pointer",
-      "description": "Pointer to Sectionaliser object",
-      "pattern": "^Sectionaliser::'(.+)'$"
+      "title": "Jumper_Pointer",
+      "description": "Pointer to Jumper object",
+      "pattern": "^Jumper::'(.+)'$"
     },
     {
       "type": "string",
@@ -56,9 +32,45 @@
     },
     {
       "type": "string",
-      "title": "Jumper_Pointer",
-      "description": "Pointer to Jumper object",
-      "pattern": "^Jumper::'(.+)'$"
+      "title": "Sectionaliser_Pointer",
+      "description": "Pointer to Sectionaliser object",
+      "pattern": "^Sectionaliser::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "Cut_Pointer",
+      "description": "Pointer to Cut object",
+      "pattern": "^Cut::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "ProtectedSwitch_Pointer",
+      "description": "Pointer to ProtectedSwitch object",
+      "pattern": "^ProtectedSwitch::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "Breaker_Pointer",
+      "description": "Pointer to Breaker object",
+      "pattern": "^Breaker::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "Recloser_Pointer",
+      "description": "Pointer to Recloser object",
+      "pattern": "^Recloser::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "LoadBreakSwitch_Pointer",
+      "description": "Pointer to LoadBreakSwitch object",
+      "pattern": "^LoadBreakSwitch::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "DisconnectingCircuitBreaker_Pointer",
+      "description": "Pointer to DisconnectingCircuitBreaker object",
+      "pattern": "^DisconnectingCircuitBreaker::'(.+)'$"
     }
   ],
   "title": "Switch_anyOfPointer",

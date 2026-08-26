@@ -1,10 +1,10 @@
 {
   "type": "array",
-  "title": "EnergyConsumerPhase_Array",
-  "description": "Array of EnergyConsumerPhase objects",
   "items": {
     "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerPhase.json"
   },
+  "title": "EnergyConsumerPhase_Array",
+  "description": "Array of EnergyConsumerPhase objects",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerPhase_Array.json",

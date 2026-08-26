@@ -1,4 +1,5 @@
 {
+  "type": "object",
   "description": "An Asset that has been Proposed by an Algorithm, using some ProposedAssetOption.",
   "title": "ProposedAsset",
   "anyOf": [
@@ -6,13 +7,13 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAsset.json"
     },
     {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedBatteryUnit.json"
+    },
+    {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedBranch.json"
     },
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedEnergyProducerAsset.json"
-    },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedBatteryUnit.json"
     }
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",

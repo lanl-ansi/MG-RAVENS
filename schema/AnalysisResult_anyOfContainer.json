@@ -1,14 +1,15 @@
 {
+  "type": "object",
   "title": "AnalysisResult",
   "anyOf": [
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationsResult.json"
-    },
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResult.json"
     },
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FaultStudyResult.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationsResult.json"
     }
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",

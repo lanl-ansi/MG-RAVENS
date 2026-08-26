@@ -1,10 +1,12 @@
 {
   "type": "array",
+  "items": {
+    "type": "string",
+    "title": "EquipmentPointer",
+    "description": "Pointer to Equipment object"
+  },
   "description": "Pointers to Equipment objects",
   "title": "Equipment_PointerArray",
-  "items": {
-    "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Equipment_Pointer_anyOfContainer.json"
-  },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Equipment_PointerArray.json",

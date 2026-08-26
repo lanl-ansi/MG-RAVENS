@@ -1,39 +1,42 @@
 {
+  "$objectType": "object",
   "type": "object",
+  "$objectId": "EnergyConsumerPhase",
+  "$arrayPosition": null,
   "properties": {
     "EnergyConsumerPhase.p": {
       "title": "p",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "type": "ActivePower",
       "description": "Active power of the load. Load sign convention is used, i.e. positive sign means flow out from a node.\nFor voltage dependent loads the value is at rated voltage.\nStarting value for a steady state solution."
     },
     "EnergyConsumerPhase.pfixed": {
       "title": "pfixed",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
+      "type": "ActivePower",
       "description": "Active power of the load that is a fixed quantity. Load sign convention is used, i.e. positive sign means flow out from a node."
     },
     "EnergyConsumerPhase.pfixedPct": {
       "title": "pfixedPct",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "type": "PerCent",
       "description": "Fixed active power as per cent of load group fixed active power. Load sign convention is used, i.e. positive sign means flow out from a node."
     },
     "EnergyConsumerPhase.phase": {
       "title": "phase",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
+      "type": "SinglePhaseKind",
       "description": "Phase of this energy consumer component.   If the energy consumer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy consumer is delta connected, the phase indicates an energy consumer connected from the indicated phase to the next logical non-neutral phase."
     },
     "EnergyConsumerPhase.qfixed": {
       "title": "qfixed",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
+      "type": "ReactivePower",
       "description": "Reactive power of the load that is a fixed quantity. Load sign convention is used, i.e. positive sign means flow out from a node."
     },
     "EnergyConsumerPhase.qfixedPct": {
       "title": "qfixedPct",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "type": "PerCent",
       "description": "Fixed reactive power as per cent of load group fixed reactive power. Load sign convention is used, i.e. positive sign means flow out from a node."
     },
     "EnergyConsumerPhase.q": {
       "title": "q",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
+      "type": "ReactivePower",
       "description": "Reactive power of the load. Load sign convention is used, i.e. positive sign means flow out from a node.\nFor voltage dependent loads the value is at rated voltage.\nStarting value for a steady state solution."
     },
     "Ravens.cimObjectType": {

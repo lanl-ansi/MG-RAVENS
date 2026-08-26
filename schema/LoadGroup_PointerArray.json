@@ -4,7 +4,7 @@
   "title": "LoadGroup_PointerArray",
   "items": {
     "type": "string",
-    "title": "LoadGroup_Pointer",
+    "title": "LoadGroupPointer",
     "description": "Pointer to LoadGroup object"
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",

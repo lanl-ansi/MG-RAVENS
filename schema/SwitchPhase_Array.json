@@ -1,10 +1,10 @@
 {
   "type": "array",
-  "title": "SwitchPhase_Array",
-  "description": "Array of SwitchPhase objects",
   "items": {
     "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SwitchPhase.json"
   },
+  "title": "SwitchPhase_Array",
+  "description": "Array of SwitchPhase objects",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SwitchPhase_Array.json",

@@ -2,6 +2,9 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "GroundAction.GroundedEquipment": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConductingEquipment_anyOfPointer_anyOfContainer.json"
+    },
     "SwitchingAction.plannedDateTime": {
       "title": "plannedDateTime",
       "type": "string",

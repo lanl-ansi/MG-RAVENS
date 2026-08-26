@@ -1,10 +1,10 @@
 {
   "type": "array",
+  "items": {
+    "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntCompensatorPhase_anyOfContainer.json"
+  },
   "title": "ShuntCompensatorPhase_Array",
   "description": "Array of ShuntCompensatorPhase objects",
-  "items": {
-    "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntCompensatorPhase.json"
-  },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntCompensatorPhase_Array.json",

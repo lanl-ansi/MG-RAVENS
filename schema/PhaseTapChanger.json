@@ -1,35 +1,25 @@
 {
+  "$objectType": "object",
   "type": "object",
-  "description": "A transformer phase shifting tap model that controls the phase angle difference across the power transformer and potentially the active power flow through the power transformer.  This phase tap model may also impact the voltage magnitude.",
-  "title": "PhaseTapChanger",
-  "additionalProperties": false,
+  "$objectId": "PhaseTapChanger",
   "properties": {
-    "RegulatingControl": {
-      "type": "string",
-      "title": "RegulatingControl_Pointer",
-      "description": "Pointer to RegulatingControl object",
-      "pattern": "^RegulatingControl::'(.+)'$"
+    "PowerSystemResource.AssetDatasheet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
     },
     "PowerSystemResource.GenericAction": {
-      "type": "string",
-      "title": "SwitchingAction_Pointer",
-      "description": "Pointer to SwitchingAction object",
-      "pattern": "^SwitchingAction::'(.+)'$"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenericAction_PointerArray.json"
     },
-    "PowerSystemResource.AssetDatasheet": {
-      "type": "string",
-      "title": "TapChangerInfo_Pointer",
-      "description": "Pointer to TapChangerInfo object",
-      "pattern": "^TapChangerInfo::'(.+)'$"
-    },
-    "TapChanger.SvTapStep": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvTapStep_Array.json"
+    "PowerSystemResource.Location": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
     },
     "TapChanger.TapChangerControl": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TapChangerControl.json"
     },
     "TapChanger.TapChangerRatio": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TapChangerRatio.json"
+    },
+    "TapChanger.SvTapStep": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvTapStep.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
@@ -51,7 +41,7 @@
     },
     "TapChanger.initialDelay": {
       "title": "initialDelay",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "type": "Seconds",
       "description": "For an LTC, the delay for initial tap changer operation (first step change)."
     },
     "TapChanger.lowStep": {
@@ -71,7 +61,7 @@
     },
     "TapChanger.neutralU": {
       "title": "neutralU",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
+      "type": "Voltage",
       "description": "Voltage at which the winding operates at the neutral tap setting. It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.\nThis attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear."
     },
     "TapChanger.normalStep": {
@@ -81,12 +71,12 @@
     },
     "PhaseTapChangerAsymmetrical.windingConnectionAngle": {
       "title": "windingConnectionAngle",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AngleDegrees.json",
+      "type": "AngleDegrees",
       "description": "The phase angle between the in-phase winding and the out-of -phase winding used for creating phase shift. The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmetrical transformer. The attribute can only be multiples of 30 degrees.  The allowed range is -150 degrees to 150 degrees excluding 0."
     },
     "TapChanger.subsequentDelay": {
       "title": "subsequentDelay",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "type": "Seconds",
       "description": "For an LTC, the delay for subsequent tap changer operation (second and later step changes)."
     },
     "TapChanger.step": {
@@ -96,27 +86,27 @@
     },
     "PhaseTapChangerLinear.xMax": {
       "title": "xMax",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "type": "Reactance",
       "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The maximum reactance (xMax) appears at the low and high tap positions. Depending on the \u201cu\u201d curve the attribute can be either higher or lower than PowerTransformerEnd.x."
     },
     "PhaseTapChangerNonLinear.voltageStepIncrement": {
       "title": "voltageStepIncrement",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "type": "PerCent",
       "description": "The voltage step increment on the out of phase winding (the PowerTransformerEnd where the TapChanger is located) specified in percent of rated voltage of the PowerTransformerEnd. A positive value means a positive voltage variation from the Terminal at the PowerTransformerEnd, where the TapChanger is located, into the transformer.\nWhen the increment is negative, the voltage decreases when the tap step increases."
     },
     "PhaseTapChangerNonLinear.xMax": {
       "title": "xMax",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "type": "Reactance",
       "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The maximum reactance (xMax) appears at the low and high tap positions. Depending on the \u201cu\u201d curve the attribute can be either higher or lower than PowerTransformerEnd.x."
     },
     "PhaseTapChangerNonLinear.xMin": {
       "title": "xMin",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "type": "Reactance",
       "description": "The reactance depend on the tap position according to a \"u\" shaped curve. The minimum reactance (xMin) appear at the mid tap position.   PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used."
     },
     "PhaseTapChangerLinear.xMin": {
       "title": "xMin",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "type": "Reactance",
       "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The minimum reactance (xMin) appears at the mid tap position.  PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used."
     },
     "TapChanger.controlEnabled": {
@@ -126,7 +116,7 @@
     },
     "PhaseTapChangerLinear.stepPhaseShiftIncrement": {
       "title": "stepPhaseShiftIncrement",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AngleDegrees.json",
+      "type": "AngleDegrees",
       "description": "Phase shift per step position. A positive value indicates a positive angle variation from the Terminal at the  PowerTransformerEnd,  where the TapChanger is located, into the transformer.\nThe actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available."
     },
     "IdentifiedObject.aliasName": {
@@ -145,7 +135,10 @@
       "description": "The name is any free human readable and possibly non unique text naming the object."
     }
   },
+  "title": "PhaseTapChanger",
+  "description": "A transformer phase shifting tap model that controls the phase angle difference across the power transformer and potentially the active power flow through the power transformer.  This phase tap model may also impact the voltage magnitude.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseTapChanger.json",
   "license": "**Copyright**\nThe entire work provided in the UML project file is dedicated to the public domain and is copyrighted under an Apache 2\\.0 Open Source License. Major portions of this license are owned by the Electric Power Research Institute (EPRI) and the remaining portions are provided by other contributors.\n\nThe Apache 2\\.0 **Grant of Copyright License**: Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non\\-exclusive, no\\-charge, royalty\\-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.\nPer the Apache 2\\.0 Copyright, **Redistribution is provided under the following terms and conditions**. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:\n1\\. You must give any other recipients of the Work or Derivative Works a copy of this License; and\n2\\. You must cause any modified files to carry prominent notices stating that You changed the files; and \n3\\. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and \n4\\. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."
 }

@@ -1,6 +1,17 @@
 {
+  "$objectType": "object",
   "type": "object",
+  "$objectId": "SwitchPhase",
   "properties": {
+    "PowerSystemResource.AssetDatasheet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
+    },
+    "PowerSystemResource.GenericAction": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenericAction_PointerArray.json"
+    },
+    "PowerSystemResource.Location": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
+    },
     "SwitchPhase.normalOpen": {
       "title": "normalOpen",
       "type": "boolean",

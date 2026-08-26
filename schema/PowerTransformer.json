@@ -4,35 +4,47 @@
   "title": "PowerTransformer",
   "additionalProperties": false,
   "properties": {
-    "PowerTransformer.TransformerTank": {
+    "PowerSystemResource.AssetDatasheet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
+    },
+    "PowerSystemResource.GenericAction": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenericAction_PointerArray.json"
+    },
+    "PowerSystemResource.Location": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
+    },
+    "PowerTransformer.TransformerTanks": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerTank_Array.json"
     },
     "PowerTransformer.PowerTransformerEnd": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerTransformerEnd_Array.json"
     },
-    "ConductingEquipment.SvStatus": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatus_Array.json"
-    },
-    "PowerSystemResource.AssetDatasheet": {
+    "ConductingEquipment.JumpingAction": {
       "type": "string",
-      "title": "PowerTransformerInfo_Pointer",
-      "description": "Pointer to PowerTransformerInfo object",
-      "pattern": "^PowerTransformerInfo::'(.+)'$"
-    },
-    "PowerSystemResource.Location": {
-      "type": "string",
-      "title": "Location_Pointer",
-      "description": "Pointer to Location object",
-      "pattern": "^Location::'(.+)'$"
-    },
-    "Equipment.OperationalLimitSet": {
-      "type": "string",
-      "title": "OperationalLimitSet_Pointer",
-      "description": "Pointer to OperationalLimitSet object",
-      "pattern": "^OperationalLimitSet::'(.+)'$"
+      "title": "JumperAction_Pointer",
+      "description": "Pointer to JumperAction object",
+      "pattern": "^JumperAction::'(.+)'$"
     },
     "ConductingEquipment.Terminals": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
+    },
+    "ConductingEquipment.BaseVoltage": {
+      "type": "string",
+      "title": "BaseVoltage_Pointer",
+      "description": "Pointer to BaseVoltage object",
+      "pattern": "^BaseVoltage::'(.+)'$"
+    },
+    "ConductingEquipment.GroundingAction": {
+      "type": "string",
+      "title": "GroundAction_Pointer",
+      "description": "Pointer to GroundAction object",
+      "pattern": "^GroundAction::'(.+)'$"
+    },
+    "ConductingEquipment.SvStatus": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatus_Array.json"
+    },
+    "Equipment.OperationalLimitSet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitSet_PointerArray.json"
     },
     "PowerTransformer.beforeShCircuitHighestOperatingCurrent": {
       "title": "beforeShCircuitHighestOperatingCurrent",

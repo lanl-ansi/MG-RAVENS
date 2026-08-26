@@ -1,0 +1,137 @@
+{
+  "anyOf": [
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "Curve",
+      "$referencePath": "Curve",
+      "title": "Curve_Pointer",
+      "description": "Pointer to Curve object",
+      "pattern": "^Curve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "RampRateCurve",
+      "$referencePath": "Curve/RampRateCurve",
+      "title": "RampRateCurve_Pointer",
+      "description": "Pointer to RampRateCurve object",
+      "pattern": "^RampRateCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "DispatchCurve",
+      "$referencePath": "Curve/DispatchCurve",
+      "title": "DispatchCurve_Pointer",
+      "description": "Pointer to DispatchCurve object",
+      "pattern": "^DispatchCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "CustomProtectionCurve",
+      "$referencePath": "Curve/CustomProtectionCurve",
+      "title": "CustomProtectionCurve_Pointer",
+      "description": "Pointer to CustomProtectionCurve object",
+      "pattern": "^CustomProtectionCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "StartUpTimeCurve",
+      "$referencePath": "Curve/StartUpTimeCurve",
+      "title": "StartUpTimeCurve_Pointer",
+      "description": "Pointer to StartUpTimeCurve object",
+      "pattern": "^StartUpTimeCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "EmissionCurve",
+      "$referencePath": "Curve/EmissionCurve",
+      "title": "EmissionCurve_Pointer",
+      "description": "Pointer to EmissionCurve object",
+      "pattern": "^EmissionCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "VsCapabilityCurve",
+      "$referencePath": "Curve/VsCapabilityCurve",
+      "title": "VsCapabilityCurve_Pointer",
+      "description": "Pointer to VsCapabilityCurve object",
+      "pattern": "^VsCapabilityCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "StartUpCostCurve",
+      "$referencePath": "Curve/StartUpCostCurve",
+      "title": "StartUpCostCurve_Pointer",
+      "description": "Pointer to StartUpCostCurve object",
+      "pattern": "^StartUpCostCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "HeatRateCurve",
+      "$referencePath": "Curve/HeatRateCurve",
+      "title": "HeatRateCurve_Pointer",
+      "description": "Pointer to HeatRateCurve object",
+      "pattern": "^HeatRateCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "ReactiveCapabilityCurve",
+      "$referencePath": "Curve/ReactiveCapabilityCurve",
+      "title": "ReactiveCapabilityCurve_Pointer",
+      "description": "Pointer to ReactiveCapabilityCurve object",
+      "pattern": "^ReactiveCapabilityCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "FuelCostCurve",
+      "$referencePath": "Curve/FuelCostCurve",
+      "title": "FuelCostCurve_Pointer",
+      "description": "Pointer to FuelCostCurve object",
+      "pattern": "^FuelCostCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "GenUnitOpCostCurve",
+      "$referencePath": "Curve/GenUnitOpCostCurve",
+      "title": "GenUnitOpCostCurve_Pointer",
+      "description": "Pointer to GenUnitOpCostCurve object",
+      "pattern": "^GenUnitOpCostCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "ShutdownCurve",
+      "$referencePath": "Curve/ShutdownCurve",
+      "title": "ShutdownCurve_Pointer",
+      "description": "Pointer to ShutdownCurve object",
+      "pattern": "^ShutdownCurve::'(.+)'$"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "StartRampCurve",
+      "$referencePath": "Curve/StartRampCurve",
+      "title": "StartRampCurve_Pointer",
+      "description": "Pointer to StartRampCurve object",
+      "pattern": "^StartRampCurve::'(.+)'$"
+    }
+  ],
+  "title": "Curve_anyOfPointer",
+  "description": "Pointer to Curve object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Curve_anyOfPointer_anyOfContainer.json",
+  "$objectType": "reference",
+  "$objectId": "Curve",
+  "license": "**Copyright**\nThe entire work provided in the UML project file is dedicated to the public domain and is copyrighted under an Apache 2\\.0 Open Source License. Major portions of this license are owned by the Electric Power Research Institute (EPRI) and the remaining portions are provided by other contributors.\n\nThe Apache 2\\.0 **Grant of Copyright License**: Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non\\-exclusive, no\\-charge, royalty\\-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.\nPer the Apache 2\\.0 Copyright, **Redistribution is provided under the following terms and conditions**. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:\n1\\. You must give any other recipients of the Work or Derivative Works a copy of this License; and\n2\\. You must cause any modified files to carry prominent notices stating that You changed the files; and \n3\\. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and \n4\\. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."
+}

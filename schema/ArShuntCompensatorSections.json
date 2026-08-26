@@ -4,11 +4,11 @@
     "ArShuntCompensatorSections.ShuntCompensator": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntCompensator_anyOfPointer_anyOfContainer.json"
     },
-    "AnalysisResultData.DataValues": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AvShuntCompensatorSections.json"
-    },
     "AnalysisResultData.Curve": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultCurve.json"
+    },
+    "AnalysisResultData.DataValues": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AvShuntCompensatorSections.json"
     },
     "AnalysisResultData.sequenceNumber": {
       "title": "sequenceNumber",

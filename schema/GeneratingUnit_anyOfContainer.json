@@ -1,4 +1,7 @@
 {
+  "$objectType": "object",
+  "$objectId": "GeneratingUnit",
+  "$arrayPosition": null,
   "anyOf": [
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeneratingUnit.json"
@@ -7,7 +10,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HydroGeneratingUnit.json"
     },
     {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SolarGeneratingUnit.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ThermalGeneratingUnit.json"
     },
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NuclearGeneratingUnit.json"
@@ -16,9 +19,36 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WindGeneratingUnit.json"
     },
     {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ThermalGeneratingUnit.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SolarGeneratingUnit.json"
     }
   ],
+  "properties": {
+    "GeneratingUnit.GenUnitOpCostCurves": {
+      "type": "array",
+      "items": {
+        "$objectType": "reference",
+        "type": "string",
+        "$objectId": "GenUnitOpCostCurve",
+        "$referencePath": "Curve/GenUnitOpCostCurve"
+      }
+    },
+    "GeneratingUnit.GenUnitOpSchedule": {
+      "$objectType": "object",
+      "type": "object",
+      "$objectId": "GenUnitOpSchedule",
+      "$arrayPosition": null,
+      "properties": {}
+    },
+    "Equipment.OperationalLimitSet": {
+      "type": "array",
+      "items": {
+        "$objectType": "reference",
+        "type": "string",
+        "$objectId": "OperationalLimitSet",
+        "$referencePath": "OperationalLimitSet"
+      }
+    }
+  },
   "description": "A single or set of synchronous machines for converting mechanical power into alternating-current power. For example, individual machines within a set may be defined for scheduling purposes while a single control signal is derived for the set. In this case there would be a GeneratingUnit for each member of the set and an additional GeneratingUnit corresponding to the set.",
   "title": "GeneratingUnit",
   "$schema": "https://json-schema.org/draft/2020-12/schema",

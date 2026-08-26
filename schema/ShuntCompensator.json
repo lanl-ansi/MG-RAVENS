@@ -1,60 +1,70 @@
 {
-  "additionalProperties": false,
+  "$objectType": "object",
   "type": "object",
+  "$objectId": "ShuntCompensator",
   "properties": {
-    "PowerSystemResource.Location": {
-      "type": "string",
-      "title": "Location_Pointer",
-      "description": "Pointer to Location object",
-      "pattern": "^Location::'(.+)'$"
+    "PowerSystemResource.AssetDatasheet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
     },
     "PowerSystemResource.GenericAction": {
-      "type": "string",
-      "title": "SwitchingAction_Pointer",
-      "description": "Pointer to SwitchingAction object",
-      "pattern": "^SwitchingAction::'(.+)'$"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenericAction_PointerArray.json"
     },
-    "Equipment.OperationalLimitSet": {
+    "PowerSystemResource.Location": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
+    },
+    "EnergyConnection.PhaseConnectionDetail": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectionDetail.json"
+    },
+    "ConductingEquipment.JumpingAction": {
+      "$objectType": "reference",
       "type": "string",
-      "title": "OperationalLimitSet_Pointer",
-      "description": "Pointer to OperationalLimitSet object",
-      "pattern": "^OperationalLimitSet::'(.+)'$"
+      "$objectId": "JumperAction",
+      "$referencePath": "SwitchingAction/JumperAction",
+      "title": "JumperAction_Pointer",
+      "description": "Pointer to JumperAction object",
+      "pattern": "^JumperAction::'(.+)'$"
     },
     "ConductingEquipment.Terminals": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
     },
     "ConductingEquipment.BaseVoltage": {
+      "$objectType": "reference",
       "type": "string",
+      "$objectId": "BaseVoltage",
+      "$referencePath": "BaseVoltage",
       "title": "BaseVoltage_Pointer",
       "description": "Pointer to BaseVoltage object",
       "pattern": "^BaseVoltage::'(.+)'$"
     },
-    "ShuntCompensator.ShuntCompensatorPhase": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntCompensatorPhase_Array.json"
-    },
-    "PowerSystemResource.AssetDatasheet": {
+    "ConductingEquipment.GroundingAction": {
+      "$objectType": "reference",
       "type": "string",
-      "title": "ShuntCompensatorInfo_Pointer",
-      "description": "Pointer to ShuntCompensatorInfo object",
-      "pattern": "^ShuntCompensatorInfo::'(.+)'$"
-    },
-    "ShuntCompensator.SvShuntCompensatorSections": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvShuntCompensatorSections_Array.json"
+      "$objectId": "GroundAction",
+      "$referencePath": "SwitchingAction/GroundAction",
+      "title": "GroundAction_Pointer",
+      "description": "Pointer to GroundAction object",
+      "pattern": "^GroundAction::'(.+)'$"
     },
     "ConductingEquipment.SvStatus": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatus_Array.json"
     },
     "ShuntCompensator.ShuntCompensatorAction": {
+      "$objectType": "reference",
       "type": "string",
-      "title": "SwitchingAction_Pointer",
-      "description": "Pointer to SwitchingAction object",
-      "pattern": "^SwitchingAction::'(.+)'$"
+      "$objectId": "ShuntCompensatorAction",
+      "$referencePath": "SwitchingAction/ShuntCompensatorAction",
+      "title": "ShuntCompensatorAction_Pointer",
+      "description": "Pointer to ShuntCompensatorAction object",
+      "pattern": "^ShuntCompensatorAction::'(.+)'$"
     },
-    "RegulatingCondEq.RegulatingControl": {
-      "type": "string",
-      "title": "RegulatingControl_Pointer",
-      "description": "Pointer to RegulatingControl object",
-      "pattern": "^RegulatingControl::'(.+)'$"
+    "ShuntCompensator.ShuntCompensatorPhase": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntCompensatorPhase_Array.json"
+    },
+    "ShuntCompensator.SvShuntCompensatorSections": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvShuntCompensatorSections_Array.json"
+    },
+    "Equipment.OperationalLimitSet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitSet_PointerArray.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
@@ -76,7 +86,7 @@
     },
     "LinearShuntCompensator.b0PerSection": {
       "title": "b0PerSection",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Susceptance.json",
+      "type": "Susceptance",
       "description": "Zero sequence shunt (charging) susceptance per section."
     },
     "ShuntCompensator.sections": {
@@ -86,22 +96,22 @@
     },
     "LinearShuntCompensator.bPerSection": {
       "title": "bPerSection",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Susceptance.json",
+      "type": "Susceptance",
       "description": "Positive sequence shunt (charging) susceptance per section."
     },
     "LinearShuntCompensator.g0PerSection": {
       "title": "g0PerSection",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Conductance.json",
+      "type": "Conductance",
       "description": "Zero sequence shunt (charging) conductance per section."
     },
     "LinearShuntCompensator.gPerSection": {
       "title": "gPerSection",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Conductance.json",
+      "type": "Conductance",
       "description": "Positive sequence shunt (charging) conductance per section."
     },
     "ShuntCompensator.aVRDelay": {
       "title": "aVRDelay",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
+      "type": "Seconds",
       "description": "An automatic voltage regulation delay (AVRDelay) which is the time delay from a change in voltage to when the capacitor is allowed to change state. This filters out temporary changes in voltage."
     },
     "ShuntCompensator.grounded": {
@@ -116,7 +126,7 @@
     },
     "ShuntCompensator.nomU": {
       "title": "nomU",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
+      "type": "Voltage",
       "description": "The voltage at which the nominal reactive power may be calculated. This should normally be within 10% of the voltage at which the capacitor is connected to the network."
     },
     "ShuntCompensator.normalSections": {
@@ -126,7 +136,7 @@
     },
     "ShuntCompensator.phaseConnection": {
       "title": "phaseConnection",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseShuntConnectionKind.json",
+      "type": "PhaseShuntConnectionKind",
       "description": "The type of phase connection, such as wye or delta."
     },
     "ShuntCompensator.switchOnCount": {
@@ -141,7 +151,7 @@
     },
     "ShuntCompensator.voltageSensitivity": {
       "title": "voltageSensitivity",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VoltagePerReactivePower.json",
+      "type": "VoltagePerReactivePower",
       "description": "Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power."
     },
     "Equipment.networkAnalysisEnabled": {
@@ -166,12 +176,12 @@
     },
     "SVC.capacitiveRating": {
       "title": "capacitiveRating",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "type": "Reactance",
       "description": "Maximum capacitive reactive power."
     },
     "SVC.inductiveRating": {
       "title": "inductiveRating",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
+      "type": "Reactance",
       "description": "Maximum inductive reactive power."
     },
     "IdentifiedObject.aliasName": {
@@ -193,6 +203,7 @@
   "title": "ShuntCompensator",
   "description": "A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors. A section of a shunt compensator is an individual capacitor or reactor. A negative value for bPerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntCompensator.json",
   "license": "**Copyright**\nThe entire work provided in the UML project file is dedicated to the public domain and is copyrighted under an Apache 2\\.0 Open Source License. Major portions of this license are owned by the Electric Power Research Institute (EPRI) and the remaining portions are provided by other contributors.\n\nThe Apache 2\\.0 **Grant of Copyright License**: Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non\\-exclusive, no\\-charge, royalty\\-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.\nPer the Apache 2\\.0 Copyright, **Redistribution is provided under the following terms and conditions**. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:\n1\\. You must give any other recipients of the Work or Derivative Works a copy of this License; and\n2\\. You must cause any modified files to carry prominent notices stating that You changed the files; and \n3\\. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and \n4\\. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."
 }

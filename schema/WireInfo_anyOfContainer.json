@@ -1,4 +1,5 @@
 {
+  "type": "object",
   "description": "Wire data that can be specified per line segment phase, or for the line segment as a whole in case its phases all have the same wire characteristics.",
   "title": "WireInfo",
   "anyOf": [
@@ -6,16 +7,16 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WireInfo.json"
     },
     {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OverheadWireInfo.json"
-    },
-    {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CableInfo.json"
     },
     {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TapeShieldCableInfo.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConcentricNeutralCableInfo.json"
     },
     {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConcentricNeutralCableInfo.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OverheadWireInfo.json"
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TapeShieldCableInfo.json"
     }
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",

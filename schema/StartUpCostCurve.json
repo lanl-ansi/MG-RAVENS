@@ -2,6 +2,9 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "Curve.CurveDatas": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurveData_Array.json"
+    },
     "Curve.curveStyle": {
       "title": "curveStyle",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurveStyle.json",

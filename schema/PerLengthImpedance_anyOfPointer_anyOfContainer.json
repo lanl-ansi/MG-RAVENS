@@ -2,6 +2,12 @@
   "anyOf": [
     {
       "type": "string",
+      "title": "PerLengthImpedance_Pointer",
+      "description": "Pointer to PerLengthImpedance object",
+      "pattern": "^PerLengthImpedance::'(.+)'$"
+    },
+    {
+      "type": "string",
       "title": "PerLengthSequenceImpedance_Pointer",
       "description": "Pointer to PerLengthSequenceImpedance object",
       "pattern": "^PerLengthSequenceImpedance::'(.+)'$"

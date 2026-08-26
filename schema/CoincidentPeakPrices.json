@@ -3,9 +3,6 @@
   "title": "CoincidentPeakPrices",
   "additionalProperties": false,
   "properties": {
-    "EnergyPrices.Regions": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GeographicalRegion_PointerArray.json"
-    },
     "CoincidentPeakPrices.CoincidentPeakPriceCurve": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PriceCurve.json"
     },

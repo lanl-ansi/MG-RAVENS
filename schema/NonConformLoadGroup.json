@@ -2,14 +2,14 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "LoadGroup.ProposedSiteLocations": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocation_PointerArray.json"
+    },
+    "LoadGroup.EnergyConsumers": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumer_PointerArray.json"
+    },
     "NonConformLoadGroup.EnergyConsumers": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NonConformLoad_PointerArray.json"
-    },
-    "NonConformLoadGroup.NonConformLoadSchedules": {
-      "type": "string",
-      "title": "NonConformLoadSchedule_Pointer",
-      "description": "Pointer to NonConformLoadSchedule object",
-      "pattern": "^NonConformLoadSchedule::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

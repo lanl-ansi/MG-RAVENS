@@ -4,38 +4,26 @@
   "title": "PowerElectronicsConnection",
   "additionalProperties": false,
   "properties": {
+    "PowerSystemResource.AssetDatasheet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
+    },
+    "PowerSystemResource.GenericAction": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenericAction_PointerArray.json"
+    },
+    "PowerSystemResource.Location": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
+    },
     "EnergyConnection.PhaseConnectionDetail": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectionDetail.json"
     },
-    "PowerSystemResource.Location": {
+    "ConductingEquipment.JumpingAction": {
       "type": "string",
-      "title": "Location_Pointer",
-      "description": "Pointer to Location object",
-      "pattern": "^Location::'(.+)'$"
-    },
-    "PowerSystemResource.GenericAction": {
-      "type": "string",
-      "title": "SwitchingAction_Pointer",
-      "description": "Pointer to SwitchingAction object",
-      "pattern": "^SwitchingAction::'(.+)'$"
-    },
-    "Equipment.OperationalLimitSet": {
-      "type": "string",
-      "title": "OperationalLimitSet_Pointer",
-      "description": "Pointer to OperationalLimitSet object",
-      "pattern": "^OperationalLimitSet::'(.+)'$"
+      "title": "JumperAction_Pointer",
+      "description": "Pointer to JumperAction object",
+      "pattern": "^JumperAction::'(.+)'$"
     },
     "ConductingEquipment.Terminals": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
-    },
-    "PowerElectronicsConnection.PowerElectronicsUnit": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsUnit_anyOfContainer.json"
-    },
-    "PowerElectronicsConnection.PowerElectronicsProtection": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsProtection_anyOfContainer.json"
-    },
-    "PowerElectronicsConnection.PowerElectronicsOperatingMode": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsOperatingMode.json"
     },
     "ConductingEquipment.BaseVoltage": {
       "type": "string",
@@ -43,11 +31,32 @@
       "description": "Pointer to BaseVoltage object",
       "pattern": "^BaseVoltage::'(.+)'$"
     },
-    "PowerElectronicsConnection.PowerElectronicsConnectionPhase": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsConnectionPhase_Array.json"
+    "ConductingEquipment.GroundingAction": {
+      "type": "string",
+      "title": "GroundAction_Pointer",
+      "description": "Pointer to GroundAction object",
+      "pattern": "^GroundAction::'(.+)'$"
     },
     "ConductingEquipment.SvStatus": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatus_Array.json"
+    },
+    "PowerElectronicsConnection.InverterController": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/InverterController_anyOfContainer.json"
+    },
+    "PowerElectronicsConnection.PowerElectronicsOperatingMode": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsOperatingMode.json"
+    },
+    "PowerElectronicsConnection.PowerElectronicsUnit": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsUnit_Array.json"
+    },
+    "PowerElectronicsConnection.PowerElectronicsConnectionPhase": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsConnectionPhase_Array.json"
+    },
+    "PowerElectronicsConnection.PowerElectronicsProtection": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PowerElectronicsProtection_anyOfContainer.json"
+    },
+    "Equipment.OperationalLimitSet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitSet_PointerArray.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

@@ -10,6 +10,9 @@
       "description": "Pointer to TopologicalNode object",
       "pattern": "^TopologicalNode::'(.+)'$"
     },
+    "TopologicalIsland.TopologicalNodes": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TopologicalNode_PointerArray.json"
+    },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
       "type": "string",

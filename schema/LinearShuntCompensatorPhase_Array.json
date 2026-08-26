@@ -1,10 +1,10 @@
 {
   "type": "array",
-  "title": "LinearShuntCompensatorPhase_Array",
-  "description": "Array of LinearShuntCompensatorPhase objects",
   "items": {
     "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LinearShuntCompensatorPhase.json"
   },
+  "title": "LinearShuntCompensatorPhase_Array",
+  "description": "Array of LinearShuntCompensatorPhase objects",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LinearShuntCompensatorPhase_Array.json",

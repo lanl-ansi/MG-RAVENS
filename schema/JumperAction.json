@@ -2,6 +2,15 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "JumperAction.JumpedEquipments": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConductingEquipment_PointerArray.json"
+    },
+    "JumperAction.Jumper": {
+      "type": "string",
+      "title": "Jumper_Pointer",
+      "description": "Pointer to Jumper object",
+      "pattern": "^Jumper::'(.+)'$"
+    },
     "SwitchingAction.plannedDateTime": {
       "title": "plannedDateTime",
       "type": "string",

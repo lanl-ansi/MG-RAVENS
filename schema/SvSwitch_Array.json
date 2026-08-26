@@ -1,10 +1,10 @@
 {
   "type": "array",
-  "title": "SvSwitch_Array",
-  "description": "Array of SvSwitch objects",
   "items": {
     "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvSwitch.json"
   },
+  "title": "SvSwitch_Array",
+  "description": "Array of SvSwitch objects",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvSwitch_Array.json",

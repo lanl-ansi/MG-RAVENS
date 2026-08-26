@@ -1,16 +1,17 @@
 {
-  "additionalProperties": false,
+  "$objectType": "object",
   "type": "object",
+  "$objectId": "OutageScenario",
   "properties": {
-    "Outage.OutageIsolationEquipment": {
-      "type": "string",
-      "title": "ConductingEquipment_Pointer",
-      "description": "Pointer to ConductingEquipment object",
-      "pattern": "^ConductingEquipment::'(.+)'$"
+    "Document.ActivityRecord": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivityRecord_PointerArray.json"
+    },
+    "Outage.Equipments": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Equipment_PointerArray.json"
     },
     "Document.status": {
       "title": "status",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Status.json",
+      "type": "Status",
       "description": "Status of subject matter (e.g., Agreement, Work) this document represents. For status of the document itself, use 'docStatus' attribute."
     },
     "Document.comment": {
@@ -20,7 +21,7 @@
     },
     "Document.docStatus": {
       "title": "docStatus",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Status.json",
+      "type": "Status",
       "description": "Status of this document. For status of subject matter this document represents (e.g., Agreement, Work), use 'status' attribute.\nExample values for 'docStatus.status' are draft, approved, cancelled, etc."
     },
     "Ravens.cimObjectType": {
@@ -33,7 +34,7 @@
     },
     "Document.electronicAddress": {
       "title": "electronicAddress",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ElectronicAddress.json",
+      "type": "ElectronicAddress",
       "description": "Electronic address."
     },
     "IdentifiedObject.description": {
@@ -48,7 +49,7 @@
     },
     "Outage.statusKind": {
       "title": "statusKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CrewStatusKind.json",
+      "type": "CrewStatusKind",
       "description": "defines the status of the crew as in dispatched or arrived, etc."
     },
     "OutageScenario.anticipatedStartDay": {
@@ -68,12 +69,12 @@
     },
     "OutageScenario.loadFractionTotal": {
       "title": "loadFractionTotal",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "type": "PerCent",
       "description": "nan"
     },
     "OutageScenario.loadFractionCritical": {
       "title": "loadFractionCritical",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
+      "type": "PerCent",
       "description": "nan"
     },
     "Outage.utilityDisclaimer": {
@@ -113,7 +114,7 @@
     },
     "Outage.estimatedPeriod": {
       "title": "estimatedPeriod",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DateTimeInterval.json",
+      "type": "DateTimeInterval",
       "description": "Estimated outage period for a planned outage. The start of the period is the start of the planned outage and the end of the period corresponds to the end of the planned outage."
     },
     "Outage.customersRestored": {
@@ -143,7 +144,7 @@
     },
     "Outage.summary": {
       "title": "summary",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ServicePointOutageSummary.json",
+      "type": "ServicePointOutageSummary",
       "description": "Summary counts of service points (customers) affected by this outage."
     },
     "Outage.metersAffected": {
@@ -153,12 +154,12 @@
     },
     "Outage.actualPeriod": {
       "title": "actualPeriod",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DateTimeInterval.json",
+      "type": "DateTimeInterval",
       "description": "Actual outage period; end of the period corresponds to the actual restoration time."
     },
     "Outage.outageKind": {
       "title": "outageKind",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OutageStatusKind.json",
+      "type": "OutageStatusKind",
       "description": "Defines if the outage has been verified or is only estimated"
     },
     "IdentifiedObject.aliasName": {
@@ -179,6 +180,7 @@
   },
   "title": "OutageScenario",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OutageScenario.json",
   "license": "**Copyright**\nThe entire work provided in the UML project file is dedicated to the public domain and is copyrighted under an Apache 2\\.0 Open Source License. Major portions of this license are owned by the Electric Power Research Institute (EPRI) and the remaining portions are provided by other contributors.\n\nThe Apache 2\\.0 **Grant of Copyright License**: Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non\\-exclusive, no\\-charge, royalty\\-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.\nPer the Apache 2\\.0 Copyright, **Redistribution is provided under the following terms and conditions**. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:\n1\\. You must give any other recipients of the Work or Derivative Works a copy of this License; and\n2\\. You must cause any modified files to carry prominent notices stating that You changed the files; and \n3\\. You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and \n4\\. You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License."
 }

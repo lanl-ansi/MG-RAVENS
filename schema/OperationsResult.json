@@ -2,17 +2,11 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
-    "OperationsResult.Voltages": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArVoltage_Array.json"
+    "AnalysisResult.Generics": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArGeneric_Array.json"
     },
-    "OperationsResult.Injections": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArInjection_Array.json"
-    },
-    "OperationsResult.CurrentFlows": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArCurrentFlow_Array.json"
-    },
-    "OperationsResult.Statuses": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArStatus_Array.json"
+    "AnalysisResult.ResultDatas": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultData_PointerArray.json"
     },
     "OperationsResult.PowerFlows": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArPowerFlow_Array.json"
@@ -23,8 +17,29 @@
     "OperationsResult.TransformerTaps": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArTapStep_Array.json"
     },
+    "OperationsResult.ProposedAssetSet": {
+      "type": "string",
+      "title": "ProposedAssetSet_Pointer",
+      "description": "Pointer to ProposedAssetSet object",
+      "pattern": "^ProposedAssetSet::'(.+)'$"
+    },
     "OperationsResult.ShuntSections": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArShuntCompensatorSections_Array.json"
+    },
+    "OperationsResult.Injections": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArInjection_Array.json"
+    },
+    "OperationsResult.Statuses": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArStatus_Array.json"
+    },
+    "OperationsResult.CurrentFlows": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArCurrentFlow_Array.json"
+    },
+    "OperationsResult.Outage": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Outage_anyOfPointer_anyOfContainer.json"
+    },
+    "OperationsResult.Voltages": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ArVoltage_Array.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

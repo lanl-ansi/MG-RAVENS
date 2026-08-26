@@ -2,6 +2,12 @@
   "anyOf": [
     {
       "type": "string",
+      "title": "WireInfo_Pointer",
+      "description": "Pointer to WireInfo object",
+      "pattern": "^WireInfo::'(.+)'$"
+    },
+    {
+      "type": "string",
       "title": "CableInfo_Pointer",
       "description": "Pointer to CableInfo object",
       "pattern": "^CableInfo::'(.+)'$"
@@ -14,12 +20,6 @@
     },
     {
       "type": "string",
-      "title": "WireInfo_Pointer",
-      "description": "Pointer to WireInfo object",
-      "pattern": "^WireInfo::'(.+)'$"
-    },
-    {
-      "type": "string",
       "title": "ConcentricNeutralCableInfo_Pointer",
       "description": "Pointer to ConcentricNeutralCableInfo object",
       "pattern": "^ConcentricNeutralCableInfo::'(.+)'$"
@@ -29,12 +29,6 @@
       "title": "TapeShieldCableInfo_Pointer",
       "description": "Pointer to TapeShieldCableInfo object",
       "pattern": "^TapeShieldCableInfo::'(.+)'$"
-    },
-    {
-      "type": "string",
-      "title": "WireSpacingInfo_Pointer",
-      "description": "Pointer to WireSpacingInfo object",
-      "pattern": "^WireSpacingInfo::'(.+)'$"
     }
   ],
   "title": "WireInfo_anyOfPointer",

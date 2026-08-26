@@ -2,14 +2,14 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
-    "ProposedAsset.ProposedAssetOption": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetOption_anyOfPointer_anyOfContainer.json"
+    "ProposedEnergyProducerAsset.Terminal": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal.json"
     },
-    "ProposedAsset.Application": {
+    "ProposedEnergyProducerAsset.PowerDispatchCurve": {
       "type": "string",
-      "title": "Application_Pointer",
-      "description": "Pointer to Application object",
-      "pattern": "^Application::'(.+)'$"
+      "title": "DispatchCurve_Pointer",
+      "description": "Pointer to DispatchCurve object",
+      "pattern": "^DispatchCurve::'(.+)'$"
     },
     "ProposedAsset.EstimatedCost": {
       "type": "string",
@@ -17,20 +17,14 @@
       "description": "Pointer to EstimatedCost object",
       "pattern": "^EstimatedCost::'(.+)'$"
     },
-    "ProposedEnergyProducerAsset.PowerDispatchCurve": {
+    "ProposedAsset.Application": {
       "type": "string",
-      "title": "Curve_Pointer",
-      "description": "Pointer to Curve object",
-      "pattern": "^Curve::'(.+)'$"
+      "title": "Application_Pointer",
+      "description": "Pointer to Application object",
+      "pattern": "^Application::'(.+)'$"
     },
-    "ProposedAsset.Algorithm": {
-      "type": "string",
-      "title": "Algorithm_Pointer",
-      "description": "Pointer to Algorithm object",
-      "pattern": "^Algorithm::'(.+)'$"
-    },
-    "ProposedEnergyProducerAsset.Terminal": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal.json"
+    "ProposedAsset.ProposedAssetOption": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetOption_anyOfPointer_anyOfContainer.json"
     },
     "IdentifiedObject.description": {
       "title": "description",

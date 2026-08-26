@@ -2,6 +2,9 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "EnvironmentalPhenomenon.EnvironmentalInformation": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnvironmentalInformation.json"
+    },
     "VolcanicAshCloud.density": {
       "title": "density",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ParticulateDensity.json",

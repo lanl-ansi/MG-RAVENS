@@ -1,5 +1,8 @@
 {
+  "$objectType": "object",
   "type": "object",
+  "$objectId": "SvShuntCompensatorSections",
+  "$arrayPosition": null,
   "properties": {
     "SvShuntCompensatorSections.sections": {
       "title": "sections",
@@ -8,7 +11,7 @@
     },
     "SvShuntCompensatorSections.phase": {
       "title": "phase",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
+      "type": "SinglePhaseKind",
       "description": "The terminal phase at which the connection is applied.   If missing, the injection is assumed to be balanced among non-neutral phases."
     },
     "Ravens.cimObjectType": {

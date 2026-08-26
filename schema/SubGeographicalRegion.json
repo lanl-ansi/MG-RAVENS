@@ -4,35 +4,14 @@
   "title": "SubGeographicalRegion",
   "additionalProperties": false,
   "properties": {
-    "SubGeographicalRegion.Region": {
-      "type": "string",
-      "title": "GeographicalRegion_Pointer",
-      "description": "Pointer to GeographicalRegion object",
-      "pattern": "^GeographicalRegion::'(.+)'$"
-    },
-    "SubGeographicalRegion.EconomicProperty": {
-      "type": "string",
-      "title": "EconomicProperty_Pointer",
-      "description": "Pointer to EconomicProperty object",
-      "pattern": "^EconomicProperty::'(.+)'$"
-    },
-    "SubGeographicalRegion.CapacityPrices": {
-      "type": "string",
-      "title": "CapacityPrices_Pointer",
-      "description": "Pointer to CapacityPrices object",
-      "pattern": "^CapacityPrices::'(.+)'$"
-    },
     "SubGeographicalRegion.CoincidentPeakPrices": {
       "type": "string",
       "title": "CoincidentPeakPrices_Pointer",
       "description": "Pointer to CoincidentPeakPrices object",
       "pattern": "^CoincidentPeakPrices::'(.+)'$"
     },
-    "SubGeographicalRegion.LocationalMarginalPrices": {
-      "type": "string",
-      "title": "LocationalMarginalPrices_Pointer",
-      "description": "Pointer to LocationalMarginalPrices object",
-      "pattern": "^LocationalMarginalPrices::'(.+)'$"
+    "SubGeographicalRegion.ProposedSiteLocations": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocation_PointerArray.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

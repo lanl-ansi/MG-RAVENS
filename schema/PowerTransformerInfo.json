@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "properties": {
     "PowerTransformerInfo.TransformerTankInfos": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerTankInfoContainer_Container.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerTankInfo_PointerArray.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

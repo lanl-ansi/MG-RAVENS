@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "ArCurveData.DataValues": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AvPowerFlow.json"
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AvVoltage.json"
     },
     "ArCurveData.xvalue": {
       "title": "xvalue",

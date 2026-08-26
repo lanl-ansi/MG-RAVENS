@@ -4,15 +4,6 @@
     "ACLineSegmentPhase.WireInfo": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WireInfo_anyOfPointer_anyOfContainer.json"
     },
-    "ACLineSegment.WireSpacingInfo": {
-      "type": "string",
-      "title": "WireSpacingInfo_Pointer",
-      "description": "Pointer to WireSpacingInfo object",
-      "pattern": "^WireSpacingInfo::'(.+)'$"
-    },
-    "PowerSystemResource.AssetDatasheet": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WireInfo_anyOfPointer_anyOfContainer.json"
-    },
     "ACLineSegmentPhase.phase": {
       "title": "phase",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",

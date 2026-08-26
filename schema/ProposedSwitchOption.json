@@ -3,10 +3,7 @@
   "title": "ProposedSwitchOption",
   "additionalProperties": false,
   "properties": {
-    "ProposedAssetOption.ProposedConnectivityNodes": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNode_PointerArray.json"
-    },
-    "ProposedAssetOption.ProposedLocations": {
+    "ProposedAssetOption.ProposedSiteLocations": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocation_PointerArray.json"
     },
     "ProposedAssetOption.fixedPrice": {

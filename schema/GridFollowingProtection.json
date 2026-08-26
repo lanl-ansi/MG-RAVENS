@@ -1,6 +1,9 @@
 {
   "type": "object",
   "properties": {
+    "PowerElectronicsProtection.CustomCurve": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CustomProtectionCurve.json"
+    },
     "PowerElectronicsProtection.standard": {
       "title": "standard",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProtectionStandardKind.json",

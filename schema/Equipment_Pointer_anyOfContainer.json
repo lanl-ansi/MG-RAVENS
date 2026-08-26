@@ -1,44 +1,398 @@
 {
+  "$objectType": "reference",
+  "$objectId": "Equipment",
   "anyOf": [
     {
+      "$objectType": "reference",
       "type": "string",
+      "$objectId": "Equipment",
+      "$referencePath": "PowerSystemResource/Equipment",
       "title": "EquipmentPointer",
       "description": "Pointer to Equipment object"
     },
     {
+      "$objectType": "reference",
       "type": "string",
-      "title": "EnergyConsumerPointer",
-      "description": "Pointer to EnergyConsumer object"
+      "$objectId": "ConductingEquipment",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment",
+      "title": "ConductingEquipmentPointer",
+      "description": "Pointer to ConductingEquipment object"
     },
     {
+      "$objectType": "reference",
       "type": "string",
-      "title": "EnergySourcePointer",
-      "description": "Pointer to EnergySource object"
+      "$objectId": "GeneratingUnit",
+      "$referencePath": "PowerSystemResource/Equipment/GeneratingUnit",
+      "title": "GeneratingUnitPointer",
+      "description": "Pointer to GeneratingUnit object"
     },
     {
+      "$objectType": "reference",
       "type": "string",
-      "title": "EnergySourcePointer",
-      "description": "Pointer to EnergySource object"
+      "$objectId": "PowerElectronicsUnit",
+      "$referencePath": "PowerSystemResource/Equipment/PowerElectronicsUnit",
+      "title": "PowerElectronicsUnitPointer",
+      "description": "Pointer to PowerElectronicsUnit object"
     },
     {
+      "$objectType": "reference",
       "type": "string",
-      "title": "ACLineSegmentPointer",
-      "description": "Pointer to ACLineSegment object"
+      "$objectId": "EnergyConnection",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection",
+      "title": "EnergyConnectionPointer",
+      "description": "Pointer to EnergyConnection object"
     },
     {
+      "$objectType": "reference",
       "type": "string",
+      "$objectId": "Ground",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Ground",
+      "title": "GroundPointer",
+      "description": "Pointer to Ground object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "PowerTransformer",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/PowerTransformer",
+      "title": "PowerTransformerPointer",
+      "description": "Pointer to PowerTransformer object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "EarthFaultCompensator",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EarthFaultCompensator",
+      "title": "EarthFaultCompensatorPointer",
+      "description": "Pointer to EarthFaultCompensator object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "ACDCConverter",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/ACDCConverter",
+      "title": "ACDCConverterPointer",
+      "description": "Pointer to ACDCConverter object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "SeriesCompensator",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/SeriesCompensator",
       "title": "SeriesCompensatorPointer",
       "description": "Pointer to SeriesCompensator object"
     },
     {
+      "$objectType": "reference",
       "type": "string",
+      "$objectId": "Conductor",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor",
+      "title": "ConductorPointer",
+      "description": "Pointer to Conductor object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "Switch",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch",
       "title": "SwitchPointer",
       "description": "Pointer to Switch object"
     },
     {
+      "$objectType": "reference",
       "type": "string",
-      "title": "PowerTransformerPointer",
-      "description": "Pointer to PowerTransformer object"
+      "$objectId": "HydroGeneratingUnit",
+      "$referencePath": "PowerSystemResource/Equipment/GeneratingUnit/HydroGeneratingUnit",
+      "title": "HydroGeneratingUnitPointer",
+      "description": "Pointer to HydroGeneratingUnit object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "ThermalGeneratingUnit",
+      "$referencePath": "PowerSystemResource/Equipment/GeneratingUnit/ThermalGeneratingUnit",
+      "title": "ThermalGeneratingUnitPointer",
+      "description": "Pointer to ThermalGeneratingUnit object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "NuclearGeneratingUnit",
+      "$referencePath": "PowerSystemResource/Equipment/GeneratingUnit/NuclearGeneratingUnit",
+      "title": "NuclearGeneratingUnitPointer",
+      "description": "Pointer to NuclearGeneratingUnit object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "WindGeneratingUnit",
+      "$referencePath": "PowerSystemResource/Equipment/GeneratingUnit/WindGeneratingUnit",
+      "title": "WindGeneratingUnitPointer",
+      "description": "Pointer to WindGeneratingUnit object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "SolarGeneratingUnit",
+      "$referencePath": "PowerSystemResource/Equipment/GeneratingUnit/SolarGeneratingUnit",
+      "title": "SolarGeneratingUnitPointer",
+      "description": "Pointer to SolarGeneratingUnit object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "PhotoVoltaicUnit",
+      "$referencePath": "PowerSystemResource/Equipment/PowerElectronicsUnit/PhotoVoltaicUnit",
+      "title": "PhotoVoltaicUnitPointer",
+      "description": "Pointer to PhotoVoltaicUnit object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "BatteryUnit",
+      "$referencePath": "PowerSystemResource/Equipment/PowerElectronicsUnit/BatteryUnit",
+      "title": "BatteryUnitPointer",
+      "description": "Pointer to BatteryUnit object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "PowerElectronicsWindUnit",
+      "$referencePath": "PowerSystemResource/Equipment/PowerElectronicsUnit/PowerElectronicsWindUnit",
+      "title": "PowerElectronicsWindUnitPointer",
+      "description": "Pointer to PowerElectronicsWindUnit object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "EnergyConsumer",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer",
+      "title": "EnergyConsumerPointer",
+      "description": "Pointer to EnergyConsumer object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "EnergySource",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergySource",
+      "title": "EnergySourcePointer",
+      "description": "Pointer to EnergySource object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "RegulatingCondEq",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq",
+      "title": "RegulatingCondEqPointer",
+      "description": "Pointer to RegulatingCondEq object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "GroundingImpedance",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EarthFaultCompensator/GroundingImpedance",
+      "title": "GroundingImpedancePointer",
+      "description": "Pointer to GroundingImpedance object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "CsConverter",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/ACDCConverter/CsConverter",
+      "title": "CsConverterPointer",
+      "description": "Pointer to CsConverter object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "VsConverter",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/ACDCConverter/VsConverter",
+      "title": "VsConverterPointer",
+      "description": "Pointer to VsConverter object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "WireSegment",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/WireSegment",
+      "title": "WireSegmentPointer",
+      "description": "Pointer to WireSegment object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "ACLineSegment",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Conductor/ACLineSegment",
+      "title": "ACLineSegmentPointer",
+      "description": "Pointer to ACLineSegment object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "Disconnector",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/Disconnector",
+      "title": "DisconnectorPointer",
+      "description": "Pointer to Disconnector object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "Jumper",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/Jumper",
+      "title": "JumperPointer",
+      "description": "Pointer to Jumper object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "Fuse",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/Fuse",
+      "title": "FusePointer",
+      "description": "Pointer to Fuse object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "GroundDisconnector",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/GroundDisconnector",
+      "title": "GroundDisconnectorPointer",
+      "description": "Pointer to GroundDisconnector object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "Sectionaliser",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/Sectionaliser",
+      "title": "SectionaliserPointer",
+      "description": "Pointer to Sectionaliser object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "Cut",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/Cut",
+      "title": "CutPointer",
+      "description": "Pointer to Cut object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "ProtectedSwitch",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/ProtectedSwitch",
+      "title": "ProtectedSwitchPointer",
+      "description": "Pointer to ProtectedSwitch object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "ConformLoad",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer/ConformLoad",
+      "title": "ConformLoadPointer",
+      "description": "Pointer to ConformLoad object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "NonConformLoad",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/EnergyConsumer/NonConformLoad",
+      "title": "NonConformLoadPointer",
+      "description": "Pointer to NonConformLoad object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "ShuntCompensator",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/ShuntCompensator",
+      "title": "ShuntCompensatorPointer",
+      "description": "Pointer to ShuntCompensator object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "StaticVarCompensator",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/StaticVarCompensator",
+      "title": "StaticVarCompensatorPointer",
+      "description": "Pointer to StaticVarCompensator object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "PowerElectronicsConnection",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/PowerElectronicsConnection",
+      "title": "PowerElectronicsConnectionPointer",
+      "description": "Pointer to PowerElectronicsConnection object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "RotatingMachine",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/RotatingMachine",
+      "title": "RotatingMachinePointer",
+      "description": "Pointer to RotatingMachine object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "Breaker",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/Breaker",
+      "title": "BreakerPointer",
+      "description": "Pointer to Breaker object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "Recloser",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/Recloser",
+      "title": "RecloserPointer",
+      "description": "Pointer to Recloser object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "LoadBreakSwitch",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/LoadBreakSwitch",
+      "title": "LoadBreakSwitchPointer",
+      "description": "Pointer to LoadBreakSwitch object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "NonlinearShuntCompensator",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/ShuntCompensator/NonlinearShuntCompensator",
+      "title": "NonlinearShuntCompensatorPointer",
+      "description": "Pointer to NonlinearShuntCompensator object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "LinearShuntCompensator",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/ShuntCompensator/LinearShuntCompensator",
+      "title": "LinearShuntCompensatorPointer",
+      "description": "Pointer to LinearShuntCompensator object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "AsynchronousMachine",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/RotatingMachine/AsynchronousMachine",
+      "title": "AsynchronousMachinePointer",
+      "description": "Pointer to AsynchronousMachine object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "SynchronousMachine",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/EnergyConnection/RegulatingCondEq/RotatingMachine/SynchronousMachine",
+      "title": "SynchronousMachinePointer",
+      "description": "Pointer to SynchronousMachine object"
+    },
+    {
+      "$objectType": "reference",
+      "type": "string",
+      "$objectId": "DisconnectingCircuitBreaker",
+      "$referencePath": "PowerSystemResource/Equipment/ConductingEquipment/Switch/DisconnectingCircuitBreaker",
+      "title": "DisconnectingCircuitBreakerPointer",
+      "description": "Pointer to DisconnectingCircuitBreaker object"
     }
   ],
   "title": "Equipment_Pointer",

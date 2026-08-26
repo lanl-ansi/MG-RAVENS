@@ -2,6 +2,12 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "CutAction.Cut": {
+      "type": "string",
+      "title": "Cut_Pointer",
+      "description": "Pointer to Cut object",
+      "pattern": "^Cut::'(.+)'$"
+    },
     "CutAction.kind": {
       "title": "kind",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TempEquipActionKind.json",

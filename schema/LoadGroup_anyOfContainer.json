@@ -1,15 +1,16 @@
 {
+  "type": "object",
   "description": "The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.",
   "title": "LoadGroup",
   "anyOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadGroup.json"
+    },
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConformLoadGroup.json"
     },
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NonConformLoadGroup.json"
-    },
-    {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadGroup.json"
     }
   ],
   "$schema": "https://json-schema.org/draft/2020-12/schema",

@@ -1,10 +1,10 @@
 {
   "type": "array",
-  "title": "NonlinearShuntCompensatorPhase_Array",
-  "description": "Array of NonlinearShuntCompensatorPhase objects",
   "items": {
     "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NonlinearShuntCompensatorPhase.json"
   },
+  "title": "NonlinearShuntCompensatorPhase_Array",
+  "description": "Array of NonlinearShuntCompensatorPhase objects",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NonlinearShuntCompensatorPhase_Array.json",

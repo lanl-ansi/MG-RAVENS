@@ -1,17 +1,17 @@
 {
   "type": "object",
   "properties": {
+    "AnalysisResultData.Curve": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultCurve.json"
+    },
+    "AnalysisResultData.DataValues": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AvVoltage.json"
+    },
     "ArVoltage.ConnectivityNode": {
       "type": "string",
       "title": "ConnectivityNode_Pointer",
       "description": "Pointer to ConnectivityNode object",
       "pattern": "^ConnectivityNode::'(.+)'$"
-    },
-    "AnalysisResultData.DataValues": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AvVoltage.json"
-    },
-    "AnalysisResultData.Curve": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AnalysisResultCurve.json"
     },
     "AnalysisResultData.sequenceNumber": {
       "title": "sequenceNumber",

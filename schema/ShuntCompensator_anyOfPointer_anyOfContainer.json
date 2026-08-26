@@ -8,15 +8,15 @@
     },
     {
       "type": "string",
-      "title": "LinearShuntCompensator_Pointer",
-      "description": "Pointer to LinearShuntCompensator object",
-      "pattern": "^LinearShuntCompensator::'(.+)'$"
-    },
-    {
-      "type": "string",
       "title": "NonlinearShuntCompensator_Pointer",
       "description": "Pointer to NonlinearShuntCompensator object",
       "pattern": "^NonlinearShuntCompensator::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "LinearShuntCompensator_Pointer",
+      "description": "Pointer to LinearShuntCompensator object",
+      "pattern": "^LinearShuntCompensator::'(.+)'$"
     }
   ],
   "title": "ShuntCompensator_anyOfPointer",

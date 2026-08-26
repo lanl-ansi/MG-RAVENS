@@ -1,27 +1,11 @@
 {
   "type": "array",
-  "ProposedAssetSet.EstimatedCosts": {
-    "type": "array",
-    "items": {
-      "type": "string",
-      "$objectType": "reference",
-      "$objectId": "EstimatedCost",
-      "$referencePath": "EstimatedCost"
-    }
-  },
-  "ProposedAssetSet.SolutionMetrics": {
-    "type": "array",
-    "items": {
-      "$objectType": "reference",
-      "type": "string",
-      "$objectId": "SolutionMetric",
-      "$referencePath": "SolutionMetric"
-    }
-  },
   "description": "Pointers to ProposedAsset objects",
   "title": "ProposedAsset_PointerArray",
   "items": {
-    "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAsset_Pointer_anyOfContainer.json"
+    "type": "string",
+    "title": "ProposedAssetPointer",
+    "description": "Pointer to ProposedAsset object"
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,

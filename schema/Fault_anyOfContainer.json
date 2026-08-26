@@ -1,4 +1,5 @@
 {
+  "type": "object",
   "description": "Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modelled (for example, a tree falling on a line).",
   "title": "Fault",
   "anyOf": [

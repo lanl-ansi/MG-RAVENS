@@ -3,15 +3,6 @@
   "title": "PredictedEmissions",
   "additionalProperties": false,
   "properties": {
-    "PredictedEmissions.Location": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
-    },
-    "PredictedEmissions.DesignAlgorithmProperties": {
-      "type": "string",
-      "title": "DesignAlgorithmProperties_Pointer",
-      "description": "Pointer to DesignAlgorithmProperties object",
-      "pattern": "^DesignAlgorithmProperties::'(.+)'$"
-    },
     "PredictedEmissions.firstYearFuelEmissions": {
       "title": "firstYearFuelEmissions",
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Emission.json",

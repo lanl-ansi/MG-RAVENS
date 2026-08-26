@@ -1,5 +1,8 @@
 {
+  "$objectType": "object",
   "type": "object",
+  "$objectId": "ShuntCompensatorPhase",
+  "$arrayPosition": null,
   "properties": {
     "IdentifiedObject.description": {
       "title": "description",
@@ -31,12 +34,12 @@
     },
     "LinearShuntCompensatorPhase.gPerSection": {
       "title": "gPerSection",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Conductance.json",
+      "type": "Conductance",
       "description": "Conductance per section for this phase if shunt compensator is wye connected.  Conductance per section phase to phase if shunt compensator is delta connected."
     },
     "LinearShuntCompensatorPhase.bPerSection": {
       "title": "bPerSection",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Susceptance.json",
+      "type": "Susceptance",
       "description": "Susceptance per section of the phase if shunt compensator is wye connected.   Susceptance per section phase to phase if shunt compensator is delta connected."
     },
     "ShuntCompensatorPhase.maximumSections": {
@@ -51,7 +54,7 @@
     },
     "ShuntCompensatorPhase.phase": {
       "title": "phase",
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
+      "type": "SinglePhaseKind",
       "description": "Phase of this shunt compensator component.   If the shunt compensator is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the shunt compensator is delta connected, the phase indicates a shunt compensator connected from the indicated phase to the next logical non-neutral phase."
     },
     "IdentifiedObject.name": {

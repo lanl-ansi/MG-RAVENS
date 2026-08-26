@@ -2,14 +2,8 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
-    "ProposedAsset.ProposedAssetOption": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetOption_anyOfPointer_anyOfContainer.json"
-    },
-    "ProposedAsset.Application": {
-      "type": "string",
-      "title": "Application_Pointer",
-      "description": "Pointer to Application object",
-      "pattern": "^Application::'(.+)'$"
+    "ProposedBranch.Terminals": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
     },
     "ProposedAsset.EstimatedCost": {
       "type": "string",
@@ -17,14 +11,14 @@
       "description": "Pointer to EstimatedCost object",
       "pattern": "^EstimatedCost::'(.+)'$"
     },
-    "ProposedAsset.Algorithm": {
+    "ProposedAsset.Application": {
       "type": "string",
-      "title": "Algorithm_Pointer",
-      "description": "Pointer to Algorithm object",
-      "pattern": "^Algorithm::'(.+)'$"
+      "title": "Application_Pointer",
+      "description": "Pointer to Application object",
+      "pattern": "^Application::'(.+)'$"
     },
-    "ProposedBranch.Terminals": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
+    "ProposedAsset.ProposedAssetOption": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAssetOption_anyOfPointer_anyOfContainer.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

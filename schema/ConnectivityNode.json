@@ -4,17 +4,23 @@
   "title": "ConnectivityNode",
   "additionalProperties": false,
   "properties": {
+    "ConnectivityNode.LocationalMarginalPrice": {
+      "type": "string",
+      "title": "LocationalMarginalPrices_Pointer",
+      "description": "Pointer to LocationalMarginalPrices object",
+      "pattern": "^LocationalMarginalPrices::'(.+)'$"
+    },
+    "ConnectivityNode.Terminals": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
+    },
+    "ConnectivityNode.ConnectivityNodeContainer": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConnectivityNodeContainer_PointerArray.json"
+    },
     "ConnectivityNode.TopologicalNode": {
       "type": "string",
       "title": "TopologicalNode_Pointer",
       "description": "Pointer to TopologicalNode object",
       "pattern": "^TopologicalNode::'(.+)'$"
-    },
-    "ConnectivityNode.OperationalLimitSet": {
-      "type": "string",
-      "title": "OperationalLimitSet_Pointer",
-      "description": "Pointer to OperationalLimitSet object",
-      "pattern": "^OperationalLimitSet::'(.+)'$"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",

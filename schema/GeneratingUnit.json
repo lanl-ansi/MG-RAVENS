@@ -1,11 +1,40 @@
 {
+  "$objectType": "object",
   "type": "object",
+  "$objectId": "GeneratingUnit",
   "properties": {
+    "HydroGeneratingUnit": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HydroGeneratingUnit.json"
+    },
+    "NuclearGeneratingUnit": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/NuclearGeneratingUnit.json"
+    },
+    "SolarGeneratingUnit": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SolarGeneratingUnit.json"
+    },
+    "ThermalGeneratingUnit": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ThermalGeneratingUnit.json"
+    },
+    "WindGeneratingUnit": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/WindGeneratingUnit.json"
+    },
+    "PowerSystemResource.AssetDatasheet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
+    },
+    "PowerSystemResource.GenericAction": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenericAction_PointerArray.json"
+    },
+    "PowerSystemResource.Location": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
+    },
+    "GeneratingUnit.GenUnitOpCostCurves": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenUnitOpCostCurve_PointerArray.json"
+    },
     "GeneratingUnit.GenUnitOpSchedule": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenUnitOpSchedule.json"
     },
-    "GeneratingUnit.GenUnitOpCostCurves": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenUnitOpCostCurve_Array.json"
+    "Equipment.OperationalLimitSet": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitSet_PointerArray.json"
     },
     "GeneratingUnit.governorMPL": {
       "title": "governorMPL",

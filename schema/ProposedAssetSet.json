@@ -7,23 +7,8 @@
     "ProposedAssetSet.ProposedAssets": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedAsset_PointerArray.json"
     },
-    "ProposedAssetSet.Algorithm": {
-      "type": "string",
-      "title": "Algorithm_Pointer",
-      "description": "Pointer to Algorithm object",
-      "pattern": "^Algorithm::'(.+)'$"
-    },
-    "ProposedAssetSet.Application": {
-      "type": "string",
-      "title": "Application_Pointer",
-      "description": "Pointer to Application object",
-      "pattern": "^Application::'(.+)'$"
-    },
-    "ProposedAssetSet.EstimatedCost": {
-      "type": "string",
-      "title": "EstimatedCost_Pointer",
-      "description": "Pointer to EstimatedCost object",
-      "pattern": "^EstimatedCost::'(.+)'$"
+    "ProposedAssetSet.EstimatedCosts": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EstimatedCost_PointerArray.json"
     },
     "ProposedAssetSet.rank": {
       "title": "rank",

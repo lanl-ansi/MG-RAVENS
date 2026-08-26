@@ -8,6 +8,54 @@
     },
     {
       "type": "string",
+      "title": "EnergyConnection_Pointer",
+      "description": "Pointer to EnergyConnection object",
+      "pattern": "^EnergyConnection::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "Ground_Pointer",
+      "description": "Pointer to Ground object",
+      "pattern": "^Ground::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "PowerTransformer_Pointer",
+      "description": "Pointer to PowerTransformer object",
+      "pattern": "^PowerTransformer::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "EarthFaultCompensator_Pointer",
+      "description": "Pointer to EarthFaultCompensator object",
+      "pattern": "^EarthFaultCompensator::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "ACDCConverter_Pointer",
+      "description": "Pointer to ACDCConverter object",
+      "pattern": "^ACDCConverter::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "SeriesCompensator_Pointer",
+      "description": "Pointer to SeriesCompensator object",
+      "pattern": "^SeriesCompensator::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "Conductor_Pointer",
+      "description": "Pointer to Conductor object",
+      "pattern": "^Conductor::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "Switch_Pointer",
+      "description": "Pointer to Switch object",
+      "pattern": "^Switch::'(.+)'$"
+    },
+    {
+      "type": "string",
       "title": "EnergyConsumer_Pointer",
       "description": "Pointer to EnergyConsumer object",
       "pattern": "^EnergyConsumer::'(.+)'$"
@@ -20,33 +68,111 @@
     },
     {
       "type": "string",
+      "title": "RegulatingCondEq_Pointer",
+      "description": "Pointer to RegulatingCondEq object",
+      "pattern": "^RegulatingCondEq::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "GroundingImpedance_Pointer",
+      "description": "Pointer to GroundingImpedance object",
+      "pattern": "^GroundingImpedance::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "CsConverter_Pointer",
+      "description": "Pointer to CsConverter object",
+      "pattern": "^CsConverter::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "VsConverter_Pointer",
+      "description": "Pointer to VsConverter object",
+      "pattern": "^VsConverter::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "WireSegment_Pointer",
+      "description": "Pointer to WireSegment object",
+      "pattern": "^WireSegment::'(.+)'$"
+    },
+    {
+      "type": "string",
       "title": "ACLineSegment_Pointer",
       "description": "Pointer to ACLineSegment object",
       "pattern": "^ACLineSegment::'(.+)'$"
     },
     {
       "type": "string",
-      "title": "SeriesCompensator_Pointer",
-      "description": "Pointer to SeriesCompensator object",
-      "pattern": "^SeriesCompensator::'(.+)'$"
+      "title": "Disconnector_Pointer",
+      "description": "Pointer to Disconnector object",
+      "pattern": "^Disconnector::'(.+)'$"
     },
     {
       "type": "string",
-      "title": "Switch_Pointer",
-      "description": "Pointer to Switch object",
-      "pattern": "^Switch::'(.+)'$"
+      "title": "Jumper_Pointer",
+      "description": "Pointer to Jumper object",
+      "pattern": "^Jumper::'(.+)'$"
     },
     {
       "type": "string",
-      "title": "PowerTransformer_Pointer",
-      "description": "Pointer to PowerTransformer object",
-      "pattern": "^PowerTransformer::'(.+)'$"
+      "title": "Fuse_Pointer",
+      "description": "Pointer to Fuse object",
+      "pattern": "^Fuse::'(.+)'$"
     },
     {
       "type": "string",
-      "title": "RegulatingCondEq_Pointer",
-      "description": "Pointer to RegulatingCondEq object",
-      "pattern": "^RegulatingCondEq::'(.+)'$"
+      "title": "GroundDisconnector_Pointer",
+      "description": "Pointer to GroundDisconnector object",
+      "pattern": "^GroundDisconnector::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "Sectionaliser_Pointer",
+      "description": "Pointer to Sectionaliser object",
+      "pattern": "^Sectionaliser::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "Cut_Pointer",
+      "description": "Pointer to Cut object",
+      "pattern": "^Cut::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "ProtectedSwitch_Pointer",
+      "description": "Pointer to ProtectedSwitch object",
+      "pattern": "^ProtectedSwitch::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "ConformLoad_Pointer",
+      "description": "Pointer to ConformLoad object",
+      "pattern": "^ConformLoad::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "NonConformLoad_Pointer",
+      "description": "Pointer to NonConformLoad object",
+      "pattern": "^NonConformLoad::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "ShuntCompensator_Pointer",
+      "description": "Pointer to ShuntCompensator object",
+      "pattern": "^ShuntCompensator::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "StaticVarCompensator_Pointer",
+      "description": "Pointer to StaticVarCompensator object",
+      "pattern": "^StaticVarCompensator::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "PowerElectronicsConnection_Pointer",
+      "description": "Pointer to PowerElectronicsConnection object",
+      "pattern": "^PowerElectronicsConnection::'(.+)'$"
     },
     {
       "type": "string",
@@ -56,9 +182,51 @@
     },
     {
       "type": "string",
-      "title": "PowerElectronicsConnection_Pointer",
-      "description": "Pointer to PowerElectronicsConnection object",
-      "pattern": "^PowerElectronicsConnection::'(.+)'$"
+      "title": "Breaker_Pointer",
+      "description": "Pointer to Breaker object",
+      "pattern": "^Breaker::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "Recloser_Pointer",
+      "description": "Pointer to Recloser object",
+      "pattern": "^Recloser::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "LoadBreakSwitch_Pointer",
+      "description": "Pointer to LoadBreakSwitch object",
+      "pattern": "^LoadBreakSwitch::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "NonlinearShuntCompensator_Pointer",
+      "description": "Pointer to NonlinearShuntCompensator object",
+      "pattern": "^NonlinearShuntCompensator::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "LinearShuntCompensator_Pointer",
+      "description": "Pointer to LinearShuntCompensator object",
+      "pattern": "^LinearShuntCompensator::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "AsynchronousMachine_Pointer",
+      "description": "Pointer to AsynchronousMachine object",
+      "pattern": "^AsynchronousMachine::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "SynchronousMachine_Pointer",
+      "description": "Pointer to SynchronousMachine object",
+      "pattern": "^SynchronousMachine::'(.+)'$"
+    },
+    {
+      "type": "string",
+      "title": "DisconnectingCircuitBreaker_Pointer",
+      "description": "Pointer to DisconnectingCircuitBreaker object",
+      "pattern": "^DisconnectingCircuitBreaker::'(.+)'$"
     }
   ],
   "title": "ConductingEquipment_anyOfPointer",

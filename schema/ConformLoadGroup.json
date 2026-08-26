@@ -5,11 +5,11 @@
     "ConformLoadGroup.EnergyConsumers": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ConformLoad_PointerArray.json"
     },
-    "ConformLoadGroup.ConformLoadSchedules": {
-      "type": "string",
-      "title": "ConformLoadSchedule_Pointer",
-      "description": "Pointer to ConformLoadSchedule object",
-      "pattern": "^ConformLoadSchedule::'(.+)'$"
+    "LoadGroup.ProposedSiteLocations": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocation_PointerArray.json"
+    },
+    "LoadGroup.EnergyConsumers": {
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumer_PointerArray.json"
     },
     "Ravens.cimObjectType": {
       "title": "cimObjectType",
