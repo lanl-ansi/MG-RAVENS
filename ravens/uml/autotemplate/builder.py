@@ -6,7 +6,6 @@ from typing import Iterable, Optional
 
 
 from ravens.uml.data import UMLData
-from ravens.uml.graph import UMLGraphs
 
 
 def _default_template_auto_path() -> Path:
@@ -17,6 +16,7 @@ def _default_analysis_variable_diagnostics_path() -> Path:
     return Path(__file__).resolve().parents[3] / "out" / "analysis_variable_diagnostics.json"
 
 from .clusions import UMLInclusions
+from .graph import UMLGraphs
 from .template import TemplateGenerator
 
 

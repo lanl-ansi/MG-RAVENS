@@ -5,6 +5,7 @@ from ast import literal_eval
 
 from rdflib.namespace import Namespace, RDF
 from rdflib.term import URIRef
+from rdflib import Literal
 
 from ravens.logging import logger
 from ravens.data import _DEFAULT_CYME_CIM_NAMESPACE, _DEFAULT_CYME_NAMESPACE
@@ -15,7 +16,7 @@ material_resistivity = {"CYMEConductorMaterial.copper": 1.68e-8, "CYMEConductorM
 
 
 class CymeConverter(RDFGraph):
-    def __init__(self, profile_path: pathlib.Path | str, cim_namespace: str = _DEFAULT_CYME_CIM_NAMESPACE, cyme_namespace: str = _DEFAULT_CYME_NAMESPACE, prune_remaining_cyme: bool = False):
+    def __init__(self, profile_path: pathlib.Path | str, cim_namespace: str = _DEFAULT_CYME_CIM_NAMESPACE, cyme_namespace: str = _DEFAULT_CYME_NAMESPACE, prune_remaining_cyme: bool = False, PEC_corrections:dict[str, str|list]={}):
         super().__init__(profile_path=profile_path, cim_namespace=cim_namespace, uuid_format=lambda x: "_" + x.upper())
 
         self.cyme = Namespace(cyme_namespace + "#")
@@ -37,10 +38,20 @@ class CymeConverter(RDFGraph):
         self.convert_cyme_connection_status()
         self.convert_cimconductingequipment_structure_id()
 
+        unit_type,pv_set,wind_set = None, set(), set()
+        if "unit_type" in PEC_corrections.keys():
+            unit_type = PEC_corrections["unit_type"]
+        if "pv" in PEC_corrections.keys():
+            pv_set = set(PEC_corrections["pv"])
+        if "wind" in PEC_corrections.keys():
+            wind_set = set(PEC_corrections["wind"])       
+        self.replace_rotatingmachine_with_powerelectronicsconnection(unit_type,pv_set,wind_set)
+
         self.fix_EnergyConsumerPhase()
         self.fix_WireInfo()
         self.fix_Terminal()
         self.fix_Transformer_Terminal_phases()
+        self.fix_Per_Length_Phase_Impedance_indices()
 
         if prune_remaining_cyme:
             self.remove_cyme_objects()
@@ -194,6 +205,85 @@ class CymeConverter(RDFGraph):
             self.add_triple(URIRef((str(s))), "Equipment.EquipmentContainer", self.equip_container_uris[o])
             self.to_remove.add((s, p, o))
 
+    def replace_rotatingmachine_with_powerelectronicsconnection(self,unit_type:str|None=None,pv_set:set=set(),wind_set:set=set()):
+        #Replace RotatingMachine objects with PowerElectronicsConnection objects.
+        rotating_machines_to_replace = []
+        _float = lambda x,default = 0.0: float(x) if x != None else float(default) 
+        _bool = lambda x,default = True: bool(x) if x != None else bool(default) 
+
+        rotating_machine_types = ["AsynchronousMachine","SynchronousMachine"]
+        
+        # Find all RotatingMachine objects
+        for rm_type in rotating_machine_types:
+            for rm in self.graph.subjects(predicate=RDF.type, object=self.cim[rm_type]):
+                # Get properties from RotatingMachine
+                try:
+                    name = str(self.graph.value(subject=rm, predicate=self.cim["IdentifiedObject.name"]))
+                    rated_s = _float(self.graph.value(subject=rm, predicate=self.cim["RotatingMachine.ratedS"]),None)
+                    rated_u = _float(self.graph.value(subject=rm, predicate=self.cim["RotatingMachine.ratedU"]),None)
+                    rated_pf = _float(self.graph.value(subject=rm, predicate=self.cim["RotatingMachine.ratedPowerFactor"]),1.0)
+                    p_value = _float(self.graph.value(subject=rm, predicate=self.cim["RotatingMachine.p"]),0.0)
+                    in_service = _bool(self.graph.value(subject=rm, predicate=self.cim["Equipment.inService"]),True)
+                except:
+                    logger.warning(f"RotatingMachine '{name or "unknown name"}' is missing input parameters, skipping conversion")
+                
+                # Determine unit type based 
+                if (unit_type == "pv" or name in pv_set) and name not in wind_set:
+                    peu_type, peu_name = "PhotoVoltaicUnit", f"{name}_PVPanels"
+                elif (unit_type == "wind" or name in wind_set) and name not in pv_set:
+                    peu_type, peu_name = "PowerElectronicsWindUnit", f"{name}_WindUnit"
+                else:
+                    continue
+                
+                
+                # Calculate reactive power
+                q_value = rated_s * (1.0 - rated_pf)
+                
+                # Calculate max/min Q
+                max_q = math.sqrt((p_value / rated_pf) ** 2 - p_value ** 2)
+                min_q = -max_q
+                
+                # Create PowerElectronicsConnection
+                pec_node = self.build_cim_obj("PowerElectronicsConnection", name=name)
+                
+                # Set PowerElectronicsConnection properties
+                self.add_triple(pec_node, "PowerElectronicsConnection.maxIFault", 1.0 / 0.707)
+                self.add_triple(pec_node, "PowerElectronicsConnection.p", p_value)
+                self.add_triple(pec_node, "PowerElectronicsConnection.q", q_value)
+                self.add_triple(pec_node, "PowerElectronicsConnection.ratedS", rated_s)
+                self.add_triple(pec_node, "PowerElectronicsConnection.ratedU", rated_u)
+                self.add_triple(pec_node, "PowerElectronicsConnection.maxQ", max_q)
+                self.add_triple(pec_node, "PowerElectronicsConnection.minQ", min_q)
+                self.add_triple(pec_node, "Equipment.inService", in_service)
+
+                
+
+                terminals = list(self.graph.subjects(object=rm, predicate=self.cim["Terminal.ConductingEquipment"]))
+                for terminal in terminals:
+                    # REMOVE old triple: Terminal -> ConductingEquipment -> RotatingMachine
+                    self.graph.remove((terminal, self.cim["Terminal.ConductingEquipment"], rm))
+                    # ADD new triple: Terminal -> ConductingEquipment -> PowerElectronicsConnection
+                    self.graph.add((terminal, self.cim["Terminal.ConductingEquipment"], pec_node))
+    
+                
+                # Create PowerElectronicsUnit
+                peu_node = self.build_cim_obj(peu_type, name=peu_name)
+                self.add_triple(peu_node, "PowerElectronicsUnit.minP", 0.0)
+                self.add_triple(peu_node, "PowerElectronicsUnit.maxP", rated_s * rated_pf)
+                
+                # Link PEU to PEC
+                self.graph.add((peu_node, self.cim["PowerElectronicsConnection.PowerElectronicsUnit"], pec_node))
+                
+                # Mark RotatingMachine for removal
+                rotating_machines_to_replace.append(rm)
+                
+                logger.info(f"Converted RotatingMachine '{name}' to PowerElectronicsConnection with {peu_type}")
+            
+        # Remove all RotatingMachine objects
+        for rm in rotating_machines_to_replace:
+            self.to_remove.add((rm, None, None))
+
+
     def fix_EnergyConsumerPhase(self):
         for s in self.graph.subjects(predicate=RDF.type, object=self.cim["EnergyConsumerPhase"]):
             for k in ["p", "q"]:
@@ -240,8 +330,84 @@ class CymeConverter(RDFGraph):
                     seq_num = int(self.graph.value(subject=term, predicate=self.cim["ACDCTerminal.sequenceNumber"]).value)  # type: ignore
                     self.graph.remove((term, self.cim["Terminal.phases"], None))
                     self.graph.add((term, self.cim["Terminal.phases"], combined_phases[seq_num]))
+                    
+
+    def fix_Per_Length_Phase_Impedance_indices(self):
+        """
+        Expects `Phase Impedance Data` of following format:
+        - Increasing Sequence Numbers
+        - Either specifies upper triangular matrix, or full matrix
+        - First sequence number either starts at 1 or connector_count + 1
+        """
+        for PLPI in self.graph.subjects(predicate=RDF.type, object=self.cim["PerLengthPhaseImpedance"]): 
+            conductor_count = int(self.graph.value(subject=PLPI, predicate=self.cim["PerLengthPhaseImpedance.conductorCount"]).value)
+
+            #Scan Sequence List
+            sequence_numbers = []
+            has_row = []
+            has_col = []
+            for phase_info in self.graph.subjects(predicate=self.cim["PhaseImpedanceData.PhaseImpedance"], object=PLPI):
+                sequence_numbers.append(int(self.graph.value(subject=phase_info, predicate=self.cim["PhaseImpedanceData.sequenceNumber"]).value))
+                has_row.append(1 if self.graph.value(subject=phase_info, predicate=self.cim["PhaseImpedanceData.row"]) is not None else 0)
+                has_col.append(1 if self.graph.value(subject=phase_info, predicate=self.cim["PhaseImpedanceData.column"]) is not None else 0)
+            
+            #Validate Sequences are in an acceptable format
+            #ignore empty phase impedances
+            if len(sequence_numbers) == 0 or (all(has_row) and all(has_col)): 
+                continue
+
+            #ensure that sequence numbers are continuous
+            s_sn = sorted(sequence_numbers) 
+            if not all(s_sn[i+1] - s_sn[i] == 1 for i in range(len(s_sn) - 1)):
+                # Create mapping from old sequence numbers to new contiguous ones
+                seq_mapping = {}
+                for i, old_seq in enumerate(s_sn):
+                    new_seq = s_sn[0] + i  # Start from first value, add index
+                    seq_mapping[old_seq] = new_seq
+                
+                # Update sequence_numbers array with corrected values
+                sequence_numbers = [seq_mapping[seq] for seq in sequence_numbers]
+
+            #correct sequence numbers to obey second row indexing
+            seq_jump = s_sn[0] != conductor_count+1 #check to see if sequence starts at conductor count + 1 or if it starts at 1
+            sequence_numbers = [s+(conductor_count)*seq_jump for s in sequence_numbers]
+            if min(sequence_numbers) != conductor_count+1:
+                raise ValueError("Initial Phase Impedance sequenceNumber is not of a known acceptable format.")
+
+            
+            #handle supported matrix specification methods
+            rows = []
+            cols = []
+            if len(sequence_numbers) == conductor_count*(conductor_count+1)/2: #handle triangular specification
+                r = c = 1
+                for i in range(len(sequence_numbers)):
+                    if c > conductor_count:
+                        r +=1
+                        c = r
+                    rows.append(r)
+                    cols.append(c)
+                    c+=1
+            elif len(sequence_numbers) == conductor_count**2: #handle full matrix specification
+                for sn in sequence_numbers:
+                    cols.append((sn - (conductor_count+1))%conductor_count)
+                    rows.append((sn - (conductor_count+1) - cols[-1])/conductor_count + 1)
+                    cols[-1] += 1
+            else:  
+                raise ValueError("Initial Phase Impedance sequenceNumber is not of a known acceptable format.")
+                
+
+            #Apply Corrected Row/Cols
+            for i, phase_info in enumerate(self.graph.subjects(predicate=self.cim["PhaseImpedanceData.PhaseImpedance"], object=PLPI)):
+                self.graph.add((phase_info, self.cim["PhaseImpedanceData.row"], Literal(int(rows[i]))))
+                self.graph.add((phase_info, self.cim["PhaseImpedanceData.column"], Literal(int(cols[i]))))
+
+
+                
+                
+                
 
 
 if __name__ == "__main__":
     # TODO: need synthetic feeder exported from CYME for example
     pass
+  
