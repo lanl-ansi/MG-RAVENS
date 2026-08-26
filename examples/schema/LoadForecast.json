@@ -1,0 +1,236 @@
+{
+  "Group": {
+    "LoadGroup": {
+      "ResidentialGroup": {
+        "Ravens.cimObjectType": "LoadGroup",
+        "IdentifiedObject.name": "ResidentialGroup",
+        "IdentifiedObject.mRID": "daa87cd7-5491-40dd-aa0a-087c64324fc3",
+        "LoadGroup.EnergyConsumers": [
+          "EnergyConsumer::'House1'",
+          "EnergyConsumer::'House2'"
+        ]
+      },
+      "IndustrialGroup": {
+        "Ravens.cimObjectType": "LoadGroup",
+        "IdentifiedObject.name": "IndustrialGroup",
+        "IdentifiedObject.mRID": "648baaa8-a3d0-403b-9899-f37a04eb88d1",
+        "LoadGroup.EnergyConsumers": [
+          "EnergyConsumer::'Factory1'",
+          "EnergyConsumer::'Factory2'"
+        ]
+      }
+    }
+  },
+  "ConnectivityNode": {
+    "neighborhood": {
+      "IdentifiedObject.name": "neighborhood",
+      "IdentifiedObject.mRID": "b2633a4d-11c9-4907-adb8-f05c78c01d71"
+    },
+    "industrialPark": {
+      "IdentifiedObject.name": "industrialPark",
+      "IdentifiedObject.mRID": "9d74c207-81af-4d25-a65d-984007b560f4"
+    }
+  },
+  "PowerSystemResource": {
+    "Equipment": {
+      "ConductingEquipment": {
+        "EnergyConnection": {
+          "EnergyConsumer": {
+            "House1": {
+              "Ravens.cimObjectType": "EnergyConsumer",
+              "IdentifiedObject.name": "House1",
+              "IdentifiedObject.mRID": "de6d0304-0dd3-41c6-8092-ea066156685f",
+              "EnergyConsumer.p": 0.5,
+              "EnergyConsumer.q": 0.5,
+              "EnergyConsumer.LoadProfile": "EnergyConsumerSchedule::'ResidentialLoadForecast'",
+              "ConductingEquipment.Terminals": [
+                {
+                  "Ravens.cimObjectType": "Terminal",
+                  "IdentifiedObject.mRID": "212b3ec7-7133-4e24-9607-7df66181eef5",
+                  "IdentifiedObject.name": "House1_T1",
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'neighborhood'",
+                  "Terminal.phases": "PhaseCode.A"
+                }
+              ]
+            },
+            "House2": {
+              "Ravens.cimObjectType": "EnergyConsumer",
+              "IdentifiedObject.name": "House2",
+              "IdentifiedObject.mRID": "63a1a21d-a9b7-4107-8271-7f39e752af48",
+              "EnergyConsumer.p": 0.5,
+              "EnergyConsumer.q": 0.5,
+              "EnergyConsumer.LoadProfile": "EnergyConsumerSchedule::'ResidentialLoadForecast'",
+              "ConductingEquipment.Terminals": [
+                {
+                  "Ravens.cimObjectType": "Terminal",
+                  "IdentifiedObject.mRID": "4450f2d3-0bb1-4c5d-8f49-b876cc2b75e9",
+                  "IdentifiedObject.name": "House2_T1",
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'neighborhood'",
+                  "Terminal.phases": "PhaseCode.B"
+                }
+              ]
+            },
+            "Factory1": {
+              "Ravens.cimObjectType": "EnergyConsumer",
+              "IdentifiedObject.name": "Factory1",
+              "IdentifiedObject.mRID": "b67383f0-3344-45f8-ae77-16f8b3d38990",
+              "EnergyConsumer.p": 1.0,
+              "EnergyConsumer.q": 1.0,
+              "EnergyConsumer.LoadProfile": "EnergyConsumerSchedule::'IndustrialLoadForecast'",
+              "ConductingEquipment.Terminals": [
+                {
+                  "Ravens.cimObjectType": "Terminal",
+                  "IdentifiedObject.mRID": "f0abf791-fb14-4561-9535-c7ba3fd3c32d",
+                  "IdentifiedObject.name": "Factory1_T1",
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'industrialPark'"
+                }
+              ]
+            },
+            "Factory2": {
+              "Ravens.cimObjectType": "EnergyConsumer",
+              "IdentifiedObject.name": "Factory2",
+              "IdentifiedObject.mRID": "1f5117a0-2b2c-46fc-86ba-89cba194d74f",
+              "EnergyConsumer.p": 1.0,
+              "EnergyConsumer.q": 1.0,
+              "EnergyConsumer.LoadProfile": "EnergyConsumerSchedule::'IndustrialLoadForecast'",
+              "ConductingEquipment.Terminals": [
+                {
+                  "Ravens.cimObjectType": "Terminal",
+                  "IdentifiedObject.mRID": "f0b6e2c0-9b22-4915-bc13-70efce265fda",
+                  "IdentifiedObject.name": "Factory2_T1",
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'industrialPark'"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "BasicIntervalSchedule": {
+    "ResidentialLoadForecast": {
+      "Ravens.cimObjectType": "EnergyConsumerSchedule",
+      "IdentifiedObject.mRID": "4771e5b2-8924-4a76-ac17-47f860e41149",
+      "BasicIntervalSchedule.value1Unit": "UnitSymbol.W",
+      "BasicIntervalSchedule.value1Multiplier": "UnitMultiplier.k",
+      "BasicIntervalSchedule.value2Unit": "UnitSymbol.VAr",
+      "BasicIntervalSchedule.value2Multiplier": "UnitMultiplier.k",
+      "EnergyConsumerSchedule.timeStep": 3600,
+      "EnergyConsumerSchedule.startDay": "Day.Monday",
+      "EnergyConsumerSchedule.RegularTimePoints": [
+        {
+          "RegularTimePoint.sequenceNumber": 1,
+          "RegularTimePoint.value1": 0.76,
+          "RegularTimePoint.value2": 1.32
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 2,
+          "RegularTimePoint.value1": 0.79,
+          "RegularTimePoint.value2": 0.88
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 3,
+          "RegularTimePoint.value1": 1.14,
+          "RegularTimePoint.value2": 1.3
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 4,
+          "RegularTimePoint.value1": 0.92,
+          "RegularTimePoint.value2": 0.84
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 5,
+          "RegularTimePoint.value1": 0.53,
+          "RegularTimePoint.value2": 0.99
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 6,
+          "RegularTimePoint.value1": 1.27,
+          "RegularTimePoint.value2": 1.48
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 7,
+          "RegularTimePoint.value1": 0.84,
+          "RegularTimePoint.value2": 1.46
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 8,
+          "RegularTimePoint.value1": 1.29,
+          "RegularTimePoint.value2": 0.52
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 9,
+          "RegularTimePoint.value1": 0.61,
+          "RegularTimePoint.value2": 0.51
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 10,
+          "RegularTimePoint.value1": 1.08,
+          "RegularTimePoint.value2": 0.69
+        }
+      ]
+    },
+    "IndustrialLoadForecast": {
+      "Ravens.cimObjectType": "EnergyConsumerSchedule",
+      "IdentifiedObject.mRID": "4406d3ce-8b10-4c88-8c69-342d2fc5ab7e",
+      "BasicIntervalSchedule.value1Unit": "UnitSymbol.W",
+      "BasicIntervalSchedule.value1Multiplier": "UnitMultiplier.k",
+      "BasicIntervalSchedule.value2Unit": "UnitSymbol.VAr",
+      "BasicIntervalSchedule.value2Multiplier": "UnitMultiplier.k",
+      "EnergyConsumerSchedule.startDate": "2024-01-01",
+      "EnergyConsumerSchedule.timeStep": 3600,
+      "EnergyConsumerSchedule.RegularTimePoints": [
+        {
+          "RegularTimePoint.sequenceNumber": 1,
+          "RegularTimePoint.value1": 1.45,
+          "RegularTimePoint.value2": 0.7
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 2,
+          "RegularTimePoint.value1": 0.85,
+          "RegularTimePoint.value2": 0.66
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 3,
+          "RegularTimePoint.value1": 1.12,
+          "RegularTimePoint.value2": 1.38
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 4,
+          "RegularTimePoint.value1": 1.24,
+          "RegularTimePoint.value2": 0.68
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 5,
+          "RegularTimePoint.value1": 0.78,
+          "RegularTimePoint.value2": 0.63
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 6,
+          "RegularTimePoint.value1": 0.96,
+          "RegularTimePoint.value2": 0.85
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 7,
+          "RegularTimePoint.value1": 1.09,
+          "RegularTimePoint.value2": 0.99
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 8,
+          "RegularTimePoint.value1": 0.98,
+          "RegularTimePoint.value2": 0.64
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 9,
+          "RegularTimePoint.value1": 0.69,
+          "RegularTimePoint.value2": 1.26
+        },
+        {
+          "RegularTimePoint.sequenceNumber": 10,
+          "RegularTimePoint.value1": 1.27,
+          "RegularTimePoint.value2": 1.1
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "EnergyPrices": {
+    "LocationalMarginalPrices": {
+      "LocationalMarginalPrices_1": {
+        "IdentifiedObject.mRID": "8f78e131-a843-4f12-9f32-c9f170f1f2cb",
+        "IdentifiedObject.name": "LocationalMarginalPrices_1",
+        "Ravens.cimObjectType": "LocationalMarginalPrices",
+        "EnergyPrices.Regions": ["SubGeographicalRegion::'Region_1'"],
+        "LocationalMarginalPrices.LMPCurve": {
+          "Ravens.cimObjectType": "PriceCurve",
+          "PriceCurve.xUnit": "UnitSymbol.h",
+          "PriceCurve.y1Unit": "Currency.USD",
+          "PriceCurve.CurveDatas": [
+            { "CurveData.xvalue": 0, "CurveData.y1value": 0.22 },
+            { "CurveData.xvalue": 1, "CurveData.y1value": 0.43 },
+            { "CurveData.xvalue": 2, "CurveData.y1value": 0.97 },
+            { "CurveData.xvalue": 3, "CurveData.y1value": 0.01 },
+            { "CurveData.xvalue": 4, "CurveData.y1value": 0.17 },
+            { "CurveData.xvalue": 5, "CurveData.y1value": 0.97 },
+            { "CurveData.xvalue": 6, "CurveData.y1value": 0.06 },
+            { "CurveData.xvalue": 7, "CurveData.y1value": 0.06 },
+            { "CurveData.xvalue": 8, "CurveData.y1value": 0.71 },
+            { "CurveData.xvalue": 9, "CurveData.y1value": 0.41 },
+            { "CurveData.xvalue": 10, "CurveData.y1value": 0.09 }
+          ]
+        }
+      },
+      "LocationalMarginalPrices_2": {
+        "IdentifiedObject.mRID": "683781fc-859c-4343-b359-a3d4ee979d82",
+        "IdentifiedObject.name": "LocationalMarginalPrices_2",
+        "Ravens.cimObjectType": "LocationalMarginalPrices",
+        "LocationalMarginalPrices.ConnectivityNodes": [
+          "ConnectivityNode::'Bus1'"
+        ],
+        "LocationalMarginalPrices.LMPCurve": {
+          "Ravens.cimObjectType": "PriceCurve",
+          "PriceCurve.xUnit": "UnitSymbol.h",
+          "PriceCurve.y1Unit": "Currency.USD",
+          "PriceCurve.CurveDatas": [
+            { "CurveData.xvalue": 0, "CurveData.y1value": 0.22 },
+            { "CurveData.xvalue": 1, "CurveData.y1value": 0.43 },
+            { "CurveData.xvalue": 2, "CurveData.y1value": 0.97 },
+            { "CurveData.xvalue": 3, "CurveData.y1value": 0.01 }
+          ]
+        }
+      }
+    }
+  },
+  "Group": {
+    "SubGeographicalRegion": {
+      "Region_1": {
+        "IdentifiedObject.name": "Region_1",
+        "IdentifiedObject.mRID": "87543f9f-7f0d-48d2-8124-94cdec090160"
+      }
+    },
+    "GeographicalRegion": {
+      "PrimaryRegion": {
+        "IdentifiedObject.name": "PrimaryRegion",
+        "IdentifiedObject.mRID": "cede3a49-239b-444f-be23-0eae858a76e4"
+      }
+    }
+  },
+  "ConnectivityNode": {
+    "Bus1": {
+      "IdentifiedObject.name": "Bus1",
+      "IdentifiedObject.mRID": "f9910a84-9706-4302-ae0a-471e25e768ef"
+    }
+  }
+}

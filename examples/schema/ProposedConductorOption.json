@@ -1,0 +1,26 @@
+{
+  "ProposedAssetOption": {
+    "ProposedConductorOption": {
+      "ProposedConductorUnderground": {
+        "IdentifiedObject.mRID": "89d0e415-51a1-4486-a49e-c3879b56dfee",
+        "IdentifiedObject.name": "ProposedConductorUnderground",
+        "Ravens.cimObjectType": "ProposedConductorOption",
+        "ProposedConductorOption.variablePrice": {
+          "value": 150.0,
+          "unit": "Currency.USD"
+        },
+        "ProposedConductorOption.conductorType": "ConductorType.undergroundCable"
+      },
+      "ProposedConductorOverhead": {
+        "IdentifiedObject.mRID": "89d0e415-51a1-4486-a49e-c3879b56dfee",
+        "IdentifiedObject.name": "ProposedConductorOverhead",
+        "Ravens.cimObjectType": "ProposedConductorOption",
+        "ProposedConductorOption.variablePrice": {
+          "value": 50.0,
+          "unit": "Currency.USD"
+        },
+        "ProposedConductorOption.conductorType": "ConductorType.overheadLine"
+      }
+    }
+  }
+}

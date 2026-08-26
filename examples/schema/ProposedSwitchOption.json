@@ -1,0 +1,15 @@
+{
+  "ProposedAssetOption": {
+    "ProposedSwitchOption": {
+      "ProposedSwitch1": {
+        "IdentifiedObject.mRID": "2fb52a94-21ef-430b-a1d9-b2582526c799",
+        "IdentifiedObject.name": "ProposedSwitch1",
+        "Ravens.cimObjectType": "ProposedSwitchOption",
+        "ProposedAssetOption.fixedPrice": {
+          "value": 2500.0,
+          "unit": "Currency.USD"
+        }
+      }
+    }
+  }
+}

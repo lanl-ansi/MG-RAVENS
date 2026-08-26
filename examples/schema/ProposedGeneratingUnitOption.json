@@ -1,0 +1,49 @@
+{
+  "ProposedAssetOption": {
+    "ProposedEnergyProducerOption": {
+      "Genset1": {
+        "IdentifiedObject.mRID": "6ad66b81-e6d0-4b08-b797-5356df1622bc",
+        "IdentifiedObject.name": "Genset1",
+        "Ravens.cimObjectType": "ProposedGeneratingUnitOption",
+        "ProposedAssetOption.fixedPrice": {
+          "value": 25000,
+          "unit": "Currency.USD"
+        },
+        "ProposedAssetOption.operationsAndMaintenanceRateFixed": {
+          "value": 10000,
+          "unit": "Currency.USD"
+        },
+        "ProposedGeneratingUnitOption.numUnitsMin": 0,
+        "ProposedGeneratingUnitOption.numUnitsMax": 3,
+        "ProposedEnergyProducerOption.powerCapacityFixed": 500.0,
+        "ProposedAssetOption.lifetime": "P15Y",
+        "ProposedGeneratingUnitOption.unitEfficiency": 25.0,
+        "ProposedGeneratingUnitOption.combinedHeatPowerEnabled": false,
+        "ProposedGeneratingUnitOption.fossilFuelType": "FuelType.oilShale",
+        "ProposedGeneratingUnitOption.fossilFuelCapacity": 190.0
+      },
+      "Genset2": {
+        "IdentifiedObject.mRID": "e3ceeae7-5090-435f-a348-ebb86ff4cd3e",
+        "IdentifiedObject.name": "Genset2",
+        "Ravens.cimObjectType": "ProposedGeneratingUnitOption",
+        "ProposedAssetOption.lifetime": "P15Y",
+        "ProposedEnergyProducerOption.variablePrice": {
+          "value": 250,
+          "unit": "Currency.USD"
+        },
+        "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
+          "value": 100,
+          "unit": "Currency.USD"
+        },
+        "ProposedGeneratingUnitOption.numUnitsFixed": 1,
+        "ProposedEnergyProducerOption.powerCapacityMin": 400.0,
+        "ProposedEnergyProducerOption.powerCapacityMax": 800.0,
+        "ProposedGeneratingUnitOption.unitEfficiency": 25.0,
+        "ProposedGeneratingUnitOption.combinedHeatPowerEnabled": true,
+        "ProposedGeneratingUnitOption.heatRecoveryEfficiency": 45.0,
+        "ProposedGeneratingUnitOption.fossilFuelType": "FuelType.gas",
+        "ProposedGeneratingUnitOption.fossilFuelCapacity": 190.0
+      }
+    }
+  }
+}

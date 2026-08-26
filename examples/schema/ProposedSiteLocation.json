@@ -1,0 +1,18 @@
+{
+  "ProposedSiteLocation": {
+    "proposedSite1": {
+      "IdentifiedObject.mRID": "3dadce05-a29a-40cd-9593-68e273e87158",
+      "IdentifiedObject.name": "proposedSite1",
+      "Ravens.cimObjectType": "ProposedSiteLocation",
+      "ProposedSiteLocation.availableArea": 4000.0,
+      "Location.PositionPoints": [
+        {
+          "PositionPoint.sequenceNumber": 1,
+          "PositionPoint.xPosition": "0",
+          "PositionPoint.yPosition": "0",
+          "Ravens.cimObjectType": "PositionPoint"
+        }
+      ]
+    }
+  }
+}

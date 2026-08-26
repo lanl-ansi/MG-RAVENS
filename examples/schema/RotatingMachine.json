@@ -1,0 +1,103 @@
+{
+  "BaseVoltage": {
+    "BaseV_115.00000000000001": {
+      "Ravens.cimObjectType": "BaseVoltage",
+      "IdentifiedObject.mRID": "2765def0-0fb6-4da2-833e-a7faa659ba4f",
+      "IdentifiedObject.name": "BaseV_115.00000000000001",
+      "BaseVoltage.nominalVoltage": 115000.00000000001
+    }
+  },
+  "ConnectivityNode": {
+    "regbus": {
+      "Ravens.cimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "f4ad543d-0bb8-4fc3-9e58-54022c4904d4",
+      "IdentifiedObject.name": "regbus",
+      "ConnectivityNode.OperationalLimitSet": "OperationalLimitSet::'OpLimV_103500.00000000001-126500.00000000003'"
+    }
+  },
+  "PowerSystemResource": {
+    "Equipment": {
+      "ConductingEquipment": {
+        "EnergyConnection": {
+          "RegulatingCondEq": {
+            "RotatingMachine": {
+              "gen1": {
+                "Ravens.cimObjectType": "SynchronousMachine",
+                "IdentifiedObject.mRID": "d0c53bdb-4ba4-49cf-8e7f-2f7d6d64fb03",
+                "IdentifiedObject.name": "gen1",
+                "RotatingMachine.p": 8000000.0,
+                "RotatingMachine.q": 0.0,
+                "RotatingMachine.ratedS": 9600000.0,
+                "RotatingMachine.ratedU": 12470.0,
+                "Equipment.inService": true,
+                "RotatingMachine.ratedPowerFactor": 1.0,
+                "SynchronousMachine.maxQ": 0.0,
+                "SynchronousMachine.minQ": -0.0,
+                "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_115.00000000000001'",
+                "ConductingEquipment.Terminals": [
+                  {
+                    "Ravens.cimObjectType": "Terminal",
+                    "IdentifiedObject.mRID": "d9353b5e-f062-45a5-bb59-ba02049b6e44",
+                    "IdentifiedObject.name": "gen1_T1",
+                    "ACDCTerminal.sequenceNumber": 1,
+                    "Terminal.phases": "PhaseCode.ABC",
+                    "Terminal.ConnectivityNode": "ConnectivityNode::'regbus'",
+                    "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_103500.00000000001-126500.00000000003'"
+                  }
+                ],
+                "RotatingMachine.GeneratingUnit": {
+                  "Ravens.cimObjectType": "GeneratingUnit",
+                  "IdentifiedObject.mRID": "5a4c1d31-1dc5-4a43-9223-5deb6418df8f",
+                  "IdentifiedObject.name": "gen1_GenUnit",
+                  "GeneratingUnit.minOperatingP": 0.0,
+                  "GeneratingUnit.maxOperatingP": 9600000.0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "OperationalLimitSet": {
+    "OpLimV_103500.00000000001-126500.00000000003": {
+      "Ravens.cimObjectType": "OperationalLimitSet",
+      "IdentifiedObject.mRID": "c822db31-2e3a-4e95-b1eb-20d13f92d002",
+      "IdentifiedObject.name": "OpLimV_103500.00000000001-126500.00000000003",
+      "OperationalLimitSet.OperationalLimitValue": [
+        {
+          "Ravens.cimObjectType": "VoltageLimit",
+          "IdentifiedObject.mRID": "85749b53-4972-4255-a10b-ddfc62e5d57e",
+          "IdentifiedObject.name": "OpLimV_103500.00000000001-126500.00000000003_RangeAlow",
+          "VoltageLimit.value": 103500.00000000001,
+          "VoltageLimit.normalValue": 115000.00000000001,
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'lowType_5000000000.0s'"
+        },
+        {
+          "Ravens.cimObjectType": "VoltageLimit",
+          "IdentifiedObject.mRID": "6e054ccc-9977-454e-afb5-25ed11131d76",
+          "IdentifiedObject.name": "OpLimV_103500.00000000001-126500.00000000003_RangeAhigh",
+          "VoltageLimit.value": 126500.00000000003,
+          "VoltageLimit.normalValue": 115000.00000000001,
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'highType_5000000000.0s'"
+        }
+      ]
+    }
+  },
+  "OperationalLimitType": {
+    "lowType_5000000000.0s": {
+      "Ravens.cimObjectType": "OperationalLimitType",
+      "IdentifiedObject.mRID": "d136a61f-cf30-40be-acbe-83640d8c1ae5",
+      "IdentifiedObject.name": "lowType_5000000000.0s",
+      "OperationalLimitType.direction": "OperationalLimitDirectionKind.low",
+      "OperationalLimitType.acceptableDuration": 5000000000.0
+    },
+    "highType_5000000000.0s": {
+      "Ravens.cimObjectType": "OperationalLimitType",
+      "IdentifiedObject.mRID": "387c871b-b387-4fee-8173-b20a34183ee9",
+      "IdentifiedObject.name": "highType_5000000000.0s",
+      "OperationalLimitType.direction": "OperationalLimitDirectionKind.high",
+      "OperationalLimitType.acceptableDuration": 5000000000.0
+    }
+  }
+}
