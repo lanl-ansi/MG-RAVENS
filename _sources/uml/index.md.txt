@@ -128,6 +128,11 @@
 <img src="../_static/uml/SimplifiedDiagrams.InfDCConductors.svg" style="max-width: 100%; height: auto;" alt="InfDCConductors diagram">
 
 
+### InfEquivalents
+
+<img src="../_static/uml/SimplifiedDiagrams.InfEquivalents.svg" style="max-width: 100%; height: auto;" alt="InfEquivalents diagram">
+
+
 ### InfMeterPoints
 
 <img src="../_static/uml/SimplifiedDiagrams.InfMeterPoints.svg" style="max-width: 100%; height: auto;" alt="InfMeterPoints diagram">
@@ -186,6 +191,36 @@
 ### Versions
 
 <img src="../_static/uml/SimplifiedDiagrams.Versions.svg" style="max-width: 100%; height: auto;" alt="Versions diagram">
+
+
+### _ACDCConverter
+
+<img src="../_static/uml/SimplifiedDiagrams._ACDCConverter.svg" style="max-width: 100%; height: auto;" alt="_ACDCConverter diagram">
+
+
+### _Curves
+
+<img src="../_static/uml/SimplifiedDiagrams._Curves.svg" style="max-width: 100%; height: auto;" alt="_Curves diagram">
+
+
+### _PowerElectronicsProtection
+
+<img src="../_static/uml/SimplifiedDiagrams._PowerElectronicsProtection.svg" style="max-width: 100%; height: auto;" alt="_PowerElectronicsProtection diagram">
+
+
+### _Software
+
+<img src="../_static/uml/SimplifiedDiagrams._Software.svg" style="max-width: 100%; height: auto;" alt="_Software diagram">
+
+
+### _StateVariables
+
+<img src="../_static/uml/SimplifiedDiagrams._StateVariables.svg" style="max-width: 100%; height: auto;" alt="_StateVariables diagram">
+
+
+### _SwitchingActions
+
+<img src="../_static/uml/SimplifiedDiagrams._SwitchingActions.svg" style="max-width: 100%; height: auto;" alt="_SwitchingActions diagram">
 
 ## EquipmentExtensions
 
