@@ -91,6 +91,8 @@ class RavensData(object):
 
         if isinstance(network_profile, dict):
             self.data = network_profile.copy()
+        elif isinstance(network_profile, RavensData):
+            self.data = network_profile.data.copy()
         elif isinstance(network_profile, pathlib.Path) or isinstance(network_profile, str):
             self.load(network_profile)
 
@@ -434,8 +436,16 @@ class RavensData(object):
         return cls(importer.data, template_path=template_path)
 
     @classmethod
-    def import_cyme_cim(cls, network_profile, prune_remaining_cyme: bool = True, template_path: pathlib.Path | str | None = None):
-        corrected_cyme = CymeConverter(network_profile, prune_remaining_cyme=prune_remaining_cyme)
+    def import_cyme_cim(cls, network_profile, prune_remaining_cyme: bool = True, template_path: pathlib.Path | str | None = None, PEC_corrections:dict[str, str|list]={}):
+        """
+        convert cyme file to cim making needed modifications to cyme exports.
+        - PEC_corrections optionally can be formatted as a dictionary such that 
+            - PEC_corrections["unit_type"] = "pv" or "wind" - sets default conversion of rotating machines to solar or wind
+            - PEC_corrections["pv"] = [rotating machine names,...] - converts all listed rotating machines to solar
+            - PEC_corrections["wind"] = [rotating machine names,...] - converts all listed rotating machines to wind
+        
+        """
+        corrected_cyme = CymeConverter(network_profile, prune_remaining_cyme=prune_remaining_cyme, PEC_corrections=PEC_corrections)
         importer = RavensImport(corrected_cyme)
         return cls(importer.data, template_path=template_path)
 
