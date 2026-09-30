@@ -136,10 +136,7 @@ class RavensSchema:
                                     "title": v.get("title", "") + "Container",
                                     "description": f"Hash table of {v.get('title', '')} objects",
                                     "patternProperties": {
-                                        "^.+$": {
-                                            **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "properties"},
-                                            **{"properties": self.build_schema_from_map(v["properties"])},
-                                        }
+                                        "^.+$": self.build_schema_from_map(v)
                                     },
                                 }
 
