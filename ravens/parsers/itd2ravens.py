@@ -156,7 +156,6 @@ def merge_TD(folder, t_ravens, d_dss, bd_json, feeder_name, merged_file_name, nu
         print(f"Error in batteries: {e}")
         batteries = []
 
-    #TODO: nest under "Group" to be consistent with schema
     the_feeder = {
         feeder_name: {
             "Ravens.cimObjectType": "Feeder",
