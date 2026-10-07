@@ -8,6 +8,9 @@ import grg_mpdata as grg
 π = np.pi
 
 
+pi = np.pi
+
+
 def parse_mpc_to_ravens(folder, case_name):
     mpc = grg.io.parse_mp_case_file(folder + "/" + case_name + ".m")
     watt_multiplier = 1e6  # megawatts to watts
@@ -44,7 +47,7 @@ def parse_mpc_to_ravens(folder, case_name):
         "highType_2500000000.0s": {
             "Ravens.cimObjectType": "OperationalLimitType",
             "IdentifiedObject.mRID": str(uuid.uuid4()),
-            "IdentifiedObject.name": "highType_5000000000.0s",
+            "IdentifiedObject.name": "highType_2500000000.0s",
             "OperationalLimitType.direction": "OperationalLimitDirectionKind.high",
             "OperationalLimitType.acceptableDuration": 2500000000.0,
         },
@@ -68,7 +71,7 @@ def parse_mpc_to_ravens(folder, case_name):
         v_base = mpc.bus[i].base_kv
         s_base = mpc.baseMVA
         g_b_mul = s_base / v_base**2
-        if mpc.bus[i].bus_type != 3:
+        if mpc.bus[i].bus_type != 3 and mpc.bus[i].bus_type != 4:
             opset = {
                 "OpLimVbus"
                 + str(b + 1): {
@@ -90,6 +93,33 @@ def parse_mpc_to_ravens(folder, case_name):
                             "IdentifiedObject.name": "OpLimVbus" + str(b + 1) + "_high",
                             "IdentifiedObject.description": "magnitude",
                             "VoltageLimit.value": mpc.bus[i].vmax * voltage_multiplier,
+                            "OperationalLimit.OperationalLimitType": "OperationalLimitType::'highType_5000000000.0s'",
+                        },
+                    ],
+                }
+            }
+        elif mpc.bus[i].bus_type == 4:
+            opset = {
+                "OpLimVbus"
+                + str(b + 1): {
+                    "Ravens.cimObjectType": "OperationalLimitSet",
+                    "IdentifiedObject.mRID": str(uuid.uuid4()),
+                    "IdentifiedObject.name": "OpLimVbus" + str(b + 1),
+                    "OperationalLimitSet.OperationalLimitValue": [
+                        {
+                            "Ravens.cimObjectType": "VoltageLimit",
+                            "IdentifiedObject.mRID": str(uuid.uuid4()),
+                            "IdentifiedObject.name": "OpLimVbus" + str(b + 1) + "_low",
+                            "IdentifiedObject.description": "magnitude",
+                            "VoltageLimit.value": 0.0,
+                            "OperationalLimit.OperationalLimitType": "OperationalLimitType::'lowType_5000000000.0s'",
+                        },
+                        {
+                            "Ravens.cimObjectType": "VoltageLimit",
+                            "IdentifiedObject.mRID": str(uuid.uuid4()),
+                            "IdentifiedObject.name": "OpLimVbus" + str(b + 1) + "_high",
+                            "IdentifiedObject.description": "magnitude",
+                            "VoltageLimit.value": 10000000.0,
                             "OperationalLimit.OperationalLimitType": "OperationalLimitType::'highType_5000000000.0s'",
                         },
                     ],
@@ -135,7 +165,7 @@ def parse_mpc_to_ravens(folder, case_name):
                 "IdentifiedObject.name": str(b + 1),
                 "IdentifiedObject.mRID": str(uuid.uuid4()),
                 "Ravens.cimObjectType": "ConnectivityNode",
-                "ConnectivityNode.SvVoltage": [{"Ravens.cimObjectType": "SvVoltage", "IdentifiedObject.mRID": str(uuid.uuid4()), "SvVoltage.v": mpc.bus[i].vm * voltage_multiplier, "SvVoltage.angle": mpc.bus[i].va * (π / 180)}],
+                "ConnectivityNode.SvVoltage": [{"Ravens.cimObjectType": "SvVoltage", "IdentifiedObject.mRID": str(uuid.uuid4()), "SvVoltage.v": mpc.bus[i].vm * voltage_multiplier, "SvVoltage.angle": mpc.bus[i].va * (pi / 180)}],
                 "ConnectivityNode.OperationalLimitSet": "OperationalLimitSet::'OpLimVbus" + str(b + 1) + "'",
             }
         }
@@ -185,8 +215,8 @@ def parse_mpc_to_ravens(folder, case_name):
                 ],
             }
         }
-        if mpc.bus[i].pd != 0.0 or mpc.bus[i].qd != 0.0 or mpc.bus[i].bus_type == 1:
-            load_dict.update(load)
+        #if mpc.bus[i].bus_type != 2 and mpc.bus[i].bus_type != 3:
+        load_dict.update(load)
 
     gen_dict = {}
     for g in range(len(mpc.gen)):
@@ -288,7 +318,7 @@ def parse_mpc_to_ravens(folder, case_name):
                         "IdentifiedObject.mRID": str(uuid.uuid4()),
                         "IdentifiedObject.name": "OpLimbranch" + str(br) + "_angles_low",
                         "IdentifiedObject.description": "angle",
-                        "VoltageLimit.value": mpc.branch[br].angmin * (π / 180),
+                        "VoltageLimit.value": mpc.branch[br].angmin * (pi / 180),
                         "OperationalLimit.OperationalLimitType": "OperationalLimitType::'lowType_5000000000.0s'",
                     },
                     {
@@ -296,7 +326,7 @@ def parse_mpc_to_ravens(folder, case_name):
                         "IdentifiedObject.mRID": str(uuid.uuid4()),
                         "IdentifiedObject.name": "OpLimbranch" + str(br) + "_angles_high",
                         "IdentifiedObject.description": "angle",
-                        "VoltageLimit.value": mpc.branch[br].angmax * (π / 180),
+                        "VoltageLimit.value": mpc.branch[br].angmax * (pi / 180),
                         "OperationalLimit.OperationalLimitType": "OperationalLimitType::'highType_5000000000.0s'",
                     },
                 ],
@@ -404,7 +434,7 @@ def parse_mpc_to_ravens(folder, case_name):
                         "Ravens.cimObjectType": "TapChangerRatio",
                         "IdentifiedObject.mRID": str(uuid.uuid4()),
                         "IdentifiedObject.name": "shift" + str(br + 1) + "_angle",
-                        "TapChangerRatio.ptRatio": mpc.branch[br].shift * (π / 180),
+                        "TapChangerRatio.ptRatio": mpc.branch[br].shift * (pi / 180),
                     },
                 }
             }
