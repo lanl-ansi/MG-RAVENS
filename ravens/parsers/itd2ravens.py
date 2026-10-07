@@ -169,7 +169,7 @@ def merge_TD(folder, t_ravens, d_dss, bd_json, feeder_name, merged_file_name, nu
 
     itd_dict = merge_dicts(transmission_dict, dd_dict)
 
-    itd_dict.update(the_feeder)
+    itd_dict['Group'].update(the_feeder)
 
     bndry = import_json(bd_json)
 
