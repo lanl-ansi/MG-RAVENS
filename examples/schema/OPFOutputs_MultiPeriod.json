@@ -1,0 +1,499 @@
+{
+  "AnalysisResult": {
+    "OptimalPowerFlow": {
+      "Ravens.cimObjectType": "OperationsResult",
+      "IdentifiedObject.name": "OptimalPowerFlow",
+      "IdentifiedObject.mRID": "0cf8b328-38c6-47f8-b86e-ef821a893aff",
+      "OperationsResult.Voltages": [
+        {
+          "AnalysisResultData.phase": "SinglePhaseKind.A",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'sourcebus'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvVoltage.v": 240.0,
+                  "AvVoltage.angle": 0.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvVoltage.v": 240.0,
+                  "AvVoltage.angle": 0.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvVoltage.v": 240.0,
+                  "AvVoltage.angle": 0.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "AnalysisResultData.phase": "SinglePhaseKind.B",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'sourcebus'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvVoltage.v": 240.0,
+                  "AvVoltage.angle": -120.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvVoltage.v": 240.0,
+                  "AvVoltage.angle": -120.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvVoltage.v": 240.0,
+                  "AvVoltage.angle": -120.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "AnalysisResultData.phase": "SinglePhaseKind.C",
+          "ArVoltage.ConnectivityNode": "ConnectivityNode::'sourcebus'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvVoltage.v": 240.0,
+                  "AvVoltage.angle": 120.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvVoltage.v": 240.0,
+                  "AvVoltage.angle": 120.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvVoltage.v": 240.0,
+                  "AvVoltage.angle": 120.0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "OperationsResult.CurrentFlows": [
+        {
+          "AnalysisResultData.phase": "SinglePhaseKind.A",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvCurrentFlow.currentImaginary": 0.0,
+                  "AvCurrentFlow.currentReal": 10.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvCurrentFlow.currentImaginary": 0.0,
+                  "AvCurrentFlow.currentReal": 10.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvCurrentFlow.currentImaginary": 0.0,
+                  "AvCurrentFlow.currentReal": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "AnalysisResultData.phase": "SinglePhaseKind.B",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvCurrentFlow.currentImaginary": 0.0,
+                  "AvCurrentFlow.currentReal": 10.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvCurrentFlow.currentImaginary": 0.0,
+                  "AvCurrentFlow.currentReal": 10.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvCurrentFlow.currentImaginary": 0.0,
+                  "AvCurrentFlow.currentReal": 10.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "AnalysisResultData.phase": "SinglePhaseKind.C",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvCurrentFlow.currentImaginary": 0.0,
+                  "AvCurrentFlow.currentReal": 10.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvCurrentFlow.currentImaginary": 0.0,
+                  "AvCurrentFlow.currentReal": 10.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvCurrentFlow.currentImaginary": 0.0,
+                  "AvCurrentFlow.currentReal": 10.0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "OperationsResult.PowerFlows": [
+        {
+          "AnalysisResultData.phase": "SinglePhaseKind.A",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvPowerFlow.p": 2400.0,
+                  "AvPowerFlow.q": 0.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvPowerFlow.p": 2400.0,
+                  "AvPowerFlow.q": 0.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvPowerFlow.p": 2400.0,
+                  "AvPowerFlow.q": 0.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "AnalysisResultData.phase": "SinglePhaseKind.B",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvPowerFlow.p": 2400.0,
+                  "AvPowerFlow.q": 0.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvPowerFlow.p": 2400.0,
+                  "AvPowerFlow.q": 0.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvPowerFlow.p": 2400.0,
+                  "AvPowerFlow.q": 0.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "AnalysisResultData.phase": "SinglePhaseKind.C",
+          "ArCurrentFlow.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvPowerFlow.p": 2400.0,
+                  "AvPowerFlow.q": 0.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvPowerFlow.p": 2400.0,
+                  "AvPowerFlow.q": 0.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvPowerFlow.p": 2400.0,
+                  "AvPowerFlow.q": 0.0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "OperationsResult.Switches": [
+        {
+          "ArSwitch.Switch": "Switch::'cb'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvSwitch.open": false
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvSwitch.open": false
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvSwitch.open": false
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "OperationsResult.TransformerTaps": [
+        {
+          "ArTapStep.TapChanger": "RatioTapChanger::'sub'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvTapStep.step": 6.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvTapStep.step": 6.0
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvTapStep.step": 6.0
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "OperationsResult.Statuses": [
+        {
+          "ArStatus.ConductingEquipment": "EnergyConsumer::'l1_a'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "EnergyConsumer::'l1_b'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "EnergyConsumer::'l1_c'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "ACLineSegment::'ohline'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "ACLineSegment::'556mcm'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ArStatus.ConductingEquipment": "EnergySource::'source'",
+          "AnalysisResultData.Curve": {
+            "AnalysisResultCurve.xUnit": "UnitSymbol.h",
+            "AnalysisResultCurve.CurveDatas": [
+              {
+                "ArCurveData.xvalue": 0.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 1.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              },
+              {
+                "ArCurveData.xvalue": 2.0,
+                "ArCurveData.DataValues": {
+                  "AvStatus.inService": true
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,430 @@
+import html
+import json
+import os
+import pathlib
+from typing import Any
+
+import json_schema_for_humans.generate as Gen
+import markdownify
+import pandas as pd
+
+from copy import deepcopy
+
+from ravens.data import _RAVENS_SCHEMA_BASE_URL, _JSON_SCHEMA_URL, _CIM_PRIMATIVES
+from ravens.uml import UMLData, UMLGraphs, UMLExclusions
+from ravens.schema.template import SchemaTemplate
+from ravens.logging import logger
+
+
+class RavensSchema:
+    def __init__(
+        self,
+        schema_template: SchemaTemplate | None = None,
+        base_id_uri: str = _RAVENS_SCHEMA_BASE_URL,
+        uml_data: UMLData | None = None,
+        uml_graphs: UMLGraphs | None = None,
+        uml_exclusions: UMLExclusions | None = None,
+        omit_file_extension: bool = False,
+        omit_license: bool = False,
+        omit_descriptions: bool = False,
+        template_source: str = "auto",
+    ):
+        if uml_data is None:
+            uml_data = UMLData()
+
+        self.uml_data = uml_data
+
+        self.schema_template = (
+            SchemaTemplate(
+                uml_data=uml_data,
+                uml_graphs=uml_graphs,
+                uml_exclusions=uml_exclusions,
+                omit_descriptions=omit_descriptions,
+                source=template_source,
+            )
+            if schema_template is None
+            else schema_template
+        )
+
+        self.omit_descr = omit_descriptions
+
+        self.schema = self.build_schema_from_map(self.schema_template.template)
+        self.schema["$defs"] = self.build_definitions(self.uml_data)
+        self.schema["$id"] = f"{base_id_uri}/Root.json"
+        self.schema["$schema"] = _JSON_SCHEMA_URL
+        self.schema["additionalProperties"] = False
+
+        self.schemas = {}
+        self.base_id_uri = base_id_uri
+        self.omit_file_extension = omit_file_extension
+
+        self.decompose_schema(deepcopy(self.schema))
+        self.decompose_defs(deepcopy(self.schema).get("$defs", {}))
+
+        self.schemas[self.schema_path("Root")].pop("$defs")
+
+        self.insert_refs()
+
+        if not omit_license:
+            self.add_cim_copyright_notice_to_decomposed_schemas(self.uml_data)
+
+    def schema_path(self, schema_id):
+        return "/".join(a for a in [self.base_id_uri, schema_id + (".json" if not self.omit_file_extension else "")] if a)
+
+    @staticmethod
+    def _strip_presentation_fields(value: Any) -> Any:
+        if isinstance(value, dict):
+            return {
+                k: RavensSchema._strip_presentation_fields(v)
+                for k, v in value.items()
+                if k not in {"title", "description"}
+            }
+        if isinstance(value, list):
+            return [RavensSchema._strip_presentation_fields(item) for item in value]
+        return value
+
+    @staticmethod
+    def _dedupe_anyof_members(anyof: list[Any]) -> list[Any]:
+        unique: list[Any] = []
+        seen: set[str] = set()
+
+        for item in anyof:
+            signature = json.dumps(RavensSchema._strip_presentation_fields(item), sort_keys=True)
+            if signature in seen:
+                continue
+            seen.add(signature)
+            unique.append(item)
+
+        return unique
+
+    @staticmethod
+    def _collapse_pure_anyof_wrapper(schema: dict[str, Any]) -> dict[str, Any]:
+        if "anyOf" not in schema or not isinstance(schema["anyOf"], list):
+            return schema
+
+        schema["anyOf"] = RavensSchema._dedupe_anyof_members(schema["anyOf"])
+
+        structural_keys = {k for k in schema if k not in {"title", "description"}}
+        if structural_keys == {"anyOf"} and len(schema["anyOf"]) == 1:
+            only = schema["anyOf"][0]
+            if isinstance(only, dict):
+                return only
+
+        return schema
+
+    def build_schema_from_map(self, schema_map: dict) -> dict:
+        def _title(s: str) -> str:
+            return s.split(".")[-1]
+
+        schema: dict[str, Any] = {}
+        for k, v in schema_map.items():
+            if k.startswith("$"):
+                continue
+            elif isinstance(v, dict):
+                if "type" in v or "$objectType" in v:
+                    if v.get("type", None) == "object" or v.get("$objectType", None) == "object":
+                        if "properties" in v:
+                            v["additionalProperties"] = False
+                            if v.get("$primaryObjectHash", None) is None:
+                                schema[k] = self.build_schema_from_map(v)
+                                schema[k]["additionalProperties"] = False
+                                if "title" not in schema[k]:
+                                    schema[k]["title"] = _title(k)
+                            else:
+                                schema[k] = {
+                                    "type": "object",
+                                    "title": v.get("title", "") + "Container",
+                                    "description": f"Hash table of {v.get('title', '')} objects",
+                                    "patternProperties": {
+                                        "^.+$": {
+                                            **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "properties"},
+                                            **{"properties": self.build_schema_from_map(v["properties"])},
+                                        }
+                                    },
+                                }
+
+                                if self.omit_descr:
+                                    schema[k].pop("description")
+
+                        elif "anyOf" in v:
+                            if v.get("$primaryObjectHash", None) is None:
+                                schema[k] = self.build_schema_from_map(v)
+                                if "title" not in schema[k]:
+                                    schema[k]["title"] = _title(k)
+                            else:
+                                schema[k] = {
+                                    "type": "object",
+                                    "title": v.get("title", "") + "Container",
+                                    "description": f"Hash table of {v.get('title', '')} objects",
+                                    "patternProperties": {
+                                        "^.+$": {
+                                            **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "anyOf"},
+                                            **{"anyOf": [self.build_schema_from_map(item if "properties" not in item else {"additionalProperties": False, **item}) for item in v["anyOf"]]},
+                                        }
+                                    },
+                                }
+
+                                if self.omit_descr:
+                                    schema[k].pop("description")
+
+                    elif v.get("type", None) == "array":
+                        schema[k] = {
+                            **{_k: _v for _k, _v in v.items() if not _k.startswith("$") and _k != "items"},
+                            **{"items": self.build_schema_from_map(v["items"])},
+                        }
+                        if "title" not in schema[k]:
+                            schema[k]["title"] = _title(k) + "_Array"
+                    else:
+                        schema[k] = self.build_schema_from_map(v)
+                else:
+                    schema[k] = self.build_schema_from_map(v)
+            elif k == "anyOf" and isinstance(v, list):
+                schema[k] = [self.build_schema_from_map(item) for item in v]
+            elif k == "type" and v not in ["object", "string", "array", "boolean", "number", "null", "integer"]:
+                schema["$ref"] = f"#/$defs/{v}"
+            else:
+                schema[k] = v
+
+        return self._collapse_pure_anyof_wrapper(schema)
+
+    def build_definitions(self, uml_data: UMLData) -> dict:
+        defs = {}
+        for obj in uml_data.objects[uml_data.objects["Object_Type"] == "Class"].itertuples():
+            if str(obj.Stereotype).strip() == "enumeration":
+                defs[str(obj.Name).replace(" ", "")] = {
+                    "title": str(obj.Name).replace(" ", ""),
+                    "description": html.unescape(str(obj.Note)).strip(),
+                    "type": "string",
+                    "enum": [f"{str(obj.Name)}.{str(attr.Name)}" for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == obj.Index].itertuples()],
+                }
+                if self.omit_descr:
+                    defs[str(obj.Name).replace(" ", "")].pop("description")
+            elif not pd.isnull(obj.Stereotype):
+                defs[str(obj.Name).replace(" ", "")] = {
+                    "title": str(obj.Name).replace(" ", ""),
+                    "description": html.unescape(str(obj.Note)).strip(),
+                    "type": "object",
+                    "additionalProperties": False,
+                    "properties": {
+                        str(attr.Name): {
+                            "type": str(attr.Type) if str(attr.Type) not in _CIM_PRIMATIVES else _CIM_PRIMATIVES[str(attr.Type)],
+                            "description": str(attr.Notes),
+                            "default": attr.Default if not pd.isnull(attr.Default) else "none" if str(attr.Type) == "UnitMultiplier" else None,
+                        }
+                        for attr in uml_data.attributes[uml_data.attributes["Object_ID"] == obj.Index].itertuples()
+                    },
+                }
+                if self.omit_descr:
+                    defs[str(obj.Name).replace(" ", "")].pop("description")
+                    for v in defs[str(obj.Name).replace(" ", "")]["properties"].values():
+                        v.pop("description")
+
+                if all(v["default"] is not None for k, v in defs[str(obj.Name).replace(" ", "")]["properties"].items() if k != "value") and "value" in defs[str(obj.Name).replace(" ", "")]["properties"]:
+                    defs[str(obj.Name).replace(" ", "")]["type"] = [
+                        "object",
+                        _CIM_PRIMATIVES[defs[str(obj.Name).replace(" ", "")]["properties"]["value"]["type"]],
+                    ]
+
+        for k, v in defs.items():
+            if "properties" in v:
+                for _k, _v in v["properties"].items():
+                    if "type" in _v and _v["type"] in defs:
+                        _v["$ref"] = f"#/$defs/{_v.pop("type")}"
+
+        return defs
+
+    def decompose_schema(self, schema: dict, debug_key: str | None = None) -> str | None:
+        _schema = deepcopy(schema)
+
+        if isinstance(_schema, dict):
+            _schema["$schema"] = _JSON_SCHEMA_URL
+            if "anyOf" not in _schema:
+                _schema["additionalProperties"] = False
+
+            title = _schema.get("title", None)
+            if title is None:
+                title = debug_key.split(".")[-1] if debug_key is not None else None
+                if title is None:
+                    logger.warning(f"When decomposing the schema, 'title' was not found on an object, only the following keys: {list(_schema.keys())}")
+                else:
+                    _schema["title"] = title
+
+            if title is not None:
+                base_title = title
+                if "patternProperties" in _schema:
+                    title = f"{title}_Container"
+                if "anyOf" in _schema:
+                    title = f"{title}_anyOfContainer"
+            else:
+                base_title = None
+
+            skip_anonymous_artifact = (
+                (base_title == "+$" and debug_key == "^.+$")
+                or (
+                    base_title == "Container"
+                    and _schema.get("description") == "Hash table of  objects"
+                    and "patternProperties" in _schema
+                )
+            )
+
+            _schema["$id"] = self.schema_path(title)
+
+            def _decompose_anyof_members() -> None:
+                _anyOf = []
+                for item in _schema.get("anyOf", []):
+                    ref_id = self.decompose_schema(item, debug_key=debug_key)
+                    if ref_id is not None:
+                        _anyOf.append({"$ref": ref_id})
+                    else:
+                        _anyOf.append(item)
+                _schema["anyOf"] = _anyOf
+
+            if _schema.get("type", None) == "object":
+                for n in ["properties", "patternProperties"]:
+                    if n in _schema:
+                        for k, v in _schema[n].items():
+                            ref_id = self.decompose_schema(v, debug_key=k)
+                            if ref_id is not None:
+                                _schema[n][k] = {"$ref": ref_id}
+                if "anyOf" in _schema:
+                    _decompose_anyof_members()
+            elif _schema.get("type", None) == "array":
+                ref_id = self.decompose_schema(_schema["items"], debug_key=debug_key)
+                if ref_id is not None:
+                    _schema["items"] = {"$ref": ref_id}
+            elif "anyOf" in _schema:
+                _decompose_anyof_members()
+
+            else:
+                return None
+
+            if skip_anonymous_artifact:
+                return None
+
+            self.schemas[_schema["$id"]] = {**self.schemas.get(_schema["$id"], {}), **_schema}
+
+            return _schema["$id"]
+
+        return None
+
+    def decompose_defs(self, defs: dict):
+        for k, v in defs.items():
+            _schema = deepcopy(v)
+            _schema["$schema"] = _JSON_SCHEMA_URL
+            _schema["$id"] = self.schema_path(_schema["title"])
+            self.schemas[_schema["$id"]] = {**self.schemas.get(_schema["$id"], {}), **_schema}
+
+    def insert_refs(self):
+        logger.info("Inserting schema references")
+        for schema_key in list(self.schemas.keys()):
+            self.schemas[schema_key] = self._process_schema_refs(schema_key, self.schemas[schema_key])
+
+    def _process_schema_refs(self, schema_key: str, schema: dict, path: str = "") -> dict:
+        """Recursively process and fix $ref references in schema"""
+        if not isinstance(schema, dict):
+            return schema
+
+        schema = deepcopy(schema)
+
+        # Handle $ref at current level
+        if "$ref" in schema:
+            if schema["$ref"].startswith("#/$defs/"):
+                ref = schema["$ref"].split("#/$defs/")[1]
+                ref_path = self.schema_path(ref)
+                if ref_path in self.schemas:
+                    schema["$ref"] = ref_path
+                    logger.debug(f"Updated ref in {schema_key}{path}: #/$defs/{ref} -> {ref_path}")
+                else:
+                    logger.warning(f"Reference #/$defs/{ref} not found in schemas for {schema_key}{path}")
+
+        # Recursively process nested structures
+        if "patternProperties" in schema:
+            for pattern, json_object in list(schema["patternProperties"].items()):
+                if isinstance(json_object, dict):
+                    if "$id" in json_object and json_object["$id"] in self.schemas and json_object["$id"] != schema_key:
+                        schema["patternProperties"][pattern] = {"$ref": json_object["$id"]}
+                    else:
+                        schema["patternProperties"][pattern] = self._process_schema_refs(
+                            schema_key, json_object, f"{path}.patternProperties['{pattern}']"
+                        )
+
+        if "properties" in schema:
+            for k, v in list(schema["properties"].items()):
+                if isinstance(v, dict):
+                    if "$id" in v and v["$id"] in self.schemas and v["$id"] != schema_key:
+                        schema["properties"][k] = {"$ref": v["$id"]}
+                    else:
+                        schema["properties"][k] = self._process_schema_refs(
+                            schema_key, v, f"{path}.properties['{k}']"
+                        )
+
+        if "anyOf" in schema:
+            for i, item in enumerate(schema["anyOf"]):
+                if isinstance(item, dict):
+                    if "$id" in item and item["$id"] in self.schemas and item["$id"] != schema_key:
+                        schema["anyOf"][i] = {"$ref": item["$id"]}
+                    else:
+                        schema["anyOf"][i] = self._process_schema_refs(
+                            schema_key, item, f"{path}.anyOf[{i}]"
+                        )
+
+        if "allOf" in schema:
+            for i, item in enumerate(schema["allOf"]):
+                if isinstance(item, dict):
+                    schema["allOf"][i] = self._process_schema_refs(
+                        schema_key, item, f"{path}.allOf[{i}]"
+                    )
+
+        if "oneOf" in schema:
+            for i, item in enumerate(schema["oneOf"]):
+                if isinstance(item, dict):
+                    schema["oneOf"][i] = self._process_schema_refs(
+                        schema_key, item, f"{path}.oneOf[{i}]"
+                    )
+
+        if "items" in schema:
+            if isinstance(schema["items"], dict):
+                if "$id" in schema["items"] and schema["items"]["$id"] in self.schemas and schema["items"]["$id"] != schema_key:
+                    schema["items"] = {"$ref": schema["items"]["$id"]}
+                else:
+                    schema["items"] = self._process_schema_refs(
+                        schema_key, schema["items"], f"{path}.items"
+                    )
+
+        return schema
+
+    @staticmethod
+    def get_cim_copyright_notice(uml_data: UMLData, cim_copyright_notice_object_id: int = 29601) -> str:
+        return "\n".join(markdownify.markdownify(html.unescape(str(uml_data.objects.loc[cim_copyright_notice_object_id].Note).strip())).splitlines()).strip()
+
+    def add_cim_copyright_notice_to_decomposed_schemas(self, uml_data: UMLData):
+        copyright_notice = self.get_cim_copyright_notice(uml_data)
+        for k in self.schemas.keys():
+            self.schemas[k]["license"] = copyright_notice
+
+    def export_schema(self, file_out: pathlib.Path | str):
+        with open(file_out, "w") as f:
+            json.dump(self.schema, f)
+
+    def export_schemas(self, out_dir: pathlib.Path | str):
+        for k, v in self.schemas.items():
+            filename = k.split("/")[-1].replace(".json", "")
+            with open(os.path.join(out_dir, f"{filename}.json"), "w") as f:
+                json.dump(v, f, indent=2)
+
+
+def generate_schema_docs(schema_dir: pathlib.Path | str, out_dir: pathlib.Path | str, template_name: str = "js") -> None:
+    out_path = pathlib.Path(out_dir)
+    out_path.mkdir(parents=True, exist_ok=True)
+    logger.info(f"Generating schema documentation from {schema_dir} to {out_dir}")
+    Gen.generate_from_filename(schema_dir, str(out_dir), config=Gen.GenerationConfiguration(template_name=template_name))
+
+
+if __name__ == "__main__":
+    schema = RavensSchema(base_id_uri=f"file://{os.getcwd()}/out/schema/separate")
+
+    schema.export_schema("out/schema/test_schema.json")
+
+    schema.export_schemas("out/schema/separate/")
+
+    generate_schema_docs("out/schema/separate", "out/schema/docs")

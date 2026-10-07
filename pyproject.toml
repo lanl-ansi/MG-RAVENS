@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "mg-ravens"
+version = "0.3.0"
+description = ""
+authors = ["David M Fobes <dfobes@lanl.gov>"]
+license = "Apache-2"
+readme = "README.md"
+packages = [{include = "ravens"}]
+include = ["lib/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1_mgravens24v1.xml", "lib/template.json", "lib/svgRender.js"]
+
+[tool.poetry.dependencies]
+python = ">=3.12, <3.14"
+networkx = "^3.2"
+pandas = "^2.1"
+rdflib = "^7.0"
+json-schema-for-humans = "^1"
+markdownify = "^0.13"
+lxml = "^5.3.0"
+opendssdirect-py = {extras = ["extras"], version = "^0.9.4"}
+jschon= {extras = ["requests"], version = "^0.11.1"}
+openpyxl = "^3.1.5"
+grg-mpdata = "^0.1.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+sphinx = "^8.1.3"
+myst-parser = "^4.0.0"
+sphinx-press-theme = "^0.9.1"
+pytest-cov = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:rfc3986._mixin",
+]

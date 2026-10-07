@@ -1,0 +1,367 @@
+{
+  "Fault": {
+    "Fault1": {
+      "IdentifiedObject.name": "Fault1",
+      "IdentifiedObject.mRID": "3c310628-4291-40c9-b20c-c00f5206c3a0",
+      "Ravens.cimObjectType": "Fault",
+      "Fault.impedance": {
+        "rGround": 1e4,
+        "xGround": 1e4
+      },
+      "Fault.kind": "PhaseConnectedFaultKind.lineToGround",
+      "Fault.phases": "PhaseCode.A",
+      "Fault.FaultyEquipment": "ACLineSegment::'650632'"
+    },
+    "Fault2": {
+      "IdentifiedObject.name": "Fault2",
+      "IdentifiedObject.mRID": "0beebfbc-66f9-4bcb-943f-7687f00abc59",
+      "Ravens.cimObjectType": "Fault",
+      "Fault.impedance": {
+        "rLineToLine": 1e4,
+        "xLineToLine": 1e4
+      },
+      "Fault.kind": "PhaseConnectedFaultKind.lineToLine",
+      "Fault.phases": "PhaseCode.AB",
+      "Fault.FaultyEquipment": "ACLineSegment::'650632'"
+    },
+    "Fault3": {
+      "IdentifiedObject.name": "Fault3",
+      "IdentifiedObject.mRID": "",
+      "Ravens.cimObjectType": "Fault",
+      "Fault.impedance": {
+        "rGround": 1e4,
+        "rLineToLine": 1e4,
+        "xGround": 1e4,
+        "xLineToLine": 1e4
+      },
+      "Fault.kind": "PhaseConnectedFaultKind.lineToLineToGround",
+      "Fault.phases": "PhaseCode.AB",
+      "Fault.FaultyEquipment": "ACLineSegment::'650632'"
+    }
+  },
+  "ConnectivityNode": {
+    "rg60": {
+      "Ravens.cimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "c3ba3610-9923-4e23-8d74-642a3e9b0a4b",
+      "IdentifiedObject.name": "rg60"
+    },
+    "632": {
+      "Ravens.cimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "a3dbeee2-f4ee-48b6-a81f-63502447252e",
+      "IdentifiedObject.name": "632"
+    }
+  },
+  "PowerSystemResource": {
+    "Equipment": {
+      "ConductingEquipment": {
+        "Conductor": {
+          "ACLineSegment": {
+            "650632": {
+              "Ravens.cimObjectType": "ACLineSegment",
+              "IdentifiedObject.mRID": "1693c9dd-149e-44b4-b863-3316642428a6",
+              "IdentifiedObject.name": "650632",
+              "Equipment.inService": true,
+              "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_4.16'",
+              "Conductor.length": 609.6,
+              "ACLineSegment.WireSpacingInfo": "WireSpacingInfo::'601'",
+              "ConductingEquipment.Terminals": [
+                {
+                  "Ravens.cimObjectType": "Terminal",
+                  "IdentifiedObject.mRID": "b69dcc7d-301e-4ae5-b8ce-5f72cc11c19d",
+                  "IdentifiedObject.name": "650632_T1",
+                  "ACDCTerminal.sequenceNumber": 1,
+                  "Terminal.phases": "PhaseCode.ABC",
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'rg60'",
+                  "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
+                },
+                {
+                  "Ravens.cimObjectType": "Terminal",
+                  "IdentifiedObject.mRID": "0731f0e6-ff0b-4a37-b1f2-dd0765521e01",
+                  "IdentifiedObject.name": "650632_T2",
+                  "ACDCTerminal.sequenceNumber": 2,
+                  "Terminal.phases": "PhaseCode.ABC",
+                  "Terminal.ConnectivityNode": "ConnectivityNode::'632'",
+                  "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimI_730.0_1095.0'"
+                }
+              ],
+              "ACLineSegment.ACLineSegmentPhase": [
+                {
+                  "Ravens.cimObjectType": "ACLineSegmentPhase",
+                  "IdentifiedObject.mRID": "e44edbad-80fa-44f0-87cd-102f84bbd0c4",
+                  "IdentifiedObject.name": "650632_A",
+                  "ACLineSegmentPhase.phase": "SinglePhaseKind.A",
+                  "ACLineSegmentPhase.sequenceNumber": 1,
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'a5b1f1e5-4785-452e-955c-560af22626c5'"
+                },
+                {
+                  "Ravens.cimObjectType": "ACLineSegmentPhase",
+                  "IdentifiedObject.mRID": "495adae5-cf6c-4579-8d98-50c0aa9c3f8d",
+                  "IdentifiedObject.name": "650632_B",
+                  "ACLineSegmentPhase.phase": "SinglePhaseKind.B",
+                  "ACLineSegmentPhase.sequenceNumber": 2,
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'673b9e10-9684-4979-86b1-9487a5f898ce'"
+                },
+                {
+                  "Ravens.cimObjectType": "ACLineSegmentPhase",
+                  "IdentifiedObject.mRID": "2f6f2227-7eb2-401c-9371-a8f4e272cf9f",
+                  "IdentifiedObject.name": "650632_C",
+                  "ACLineSegmentPhase.phase": "SinglePhaseKind.C",
+                  "ACLineSegmentPhase.sequenceNumber": 3,
+                  "PowerSystemResource.AssetDatasheet": "OverheadWireInfo::'8a9ea93c-74ad-4052-ab81-c5f238d70581'"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "AssetInfo": {
+    "WireSpacingInfo": {
+      "601": {
+        "Ravens.cimObjectType": "WireSpacingInfo",
+        "IdentifiedObject.mRID": "787ef322-b50d-4d82-99dd-ad4d2c60c54e",
+        "IdentifiedObject.name": "601",
+        "WireSpacingInfo.usage": "WireUsageKind.distribution",
+        "WireSpacingInfo.phaseWireCount": 1,
+        "WireSpacingInfo.phaseWireSpacing": 0.0,
+        "WireSpacingInfo.isCable": true,
+        "WireSpacingInfo.WirePositions": [
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "929b1ee7-20cd-4b95-9fd3-665d275a9992",
+            "IdentifiedObject.name": "WP_601_1",
+            "WirePosition.sequenceNumber": 1,
+            "WirePosition.xCoord": -1.2192,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "7185e7d5-f26a-423d-b282-52fd890e9f4b",
+            "IdentifiedObject.name": "WP_601_2",
+            "WirePosition.sequenceNumber": 2,
+            "WirePosition.xCoord": -0.3048,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "c6fdb532-1412-4f58-9339-8fce22a0c17a",
+            "IdentifiedObject.name": "WP_601_3",
+            "WirePosition.sequenceNumber": 3,
+            "WirePosition.xCoord": 0.9144000000000001,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "13bf34c1-b3fd-426c-b2f0-585b59dadba4",
+            "IdentifiedObject.name": "WP_601_4",
+            "WirePosition.sequenceNumber": 4,
+            "WirePosition.xCoord": 0.0,
+            "WirePosition.yCoord": 7.315200000000001
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "c3b4a684-7192-4b2b-b40e-2f08bc80fca5",
+            "IdentifiedObject.name": "WP_601_1",
+            "WirePosition.sequenceNumber": 1,
+            "WirePosition.xCoord": -1.2192,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "d91d1a80-a431-44af-90fe-76634fbdcc55",
+            "IdentifiedObject.name": "WP_601_2",
+            "WirePosition.sequenceNumber": 2,
+            "WirePosition.xCoord": -0.3048,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "6116cd50-4341-427e-99df-93913b24497d",
+            "IdentifiedObject.name": "WP_601_3",
+            "WirePosition.sequenceNumber": 3,
+            "WirePosition.xCoord": 0.9144000000000001,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "8becdb7c-bd0c-4bab-84e1-8ef5f2ab2e39",
+            "IdentifiedObject.name": "WP_601_4",
+            "WirePosition.sequenceNumber": 4,
+            "WirePosition.xCoord": 0.0,
+            "WirePosition.yCoord": 7.315200000000001
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "4d6f993c-2e7b-4e60-836f-f317e57f4e59",
+            "IdentifiedObject.name": "WP_601_1",
+            "WirePosition.sequenceNumber": 1,
+            "WirePosition.xCoord": -1.2192,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "acf2c2ef-7e95-4de0-bd2a-81ec697eaa9b",
+            "IdentifiedObject.name": "WP_601_2",
+            "WirePosition.sequenceNumber": 2,
+            "WirePosition.xCoord": -0.3048,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "3efd37d9-b4f7-4469-a191-9de5f92d22c0",
+            "IdentifiedObject.name": "WP_601_3",
+            "WirePosition.sequenceNumber": 3,
+            "WirePosition.xCoord": 0.9144000000000001,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "977ef129-ca78-4a82-b18b-501610c9f4a2",
+            "IdentifiedObject.name": "WP_601_4",
+            "WirePosition.sequenceNumber": 4,
+            "WirePosition.xCoord": 0.0,
+            "WirePosition.yCoord": 7.315200000000001
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "4c785e8c-f4ac-441e-a5c6-388806cdcc2c",
+            "IdentifiedObject.name": "WP_601_1",
+            "WirePosition.sequenceNumber": 1,
+            "WirePosition.xCoord": -1.2192,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "7b56b403-8ae5-4e71-8fc6-2eb2d9fe97d2",
+            "IdentifiedObject.name": "WP_601_2",
+            "WirePosition.sequenceNumber": 2,
+            "WirePosition.xCoord": -0.3048,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "418b6261-6e11-431e-a93c-e33d99f5eb2f",
+            "IdentifiedObject.name": "WP_601_3",
+            "WirePosition.sequenceNumber": 3,
+            "WirePosition.xCoord": 0.9144000000000001,
+            "WirePosition.yCoord": 8.5344
+          },
+          {
+            "Ravens.cimObjectType": "WirePosition",
+            "IdentifiedObject.mRID": "6e359355-6afb-468b-8704-59b2ff15268d",
+            "IdentifiedObject.name": "WP_601_4",
+            "WirePosition.sequenceNumber": 4,
+            "WirePosition.xCoord": 0.0,
+            "WirePosition.yCoord": 7.315200000000001
+          }
+        ]
+      }
+    },
+    "WireInfo": {
+      "a5b1f1e5-4785-452e-955c-560af22626c5": {
+        "Ravens.cimObjectType": "OverheadWireInfo",
+        "IdentifiedObject.mRID": "a5b1f1e5-4785-452e-955c-560af22626c5",
+        "WireInfo.sizeDescription": "acsr_556_5",
+        "WireInfo.material": "WireMaterialKind.acsr",
+        "WireInfo.gmr": 0.3732,
+        "WireInfo.radius": 0.4635,
+        "WireInfo.rDC20": 0.035227273,
+        "WireInfo.rAC25": 0.03593181846,
+        "WireInfo.rAC50": 0.03593181846,
+        "WireInfo.rAC75": 0.03593181846,
+        "WireInfo.ratedCurrent": 730.0,
+        "WireInfo.strandCount": 0,
+        "WireInfo.coreStrandCount": 0,
+        "WireInfo.coreRadius": 0.0
+      },
+      "673b9e10-9684-4979-86b1-9487a5f898ce": {
+        "Ravens.cimObjectType": "OverheadWireInfo",
+        "IdentifiedObject.mRID": "673b9e10-9684-4979-86b1-9487a5f898ce",
+        "WireInfo.sizeDescription": "acsr_556_5",
+        "WireInfo.material": "WireMaterialKind.acsr",
+        "WireInfo.gmr": 0.3732,
+        "WireInfo.radius": 0.4635,
+        "WireInfo.rDC20": 0.035227273,
+        "WireInfo.rAC25": 0.03593181846,
+        "WireInfo.rAC50": 0.03593181846,
+        "WireInfo.rAC75": 0.03593181846,
+        "WireInfo.ratedCurrent": 730.0,
+        "WireInfo.strandCount": 0,
+        "WireInfo.coreStrandCount": 0,
+        "WireInfo.coreRadius": 0.0
+      },
+      "8a9ea93c-74ad-4052-ab81-c5f238d70581": {
+        "Ravens.cimObjectType": "OverheadWireInfo",
+        "IdentifiedObject.mRID": "8a9ea93c-74ad-4052-ab81-c5f238d70581",
+        "WireInfo.sizeDescription": "acsr_556_5",
+        "WireInfo.material": "WireMaterialKind.acsr",
+        "WireInfo.gmr": 0.3732,
+        "WireInfo.radius": 0.4635,
+        "WireInfo.rDC20": 0.035227273,
+        "WireInfo.rAC25": 0.03593181846,
+        "WireInfo.rAC50": 0.03593181846,
+        "WireInfo.rAC75": 0.03593181846,
+        "WireInfo.ratedCurrent": 730.0,
+        "WireInfo.strandCount": 0,
+        "WireInfo.coreStrandCount": 0,
+        "WireInfo.coreRadius": 0.0
+      }
+    }
+  },
+  "OperationalLimitSet": {
+    "OpLimI_730.0_1095.0": {
+      "Ravens.cimObjectType": "OperationalLimitSet",
+      "IdentifiedObject.mRID": "6977fcd2-3f4d-46c2-83be-ecca7ddeee8f",
+      "IdentifiedObject.name": "OpLimI_730.0_1095.0",
+      "OperationalLimitSet.OperationalLimitValue": [
+        {
+          "Ravens.cimObjectType": "CurrentLimit",
+          "IdentifiedObject.mRID": "90dc2907-1f65-4827-b5fd-f76cc024140d",
+          "IdentifiedObject.name": "OpLimI_730.0_1095.0_Norm",
+          "CurrentLimit.value": 730.0,
+          "CurrentLimit.normalValue": 730.0,
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_5000000000.0s'"
+        },
+        {
+          "Ravens.cimObjectType": "CurrentLimit",
+          "IdentifiedObject.mRID": "c016e1eb-2b1e-4832-9beb-6ef253e2c8b3",
+          "IdentifiedObject.name": "OpLimI_730.0_1095.0_Emerg",
+          "CurrentLimit.value": 1095.0,
+          "CurrentLimit.normalValue": 730.0,
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'absoluteValueType_86400.0s'"
+        }
+      ]
+    }
+  },
+  "OperationalLimitType": {
+    "lowType_5000000000.0s": {
+      "Ravens.cimObjectType": "OperationalLimitType",
+      "IdentifiedObject.mRID": "352c2e4f-1565-4a84-acac-6ee4ede676ab",
+      "IdentifiedObject.name": "lowType_5000000000.0s",
+      "OperationalLimitType.direction": "OperationalLimitDirectionKind.low",
+      "OperationalLimitType.acceptableDuration": 5000000000.0
+    },
+    "highType_5000000000.0s": {
+      "Ravens.cimObjectType": "OperationalLimitType",
+      "IdentifiedObject.mRID": "78a1c03a-8a4b-4516-b4e1-5f4f101c1458",
+      "IdentifiedObject.name": "highType_5000000000.0s",
+      "OperationalLimitType.direction": "OperationalLimitDirectionKind.high",
+      "OperationalLimitType.acceptableDuration": 5000000000.0
+    },
+    "absoluteValueType_5000000000.0s": {
+      "Ravens.cimObjectType": "OperationalLimitType",
+      "IdentifiedObject.mRID": "06734f68-23f6-4b91-a66c-d42bb36f805b",
+      "IdentifiedObject.name": "absoluteValueType_5000000000.0s",
+      "OperationalLimitType.direction": "OperationalLimitDirectionKind.absoluteValue",
+      "OperationalLimitType.acceptableDuration": 5000000000.0
+    },
+    "absoluteValueType_86400.0s": {
+      "Ravens.cimObjectType": "OperationalLimitType",
+      "IdentifiedObject.mRID": "ea41b082-ce7c-4bf6-9637-a64734f677a2",
+      "IdentifiedObject.name": "absoluteValueType_86400.0s",
+      "OperationalLimitType.direction": "OperationalLimitDirectionKind.absoluteValue",
+      "OperationalLimitType.acceptableDuration": 86400.0
+    }
+  }
+}
