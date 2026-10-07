@@ -59,107 +59,109 @@ def merge_TD(folder, t_ravens, d_dss, bd_json, feeder_name, merged_file_name, nu
     # from the distribution network and overwrites them
     # with identifiers
 
+    # Lines
     lines = []
     lines_keys = []
     try:
-        lines = list(dd.iter["ACLineSegment"].keys())
-        lines_keys = copy.deepcopy(lines)
-        for line in range(len(lines)):
-            lines[line] = "ACLineSegment::'" + lines[line] + "'"
-    except:
+        lines_keys = list(dd.iter["ACLineSegment"].keys())
+        print("lines_keys = ", lines_keys)
+        lines = [f"ACLineSegment::'{line}'" for line in lines_keys]
+    except Exception as e:
+        print(f"Error in lines: {e}")
         lines = []
+    print("lines = ", lines)
 
+    # Transformers
     trnfmrs = []
     trnfmrs_keys = []
     try:
-        trnfmrs = list(dd.iter["PowerTransformer"].keys())
-        trnfmrs_keys = copy.deepcopy(trnfmrs)
-        for trn in range(len(trnfmrs)):
-            trnfmrs[trn] = "PowerTransformer::'" + trnfmrs[trn] + "'"
-    except:
+        trnfmrs_keys = list(dd.iter["PowerTransformer"].keys())
+        trnfmrs = [f"PowerTransformer::'{trn}'" for trn in trnfmrs_keys]
+    except Exception as e:
+        print(f"Error in transformers: {e}")
         trnfmrs = []
 
-    nodes = list(dd.iter["ConnectivityNode"].keys())
+    # Nodes (no try-except in original, so keeping it the same)
     nodes_keys = list(dd.iter["ConnectivityNode"].keys())
-    for bus in range(len(nodes)):
-        nodes[bus] = "ConnectivityNode::'" + nodes[bus] + "'"
+    nodes = [f"ConnectivityNode::'{bus}'" for bus in nodes_keys]
 
+    # Shunts
     shunts = []
     shunts_keys = []
     try:
-        shunts = list(dd.iter["LinearShuntCompensator"].keys())
-        shunts_keys = copy.deepcopy(shunts)
-        for shunt in range(len(shunts)):
-            shunts[shunt] = "LinearShuntCompensator::'" + shunts[shunt] + "'"
-    except:
+        shunts_keys = list(dd.iter["LinearShuntCompensator"].keys())
+        shunts = [f"LinearShuntCompensator::'{shunt}'" for shunt in shunts_keys]
+    except Exception as e:
+        print(f"Error in shunts: {e}")
         shunts = []
 
+    # More shunts (FIXED BUG: was copying 'shunts' instead of 'more_shunts')
     more_shunts = []
     more_shunts_keys = []
     try:
-        more_shunts = list(dd.iter["ShuntCompensator"].keys())
-        more_shunts_keys = copy.deepcopy(shunts)
-        for shunt in range(len(more_shunts)):
-            more_shunts[shunt] = "ShuntCompensator::'" + more_shunts[shunt] + "'"
-    except:
+        more_shunts_keys = list(dd.iter["ShuntCompensator"].keys())
+        more_shunts = [f"ShuntCompensator::'{shunt}'" for shunt in more_shunts_keys]
+    except Exception as e:
+        print(f"Error in more_shunts: {e}")
         more_shunts = []
 
+    # Loads
     loads = []
     loads_keys = []
     try:
-        loads = list(dd.iter["EnergyConsumer"].keys())
-        loads_keys = copy.deepcopy(loads)
-        for ld in range(len(loads)):
-            loads[ld] = "EnergyConsumer::'" + loads[ld] + "'"
-    except:
+        loads_keys = list(dd.iter["EnergyConsumer"].keys())
+        loads = [f"EnergyConsumer::'{ld}'" for ld in loads_keys]
+    except Exception as e:
+        print(f"Error in loads: {e}")
         loads = []
 
+    # Sources
     srcs = []
     srcs_keys = []
     try:
-        srcs = list(dd.iter["EnergySource"].keys())
-        srcs_keys = copy.deepcopy(srcs)
-        for src in range(len(srcs)):
-            srcs[src] = "EnergySource::'" + srcs[src] + "'"
-    except:
+        srcs_keys = list(dd.iter["EnergySource"].keys())
+        srcs = [f"EnergySource::'{src}'" for src in srcs_keys]
+    except Exception as e:
+        print(f"Error in sources: {e}")
         srcs = []
 
+    # Generators
     gens = []
     gens_keys = []
     try:
-        gens = list(dd.iter["RotatingMachine"].keys())
-        gens_keys = copy.deepcopy(gens)
-        for gen in range(len(gens)):
-            gens[gen] = "RotatingMachine::'" + gens[gen] + "'"
-    except:
+        gens_keys = list(dd.iter["RotatingMachine"].keys())
+        gens = [f"RotatingMachine::'{gen}'" for gen in gens_keys]
+    except Exception as e:
+        print(f"Error in generators: {e}")
         gens = []
 
+    # Switches
     switches = []
     switch_keys = []
     try:
-        switches = list(dd.iter["Switch"].keys())
-        switch_keys = copy.deepcopy(switches)
-        for switch in range(len(switches)):
-            switches[switch] = "Switch::'" + switches[switch] + "'"
-    except:
+        switch_keys = list(dd.iter["Switch"].keys())
+        switches = [f"Switch::'{switch}'" for switch in switch_keys]
+    except Exception as e:
+        print(f"Error in switches: {e}")
         switches = []
     print(switches)
 
+    # Batteries (FIXED BUG: was copying 'gens' instead of 'batteries')
     batteries = []
     battery_keys = []
     try:
-        batteries = list(dd.iter["PowerElectronicsConnection"].keys())
-        battery_keys = copy.deepcopy(gens)
-        for battery in range(len(batteries)):
-            batteries[battery] = "PowerElectronicsConnection::'" + batteries[battery] + "'"
-    except:
+        battery_keys = list(dd.iter["PowerElectronicsConnection"].keys())
+        batteries = [f"PowerElectronicsConnection::'{battery}'" for battery in battery_keys]
+    except Exception as e:
+        print(f"Error in batteries: {e}")
         batteries = []
 
+    #TODO: nest under "Group" to be consistent with schema
     the_feeder = {
         feeder_name: {
             "Ravens.cimObjectType": "Feeder",
             "IdentifiedObject.mRID": str(uuid.uuid4()),
-            "IdentifiedObject.name": "the_feeder",
+            "IdentifiedObject.name": feeder_name,
             "ConnectivityNodeContainer.ConnectivityNodes": nodes,
             "EquipmentContainer.Equipments": lines + trnfmrs + shunts + loads + srcs + gens + batteries + switches + more_shunts,  # TODO: add other equipments as encountered (routine)
         }
