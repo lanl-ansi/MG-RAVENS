@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "ConformLoad",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -16,10 +14,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectionDetail.json"
     },
     "ConductingEquipment.JumpingAction": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "JumperAction",
-      "$referencePath": "SwitchingAction/JumperAction",
       "title": "JumperAction_Pointer",
       "description": "Pointer to JumperAction object",
       "pattern": "^JumperAction::'(.+)'$"
@@ -28,19 +23,13 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
     },
     "ConductingEquipment.BaseVoltage": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "BaseVoltage",
-      "$referencePath": "BaseVoltage",
       "title": "BaseVoltage_Pointer",
       "description": "Pointer to BaseVoltage object",
       "pattern": "^BaseVoltage::'(.+)'$"
     },
     "ConductingEquipment.GroundingAction": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "GroundAction",
-      "$referencePath": "SwitchingAction/GroundAction",
       "title": "GroundAction_Pointer",
       "description": "Pointer to GroundAction object",
       "pattern": "^GroundAction::'(.+)'$"
@@ -49,10 +38,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatus_Array.json"
     },
     "EnergyConsumer.ConnectionProfile": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "EnergyConnectionProfile",
-      "$referencePath": "EnergyConnectionProfile",
       "title": "EnergyConnectionProfile_Pointer",
       "description": "Pointer to EnergyConnectionProfile object",
       "pattern": "^EnergyConnectionProfile::'(.+)'$"
@@ -64,28 +50,28 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerSchedule_PointerArray.json"
     },
     "EnergyConsumer.LoadResponse": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "LoadResponseCharacteristic",
-      "$referencePath": "LoadResponseCharacteristic",
       "title": "LoadResponseCharacteristic_Pointer",
       "description": "Pointer to LoadResponseCharacteristic object",
       "pattern": "^LoadResponseCharacteristic::'(.+)'$"
     },
     "EnergyConsumer.LoadGroup": {
-      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/LoadGroup_anyOfPointer_anyOfContainer.json"
+      "type": "string",
+      "title": "LoadGroup_Pointer",
+      "description": "Pointer to LoadGroup object",
+      "pattern": "^LoadGroup::'(.+)'$"
     },
     "Equipment.OperationalLimitSet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OperationalLimitSet_PointerArray.json"
     },
     "EnergyConsumer.qfixedPct": {
       "title": "qfixedPct",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "Fixed reactive power as a percentage of load group fixed reactive power. Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node."
     },
     "EnergyConsumer.p": {
       "title": "p",
-      "type": "ActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
       "description": "Active power of the load. Load sign convention is used, i.e. positive sign means flow out from a node.\nFor voltage dependent loads the value is at rated voltage.\nStarting value for a steady state solution."
     },
     "Equipment.aggregate": {
@@ -123,27 +109,27 @@
     },
     "EnergyConsumer.pfixed": {
       "title": "pfixed",
-      "type": "ActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
       "description": "Active power of the load that is a fixed quantity and does not vary as load group value varies. Load sign convention is used, i.e. positive sign means flow out from a node."
     },
     "EnergyConsumer.pfixedPct": {
       "title": "pfixedPct",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "Fixed active power as a percentage of load group fixed active power. Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node."
     },
     "EnergyConsumer.phaseConnection": {
       "title": "phaseConnection",
-      "type": "PhaseShuntConnectionKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseShuntConnectionKind.json",
       "description": "The type of phase connection, such as wye or delta."
     },
     "EnergyConsumer.qfixed": {
       "title": "qfixed",
-      "type": "ReactivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
       "description": "Reactive power of the load that is a fixed quantity and does not vary as load group value varies. Load sign convention is used, i.e. positive sign means flow out from a node."
     },
     "EnergyConsumer.q": {
       "title": "q",
-      "type": "ReactivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
       "description": "Reactive power of the load. Load sign convention is used, i.e. positive sign means flow out from a node.\nFor voltage dependent loads the value is at rated voltage.\nStarting value for a steady state solution."
     },
     "Equipment.inService": {

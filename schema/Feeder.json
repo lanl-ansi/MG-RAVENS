@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "Feeder",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -28,10 +26,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Substation_PointerArray.json"
     },
     "Feeder.NormalEnergizingSubstation": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "Substation",
-      "$referencePath": "Group/ConnectivityNodeContainer/Substation",
       "title": "Substation_Pointer",
       "description": "Pointer to Substation object",
       "pattern": "^Substation::'(.+)'$"

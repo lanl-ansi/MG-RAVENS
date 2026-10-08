@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "ProposedBatteryUnitOption",
   "properties": {
     "ProposedAssetOption.ProposedSiteLocations": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ProposedSiteLocation_PointerArray.json"
@@ -11,22 +9,22 @@
     },
     "ProposedEnergyProducerOption.powerDiscretization": {
       "title": "powerDiscretization",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.energyDiscretization": {
       "title": "energyDiscretization",
-      "type": "RealEnergy",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergy.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.energyDurationMin": {
       "title": "energyDurationMin",
-      "type": "Hours",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Hours.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.energyDurationMax": {
       "title": "energyDurationMax",
-      "type": "Hours",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Hours.json",
       "description": "nan"
     },
     "ProposedAssetOption.requiredOption": {
@@ -36,7 +34,7 @@
     },
     "ProposedBatteryUnitOption.variablePriceEnergy": {
       "title": "variablePriceEnergy",
-      "type": "CostPerEnergyUnit",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerEnergyUnit.json",
       "description": "nan"
     },
     "Ravens.cimObjectType": {
@@ -54,12 +52,12 @@
     },
     "ProposedAssetOption.fixedPrice": {
       "title": "fixedPrice",
-      "type": "Money",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.phases": {
       "title": "phases",
-      "type": "PhaseCode",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseCode.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.forcedOption": {
@@ -74,82 +72,82 @@
     },
     "ProposedBatteryUnitOption.energyCapacityMin": {
       "title": "energyCapacityMin",
-      "type": "RealEnergy",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergy.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.energyCapacityMax": {
       "title": "energyCapacityMax",
-      "type": "RealEnergy",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergy.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.energyCapacityFixed": {
       "title": "energyCapacityFixed",
-      "type": "RealEnergy",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergy.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.stateOfChargeMin": {
       "title": "stateOfChargeMin",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.stateOfChargeMax": {
       "title": "stateOfChargeMax",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.chargeEfficiency": {
       "title": "chargeEfficiency",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.dischargeEfficiency": {
       "title": "dischargeEfficiency",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.decayRate": {
       "title": "decayRate",
-      "type": "RealEnergyTransferRate",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergyTransferRate.json",
       "description": "nan"
     },
     "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
       "title": "operationsAndMaintenanceRateVariable",
-      "type": "CostPerKiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerKiloActivePower.json",
       "description": "nan"
     },
     "ProposedAssetOption.operationsAndMaintenanceRateFixed": {
       "title": "operationsAndMaintenanceRateFixed",
-      "type": "Money",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
       "description": "nan"
     },
     "ProposedEnergyProducerOption.variablePrice": {
       "title": "variablePrice",
-      "type": "CostPerKiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerKiloActivePower.json",
       "description": "$/kW"
     },
     "ProposedEnergyProducerOption.powerCapacityMin": {
       "title": "powerCapacityMin",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedEnergyProducerOption.powerCapacityMax": {
       "title": "powerCapacityMax",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedEnergyProducerOption.powerCapacityFixed": {
       "title": "powerCapacityFixed",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.chargeRate": {
       "title": "chargeRate",
-      "type": "RealEnergyTransferRate",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergyTransferRate.json",
       "description": "nan"
     },
     "ProposedBatteryUnitOption.dischargeRate": {
       "title": "dischargeRate",
-      "type": "RealEnergyTransferRate",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RealEnergyTransferRate.json",
       "description": "nan"
     },
     "IdentifiedObject.aliasName": {

@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "GeneratingUnit",
   "properties": {
     "HydroGeneratingUnit": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/HydroGeneratingUnit.json"

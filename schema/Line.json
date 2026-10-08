@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "Line",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -13,10 +11,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
     },
     "Line.Region": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "SubGeographicalRegion",
-      "$referencePath": "Group/SubGeographicalRegion",
       "title": "SubGeographicalRegion_Pointer",
       "description": "Pointer to SubGeographicalRegion object",
       "pattern": "^SubGeographicalRegion::'(.+)'$"

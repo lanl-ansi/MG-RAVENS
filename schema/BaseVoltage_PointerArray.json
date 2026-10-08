@@ -1,15 +1,12 @@
 {
   "type": "array",
+  "description": "Pointers to BaseVoltage objects",
+  "title": "BaseVoltage_PointerArray",
   "items": {
-    "$objectType": "reference",
     "type": "string",
-    "$objectId": "BaseVoltage",
-    "$referencePath": "BaseVoltage",
     "title": "BaseVoltage_Pointer",
     "description": "Pointer to BaseVoltage object"
   },
-  "description": "Pointers to BaseVoltage objects",
-  "title": "BaseVoltage_PointerArray",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BaseVoltage_PointerArray.json",

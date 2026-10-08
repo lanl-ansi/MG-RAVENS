@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "UnplannedOutage",
   "properties": {
     "Document.ActivityRecord": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivityRecord_PointerArray.json"
@@ -11,7 +9,7 @@
     },
     "Document.status": {
       "title": "status",
-      "type": "Status",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Status.json",
       "description": "Status of subject matter (e.g., Agreement, Work) this document represents. For status of the document itself, use 'docStatus' attribute."
     },
     "Document.comment": {
@@ -21,7 +19,7 @@
     },
     "Document.docStatus": {
       "title": "docStatus",
-      "type": "Status",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Status.json",
       "description": "Status of this document. For status of subject matter this document represents (e.g., Agreement, Work), use 'status' attribute.\nExample values for 'docStatus.status' are draft, approved, cancelled, etc."
     },
     "Ravens.cimObjectType": {
@@ -34,7 +32,7 @@
     },
     "Document.electronicAddress": {
       "title": "electronicAddress",
-      "type": "ElectronicAddress",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ElectronicAddress.json",
       "description": "Electronic address."
     },
     "IdentifiedObject.description": {
@@ -49,7 +47,7 @@
     },
     "Outage.statusKind": {
       "title": "statusKind",
-      "type": "CrewStatusKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CrewStatusKind.json",
       "description": "defines the status of the crew as in dispatched or arrived, etc."
     },
     "Outage.utilityDisclaimer": {
@@ -84,7 +82,7 @@
     },
     "Outage.estimatedPeriod": {
       "title": "estimatedPeriod",
-      "type": "DateTimeInterval",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DateTimeInterval.json",
       "description": "Estimated outage period for a planned outage. The start of the period is the start of the planned outage and the end of the period corresponds to the end of the planned outage."
     },
     "Outage.customersRestored": {
@@ -99,7 +97,7 @@
     },
     "UnplannedOutage.causeKind": {
       "title": "causeKind",
-      "type": "OutageCauseKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OutageCauseKind.json",
       "description": "The possible cause that could be associated with this unplanned outage."
     },
     "Outage.originalMetersAffected": {
@@ -119,7 +117,7 @@
     },
     "Outage.summary": {
       "title": "summary",
-      "type": "ServicePointOutageSummary",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ServicePointOutageSummary.json",
       "description": "Summary counts of service points (customers) affected by this outage."
     },
     "Outage.metersAffected": {
@@ -134,7 +132,7 @@
     },
     "Outage.actualPeriod": {
       "title": "actualPeriod",
-      "type": "DateTimeInterval",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DateTimeInterval.json",
       "description": "Actual outage period; end of the period corresponds to the actual restoration time."
     },
     "UnplannedOutage.cause": {
@@ -144,7 +142,7 @@
     },
     "Outage.outageKind": {
       "title": "outageKind",
-      "type": "OutageStatusKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/OutageStatusKind.json",
       "description": "Defines if the outage has been verified or is only estimated"
     },
     "IdentifiedObject.aliasName": {

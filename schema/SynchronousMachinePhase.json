@@ -1,22 +1,19 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "SynchronousMachinePhase",
-  "$arrayPosition": null,
   "properties": {
     "SynchronousMachinePhase.phase": {
       "title": "phase",
-      "type": "SinglePhaseKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
       "description": "nan"
     },
     "SynchronousMachinePhase.p": {
       "title": "p",
-      "type": "ActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ActivePower.json",
       "description": "nan"
     },
     "SynchronousMachinePhase.q": {
       "title": "q",
-      "type": "ReactivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
       "description": "nan"
     },
     "Ravens.cimObjectType": {

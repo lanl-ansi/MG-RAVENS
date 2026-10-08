@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "ShuntCompensator",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -16,10 +14,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseConnectionDetail.json"
     },
     "ConductingEquipment.JumpingAction": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "JumperAction",
-      "$referencePath": "SwitchingAction/JumperAction",
       "title": "JumperAction_Pointer",
       "description": "Pointer to JumperAction object",
       "pattern": "^JumperAction::'(.+)'$"
@@ -28,19 +23,13 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
     },
     "ConductingEquipment.BaseVoltage": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "BaseVoltage",
-      "$referencePath": "BaseVoltage",
       "title": "BaseVoltage_Pointer",
       "description": "Pointer to BaseVoltage object",
       "pattern": "^BaseVoltage::'(.+)'$"
     },
     "ConductingEquipment.GroundingAction": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "GroundAction",
-      "$referencePath": "SwitchingAction/GroundAction",
       "title": "GroundAction_Pointer",
       "description": "Pointer to GroundAction object",
       "pattern": "^GroundAction::'(.+)'$"
@@ -49,10 +38,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvStatus_Array.json"
     },
     "ShuntCompensator.ShuntCompensatorAction": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "ShuntCompensatorAction",
-      "$referencePath": "SwitchingAction/ShuntCompensatorAction",
       "title": "ShuntCompensatorAction_Pointer",
       "description": "Pointer to ShuntCompensatorAction object",
       "pattern": "^ShuntCompensatorAction::'(.+)'$"
@@ -86,7 +72,7 @@
     },
     "LinearShuntCompensator.b0PerSection": {
       "title": "b0PerSection",
-      "type": "Susceptance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Susceptance.json",
       "description": "Zero sequence shunt (charging) susceptance per section."
     },
     "ShuntCompensator.sections": {
@@ -96,22 +82,22 @@
     },
     "LinearShuntCompensator.bPerSection": {
       "title": "bPerSection",
-      "type": "Susceptance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Susceptance.json",
       "description": "Positive sequence shunt (charging) susceptance per section."
     },
     "LinearShuntCompensator.g0PerSection": {
       "title": "g0PerSection",
-      "type": "Conductance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Conductance.json",
       "description": "Zero sequence shunt (charging) conductance per section."
     },
     "LinearShuntCompensator.gPerSection": {
       "title": "gPerSection",
-      "type": "Conductance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Conductance.json",
       "description": "Positive sequence shunt (charging) conductance per section."
     },
     "ShuntCompensator.aVRDelay": {
       "title": "aVRDelay",
-      "type": "Seconds",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
       "description": "An automatic voltage regulation delay (AVRDelay) which is the time delay from a change in voltage to when the capacitor is allowed to change state. This filters out temporary changes in voltage."
     },
     "ShuntCompensator.grounded": {
@@ -126,7 +112,7 @@
     },
     "ShuntCompensator.nomU": {
       "title": "nomU",
-      "type": "Voltage",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
       "description": "The voltage at which the nominal reactive power may be calculated. This should normally be within 10% of the voltage at which the capacitor is connected to the network."
     },
     "ShuntCompensator.normalSections": {
@@ -136,7 +122,7 @@
     },
     "ShuntCompensator.phaseConnection": {
       "title": "phaseConnection",
-      "type": "PhaseShuntConnectionKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseShuntConnectionKind.json",
       "description": "The type of phase connection, such as wye or delta."
     },
     "ShuntCompensator.switchOnCount": {
@@ -151,7 +137,7 @@
     },
     "ShuntCompensator.voltageSensitivity": {
       "title": "voltageSensitivity",
-      "type": "VoltagePerReactivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/VoltagePerReactivePower.json",
       "description": "Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power."
     },
     "Equipment.networkAnalysisEnabled": {
@@ -176,12 +162,12 @@
     },
     "SVC.capacitiveRating": {
       "title": "capacitiveRating",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "Maximum capacitive reactive power."
     },
     "SVC.inductiveRating": {
       "title": "inductiveRating",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "Maximum inductive reactive power."
     },
     "IdentifiedObject.aliasName": {

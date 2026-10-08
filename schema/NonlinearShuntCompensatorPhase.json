@@ -1,8 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "NonlinearShuntCompensatorPhase",
-  "$arrayPosition": null,
   "properties": {
     "ShuntCompensatorPhase.maximumSections": {
       "title": "maximumSections",
@@ -24,7 +21,7 @@
     },
     "ShuntCompensatorPhase.phase": {
       "title": "phase",
-      "type": "SinglePhaseKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SinglePhaseKind.json",
       "description": "Phase of this shunt compensator component.   If the shunt compensator is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the shunt compensator is delta connected, the phase indicates a shunt compensator connected from the indicated phase to the next logical non-neutral phase."
     },
     "ShuntCompensatorPhase.sections": {

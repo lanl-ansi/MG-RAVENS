@@ -1,12 +1,12 @@
 {
   "type": "array",
+  "description": "Pointers to TopologicalNode objects",
+  "title": "TopologicalNode_PointerArray",
   "items": {
     "type": "string",
     "title": "TopologicalNode_Pointer",
     "description": "Pointer to TopologicalNode object"
   },
-  "description": "Pointers to TopologicalNode objects",
-  "title": "TopologicalNode_PointerArray",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TopologicalNode_PointerArray.json",

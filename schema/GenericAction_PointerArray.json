@@ -1,15 +1,12 @@
 {
   "type": "array",
+  "description": "Pointers to GenericAction objects",
+  "title": "GenericAction_PointerArray",
   "items": {
-    "$objectType": "reference",
     "type": "string",
-    "$objectId": "GenericAction",
-    "$referencePath": "SwitchingAction/GenericAction",
     "title": "GenericAction_Pointer",
     "description": "Pointer to GenericAction object"
   },
-  "description": "Pointers to GenericAction objects",
-  "title": "GenericAction_PointerArray",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenericAction_PointerArray.json",

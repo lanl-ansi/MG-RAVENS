@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "DCEquipmentContainer",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -31,7 +29,7 @@
     },
     "DCConverterUnit.operationMode": {
       "title": "operationMode",
-      "type": "DCConverterOperatingModeKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/DCConverterOperatingModeKind.json",
       "description": "The operating mode of an HVDC bipole (bipolar, monopolar metallic return, etc)."
     },
     "IdentifiedObject.description": {

@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "PhaseTapChanger",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -41,7 +39,7 @@
     },
     "TapChanger.initialDelay": {
       "title": "initialDelay",
-      "type": "Seconds",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
       "description": "For an LTC, the delay for initial tap changer operation (first step change)."
     },
     "TapChanger.lowStep": {
@@ -61,7 +59,7 @@
     },
     "TapChanger.neutralU": {
       "title": "neutralU",
-      "type": "Voltage",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
       "description": "Voltage at which the winding operates at the neutral tap setting. It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.\nThis attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear."
     },
     "TapChanger.normalStep": {
@@ -71,12 +69,12 @@
     },
     "PhaseTapChangerAsymmetrical.windingConnectionAngle": {
       "title": "windingConnectionAngle",
-      "type": "AngleDegrees",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AngleDegrees.json",
       "description": "The phase angle between the in-phase winding and the out-of -phase winding used for creating phase shift. The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmetrical transformer. The attribute can only be multiples of 30 degrees.  The allowed range is -150 degrees to 150 degrees excluding 0."
     },
     "TapChanger.subsequentDelay": {
       "title": "subsequentDelay",
-      "type": "Seconds",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
       "description": "For an LTC, the delay for subsequent tap changer operation (second and later step changes)."
     },
     "TapChanger.step": {
@@ -86,27 +84,27 @@
     },
     "PhaseTapChangerLinear.xMax": {
       "title": "xMax",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The maximum reactance (xMax) appears at the low and high tap positions. Depending on the \u201cu\u201d curve the attribute can be either higher or lower than PowerTransformerEnd.x."
     },
     "PhaseTapChangerNonLinear.voltageStepIncrement": {
       "title": "voltageStepIncrement",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "The voltage step increment on the out of phase winding (the PowerTransformerEnd where the TapChanger is located) specified in percent of rated voltage of the PowerTransformerEnd. A positive value means a positive voltage variation from the Terminal at the PowerTransformerEnd, where the TapChanger is located, into the transformer.\nWhen the increment is negative, the voltage decreases when the tap step increases."
     },
     "PhaseTapChangerNonLinear.xMax": {
       "title": "xMax",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The maximum reactance (xMax) appears at the low and high tap positions. Depending on the \u201cu\u201d curve the attribute can be either higher or lower than PowerTransformerEnd.x."
     },
     "PhaseTapChangerNonLinear.xMin": {
       "title": "xMin",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "The reactance depend on the tap position according to a \"u\" shaped curve. The minimum reactance (xMin) appear at the mid tap position.   PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used."
     },
     "PhaseTapChangerLinear.xMin": {
       "title": "xMin",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "The reactance depends on the tap position according to a \"u\" shaped curve. The minimum reactance (xMin) appears at the mid tap position.  PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used."
     },
     "TapChanger.controlEnabled": {
@@ -116,7 +114,7 @@
     },
     "PhaseTapChangerLinear.stepPhaseShiftIncrement": {
       "title": "stepPhaseShiftIncrement",
-      "type": "AngleDegrees",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AngleDegrees.json",
       "description": "Phase shift per step position. A positive value indicates a positive angle variation from the Terminal at the  PowerTransformerEnd,  where the TapChanger is located, into the transformer.\nThe actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available."
     },
     "IdentifiedObject.aliasName": {

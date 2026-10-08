@@ -1,21 +1,13 @@
 {
-  "$objectType": "reference",
-  "$objectId": "FossilFuel",
   "anyOf": [
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "FossilFuel",
-      "$referencePath": "FossilFuel",
       "title": "FossilFuel_Pointer",
       "description": "Pointer to FossilFuel object",
       "pattern": "^FossilFuel::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "DieselFuel",
-      "$referencePath": "FossilFuel/DieselFuel",
       "title": "DieselFuel_Pointer",
       "description": "Pointer to DieselFuel object",
       "pattern": "^DieselFuel::'(.+)'$"

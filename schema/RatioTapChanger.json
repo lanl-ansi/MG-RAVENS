@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "RatioTapChanger",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -23,7 +21,7 @@
     },
     "RatioTapChanger.tculControlMode": {
       "title": "tculControlMode",
-      "type": "TransformerControlMode",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/TransformerControlMode.json",
       "description": "Specifies the regulation control mode (voltage or reactive) of the RatioTapChanger."
     },
     "TapChanger.controlEnabled": {
@@ -33,7 +31,7 @@
     },
     "TapChanger.initialDelay": {
       "title": "initialDelay",
-      "type": "Seconds",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
       "description": "For an LTC, the delay for initial tap changer operation (first step change)."
     },
     "TapChanger.lowStep": {
@@ -53,7 +51,7 @@
     },
     "TapChanger.neutralU": {
       "title": "neutralU",
-      "type": "Voltage",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
       "description": "Voltage at which the winding operates at the neutral tap setting. It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.\nThis attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear."
     },
     "TapChanger.normalStep": {
@@ -68,7 +66,7 @@
     },
     "TapChanger.subsequentDelay": {
       "title": "subsequentDelay",
-      "type": "Seconds",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
       "description": "For an LTC, the delay for subsequent tap changer operation (second and later step changes)."
     },
     "Ravens.cimObjectType": {
@@ -86,7 +84,7 @@
     },
     "RatioTapChanger.stepVoltageIncrement": {
       "title": "stepVoltageIncrement",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "Tap step increment, in per cent of rated voltage of the power transformer end, per step position.\nWhen the increment is negative, the voltage decreases when the tap step increases."
     },
     "IdentifiedObject.description": {

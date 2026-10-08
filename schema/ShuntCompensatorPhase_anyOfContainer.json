@@ -1,7 +1,4 @@
 {
-  "$objectType": "object",
-  "$objectId": "ShuntCompensatorPhase",
-  "$arrayPosition": null,
   "anyOf": [
     {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntCompensatorPhase.json"

@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "DisconnectingCircuitBreaker",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -13,10 +11,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Location_anyOfPointer_anyOfContainer.json"
     },
     "ConductingEquipment.JumpingAction": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "JumperAction",
-      "$referencePath": "SwitchingAction/JumperAction",
       "title": "JumperAction_Pointer",
       "description": "Pointer to JumperAction object",
       "pattern": "^JumperAction::'(.+)'$"
@@ -25,19 +20,13 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Terminal_Array.json"
     },
     "ConductingEquipment.BaseVoltage": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "BaseVoltage",
-      "$referencePath": "BaseVoltage",
       "title": "BaseVoltage_Pointer",
       "description": "Pointer to BaseVoltage object",
       "pattern": "^BaseVoltage::'(.+)'$"
     },
     "ConductingEquipment.GroundingAction": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "GroundAction",
-      "$referencePath": "SwitchingAction/GroundAction",
       "title": "GroundAction_Pointer",
       "description": "Pointer to GroundAction object",
       "pattern": "^GroundAction::'(.+)'$"
@@ -52,10 +41,7 @@
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/SvSwitch_Array.json"
     },
     "Switch.SwitchAction": {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "SwitchAction",
-      "$referencePath": "SwitchingAction/SwitchAction",
       "title": "SwitchAction_Pointer",
       "description": "Pointer to SwitchAction object",
       "pattern": "^SwitchAction::'(.+)'$"
@@ -65,12 +51,12 @@
     },
     "Breaker.inTransitTime": {
       "title": "inTransitTime",
-      "type": "Seconds",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Seconds.json",
       "description": "The transition time from open to close."
     },
     "ProtectedSwitch.breakingCapacity": {
       "title": "breakingCapacity",
-      "type": "CurrentFlow",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
       "description": "The maximum fault current a breaking device can break safely under prescribed conditions of use."
     },
     "Equipment.aggregate": {
@@ -123,7 +109,7 @@
     },
     "Switch.ratedCurrent": {
       "title": "ratedCurrent",
-      "type": "CurrentFlow",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CurrentFlow.json",
       "description": "The maximum continuous current carrying capacity in amps governed by the device material and construction.\nThe attribute shall be a positive value."
     },
     "Switch.retained": {

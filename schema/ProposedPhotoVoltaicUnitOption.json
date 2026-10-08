@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "ProposedPhotoVoltaicUnitOption",
   "properties": {
     "ProposedPhotoVoltaicUnitOption.GenerationProfile": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Curve_anyOfPointer_anyOfContainer.json"
@@ -11,12 +9,12 @@
     },
     "ProposedEnergyProducerOption.powerDiscretization": {
       "title": "powerDiscretization",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedAssetOption.fixedPrice": {
       "title": "fixedPrice",
-      "type": "Money",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
       "description": "nan"
     },
     "ProposedAssetOption.requiredOption": {
@@ -26,7 +24,7 @@
     },
     "ProposedEnergyProducerOption.powerCapacityMax": {
       "title": "powerCapacityMax",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "Ravens.cimObjectType": {
@@ -44,17 +42,17 @@
     },
     "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
       "title": "operationsAndMaintenanceRateVariable",
-      "type": "CostPerKiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerKiloActivePower.json",
       "description": "nan"
     },
     "ProposedAssetOption.operationsAndMaintenanceRateFixed": {
       "title": "operationsAndMaintenanceRateFixed",
-      "type": "Money",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
       "description": "nan"
     },
     "ProposedEnergyProducerOption.variablePrice": {
       "title": "variablePrice",
-      "type": "CostPerKiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerKiloActivePower.json",
       "description": "$/kW"
     },
     "ProposedAssetOption.lifetime": {
@@ -64,12 +62,12 @@
     },
     "ProposedEnergyProducerOption.powerCapacityMin": {
       "title": "powerCapacityMin",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedEnergyProducerOption.powerCapacityFixed": {
       "title": "powerCapacityFixed",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "IdentifiedObject.description": {

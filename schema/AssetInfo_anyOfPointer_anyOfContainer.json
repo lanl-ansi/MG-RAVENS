@@ -1,129 +1,85 @@
 {
-  "$objectType": "reference",
-  "$objectId": "AssetInfo",
   "anyOf": [
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "AssetInfo",
-      "$referencePath": "AssetInfo",
       "title": "AssetInfo_Pointer",
       "description": "Pointer to AssetInfo object",
       "pattern": "^AssetInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "PowerTransformerInfo",
-      "$referencePath": "AssetInfo/PowerTransformerInfo",
       "title": "PowerTransformerInfo_Pointer",
       "description": "Pointer to PowerTransformerInfo object",
       "pattern": "^PowerTransformerInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "WireInfo",
-      "$referencePath": "AssetInfo/WireInfo",
       "title": "WireInfo_Pointer",
       "description": "Pointer to WireInfo object",
       "pattern": "^WireInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "SwitchInfo",
-      "$referencePath": "AssetInfo/SwitchInfo",
       "title": "SwitchInfo_Pointer",
       "description": "Pointer to SwitchInfo object",
       "pattern": "^SwitchInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "ShuntCompensatorInfo",
-      "$referencePath": "AssetInfo/ShuntCompensatorInfo",
       "title": "ShuntCompensatorInfo_Pointer",
       "description": "Pointer to ShuntCompensatorInfo object",
       "pattern": "^ShuntCompensatorInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "WireAssemblyInfo",
-      "$referencePath": "AssetInfo/WireAssemblyInfo",
       "title": "WireAssemblyInfo_Pointer",
       "description": "Pointer to WireAssemblyInfo object",
       "pattern": "^WireAssemblyInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "TransformerEndInfo",
-      "$referencePath": "AssetInfo/TransformerEndInfo",
       "title": "TransformerEndInfo_Pointer",
       "description": "Pointer to TransformerEndInfo object",
       "pattern": "^TransformerEndInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "TapChangerInfo",
-      "$referencePath": "AssetInfo/TapChangerInfo",
       "title": "TapChangerInfo_Pointer",
       "description": "Pointer to TapChangerInfo object",
       "pattern": "^TapChangerInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "WireSpacingInfo",
-      "$referencePath": "AssetInfo/WireSpacingInfo",
       "title": "WireSpacingInfo_Pointer",
       "description": "Pointer to WireSpacingInfo object",
       "pattern": "^WireSpacingInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "TransformerTankInfo",
-      "$referencePath": "AssetInfo/TransformerTankInfo",
       "title": "TransformerTankInfo_Pointer",
       "description": "Pointer to TransformerTankInfo object",
       "pattern": "^TransformerTankInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "CableInfo",
-      "$referencePath": "AssetInfo/WireInfo/CableInfo",
       "title": "CableInfo_Pointer",
       "description": "Pointer to CableInfo object",
       "pattern": "^CableInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "OverheadWireInfo",
-      "$referencePath": "AssetInfo/WireInfo/OverheadWireInfo",
       "title": "OverheadWireInfo_Pointer",
       "description": "Pointer to OverheadWireInfo object",
       "pattern": "^OverheadWireInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "ConcentricNeutralCableInfo",
-      "$referencePath": "AssetInfo/WireInfo/ConcentricNeutralCableInfo",
       "title": "ConcentricNeutralCableInfo_Pointer",
       "description": "Pointer to ConcentricNeutralCableInfo object",
       "pattern": "^ConcentricNeutralCableInfo::'(.+)'$"
     },
     {
-      "$objectType": "reference",
       "type": "string",
-      "$objectId": "TapeShieldCableInfo",
-      "$referencePath": "AssetInfo/WireInfo/TapeShieldCableInfo",
       "title": "TapeShieldCableInfo_Pointer",
       "description": "Pointer to TapeShieldCableInfo object",
       "pattern": "^TapeShieldCableInfo::'(.+)'$"

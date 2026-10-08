@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "TapChangerControl",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -25,7 +23,7 @@
     },
     "TapChangerControl.limitVoltage": {
       "title": "limitVoltage",
-      "type": "Voltage",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
       "description": "Maximum allowed regulated voltage on the PT secondary, regardless of line drop compensation. Sometimes referred to as first-house protection."
     },
     "TapChangerControl.lineDropCompensation": {
@@ -35,22 +33,22 @@
     },
     "TapChangerControl.lineDropR": {
       "title": "lineDropR",
-      "type": "Resistance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
       "description": "Line drop compensator resistance setting for normal (forward) power flow."
     },
     "TapChangerControl.lineDropX": {
       "title": "lineDropX",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "Line drop compensator reactance setting for normal (forward) power flow."
     },
     "TapChangerControl.reverseLineDropR": {
       "title": "reverseLineDropR",
-      "type": "Resistance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
       "description": "Line drop compensator resistance setting for reverse power flow."
     },
     "TapChangerControl.reverseLineDropX": {
       "title": "reverseLineDropX",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "Line drop compensator reactance setting for reverse power flow."
     },
     "IdentifiedObject.description": {
@@ -65,12 +63,12 @@
     },
     "RegulatingControl.mode": {
       "title": "mode",
-      "type": "RegulatingControlModeKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegulatingControlModeKind.json",
       "description": "The regulating control mode presently available.  This specification allows for determining the kind of regulation without need for obtaining the units from a schedule."
     },
     "RegulatingControl.monitoredPhase": {
       "title": "monitoredPhase",
-      "type": "PhaseCode",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseCode.json",
       "description": "Phase voltage controlling this regulator, measured at regulator location."
     },
     "RegulatingControl.targetDeadband": {
@@ -85,7 +83,7 @@
     },
     "RegulatingControl.targetValueUnitMultiplier": {
       "title": "targetValueUnitMultiplier",
-      "type": "UnitMultiplier",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitMultiplier.json",
       "description": "Specify the multiplier for used for the targetValue."
     },
     "RegulatingControl.enabled": {

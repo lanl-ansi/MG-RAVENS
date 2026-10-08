@@ -1,15 +1,12 @@
 {
   "type": "array",
+  "description": "Pointers to EnergyConsumerSchedule objects",
+  "title": "EnergyConsumerSchedule_PointerArray",
   "items": {
-    "$objectType": "reference",
     "type": "string",
-    "$objectId": "EnergyConsumerSchedule",
-    "$referencePath": "BasicIntervalSchedule/EnergyConsumerSchedule",
     "title": "EnergyConsumerSchedule_Pointer",
     "description": "Pointer to EnergyConsumerSchedule object"
   },
-  "description": "Pointers to EnergyConsumerSchedule objects",
-  "title": "EnergyConsumerSchedule_PointerArray",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/EnergyConsumerSchedule_PointerArray.json",

@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "ProposedGeneratingUnitOption",
   "properties": {
     "ProposedGeneratingUnitOption.FuelType": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FossilFuel_anyOfPointer_anyOfContainer.json"
@@ -11,7 +9,7 @@
     },
     "ProposedEnergyProducerOption.powerDiscretization": {
       "title": "powerDiscretization",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedAssetOption.requiredOption": {
@@ -34,12 +32,12 @@
     },
     "ProposedGeneratingUnitOption.fossilFuelType": {
       "title": "fossilFuelType",
-      "type": "FuelType",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/FuelType.json",
       "description": "nan"
     },
     "ProposedAssetOption.fixedPrice": {
       "title": "fixedPrice",
-      "type": "Money",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
       "description": "nan"
     },
     "ProposedAssetOption.lifetime": {
@@ -64,12 +62,12 @@
     },
     "ProposedGeneratingUnitOption.unitEfficiency": {
       "title": "unitEfficiency",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "nan"
     },
     "ProposedGeneratingUnitOption.heatRecoveryEfficiency": {
       "title": "heatRecoveryEfficiency",
-      "type": "PerCent",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PerCent.json",
       "description": "nan"
     },
     "ProposedGeneratingUnitOption.combinedHeatPowerEnabled": {
@@ -79,37 +77,37 @@
     },
     "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
       "title": "operationsAndMaintenanceRateVariable",
-      "type": "CostPerKiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerKiloActivePower.json",
       "description": "nan"
     },
     "ProposedAssetOption.operationsAndMaintenanceRateFixed": {
       "title": "operationsAndMaintenanceRateFixed",
-      "type": "Money",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Money.json",
       "description": "nan"
     },
     "ProposedEnergyProducerOption.variablePrice": {
       "title": "variablePrice",
-      "type": "CostPerKiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/CostPerKiloActivePower.json",
       "description": "$/kW"
     },
     "ProposedEnergyProducerOption.powerCapacityMin": {
       "title": "powerCapacityMin",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedEnergyProducerOption.powerCapacityMax": {
       "title": "powerCapacityMax",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedEnergyProducerOption.powerCapacityFixed": {
       "title": "powerCapacityFixed",
-      "type": "KiloActivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/KiloActivePower.json",
       "description": "nan"
     },
     "ProposedGeneratingUnitOption.fossilFuelCapacity": {
       "title": "fossilFuelCapacity",
-      "type": "Volume",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Volume.json",
       "description": "nan"
     },
     "IdentifiedObject.aliasName": {

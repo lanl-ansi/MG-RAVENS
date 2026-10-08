@@ -1,12 +1,12 @@
 {
   "type": "array",
+  "description": "Pointers to GenUnitOpCostCurve objects",
+  "title": "GenUnitOpCostCurve_PointerArray",
   "items": {
     "type": "string",
     "title": "GenUnitOpCostCurve_Pointer",
     "description": "Pointer to GenUnitOpCostCurve object"
   },
-  "description": "Pointers to GenUnitOpCostCurve objects",
-  "title": "GenUnitOpCostCurve_PointerArray",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/GenUnitOpCostCurve_PointerArray.json",

@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "RegulatingControl",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -17,7 +15,7 @@
     },
     "ShuntCompensatorControl.sensingPhaseCode": {
       "title": "sensingPhaseCode",
-      "type": "PhaseCode",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseCode.json",
       "description": "Phases that are measured for controlling the device."
     },
     "ShuntCompensatorControl.localOnLevel": {
@@ -27,12 +25,12 @@
     },
     "ShuntCompensatorControl.regBranchKind": {
       "title": "regBranchKind",
-      "type": "RegulationBranchKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegulationBranchKind.json",
       "description": "(For VAR, amp, or power factor locally controlled shunt impedances) Kind of regulation branch."
     },
     "ShuntCompensatorControl.localControlKind": {
       "title": "localControlKind",
-      "type": "ShuntImpedanceLocalControlKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntImpedanceLocalControlKind.json",
       "description": "Kind of local controller."
     },
     "Ravens.cimObjectType": {
@@ -50,7 +48,7 @@
     },
     "TapChangerControl.limitVoltage": {
       "title": "limitVoltage",
-      "type": "Voltage",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Voltage.json",
       "description": "Maximum allowed regulated voltage on the PT secondary, regardless of line drop compensation. Sometimes referred to as first-house protection."
     },
     "TapChangerControl.lineDropCompensation": {
@@ -60,22 +58,22 @@
     },
     "TapChangerControl.lineDropR": {
       "title": "lineDropR",
-      "type": "Resistance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
       "description": "Line drop compensator resistance setting for normal (forward) power flow."
     },
     "TapChangerControl.lineDropX": {
       "title": "lineDropX",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "Line drop compensator reactance setting for normal (forward) power flow."
     },
     "TapChangerControl.reverseLineDropR": {
       "title": "reverseLineDropR",
-      "type": "Resistance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Resistance.json",
       "description": "Line drop compensator resistance setting for reverse power flow."
     },
     "TapChangerControl.reverseLineDropX": {
       "title": "reverseLineDropX",
-      "type": "Reactance",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Reactance.json",
       "description": "Line drop compensator reactance setting for reverse power flow."
     },
     "ShuntCompensatorControl.localOverride": {
@@ -90,7 +88,7 @@
     },
     "ShuntCompensatorControl.highVoltageOverride": {
       "title": "highVoltageOverride",
-      "type": "PU",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
       "description": "For locally controlled shunt impedances which have a voltage override feature, the high voltage override value. If the voltage is above this value, the shunt impedance will be turned off regardless of the other local controller settings."
     },
     "ShuntCompensatorControl.regBranchEnd": {
@@ -105,7 +103,7 @@
     },
     "ShuntCompensatorControl.switchOperationCycle": {
       "title": "switchOperationCycle",
-      "type": "Hours",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Hours.json",
       "description": "Time interval between consecutive switching operations."
     },
     "RegulatingControl.discrete": {
@@ -115,12 +113,12 @@
     },
     "RegulatingControl.mode": {
       "title": "mode",
-      "type": "RegulatingControlModeKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/RegulatingControlModeKind.json",
       "description": "The regulating control mode presently available.  This specification allows for determining the kind of regulation without need for obtaining the units from a schedule."
     },
     "RegulatingControl.monitoredPhase": {
       "title": "monitoredPhase",
-      "type": "PhaseCode",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PhaseCode.json",
       "description": "Phase voltage controlling this regulator, measured at regulator location."
     },
     "RegulatingControl.targetDeadband": {
@@ -135,7 +133,7 @@
     },
     "ShuntCompensatorControl.cellSize": {
       "title": "cellSize",
-      "type": "ReactivePower",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ReactivePower.json",
       "description": "The size of the individual units that make up the bank."
     },
     "ShuntCompensatorControl.branchDirect": {
@@ -150,12 +148,12 @@
     },
     "ShuntCompensatorControl.lowVoltageOverride": {
       "title": "lowVoltageOverride",
-      "type": "PU",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/PU.json",
       "description": "For locally controlled shunt impedances which have a voltage override feature, the low voltage override value. If the voltage is below this value, the shunt impedance will be turned on regardless of the other local controller settings."
     },
     "RegulatingControl.targetValueUnitMultiplier": {
       "title": "targetValueUnitMultiplier",
-      "type": "UnitMultiplier",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/UnitMultiplier.json",
       "description": "Specify the multiplier for used for the targetValue."
     },
     "RegulatingControl.enabled": {
@@ -195,7 +193,7 @@
     },
     "ShuntCompensatorControl.controlKind": {
       "title": "controlKind",
-      "type": "ShuntImpedanceControlKind",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/ShuntImpedanceControlKind.json",
       "description": "Kind of control (if any)."
     },
     "IdentifiedObject.name": {

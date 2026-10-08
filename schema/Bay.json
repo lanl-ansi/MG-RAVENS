@@ -1,7 +1,5 @@
 {
-  "$objectType": "object",
   "type": "object",
-  "$objectId": "Bay",
   "properties": {
     "PowerSystemResource.AssetDatasheet": {
       "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/AssetInfo_anyOfPointer_anyOfContainer.json"
@@ -33,12 +31,12 @@
     },
     "Bay.breakerConfiguration": {
       "title": "breakerConfiguration",
-      "type": "BreakerConfiguration",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BreakerConfiguration.json",
       "description": "Breaker configuration."
     },
     "Bay.busBarConfiguration": {
       "title": "busBarConfiguration",
-      "type": "BusbarConfiguration",
+      "$ref": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/BusbarConfiguration.json",
       "description": "Busbar configuration."
     },
     "Ravens.cimObjectType": {

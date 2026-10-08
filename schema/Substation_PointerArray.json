@@ -1,15 +1,12 @@
 {
   "type": "array",
+  "description": "Pointers to Substation objects",
+  "title": "Substation_PointerArray",
   "items": {
-    "$objectType": "reference",
     "type": "string",
-    "$objectId": "Substation",
-    "$referencePath": "Group/ConnectivityNodeContainer/Substation",
     "title": "Substation_Pointer",
     "description": "Pointer to Substation object"
   },
-  "description": "Pointers to Substation objects",
-  "title": "Substation_PointerArray",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "$id": "https://raw.githubusercontent.com/lanl-ansi/MG-RAVENS/refs/heads/schema/schema/Substation_PointerArray.json",
