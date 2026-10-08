@@ -1,0 +1,40 @@
+{
+  "PredictedEmissions": {
+    "Site1_PredictedEmissions": {
+      "IdentifiedObject.name": "Site1_PredictedEmissiosn",
+      "IdentifiedObject.mRID": "332a7678-3268-4924-aaf3-94bf913adaf0",
+      "Ravens.cimObjectType": "PredictedEmissions",
+      "PredictedEmissions.analysisPeriodFuelEmissions": 5.0,
+      "PredictedEmissions.analysisPeriodGridEmissions": 150.0,
+      "PredictedEmissions.firstYearFuelEmissions": 0.5,
+      "PredictedEmissions.firstYearGridEmissions": 15.0,
+      "PredictedEmissions.renewableEnergyProductionFraction": 0.2,
+      "PredictedEmissions.energyProductionFraction": 0.5,
+      "PredictedEmissions.Location": "Location::'Site1'"
+    },
+    "Site2_PredictedEmissiosn": {
+      "IdentifiedObject.name": "Site2_PredictedEmissiosn",
+      "IdentifiedObject.mRID": "0eefb120-165c-4408-ae00-b399a94576d7",
+      "Ravens.cimObjectType": "PredictedEmissions",
+      "PredictedEmissions.analysisPeriodFuelEmissions": 2.0,
+      "PredictedEmissions.analysisPeriodGridEmissions": 150.0,
+      "PredictedEmissions.firstYearFuelEmissions": 0.2,
+      "PredictedEmissions.firstYearGridEmissions": 15.0,
+      "PredictedEmissions.renewableEnergyProductionFraction": 0.5,
+      "PredictedEmissions.energyProductionFraction": 0.4,
+      "PredictedEmissions.Location": "Location::'Site2'"
+    },
+    "Site3_PredictedEmissiosn": {
+      "IdentifiedObject.name": "Site3_PredictedEmissiosn",
+      "IdentifiedObject.mRID": "24ae6e82-e4b4-4588-a348-2084753d003f",
+      "Ravens.cimObjectType": "PredictedEmissions",
+      "PredictedEmissions.analysisPeriodFuelEmissions": 1.0,
+      "PredictedEmissions.analysisPeriodGridEmissions": 150.0,
+      "PredictedEmissions.firstYearFuelEmissions": 0.1,
+      "PredictedEmissions.firstYearGridEmissions": 15.0,
+      "PredictedEmissions.renewableEnergyProductionFraction": 0.9,
+      "PredictedEmissions.energyProductionFraction": 0.1,
+      "PredictedEmissions.Location": "Location::'Site3'"
+    }
+  }
+}

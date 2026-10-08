@@ -1,0 +1,118 @@
+{
+  "ProposedAsset": {
+    "ProposedSolarAsset": {
+      "IdentifiedObject.name": "ProposedSolarAsset",
+      "IdentifiedObject.mRID": "a5544b25-5072-4882-965d-54067e8c9eab",
+      "ProposedEnergyProducerAsset.capacity": 15.0,
+      "ProposedAsset.ProposedAssetOption": "ProposedPhotoVoltaicUnitOption::'SomeSolarOption'",
+      "ProposedEnergyProducerAsset.energyAvailability": 50.0
+    },
+    "ProposedBatteryAsset": {
+      "IdentifiedObject.name": "ProposedBatteryAsset",
+      "IdentifiedObject.mRID": "47194ae8-b43a-429e-9903-6fa5bc60fb18",
+      "ProposedEnergyProducerAsset.capacity": 250.0,
+      "ProposedBatteryUnit.energyCapacity": 500.0,
+      "ProposedEnergyProducerAsset.energyProducedPerAnnum": 182000.0,
+      "ProposedAsset.ProposedAssetOption": "ProposedBatteryUnitOption::'SomeProposedBatteryOption'",
+      "ProposedAsset.EstimatedCost": "EstimatedCost::'ProposedBatteryAsset'"
+    },
+    "ProposedGensetAsset": {
+      "IdentifiedObject.name": "ProposedGensetAsset",
+      "IdentifiedObject.mRID": "2f60b12f-ac70-435b-a488-2cb9cac1c26e",
+      "ProposedAsset.ProposedAssetOption": "ProposedEnergyProducerOption::'SomeGensetOption'",
+      "ProposedEnergyProducerAsset.capacity": 500.0,
+      "ProposedAsset.EstimatedCost": "EstimatedCost::'ProposedGensetAsset'",
+      "ProposedEnergyProducerAsset.PowerDispatchCurve": "Curve::'ProposedGensetAssetDispatchCurve'"
+    },
+    "ProposedWindAsset": {
+      "IdentifiedObject.name": "ProposedWindAsset",
+      "IdentifiedObject.mRID": "5a54c77c-29e3-4d9f-a6df-6e8e223f8952",
+      "ProposedAsset.ProposedAssetOption": "ProposedEnergyProducerOption::'SomeWindOption'",
+      "ProposedEnergyProducerAsset.capacity": 150,
+      "ProposedEnergyProducerAsset.energyAvailability": 35.0,
+      "ProposedAsset.EstimatedCost": "EstimatedCost::'ProposedWindAsset'"
+    }
+  },
+  "EstimatedCost": {
+    "ProposedWindAsset": {
+      "Ravens.cimObjectType": "EstimatedCost",
+      "IdentifiedObject.name": "ProposedWindAsset",
+      "IdentifiedObject.mRID": "d70c2138-d590-4dc8-9803-4b0d6756406d",
+      "EstimatedCost.assetCost": { "value": 10000, "unit": "Currency.USD" },
+      "EstimatedCost.firstYearCapacityCost": {
+        "value": 1000,
+        "unit": "Currency.USD"
+      },
+      "EstimatedCost.lifecycleCapacityCost": {
+        "value": 100000,
+        "unit": "Currency.USD"
+      }
+    },
+    "ProposedGensetAsset": {
+      "Ravens.cimObjectType": "EstimatedCost",
+      "IdentifiedObject.name": "ProposedGensetAsset",
+      "IdentifiedObject.mRID": "14999377-1224-46a7-a35c-3a13a08bfa7e",
+      "EstimatedCost.assetCost": {
+        "value": 5000.0,
+        "unit": "Currency.USD"
+      },
+      "EstimatedCost.firstYearCapacityCost": {
+        "value": 100.0,
+        "unit": "Currency.USD"
+      },
+      "EstimatedCost.lifecycleCapacityCost": {
+        "value": 10000.0,
+        "unit": "Currency.USD"
+      }
+    },
+    "ProposedBatteryAsset": {
+      "Ravens.cimObjectType": "EstimatedCost",
+      "IdentifiedObject.name": "ProposedBatteryAsset",
+      "IdentifiedObject.mRID": "39fa27e5-b62b-48ea-8517-0bbbd79a35fb",
+      "EstimatedCost.lifecycleEnergyCost": {
+        "value": 15000.0,
+        "unit": "Currency.USD"
+      }
+    },
+    "ProposedSolarAsset": {
+      "Ravens.cimObjectType": "EstimatedCost",
+      "IdentifiedObject.name": "ProposedSolarAsset",
+      "IdentifiedObject.mRID": "372441f4-63a6-4b50-b777-435189663cc6",
+      "EstimatedCost.assetCost": {
+        "value": 5000.0,
+        "unit": "Currency.USD"
+      },
+      "EstimatedCost.firstYearOperationsAndMaintenanceCost": {
+        "value": 500.0,
+        "unit": "Currency.USD"
+      },
+      "EstimatedCost.lifecycleOperationsAndMaintenanceCost": {
+        "value": 12500.0,
+        "unit": "Currency.USD"
+      }
+    }
+  },
+  "Curve": {
+    "ProposedGensetAssetDispatchCurve": {
+      "IdentifiedObject.name": "ProposedGensetAssetDispatchCurve",
+      "IdentifiedObject.mRID": "7c7e9f35-5449-4e20-833a-0e5b8cd91b4a",
+      "Ravens.cimObjectType": "Curve",
+      "Curve.xUnit": "UnitSymbol.h",
+      "Curve.y1Unit": "UnitSymbol.W",
+      "Curve.y1Multiplier": "UnitMultiplier.k",
+      "Curve.CurveDatas": [
+        { "xValue": 0, "y1Value": 215.77273515545588 },
+        { "xValue": 1, "y1Value": 208.91879992397932 },
+        { "xValue": 2, "y1Value": 371.52226619848585 },
+        { "xValue": 3, "y1Value": 68.47492757960887 },
+        { "xValue": 4, "y1Value": 394.2946866305977 },
+        { "xValue": 5, "y1Value": 114.16592527714408 },
+        { "xValue": 6, "y1Value": 70.02567501651814 },
+        { "xValue": 7, "y1Value": 448.03136957892747 },
+        { "xValue": 8, "y1Value": 11.41067086923625 },
+        { "xValue": 9, "y1Value": 467.9639506361599 },
+        { "xValue": 10, "y1Value": 365.75794344358445 }
+      ]
+    }
+  }
+}

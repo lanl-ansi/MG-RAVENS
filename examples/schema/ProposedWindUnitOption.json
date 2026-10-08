@@ -1,0 +1,59 @@
+{
+  "ProposedAssetOption": {
+    "ProposedEnergyProducerOption": {
+      "ProposedWindmill1": {
+        "IdentifiedObject.mRID": "88fe3de1-ab20-427f-9efc-6269419d3458",
+        "IdentifiedObject.name": "ProposedWindmill1",
+        "Ravens.cimObjectType": "ProposedWindUnitOption",
+        "ProposedAssetOption.lifetime": "P20Y",
+        "ProposedEnergyProducerOption.operationsAndMaintenanceRateVariable": {
+          "value": 100.0,
+          "unit": "Currency.USD"
+        },
+        "ProposedEnergyProducerOption.powerCapacityMax": 1000.0,
+        "ProposedEnergyProducerOption.powerCapacityMin": 250.0,
+        "ProposedEnergyProducerOption.variablePrice": {
+          "value": 1000.0,
+          "unit": "Currency.USD"
+        },
+        "ProposedWindUnitOption.GenerationProfile": "Curve::'WindProfile'"
+      },
+      "ProposedWindmill2": {
+        "IdentifiedObject.mRID": "fe2e0aac-bc5d-4cd0-9012-8b66a7d0eb8c",
+        "IdentifiedObject.name": "ProposedWindmill2",
+        "Ravens.cimObjectType": "ProposedWindUnitOption",
+        "ProposedAssetOption.lifetime": "P20Y",
+        "ProposedAssetOption.operationsAndMaintenanceRateFixed": {
+          "value": 50000.0,
+          "unit": "Currency.USD"
+        },
+        "ProposedEnergyProducerOption.powerCapacityFixed": 500.0,
+        "ProposedAssetOption.fixedPrice": {
+          "value": 500000.0,
+          "unit": "Currency.USD"
+        }
+      }
+    }
+  },
+  "Curve": {
+    "WindProfile": {
+      "IdentifiedObject.mRID": "b6bf4008-b34a-4b52-8a1c-2907caf0694f",
+      "IdentifiedObject.name": "WindProfile",
+      "Ravens.cimObjectType": "Curve",
+      "Curve.xUnit": "UnitSymbol.h",
+      "Curve.CurveDatas": [
+        { "CurveData.xvalue": 0, "CurveData.y1value": 0.26 },
+        { "CurveData.xvalue": 1, "CurveData.y1value": 0.32 },
+        { "CurveData.xvalue": 2, "CurveData.y1value": 0.85 },
+        { "CurveData.xvalue": 3, "CurveData.y1value": 0.78 },
+        { "CurveData.xvalue": 4, "CurveData.y1value": 0.44 },
+        { "CurveData.xvalue": 5, "CurveData.y1value": 0.15 },
+        { "CurveData.xvalue": 6, "CurveData.y1value": 0.55 },
+        { "CurveData.xvalue": 7, "CurveData.y1value": 0.52 },
+        { "CurveData.xvalue": 8, "CurveData.y1value": 0.64 },
+        { "CurveData.xvalue": 9, "CurveData.y1value": 0.14 },
+        { "CurveData.xvalue": 10, "CurveData.y1value": 0.54 }
+      ]
+    }
+  }
+}

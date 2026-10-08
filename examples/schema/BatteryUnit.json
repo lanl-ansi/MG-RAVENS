@@ -1,0 +1,111 @@
+{
+  "BaseVoltage": {
+    "BaseV_0.4": {
+      "Ravens.cimObjectType": "BaseVoltage",
+      "IdentifiedObject.mRID": "eac36c2a-2446-4fab-973e-e4310268fdee",
+      "IdentifiedObject.name": "BaseV_0.4",
+      "BaseVoltage.nominalVoltage": 400.0
+    }
+  },
+  "ConnectivityNode": {
+    "primary": {
+      "Ravens.cimObjectType": "ConnectivityNode",
+      "IdentifiedObject.mRID": "f49503f2-3652-4502-b506-190fb908d69e",
+      "IdentifiedObject.name": "primary"
+    }
+  },
+  "PowerSystemResource": {
+    "Equipment": {
+      "ConductingEquipment": {
+        "EnergyConnection": {
+          "RegulatingCondEq": {
+            "PowerElectronicsConnection": {
+              "s1": {
+                "Ravens.cimObjectType": "PowerElectronicsConnection",
+                "IdentifiedObject.mRID": "d7d73354-efb6-4ff2-afed-160372cd9c97",
+                "IdentifiedObject.name": "s1",
+                "PowerElectronicsConnection.maxIFault": 1.1111111111111112,
+                "PowerElectronicsConnection.p": 5000.0,
+                "PowerElectronicsConnection.q": 0.0,
+                "PowerElectronicsConnection.ratedS": 5000.0,
+                "PowerElectronicsConnection.ratedU": 400.0,
+                "PowerElectronicsConnection.maxQ": 25000.0,
+                "PowerElectronicsConnection.minQ": -25000.0,
+                "Equipment.inService": true,
+                "ConductingEquipment.BaseVoltage": "BaseVoltage::'BaseV_0.4'",
+                "ConductingEquipment.Terminals": [
+                  {
+                    "Ravens.cimObjectType": "Terminal",
+                    "IdentifiedObject.mRID": "1f07457c-3674-4a72-83e9-d95df5531e4c",
+                    "IdentifiedObject.name": "s1_T1",
+                    "ACDCTerminal.sequenceNumber": 1,
+                    "Terminal.phases": "PhaseCode.ABC",
+                    "Terminal.ConnectivityNode": "ConnectivityNode::'primary'",
+                    "ACDCTerminal.OperationalLimitSet": "OperationalLimitSet::'OpLimV_360.00000000000006-440.00000000000006'"
+                  }
+                ],
+                "PowerElectronicsConnection.PowerElectronicsUnit": {
+                  "Ravens.cimObjectType": "BatteryUnit",
+                  "IdentifiedObject.mRID": "4fbb68ea-ad13-4e73-83af-5f47c62fcfac",
+                  "IdentifiedObject.name": "s1_Cells",
+                  "PowerElectronicsUnit.minP": -5000.0,
+                  "PowerElectronicsUnit.maxP": 5000.0,
+                  "BatteryUnit.storedE": 5000.0,
+                  "BatteryUnit.ratedE": 5000.0,
+                  "BatteryUnit.BatteryUnitEfficiency": {
+                    "Ravens.cimObjectType": "BatteryUnitEfficiency",
+                    "BatteryUnitEfficiency.reserveEnergy": 0.0,
+                    "BatteryUnitEfficiency.limitEnergy": 100.0,
+                    "BatteryUnitEfficiency.efficiencyDischarge": 100.0,
+                    "BatteryUnitEfficiency.efficiencyCharge": 100.0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "OperationalLimitSet": {
+    "OpLimV_360.00000000000006-440.00000000000006": {
+      "Ravens.cimObjectType": "OperationalLimitSet",
+      "IdentifiedObject.mRID": "bee0f9ba-368c-4f00-b078-ffde4198f6f5",
+      "IdentifiedObject.name": "OpLimV_360.00000000000006-440.00000000000006",
+      "OperationalLimitSet.OperationalLimitValue": [
+        {
+          "Ravens.cimObjectType": "VoltageLimit",
+          "IdentifiedObject.mRID": "f5b7b360-bc38-4385-8745-29c02c20628a",
+          "IdentifiedObject.name": "OpLimV_360.00000000000006-440.00000000000006_RangeAlow",
+          "VoltageLimit.value": 360.00000000000006,
+          "VoltageLimit.normalValue": 400.0,
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'lowType_5000000000.0s'"
+        },
+        {
+          "Ravens.cimObjectType": "VoltageLimit",
+          "IdentifiedObject.mRID": "5a4f365a-9456-43de-8c88-63c73c8b3e21",
+          "IdentifiedObject.name": "OpLimV_360.00000000000006-440.00000000000006_RangeAhigh",
+          "VoltageLimit.value": 440.00000000000006,
+          "VoltageLimit.normalValue": 400.0,
+          "OperationalLimit.OperationalLimitType": "OperationalLimitType::'highType_5000000000.0s'"
+        }
+      ]
+    }
+  },
+  "OperationalLimitType": {
+    "lowType_5000000000.0s": {
+      "Ravens.cimObjectType": "OperationalLimitType",
+      "IdentifiedObject.mRID": "ccf09a3d-6ac9-4389-9d61-7f3ce008b0da",
+      "IdentifiedObject.name": "lowType_5000000000.0s",
+      "OperationalLimitType.direction": "OperationalLimitDirectionKind.low",
+      "OperationalLimitType.acceptableDuration": 5000000000.0
+    },
+    "highType_5000000000.0s": {
+      "Ravens.cimObjectType": "OperationalLimitType",
+      "IdentifiedObject.mRID": "441d5bd5-0f64-4fec-bbcf-914abfc228ae",
+      "IdentifiedObject.name": "highType_5000000000.0s",
+      "OperationalLimitType.direction": "OperationalLimitDirectionKind.high",
+      "OperationalLimitType.acceptableDuration": 5000000000.0
+    }
+  }
+}
