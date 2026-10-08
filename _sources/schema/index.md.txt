@@ -56,8 +56,6 @@
 
 [ActivityRecord_PointerArray](../_static/schema/ActivityRecord_PointerArray.html){.external}
 
-[ActivityRecord_Pointer_anyOfContainer](../_static/schema/ActivityRecord_Pointer_anyOfContainer.html){.external}
-
 [ActivityRecord_anyOfContainer](../_static/schema/ActivityRecord_anyOfContainer.html){.external}
 
 [AdderType](../_static/schema/AdderType.html){.external}
@@ -698,8 +696,6 @@
 
 [Equipment_PointerArray](../_static/schema/Equipment_PointerArray.html){.external}
 
-[Equipment_Pointer_anyOfContainer](../_static/schema/Equipment_Pointer_anyOfContainer.html){.external}
-
 [Equipment_anyOfPointer_anyOfContainer](../_static/schema/Equipment_anyOfPointer_anyOfContainer.html){.external}
 
 [EquivalentBranch](../_static/schema/EquivalentBranch.html){.external}
@@ -999,8 +995,6 @@
 [LoadGroup_PointerArray](../_static/schema/LoadGroup_PointerArray.html){.external}
 
 [LoadGroup_anyOfContainer](../_static/schema/LoadGroup_anyOfContainer.html){.external}
-
-[LoadGroup_anyOfPointer_anyOfContainer](../_static/schema/LoadGroup_anyOfPointer_anyOfContainer.html){.external}
 
 [LoadResponseCharacteristic](../_static/schema/LoadResponseCharacteristic.html){.external}
 
